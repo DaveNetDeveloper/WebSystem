@@ -1,0 +1,711 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TestRun id="25f03f2a-9d76-4a68-9045-1c12ea3069bc" name="David@DG 2025-09-08 17:31:27" runUser="DG\David" xmlns="http://microsoft.com/schemas/VisualStudio/TeamTest/2010">
+  <Times creation="2025-09-08T17:31:27.1615694+02:00" queuing="2025-09-08T17:31:27.1615697+02:00" start="2025-09-08T17:29:56.2153970+02:00" finish="2025-09-08T17:31:45.4643461+02:00" />
+  <TestSettings name="default" id="4b0728c8-17e3-449a-ac73-3e445aea2ead">
+    <Deployment runDeploymentRoot="David_DG_2025-09-08_17_31_27" />
+  </TestSettings>
+  <Results>
+    <UnitTestResult executionId="9feb9b35-3f2f-4198-bd53-2128d88bd3b9" testId="bb0d1623-0869-e0d5-7733-00fbeb9ac713" testName="ValidarCampos_Validos_AsignanCorrectamente" computerName="DG" duration="00:00:00.0032560" startTime="2025-09-08T17:31:26.7598331+02:00" endTime="2025-09-08T17:31:26.7630891+02:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="9feb9b35-3f2f-4198-bd53-2128d88bd3b9" />
+    <UnitTestResult executionId="4bb277e8-5c7c-4b24-9a03-894698c03045" testId="882c0229-c222-a662-4d3a-1212196ae5b7" testName="GetByTokenAsync_ReturnsEntity_WhenIdExists" computerName="DG" duration="00:00:00.0447600" startTime="2025-09-08T17:31:39.5339646+02:00" endTime="2025-09-08T17:31:39.5787244+02:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="4bb277e8-5c7c-4b24-9a03-894698c03045">
+      <Output>
+        <StdOut>Test passed succesfully. User with token do8mre7qg7rz3otjv1zuj7azsimcwp4jgcqcezcxtsoa2 exist.</StdOut>
+      </Output>
+    </UnitTestResult>
+    <UnitTestResult executionId="a05f195d-3eb0-4437-bc4b-ff43604d4930" testId="9a87dac4-1b58-f366-a88a-25718320ab02" testName="RemoveEntity_CheckEntities_AfterRemove" computerName="DG" duration="00:00:00.0201240" startTime="2025-09-08T17:31:38.2434197+02:00" endTime="2025-09-08T17:31:38.2635432+02:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="a05f195d-3eb0-4437-bc4b-ff43604d4930">
+      <Output>
+        <StdOut>Test passed succesfully. Category with Id b82f89b1-eb53-dc2f-9b62-0e74c1fa5450 has been removed succesfully.</StdOut>
+      </Output>
+    </UnitTestResult>
+    <UnitTestResult executionId="817991d3-661e-48d9-bcc5-a8ba7e515a56" testId="98ef6c5f-9863-aa48-83a9-912ddb02587c" testName="ValidarCampos_Invalidos_DevuelvenException" computerName="DG" duration="00:00:00.1241770" startTime="2025-09-08T17:31:26.5656554+02:00" endTime="2025-09-08T17:31:26.6898311+02:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="817991d3-661e-48d9-bcc5-a8ba7e515a56" />
+    <UnitTestResult executionId="a37c16fa-684b-4968-8733-797ba6b56bbd" testId="206fb8ed-20c9-8ea6-0eba-fd53d01baf80" testName="GetByEmailAsync_ReturnsEntity_WhenIdExists" computerName="DG" duration="00:00:00.0471580" startTime="2025-09-08T17:31:39.3855017+02:00" endTime="2025-09-08T17:31:39.4326597+02:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="a37c16fa-684b-4968-8733-797ba6b56bbd">
+      <Output>
+        <StdOut>Test passed succesfully. User with email Alfonzo.Nienow@gmail.com exist.</StdOut>
+      </Output>
+    </UnitTestResult>
+    <UnitTestResult executionId="69a38908-4dd5-4ac0-b972-02ad41a1ad38" testId="09854260-4253-0bcf-46d0-95e44d96902f" testName="GetByNameAsync_ReturnsEntity_WhenIdExist" computerName="DG" duration="00:00:00.0519270" startTime="2025-09-08T17:31:38.8151088+02:00" endTime="2025-09-08T17:31:38.8670356+02:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="69a38908-4dd5-4ac0-b972-02ad41a1ad38">
+      <Output>
+        <StdOut>Test passed succesfully. Rol with name Rol 1 has all data properties succesfully informed.</StdOut>
+      </Output>
+    </UnitTestResult>
+    <UnitTestResult executionId="5e1b9f13-0195-4821-80dc-5e8e240a1ebf" testId="fc3aa521-d222-5a1c-f4a2-d76c874c416c" testName="GetByNameAsync_ReturnsEntity_WhenIdExist" computerName="DG" duration="00:00:00.0481660" startTime="2025-09-08T17:31:38.1951871+02:00" endTime="2025-09-08T17:31:38.2433532+02:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="5e1b9f13-0195-4821-80dc-5e8e240a1ebf">
+      <Output>
+        <StdOut>Test passed succesfully. Category with name Categoria 01 has all data properties succesfully informed.</StdOut>
+      </Output>
+    </UnitTestResult>
+    <UnitTestResult executionId="23346051-79b4-4500-9271-6ec4afc3d868" testId="d9ceae1f-793e-ce14-5376-9d41ecb6a36c" testName="GetAllAsync_ReturnsAffectedEntities_AfterSetup" computerName="DG" duration="00:00:00.0593820" startTime="2025-09-08T17:31:36.8243718+02:00" endTime="2025-09-08T17:31:36.8837540+02:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="23346051-79b4-4500-9271-6ec4afc3d868">
+      <Output>
+        <StdOut>Test passed succesfully. All 5 activities have been added succesfully during Setup:&#xD;
+Id=1, Nombre=Actividad 01, Activo=True&#xD;
+Id=2, Nombre=Actividad 11, Activo=True&#xD;
+Id=3, Nombre=Actividad 21, Activo=True&#xD;
+Id=4, Nombre=Actividad 31, Activo=True&#xD;
+Id=5, Nombre=Actividad 41, Activo=True</StdOut>
+      </Output>
+    </UnitTestResult>
+    <UnitTestResult executionId="b615f7ad-557e-4cfa-b02f-89d1ea7aca5e" testId="c164ea60-af85-83a5-65c1-58f6bbd7debe" testName="CheckUsersJob_RunCheckAsyn_WriteLogsInformation" computerName="DG" duration="00:00:05.5868420" startTime="2025-09-08T17:31:20.9647382+02:00" endTime="2025-09-08T17:31:26.5512504+02:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Failed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="b615f7ad-557e-4cfa-b02f-89d1ea7aca5e">
+      <Output>
+        <ErrorInfo>
+          <Message>System.FormatException : Input string was not in a correct format. Failure to parse near offset 65. Expected an ASCII digit.</Message>
+          <StackTrace>   at System.Text.ValueStringBuilder.AppendFormatHelper(IFormatProvider provider, String format, ReadOnlySpan`1 args)&#xD;
+   at System.String.FormatHelper(IFormatProvider provider, String format, ReadOnlySpan`1 args)&#xD;
+   at System.IO.TextWriter.WriteLine(String format, Object arg0)&#xD;
+   at System.IO.TextWriter.SyncTextWriter.WriteLine(String format, Object arg0)&#xD;
+   at Test.UnitTest.BackgroundServices.CheckUsersTest.CheckUsersJob_RunCheckAsyn_WriteLogsInformation() in C:\Users\David\Desktop\Test.UnitTest\BackgroundServices\CheckUsersTest.cs:line 64&#xD;
+   at NUnit.Framework.Internal.TaskAwaitAdapter.GenericAdapter`1.BlockUntilCompleted()&#xD;
+   at NUnit.Framework.Internal.MessagePumpStrategy.NoMessagePumpStrategy.WaitForCompletion(AwaitAdapter awaiter)&#xD;
+   at NUnit.Framework.Internal.AsyncToSyncAdapter.Await(Func`1 invoke)&#xD;
+   at NUnit.Framework.Internal.Commands.TestMethodCommand.RunTestMethod(TestExecutionContext context)&#xD;
+   at NUnit.Framework.Internal.Commands.TestMethodCommand.Execute(TestExecutionContext context)&#xD;
+   at NUnit.Framework.Internal.Commands.BeforeAndAfterTestCommand.&lt;&gt;c__DisplayClass1_0.&lt;Execute&gt;b__0()&#xD;
+   at NUnit.Framework.Internal.Commands.DelegatingTestCommand.RunTestMethodInThreadAbortSafeZone(TestExecutionContext context, Action action)
+</StackTrace>
+        </ErrorInfo>
+      </Output>
+    </UnitTestResult>
+    <UnitTestResult executionId="b477118e-623b-4a85-9e7e-ccd2cb143b7b" testId="46b39833-e713-75ff-e9f7-7636b6818f25" testName="RemoveEntity_CheckEntities_AfterRemove" computerName="DG" duration="00:00:00.0748630" startTime="2025-09-08T17:31:40.1608558+02:00" endTime="2025-09-08T17:31:40.2357188+02:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="b477118e-623b-4a85-9e7e-ccd2cb143b7b">
+      <Output>
+        <StdOut>Test passed succesfully. User with Id 1 has been removed succesfully.</StdOut>
+      </Output>
+    </UnitTestResult>
+    <UnitTestResult executionId="4f4c8e03-1cef-4ac8-a9f3-47e98831c498" testId="ff33167c-13f4-c38a-9fd4-55f605d158ec" testName="GetAll_Test" computerName="DG" duration="00:00:00.0009690" startTime="2025-09-08T17:31:40.9375917+02:00" endTime="2025-09-08T17:31:40.9385607+02:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="4f4c8e03-1cef-4ac8-a9f3-47e98831c498" />
+    <UnitTestResult executionId="4e267f29-4307-45ad-8ef7-a5ce63507174" testId="8164f939-d80b-638b-2cd5-3de20d464fd0" testName="RemoveEntity_CheckEntities_AfterRemove" computerName="DG" duration="00:00:00.0143100" startTime="2025-09-08T17:31:38.8670946+02:00" endTime="2025-09-08T17:31:38.8814043+02:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="4e267f29-4307-45ad-8ef7-a5ce63507174">
+      <Output>
+        <StdOut>Test passed succesfully. Rol with Id 153b7912-f556-bdfa-636e-ab0a404f1112 has been removed succesfully.</StdOut>
+      </Output>
+    </UnitTestResult>
+    <UnitTestResult executionId="75323217-9b84-416a-826f-1905df4ee230" testId="574596f2-86fb-8411-48bc-30f716256d53" testName="UpdateAsync_ReturnsEntity_WithValidData" computerName="DG" duration="00:00:00.0379080" startTime="2025-09-08T17:31:37.9458925+02:00" endTime="2025-09-08T17:31:37.9837999+02:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="75323217-9b84-416a-826f-1905df4ee230">
+      <Output>
+        <StdOut>Test passed succesfully.Activity with id 1 has been updated succesfully.</StdOut>
+      </Output>
+    </UnitTestResult>
+    <UnitTestResult executionId="0562c29a-dee7-49e1-b8f2-755361e3d3b3" testId="d95a1a6f-5f82-3df6-7b56-357ab6024da9" testName="Update_Test" computerName="DG" duration="00:00:00.0016280" startTime="2025-09-08T17:31:41.0265179+02:00" endTime="2025-09-08T17:31:41.0281458+02:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Failed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="0562c29a-dee7-49e1-b8f2-755361e3d3b3">
+      <Output>
+        <ErrorInfo>
+          <Message>  Expected: True&#xD;
+  But was:  False&#xD;
+</Message>
+          <StackTrace>   at Test.UnitTest.Services.UsuarioServiceTests.Update_Test() in C:\Users\David\Desktop\Test.UnitTest\Services\UsuarioServiceTests.cs:line 154&#xD;
+
+1)    at Test.UnitTest.Services.UsuarioServiceTests.Update_Test() in C:\Users\David\Desktop\Test.UnitTest\Services\UsuarioServiceTests.cs:line 154&#xD;
+
+</StackTrace>
+        </ErrorInfo>
+      </Output>
+    </UnitTestResult>
+    <UnitTestResult executionId="df46d7c9-0b3e-4321-9b52-2a80877b123b" testId="21c46312-747e-47a0-3191-a6c78e857818" testName="GetByIdAsync_ReturnsEntity_WhenIdExist" computerName="DG" duration="00:00:00.0402249" startTime="2025-09-08T17:31:38.1549043+02:00" endTime="2025-09-08T17:31:38.1951292+02:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="df46d7c9-0b3e-4321-9b52-2a80877b123b">
+      <Output>
+        <StdOut>Test passed succesfully. Category with Id b82f89b1-eb53-dc2f-9b62-0e74c1fa5450 has all data properties succesfully informed.</StdOut>
+      </Output>
+    </UnitTestResult>
+    <UnitTestResult executionId="3d61ddb9-6a67-4958-bf2e-4c531c04c198" testId="ba877e30-3f16-1983-7490-b5d88dae0dc2" testName="GetByIdAsync_ReturnsNull_WhenIdDoesNotExist" computerName="DG" duration="00:00:00.0549010" startTime="2025-09-08T17:31:39.4790305+02:00" endTime="2025-09-08T17:31:39.5339317+02:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="3d61ddb9-6a67-4958-bf2e-4c531c04c198">
+      <Output>
+        <StdOut>Test passed succesfully. User Id -9999 doesn't exist.</StdOut>
+      </Output>
+    </UnitTestResult>
+    <UnitTestResult executionId="a0bf92f4-66ef-4563-b531-6b201e35c581" testId="6d94c695-3dde-5bb3-fa03-4935778cbdef" testName="AddAsync_AddEntityCorrectly" computerName="DG" duration="00:00:00.2571470" startTime="2025-09-08T17:31:38.2876331+02:00" endTime="2025-09-08T17:31:38.5447803+02:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="a0bf92f4-66ef-4563-b531-6b201e35c581">
+      <Output>
+        <StdOut>Test passed succesfully. Product with new Id 6 has been created succesfully.</StdOut>
+      </Output>
+    </UnitTestResult>
+    <UnitTestResult executionId="0e672a1c-4fdc-475e-9883-42b536ed641a" testId="54ad0239-7fb4-86d2-cff7-8ebe674e9ff6" testName="GetImagenesActividad_ReturnsImages_WhenIdExist" computerName="DG" duration="00:00:00.1589700" startTime="2025-09-08T17:31:37.7500059+02:00" endTime="2025-09-08T17:31:37.9089748+02:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="0e672a1c-4fdc-475e-9883-42b536ed641a" />
+    <UnitTestResult executionId="3e00e338-690e-4373-8288-60c134647e5b" testId="39c9baa0-763a-8757-e45a-5c4800acd581" testName="GetByIdAsync_ReturnsEntity_WhenIdExist" computerName="DG" duration="00:00:00.0179380" startTime="2025-09-08T17:31:38.5448203+02:00" endTime="2025-09-08T17:31:38.5627580+02:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="3e00e338-690e-4373-8288-60c134647e5b">
+      <Output>
+        <StdOut>Test passed succesfully. Product with Id 1 has all data properties succesfully informed.</StdOut>
+      </Output>
+    </UnitTestResult>
+    <UnitTestResult executionId="f92ae77b-f727-4a4f-97fa-d09d17bbf189" testId="d817137c-335f-a015-5032-8fa4769e60f3" testName="GetByIdAsync_ReturnsEntity_WhenIdExist" computerName="DG" duration="00:00:00.0591810" startTime="2025-09-08T17:31:38.7558622+02:00" endTime="2025-09-08T17:31:38.8150424+02:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="f92ae77b-f727-4a4f-97fa-d09d17bbf189">
+      <Output>
+        <StdOut>Test passed succesfully. Rol with Id 153b7912-f556-bdfa-636e-ab0a404f1112 has all data properties succesfully informed.</StdOut>
+      </Output>
+    </UnitTestResult>
+    <UnitTestResult executionId="08bab632-0abc-4088-9aaf-9627c31a2916" testId="f2eaf840-6ed7-5c27-c4e9-f812db96ab08" testName="RemoveEntity_CheckEntities_AfterRemove" computerName="DG" duration="00:00:00.0214400" startTime="2025-09-08T17:31:38.5960962+02:00" endTime="2025-09-08T17:31:38.6175353+02:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="08bab632-0abc-4088-9aaf-9627c31a2916">
+      <Output>
+        <StdOut>Test passed succesfully. Product with Id 1 has been removed succesfully.</StdOut>
+      </Output>
+    </UnitTestResult>
+    <UnitTestResult executionId="6d1597c5-7aa5-47c5-a9ed-88fe098dadb3" testId="60febeab-7526-e693-3ba5-537327306de1" testName="UpdateAsync_ReturnsEntity_WithValidData" computerName="DG" duration="00:00:00.0319170" startTime="2025-09-08T17:31:38.6175686+02:00" endTime="2025-09-08T17:31:38.6494869+02:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="6d1597c5-7aa5-47c5-a9ed-88fe098dadb3">
+      <Output>
+        <StdOut>Test passed succesfully. Product with id 1 has been updated succesfully.</StdOut>
+      </Output>
+    </UnitTestResult>
+    <UnitTestResult executionId="dc36072b-46ef-405c-b0ef-0534a7ee612d" testId="67830ffb-6753-ecac-7506-5bfca90e461f" testName="GetDecodeValue_DeberiaRetornarTextoPlano" computerName="DG" duration="00:00:00.0007230" startTime="2025-09-08T17:31:41.0293100+02:00" endTime="2025-09-08T17:31:41.0300335+02:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="dc36072b-46ef-405c-b0ef-0534a7ee612d" />
+    <UnitTestResult executionId="c6039e24-9dfd-4d86-ae61-1babe81607bd" testId="9b77e477-8778-bb0c-c0da-e8cab9ede064" testName="ValidarCampos_Invalidos_DevuelvenException" computerName="DG" duration="00:00:00.0006980" startTime="2025-09-08T17:31:26.6939166+02:00" endTime="2025-09-08T17:31:26.6946145+02:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="c6039e24-9dfd-4d86-ae61-1babe81607bd" />
+    <UnitTestResult executionId="39428658-d2ee-406c-b14a-d20d50255d2c" testId="ece1fbc8-94bb-2cdf-e31d-9c01ef7faac8" testName="GetByToken_Test" computerName="DG" duration="00:00:00.0008140" startTime="2025-09-08T17:31:40.9434886+02:00" endTime="2025-09-08T17:31:40.9443025+02:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="39428658-d2ee-406c-b14a-d20d50255d2c" />
+    <UnitTestResult executionId="5c9c6b38-888a-4a86-ada8-b2248affe41a" testId="eba31be7-0eb8-1524-fe29-6a4dfeb657b8" testName="CambiarContraseña_Test" computerName="DG" duration="00:00:00.1833230" startTime="2025-09-08T17:31:40.7542330+02:00" endTime="2025-09-08T17:31:40.9375552+02:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Failed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="5c9c6b38-888a-4a86-ada8-b2248affe41a">
+      <Output>
+        <ErrorInfo>
+          <Message>  Expected: True&#xD;
+  But was:  False&#xD;
+</Message>
+          <StackTrace>   at Test.UnitTest.Services.UsuarioServiceTests.CambiarContraseña_Test() in C:\Users\David\Desktop\Test.UnitTest\Services\UsuarioServiceTests.cs:line 133&#xD;
+
+1)    at Test.UnitTest.Services.UsuarioServiceTests.CambiarContraseña_Test() in C:\Users\David\Desktop\Test.UnitTest\Services\UsuarioServiceTests.cs:line 133&#xD;
+
+</StackTrace>
+        </ErrorInfo>
+      </Output>
+    </UnitTestResult>
+    <UnitTestResult executionId="ad16deeb-9d9d-4b7a-bc8f-1a7328c7decc" testId="c6ed30c5-6e45-e9c9-b5ea-90b7e75ea74b" testName="GetByEmail_Test" computerName="DG" duration="00:00:00.0033450" startTime="2025-09-08T17:31:40.9385851+02:00" endTime="2025-09-08T17:31:40.9419298+02:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Failed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="ad16deeb-9d9d-4b7a-bc8f-1a7328c7decc">
+      <Output>
+        <ErrorInfo>
+          <Message>La colección de usuarios no tiene elementos.</Message>
+          <StackTrace>   at Test.UnitTest.Services.UsuarioServiceTests.GetByEmail_Test() in C:\Users\David\Desktop\Test.UnitTest\Services\UsuarioServiceTests.cs:line 93&#xD;
+
+1)    at Test.UnitTest.Services.UsuarioServiceTests.GetByEmail_Test() in C:\Users\David\Desktop\Test.UnitTest\Services\UsuarioServiceTests.cs:line 93&#xD;
+
+</StackTrace>
+        </ErrorInfo>
+      </Output>
+    </UnitTestResult>
+    <UnitTestResult executionId="03a31dc1-4fc3-4c96-8cc4-420b631b95cc" testId="7b09167d-2926-e2d2-61d7-4f6883a320dd" testName="ValidarCampos_Invalidos_DevuelvenException" computerName="DG" duration="00:00:00.0331930" startTime="2025-09-08T17:31:26.7265799+02:00" endTime="2025-09-08T17:31:26.7597716+02:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="03a31dc1-4fc3-4c96-8cc4-420b631b95cc" />
+    <UnitTestResult executionId="121c785e-7fa5-47e7-8a80-ff4267f13c28" testId="7e6ff2ec-3e04-0058-defc-50d60c0e6a11" testName="GetById_Test" computerName="DG" duration="00:00:00.0014790" startTime="2025-09-08T17:31:40.9419790+02:00" endTime="2025-09-08T17:31:40.9434581+02:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="121c785e-7fa5-47e7-8a80-ff4267f13c28" />
+    <UnitTestResult executionId="58a8aa5b-3163-4d9b-a233-76378b6893c6" testId="795b234d-79b2-978c-3f8b-55ba39b87420" testName="ValidarCampos_Validos_AsignanCorrectamente" computerName="DG" duration="00:00:00.0316600" startTime="2025-09-08T17:31:26.6946376+02:00" endTime="2025-09-08T17:31:26.7262969+02:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="58a8aa5b-3163-4d9b-a233-76378b6893c6" />
+    <UnitTestResult executionId="0d4d00c5-d168-4f14-9b1d-c38fe7405482" testId="138fd3af-4634-417e-2b80-4cf9b0f3a30f" testName="Add_Test" computerName="DG" duration="00:00:00.3067570" startTime="2025-09-08T17:31:40.4474460+02:00" endTime="2025-09-08T17:31:40.7542036+02:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Failed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="0d4d00c5-d168-4f14-9b1d-c38fe7405482">
+      <Output>
+        <ErrorInfo>
+          <Message>  Expected: True&#xD;
+  But was:  False&#xD;
+</Message>
+          <StackTrace>   at Test.UnitTest.Services.UsuarioServiceTests.Add_Test() in C:\Users\David\Desktop\Test.UnitTest\Services\UsuarioServiceTests.cs:line 147&#xD;
+
+1)    at Test.UnitTest.Services.UsuarioServiceTests.Add_Test() in C:\Users\David\Desktop\Test.UnitTest\Services\UsuarioServiceTests.cs:line 147&#xD;
+
+</StackTrace>
+        </ErrorInfo>
+      </Output>
+    </UnitTestResult>
+    <UnitTestResult executionId="44edd1eb-da9c-4487-8432-548145861f3b" testId="882712fb-e5ca-0eb8-a94a-aaac7861949a" testName="ActivarSuscripcion_Test" computerName="DG" duration="00:00:00.0980070" startTime="2025-09-08T17:31:40.3493597+02:00" endTime="2025-09-08T17:31:40.4473657+02:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Failed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="44edd1eb-da9c-4487-8432-548145861f3b">
+      <Output>
+        <ErrorInfo>
+          <Message>  Expected: True&#xD;
+  But was:  False&#xD;
+</Message>
+          <StackTrace>   at Test.UnitTest.Services.UsuarioServiceTests.ActivarSuscripcion_Test() in C:\Users\David\Desktop\Test.UnitTest\Services\UsuarioServiceTests.cs:line 125&#xD;
+
+1)    at Test.UnitTest.Services.UsuarioServiceTests.ActivarSuscripcion_Test() in C:\Users\David\Desktop\Test.UnitTest\Services\UsuarioServiceTests.cs:line 125&#xD;
+
+</StackTrace>
+        </ErrorInfo>
+      </Output>
+    </UnitTestResult>
+    <UnitTestResult executionId="5a4edaac-7e5f-44f9-af26-70db4080bbe8" testId="f4926c78-db34-80f7-f285-b683f354b41f" testName="UpdateAsync_ReturnsEntity_WithValidData" computerName="DG" duration="00:00:00.0358060" startTime="2025-09-08T17:31:40.2357588+02:00" endTime="2025-09-08T17:31:40.2715641+02:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="5a4edaac-7e5f-44f9-af26-70db4080bbe8">
+      <Output>
+        <StdOut>Test passed succesfully.User with id 1 has been updated succesfully.</StdOut>
+      </Output>
+    </UnitTestResult>
+    <UnitTestResult executionId="f438058c-242f-4059-a261-3e9629b75775" testId="0e76492b-40ef-e115-4745-7e063514caff" testName="ValidarCuenta_ReturnsEntity_WithValidData" computerName="DG" duration="00:00:00.0771469" startTime="2025-09-08T17:31:40.2716081+02:00" endTime="2025-09-08T17:31:40.3487544+02:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="f438058c-242f-4059-a261-3e9629b75775">
+      <Output>
+        <StdOut>Test passed succesfully. User with Id 1 has been activated succesfully.</StdOut>
+      </Output>
+    </UnitTestResult>
+    <UnitTestResult executionId="01b80beb-69eb-4820-81c4-7f5aa5fb7e2d" testId="3d4a185b-8d2c-a3e3-e500-b291621b6a81" testName="GetActividadesByTipoEntidad_ReturnsActivities_WhenIdExist" computerName="DG" duration="00:00:00.0611490" startTime="2025-09-08T17:31:36.7631819+02:00" endTime="2025-09-08T17:31:36.8243300+02:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Failed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="01b80beb-69eb-4820-81c4-7f5aa5fb7e2d">
+      <Output>
+        <ErrorInfo>
+          <Message>System.InvalidOperationException : Sequence contains no elements</Message>
+          <StackTrace>   at System.Linq.ThrowHelper.ThrowNoElementsException()&#xD;
+   at System.Linq.Enumerable.First[TSource](IEnumerable`1 source)&#xD;
+   at Test.UnitTest.Repositories.ActividadRepositoryTests.GetActividadesByTipoEntidad_ReturnsActivities_WhenIdExist() in C:\Users\David\Desktop\Test.UnitTest\Repositories\ActividadRepositoryTests.cs:line 265&#xD;
+   at NUnit.Framework.Internal.TaskAwaitAdapter.GenericAdapter`1.GetResult()&#xD;
+   at NUnit.Framework.Internal.AsyncToSyncAdapter.Await(Func`1 invoke)&#xD;
+   at NUnit.Framework.Internal.Commands.TestMethodCommand.RunTestMethod(TestExecutionContext context)&#xD;
+   at NUnit.Framework.Internal.Commands.TestMethodCommand.Execute(TestExecutionContext context)&#xD;
+   at NUnit.Framework.Internal.Commands.BeforeAndAfterTestCommand.&lt;&gt;c__DisplayClass1_0.&lt;Execute&gt;b__0()&#xD;
+   at NUnit.Framework.Internal.Commands.DelegatingTestCommand.RunTestMethodInThreadAbortSafeZone(TestExecutionContext context, Action action)
+</StackTrace>
+        </ErrorInfo>
+      </Output>
+    </UnitTestResult>
+    <UnitTestResult executionId="7281af32-af6c-4566-b4ac-88c3f5e61221" testId="795251b7-539a-45f8-0eaf-3d5d326e003b" testName="GetByNameAsync_ReturnsEntity_WhenIdExist" computerName="DG" duration="00:00:00.0332680" startTime="2025-09-08T17:31:38.5627935+02:00" endTime="2025-09-08T17:31:38.5960613+02:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="7281af32-af6c-4566-b4ac-88c3f5e61221">
+      <Output>
+        <StdOut>Test passed succesfully. Product with name Producto 1 has all data properties succesfully informed.</StdOut>
+      </Output>
+    </UnitTestResult>
+    <UnitTestResult executionId="51dd2b8e-59bd-4034-9b01-9433f69f7101" testId="82e1af81-1c1e-52ee-2ee2-0384abbe5724" testName="Login_Test" computerName="DG" duration="00:00:00.0800400" startTime="2025-09-08T17:31:40.9443301+02:00" endTime="2025-09-08T17:31:41.0243700+02:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Failed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="51dd2b8e-59bd-4034-9b01-9433f69f7101">
+      <Output>
+        <ErrorInfo>
+          <Message>System.AggregateException : One or more errors occurred. (Object reference not set to an instance of an object.)&#xD;
+  ----&gt; System.NullReferenceException : Object reference not set to an instance of an object.</Message>
+          <StackTrace>   at System.Threading.Tasks.Task.ThrowIfExceptional(Boolean includeTaskCanceledExceptions)&#xD;
+   at System.Threading.Tasks.Task`1.GetResultCore(Boolean waitCompletionNotification)&#xD;
+   at Test.UnitTest.Services.UsuarioServiceTests.Login_Test() in C:\Users\David\Desktop\Test.UnitTest\Services\UsuarioServiceTests.cs:line 117&#xD;
+   at System.RuntimeMethodHandle.InvokeMethod(Object target, Void** arguments, Signature sig, Boolean isConstructor)&#xD;
+   at System.Reflection.MethodBaseInvoker.InvokeWithNoArgs(Object obj, BindingFlags invokeAttr)&#xD;
+--NullReferenceException&#xD;
+   at Application.Services.AuthService.Login(String userName, String password) in C:\Users\David\Desktop\Application\Services\AuthService.cs:line 28
+</StackTrace>
+        </ErrorInfo>
+      </Output>
+    </UnitTestResult>
+    <UnitTestResult executionId="647c8e78-ca2b-4063-b934-9278ad85cab3" testId="81bcffad-dde8-b893-02b4-92fffe8bfe7f" testName="GetEncodeValue_DeberiaRetornarBase64" computerName="DG" duration="00:00:00.0022150" startTime="2025-09-08T17:31:41.0300512+02:00" endTime="2025-09-08T17:31:41.0322661+02:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="647c8e78-ca2b-4063-b934-9278ad85cab3" />
+    <UnitTestResult executionId="b3ca902a-1dae-4284-a1a4-9f8e6960a54d" testId="4449a5ca-9405-f065-c994-a04e0801d69f" testName="GetByIdAsync_ReturnsEntity_WhenIdExist" computerName="DG" duration="00:00:00.0421610" startTime="2025-09-08T17:31:36.8838153+02:00" endTime="2025-09-08T17:31:36.9259757+02:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="b3ca902a-1dae-4284-a1a4-9f8e6960a54d">
+      <Output>
+        <StdOut>Test passed succesfully. Activity with Id 1 has all data properties succesfully informed.</StdOut>
+      </Output>
+    </UnitTestResult>
+    <UnitTestResult executionId="d1e805c4-81e7-4051-aa18-5699b17b78ad" testId="8a12cae0-1658-e774-1bb7-84c7ae07ed04" testName="ValidarCampos_Validos_AsignanCorrectamente" computerName="DG" duration="00:00:00.0035790" startTime="2025-09-08T17:31:26.6899521+02:00" endTime="2025-09-08T17:31:26.6935309+02:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="d1e805c4-81e7-4051-aa18-5699b17b78ad" />
+    <UnitTestResult executionId="27cdbb28-45b3-4bc0-b8fe-a1aaa384d30f" testId="32e1da5f-76c2-23b6-2864-a2ef5c5dbe13" testName="RemoveEntity_CheckEntities_AfterRemove" computerName="DG" duration="00:00:00.0368210" startTime="2025-09-08T17:31:37.9090368+02:00" endTime="2025-09-08T17:31:37.9458582+02:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="27cdbb28-45b3-4bc0-b8fe-a1aaa384d30f">
+      <Output>
+        <StdOut>Test passed succesfully. Activity with Id 1 has been removed succesfully.</StdOut>
+      </Output>
+    </UnitTestResult>
+    <UnitTestResult executionId="251454de-50d6-4b29-aee2-d92273553c21" testId="fa52359b-e852-c39d-5f9b-54c7f75680ec" testName="ValidarCuenta_Test" computerName="DG" duration="00:00:00.0009140" startTime="2025-09-08T17:31:41.0281787+02:00" endTime="2025-09-08T17:31:41.0290927+02:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="251454de-50d6-4b29-aee2-d92273553c21" />
+    <UnitTestResult executionId="6acb2f18-0e73-4721-ad41-7fd574b9ac34" testId="9fcae489-fe38-0c24-be7b-43760d755e4a" testName="GetByNameAsync_ReturnsEntity_WhenIdExist" computerName="DG" duration="00:00:00.8239450" startTime="2025-09-08T17:31:36.9260165+02:00" endTime="2025-09-08T17:31:37.7499611+02:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="6acb2f18-0e73-4721-ad41-7fd574b9ac34">
+      <Output>
+        <StdOut>Test passed succesfully. Activity with name Actividad 01 has all data properties succesfully informed.</StdOut>
+      </Output>
+    </UnitTestResult>
+    <UnitTestResult executionId="f2d390dc-b829-4f69-9c7a-3431b0b964c6" testId="0bcb3747-76db-7201-42a2-4eb46d9b80a4" testName="GetByIdAsync_ReturnsEntity_WhenIdExist" computerName="DG" duration="00:00:00.0463020" startTime="2025-09-08T17:31:39.4326895+02:00" endTime="2025-09-08T17:31:39.4789914+02:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="f2d390dc-b829-4f69-9c7a-3431b0b964c6">
+      <Output>
+        <StdOut>Test passed succesfully. User with Id 1 has all data properties succesfully informed.</StdOut>
+      </Output>
+    </UnitTestResult>
+    <UnitTestResult executionId="4c082e73-c842-4b1b-96de-04718c330c61" testId="25a8711f-4fff-9a07-ee8e-cbc0426c869d" testName="GetActividadesByEntidad_ReturnsActivities_WhenIdExist" computerName="DG" duration="00:00:00.1332750" startTime="2025-09-08T17:31:36.6298719+02:00" endTime="2025-09-08T17:31:36.7631463+02:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="4c082e73-c842-4b1b-96de-04718c330c61" />
+    <UnitTestResult executionId="dd9e2f20-0822-44ba-8f8d-14f1920d9c22" testId="071bad41-b3b1-3926-a8e6-6d6021499749" testName="LoginUser_ReturnsEntity_WithValidData" computerName="DG" duration="00:00:00.5820320" startTime="2025-09-08T17:31:39.5787585+02:00" endTime="2025-09-08T17:31:40.1607899+02:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Failed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="dd9e2f20-0822-44ba-8f8d-14f1920d9c22">
+      <Output>
+        <ErrorInfo>
+          <Message>  Expected: not null&#xD;
+  But was:  null&#xD;
+</Message>
+          <StackTrace>   at Test.UnitTest.Repositories.UsuarioRepositoryTests.LoginUser_ReturnsEntity_WithValidData() in C:\Users\David\Desktop\Test.UnitTest\Repositories\UsuarioRepositoryTests.cs:line 153&#xD;
+   at NUnit.Framework.Internal.TaskAwaitAdapter.GenericAdapter`1.GetResult()&#xD;
+   at NUnit.Framework.Internal.AsyncToSyncAdapter.Await(Func`1 invoke)&#xD;
+   at NUnit.Framework.Internal.Commands.TestMethodCommand.RunTestMethod(TestExecutionContext context)&#xD;
+   at NUnit.Framework.Internal.Commands.TestMethodCommand.Execute(TestExecutionContext context)&#xD;
+   at NUnit.Framework.Internal.Commands.BeforeAndAfterTestCommand.&lt;&gt;c__DisplayClass1_0.&lt;Execute&gt;b__0()&#xD;
+   at NUnit.Framework.Internal.Commands.DelegatingTestCommand.RunTestMethodInThreadAbortSafeZone(TestExecutionContext context, Action action)&#xD;
+
+1)    at Test.UnitTest.Repositories.UsuarioRepositoryTests.LoginUser_ReturnsEntity_WithValidData() in C:\Users\David\Desktop\Test.UnitTest\Repositories\UsuarioRepositoryTests.cs:line 153&#xD;
+   at System.Runtime.CompilerServices.AsyncMethodBuilderCore.Start[TStateMachine](TStateMachine&amp; stateMachine)&#xD;
+   at Test.UnitTest.Repositories.UsuarioRepositoryTests.LoginUser_ReturnsEntity_WithValidData()&#xD;
+
+</StackTrace>
+        </ErrorInfo>
+      </Output>
+    </UnitTestResult>
+    <UnitTestResult executionId="314f73cf-7bf9-4ed6-9491-46497ead8977" testId="7c7507e7-69ce-a591-21e2-ba56ee99f14c" testName="GetAllAsync_ReturnsAffectedEntities_AfterSetup" computerName="DG" duration="00:00:00.0313550" startTime="2025-09-08T17:31:39.3541167+02:00" endTime="2025-09-08T17:31:39.3854712+02:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="314f73cf-7bf9-4ed6-9491-46497ead8977">
+      <Output>
+        <StdOut>Test passed succesfully. All 5 users have been added succesfully during Setup.</StdOut>
+      </Output>
+    </UnitTestResult>
+    <UnitTestResult executionId="9114fe7d-beac-4200-abda-c3de61204199" testId="dfa3bc2e-8d59-a80a-e00f-1d2e9a4a2ec8" testName="Remove_Test" computerName="DG" duration="00:00:00.0020569" startTime="2025-09-08T17:31:41.0244266+02:00" endTime="2025-09-08T17:31:41.0264831+02:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Failed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="9114fe7d-beac-4200-abda-c3de61204199">
+      <Output>
+        <ErrorInfo>
+          <Message>  Expected: True&#xD;
+  But was:  False&#xD;
+</Message>
+          <StackTrace>   at Test.UnitTest.Services.UsuarioServiceTests.Remove_Test() in C:\Users\David\Desktop\Test.UnitTest\Services\UsuarioServiceTests.cs:line 161&#xD;
+
+1)    at Test.UnitTest.Services.UsuarioServiceTests.Remove_Test() in C:\Users\David\Desktop\Test.UnitTest\Services\UsuarioServiceTests.cs:line 161&#xD;
+
+</StackTrace>
+        </ErrorInfo>
+      </Output>
+    </UnitTestResult>
+    <UnitTestResult executionId="8f04c1cf-7474-48d1-917a-ec3946f6b82e" testId="cbea6107-0d1b-6133-3c87-19a814e40d24" testName="AddAsync_AddEntityCorrectly" computerName="DG" duration="00:00:00.1705350" startTime="2025-09-08T17:31:37.9843029+02:00" endTime="2025-09-08T17:31:38.1548383+02:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Failed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="8f04c1cf-7474-48d1-917a-ec3946f6b82e">
+      <Output>
+        <ErrorInfo>
+          <Message>  Expected: not null&#xD;
+  But was:  null&#xD;
+</Message>
+          <StackTrace>   at Test.UnitTest.Repositories.CategoriaRepositoryTests.AddAsync_AddEntityCorrectly() in C:\Users\David\Desktop\Test.UnitTest\Repositories\CategoriaRepositoryTests.cs:line 125&#xD;
+   at NUnit.Framework.Internal.TaskAwaitAdapter.GenericAdapter`1.GetResult()&#xD;
+   at NUnit.Framework.Internal.AsyncToSyncAdapter.Await(Func`1 invoke)&#xD;
+   at NUnit.Framework.Internal.Commands.TestMethodCommand.RunTestMethod(TestExecutionContext context)&#xD;
+   at NUnit.Framework.Internal.Commands.TestMethodCommand.Execute(TestExecutionContext context)&#xD;
+   at NUnit.Framework.Internal.Commands.BeforeAndAfterTestCommand.&lt;&gt;c__DisplayClass1_0.&lt;Execute&gt;b__0()&#xD;
+   at NUnit.Framework.Internal.Commands.DelegatingTestCommand.RunTestMethodInThreadAbortSafeZone(TestExecutionContext context, Action action)&#xD;
+
+1)    at Test.UnitTest.Repositories.CategoriaRepositoryTests.AddAsync_AddEntityCorrectly() in C:\Users\David\Desktop\Test.UnitTest\Repositories\CategoriaRepositoryTests.cs:line 125&#xD;
+   at System.Runtime.CompilerServices.AsyncMethodBuilderCore.Start[TStateMachine](TStateMachine&amp; stateMachine)&#xD;
+   at Test.UnitTest.Repositories.CategoriaRepositoryTests.AddAsync_AddEntityCorrectly()&#xD;
+
+</StackTrace>
+        </ErrorInfo>
+      </Output>
+    </UnitTestResult>
+    <UnitTestResult executionId="0c1fa097-dc3a-4c2c-90cf-52c181a03e33" testId="f328d355-238d-3b65-ad55-2a400c076c55" testName="UpdateAsync_ReturnsEntity_WithValidData" computerName="DG" duration="00:00:00.0312500" startTime="2025-09-08T17:31:38.8814645+02:00" endTime="2025-09-08T17:31:38.9127136+02:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="0c1fa097-dc3a-4c2c-90cf-52c181a03e33">
+      <Output>
+        <StdOut>Test passed succesfully. Rol with id 153b7912-f556-bdfa-636e-ab0a404f1112 has been updated succesfully.</StdOut>
+      </Output>
+    </UnitTestResult>
+    <UnitTestResult executionId="814caa5f-aaef-4c97-9960-917b7e98cef0" testId="e0d32d20-eb4b-5e9a-e77e-bf80cb293e4b" testName="CambiarContraseña_ReturnsEntity_WithValidData" computerName="DG" duration="00:00:00.0853830" startTime="2025-09-08T17:31:39.2687012+02:00" endTime="2025-09-08T17:31:39.3540841+02:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="814caa5f-aaef-4c97-9960-917b7e98cef0">
+      <Output>
+        <StdOut>Test passed succesfully.Password for user with email 1 has been updated succesfully.</StdOut>
+      </Output>
+    </UnitTestResult>
+    <UnitTestResult executionId="08687602-e6d8-473b-930f-2edfa94bf46d" testId="c9b976af-6a68-7bc8-e977-9cdf17d0fe11" testName="UpdateAsync_ReturnsEntity_WithValidData" computerName="DG" duration="00:00:00.0237960" startTime="2025-09-08T17:31:38.2635913+02:00" endTime="2025-09-08T17:31:38.2873873+02:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="08687602-e6d8-473b-930f-2edfa94bf46d">
+      <Output>
+        <StdOut>Test passed succesfully. Category with id b82f89b1-eb53-dc2f-9b62-0e74c1fa5450 has been updated succesfully.</StdOut>
+      </Output>
+    </UnitTestResult>
+    <UnitTestResult executionId="bee9af84-5497-490a-821a-d300f6ff1d4e" testId="9b135d57-7f75-fdc7-2aad-452ec635d3e6" testName="AddAsync_AddEntityCorrectly" computerName="DG" duration="00:00:09.8662100" startTime="2025-09-08T17:31:26.7636241+02:00" endTime="2025-09-08T17:31:36.6298344+02:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="bee9af84-5497-490a-821a-d300f6ff1d4e">
+      <Output>
+        <StdOut>Test passed succesfully. Activity with new Id 6 has been created succesfully.</StdOut>
+      </Output>
+    </UnitTestResult>
+    <UnitTestResult executionId="1d0c1c3b-b74a-4156-aed4-b77a984e788c" testId="d1735fc1-f657-212c-e172-222011890434" testName="AddAsync_AddEntityCorrectly" computerName="DG" duration="00:00:00.3555260" startTime="2025-09-08T17:31:38.9131449+02:00" endTime="2025-09-08T17:31:39.2686709+02:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="1d0c1c3b-b74a-4156-aed4-b77a984e788c">
+      <Output>
+        <StdOut>Test passed succesfully. User with new Id 6 has been created succesfully.</StdOut>
+      </Output>
+    </UnitTestResult>
+    <UnitTestResult executionId="c46daf8e-ea9e-4a78-9913-fe30ccd4728c" testId="52d092e7-d218-bfa4-13f0-914718454327" testName="AddAsync_AddEntityCorrectly" computerName="DG" duration="00:00:00.1061100" startTime="2025-09-08T17:31:38.6496924+02:00" endTime="2025-09-08T17:31:38.7558017+02:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Failed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="c46daf8e-ea9e-4a78-9913-fe30ccd4728c">
+      <Output>
+        <ErrorInfo>
+          <Message>  Expected: not null&#xD;
+  But was:  null&#xD;
+</Message>
+          <StackTrace>   at Test.UnitTest.Repositories.RolRepositoryTests.AddAsync_AddEntityCorrectly() in C:\Users\David\Desktop\Test.UnitTest\Repositories\RolRepositoryTests.cs:line 118&#xD;
+   at NUnit.Framework.Internal.TaskAwaitAdapter.GenericAdapter`1.GetResult()&#xD;
+   at NUnit.Framework.Internal.AsyncToSyncAdapter.Await(Func`1 invoke)&#xD;
+   at NUnit.Framework.Internal.Commands.TestMethodCommand.RunTestMethod(TestExecutionContext context)&#xD;
+   at NUnit.Framework.Internal.Commands.TestMethodCommand.Execute(TestExecutionContext context)&#xD;
+   at NUnit.Framework.Internal.Commands.BeforeAndAfterTestCommand.&lt;&gt;c__DisplayClass1_0.&lt;Execute&gt;b__0()&#xD;
+   at NUnit.Framework.Internal.Commands.DelegatingTestCommand.RunTestMethodInThreadAbortSafeZone(TestExecutionContext context, Action action)&#xD;
+
+1)    at Test.UnitTest.Repositories.RolRepositoryTests.AddAsync_AddEntityCorrectly() in C:\Users\David\Desktop\Test.UnitTest\Repositories\RolRepositoryTests.cs:line 118&#xD;
+   at System.Runtime.CompilerServices.AsyncMethodBuilderCore.Start[TStateMachine](TStateMachine&amp; stateMachine)&#xD;
+   at Test.UnitTest.Repositories.RolRepositoryTests.AddAsync_AddEntityCorrectly()&#xD;
+
+</StackTrace>
+        </ErrorInfo>
+      </Output>
+    </UnitTestResult>
+  </Results>
+  <TestDefinitions>
+    <UnitTest name="CheckUsersJob_RunCheckAsyn_WriteLogsInformation" storage="c:\users\david\desktop\test.unittest\bin\mcd\debug\net8.0\test.unittest.dll" id="c164ea60-af85-83a5-65c1-58f6bbd7debe">
+      <Execution id="b615f7ad-557e-4cfa-b02f-89d1ea7aca5e" />
+      <TestMethod codeBase="C:\Users\David\Desktop\Test.UnitTest\bin\MCD\Debug\net8.0\Test.UnitTest.dll" adapterTypeName="executor://nunit3testexecutor/" className="Test.UnitTest.BackgroundServices.CheckUsersTest" name="CheckUsersJob_RunCheckAsyn_WriteLogsInformation" />
+    </UnitTest>
+    <UnitTest name="ValidarCuenta_ReturnsEntity_WithValidData" storage="c:\users\david\desktop\test.unittest\bin\mcd\debug\net8.0\test.unittest.dll" id="0e76492b-40ef-e115-4745-7e063514caff">
+      <Execution id="f438058c-242f-4059-a261-3e9629b75775" />
+      <TestMethod codeBase="C:\Users\David\Desktop\Test.UnitTest\bin\MCD\Debug\net8.0\Test.UnitTest.dll" adapterTypeName="executor://nunit3testexecutor/" className="Test.UnitTest.Repositories.UsuarioRepositoryTests" name="ValidarCuenta_ReturnsEntity_WithValidData" />
+    </UnitTest>
+    <UnitTest name="ValidarCampos_Validos_AsignanCorrectamente" storage="c:\users\david\desktop\test.unittest\bin\mcd\debug\net8.0\test.unittest.dll" id="bb0d1623-0869-e0d5-7733-00fbeb9ac713">
+      <Execution id="9feb9b35-3f2f-4198-bd53-2128d88bd3b9" />
+      <TestMethod codeBase="C:\Users\David\Desktop\Test.UnitTest\bin\MCD\Debug\net8.0\Test.UnitTest.dll" adapterTypeName="executor://nunit3testexecutor/" className="Test.UnitTest.Entities.UsuarioTests" name="ValidarCampos_Validos_AsignanCorrectamente" />
+    </UnitTest>
+    <UnitTest name="GetByNameAsync_ReturnsEntity_WhenIdExist" storage="c:\users\david\desktop\test.unittest\bin\mcd\debug\net8.0\test.unittest.dll" id="9fcae489-fe38-0c24-be7b-43760d755e4a">
+      <Execution id="6acb2f18-0e73-4721-ad41-7fd574b9ac34" />
+      <TestMethod codeBase="C:\Users\David\Desktop\Test.UnitTest\bin\MCD\Debug\net8.0\Test.UnitTest.dll" adapterTypeName="executor://nunit3testexecutor/" className="Test.UnitTest.Repositories.ActividadRepositoryTests" name="GetByNameAsync_ReturnsEntity_WhenIdExist" />
+    </UnitTest>
+    <UnitTest name="UpdateAsync_ReturnsEntity_WithValidData" storage="c:\users\david\desktop\test.unittest\bin\mcd\debug\net8.0\test.unittest.dll" id="c9b976af-6a68-7bc8-e977-9cdf17d0fe11">
+      <Execution id="08687602-e6d8-473b-930f-2edfa94bf46d" />
+      <TestMethod codeBase="C:\Users\David\Desktop\Test.UnitTest\bin\MCD\Debug\net8.0\Test.UnitTest.dll" adapterTypeName="executor://nunit3testexecutor/" className="Test.UnitTest.Repositories.CategoriaRepositoryTests" name="UpdateAsync_ReturnsEntity_WithValidData" />
+    </UnitTest>
+    <UnitTest name="GetEncodeValue_DeberiaRetornarBase64" storage="c:\users\david\desktop\test.unittest\bin\mcd\debug\net8.0\test.unittest.dll" id="81bcffad-dde8-b893-02b4-92fffe8bfe7f">
+      <Execution id="647c8e78-ca2b-4063-b934-9278ad85cab3" />
+      <TestMethod codeBase="C:\Users\David\Desktop\Test.UnitTest\bin\MCD\Debug\net8.0\Test.UnitTest.dll" adapterTypeName="executor://nunit3testexecutor/" className="Test.UnitTest.Utilities.EncodeDecodeHelperTest" name="GetEncodeValue_DeberiaRetornarBase64" />
+    </UnitTest>
+    <UnitTest name="GetActividadesByTipoEntidad_ReturnsActivities_WhenIdExist" storage="c:\users\david\desktop\test.unittest\bin\mcd\debug\net8.0\test.unittest.dll" id="3d4a185b-8d2c-a3e3-e500-b291621b6a81">
+      <Execution id="01b80beb-69eb-4820-81c4-7f5aa5fb7e2d" />
+      <TestMethod codeBase="C:\Users\David\Desktop\Test.UnitTest\bin\MCD\Debug\net8.0\Test.UnitTest.dll" adapterTypeName="executor://nunit3testexecutor/" className="Test.UnitTest.Repositories.ActividadRepositoryTests" name="GetActividadesByTipoEntidad_ReturnsActivities_WhenIdExist" />
+    </UnitTest>
+    <UnitTest name="CambiarContraseña_ReturnsEntity_WithValidData" storage="c:\users\david\desktop\test.unittest\bin\mcd\debug\net8.0\test.unittest.dll" id="e0d32d20-eb4b-5e9a-e77e-bf80cb293e4b">
+      <Execution id="814caa5f-aaef-4c97-9960-917b7e98cef0" />
+      <TestMethod codeBase="C:\Users\David\Desktop\Test.UnitTest\bin\MCD\Debug\net8.0\Test.UnitTest.dll" adapterTypeName="executor://nunit3testexecutor/" className="Test.UnitTest.Repositories.UsuarioRepositoryTests" name="CambiarContraseña_ReturnsEntity_WithValidData" />
+    </UnitTest>
+    <UnitTest name="UpdateAsync_ReturnsEntity_WithValidData" storage="c:\users\david\desktop\test.unittest\bin\mcd\debug\net8.0\test.unittest.dll" id="60febeab-7526-e693-3ba5-537327306de1">
+      <Execution id="6d1597c5-7aa5-47c5-a9ed-88fe098dadb3" />
+      <TestMethod codeBase="C:\Users\David\Desktop\Test.UnitTest\bin\MCD\Debug\net8.0\Test.UnitTest.dll" adapterTypeName="executor://nunit3testexecutor/" className="Test.UnitTest.Repositories.ProductoRepositoryTests" name="UpdateAsync_ReturnsEntity_WithValidData" />
+    </UnitTest>
+    <UnitTest name="GetActividadesByEntidad_ReturnsActivities_WhenIdExist" storage="c:\users\david\desktop\test.unittest\bin\mcd\debug\net8.0\test.unittest.dll" id="25a8711f-4fff-9a07-ee8e-cbc0426c869d">
+      <Execution id="4c082e73-c842-4b1b-96de-04718c330c61" />
+      <TestMethod codeBase="C:\Users\David\Desktop\Test.UnitTest\bin\MCD\Debug\net8.0\Test.UnitTest.dll" adapterTypeName="executor://nunit3testexecutor/" className="Test.UnitTest.Repositories.ActividadRepositoryTests" name="GetActividadesByEntidad_ReturnsActivities_WhenIdExist" />
+    </UnitTest>
+    <UnitTest name="GetById_Test" storage="c:\users\david\desktop\test.unittest\bin\mcd\debug\net8.0\test.unittest.dll" id="7e6ff2ec-3e04-0058-defc-50d60c0e6a11">
+      <Execution id="121c785e-7fa5-47e7-8a80-ff4267f13c28" />
+      <TestMethod codeBase="C:\Users\David\Desktop\Test.UnitTest\bin\MCD\Debug\net8.0\Test.UnitTest.dll" adapterTypeName="executor://nunit3testexecutor/" className="Test.UnitTest.Services.UsuarioServiceTests" name="GetById_Test" />
+    </UnitTest>
+    <UnitTest name="GetByIdAsync_ReturnsEntity_WhenIdExist" storage="c:\users\david\desktop\test.unittest\bin\mcd\debug\net8.0\test.unittest.dll" id="21c46312-747e-47a0-3191-a6c78e857818">
+      <Execution id="df46d7c9-0b3e-4321-9b52-2a80877b123b" />
+      <TestMethod codeBase="C:\Users\David\Desktop\Test.UnitTest\bin\MCD\Debug\net8.0\Test.UnitTest.dll" adapterTypeName="executor://nunit3testexecutor/" className="Test.UnitTest.Repositories.CategoriaRepositoryTests" name="GetByIdAsync_ReturnsEntity_WhenIdExist" />
+    </UnitTest>
+    <UnitTest name="ValidarCampos_Validos_AsignanCorrectamente" storage="c:\users\david\desktop\test.unittest\bin\mcd\debug\net8.0\test.unittest.dll" id="8a12cae0-1658-e774-1bb7-84c7ae07ed04">
+      <Execution id="d1e805c4-81e7-4051-aa18-5699b17b78ad" />
+      <TestMethod codeBase="C:\Users\David\Desktop\Test.UnitTest\bin\MCD\Debug\net8.0\Test.UnitTest.dll" adapterTypeName="executor://nunit3testexecutor/" className="Test.UnitTest.Entities.ActividadTests" name="ValidarCampos_Validos_AsignanCorrectamente" />
+    </UnitTest>
+    <UnitTest name="RemoveEntity_CheckEntities_AfterRemove" storage="c:\users\david\desktop\test.unittest\bin\mcd\debug\net8.0\test.unittest.dll" id="9a87dac4-1b58-f366-a88a-25718320ab02">
+      <Execution id="a05f195d-3eb0-4437-bc4b-ff43604d4930" />
+      <TestMethod codeBase="C:\Users\David\Desktop\Test.UnitTest\bin\MCD\Debug\net8.0\Test.UnitTest.dll" adapterTypeName="executor://nunit3testexecutor/" className="Test.UnitTest.Repositories.CategoriaRepositoryTests" name="RemoveEntity_CheckEntities_AfterRemove" />
+    </UnitTest>
+    <UnitTest name="LoginUser_ReturnsEntity_WithValidData" storage="c:\users\david\desktop\test.unittest\bin\mcd\debug\net8.0\test.unittest.dll" id="071bad41-b3b1-3926-a8e6-6d6021499749">
+      <Execution id="dd9e2f20-0822-44ba-8f8d-14f1920d9c22" />
+      <TestMethod codeBase="C:\Users\David\Desktop\Test.UnitTest\bin\MCD\Debug\net8.0\Test.UnitTest.dll" adapterTypeName="executor://nunit3testexecutor/" className="Test.UnitTest.Repositories.UsuarioRepositoryTests" name="LoginUser_ReturnsEntity_WithValidData" />
+    </UnitTest>
+    <UnitTest name="GetDecodeValue_DeberiaRetornarTextoPlano" storage="c:\users\david\desktop\test.unittest\bin\mcd\debug\net8.0\test.unittest.dll" id="67830ffb-6753-ecac-7506-5bfca90e461f">
+      <Execution id="dc36072b-46ef-405c-b0ef-0534a7ee612d" />
+      <TestMethod codeBase="C:\Users\David\Desktop\Test.UnitTest\bin\MCD\Debug\net8.0\Test.UnitTest.dll" adapterTypeName="executor://nunit3testexecutor/" className="Test.UnitTest.Utilities.EncodeDecodeHelperTest" name="GetDecodeValue_DeberiaRetornarTextoPlano" />
+    </UnitTest>
+    <UnitTest name="Remove_Test" storage="c:\users\david\desktop\test.unittest\bin\mcd\debug\net8.0\test.unittest.dll" id="dfa3bc2e-8d59-a80a-e00f-1d2e9a4a2ec8">
+      <Execution id="9114fe7d-beac-4200-abda-c3de61204199" />
+      <TestMethod codeBase="C:\Users\David\Desktop\Test.UnitTest\bin\MCD\Debug\net8.0\Test.UnitTest.dll" adapterTypeName="executor://nunit3testexecutor/" className="Test.UnitTest.Services.UsuarioServiceTests" name="Remove_Test" />
+    </UnitTest>
+    <UnitTest name="RemoveEntity_CheckEntities_AfterRemove" storage="c:\users\david\desktop\test.unittest\bin\mcd\debug\net8.0\test.unittest.dll" id="f2eaf840-6ed7-5c27-c4e9-f812db96ab08">
+      <Execution id="08bab632-0abc-4088-9aaf-9627c31a2916" />
+      <TestMethod codeBase="C:\Users\David\Desktop\Test.UnitTest\bin\MCD\Debug\net8.0\Test.UnitTest.dll" adapterTypeName="executor://nunit3testexecutor/" className="Test.UnitTest.Repositories.ProductoRepositoryTests" name="RemoveEntity_CheckEntities_AfterRemove" />
+    </UnitTest>
+    <UnitTest name="UpdateAsync_ReturnsEntity_WithValidData" storage="c:\users\david\desktop\test.unittest\bin\mcd\debug\net8.0\test.unittest.dll" id="f328d355-238d-3b65-ad55-2a400c076c55">
+      <Execution id="0c1fa097-dc3a-4c2c-90cf-52c181a03e33" />
+      <TestMethod codeBase="C:\Users\David\Desktop\Test.UnitTest\bin\MCD\Debug\net8.0\Test.UnitTest.dll" adapterTypeName="executor://nunit3testexecutor/" className="Test.UnitTest.Repositories.RolRepositoryTests" name="UpdateAsync_ReturnsEntity_WithValidData" />
+    </UnitTest>
+    <UnitTest name="CambiarContraseña_Test" storage="c:\users\david\desktop\test.unittest\bin\mcd\debug\net8.0\test.unittest.dll" id="eba31be7-0eb8-1524-fe29-6a4dfeb657b8">
+      <Execution id="5c9c6b38-888a-4a86-ada8-b2248affe41a" />
+      <TestMethod codeBase="C:\Users\David\Desktop\Test.UnitTest\bin\MCD\Debug\net8.0\Test.UnitTest.dll" adapterTypeName="executor://nunit3testexecutor/" className="Test.UnitTest.Services.UsuarioServiceTests" name="CambiarContraseña_Test" />
+    </UnitTest>
+    <UnitTest name="GetByNameAsync_ReturnsEntity_WhenIdExist" storage="c:\users\david\desktop\test.unittest\bin\mcd\debug\net8.0\test.unittest.dll" id="09854260-4253-0bcf-46d0-95e44d96902f">
+      <Execution id="69a38908-4dd5-4ac0-b972-02ad41a1ad38" />
+      <TestMethod codeBase="C:\Users\David\Desktop\Test.UnitTest\bin\MCD\Debug\net8.0\Test.UnitTest.dll" adapterTypeName="executor://nunit3testexecutor/" className="Test.UnitTest.Repositories.RolRepositoryTests" name="GetByNameAsync_ReturnsEntity_WhenIdExist" />
+    </UnitTest>
+    <UnitTest name="GetByIdAsync_ReturnsEntity_WhenIdExist" storage="c:\users\david\desktop\test.unittest\bin\mcd\debug\net8.0\test.unittest.dll" id="4449a5ca-9405-f065-c994-a04e0801d69f">
+      <Execution id="b3ca902a-1dae-4284-a1a4-9f8e6960a54d" />
+      <TestMethod codeBase="C:\Users\David\Desktop\Test.UnitTest\bin\MCD\Debug\net8.0\Test.UnitTest.dll" adapterTypeName="executor://nunit3testexecutor/" className="Test.UnitTest.Repositories.ActividadRepositoryTests" name="GetByIdAsync_ReturnsEntity_WhenIdExist" />
+    </UnitTest>
+    <UnitTest name="GetByEmail_Test" storage="c:\users\david\desktop\test.unittest\bin\mcd\debug\net8.0\test.unittest.dll" id="c6ed30c5-6e45-e9c9-b5ea-90b7e75ea74b">
+      <Execution id="ad16deeb-9d9d-4b7a-bc8f-1a7328c7decc" />
+      <TestMethod codeBase="C:\Users\David\Desktop\Test.UnitTest\bin\MCD\Debug\net8.0\Test.UnitTest.dll" adapterTypeName="executor://nunit3testexecutor/" className="Test.UnitTest.Services.UsuarioServiceTests" name="GetByEmail_Test" />
+    </UnitTest>
+    <UnitTest name="ValidarCampos_Validos_AsignanCorrectamente" storage="c:\users\david\desktop\test.unittest\bin\mcd\debug\net8.0\test.unittest.dll" id="795b234d-79b2-978c-3f8b-55ba39b87420">
+      <Execution id="58a8aa5b-3163-4d9b-a233-76378b6893c6" />
+      <TestMethod codeBase="C:\Users\David\Desktop\Test.UnitTest\bin\MCD\Debug\net8.0\Test.UnitTest.dll" adapterTypeName="executor://nunit3testexecutor/" className="Test.UnitTest.Entities.CategoriaTests" name="ValidarCampos_Validos_AsignanCorrectamente" />
+    </UnitTest>
+    <UnitTest name="AddAsync_AddEntityCorrectly" storage="c:\users\david\desktop\test.unittest\bin\mcd\debug\net8.0\test.unittest.dll" id="cbea6107-0d1b-6133-3c87-19a814e40d24">
+      <Execution id="8f04c1cf-7474-48d1-917a-ec3946f6b82e" />
+      <TestMethod codeBase="C:\Users\David\Desktop\Test.UnitTest\bin\MCD\Debug\net8.0\Test.UnitTest.dll" adapterTypeName="executor://nunit3testexecutor/" className="Test.UnitTest.Repositories.CategoriaRepositoryTests" name="AddAsync_AddEntityCorrectly" />
+    </UnitTest>
+    <UnitTest name="GetAllAsync_ReturnsAffectedEntities_AfterSetup" storage="c:\users\david\desktop\test.unittest\bin\mcd\debug\net8.0\test.unittest.dll" id="d9ceae1f-793e-ce14-5376-9d41ecb6a36c">
+      <Execution id="23346051-79b4-4500-9271-6ec4afc3d868" />
+      <TestMethod codeBase="C:\Users\David\Desktop\Test.UnitTest\bin\MCD\Debug\net8.0\Test.UnitTest.dll" adapterTypeName="executor://nunit3testexecutor/" className="Test.UnitTest.Repositories.ActividadRepositoryTests" name="GetAllAsync_ReturnsAffectedEntities_AfterSetup" />
+    </UnitTest>
+    <UnitTest name="RemoveEntity_CheckEntities_AfterRemove" storage="c:\users\david\desktop\test.unittest\bin\mcd\debug\net8.0\test.unittest.dll" id="32e1da5f-76c2-23b6-2864-a2ef5c5dbe13">
+      <Execution id="27cdbb28-45b3-4bc0-b8fe-a1aaa384d30f" />
+      <TestMethod codeBase="C:\Users\David\Desktop\Test.UnitTest\bin\MCD\Debug\net8.0\Test.UnitTest.dll" adapterTypeName="executor://nunit3testexecutor/" className="Test.UnitTest.Repositories.ActividadRepositoryTests" name="RemoveEntity_CheckEntities_AfterRemove" />
+    </UnitTest>
+    <UnitTest name="Login_Test" storage="c:\users\david\desktop\test.unittest\bin\mcd\debug\net8.0\test.unittest.dll" id="82e1af81-1c1e-52ee-2ee2-0384abbe5724">
+      <Execution id="51dd2b8e-59bd-4034-9b01-9433f69f7101" />
+      <TestMethod codeBase="C:\Users\David\Desktop\Test.UnitTest\bin\MCD\Debug\net8.0\Test.UnitTest.dll" adapterTypeName="executor://nunit3testexecutor/" className="Test.UnitTest.Services.UsuarioServiceTests" name="Login_Test" />
+    </UnitTest>
+    <UnitTest name="Add_Test" storage="c:\users\david\desktop\test.unittest\bin\mcd\debug\net8.0\test.unittest.dll" id="138fd3af-4634-417e-2b80-4cf9b0f3a30f">
+      <Execution id="0d4d00c5-d168-4f14-9b1d-c38fe7405482" />
+      <TestMethod codeBase="C:\Users\David\Desktop\Test.UnitTest\bin\MCD\Debug\net8.0\Test.UnitTest.dll" adapterTypeName="executor://nunit3testexecutor/" className="Test.UnitTest.Services.UsuarioServiceTests" name="Add_Test" />
+    </UnitTest>
+    <UnitTest name="ValidarCampos_Invalidos_DevuelvenException" storage="c:\users\david\desktop\test.unittest\bin\mcd\debug\net8.0\test.unittest.dll" id="98ef6c5f-9863-aa48-83a9-912ddb02587c">
+      <Execution id="817991d3-661e-48d9-bcc5-a8ba7e515a56" />
+      <TestMethod codeBase="C:\Users\David\Desktop\Test.UnitTest\bin\MCD\Debug\net8.0\Test.UnitTest.dll" adapterTypeName="executor://nunit3testexecutor/" className="Test.UnitTest.Entities.ActividadTests" name="ValidarCampos_Invalidos_DevuelvenException" />
+    </UnitTest>
+    <UnitTest name="ValidarCampos_Invalidos_DevuelvenException" storage="c:\users\david\desktop\test.unittest\bin\mcd\debug\net8.0\test.unittest.dll" id="7b09167d-2926-e2d2-61d7-4f6883a320dd">
+      <Execution id="03a31dc1-4fc3-4c96-8cc4-420b631b95cc" />
+      <TestMethod codeBase="C:\Users\David\Desktop\Test.UnitTest\bin\MCD\Debug\net8.0\Test.UnitTest.dll" adapterTypeName="executor://nunit3testexecutor/" className="Test.UnitTest.Entities.UsuarioTests" name="ValidarCampos_Invalidos_DevuelvenException" />
+    </UnitTest>
+    <UnitTest name="RemoveEntity_CheckEntities_AfterRemove" storage="c:\users\david\desktop\test.unittest\bin\mcd\debug\net8.0\test.unittest.dll" id="8164f939-d80b-638b-2cd5-3de20d464fd0">
+      <Execution id="4e267f29-4307-45ad-8ef7-a5ce63507174" />
+      <TestMethod codeBase="C:\Users\David\Desktop\Test.UnitTest\bin\MCD\Debug\net8.0\Test.UnitTest.dll" adapterTypeName="executor://nunit3testexecutor/" className="Test.UnitTest.Repositories.RolRepositoryTests" name="RemoveEntity_CheckEntities_AfterRemove" />
+    </UnitTest>
+    <UnitTest name="GetByIdAsync_ReturnsEntity_WhenIdExist" storage="c:\users\david\desktop\test.unittest\bin\mcd\debug\net8.0\test.unittest.dll" id="0bcb3747-76db-7201-42a2-4eb46d9b80a4">
+      <Execution id="f2d390dc-b829-4f69-9c7a-3431b0b964c6" />
+      <TestMethod codeBase="C:\Users\David\Desktop\Test.UnitTest\bin\MCD\Debug\net8.0\Test.UnitTest.dll" adapterTypeName="executor://nunit3testexecutor/" className="Test.UnitTest.Repositories.UsuarioRepositoryTests" name="GetByIdAsync_ReturnsEntity_WhenIdExist" />
+    </UnitTest>
+    <UnitTest name="ValidarCampos_Invalidos_DevuelvenException" storage="c:\users\david\desktop\test.unittest\bin\mcd\debug\net8.0\test.unittest.dll" id="9b77e477-8778-bb0c-c0da-e8cab9ede064">
+      <Execution id="c6039e24-9dfd-4d86-ae61-1babe81607bd" />
+      <TestMethod codeBase="C:\Users\David\Desktop\Test.UnitTest\bin\MCD\Debug\net8.0\Test.UnitTest.dll" adapterTypeName="executor://nunit3testexecutor/" className="Test.UnitTest.Entities.CategoriaTests" name="ValidarCampos_Invalidos_DevuelvenException" />
+    </UnitTest>
+    <UnitTest name="UpdateAsync_ReturnsEntity_WithValidData" storage="c:\users\david\desktop\test.unittest\bin\mcd\debug\net8.0\test.unittest.dll" id="f4926c78-db34-80f7-f285-b683f354b41f">
+      <Execution id="5a4edaac-7e5f-44f9-af26-70db4080bbe8" />
+      <TestMethod codeBase="C:\Users\David\Desktop\Test.UnitTest\bin\MCD\Debug\net8.0\Test.UnitTest.dll" adapterTypeName="executor://nunit3testexecutor/" className="Test.UnitTest.Repositories.UsuarioRepositoryTests" name="UpdateAsync_ReturnsEntity_WithValidData" />
+    </UnitTest>
+    <UnitTest name="Update_Test" storage="c:\users\david\desktop\test.unittest\bin\mcd\debug\net8.0\test.unittest.dll" id="d95a1a6f-5f82-3df6-7b56-357ab6024da9">
+      <Execution id="0562c29a-dee7-49e1-b8f2-755361e3d3b3" />
+      <TestMethod codeBase="C:\Users\David\Desktop\Test.UnitTest\bin\MCD\Debug\net8.0\Test.UnitTest.dll" adapterTypeName="executor://nunit3testexecutor/" className="Test.UnitTest.Services.UsuarioServiceTests" name="Update_Test" />
+    </UnitTest>
+    <UnitTest name="GetByNameAsync_ReturnsEntity_WhenIdExist" storage="c:\users\david\desktop\test.unittest\bin\mcd\debug\net8.0\test.unittest.dll" id="795251b7-539a-45f8-0eaf-3d5d326e003b">
+      <Execution id="7281af32-af6c-4566-b4ac-88c3f5e61221" />
+      <TestMethod codeBase="C:\Users\David\Desktop\Test.UnitTest\bin\MCD\Debug\net8.0\Test.UnitTest.dll" adapterTypeName="executor://nunit3testexecutor/" className="Test.UnitTest.Repositories.ProductoRepositoryTests" name="GetByNameAsync_ReturnsEntity_WhenIdExist" />
+    </UnitTest>
+    <UnitTest name="GetAllAsync_ReturnsAffectedEntities_AfterSetup" storage="c:\users\david\desktop\test.unittest\bin\mcd\debug\net8.0\test.unittest.dll" id="7c7507e7-69ce-a591-21e2-ba56ee99f14c">
+      <Execution id="314f73cf-7bf9-4ed6-9491-46497ead8977" />
+      <TestMethod codeBase="C:\Users\David\Desktop\Test.UnitTest\bin\MCD\Debug\net8.0\Test.UnitTest.dll" adapterTypeName="executor://nunit3testexecutor/" className="Test.UnitTest.Repositories.UsuarioRepositoryTests" name="GetAllAsync_ReturnsAffectedEntities_AfterSetup" />
+    </UnitTest>
+    <UnitTest name="GetByTokenAsync_ReturnsEntity_WhenIdExists" storage="c:\users\david\desktop\test.unittest\bin\mcd\debug\net8.0\test.unittest.dll" id="882c0229-c222-a662-4d3a-1212196ae5b7">
+      <Execution id="4bb277e8-5c7c-4b24-9a03-894698c03045" />
+      <TestMethod codeBase="C:\Users\David\Desktop\Test.UnitTest\bin\MCD\Debug\net8.0\Test.UnitTest.dll" adapterTypeName="executor://nunit3testexecutor/" className="Test.UnitTest.Repositories.UsuarioRepositoryTests" name="GetByTokenAsync_ReturnsEntity_WhenIdExists" />
+    </UnitTest>
+    <UnitTest name="RemoveEntity_CheckEntities_AfterRemove" storage="c:\users\david\desktop\test.unittest\bin\mcd\debug\net8.0\test.unittest.dll" id="46b39833-e713-75ff-e9f7-7636b6818f25">
+      <Execution id="b477118e-623b-4a85-9e7e-ccd2cb143b7b" />
+      <TestMethod codeBase="C:\Users\David\Desktop\Test.UnitTest\bin\MCD\Debug\net8.0\Test.UnitTest.dll" adapterTypeName="executor://nunit3testexecutor/" className="Test.UnitTest.Repositories.UsuarioRepositoryTests" name="RemoveEntity_CheckEntities_AfterRemove" />
+    </UnitTest>
+    <UnitTest name="AddAsync_AddEntityCorrectly" storage="c:\users\david\desktop\test.unittest\bin\mcd\debug\net8.0\test.unittest.dll" id="d1735fc1-f657-212c-e172-222011890434">
+      <Execution id="1d0c1c3b-b74a-4156-aed4-b77a984e788c" />
+      <TestMethod codeBase="C:\Users\David\Desktop\Test.UnitTest\bin\MCD\Debug\net8.0\Test.UnitTest.dll" adapterTypeName="executor://nunit3testexecutor/" className="Test.UnitTest.Repositories.UsuarioRepositoryTests" name="AddAsync_AddEntityCorrectly" />
+    </UnitTest>
+    <UnitTest name="GetImagenesActividad_ReturnsImages_WhenIdExist" storage="c:\users\david\desktop\test.unittest\bin\mcd\debug\net8.0\test.unittest.dll" id="54ad0239-7fb4-86d2-cff7-8ebe674e9ff6">
+      <Execution id="0e672a1c-4fdc-475e-9883-42b536ed641a" />
+      <TestMethod codeBase="C:\Users\David\Desktop\Test.UnitTest\bin\MCD\Debug\net8.0\Test.UnitTest.dll" adapterTypeName="executor://nunit3testexecutor/" className="Test.UnitTest.Repositories.ActividadRepositoryTests" name="GetImagenesActividad_ReturnsImages_WhenIdExist" />
+    </UnitTest>
+    <UnitTest name="GetByToken_Test" storage="c:\users\david\desktop\test.unittest\bin\mcd\debug\net8.0\test.unittest.dll" id="ece1fbc8-94bb-2cdf-e31d-9c01ef7faac8">
+      <Execution id="39428658-d2ee-406c-b14a-d20d50255d2c" />
+      <TestMethod codeBase="C:\Users\David\Desktop\Test.UnitTest\bin\MCD\Debug\net8.0\Test.UnitTest.dll" adapterTypeName="executor://nunit3testexecutor/" className="Test.UnitTest.Services.UsuarioServiceTests" name="GetByToken_Test" />
+    </UnitTest>
+    <UnitTest name="ActivarSuscripcion_Test" storage="c:\users\david\desktop\test.unittest\bin\mcd\debug\net8.0\test.unittest.dll" id="882712fb-e5ca-0eb8-a94a-aaac7861949a">
+      <Execution id="44edd1eb-da9c-4487-8432-548145861f3b" />
+      <TestMethod codeBase="C:\Users\David\Desktop\Test.UnitTest\bin\MCD\Debug\net8.0\Test.UnitTest.dll" adapterTypeName="executor://nunit3testexecutor/" className="Test.UnitTest.Services.UsuarioServiceTests" name="ActivarSuscripcion_Test" />
+    </UnitTest>
+    <UnitTest name="AddAsync_AddEntityCorrectly" storage="c:\users\david\desktop\test.unittest\bin\mcd\debug\net8.0\test.unittest.dll" id="9b135d57-7f75-fdc7-2aad-452ec635d3e6">
+      <Execution id="bee9af84-5497-490a-821a-d300f6ff1d4e" />
+      <TestMethod codeBase="C:\Users\David\Desktop\Test.UnitTest\bin\MCD\Debug\net8.0\Test.UnitTest.dll" adapterTypeName="executor://nunit3testexecutor/" className="Test.UnitTest.Repositories.ActividadRepositoryTests" name="AddAsync_AddEntityCorrectly" />
+    </UnitTest>
+    <UnitTest name="GetByIdAsync_ReturnsNull_WhenIdDoesNotExist" storage="c:\users\david\desktop\test.unittest\bin\mcd\debug\net8.0\test.unittest.dll" id="ba877e30-3f16-1983-7490-b5d88dae0dc2">
+      <Execution id="3d61ddb9-6a67-4958-bf2e-4c531c04c198" />
+      <TestMethod codeBase="C:\Users\David\Desktop\Test.UnitTest\bin\MCD\Debug\net8.0\Test.UnitTest.dll" adapterTypeName="executor://nunit3testexecutor/" className="Test.UnitTest.Repositories.UsuarioRepositoryTests" name="GetByIdAsync_ReturnsNull_WhenIdDoesNotExist" />
+    </UnitTest>
+    <UnitTest name="GetByNameAsync_ReturnsEntity_WhenIdExist" storage="c:\users\david\desktop\test.unittest\bin\mcd\debug\net8.0\test.unittest.dll" id="fc3aa521-d222-5a1c-f4a2-d76c874c416c">
+      <Execution id="5e1b9f13-0195-4821-80dc-5e8e240a1ebf" />
+      <TestMethod codeBase="C:\Users\David\Desktop\Test.UnitTest\bin\MCD\Debug\net8.0\Test.UnitTest.dll" adapterTypeName="executor://nunit3testexecutor/" className="Test.UnitTest.Repositories.CategoriaRepositoryTests" name="GetByNameAsync_ReturnsEntity_WhenIdExist" />
+    </UnitTest>
+    <UnitTest name="GetByIdAsync_ReturnsEntity_WhenIdExist" storage="c:\users\david\desktop\test.unittest\bin\mcd\debug\net8.0\test.unittest.dll" id="d817137c-335f-a015-5032-8fa4769e60f3">
+      <Execution id="f92ae77b-f727-4a4f-97fa-d09d17bbf189" />
+      <TestMethod codeBase="C:\Users\David\Desktop\Test.UnitTest\bin\MCD\Debug\net8.0\Test.UnitTest.dll" adapterTypeName="executor://nunit3testexecutor/" className="Test.UnitTest.Repositories.RolRepositoryTests" name="GetByIdAsync_ReturnsEntity_WhenIdExist" />
+    </UnitTest>
+    <UnitTest name="GetByEmailAsync_ReturnsEntity_WhenIdExists" storage="c:\users\david\desktop\test.unittest\bin\mcd\debug\net8.0\test.unittest.dll" id="206fb8ed-20c9-8ea6-0eba-fd53d01baf80">
+      <Execution id="a37c16fa-684b-4968-8733-797ba6b56bbd" />
+      <TestMethod codeBase="C:\Users\David\Desktop\Test.UnitTest\bin\MCD\Debug\net8.0\Test.UnitTest.dll" adapterTypeName="executor://nunit3testexecutor/" className="Test.UnitTest.Repositories.UsuarioRepositoryTests" name="GetByEmailAsync_ReturnsEntity_WhenIdExists" />
+    </UnitTest>
+    <UnitTest name="GetByIdAsync_ReturnsEntity_WhenIdExist" storage="c:\users\david\desktop\test.unittest\bin\mcd\debug\net8.0\test.unittest.dll" id="39c9baa0-763a-8757-e45a-5c4800acd581">
+      <Execution id="3e00e338-690e-4373-8288-60c134647e5b" />
+      <TestMethod codeBase="C:\Users\David\Desktop\Test.UnitTest\bin\MCD\Debug\net8.0\Test.UnitTest.dll" adapterTypeName="executor://nunit3testexecutor/" className="Test.UnitTest.Repositories.ProductoRepositoryTests" name="GetByIdAsync_ReturnsEntity_WhenIdExist" />
+    </UnitTest>
+    <UnitTest name="AddAsync_AddEntityCorrectly" storage="c:\users\david\desktop\test.unittest\bin\mcd\debug\net8.0\test.unittest.dll" id="6d94c695-3dde-5bb3-fa03-4935778cbdef">
+      <Execution id="a0bf92f4-66ef-4563-b531-6b201e35c581" />
+      <TestMethod codeBase="C:\Users\David\Desktop\Test.UnitTest\bin\MCD\Debug\net8.0\Test.UnitTest.dll" adapterTypeName="executor://nunit3testexecutor/" className="Test.UnitTest.Repositories.ProductoRepositoryTests" name="AddAsync_AddEntityCorrectly" />
+    </UnitTest>
+    <UnitTest name="UpdateAsync_ReturnsEntity_WithValidData" storage="c:\users\david\desktop\test.unittest\bin\mcd\debug\net8.0\test.unittest.dll" id="574596f2-86fb-8411-48bc-30f716256d53">
+      <Execution id="75323217-9b84-416a-826f-1905df4ee230" />
+      <TestMethod codeBase="C:\Users\David\Desktop\Test.UnitTest\bin\MCD\Debug\net8.0\Test.UnitTest.dll" adapterTypeName="executor://nunit3testexecutor/" className="Test.UnitTest.Repositories.ActividadRepositoryTests" name="UpdateAsync_ReturnsEntity_WithValidData" />
+    </UnitTest>
+    <UnitTest name="GetAll_Test" storage="c:\users\david\desktop\test.unittest\bin\mcd\debug\net8.0\test.unittest.dll" id="ff33167c-13f4-c38a-9fd4-55f605d158ec">
+      <Execution id="4f4c8e03-1cef-4ac8-a9f3-47e98831c498" />
+      <TestMethod codeBase="C:\Users\David\Desktop\Test.UnitTest\bin\MCD\Debug\net8.0\Test.UnitTest.dll" adapterTypeName="executor://nunit3testexecutor/" className="Test.UnitTest.Services.UsuarioServiceTests" name="GetAll_Test" />
+    </UnitTest>
+    <UnitTest name="ValidarCuenta_Test" storage="c:\users\david\desktop\test.unittest\bin\mcd\debug\net8.0\test.unittest.dll" id="fa52359b-e852-c39d-5f9b-54c7f75680ec">
+      <Execution id="251454de-50d6-4b29-aee2-d92273553c21" />
+      <TestMethod codeBase="C:\Users\David\Desktop\Test.UnitTest\bin\MCD\Debug\net8.0\Test.UnitTest.dll" adapterTypeName="executor://nunit3testexecutor/" className="Test.UnitTest.Services.UsuarioServiceTests" name="ValidarCuenta_Test" />
+    </UnitTest>
+    <UnitTest name="AddAsync_AddEntityCorrectly" storage="c:\users\david\desktop\test.unittest\bin\mcd\debug\net8.0\test.unittest.dll" id="52d092e7-d218-bfa4-13f0-914718454327">
+      <Execution id="c46daf8e-ea9e-4a78-9913-fe30ccd4728c" />
+      <TestMethod codeBase="C:\Users\David\Desktop\Test.UnitTest\bin\MCD\Debug\net8.0\Test.UnitTest.dll" adapterTypeName="executor://nunit3testexecutor/" className="Test.UnitTest.Repositories.RolRepositoryTests" name="AddAsync_AddEntityCorrectly" />
+    </UnitTest>
+  </TestDefinitions>
+  <TestEntries>
+    <TestEntry testId="bb0d1623-0869-e0d5-7733-00fbeb9ac713" executionId="9feb9b35-3f2f-4198-bd53-2128d88bd3b9" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="882c0229-c222-a662-4d3a-1212196ae5b7" executionId="4bb277e8-5c7c-4b24-9a03-894698c03045" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="9a87dac4-1b58-f366-a88a-25718320ab02" executionId="a05f195d-3eb0-4437-bc4b-ff43604d4930" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="98ef6c5f-9863-aa48-83a9-912ddb02587c" executionId="817991d3-661e-48d9-bcc5-a8ba7e515a56" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="206fb8ed-20c9-8ea6-0eba-fd53d01baf80" executionId="a37c16fa-684b-4968-8733-797ba6b56bbd" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="09854260-4253-0bcf-46d0-95e44d96902f" executionId="69a38908-4dd5-4ac0-b972-02ad41a1ad38" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="fc3aa521-d222-5a1c-f4a2-d76c874c416c" executionId="5e1b9f13-0195-4821-80dc-5e8e240a1ebf" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="d9ceae1f-793e-ce14-5376-9d41ecb6a36c" executionId="23346051-79b4-4500-9271-6ec4afc3d868" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="c164ea60-af85-83a5-65c1-58f6bbd7debe" executionId="b615f7ad-557e-4cfa-b02f-89d1ea7aca5e" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="46b39833-e713-75ff-e9f7-7636b6818f25" executionId="b477118e-623b-4a85-9e7e-ccd2cb143b7b" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="ff33167c-13f4-c38a-9fd4-55f605d158ec" executionId="4f4c8e03-1cef-4ac8-a9f3-47e98831c498" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="8164f939-d80b-638b-2cd5-3de20d464fd0" executionId="4e267f29-4307-45ad-8ef7-a5ce63507174" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="574596f2-86fb-8411-48bc-30f716256d53" executionId="75323217-9b84-416a-826f-1905df4ee230" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="d95a1a6f-5f82-3df6-7b56-357ab6024da9" executionId="0562c29a-dee7-49e1-b8f2-755361e3d3b3" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="21c46312-747e-47a0-3191-a6c78e857818" executionId="df46d7c9-0b3e-4321-9b52-2a80877b123b" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="ba877e30-3f16-1983-7490-b5d88dae0dc2" executionId="3d61ddb9-6a67-4958-bf2e-4c531c04c198" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="6d94c695-3dde-5bb3-fa03-4935778cbdef" executionId="a0bf92f4-66ef-4563-b531-6b201e35c581" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="54ad0239-7fb4-86d2-cff7-8ebe674e9ff6" executionId="0e672a1c-4fdc-475e-9883-42b536ed641a" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="39c9baa0-763a-8757-e45a-5c4800acd581" executionId="3e00e338-690e-4373-8288-60c134647e5b" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="d817137c-335f-a015-5032-8fa4769e60f3" executionId="f92ae77b-f727-4a4f-97fa-d09d17bbf189" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="f2eaf840-6ed7-5c27-c4e9-f812db96ab08" executionId="08bab632-0abc-4088-9aaf-9627c31a2916" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="60febeab-7526-e693-3ba5-537327306de1" executionId="6d1597c5-7aa5-47c5-a9ed-88fe098dadb3" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="67830ffb-6753-ecac-7506-5bfca90e461f" executionId="dc36072b-46ef-405c-b0ef-0534a7ee612d" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="9b77e477-8778-bb0c-c0da-e8cab9ede064" executionId="c6039e24-9dfd-4d86-ae61-1babe81607bd" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="ece1fbc8-94bb-2cdf-e31d-9c01ef7faac8" executionId="39428658-d2ee-406c-b14a-d20d50255d2c" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="eba31be7-0eb8-1524-fe29-6a4dfeb657b8" executionId="5c9c6b38-888a-4a86-ada8-b2248affe41a" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="c6ed30c5-6e45-e9c9-b5ea-90b7e75ea74b" executionId="ad16deeb-9d9d-4b7a-bc8f-1a7328c7decc" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="7b09167d-2926-e2d2-61d7-4f6883a320dd" executionId="03a31dc1-4fc3-4c96-8cc4-420b631b95cc" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="7e6ff2ec-3e04-0058-defc-50d60c0e6a11" executionId="121c785e-7fa5-47e7-8a80-ff4267f13c28" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="795b234d-79b2-978c-3f8b-55ba39b87420" executionId="58a8aa5b-3163-4d9b-a233-76378b6893c6" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="138fd3af-4634-417e-2b80-4cf9b0f3a30f" executionId="0d4d00c5-d168-4f14-9b1d-c38fe7405482" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="882712fb-e5ca-0eb8-a94a-aaac7861949a" executionId="44edd1eb-da9c-4487-8432-548145861f3b" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="f4926c78-db34-80f7-f285-b683f354b41f" executionId="5a4edaac-7e5f-44f9-af26-70db4080bbe8" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="0e76492b-40ef-e115-4745-7e063514caff" executionId="f438058c-242f-4059-a261-3e9629b75775" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="3d4a185b-8d2c-a3e3-e500-b291621b6a81" executionId="01b80beb-69eb-4820-81c4-7f5aa5fb7e2d" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="795251b7-539a-45f8-0eaf-3d5d326e003b" executionId="7281af32-af6c-4566-b4ac-88c3f5e61221" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="82e1af81-1c1e-52ee-2ee2-0384abbe5724" executionId="51dd2b8e-59bd-4034-9b01-9433f69f7101" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="81bcffad-dde8-b893-02b4-92fffe8bfe7f" executionId="647c8e78-ca2b-4063-b934-9278ad85cab3" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="4449a5ca-9405-f065-c994-a04e0801d69f" executionId="b3ca902a-1dae-4284-a1a4-9f8e6960a54d" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="8a12cae0-1658-e774-1bb7-84c7ae07ed04" executionId="d1e805c4-81e7-4051-aa18-5699b17b78ad" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="32e1da5f-76c2-23b6-2864-a2ef5c5dbe13" executionId="27cdbb28-45b3-4bc0-b8fe-a1aaa384d30f" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="fa52359b-e852-c39d-5f9b-54c7f75680ec" executionId="251454de-50d6-4b29-aee2-d92273553c21" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="9fcae489-fe38-0c24-be7b-43760d755e4a" executionId="6acb2f18-0e73-4721-ad41-7fd574b9ac34" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="0bcb3747-76db-7201-42a2-4eb46d9b80a4" executionId="f2d390dc-b829-4f69-9c7a-3431b0b964c6" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="25a8711f-4fff-9a07-ee8e-cbc0426c869d" executionId="4c082e73-c842-4b1b-96de-04718c330c61" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="071bad41-b3b1-3926-a8e6-6d6021499749" executionId="dd9e2f20-0822-44ba-8f8d-14f1920d9c22" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="7c7507e7-69ce-a591-21e2-ba56ee99f14c" executionId="314f73cf-7bf9-4ed6-9491-46497ead8977" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="dfa3bc2e-8d59-a80a-e00f-1d2e9a4a2ec8" executionId="9114fe7d-beac-4200-abda-c3de61204199" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="cbea6107-0d1b-6133-3c87-19a814e40d24" executionId="8f04c1cf-7474-48d1-917a-ec3946f6b82e" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="f328d355-238d-3b65-ad55-2a400c076c55" executionId="0c1fa097-dc3a-4c2c-90cf-52c181a03e33" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="e0d32d20-eb4b-5e9a-e77e-bf80cb293e4b" executionId="814caa5f-aaef-4c97-9960-917b7e98cef0" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="c9b976af-6a68-7bc8-e977-9cdf17d0fe11" executionId="08687602-e6d8-473b-930f-2edfa94bf46d" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="9b135d57-7f75-fdc7-2aad-452ec635d3e6" executionId="bee9af84-5497-490a-821a-d300f6ff1d4e" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="d1735fc1-f657-212c-e172-222011890434" executionId="1d0c1c3b-b74a-4156-aed4-b77a984e788c" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="52d092e7-d218-bfa4-13f0-914718454327" executionId="c46daf8e-ea9e-4a78-9913-fe30ccd4728c" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+  </TestEntries>
+  <TestLists>
+    <TestList name="Resultados sin formato de lista" id="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestList name="Todos los resultados cargados" id="19431567-8539-422a-85d7-44ee4e166bda" />
+  </TestLists>
+  <ResultSummary outcome="Failed">
+    <Counters total="55" executed="55" passed="43" failed="12" error="0" timeout="0" aborted="0" inconclusive="0" passedButRunAborted="0" notRunnable="0" notExecuted="0" disconnected="0" warning="0" completed="0" inProgress="0" pending="0" />
+    <Output>
+      <StdOut>NUnit Adapter 4.5.0.0: Test execution started&#xD;
+Running all tests in C:\Users\David\Desktop\Test.UnitTest\bin\MCD\Debug\net8.0\Test.UnitTest.dll&#xD;
+   NUnit3TestExecutor discovered 55 of 55 NUnit test cases using Current Discovery mode, Non-Explicit run&#xD;
+AddAsync_AddEntityCorrectly: Test passed succesfully. Activity with new Id 6 has been created succesfully.&#xD;
+GetAllAsync_ReturnsAffectedEntities_AfterSetup: Test passed succesfully. All 5 activities have been added succesfully during Setup:&#xD;
+Id=1, Nombre=Actividad 01, Activo=True&#xD;
+Id=2, Nombre=Actividad 11, Activo=True&#xD;
+Id=3, Nombre=Actividad 21, Activo=True&#xD;
+Id=4, Nombre=Actividad 31, Activo=True&#xD;
+Id=5, Nombre=Actividad 41, Activo=True&#xD;
+&#xD;
+GetByIdAsync_ReturnsEntity_WhenIdExist: Test passed succesfully. Activity with Id 1 has all data properties succesfully informed.&#xD;
+GetByNameAsync_ReturnsEntity_WhenIdExist: Test passed succesfully. Activity with name Actividad 01 has all data properties succesfully informed.&#xD;
+RemoveEntity_CheckEntities_AfterRemove: Test passed succesfully. Activity with Id 1 has been removed succesfully.&#xD;
+UpdateAsync_ReturnsEntity_WithValidData: Test passed succesfully.Activity with id 1 has been updated succesfully.&#xD;
+GetByIdAsync_ReturnsEntity_WhenIdExist: Test passed succesfully. Category with Id b82f89b1-eb53-dc2f-9b62-0e74c1fa5450 has all data properties succesfully informed.&#xD;
+GetByNameAsync_ReturnsEntity_WhenIdExist: Test passed succesfully. Category with name Categoria 01 has all data properties succesfully informed.&#xD;
+RemoveEntity_CheckEntities_AfterRemove: Test passed succesfully. Category with Id b82f89b1-eb53-dc2f-9b62-0e74c1fa5450 has been removed succesfully.&#xD;
+UpdateAsync_ReturnsEntity_WithValidData: Test passed succesfully. Category with id b82f89b1-eb53-dc2f-9b62-0e74c1fa5450 has been updated succesfully.&#xD;
+AddAsync_AddEntityCorrectly: Test passed succesfully. Product with new Id 6 has been created succesfully.&#xD;
+GetByIdAsync_ReturnsEntity_WhenIdExist: Test passed succesfully. Product with Id 1 has all data properties succesfully informed.&#xD;
+GetByNameAsync_ReturnsEntity_WhenIdExist: Test passed succesfully. Product with name Producto 1 has all data properties succesfully informed.&#xD;
+RemoveEntity_CheckEntities_AfterRemove: Test passed succesfully. Product with Id 1 has been removed succesfully.&#xD;
+UpdateAsync_ReturnsEntity_WithValidData: Test passed succesfully. Product with id 1 has been updated succesfully.&#xD;
+GetByIdAsync_ReturnsEntity_WhenIdExist: Test passed succesfully. Rol with Id 153b7912-f556-bdfa-636e-ab0a404f1112 has all data properties succesfully informed.&#xD;
+GetByNameAsync_ReturnsEntity_WhenIdExist: Test passed succesfully. Rol with name Rol 1 has all data properties succesfully informed.&#xD;
+RemoveEntity_CheckEntities_AfterRemove: Test passed succesfully. Rol with Id 153b7912-f556-bdfa-636e-ab0a404f1112 has been removed succesfully.&#xD;
+UpdateAsync_ReturnsEntity_WithValidData: Test passed succesfully. Rol with id 153b7912-f556-bdfa-636e-ab0a404f1112 has been updated succesfully.&#xD;
+AddAsync_AddEntityCorrectly: Test passed succesfully. User with new Id 6 has been created succesfully.&#xD;
+CambiarContraseña_ReturnsEntity_WithValidData: Test passed succesfully.Password for user with email 1 has been updated succesfully.&#xD;
+GetAllAsync_ReturnsAffectedEntities_AfterSetup: Test passed succesfully. All 5 users have been added succesfully during Setup.&#xD;
+GetByEmailAsync_ReturnsEntity_WhenIdExists: Test passed succesfully. User with email Alfonzo.Nienow@gmail.com exist.&#xD;
+GetByIdAsync_ReturnsEntity_WhenIdExist: Test passed succesfully. User with Id 1 has all data properties succesfully informed.&#xD;
+GetByIdAsync_ReturnsNull_WhenIdDoesNotExist: Test passed succesfully. User Id -9999 doesn't exist.&#xD;
+GetByTokenAsync_ReturnsEntity_WhenIdExists: Test passed succesfully. User with token do8mre7qg7rz3otjv1zuj7azsimcwp4jgcqcezcxtsoa2 exist.&#xD;
+RemoveEntity_CheckEntities_AfterRemove: Test passed succesfully. User with Id 1 has been removed succesfully.&#xD;
+UpdateAsync_ReturnsEntity_WithValidData: Test passed succesfully.User with id 1 has been updated succesfully.&#xD;
+ValidarCuenta_ReturnsEntity_WithValidData: Test passed succesfully. User with Id 1 has been activated succesfully.&#xD;
+NUnit Adapter 4.5.0.0: Test execution complete&#xD;
+</StdOut>
+    </Output>
+    <CollectorDataEntries>
+      <Collector agentName="DG" uri="datacollector://microsoft/CoverletCodeCoverage/1.0" collectorDisplayName="XPlat code coverage">
+        <UriAttachments>
+          <UriAttachment>
+            <A href="DG\coverage.cobertura.xml"></A>
+          </UriAttachment>
+        </UriAttachments>
+      </Collector>
+    </CollectorDataEntries>
+  </ResultSummary>
+</TestRun>

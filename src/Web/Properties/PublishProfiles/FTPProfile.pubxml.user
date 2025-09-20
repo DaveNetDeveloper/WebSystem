@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--
+https://go.microsoft.com/fwlink/?LinkID=208121.
+-->
+<Project>
+  <PropertyGroup>
+    <TimeStampOfAssociatedLegacyPublishXmlFile />
+    <EncryptedPassword>AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAXMccBeRRCU+Q9YM4lts9BgAAAAACAAAAAAAQZgAAAAEAACAAAAAncSzdq/adyf7v7gBuCpcEnqdWvX3iaW4Dcwvjh0aCmAAAAAAOgAAAAAIAACAAAADgJ4/Og3c0uqb2ZftTRf0IO6VSWZf0TX/I5Q6hD3p5sSAAAADElxS71FXu8qLwN+RaN8v7yHyAY1l2OPx+Cj1kXhvbQkAAAACSv0AD+PPM0EstrcUdgtxsI5zYxZOCZyx9uCnEKMmk5AzeiW1pSnnoVeBctvh066w+10Ugvo6pt+mOpIL/aBaX</EncryptedPassword>
+    <_PublishTargetUrl>ftp://eimtdbd.eimt.uoc.edu/web</_PublishTargetUrl>
+    <History>False|2023-12-23T14:10:22.4838386Z;</History>
+    <LastFailureDetails />
+  </PropertyGroup>
+</Project>

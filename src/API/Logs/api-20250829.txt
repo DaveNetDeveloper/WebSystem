@@ -1,0 +1,1357 @@
+2025-08-29T00:41:25.7955413+02:00  [INF] User profile is available. Using '"C:\Users\David\AppData\Local\ASP.NET\DataProtection-Keys"' as key repository and Windows DPAPI to encrypt keys at rest. (7ac5e29c)
+2025-08-29T00:41:49.7935028+02:00  [INF] Application started. Press Ctrl+C to shut down. (dcaefe54)
+2025-08-29T00:41:50.0275052+02:00  [INF] Hosting environment: "Development" (bc5a1a4e)
+2025-08-29T00:41:50.0299170+02:00  [INF] Content root path: "C:\Users\David\Desktop\API" (cc26f24e)
+2025-08-29T00:41:50.9664351+02:00 80000049-0005-fc00-b63f-84710c7967bb [INF] Request starting "HTTP/2" "GET" "https"://"localhost:44311""""/swagger/index.html""" - null null (d509f86a)
+2025-08-29T00:42:00.7215362+02:00 80000049-0005-fc00-b63f-84710c7967bb [INF] Request finished "HTTP/2" "GET" "https"://"localhost:44311""""/swagger/index.html""" - 200 null "text/html;charset=utf-8" 9954.6084ms (74253ad3)
+2025-08-29T00:42:08.7573135+02:00 80000014-0002-fa00-b63f-84710c7967bb [INF] Request starting "HTTP/2" "GET" "https"://"localhost:44311""""/_framework/aspnetcore-browser-refresh.js""" - null null (d509f86a)
+2025-08-29T00:42:08.8637061+02:00 80000014-0002-fa00-b63f-84710c7967bb [INF] Request finished "HTTP/2" "GET" "https"://"localhost:44311""""/_framework/aspnetcore-browser-refresh.js""" - 200 13742 "application/javascript; charset=utf-8" 3.8525ms (74253ad3)
+2025-08-29T00:42:09.0497922+02:00 8000001c-0007-fe00-b63f-84710c7967bb [INF] Request starting "HTTP/2" "GET" "https"://"localhost:44311""""/_vs/browserLink""" - null null (d509f86a)
+2025-08-29T00:42:09.7771821+02:00 8000001c-0007-fe00-b63f-84710c7967bb [INF] Request finished "HTTP/2" "GET" "https"://"localhost:44311""""/_vs/browserLink""" - 200 null "text/javascript; charset=UTF-8" 727.4396ms (74253ad3)
+2025-08-29T00:42:14.3233365+02:00 8000001e-0007-fe00-b63f-84710c7967bb [INF] Request starting "HTTP/2" "GET" "https"://"localhost:44311""""/swagger/v1/swagger.json""" - null null (d509f86a)
+2025-08-29T00:42:14.4151720+02:00 8000001e-0007-fe00-b63f-84710c7967bb [INF] Request finished "HTTP/2" "GET" "https"://"localhost:44311""""/swagger/v1/swagger.json""" - 200 null "application/json;charset=utf-8" 92.1889ms (74253ad3)
+2025-08-29T00:42:55.8785429+02:00 8000003e-0004-fc00-b63f-84710c7967bb [INF] Request starting "HTTP/2" "POST" "https"://"localhost:44311""""/auth/login""" - "application/json" 107 (d509f86a)
+2025-08-29T00:42:55.9032579+02:00 8000003e-0004-fc00-b63f-84710c7967bb [INF] CORS policy execution successful. (5409d6ef)
+2025-08-29T00:42:56.0490896+02:00 8000003e-0004-fc00-b63f-84710c7967bb [INF] Executing endpoint '"API.Controllers.AuthController.Login (API)"' (500cc934)
+2025-08-29T00:42:56.3345175+02:00 8000003e-0004-fc00-b63f-84710c7967bb [INF] Route matched with "{action = \"Login\", controller = \"Auth\"}". Executing controller action with signature "Microsoft.AspNetCore.Mvc.IActionResult Login(Domain.Entities.LoginDto)" on controller "API.Controllers.AuthController" ("API"). (122b2fdf)
+2025-08-29T00:43:06.5343126+02:00 8000003e-0004-fc00-b63f-84710c7967bb [INF] Executed DbCommand ("362"ms) [Parameters=["@__u_0='?'"], CommandType='Text', CommandTimeout='30']"
+""SELECT u.id, u.activo, u.apellidos, u.contraseña, u.correo, u.\"expiracionToken\", u.\"fechaCreación\", u.\"fechaNacimiento\", u.nombre, u.puntos, u.suscrito, u.token, u.\"ultimaConexion\"
+FROM \"Usuarios\" AS u
+WHERE u.nombre = @__u_0
+LIMIT 2" (0723d8ff)
+2025-08-29T00:43:07.4923530+02:00 8000003e-0004-fc00-b63f-84710c7967bb [INF] Executed DbCommand ("147"ms) [Parameters=["@__id_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT t.id, t.activo, t.apellidos, t.contraseña, t.correo, t.\"expiracionToken\", t.\"fechaCreación\", t.\"fechaNacimiento\", t.nombre, t.puntos, t.suscrito, t.token, t.\"ultimaConexion\", t0.idrol, t0.idusuario, t0.identidad, t0.id, t0.descripcion, t0.nombre, t0.id0, t0.activo, t0.descripcion0, t0.\"fechaAlta\", t0.\"idTipoEntidad\", t0.imagen, t0.nombre0, t0.popularidad, t0.ubicacion
+FROM (
+    SELECT u.id, u.activo, u.apellidos, u.contraseña, u.correo, u.\"expiracionToken\", u.\"fechaCreación\", u.\"fechaNacimiento\", u.nombre, u.puntos, u.suscrito, u.token, u.\"ultimaConexion\"
+    FROM \"Usuarios\" AS u
+    WHERE u.id = @__id_0
+    LIMIT 1
+) AS t
+LEFT JOIN (
+    SELECT u0.idrol, u0.idusuario, u0.identidad, r.id, r.descripcion, r.nombre, e.id AS id0, e.activo, e.descripcion AS descripcion0, e.\"fechaAlta\", e.\"idTipoEntidad\", e.imagen, e.nombre AS nombre0, e.popularidad, e.ubicacion
+    FROM \"UsuarioRoles\" AS u0
+    INNER JOIN \"Roles\" AS r ON u0.idrol = r.id
+    INNER JOIN \"Entidades\" AS e ON u0.identidad = e.id
+) AS t0 ON t.id = t0.idusuario
+ORDER BY t.id, t0.idrol, t0.idusuario, t0.identidad, t0.id" (0723d8ff)
+2025-08-29T00:43:08.3623381+02:00 8000003e-0004-fc00-b63f-84710c7967bb [INF] Executing "OkObjectResult", writing value of type '"<>f__AnonymousType1`3[[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.DateTime, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]"'. (605b4265)
+2025-08-29T00:43:08.5898012+02:00 8000003e-0004-fc00-b63f-84710c7967bb [INF] Executed action "API.Controllers.AuthController.Login (API)" in 12241.0434ms (afa2e885)
+2025-08-29T00:43:08.5901800+02:00 8000003e-0004-fc00-b63f-84710c7967bb [INF] Executed endpoint '"API.Controllers.AuthController.Login (API)"' (99874f2b)
+2025-08-29T00:43:08.7930073+02:00 8000003e-0004-fc00-b63f-84710c7967bb [ERR] Failed executing DbCommand ("480"ms) [Parameters=["@p2='?' (DbType = Int32), @p0='?' (DbType = DateTime), @p1='?'"], CommandType='Text', CommandTimeout='30']"
+""UPDATE \"Usuarios\" SET \"expiracionToken\" = @p0, token = @p1
+WHERE id = @p2;" (627a98df)
+2025-08-29T00:44:08.9057388+02:00 8000000a-0006-fd00-b63f-84710c7967bb [INF] Request starting "HTTP/2" "GET" "https"://"localhost:44311""""/Usuarios/ObtenerUsuario/1""" - null null (d509f86a)
+2025-08-29T00:44:09.2054206+02:00 8000000a-0006-fd00-b63f-84710c7967bb [INF] Executing endpoint '"API.Controllers.UsuariosController.ObtenerUsuarioById (API)"' (500cc934)
+2025-08-29T00:44:09.2627932+02:00 8000000a-0006-fd00-b63f-84710c7967bb [INF] Route matched with "{action = \"ObtenerUsuarioById\", controller = \"Usuarios\"}". Executing controller action with signature "System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] ObtenerUsuarioById(Int32)" on controller "API.Controllers.UsuariosController" ("API"). (122b2fdf)
+2025-08-29T00:46:57.3895356+02:00 8000000a-0006-fd00-b63f-84710c7967bb [INF] Executed action "API.Controllers.UsuariosController.ObtenerUsuarioById (API)" in 168126.3397ms (afa2e885)
+2025-08-29T00:46:57.4500274+02:00 8000000a-0006-fd00-b63f-84710c7967bb [INF] Executed endpoint '"API.Controllers.UsuariosController.ObtenerUsuarioById (API)"' (99874f2b)
+2025-08-29T00:47:02.0077192+02:00 8000000a-0006-fd00-b63f-84710c7967bb [ERR] Ocurrió un error en la petición "/Usuarios/ObtenerUsuario/1" (564da9e9)
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at API.Controllers.BaseController.IsValidToken()
+   at API.Controllers.UsuariosController.ObtenerUsuarioById(Int32 id)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|7_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Microsoft.AspNetCore.RateLimiting.RateLimitingMiddleware.InvokeInternal(HttpContext context, EnableRateLimitingAttribute enableRateLimitingAttribute)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at ExceptionMiddleware.InvokeAsync(HttpContext context)
+2025-08-29T00:47:02.0359695+02:00 8000000a-0006-fd00-b63f-84710c7967bb [INF] Request finished "HTTP/2" "GET" "https"://"localhost:44311""""/Usuarios/ObtenerUsuario/1""" - 500 null "application/json" 173130.3138ms (74253ad3)
+2025-08-29T00:55:27.3205506+02:00  [INF] User profile is available. Using '"C:\Users\David\AppData\Local\ASP.NET\DataProtection-Keys"' as key repository and Windows DPAPI to encrypt keys at rest. (7ac5e29c)
+2025-08-29T00:55:27.9721329+02:00 8000001c-0000-fb00-b63f-84710c7967bb [INF] Request starting "HTTP/2" "GET" "https"://"localhost:44311""""/swagger/index.html""" - null null (d509f86a)
+2025-08-29T00:55:28.0523419+02:00  [INF] Application started. Press Ctrl+C to shut down. (dcaefe54)
+2025-08-29T00:55:28.0563044+02:00  [INF] Hosting environment: "Development" (bc5a1a4e)
+2025-08-29T00:55:28.0630630+02:00  [INF] Content root path: "C:\Users\David\Desktop\API" (cc26f24e)
+2025-08-29T00:55:29.1387269+02:00 8000001c-0000-fb00-b63f-84710c7967bb [INF] Request finished "HTTP/2" "GET" "https"://"localhost:44311""""/swagger/index.html""" - 200 null "text/html;charset=utf-8" 1175.5107ms (74253ad3)
+2025-08-29T00:55:29.1848252+02:00 80000014-0001-fe00-b63f-84710c7967bb [INF] Request starting "HTTP/2" "GET" "https"://"localhost:44311""""/_framework/aspnetcore-browser-refresh.js""" - null null (d509f86a)
+2025-08-29T00:55:29.1895276+02:00 80000014-0001-fe00-b63f-84710c7967bb [INF] Request finished "HTTP/2" "GET" "https"://"localhost:44311""""/_framework/aspnetcore-browser-refresh.js""" - 200 13742 "application/javascript; charset=utf-8" 4.4357ms (74253ad3)
+2025-08-29T00:55:29.1944394+02:00 80000018-0002-fa00-b63f-84710c7967bb [INF] Request starting "HTTP/2" "GET" "https"://"localhost:44311""""/_vs/browserLink""" - null null (d509f86a)
+2025-08-29T00:55:29.2524158+02:00 80000018-0002-fa00-b63f-84710c7967bb [INF] Request finished "HTTP/2" "GET" "https"://"localhost:44311""""/_vs/browserLink""" - 200 null "text/javascript; charset=UTF-8" 57.9673ms (74253ad3)
+2025-08-29T00:55:29.5131682+02:00 8000003e-0006-fe00-b63f-84710c7967bb [INF] Request starting "HTTP/2" "GET" "https"://"localhost:44311""""/swagger/v1/swagger.json""" - null null (d509f86a)
+2025-08-29T00:55:29.5604695+02:00 8000003e-0006-fe00-b63f-84710c7967bb [INF] Request finished "HTTP/2" "GET" "https"://"localhost:44311""""/swagger/v1/swagger.json""" - 200 null "application/json;charset=utf-8" 47.2126ms (74253ad3)
+2025-08-29T00:55:57.1265625+02:00 80000021-0007-fe00-b63f-84710c7967bb [INF] Request starting "HTTP/2" "POST" "https"://"localhost:44311""""/auth/login""" - "application/json" 108 (d509f86a)
+2025-08-29T00:55:57.1489471+02:00 80000021-0007-fe00-b63f-84710c7967bb [INF] CORS policy execution successful. (5409d6ef)
+2025-08-29T00:55:57.2093182+02:00 80000021-0007-fe00-b63f-84710c7967bb [INF] Executing endpoint '"API.Controllers.AuthController.Login (API)"' (500cc934)
+2025-08-29T00:55:57.3737881+02:00 80000021-0007-fe00-b63f-84710c7967bb [INF] Route matched with "{action = \"Login\", controller = \"Auth\"}". Executing controller action with signature "Microsoft.AspNetCore.Mvc.IActionResult Login(Domain.Entities.LoginDto)" on controller "API.Controllers.AuthController" ("API"). (122b2fdf)
+2025-08-29T00:56:07.0544121+02:00 80000021-0007-fe00-b63f-84710c7967bb [INF] Executed DbCommand ("291"ms) [Parameters=["@__u_0='?'"], CommandType='Text', CommandTimeout='30']"
+""SELECT u.id, u.activo, u.apellidos, u.contraseña, u.correo, u.\"expiracionToken\", u.\"fechaCreación\", u.\"fechaNacimiento\", u.nombre, u.puntos, u.suscrito, u.token, u.\"ultimaConexion\"
+FROM \"Usuarios\" AS u
+WHERE u.nombre = @__u_0
+LIMIT 2" (0723d8ff)
+2025-08-29T00:57:09.1498772+02:00 80000021-0007-fe00-b63f-84710c7967bb [INF] Executed action "API.Controllers.AuthController.Login (API)" in 71768.891ms (afa2e885)
+2025-08-29T00:57:09.1514572+02:00 80000021-0007-fe00-b63f-84710c7967bb [INF] Executed endpoint '"API.Controllers.AuthController.Login (API)"' (99874f2b)
+2025-08-29T00:57:10.3663372+02:00 80000021-0007-fe00-b63f-84710c7967bb [ERR] Ocurrió un error en la petición "/auth/login" (564da9e9)
+System.AggregateException: One or more errors occurred. (Object reference not set to an instance of an object.)
+ ---> System.NullReferenceException: Object reference not set to an instance of an object.
+   at Application.Services.AuthService.ValidateUser(String userName, String password) in C:\Users\David\Desktop\Application\Services\AuthService.cs:line 23
+   --- End of inner exception stack trace ---
+   at System.Threading.Tasks.Task.ThrowIfExceptional(Boolean includeTaskCanceledExceptions)
+   at System.Threading.Tasks.Task`1.GetResultCore(Boolean waitCompletionNotification)
+   at API.Controllers.AuthController.Login(LoginDto dto) in C:\Users\David\Desktop\API\Controllers\AuthController.cs:line 34
+   at lambda_method3(Closure, Object, Object[])
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.SyncActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeActionMethodAsync()
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeNextActionFilterAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|7_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Microsoft.AspNetCore.RateLimiting.RateLimitingMiddleware.InvokeInternal(HttpContext context, EnableRateLimitingAttribute enableRateLimitingAttribute)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at ExceptionMiddleware.InvokeAsync(HttpContext context) in C:\Users\David\Desktop\API\Middlewares\ExceptionMiddleware.cs:line 19
+2025-08-29T00:57:10.4191497+02:00 80000021-0007-fe00-b63f-84710c7967bb [INF] Request finished "HTTP/2" "POST" "https"://"localhost:44311""""/auth/login""" - 500 null "application/json" 73293.71ms (74253ad3)
+2025-08-29T00:57:17.7489786+02:00 80000023-0007-fe00-b63f-84710c7967bb [INF] Request starting "HTTP/2" "POST" "https"://"localhost:44311""""/auth/login""" - "application/json" 108 (d509f86a)
+2025-08-29T00:57:17.7512291+02:00 80000023-0007-fe00-b63f-84710c7967bb [INF] CORS policy execution successful. (5409d6ef)
+2025-08-29T00:57:17.7518584+02:00 80000023-0007-fe00-b63f-84710c7967bb [INF] Executing endpoint '"API.Controllers.AuthController.Login (API)"' (500cc934)
+2025-08-29T00:57:17.7525184+02:00 80000023-0007-fe00-b63f-84710c7967bb [INF] Route matched with "{action = \"Login\", controller = \"Auth\"}". Executing controller action with signature "Microsoft.AspNetCore.Mvc.IActionResult Login(Domain.Entities.LoginDto)" on controller "API.Controllers.AuthController" ("API"). (122b2fdf)
+2025-08-29T00:57:25.0157175+02:00 80000023-0007-fe00-b63f-84710c7967bb [INF] Executed DbCommand ("101"ms) [Parameters=["@__u_0='?'"], CommandType='Text', CommandTimeout='30']"
+""SELECT u.id, u.activo, u.apellidos, u.contraseña, u.correo, u.\"expiracionToken\", u.\"fechaCreación\", u.\"fechaNacimiento\", u.nombre, u.puntos, u.suscrito, u.token, u.\"ultimaConexion\"
+FROM \"Usuarios\" AS u
+WHERE u.nombre = @__u_0
+LIMIT 2" (0723d8ff)
+2025-08-29T00:57:45.3054662+02:00 80000023-0007-fe00-b63f-84710c7967bb [INF] Executed action "API.Controllers.AuthController.Login (API)" in 27552.5787ms (afa2e885)
+2025-08-29T00:57:45.3061127+02:00 80000023-0007-fe00-b63f-84710c7967bb [INF] Executed endpoint '"API.Controllers.AuthController.Login (API)"' (99874f2b)
+2025-08-29T00:57:45.3424746+02:00 80000023-0007-fe00-b63f-84710c7967bb [ERR] Ocurrió un error en la petición "/auth/login" (564da9e9)
+System.AggregateException: One or more errors occurred. (Object reference not set to an instance of an object.)
+ ---> System.NullReferenceException: Object reference not set to an instance of an object.
+   at Application.Services.AuthService.ValidateUser(String userName, String password) in C:\Users\David\Desktop\Application\Services\AuthService.cs:line 23
+   --- End of inner exception stack trace ---
+   at System.Threading.Tasks.Task.ThrowIfExceptional(Boolean includeTaskCanceledExceptions)
+   at System.Threading.Tasks.Task`1.GetResultCore(Boolean waitCompletionNotification)
+   at API.Controllers.AuthController.Login(LoginDto dto) in C:\Users\David\Desktop\API\Controllers\AuthController.cs:line 34
+   at lambda_method3(Closure, Object, Object[])
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.SyncActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeActionMethodAsync()
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeNextActionFilterAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|7_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Microsoft.AspNetCore.RateLimiting.RateLimitingMiddleware.InvokeInternal(HttpContext context, EnableRateLimitingAttribute enableRateLimitingAttribute)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at ExceptionMiddleware.InvokeAsync(HttpContext context) in C:\Users\David\Desktop\API\Middlewares\ExceptionMiddleware.cs:line 19
+2025-08-29T00:57:45.3455006+02:00 80000023-0007-fe00-b63f-84710c7967bb [INF] Request finished "HTTP/2" "POST" "https"://"localhost:44311""""/auth/login""" - 500 null "application/json" 27595.45ms (74253ad3)
+2025-08-29T00:57:59.5241726+02:00 80000040-0004-fc00-b63f-84710c7967bb [INF] Request starting "HTTP/2" "POST" "https"://"localhost:44311""""/auth/login""" - "application/json" 107 (d509f86a)
+2025-08-29T00:57:59.5246839+02:00 80000040-0004-fc00-b63f-84710c7967bb [INF] CORS policy execution successful. (5409d6ef)
+2025-08-29T00:57:59.5249299+02:00 80000040-0004-fc00-b63f-84710c7967bb [INF] Executing endpoint '"API.Controllers.AuthController.Login (API)"' (500cc934)
+2025-08-29T00:57:59.5251515+02:00 80000040-0004-fc00-b63f-84710c7967bb [INF] Route matched with "{action = \"Login\", controller = \"Auth\"}". Executing controller action with signature "Microsoft.AspNetCore.Mvc.IActionResult Login(Domain.Entities.LoginDto)" on controller "API.Controllers.AuthController" ("API"). (122b2fdf)
+2025-08-29T00:58:03.5857126+02:00 80000040-0004-fc00-b63f-84710c7967bb [INF] Executed DbCommand ("1"ms) [Parameters=["@__u_0='?'"], CommandType='Text', CommandTimeout='30']"
+""SELECT u.id, u.activo, u.apellidos, u.contraseña, u.correo, u.\"expiracionToken\", u.\"fechaCreación\", u.\"fechaNacimiento\", u.nombre, u.puntos, u.suscrito, u.token, u.\"ultimaConexion\"
+FROM \"Usuarios\" AS u
+WHERE u.nombre = @__u_0
+LIMIT 2" (0723d8ff)
+2025-08-29T00:58:04.4091020+02:00 80000040-0004-fc00-b63f-84710c7967bb [INF] Executed DbCommand ("207"ms) [Parameters=["@__id_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT t.id, t.activo, t.apellidos, t.contraseña, t.correo, t.\"expiracionToken\", t.\"fechaCreación\", t.\"fechaNacimiento\", t.nombre, t.puntos, t.suscrito, t.token, t.\"ultimaConexion\", t0.idrol, t0.idusuario, t0.identidad, t0.id, t0.descripcion, t0.nombre, t0.id0, t0.activo, t0.descripcion0, t0.\"fechaAlta\", t0.\"idTipoEntidad\", t0.imagen, t0.nombre0, t0.popularidad, t0.ubicacion
+FROM (
+    SELECT u.id, u.activo, u.apellidos, u.contraseña, u.correo, u.\"expiracionToken\", u.\"fechaCreación\", u.\"fechaNacimiento\", u.nombre, u.puntos, u.suscrito, u.token, u.\"ultimaConexion\"
+    FROM \"Usuarios\" AS u
+    WHERE u.id = @__id_0
+    LIMIT 1
+) AS t
+LEFT JOIN (
+    SELECT u0.idrol, u0.idusuario, u0.identidad, r.id, r.descripcion, r.nombre, e.id AS id0, e.activo, e.descripcion AS descripcion0, e.\"fechaAlta\", e.\"idTipoEntidad\", e.imagen, e.nombre AS nombre0, e.popularidad, e.ubicacion
+    FROM \"UsuarioRoles\" AS u0
+    INNER JOIN \"Roles\" AS r ON u0.idrol = r.id
+    INNER JOIN \"Entidades\" AS e ON u0.identidad = e.id
+) AS t0 ON t.id = t0.idusuario
+ORDER BY t.id, t0.idrol, t0.idusuario, t0.identidad, t0.id" (0723d8ff)
+2025-08-29T00:58:05.4262937+02:00 80000040-0004-fc00-b63f-84710c7967bb [INF] Executing "OkObjectResult", writing value of type '"<>f__AnonymousType1`3[[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.DateTime, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]"'. (605b4265)
+2025-08-29T00:58:05.4934727+02:00 80000040-0004-fc00-b63f-84710c7967bb [INF] Executed action "API.Controllers.AuthController.Login (API)" in 5968.0548ms (afa2e885)
+2025-08-29T00:58:05.4935577+02:00 80000040-0004-fc00-b63f-84710c7967bb [INF] Executed endpoint '"API.Controllers.AuthController.Login (API)"' (99874f2b)
+2025-08-29T00:58:06.0362591+02:00 80000040-0004-fc00-b63f-84710c7967bb [ERR] Failed executing DbCommand ("631"ms) [Parameters=["@p2='?' (DbType = Int32), @p0='?' (DbType = DateTime), @p1='?'"], CommandType='Text', CommandTimeout='30']"
+""UPDATE \"Usuarios\" SET \"expiracionToken\" = @p0, token = @p1
+WHERE id = @p2;" (627a98df)
+2025-08-29T00:59:10.5219250+02:00 80000027-0000-ff00-b63f-84710c7967bb [INF] Request starting "HTTP/2" "GET" "https"://"localhost:44311""""/Usuarios/ObtenerUsuario/1""" - null null (d509f86a)
+2025-08-29T00:59:10.6953994+02:00 80000027-0000-ff00-b63f-84710c7967bb [INF] Executing endpoint '"API.Controllers.UsuariosController.ObtenerUsuarioById (API)"' (500cc934)
+2025-08-29T00:59:10.7030916+02:00 80000027-0000-ff00-b63f-84710c7967bb [INF] Route matched with "{action = \"ObtenerUsuarioById\", controller = \"Usuarios\"}". Executing controller action with signature "System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] ObtenerUsuarioById(Int32)" on controller "API.Controllers.UsuariosController" ("API"). (122b2fdf)
+2025-08-29T00:59:27.1629386+02:00 80000027-0000-ff00-b63f-84710c7967bb [INF] Executed DbCommand ("5"ms) [Parameters=["@__token_0='?'"], CommandType='Text', CommandTimeout='30']"
+""SELECT u.id, u.activo, u.apellidos, u.contraseña, u.correo, u.\"expiracionToken\", u.\"fechaCreación\", u.\"fechaNacimiento\", u.nombre, u.puntos, u.suscrito, u.token, u.\"ultimaConexion\"
+FROM \"Usuarios\" AS u
+WHERE u.token = @__token_0
+LIMIT 2" (0723d8ff)
+2025-08-29T00:59:27.2824322+02:00 80000027-0000-ff00-b63f-84710c7967bb [INF] Executed DbCommand ("3"ms) [Parameters=["@__p_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT u.id, u.activo, u.apellidos, u.contraseña, u.correo, u.\"expiracionToken\", u.\"fechaCreación\", u.\"fechaNacimiento\", u.nombre, u.puntos, u.suscrito, u.token, u.\"ultimaConexion\"
+FROM \"Usuarios\" AS u
+WHERE u.id = @__p_0
+LIMIT 1" (0723d8ff)
+2025-08-29T00:59:27.2899730+02:00 80000027-0000-ff00-b63f-84710c7967bb [INF] Mensaje no definido. (e2ae16ec)
+2025-08-29T00:59:27.2978722+02:00 80000027-0000-ff00-b63f-84710c7967bb [INF] Executing "OkObjectResult", writing value of type '"Domain.Entities.Usuario"'. (605b4265)
+2025-08-29T00:59:27.3223580+02:00 80000027-0000-ff00-b63f-84710c7967bb [INF] Executed action "API.Controllers.UsuariosController.ObtenerUsuarioById (API)" in 16619.1628ms (afa2e885)
+2025-08-29T00:59:27.3229419+02:00 80000027-0000-ff00-b63f-84710c7967bb [INF] Executed endpoint '"API.Controllers.UsuariosController.ObtenerUsuarioById (API)"' (99874f2b)
+2025-08-29T00:59:27.3257970+02:00 80000027-0000-ff00-b63f-84710c7967bb [INF] Request finished "HTTP/2" "GET" "https"://"localhost:44311""""/Usuarios/ObtenerUsuario/1""" - 200 null "application/json; charset=utf-8" 16804.0233ms (74253ad3)
+2025-08-29T00:59:37.9690280+02:00 80000029-0000-ff00-b63f-84710c7967bb [INF] Request starting "HTTP/2" "GET" "https"://"localhost:44311""""/Usuarios/ObtenerUsuario/1""" - null null (d509f86a)
+2025-08-29T00:59:37.9758761+02:00 80000029-0000-ff00-b63f-84710c7967bb [INF] Executing endpoint '"API.Controllers.UsuariosController.ObtenerUsuarioById (API)"' (500cc934)
+2025-08-29T00:59:37.9760302+02:00 80000029-0000-ff00-b63f-84710c7967bb [INF] Route matched with "{action = \"ObtenerUsuarioById\", controller = \"Usuarios\"}". Executing controller action with signature "System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] ObtenerUsuarioById(Int32)" on controller "API.Controllers.UsuariosController" ("API"). (122b2fdf)
+2025-08-29T00:59:44.7161930+02:00 80000029-0000-ff00-b63f-84710c7967bb [INF] Executed DbCommand ("1"ms) [Parameters=["@__token_0='?'"], CommandType='Text', CommandTimeout='30']"
+""SELECT u.id, u.activo, u.apellidos, u.contraseña, u.correo, u.\"expiracionToken\", u.\"fechaCreación\", u.\"fechaNacimiento\", u.nombre, u.puntos, u.suscrito, u.token, u.\"ultimaConexion\"
+FROM \"Usuarios\" AS u
+WHERE u.token = @__token_0
+LIMIT 2" (0723d8ff)
+2025-08-29T01:01:28.7718518+02:00  [INF] User profile is available. Using '"C:\Users\David\AppData\Local\ASP.NET\DataProtection-Keys"' as key repository and Windows DPAPI to encrypt keys at rest. (7ac5e29c)
+2025-08-29T01:01:29.4194368+02:00 80000006-0005-fa00-b63f-84710c7967bb [INF] Request starting "HTTP/2" "GET" "https"://"localhost:44311""""/swagger/index.html""" - null null (d509f86a)
+2025-08-29T01:01:29.6601340+02:00  [INF] Application started. Press Ctrl+C to shut down. (dcaefe54)
+2025-08-29T01:01:29.6678276+02:00  [INF] Hosting environment: "Development" (bc5a1a4e)
+2025-08-29T01:01:29.6744510+02:00  [INF] Content root path: "C:\Users\David\Desktop\API" (cc26f24e)
+2025-08-29T01:01:31.3811212+02:00 80000006-0005-fa00-b63f-84710c7967bb [INF] Request finished "HTTP/2" "GET" "https"://"localhost:44311""""/swagger/index.html""" - 200 null "text/html;charset=utf-8" 1984.6155ms (74253ad3)
+2025-08-29T01:01:31.6918625+02:00 8000004e-0004-ff00-b63f-84710c7967bb [INF] Request starting "HTTP/2" "GET" "https"://"localhost:44311""""/_framework/aspnetcore-browser-refresh.js""" - null null (d509f86a)
+2025-08-29T01:01:31.7114012+02:00 8000004e-0004-ff00-b63f-84710c7967bb [INF] Request finished "HTTP/2" "GET" "https"://"localhost:44311""""/_framework/aspnetcore-browser-refresh.js""" - 200 13742 "application/javascript; charset=utf-8" 8.0984ms (74253ad3)
+2025-08-29T01:01:31.7181444+02:00 80000050-0004-ff00-b63f-84710c7967bb [INF] Request starting "HTTP/2" "GET" "https"://"localhost:44311""""/_vs/browserLink""" - null null (d509f86a)
+2025-08-29T01:01:31.8498057+02:00 80000050-0004-ff00-b63f-84710c7967bb [INF] Request finished "HTTP/2" "GET" "https"://"localhost:44311""""/_vs/browserLink""" - 200 null "text/javascript; charset=UTF-8" 131.6534ms (74253ad3)
+2025-08-29T01:01:32.1989581+02:00 80000040-0006-fe00-b63f-84710c7967bb [INF] Request starting "HTTP/2" "GET" "https"://"localhost:44311""""/swagger/v1/swagger.json""" - null null (d509f86a)
+2025-08-29T01:01:32.3644484+02:00 80000040-0006-fe00-b63f-84710c7967bb [INF] Request finished "HTTP/2" "GET" "https"://"localhost:44311""""/swagger/v1/swagger.json""" - 200 null "application/json;charset=utf-8" 165.5574ms (74253ad3)
+2025-08-29T01:02:24.6052770+02:00 80000042-0006-fe00-b63f-84710c7967bb [INF] Request starting "HTTP/2" "POST" "https"://"localhost:44311""""/auth/login""" - "application/json" 109 (d509f86a)
+2025-08-29T01:02:24.6309944+02:00 80000042-0006-fe00-b63f-84710c7967bb [INF] CORS policy execution successful. (5409d6ef)
+2025-08-29T01:02:24.7046095+02:00 80000042-0006-fe00-b63f-84710c7967bb [INF] Executing endpoint '"API.Controllers.AuthController.Login (API)"' (500cc934)
+2025-08-29T01:02:24.7877985+02:00 80000042-0006-fe00-b63f-84710c7967bb [INF] Route matched with "{action = \"Login\", controller = \"Auth\"}". Executing controller action with signature "Microsoft.AspNetCore.Mvc.IActionResult Login(Domain.Entities.LoginDto)" on controller "API.Controllers.AuthController" ("API"). (122b2fdf)
+2025-08-29T01:02:39.3332556+02:00 80000042-0006-fe00-b63f-84710c7967bb [INF] Executed DbCommand ("353"ms) [Parameters=["@__u_0='?'"], CommandType='Text', CommandTimeout='30']"
+""SELECT u.id, u.activo, u.apellidos, u.contraseña, u.correo, u.\"expiracionToken\", u.\"fechaCreación\", u.\"fechaNacimiento\", u.nombre, u.puntos, u.suscrito, u.token, u.\"ultimaConexion\"
+FROM \"Usuarios\" AS u
+WHERE u.nombre = @__u_0
+LIMIT 2" (0723d8ff)
+2025-08-29T01:03:20.1940023+02:00 80000042-0006-fe00-b63f-84710c7967bb [INF] Executed action "API.Controllers.AuthController.Login (API)" in 55392.6983ms (afa2e885)
+2025-08-29T01:03:20.1969662+02:00 80000042-0006-fe00-b63f-84710c7967bb [INF] Executed endpoint '"API.Controllers.AuthController.Login (API)"' (99874f2b)
+2025-08-29T01:03:22.4345354+02:00 80000042-0006-fe00-b63f-84710c7967bb [ERR] Ocurrió un error en la petición "/auth/login" (564da9e9)
+System.AggregateException: One or more errors occurred. (Object reference not set to an instance of an object.)
+ ---> System.NullReferenceException: Object reference not set to an instance of an object.
+   at Application.Services.AuthService.ValidateUser(String userName, String password) in C:\Users\David\Desktop\Application\Services\AuthService.cs:line 23
+   --- End of inner exception stack trace ---
+   at System.Threading.Tasks.Task.ThrowIfExceptional(Boolean includeTaskCanceledExceptions)
+   at System.Threading.Tasks.Task`1.GetResultCore(Boolean waitCompletionNotification)
+   at API.Controllers.AuthController.Login(LoginDto dto) in C:\Users\David\Desktop\API\Controllers\AuthController.cs:line 34
+   at lambda_method3(Closure, Object, Object[])
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.SyncActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeActionMethodAsync()
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeNextActionFilterAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|7_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Microsoft.AspNetCore.RateLimiting.RateLimitingMiddleware.InvokeInternal(HttpContext context, EnableRateLimitingAttribute enableRateLimitingAttribute)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at ExceptionMiddleware.InvokeAsync(HttpContext context) in C:\Users\David\Desktop\API\Middlewares\ExceptionMiddleware.cs:line 19
+2025-08-29T01:03:22.6194069+02:00 80000042-0006-fe00-b63f-84710c7967bb [INF] Request finished "HTTP/2" "POST" "https"://"localhost:44311""""/auth/login""" - 500 null "application/json" 58015.8501ms (74253ad3)
+2025-08-29T01:03:29.3710688+02:00 8000002b-0000-ff00-b63f-84710c7967bb [INF] Request starting "HTTP/2" "POST" "https"://"localhost:44311""""/auth/login""" - "application/json" 107 (d509f86a)
+2025-08-29T01:03:29.3752700+02:00 8000002b-0000-ff00-b63f-84710c7967bb [INF] CORS policy execution successful. (5409d6ef)
+2025-08-29T01:03:29.3763906+02:00 8000002b-0000-ff00-b63f-84710c7967bb [INF] Executing endpoint '"API.Controllers.AuthController.Login (API)"' (500cc934)
+2025-08-29T01:03:29.3778433+02:00 8000002b-0000-ff00-b63f-84710c7967bb [INF] Route matched with "{action = \"Login\", controller = \"Auth\"}". Executing controller action with signature "Microsoft.AspNetCore.Mvc.IActionResult Login(Domain.Entities.LoginDto)" on controller "API.Controllers.AuthController" ("API"). (122b2fdf)
+2025-08-29T01:03:32.4676894+02:00 8000002b-0000-ff00-b63f-84710c7967bb [INF] Executed DbCommand ("244"ms) [Parameters=["@__u_0='?'"], CommandType='Text', CommandTimeout='30']"
+""SELECT u.id, u.activo, u.apellidos, u.contraseña, u.correo, u.\"expiracionToken\", u.\"fechaCreación\", u.\"fechaNacimiento\", u.nombre, u.puntos, u.suscrito, u.token, u.\"ultimaConexion\"
+FROM \"Usuarios\" AS u
+WHERE u.nombre = @__u_0
+LIMIT 2" (0723d8ff)
+2025-08-29T01:03:33.8319814+02:00 8000002b-0000-ff00-b63f-84710c7967bb [INF] Executed DbCommand ("225"ms) [Parameters=["@__id_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT t.id, t.activo, t.apellidos, t.contraseña, t.correo, t.\"expiracionToken\", t.\"fechaCreación\", t.\"fechaNacimiento\", t.nombre, t.puntos, t.suscrito, t.token, t.\"ultimaConexion\", t0.idrol, t0.idusuario, t0.identidad, t0.id, t0.descripcion, t0.nombre, t0.id0, t0.activo, t0.descripcion0, t0.\"fechaAlta\", t0.\"idTipoEntidad\", t0.imagen, t0.nombre0, t0.popularidad, t0.ubicacion
+FROM (
+    SELECT u.id, u.activo, u.apellidos, u.contraseña, u.correo, u.\"expiracionToken\", u.\"fechaCreación\", u.\"fechaNacimiento\", u.nombre, u.puntos, u.suscrito, u.token, u.\"ultimaConexion\"
+    FROM \"Usuarios\" AS u
+    WHERE u.id = @__id_0
+    LIMIT 1
+) AS t
+LEFT JOIN (
+    SELECT u0.idrol, u0.idusuario, u0.identidad, r.id, r.descripcion, r.nombre, e.id AS id0, e.activo, e.descripcion AS descripcion0, e.\"fechaAlta\", e.\"idTipoEntidad\", e.imagen, e.nombre AS nombre0, e.popularidad, e.ubicacion
+    FROM \"UsuarioRoles\" AS u0
+    INNER JOIN \"Roles\" AS r ON u0.idrol = r.id
+    INNER JOIN \"Entidades\" AS e ON u0.identidad = e.id
+) AS t0 ON t.id = t0.idusuario
+ORDER BY t.id, t0.idrol, t0.idusuario, t0.identidad, t0.id" (0723d8ff)
+2025-08-29T01:03:34.8385611+02:00 8000002b-0000-ff00-b63f-84710c7967bb [INF] Executing "OkObjectResult", writing value of type '"<>f__AnonymousType1`3[[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.DateTime, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]"'. (605b4265)
+2025-08-29T01:03:34.9271442+02:00 8000002b-0000-ff00-b63f-84710c7967bb [INF] Executed action "API.Controllers.AuthController.Login (API)" in 5548.7653ms (afa2e885)
+2025-08-29T01:03:34.9273093+02:00 8000002b-0000-ff00-b63f-84710c7967bb [INF] Executed endpoint '"API.Controllers.AuthController.Login (API)"' (99874f2b)
+2025-08-29T01:03:35.3489021+02:00 8000002b-0000-ff00-b63f-84710c7967bb [ERR] Failed executing DbCommand ("555"ms) [Parameters=["@p2='?' (DbType = Int32), @p0='?' (DbType = DateTime), @p1='?'"], CommandType='Text', CommandTimeout='30']"
+""UPDATE \"Usuarios\" SET \"expiracionToken\" = @p0, token = @p1
+WHERE id = @p2;" (627a98df)
+2025-08-29T01:04:06.0138092+02:00 80000044-0006-fe00-b63f-84710c7967bb [INF] Request starting "HTTP/2" "GET" "https"://"localhost:44311""""/Usuarios/ObtenerUsuario/1""" - null null (d509f86a)
+2025-08-29T01:04:06.4268870+02:00 80000044-0006-fe00-b63f-84710c7967bb [INF] Executing endpoint '"API.Controllers.UsuariosController.ObtenerUsuarioById (API)"' (500cc934)
+2025-08-29T01:04:06.4421515+02:00 80000044-0006-fe00-b63f-84710c7967bb [INF] Route matched with "{action = \"ObtenerUsuarioById\", controller = \"Usuarios\"}". Executing controller action with signature "System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] ObtenerUsuarioById(Int32)" on controller "API.Controllers.UsuariosController" ("API"). (122b2fdf)
+2025-08-29T01:04:18.4211333+02:00 80000044-0006-fe00-b63f-84710c7967bb [INF] Executed DbCommand ("12"ms) [Parameters=["@__Replace_0='?'"], CommandType='Text', CommandTimeout='30']"
+""SELECT u.id, u.activo, u.apellidos, u.contraseña, u.correo, u.\"expiracionToken\", u.\"fechaCreación\", u.\"fechaNacimiento\", u.nombre, u.puntos, u.suscrito, u.token, u.\"ultimaConexion\"
+FROM \"Usuarios\" AS u
+WHERE u.token = @__Replace_0
+LIMIT 2" (0723d8ff)
+2025-08-29T01:04:37.1586509+02:00 80000044-0006-fe00-b63f-84710c7967bb [INF] Mensaje no definido. (e2ae16ec)
+2025-08-29T01:04:39.5096696+02:00 80000044-0006-fe00-b63f-84710c7967bb [INF] Executing "OkObjectResult", writing value of type '"Domain.Entities.Usuario"'. (605b4265)
+2025-08-29T01:04:39.5604218+02:00 80000044-0006-fe00-b63f-84710c7967bb [INF] Executed action "API.Controllers.UsuariosController.ObtenerUsuarioById (API)" in 33117.7402ms (afa2e885)
+2025-08-29T01:04:39.5605630+02:00 80000044-0006-fe00-b63f-84710c7967bb [INF] Executed endpoint '"API.Controllers.UsuariosController.ObtenerUsuarioById (API)"' (99874f2b)
+2025-08-29T01:04:39.5631149+02:00 80000044-0006-fe00-b63f-84710c7967bb [INF] Request finished "HTTP/2" "GET" "https"://"localhost:44311""""/Usuarios/ObtenerUsuario/1""" - 200 null "application/json; charset=utf-8" 33548.045ms (74253ad3)
+2025-08-29T15:14:43.0955257+02:00  [INF] User profile is available. Using '"C:\Users\David\AppData\Local\ASP.NET\DataProtection-Keys"' as key repository and Windows DPAPI to encrypt keys at rest. (7ac5e29c)
+2025-08-29T15:14:59.0026332+02:00  [INF] Application started. Press Ctrl+C to shut down. (dcaefe54)
+2025-08-29T15:14:59.0993751+02:00  [INF] Hosting environment: "Development" (bc5a1a4e)
+2025-08-29T15:14:59.1022202+02:00  [INF] Content root path: "C:\Users\David\Desktop\API" (cc26f24e)
+2025-08-29T15:15:00.8765396+02:00 80000044-0004-fc00-b63f-84710c7967bb [INF] Request starting "HTTP/2" "GET" "https"://"localhost:44311""""/swagger/index.html""" - null null (d509f86a)
+2025-08-29T15:15:14.1254663+02:00 80000044-0004-fc00-b63f-84710c7967bb [WRN] Unable to contact VS to retrieve Browser Link script tag. (a038f0fa)
+2025-08-29T15:15:19.3222525+02:00 80000044-0004-fc00-b63f-84710c7967bb [INF] Request finished "HTTP/2" "GET" "https"://"localhost:44311""""/swagger/index.html""" - 200 null "text/html;charset=utf-8" 18402.2949ms (74253ad3)
+2025-08-29T15:15:19.6919025+02:00 80000046-0004-fc00-b63f-84710c7967bb [INF] Request starting "HTTP/2" "GET" "https"://"localhost:44311""""/_framework/aspnetcore-browser-refresh.js""" - null null (d509f86a)
+2025-08-29T15:15:21.6468398+02:00 80000046-0004-fc00-b63f-84710c7967bb [INF] Request finished "HTTP/2" "GET" "https"://"localhost:44311""""/_framework/aspnetcore-browser-refresh.js""" - 200 13742 "application/javascript; charset=utf-8" 4.7105ms (74253ad3)
+2025-08-29T15:15:25.3328789+02:00 80000002-0007-fb00-b63f-84710c7967bb [INF] Request starting "HTTP/2" "GET" "https"://"localhost:44311""""/swagger/v1/swagger.json""" - null null (d509f86a)
+2025-08-29T15:15:25.4777937+02:00 80000002-0007-fb00-b63f-84710c7967bb [INF] Request finished "HTTP/2" "GET" "https"://"localhost:44311""""/swagger/v1/swagger.json""" - 200 null "application/json;charset=utf-8" 145.0105ms (74253ad3)
+2025-08-29T15:23:14.0636211+02:00 8000002a-0002-fe00-b63f-84710c7967bb [INF] Request starting "HTTP/2" "POST" "https"://"localhost:44311""""/auth/login""" - "application/json" 107 (d509f86a)
+2025-08-29T15:23:14.0961689+02:00 8000002a-0002-fe00-b63f-84710c7967bb [INF] CORS policy execution successful. (5409d6ef)
+2025-08-29T15:23:14.1980960+02:00 8000002a-0002-fe00-b63f-84710c7967bb [INF] Executing endpoint '"API.Controllers.AuthController.Login (API)"' (500cc934)
+2025-08-29T15:23:14.5790713+02:00 8000002a-0002-fe00-b63f-84710c7967bb [INF] Route matched with "{action = \"Login\", controller = \"Auth\"}". Executing controller action with signature "Microsoft.AspNetCore.Mvc.IActionResult Login(Domain.Entities.LoginDto)" on controller "API.Controllers.AuthController" ("API"). (122b2fdf)
+2025-08-29T15:24:29.1867197+02:00 8000002a-0002-fe00-b63f-84710c7967bb [INF] Executed DbCommand ("493"ms) [Parameters=["@__u_0='?'"], CommandType='Text', CommandTimeout='30']"
+""SELECT u.id, u.activo, u.apellidos, u.contraseña, u.correo, u.\"expiracionToken\", u.\"fechaCreación\", u.\"fechaNacimiento\", u.nombre, u.puntos, u.suscrito, u.token, u.\"ultimaConexion\"
+FROM \"Usuarios\" AS u
+WHERE u.nombre = @__u_0
+LIMIT 2" (0723d8ff)
+2025-08-29T15:24:30.9163419+02:00 8000002a-0002-fe00-b63f-84710c7967bb [INF] Executed DbCommand ("687"ms) [Parameters=["@__id_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT t.id, t.activo, t.apellidos, t.contraseña, t.correo, t.\"expiracionToken\", t.\"fechaCreación\", t.\"fechaNacimiento\", t.nombre, t.puntos, t.suscrito, t.token, t.\"ultimaConexion\", t0.idrol, t0.idusuario, t0.identidad, t0.id, t0.descripcion, t0.nombre, t0.id0, t0.activo, t0.descripcion0, t0.\"fechaAlta\", t0.\"idTipoEntidad\", t0.imagen, t0.nombre0, t0.popularidad, t0.ubicacion
+FROM (
+    SELECT u.id, u.activo, u.apellidos, u.contraseña, u.correo, u.\"expiracionToken\", u.\"fechaCreación\", u.\"fechaNacimiento\", u.nombre, u.puntos, u.suscrito, u.token, u.\"ultimaConexion\"
+    FROM \"Usuarios\" AS u
+    WHERE u.id = @__id_0
+    LIMIT 1
+) AS t
+LEFT JOIN (
+    SELECT u0.idrol, u0.idusuario, u0.identidad, r.id, r.descripcion, r.nombre, e.id AS id0, e.activo, e.descripcion AS descripcion0, e.\"fechaAlta\", e.\"idTipoEntidad\", e.imagen, e.nombre AS nombre0, e.popularidad, e.ubicacion
+    FROM \"UsuarioRoles\" AS u0
+    INNER JOIN \"Roles\" AS r ON u0.idrol = r.id
+    INNER JOIN \"Entidades\" AS e ON u0.identidad = e.id
+) AS t0 ON t.id = t0.idusuario
+ORDER BY t.id, t0.idrol, t0.idusuario, t0.identidad, t0.id" (0723d8ff)
+2025-08-29T15:24:31.8700469+02:00 8000002a-0002-fe00-b63f-84710c7967bb [INF] Executing "OkObjectResult", writing value of type '"<>f__AnonymousType1`3[[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.DateTime, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]"'. (605b4265)
+2025-08-29T15:24:31.9683633+02:00 8000002a-0002-fe00-b63f-84710c7967bb [INF] Executed action "API.Controllers.AuthController.Login (API)" in 77380.5306ms (afa2e885)
+2025-08-29T15:24:31.9686270+02:00 8000002a-0002-fe00-b63f-84710c7967bb [INF] Executed endpoint '"API.Controllers.AuthController.Login (API)"' (99874f2b)
+2025-08-29T15:24:32.4742663+02:00 8000002a-0002-fe00-b63f-84710c7967bb [ERR] Failed executing DbCommand ("654"ms) [Parameters=["@p2='?' (DbType = Int32), @p0='?' (DbType = DateTime), @p1='?'"], CommandType='Text', CommandTimeout='30']"
+""UPDATE \"Usuarios\" SET \"expiracionToken\" = @p0, token = @p1
+WHERE id = @p2;" (627a98df)
+2025-08-29T15:25:54.3066500+02:00 80000021-0000-fb00-b63f-84710c7967bb [INF] Request starting "HTTP/2" "GET" "https"://"localhost:44311""""/MotivosConsulta/ObtenerMotivosConsulta""" - null null (d509f86a)
+2025-08-29T15:25:54.5733011+02:00 80000021-0000-fb00-b63f-84710c7967bb [INF] Executing endpoint '"API.Controllers.MotivosConsultaController.ObtenerMotivosConsulta (API)"' (500cc934)
+2025-08-29T15:25:54.5805024+02:00 80000021-0000-fb00-b63f-84710c7967bb [INF] Route matched with "{action = \"ObtenerMotivosConsulta\", controller = \"MotivosConsulta\"}". Executing controller action with signature "System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] ObtenerMotivosConsulta()" on controller "API.Controllers.MotivosConsultaController" ("API"). (122b2fdf)
+2025-08-29T15:25:55.1285681+02:00 80000021-0000-fb00-b63f-84710c7967bb [ERR] Failed executing DbCommand ("402"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT m.id, m.descripcion, m.idtipoentidad, m.nombre
+FROM \"MotivoConsultas\" AS m" (627a98df)
+2025-08-29T15:25:55.3157068+02:00 80000021-0000-fb00-b63f-84710c7967bb [ERR] An exception occurred while iterating over the results of a query for context type '"Infrastructure.Persistence.ApplicationDbContext"'."
+""Npgsql.PostgresException (0x80004005): 42P01: no existe la relación «MotivoConsultas»
+
+POSITION: 61
+   at Npgsql.Internal.NpgsqlConnector.ReadMessageLong(Boolean async, DataRowLoadingMode dataRowLoadingMode, Boolean readingNotifications, Boolean isReadingPrependedMessage)
+   at System.Runtime.CompilerServices.PoolingAsyncValueTaskMethodBuilder`1.StateMachineBox`1.System.Threading.Tasks.Sources.IValueTaskSource<TResult>.GetResult(Int16 token)
+   at Npgsql.NpgsqlDataReader.NextResult(Boolean async, Boolean isConsuming, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlDataReader.NextResult(Boolean async, Boolean isConsuming, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(Boolean async, CommandBehavior behavior, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(Boolean async, CommandBehavior behavior, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteDbDataReaderAsync(CommandBehavior behavior, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.InitializeReaderAsync(AsyncEnumerator enumerator, CancellationToken cancellationToken)
+   at Npgsql.EntityFrameworkCore.PostgreSQL.Storage.Internal.NpgsqlExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+  Exception data:
+    Severity: ERROR
+    SqlState: 42P01
+    MessageText: no existe la relación «MotivoConsultas»
+    Position: 61
+    File: parse_relation.c
+    Line: 1452
+    Routine: parserOpenTable" (f5c7ac34)
+Npgsql.PostgresException (0x80004005): 42P01: no existe la relación «MotivoConsultas»
+
+POSITION: 61
+   at Npgsql.Internal.NpgsqlConnector.ReadMessageLong(Boolean async, DataRowLoadingMode dataRowLoadingMode, Boolean readingNotifications, Boolean isReadingPrependedMessage)
+   at System.Runtime.CompilerServices.PoolingAsyncValueTaskMethodBuilder`1.StateMachineBox`1.System.Threading.Tasks.Sources.IValueTaskSource<TResult>.GetResult(Int16 token)
+   at Npgsql.NpgsqlDataReader.NextResult(Boolean async, Boolean isConsuming, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlDataReader.NextResult(Boolean async, Boolean isConsuming, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(Boolean async, CommandBehavior behavior, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(Boolean async, CommandBehavior behavior, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteDbDataReaderAsync(CommandBehavior behavior, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.InitializeReaderAsync(AsyncEnumerator enumerator, CancellationToken cancellationToken)
+   at Npgsql.EntityFrameworkCore.PostgreSQL.Storage.Internal.NpgsqlExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+   at Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.ToListAsync[TSource](IQueryable`1 source, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.ToListAsync[TSource](IQueryable`1 source, CancellationToken cancellationToken)
+  Exception data:
+    Severity: ERROR
+    SqlState: 42P01
+    MessageText: no existe la relación «MotivoConsultas»
+    Position: 61
+    File: parse_relation.c
+    Line: 1452
+    Routine: parserOpenTable
+2025-08-29T15:25:55.7803274+02:00 80000021-0000-fb00-b63f-84710c7967bb [INF] Executed action "API.Controllers.MotivosConsultaController.ObtenerMotivosConsulta (API)" in 1199.5221ms (afa2e885)
+2025-08-29T15:25:55.7992970+02:00 80000021-0000-fb00-b63f-84710c7967bb [INF] Executed endpoint '"API.Controllers.MotivosConsultaController.ObtenerMotivosConsulta (API)"' (99874f2b)
+2025-08-29T15:25:57.0075620+02:00 80000021-0000-fb00-b63f-84710c7967bb [ERR] Ocurrió un error en la petición "/MotivosConsulta/ObtenerMotivosConsulta" (564da9e9)
+Npgsql.PostgresException (0x80004005): 42P01: no existe la relación «MotivoConsultas»
+
+POSITION: 61
+   at Npgsql.Internal.NpgsqlConnector.ReadMessageLong(Boolean async, DataRowLoadingMode dataRowLoadingMode, Boolean readingNotifications, Boolean isReadingPrependedMessage)
+   at System.Runtime.CompilerServices.PoolingAsyncValueTaskMethodBuilder`1.StateMachineBox`1.System.Threading.Tasks.Sources.IValueTaskSource<TResult>.GetResult(Int16 token)
+   at Npgsql.NpgsqlDataReader.NextResult(Boolean async, Boolean isConsuming, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlDataReader.NextResult(Boolean async, Boolean isConsuming, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(Boolean async, CommandBehavior behavior, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(Boolean async, CommandBehavior behavior, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteDbDataReaderAsync(CommandBehavior behavior, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.InitializeReaderAsync(AsyncEnumerator enumerator, CancellationToken cancellationToken)
+   at Npgsql.EntityFrameworkCore.PostgreSQL.Storage.Internal.NpgsqlExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+   at Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.ToListAsync[TSource](IQueryable`1 source, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.ToListAsync[TSource](IQueryable`1 source, CancellationToken cancellationToken)
+   at Infrastructure.Repositories.MotivoConsultaRepository.GetAllAsync() in C:\Users\David\Desktop\Infrastructure\Repositories\MotivoConsultaRepository.cs:line 18
+   at Application.Services.MotivoConsultaService.GetAllAsync() in C:\Users\David\Desktop\Application\Services\MotivoConsultaService.cs:line 16
+   at API.Controllers.MotivosConsultaController.ObtenerMotivosConsulta() in C:\Users\David\Desktop\API\Controllers\MotivosConsultaController.cs:line 25
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|7_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Microsoft.AspNetCore.RateLimiting.RateLimitingMiddleware.InvokeInternal(HttpContext context, EnableRateLimitingAttribute enableRateLimitingAttribute)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at ExceptionMiddleware.InvokeAsync(HttpContext context) in C:\Users\David\Desktop\API\Middlewares\ExceptionMiddleware.cs:line 19
+  Exception data:
+    Severity: ERROR
+    SqlState: 42P01
+    MessageText: no existe la relación «MotivoConsultas»
+    Position: 61
+    File: parse_relation.c
+    Line: 1452
+    Routine: parserOpenTable
+2025-08-29T15:25:57.0400665+02:00 80000021-0000-fb00-b63f-84710c7967bb [INF] Request finished "HTTP/2" "GET" "https"://"localhost:44311""""/MotivosConsulta/ObtenerMotivosConsulta""" - 500 null "application/json" 2733.7481ms (74253ad3)
+2025-08-29T15:26:49.4220872+02:00 80000023-0000-fb00-b63f-84710c7967bb [INF] Request starting "HTTP/2" "GET" "https"://"localhost:44311""""/MotivosConsulta/ObtenerMotivosConsulta""" - null null (d509f86a)
+2025-08-29T15:26:49.4307769+02:00 80000023-0000-fb00-b63f-84710c7967bb [INF] Executing endpoint '"API.Controllers.MotivosConsultaController.ObtenerMotivosConsulta (API)"' (500cc934)
+2025-08-29T15:26:49.4310286+02:00 80000023-0000-fb00-b63f-84710c7967bb [INF] Route matched with "{action = \"ObtenerMotivosConsulta\", controller = \"MotivosConsulta\"}". Executing controller action with signature "System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] ObtenerMotivosConsulta()" on controller "API.Controllers.MotivosConsultaController" ("API"). (122b2fdf)
+2025-08-29T15:27:29.1263354+02:00 80000023-0000-fb00-b63f-84710c7967bb [INF] Executed DbCommand ("5"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT r.id, r.descripcion, r.nombre
+FROM \"Roles\" AS r" (0723d8ff)
+2025-08-29T15:27:34.3862349+02:00 80000023-0000-fb00-b63f-84710c7967bb [ERR] Failed executing DbCommand ("43"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT m.id, m.descripcion, m.idtipoentidad, m.nombre
+FROM \"MotivoConsultas\" AS m" (627a98df)
+2025-08-29T15:27:34.3974486+02:00 80000023-0000-fb00-b63f-84710c7967bb [ERR] An exception occurred while iterating over the results of a query for context type '"Infrastructure.Persistence.ApplicationDbContext"'."
+""Npgsql.PostgresException (0x80004005): 42P01: no existe la relación «MotivoConsultas»
+
+POSITION: 61
+   at Npgsql.Internal.NpgsqlConnector.ReadMessageLong(Boolean async, DataRowLoadingMode dataRowLoadingMode, Boolean readingNotifications, Boolean isReadingPrependedMessage)
+   at System.Runtime.CompilerServices.PoolingAsyncValueTaskMethodBuilder`1.StateMachineBox`1.System.Threading.Tasks.Sources.IValueTaskSource<TResult>.GetResult(Int16 token)
+   at Npgsql.NpgsqlDataReader.NextResult(Boolean async, Boolean isConsuming, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlDataReader.NextResult(Boolean async, Boolean isConsuming, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlDataReader.NextResult()
+   at Npgsql.NpgsqlCommand.ExecuteReader(Boolean async, CommandBehavior behavior, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(Boolean async, CommandBehavior behavior, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(CommandBehavior behavior)
+   at Npgsql.NpgsqlCommand.ExecuteDbDataReader(CommandBehavior behavior)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReader(RelationalCommandParameterObject parameterObject)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.Enumerator.InitializeReader(Enumerator enumerator)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.Enumerator.<>c.<MoveNext>b__21_0(DbContext _, Enumerator enumerator)
+   at Npgsql.EntityFrameworkCore.PostgreSQL.Storage.Internal.NpgsqlExecutionStrategy.Execute[TState,TResult](TState state, Func`3 operation, Func`3 verifySucceeded)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.Enumerator.MoveNext()
+  Exception data:
+    Severity: ERROR
+    SqlState: 42P01
+    MessageText: no existe la relación «MotivoConsultas»
+    Position: 61
+    File: parse_relation.c
+    Line: 1452
+    Routine: parserOpenTable" (f5c7ac34)
+Npgsql.PostgresException (0x80004005): 42P01: no existe la relación «MotivoConsultas»
+
+POSITION: 61
+   at Npgsql.Internal.NpgsqlConnector.ReadMessageLong(Boolean async, DataRowLoadingMode dataRowLoadingMode, Boolean readingNotifications, Boolean isReadingPrependedMessage)
+   at System.Runtime.CompilerServices.PoolingAsyncValueTaskMethodBuilder`1.StateMachineBox`1.System.Threading.Tasks.Sources.IValueTaskSource<TResult>.GetResult(Int16 token)
+   at Npgsql.NpgsqlDataReader.NextResult(Boolean async, Boolean isConsuming, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlDataReader.NextResult(Boolean async, Boolean isConsuming, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlDataReader.NextResult()
+   at Npgsql.NpgsqlCommand.ExecuteReader(Boolean async, CommandBehavior behavior, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(Boolean async, CommandBehavior behavior, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(CommandBehavior behavior)
+   at Npgsql.NpgsqlCommand.ExecuteDbDataReader(CommandBehavior behavior)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReader(RelationalCommandParameterObject parameterObject)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.Enumerator.InitializeReader(Enumerator enumerator)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.Enumerator.<>c.<MoveNext>b__21_0(DbContext _, Enumerator enumerator)
+   at Npgsql.EntityFrameworkCore.PostgreSQL.Storage.Internal.NpgsqlExecutionStrategy.Execute[TState,TResult](TState state, Func`3 operation, Func`3 verifySucceeded)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.Enumerator.MoveNext()
+   at System.Collections.Generic.LargeArrayBuilder`1.AddRange(IEnumerable`1 items)
+   at System.Collections.Generic.EnumerableHelpers.ToArray[T](IEnumerable`1 source)
+   at System.Linq.SystemCore_EnumerableDebugView`1.get_Items()
+  Exception data:
+    Severity: ERROR
+    SqlState: 42P01
+    MessageText: no existe la relación «MotivoConsultas»
+    Position: 61
+    File: parse_relation.c
+    Line: 1452
+    Routine: parserOpenTable
+2025-08-29T15:27:58.3540892+02:00 80000023-0000-fb00-b63f-84710c7967bb [ERR] Failed executing DbCommand ("64"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT m.id, m.descripcion, m.idtipoentidad, m.nombre
+FROM \"MotivoConsultas\" AS m" (627a98df)
+2025-08-29T15:27:58.3721075+02:00 80000023-0000-fb00-b63f-84710c7967bb [ERR] An exception occurred while iterating over the results of a query for context type '"Infrastructure.Persistence.ApplicationDbContext"'."
+""Npgsql.PostgresException (0x80004005): 42P01: no existe la relación «MotivoConsultas»
+
+POSITION: 61
+   at Npgsql.Internal.NpgsqlConnector.ReadMessageLong(Boolean async, DataRowLoadingMode dataRowLoadingMode, Boolean readingNotifications, Boolean isReadingPrependedMessage)
+   at System.Runtime.CompilerServices.PoolingAsyncValueTaskMethodBuilder`1.StateMachineBox`1.System.Threading.Tasks.Sources.IValueTaskSource<TResult>.GetResult(Int16 token)
+   at Npgsql.NpgsqlDataReader.NextResult(Boolean async, Boolean isConsuming, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlDataReader.NextResult(Boolean async, Boolean isConsuming, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(Boolean async, CommandBehavior behavior, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(Boolean async, CommandBehavior behavior, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteDbDataReaderAsync(CommandBehavior behavior, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.InitializeReaderAsync(AsyncEnumerator enumerator, CancellationToken cancellationToken)
+   at Npgsql.EntityFrameworkCore.PostgreSQL.Storage.Internal.NpgsqlExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+  Exception data:
+    Severity: ERROR
+    SqlState: 42P01
+    MessageText: no existe la relación «MotivoConsultas»
+    Position: 61
+    File: parse_relation.c
+    Line: 1452
+    Routine: parserOpenTable" (f5c7ac34)
+Npgsql.PostgresException (0x80004005): 42P01: no existe la relación «MotivoConsultas»
+
+POSITION: 61
+   at Npgsql.Internal.NpgsqlConnector.ReadMessageLong(Boolean async, DataRowLoadingMode dataRowLoadingMode, Boolean readingNotifications, Boolean isReadingPrependedMessage)
+   at System.Runtime.CompilerServices.PoolingAsyncValueTaskMethodBuilder`1.StateMachineBox`1.System.Threading.Tasks.Sources.IValueTaskSource<TResult>.GetResult(Int16 token)
+   at Npgsql.NpgsqlDataReader.NextResult(Boolean async, Boolean isConsuming, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlDataReader.NextResult(Boolean async, Boolean isConsuming, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(Boolean async, CommandBehavior behavior, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(Boolean async, CommandBehavior behavior, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteDbDataReaderAsync(CommandBehavior behavior, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.InitializeReaderAsync(AsyncEnumerator enumerator, CancellationToken cancellationToken)
+   at Npgsql.EntityFrameworkCore.PostgreSQL.Storage.Internal.NpgsqlExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+   at Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.ToListAsync[TSource](IQueryable`1 source, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.ToListAsync[TSource](IQueryable`1 source, CancellationToken cancellationToken)
+   at Infrastructure.Repositories.MotivoConsultaRepository.GetAllAsync() in C:\Users\David\Desktop\Infrastructure\Repositories\MotivoConsultaRepository.cs:line 18
+  Exception data:
+    Severity: ERROR
+    SqlState: 42P01
+    MessageText: no existe la relación «MotivoConsultas»
+    Position: 61
+    File: parse_relation.c
+    Line: 1452
+    Routine: parserOpenTable
+2025-08-29T15:27:58.6502808+02:00 80000023-0000-fb00-b63f-84710c7967bb [INF] Executed action "API.Controllers.MotivosConsultaController.ObtenerMotivosConsulta (API)" in 69219.1363ms (afa2e885)
+2025-08-29T15:27:58.6508622+02:00 80000023-0000-fb00-b63f-84710c7967bb [INF] Executed endpoint '"API.Controllers.MotivosConsultaController.ObtenerMotivosConsulta (API)"' (99874f2b)
+2025-08-29T15:27:58.8182239+02:00 80000023-0000-fb00-b63f-84710c7967bb [ERR] Ocurrió un error en la petición "/MotivosConsulta/ObtenerMotivosConsulta" (564da9e9)
+Npgsql.PostgresException (0x80004005): 42P01: no existe la relación «MotivoConsultas»
+
+POSITION: 61
+   at Npgsql.Internal.NpgsqlConnector.ReadMessageLong(Boolean async, DataRowLoadingMode dataRowLoadingMode, Boolean readingNotifications, Boolean isReadingPrependedMessage)
+   at System.Runtime.CompilerServices.PoolingAsyncValueTaskMethodBuilder`1.StateMachineBox`1.System.Threading.Tasks.Sources.IValueTaskSource<TResult>.GetResult(Int16 token)
+   at Npgsql.NpgsqlDataReader.NextResult(Boolean async, Boolean isConsuming, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlDataReader.NextResult(Boolean async, Boolean isConsuming, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(Boolean async, CommandBehavior behavior, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(Boolean async, CommandBehavior behavior, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteDbDataReaderAsync(CommandBehavior behavior, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.InitializeReaderAsync(AsyncEnumerator enumerator, CancellationToken cancellationToken)
+   at Npgsql.EntityFrameworkCore.PostgreSQL.Storage.Internal.NpgsqlExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+   at Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.ToListAsync[TSource](IQueryable`1 source, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.ToListAsync[TSource](IQueryable`1 source, CancellationToken cancellationToken)
+   at Infrastructure.Repositories.MotivoConsultaRepository.GetAllAsync() in C:\Users\David\Desktop\Infrastructure\Repositories\MotivoConsultaRepository.cs:line 18
+   at Application.Services.MotivoConsultaService.GetAllAsync() in C:\Users\David\Desktop\Application\Services\MotivoConsultaService.cs:line 16
+   at API.Controllers.MotivosConsultaController.ObtenerMotivosConsulta() in C:\Users\David\Desktop\API\Controllers\MotivosConsultaController.cs:line 25
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|7_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Microsoft.AspNetCore.RateLimiting.RateLimitingMiddleware.InvokeInternal(HttpContext context, EnableRateLimitingAttribute enableRateLimitingAttribute)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at ExceptionMiddleware.InvokeAsync(HttpContext context) in C:\Users\David\Desktop\API\Middlewares\ExceptionMiddleware.cs:line 19
+  Exception data:
+    Severity: ERROR
+    SqlState: 42P01
+    MessageText: no existe la relación «MotivoConsultas»
+    Position: 61
+    File: parse_relation.c
+    Line: 1452
+    Routine: parserOpenTable
+2025-08-29T15:27:58.8193858+02:00 80000023-0000-fb00-b63f-84710c7967bb [INF] Request finished "HTTP/2" "GET" "https"://"localhost:44311""""/MotivosConsulta/ObtenerMotivosConsulta""" - 500 null "application/json" 69397.6555ms (74253ad3)
+2025-08-29T15:28:25.3119342+02:00 80000025-0000-fb00-b63f-84710c7967bb [INF] Request starting "HTTP/2" "GET" "https"://"localhost:44311""""/MotivosConsulta/ObtenerMotivosConsulta""" - null null (d509f86a)
+2025-08-29T15:28:25.3316781+02:00 80000025-0000-fb00-b63f-84710c7967bb [INF] Executing endpoint '"API.Controllers.MotivosConsultaController.ObtenerMotivosConsulta (API)"' (500cc934)
+2025-08-29T15:28:25.3319315+02:00 80000025-0000-fb00-b63f-84710c7967bb [INF] Route matched with "{action = \"ObtenerMotivosConsulta\", controller = \"MotivosConsulta\"}". Executing controller action with signature "System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] ObtenerMotivosConsulta()" on controller "API.Controllers.MotivosConsultaController" ("API"). (122b2fdf)
+2025-08-29T15:28:25.3472357+02:00 80000025-0000-fb00-b63f-84710c7967bb [ERR] Failed executing DbCommand ("6"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT m.id, m.descripcion, m.idtipoentidad, m.nombre
+FROM \"MotivoConsultas\" AS m" (627a98df)
+2025-08-29T15:28:25.3662381+02:00 80000025-0000-fb00-b63f-84710c7967bb [ERR] An exception occurred while iterating over the results of a query for context type '"Infrastructure.Persistence.ApplicationDbContext"'."
+""Npgsql.PostgresException (0x80004005): 42P01: no existe la relación «MotivoConsultas»
+
+POSITION: 61
+   at Npgsql.Internal.NpgsqlConnector.ReadMessageLong(Boolean async, DataRowLoadingMode dataRowLoadingMode, Boolean readingNotifications, Boolean isReadingPrependedMessage)
+   at System.Runtime.CompilerServices.PoolingAsyncValueTaskMethodBuilder`1.StateMachineBox`1.System.Threading.Tasks.Sources.IValueTaskSource<TResult>.GetResult(Int16 token)
+   at Npgsql.NpgsqlDataReader.NextResult(Boolean async, Boolean isConsuming, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlDataReader.NextResult(Boolean async, Boolean isConsuming, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(Boolean async, CommandBehavior behavior, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(Boolean async, CommandBehavior behavior, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteDbDataReaderAsync(CommandBehavior behavior, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.InitializeReaderAsync(AsyncEnumerator enumerator, CancellationToken cancellationToken)
+   at Npgsql.EntityFrameworkCore.PostgreSQL.Storage.Internal.NpgsqlExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+  Exception data:
+    Severity: ERROR
+    SqlState: 42P01
+    MessageText: no existe la relación «MotivoConsultas»
+    Position: 61
+    File: parse_relation.c
+    Line: 1452
+    Routine: parserOpenTable" (f5c7ac34)
+Npgsql.PostgresException (0x80004005): 42P01: no existe la relación «MotivoConsultas»
+
+POSITION: 61
+   at Npgsql.Internal.NpgsqlConnector.ReadMessageLong(Boolean async, DataRowLoadingMode dataRowLoadingMode, Boolean readingNotifications, Boolean isReadingPrependedMessage)
+   at System.Runtime.CompilerServices.PoolingAsyncValueTaskMethodBuilder`1.StateMachineBox`1.System.Threading.Tasks.Sources.IValueTaskSource<TResult>.GetResult(Int16 token)
+   at Npgsql.NpgsqlDataReader.NextResult(Boolean async, Boolean isConsuming, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlDataReader.NextResult(Boolean async, Boolean isConsuming, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(Boolean async, CommandBehavior behavior, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(Boolean async, CommandBehavior behavior, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteDbDataReaderAsync(CommandBehavior behavior, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.InitializeReaderAsync(AsyncEnumerator enumerator, CancellationToken cancellationToken)
+   at Npgsql.EntityFrameworkCore.PostgreSQL.Storage.Internal.NpgsqlExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+   at Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.ToListAsync[TSource](IQueryable`1 source, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.ToListAsync[TSource](IQueryable`1 source, CancellationToken cancellationToken)
+   at Infrastructure.Repositories.MotivoConsultaRepository.GetAllAsync() in C:\Users\David\Desktop\Infrastructure\Repositories\MotivoConsultaRepository.cs:line 18
+   at Application.Services.MotivoConsultaService.GetAllAsync() in C:\Users\David\Desktop\Application\Services\MotivoConsultaService.cs:line 16
+  Exception data:
+    Severity: ERROR
+    SqlState: 42P01
+    MessageText: no existe la relación «MotivoConsultas»
+    Position: 61
+    File: parse_relation.c
+    Line: 1452
+    Routine: parserOpenTable
+2025-08-29T15:28:25.5632796+02:00 80000025-0000-fb00-b63f-84710c7967bb [INF] Executed action "API.Controllers.MotivosConsultaController.ObtenerMotivosConsulta (API)" in 231.227ms (afa2e885)
+2025-08-29T15:28:25.5637458+02:00 80000025-0000-fb00-b63f-84710c7967bb [INF] Executed endpoint '"API.Controllers.MotivosConsultaController.ObtenerMotivosConsulta (API)"' (99874f2b)
+2025-08-29T15:28:25.6867561+02:00 80000025-0000-fb00-b63f-84710c7967bb [ERR] Ocurrió un error en la petición "/MotivosConsulta/ObtenerMotivosConsulta" (564da9e9)
+Npgsql.PostgresException (0x80004005): 42P01: no existe la relación «MotivoConsultas»
+
+POSITION: 61
+   at Npgsql.Internal.NpgsqlConnector.ReadMessageLong(Boolean async, DataRowLoadingMode dataRowLoadingMode, Boolean readingNotifications, Boolean isReadingPrependedMessage)
+   at System.Runtime.CompilerServices.PoolingAsyncValueTaskMethodBuilder`1.StateMachineBox`1.System.Threading.Tasks.Sources.IValueTaskSource<TResult>.GetResult(Int16 token)
+   at Npgsql.NpgsqlDataReader.NextResult(Boolean async, Boolean isConsuming, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlDataReader.NextResult(Boolean async, Boolean isConsuming, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(Boolean async, CommandBehavior behavior, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(Boolean async, CommandBehavior behavior, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteDbDataReaderAsync(CommandBehavior behavior, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.InitializeReaderAsync(AsyncEnumerator enumerator, CancellationToken cancellationToken)
+   at Npgsql.EntityFrameworkCore.PostgreSQL.Storage.Internal.NpgsqlExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+   at Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.ToListAsync[TSource](IQueryable`1 source, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.ToListAsync[TSource](IQueryable`1 source, CancellationToken cancellationToken)
+   at Infrastructure.Repositories.MotivoConsultaRepository.GetAllAsync() in C:\Users\David\Desktop\Infrastructure\Repositories\MotivoConsultaRepository.cs:line 18
+   at Application.Services.MotivoConsultaService.GetAllAsync() in C:\Users\David\Desktop\Application\Services\MotivoConsultaService.cs:line 16
+   at API.Controllers.MotivosConsultaController.ObtenerMotivosConsulta() in C:\Users\David\Desktop\API\Controllers\MotivosConsultaController.cs:line 25
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|7_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Microsoft.AspNetCore.RateLimiting.RateLimitingMiddleware.InvokeInternal(HttpContext context, EnableRateLimitingAttribute enableRateLimitingAttribute)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at ExceptionMiddleware.InvokeAsync(HttpContext context) in C:\Users\David\Desktop\API\Middlewares\ExceptionMiddleware.cs:line 19
+  Exception data:
+    Severity: ERROR
+    SqlState: 42P01
+    MessageText: no existe la relación «MotivoConsultas»
+    Position: 61
+    File: parse_relation.c
+    Line: 1452
+    Routine: parserOpenTable
+2025-08-29T15:28:25.6880720+02:00 80000025-0000-fb00-b63f-84710c7967bb [INF] Request finished "HTTP/2" "GET" "https"://"localhost:44311""""/MotivosConsulta/ObtenerMotivosConsulta""" - 500 null "application/json" 376.3218ms (74253ad3)
+2025-08-29T15:28:30.3659828+02:00 8000002c-0002-fe00-b63f-84710c7967bb [INF] Request starting "HTTP/2" "GET" "https"://"localhost:44311""""/MotivosConsulta/ObtenerMotivosConsulta""" - null null (d509f86a)
+2025-08-29T15:28:30.3668325+02:00 8000002c-0002-fe00-b63f-84710c7967bb [INF] Executing endpoint '"API.Controllers.MotivosConsultaController.ObtenerMotivosConsulta (API)"' (500cc934)
+2025-08-29T15:28:30.3669729+02:00 8000002c-0002-fe00-b63f-84710c7967bb [INF] Route matched with "{action = \"ObtenerMotivosConsulta\", controller = \"MotivosConsulta\"}". Executing controller action with signature "System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] ObtenerMotivosConsulta()" on controller "API.Controllers.MotivosConsultaController" ("API"). (122b2fdf)
+2025-08-29T15:28:30.3750431+02:00 8000002c-0002-fe00-b63f-84710c7967bb [ERR] Failed executing DbCommand ("5"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT m.id, m.descripcion, m.idtipoentidad, m.nombre
+FROM \"MotivoConsultas\" AS m" (627a98df)
+2025-08-29T15:28:30.3915633+02:00 8000002c-0002-fe00-b63f-84710c7967bb [ERR] An exception occurred while iterating over the results of a query for context type '"Infrastructure.Persistence.ApplicationDbContext"'."
+""Npgsql.PostgresException (0x80004005): 42P01: no existe la relación «MotivoConsultas»
+
+POSITION: 61
+   at Npgsql.Internal.NpgsqlConnector.ReadMessageLong(Boolean async, DataRowLoadingMode dataRowLoadingMode, Boolean readingNotifications, Boolean isReadingPrependedMessage)
+   at System.Runtime.CompilerServices.PoolingAsyncValueTaskMethodBuilder`1.StateMachineBox`1.System.Threading.Tasks.Sources.IValueTaskSource<TResult>.GetResult(Int16 token)
+   at Npgsql.NpgsqlDataReader.NextResult(Boolean async, Boolean isConsuming, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlDataReader.NextResult(Boolean async, Boolean isConsuming, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(Boolean async, CommandBehavior behavior, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(Boolean async, CommandBehavior behavior, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteDbDataReaderAsync(CommandBehavior behavior, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.InitializeReaderAsync(AsyncEnumerator enumerator, CancellationToken cancellationToken)
+   at Npgsql.EntityFrameworkCore.PostgreSQL.Storage.Internal.NpgsqlExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+  Exception data:
+    Severity: ERROR
+    SqlState: 42P01
+    MessageText: no existe la relación «MotivoConsultas»
+    Position: 61
+    File: parse_relation.c
+    Line: 1452
+    Routine: parserOpenTable" (f5c7ac34)
+Npgsql.PostgresException (0x80004005): 42P01: no existe la relación «MotivoConsultas»
+
+POSITION: 61
+   at Npgsql.Internal.NpgsqlConnector.ReadMessageLong(Boolean async, DataRowLoadingMode dataRowLoadingMode, Boolean readingNotifications, Boolean isReadingPrependedMessage)
+   at System.Runtime.CompilerServices.PoolingAsyncValueTaskMethodBuilder`1.StateMachineBox`1.System.Threading.Tasks.Sources.IValueTaskSource<TResult>.GetResult(Int16 token)
+   at Npgsql.NpgsqlDataReader.NextResult(Boolean async, Boolean isConsuming, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlDataReader.NextResult(Boolean async, Boolean isConsuming, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(Boolean async, CommandBehavior behavior, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(Boolean async, CommandBehavior behavior, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteDbDataReaderAsync(CommandBehavior behavior, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.InitializeReaderAsync(AsyncEnumerator enumerator, CancellationToken cancellationToken)
+   at Npgsql.EntityFrameworkCore.PostgreSQL.Storage.Internal.NpgsqlExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+   at Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.ToListAsync[TSource](IQueryable`1 source, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.ToListAsync[TSource](IQueryable`1 source, CancellationToken cancellationToken)
+   at Infrastructure.Repositories.MotivoConsultaRepository.GetAllAsync() in C:\Users\David\Desktop\Infrastructure\Repositories\MotivoConsultaRepository.cs:line 18
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task, ConfigureAwaitOptions options)
+  Exception data:
+    Severity: ERROR
+    SqlState: 42P01
+    MessageText: no existe la relación «MotivoConsultas»
+    Position: 61
+    File: parse_relation.c
+    Line: 1452
+    Routine: parserOpenTable
+2025-08-29T15:28:30.5770866+02:00 8000002c-0002-fe00-b63f-84710c7967bb [INF] Executed action "API.Controllers.MotivosConsultaController.ObtenerMotivosConsulta (API)" in 209.9984ms (afa2e885)
+2025-08-29T15:28:30.5774808+02:00 8000002c-0002-fe00-b63f-84710c7967bb [INF] Executed endpoint '"API.Controllers.MotivosConsultaController.ObtenerMotivosConsulta (API)"' (99874f2b)
+2025-08-29T15:28:30.7112344+02:00 8000002c-0002-fe00-b63f-84710c7967bb [ERR] Ocurrió un error en la petición "/MotivosConsulta/ObtenerMotivosConsulta" (564da9e9)
+Npgsql.PostgresException (0x80004005): 42P01: no existe la relación «MotivoConsultas»
+
+POSITION: 61
+   at Npgsql.Internal.NpgsqlConnector.ReadMessageLong(Boolean async, DataRowLoadingMode dataRowLoadingMode, Boolean readingNotifications, Boolean isReadingPrependedMessage)
+   at System.Runtime.CompilerServices.PoolingAsyncValueTaskMethodBuilder`1.StateMachineBox`1.System.Threading.Tasks.Sources.IValueTaskSource<TResult>.GetResult(Int16 token)
+   at Npgsql.NpgsqlDataReader.NextResult(Boolean async, Boolean isConsuming, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlDataReader.NextResult(Boolean async, Boolean isConsuming, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(Boolean async, CommandBehavior behavior, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(Boolean async, CommandBehavior behavior, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteDbDataReaderAsync(CommandBehavior behavior, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.InitializeReaderAsync(AsyncEnumerator enumerator, CancellationToken cancellationToken)
+   at Npgsql.EntityFrameworkCore.PostgreSQL.Storage.Internal.NpgsqlExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+   at Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.ToListAsync[TSource](IQueryable`1 source, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.ToListAsync[TSource](IQueryable`1 source, CancellationToken cancellationToken)
+   at Infrastructure.Repositories.MotivoConsultaRepository.GetAllAsync() in C:\Users\David\Desktop\Infrastructure\Repositories\MotivoConsultaRepository.cs:line 18
+   at Application.Services.MotivoConsultaService.GetAllAsync() in C:\Users\David\Desktop\Application\Services\MotivoConsultaService.cs:line 16
+   at API.Controllers.MotivosConsultaController.ObtenerMotivosConsulta() in C:\Users\David\Desktop\API\Controllers\MotivosConsultaController.cs:line 25
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|7_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Microsoft.AspNetCore.RateLimiting.RateLimitingMiddleware.InvokeInternal(HttpContext context, EnableRateLimitingAttribute enableRateLimitingAttribute)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at ExceptionMiddleware.InvokeAsync(HttpContext context) in C:\Users\David\Desktop\API\Middlewares\ExceptionMiddleware.cs:line 19
+  Exception data:
+    Severity: ERROR
+    SqlState: 42P01
+    MessageText: no existe la relación «MotivoConsultas»
+    Position: 61
+    File: parse_relation.c
+    Line: 1452
+    Routine: parserOpenTable
+2025-08-29T15:28:30.7121351+02:00 8000002c-0002-fe00-b63f-84710c7967bb [INF] Request finished "HTTP/2" "GET" "https"://"localhost:44311""""/MotivosConsulta/ObtenerMotivosConsulta""" - 500 null "application/json" 346.3844ms (74253ad3)
+2025-08-29T15:38:24.5748123+02:00  [INF] User profile is available. Using '"C:\Users\David\AppData\Local\ASP.NET\DataProtection-Keys"' as key repository and Windows DPAPI to encrypt keys at rest. (7ac5e29c)
+2025-08-29T15:38:27.4081686+02:00  [INF] Application started. Press Ctrl+C to shut down. (dcaefe54)
+2025-08-29T15:38:27.4134159+02:00  [INF] Hosting environment: "Development" (bc5a1a4e)
+2025-08-29T15:38:27.4160479+02:00  [INF] Content root path: "C:\Users\David\Desktop\API" (cc26f24e)
+2025-08-29T15:38:28.3904646+02:00 80000055-0004-ff00-b63f-84710c7967bb [INF] Request starting "HTTP/2" "GET" "https"://"localhost:44311""""/swagger/index.html""" - null null (d509f86a)
+2025-08-29T15:38:30.6641621+02:00 80000055-0004-ff00-b63f-84710c7967bb [INF] Request finished "HTTP/2" "GET" "https"://"localhost:44311""""/swagger/index.html""" - 200 null "text/html;charset=utf-8" 2296.7353ms (74253ad3)
+2025-08-29T15:38:35.2723446+02:00 8000001d-0006-fb00-b63f-84710c7967bb [INF] Request starting "HTTP/2" "GET" "https"://"localhost:44311""""/_framework/aspnetcore-browser-refresh.js""" - null null (d509f86a)
+2025-08-29T15:38:35.5142632+02:00 8000001d-0006-fb00-b63f-84710c7967bb [INF] Request finished "HTTP/2" "GET" "https"://"localhost:44311""""/_framework/aspnetcore-browser-refresh.js""" - 200 13742 "application/javascript; charset=utf-8" 3.8853ms (74253ad3)
+2025-08-29T15:38:35.7825284+02:00 8000001f-0006-fb00-b63f-84710c7967bb [INF] Request starting "HTTP/2" "GET" "https"://"localhost:44311""""/_vs/browserLink""" - null null (d509f86a)
+2025-08-29T15:38:39.3552015+02:00 8000001f-0006-fb00-b63f-84710c7967bb [INF] Request finished "HTTP/2" "GET" "https"://"localhost:44311""""/_vs/browserLink""" - 200 null "text/javascript; charset=UTF-8" 3572.6948ms (74253ad3)
+2025-08-29T15:38:39.4590475+02:00 80000021-0006-fb00-b63f-84710c7967bb [INF] Request starting "HTTP/2" "GET" "https"://"localhost:44311""""/swagger/v1/swagger.json""" - null null (d509f86a)
+2025-08-29T15:38:39.5445765+02:00 80000021-0006-fb00-b63f-84710c7967bb [INF] Request finished "HTTP/2" "GET" "https"://"localhost:44311""""/swagger/v1/swagger.json""" - 200 null "application/json;charset=utf-8" 85.5734ms (74253ad3)
+2025-08-29T15:58:15.8351644+02:00  [INF] User profile is available. Using '"C:\Users\David\AppData\Local\ASP.NET\DataProtection-Keys"' as key repository and Windows DPAPI to encrypt keys at rest. (7ac5e29c)
+2025-08-29T15:58:23.5881456+02:00  [INF] Application started. Press Ctrl+C to shut down. (dcaefe54)
+2025-08-29T15:58:23.7693990+02:00  [INF] Hosting environment: "Development" (bc5a1a4e)
+2025-08-29T15:58:23.7723126+02:00  [INF] Content root path: "C:\Users\David\Desktop\API" (cc26f24e)
+2025-08-29T15:58:24.8005565+02:00 8000005a-0004-ff00-b63f-84710c7967bb [INF] Request starting "HTTP/2" "GET" "https"://"localhost:44311""""/swagger/index.html""" - null null (d509f86a)
+2025-08-29T15:58:30.1591234+02:00 8000000f-0006-fd00-b63f-84710c7967bb [INF] Request starting "HTTP/2" "GET" "https"://"localhost:44311""""/_framework/aspnetcore-browser-refresh.js""" - null null (d509f86a)
+2025-08-29T15:58:30.4714039+02:00 8000005a-0004-ff00-b63f-84710c7967bb [INF] Request finished "HTTP/2" "GET" "https"://"localhost:44311""""/swagger/index.html""" - 200 null "text/html;charset=utf-8" 5757.2994ms (74253ad3)
+2025-08-29T15:58:30.5376162+02:00 80000011-0006-fd00-b63f-84710c7967bb [INF] Request starting "HTTP/2" "GET" "https"://"localhost:44311""""/_vs/browserLink""" - null null (d509f86a)
+2025-08-29T15:58:30.7580452+02:00 8000000f-0006-fd00-b63f-84710c7967bb [INF] Request finished "HTTP/2" "GET" "https"://"localhost:44311""""/_framework/aspnetcore-browser-refresh.js""" - 200 13742 "application/javascript; charset=utf-8" 153.701ms (74253ad3)
+2025-08-29T15:58:31.1473164+02:00 80000011-0006-fd00-b63f-84710c7967bb [INF] Request finished "HTTP/2" "GET" "https"://"localhost:44311""""/_vs/browserLink""" - 200 null "text/javascript; charset=UTF-8" 609.7527ms (74253ad3)
+2025-08-29T15:58:31.6060771+02:00 80000061-0002-fc00-b63f-84710c7967bb [INF] Request starting "HTTP/2" "GET" "https"://"localhost:44311""""/swagger/v1/swagger.json""" - null null (d509f86a)
+2025-08-29T15:58:31.6514764+02:00 80000061-0002-fc00-b63f-84710c7967bb [INF] Request finished "HTTP/2" "GET" "https"://"localhost:44311""""/swagger/v1/swagger.json""" - 200 null "application/json;charset=utf-8" 45.4422ms (74253ad3)
+2025-08-29T15:59:30.5493410+02:00 80000063-0002-fc00-b63f-84710c7967bb [INF] Request starting "HTTP/2" "POST" "https"://"localhost:44311""""/auth/login""" - "application/json" 57 (d509f86a)
+2025-08-29T15:59:30.7230610+02:00 80000063-0002-fc00-b63f-84710c7967bb [INF] CORS policy execution successful. (5409d6ef)
+2025-08-29T15:59:31.0217752+02:00 80000063-0002-fc00-b63f-84710c7967bb [INF] Executing endpoint '"API.Controllers.AuthController.Login (API)"' (500cc934)
+2025-08-29T15:59:31.5716543+02:00 80000063-0002-fc00-b63f-84710c7967bb [INF] Route matched with "{action = \"Login\", controller = \"Auth\"}". Executing controller action with signature "Microsoft.AspNetCore.Mvc.IActionResult Login(Domain.Entities.LoginDto)" on controller "API.Controllers.AuthController" ("API"). (122b2fdf)
+2025-08-29T16:00:59.4121621+02:00 80000063-0002-fc00-b63f-84710c7967bb [INF] Executed DbCommand ("159"ms) [Parameters=["@__u_0='?'"], CommandType='Text', CommandTimeout='30']"
+""SELECT u.id, u.activo, u.apellidos, u.contraseña, u.correo, u.\"expiracionToken\", u.\"fechaCreación\", u.\"fechaNacimiento\", u.nombre, u.puntos, u.suscrito, u.token, u.\"ultimaConexion\"
+FROM \"Usuarios\" AS u
+WHERE u.nombre = @__u_0
+LIMIT 2" (0723d8ff)
+2025-08-29T16:04:05.7598445+02:00  [INF] User profile is available. Using '"C:\Users\David\AppData\Local\ASP.NET\DataProtection-Keys"' as key repository and Windows DPAPI to encrypt keys at rest. (7ac5e29c)
+2025-08-29T16:04:06.8699661+02:00  [INF] Application started. Press Ctrl+C to shut down. (dcaefe54)
+2025-08-29T16:04:06.8735571+02:00  [INF] Hosting environment: "Development" (bc5a1a4e)
+2025-08-29T16:04:06.8829696+02:00  [INF] Content root path: "C:\Users\David\Desktop\API" (cc26f24e)
+2025-08-29T16:04:06.8979430+02:00 80000008-0007-fb00-b63f-84710c7967bb [INF] Request starting "HTTP/2" "GET" "https"://"localhost:44311""""/swagger/index.html""" - null null (d509f86a)
+2025-08-29T16:04:08.1403059+02:00 80000008-0007-fb00-b63f-84710c7967bb [INF] Request finished "HTTP/2" "GET" "https"://"localhost:44311""""/swagger/index.html""" - 200 null "text/html;charset=utf-8" 1254.9153ms (74253ad3)
+2025-08-29T16:04:08.2106445+02:00 8000001e-0001-fd00-b63f-84710c7967bb [INF] Request starting "HTTP/2" "GET" "https"://"localhost:44311""""/_framework/aspnetcore-browser-refresh.js""" - null null (d509f86a)
+2025-08-29T16:04:08.2221757+02:00 8000001e-0001-fd00-b63f-84710c7967bb [INF] Request finished "HTTP/2" "GET" "https"://"localhost:44311""""/_framework/aspnetcore-browser-refresh.js""" - 200 13742 "application/javascript; charset=utf-8" 11.0164ms (74253ad3)
+2025-08-29T16:04:08.2311598+02:00 8000002e-0002-fe00-b63f-84710c7967bb [INF] Request starting "HTTP/2" "GET" "https"://"localhost:44311""""/_vs/browserLink""" - null null (d509f86a)
+2025-08-29T16:04:12.6281689+02:00 8000002e-0002-fe00-b63f-84710c7967bb [INF] Request finished "HTTP/2" "GET" "https"://"localhost:44311""""/_vs/browserLink""" - 200 null "text/javascript; charset=UTF-8" 4397.1506ms (74253ad3)
+2025-08-29T16:04:17.5762616+02:00 80000029-0000-fb00-b63f-84710c7967bb [INF] Request starting "HTTP/2" "GET" "https"://"localhost:44311""""/swagger/v1/swagger.json""" - null null (d509f86a)
+2025-08-29T16:04:17.6127166+02:00 80000029-0000-fb00-b63f-84710c7967bb [INF] Request finished "HTTP/2" "GET" "https"://"localhost:44311""""/swagger/v1/swagger.json""" - 200 null "application/json;charset=utf-8" 36.6248ms (74253ad3)
+2025-08-29T16:05:32.3017624+02:00 8000002b-0000-fb00-b63f-84710c7967bb [INF] Request starting "HTTP/2" "POST" "https"://"localhost:44311""""/auth/login""" - "application/json" 57 (d509f86a)
+2025-08-29T16:05:32.3350158+02:00 8000002b-0000-fb00-b63f-84710c7967bb [INF] CORS policy execution successful. (5409d6ef)
+2025-08-29T16:05:32.4675051+02:00 8000002b-0000-fb00-b63f-84710c7967bb [INF] Executing endpoint '"API.Controllers.AuthController.Login (API)"' (500cc934)
+2025-08-29T16:05:32.7701867+02:00 8000002b-0000-fb00-b63f-84710c7967bb [INF] Route matched with "{action = \"Login\", controller = \"Auth\"}". Executing controller action with signature "Microsoft.AspNetCore.Mvc.IActionResult Login(Domain.Entities.LoginDto)" on controller "API.Controllers.AuthController" ("API"). (122b2fdf)
+2025-08-29T16:06:09.2960789+02:00 8000002b-0000-fb00-b63f-84710c7967bb [INF] Executed DbCommand ("255"ms) [Parameters=["@__u_0='?'"], CommandType='Text', CommandTimeout='30']"
+""SELECT u.id, u.activo, u.apellidos, u.contraseña, u.correo, u.\"expiracionToken\", u.\"fechaCreación\", u.\"fechaNacimiento\", u.nombre, u.puntos, u.suscrito, u.token, u.\"ultimaConexion\"
+FROM \"Usuarios\" AS u
+WHERE u.nombre = @__u_0
+LIMIT 2" (0723d8ff)
+2025-08-29T16:07:06.4833982+02:00 8000002b-0000-fb00-b63f-84710c7967bb [INF] Executed DbCommand ("67"ms) [Parameters=["@__u_0='?'"], CommandType='Text', CommandTimeout='30']"
+""SELECT u.id, u.activo, u.apellidos, u.contraseña, u.correo, u.\"expiracionToken\", u.\"fechaCreación\", u.\"fechaNacimiento\", u.nombre, u.puntos, u.suscrito, u.token, u.\"ultimaConexion\"
+FROM \"Usuarios\" AS u
+WHERE u.nombre = @__u_0
+LIMIT 2" (0723d8ff)
+2025-08-29T16:07:51.0786414+02:00 8000002b-0000-fb00-b63f-84710c7967bb [INF] Executed action "API.Controllers.AuthController.Login (API)" in 138302.659ms (afa2e885)
+2025-08-29T16:07:51.0994406+02:00 8000002b-0000-fb00-b63f-84710c7967bb [INF] Executed endpoint '"API.Controllers.AuthController.Login (API)"' (99874f2b)
+2025-08-29T16:07:55.7816828+02:00 8000002b-0000-fb00-b63f-84710c7967bb [ERR] Ocurrió un error en la petición "/auth/login" (564da9e9)
+System.AggregateException: One or more errors occurred. (Object reference not set to an instance of an object.)
+ ---> System.NullReferenceException: Object reference not set to an instance of an object.
+   at Application.Services.AuthService.ValidateUser(String userName, String password) in C:\Users\David\Desktop\Application\Services\AuthService.cs:line 26
+   --- End of inner exception stack trace ---
+   at System.Threading.Tasks.Task.ThrowIfExceptional(Boolean includeTaskCanceledExceptions)
+   at System.Threading.Tasks.Task`1.GetResultCore(Boolean waitCompletionNotification)
+   at API.Controllers.AuthController.Login(LoginDto dto) in C:\Users\David\Desktop\API\Controllers\AuthController.cs:line 34
+   at lambda_method3(Closure, Object, Object[])
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.SyncActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeActionMethodAsync()
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeNextActionFilterAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|7_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Microsoft.AspNetCore.RateLimiting.RateLimitingMiddleware.InvokeInternal(HttpContext context, EnableRateLimitingAttribute enableRateLimitingAttribute)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at ExceptionMiddleware.InvokeAsync(HttpContext context) in C:\Users\David\Desktop\API\Middlewares\ExceptionMiddleware.cs:line 19
+2025-08-29T16:07:56.0110741+02:00 8000002b-0000-fb00-b63f-84710c7967bb [INF] Request finished "HTTP/2" "POST" "https"://"localhost:44311""""/auth/login""" - 500 null "application/json" 143709.6793ms (74253ad3)
+2025-08-29T16:08:02.0799595+02:00 8000002d-0000-fb00-b63f-84710c7967bb [INF] Request starting "HTTP/2" "POST" "https"://"localhost:44311""""/auth/login""" - "application/json" 57 (d509f86a)
+2025-08-29T16:08:02.0825556+02:00 8000002d-0000-fb00-b63f-84710c7967bb [INF] CORS policy execution successful. (5409d6ef)
+2025-08-29T16:08:02.0831040+02:00 8000002d-0000-fb00-b63f-84710c7967bb [INF] Executing endpoint '"API.Controllers.AuthController.Login (API)"' (500cc934)
+2025-08-29T16:08:02.1031194+02:00 8000002d-0000-fb00-b63f-84710c7967bb [INF] Route matched with "{action = \"Login\", controller = \"Auth\"}". Executing controller action with signature "Microsoft.AspNetCore.Mvc.IActionResult Login(Domain.Entities.LoginDto)" on controller "API.Controllers.AuthController" ("API"). (122b2fdf)
+2025-08-29T16:08:53.4597060+02:00 8000002d-0000-fb00-b63f-84710c7967bb [INF] Executed DbCommand ("1"ms) [Parameters=["@__u_0='?'"], CommandType='Text', CommandTimeout='30']"
+""SELECT u.id, u.activo, u.apellidos, u.contraseña, u.correo, u.\"expiracionToken\", u.\"fechaCreación\", u.\"fechaNacimiento\", u.nombre, u.puntos, u.suscrito, u.token, u.\"ultimaConexion\"
+FROM \"Usuarios\" AS u
+WHERE u.nombre = @__u_0
+LIMIT 2" (0723d8ff)
+2025-08-29T16:08:55.6561413+02:00 8000002d-0000-fb00-b63f-84710c7967bb [INF] Executed action "API.Controllers.AuthController.Login (API)" in 53552.7674ms (afa2e885)
+2025-08-29T16:08:55.6565478+02:00 8000002d-0000-fb00-b63f-84710c7967bb [INF] Executed endpoint '"API.Controllers.AuthController.Login (API)"' (99874f2b)
+2025-08-29T16:08:55.6861070+02:00 8000002d-0000-fb00-b63f-84710c7967bb [ERR] Ocurrió un error en la petición "/auth/login" (564da9e9)
+System.AggregateException: One or more errors occurred. (Object reference not set to an instance of an object.)
+ ---> System.NullReferenceException: Object reference not set to an instance of an object.
+   at Application.Services.AuthService.ValidateUser(String userName, String password) in C:\Users\David\Desktop\Application\Services\AuthService.cs:line 26
+   --- End of inner exception stack trace ---
+   at System.Threading.Tasks.Task.ThrowIfExceptional(Boolean includeTaskCanceledExceptions)
+   at System.Threading.Tasks.Task`1.GetResultCore(Boolean waitCompletionNotification)
+   at API.Controllers.AuthController.Login(LoginDto dto) in C:\Users\David\Desktop\API\Controllers\AuthController.cs:line 34
+   at lambda_method3(Closure, Object, Object[])
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.SyncActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeActionMethodAsync()
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeNextActionFilterAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|7_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Microsoft.AspNetCore.RateLimiting.RateLimitingMiddleware.InvokeInternal(HttpContext context, EnableRateLimitingAttribute enableRateLimitingAttribute)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at ExceptionMiddleware.InvokeAsync(HttpContext context) in C:\Users\David\Desktop\API\Middlewares\ExceptionMiddleware.cs:line 19
+2025-08-29T16:08:55.6872741+02:00 8000002d-0000-fb00-b63f-84710c7967bb [INF] Request finished "HTTP/2" "POST" "https"://"localhost:44311""""/auth/login""" - 500 null "application/json" 53607.6724ms (74253ad3)
+2025-08-29T16:10:46.4110027+02:00 8000002f-0004-fa00-b63f-84710c7967bb [INF] Request starting "HTTP/2" "POST" "https"://"localhost:44311""""/auth/login""" - "application/json" 57 (d509f86a)
+2025-08-29T16:10:46.4115146+02:00 8000002f-0004-fa00-b63f-84710c7967bb [INF] CORS policy execution successful. (5409d6ef)
+2025-08-29T16:10:46.4117993+02:00 8000002f-0004-fa00-b63f-84710c7967bb [INF] Executing endpoint '"API.Controllers.AuthController.Login (API)"' (500cc934)
+2025-08-29T16:10:46.4120027+02:00 8000002f-0004-fa00-b63f-84710c7967bb [INF] Route matched with "{action = \"Login\", controller = \"Auth\"}". Executing controller action with signature "Microsoft.AspNetCore.Mvc.IActionResult Login(Domain.Entities.LoginDto)" on controller "API.Controllers.AuthController" ("API"). (122b2fdf)
+2025-08-29T16:12:39.9463918+02:00 8000002f-0004-fa00-b63f-84710c7967bb [INF] Executed DbCommand ("1"ms) [Parameters=["@__u_0='?'"], CommandType='Text', CommandTimeout='30']"
+""SELECT u.id, u.activo, u.apellidos, u.contraseña, u.correo, u.\"expiracionToken\", u.\"fechaCreación\", u.\"fechaNacimiento\", u.nombre, u.puntos, u.suscrito, u.token, u.\"ultimaConexion\"
+FROM \"Usuarios\" AS u
+WHERE u.nombre = @__u_0
+LIMIT 2" (0723d8ff)
+2025-08-29T16:12:42.0603631+02:00 8000002f-0004-fa00-b63f-84710c7967bb [INF] Executed action "API.Controllers.AuthController.Login (API)" in 115648.249ms (afa2e885)
+2025-08-29T16:12:42.0607829+02:00 8000002f-0004-fa00-b63f-84710c7967bb [INF] Executed endpoint '"API.Controllers.AuthController.Login (API)"' (99874f2b)
+2025-08-29T16:12:42.1108075+02:00 8000002f-0004-fa00-b63f-84710c7967bb [ERR] Ocurrió un error en la petición "/auth/login" (564da9e9)
+System.AggregateException: One or more errors occurred. (Object reference not set to an instance of an object.)
+ ---> System.NullReferenceException: Object reference not set to an instance of an object.
+   at Application.Services.AuthService.ValidateUser(String userName, String password) in C:\Users\David\Desktop\Application\Services\AuthService.cs:line 26
+   --- End of inner exception stack trace ---
+   at System.Threading.Tasks.Task.ThrowIfExceptional(Boolean includeTaskCanceledExceptions)
+   at System.Threading.Tasks.Task`1.GetResultCore(Boolean waitCompletionNotification)
+   at API.Controllers.AuthController.Login(LoginDto dto) in C:\Users\David\Desktop\API\Controllers\AuthController.cs:line 34
+   at lambda_method3(Closure, Object, Object[])
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.SyncActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeActionMethodAsync()
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeNextActionFilterAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|7_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Microsoft.AspNetCore.RateLimiting.RateLimitingMiddleware.InvokeInternal(HttpContext context, EnableRateLimitingAttribute enableRateLimitingAttribute)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at ExceptionMiddleware.InvokeAsync(HttpContext context) in C:\Users\David\Desktop\API\Middlewares\ExceptionMiddleware.cs:line 19
+2025-08-29T16:12:42.1117579+02:00 8000002f-0004-fa00-b63f-84710c7967bb [INF] Request finished "HTTP/2" "POST" "https"://"localhost:44311""""/auth/login""" - 500 null "application/json" 115701.0555ms (74253ad3)
+2025-08-29T16:57:19.1802641+02:00  [INF] User profile is available. Using '"C:\Users\David\AppData\Local\ASP.NET\DataProtection-Keys"' as key repository and Windows DPAPI to encrypt keys at rest. (7ac5e29c)
+2025-08-29T16:57:23.9185525+02:00  [INF] Application started. Press Ctrl+C to shut down. (dcaefe54)
+2025-08-29T16:57:23.9225701+02:00  [INF] Hosting environment: "Development" (bc5a1a4e)
+2025-08-29T16:57:23.9258067+02:00  [INF] Content root path: "C:\Users\David\Desktop\API" (cc26f24e)
+2025-08-29T16:57:24.6920677+02:00 8000003e-0002-ff00-b63f-84710c7967bb [INF] Request starting "HTTP/2" "GET" "https"://"localhost:44311""""/swagger/index.html""" - null null (d509f86a)
+2025-08-29T16:57:31.3420526+02:00 8000003e-0002-ff00-b63f-84710c7967bb [INF] Request finished "HTTP/2" "GET" "https"://"localhost:44311""""/swagger/index.html""" - 200 null "text/html;charset=utf-8" 6768.7648ms (74253ad3)
+2025-08-29T16:57:40.5603015+02:00 80000061-0004-ff00-b63f-84710c7967bb [INF] Request starting "HTTP/2" "GET" "https"://"localhost:44311""""/_framework/aspnetcore-browser-refresh.js""" - null null (d509f86a)
+2025-08-29T16:57:40.5849549+02:00 80000061-0004-ff00-b63f-84710c7967bb [INF] Request finished "HTTP/2" "GET" "https"://"localhost:44311""""/_framework/aspnetcore-browser-refresh.js""" - 200 13742 "application/javascript; charset=utf-8" 9.8783ms (74253ad3)
+2025-08-29T16:57:41.0323332+02:00 8000002b-0001-fc00-b63f-84710c7967bb [INF] Request starting "HTTP/2" "GET" "https"://"localhost:44311""""/_vs/browserLink""" - null null (d509f86a)
+2025-08-29T16:57:41.8195576+02:00 8000002b-0001-fc00-b63f-84710c7967bb [INF] Request finished "HTTP/2" "GET" "https"://"localhost:44311""""/_vs/browserLink""" - 200 null "text/javascript; charset=UTF-8" 787.3373ms (74253ad3)
+2025-08-29T16:57:43.3808114+02:00 8000004b-0000-fc00-b63f-84710c7967bb [INF] Request starting "HTTP/2" "GET" "https"://"localhost:44311""""/swagger/v1/swagger.json""" - null null (d509f86a)
+2025-08-29T16:57:43.4392807+02:00 8000004b-0000-fc00-b63f-84710c7967bb [INF] Request finished "HTTP/2" "GET" "https"://"localhost:44311""""/swagger/v1/swagger.json""" - 200 null "application/json;charset=utf-8" 58.6951ms (74253ad3)
+2025-08-29T17:04:38.3182964+02:00 80000007-0007-fa00-b63f-84710c7967bb [INF] Request starting "HTTP/2" "POST" "https"://"localhost:44311""""/auth/login""" - "application/json" 57 (d509f86a)
+2025-08-29T17:04:38.3648325+02:00 80000007-0007-fa00-b63f-84710c7967bb [INF] CORS policy execution successful. (5409d6ef)
+2025-08-29T17:04:38.6845825+02:00 80000007-0007-fa00-b63f-84710c7967bb [INF] Executing endpoint '"API.Controllers.AuthController.Login (API)"' (500cc934)
+2025-08-29T17:04:40.2164200+02:00 80000007-0007-fa00-b63f-84710c7967bb [INF] Route matched with "{action = \"Login\", controller = \"Auth\"}". Executing controller action with signature "Microsoft.AspNetCore.Mvc.IActionResult Login(Domain.Entities.LoginDto)" on controller "API.Controllers.AuthController" ("API"). (122b2fdf)
+2025-08-29T17:08:17.5984321+02:00 80000007-0007-fa00-b63f-84710c7967bb [INF] Executed DbCommand ("453"ms) [Parameters=["@__u_0='?'"], CommandType='Text', CommandTimeout='30']"
+""SELECT u.id, u.activo, u.apellidos, u.contraseña, u.correo, u.\"expiracionToken\", u.\"fechaCreación\", u.\"fechaNacimiento\", u.nombre, u.puntos, u.suscrito, u.token, u.\"ultimaConexion\"
+FROM \"Usuarios\" AS u
+WHERE u.nombre = @__u_0
+LIMIT 2" (0723d8ff)
+2025-08-29T17:09:02.7971726+02:00 80000007-0007-fa00-b63f-84710c7967bb [INF] Executed DbCommand ("67"ms) [Parameters=["@__u_0='?'"], CommandType='Text', CommandTimeout='30']"
+""SELECT u.id, u.activo, u.apellidos, u.contraseña, u.correo, u.\"expiracionToken\", u.\"fechaCreación\", u.\"fechaNacimiento\", u.nombre, u.puntos, u.suscrito, u.token, u.\"ultimaConexion\"
+FROM \"Usuarios\" AS u
+WHERE u.nombre = @__u_0
+LIMIT 2" (0723d8ff)
+2025-08-29T17:09:32.6800731+02:00 80000007-0007-fa00-b63f-84710c7967bb [INF] Executed action "API.Controllers.AuthController.Login (API)" in 292409.2497ms (afa2e885)
+2025-08-29T17:09:32.7564268+02:00 80000007-0007-fa00-b63f-84710c7967bb [INF] Executed endpoint '"API.Controllers.AuthController.Login (API)"' (99874f2b)
+2025-08-29T17:09:33.6064836+02:00 80000007-0007-fa00-b63f-84710c7967bb [ERR] Ocurrió un error en la petición "/auth/login" (564da9e9)
+System.AggregateException: One or more errors occurred. (Object reference not set to an instance of an object.)
+ ---> System.NullReferenceException: Object reference not set to an instance of an object.
+   at Application.Services.AuthService.ValidateUser(String userName, String password) in C:\Users\David\Desktop\Application\Services\AuthService.cs:line 26
+   --- End of inner exception stack trace ---
+   at System.Threading.Tasks.Task.ThrowIfExceptional(Boolean includeTaskCanceledExceptions)
+   at System.Threading.Tasks.Task`1.GetResultCore(Boolean waitCompletionNotification)
+   at API.Controllers.AuthController.Login(LoginDto dto) in C:\Users\David\Desktop\API\Controllers\AuthController.cs:line 34
+   at lambda_method3(Closure, Object, Object[])
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.SyncActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeActionMethodAsync()
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeNextActionFilterAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|7_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Microsoft.AspNetCore.RateLimiting.RateLimitingMiddleware.InvokeInternal(HttpContext context, EnableRateLimitingAttribute enableRateLimitingAttribute)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at ExceptionMiddleware.InvokeAsync(HttpContext context) in C:\Users\David\Desktop\API\Middlewares\ExceptionMiddleware.cs:line 19
+2025-08-29T17:09:33.8165008+02:00 80000007-0007-fa00-b63f-84710c7967bb [INF] Request finished "HTTP/2" "POST" "https"://"localhost:44311""""/auth/login""" - 500 null "application/json" 295498.4813ms (74253ad3)
+2025-08-29T17:09:41.0865001+02:00 80000031-0004-fa00-b63f-84710c7967bb [INF] Request starting "HTTP/2" "POST" "https"://"localhost:44311""""/auth/login""" - "application/json" 57 (d509f86a)
+2025-08-29T17:09:41.0884405+02:00 80000031-0004-fa00-b63f-84710c7967bb [INF] CORS policy execution successful. (5409d6ef)
+2025-08-29T17:09:41.0889143+02:00 80000031-0004-fa00-b63f-84710c7967bb [INF] Executing endpoint '"API.Controllers.AuthController.Login (API)"' (500cc934)
+2025-08-29T17:09:41.1255453+02:00 80000031-0004-fa00-b63f-84710c7967bb [INF] Route matched with "{action = \"Login\", controller = \"Auth\"}". Executing controller action with signature "Microsoft.AspNetCore.Mvc.IActionResult Login(Domain.Entities.LoginDto)" on controller "API.Controllers.AuthController" ("API"). (122b2fdf)
+2025-08-29T17:09:45.9471129+02:00 80000031-0004-fa00-b63f-84710c7967bb [INF] Executed DbCommand ("1"ms) [Parameters=["@__u_0='?'"], CommandType='Text', CommandTimeout='30']"
+""SELECT u.id, u.activo, u.apellidos, u.contraseña, u.correo, u.\"expiracionToken\", u.\"fechaCreación\", u.\"fechaNacimiento\", u.nombre, u.puntos, u.suscrito, u.token, u.\"ultimaConexion\"
+FROM \"Usuarios\" AS u
+WHERE u.nombre = @__u_0
+LIMIT 2" (0723d8ff)
+2025-08-29T17:11:44.0405087+02:00 80000031-0004-fa00-b63f-84710c7967bb [INF] Executed action "API.Controllers.AuthController.Login (API)" in 122914.5709ms (afa2e885)
+2025-08-29T17:11:44.0410139+02:00 80000031-0004-fa00-b63f-84710c7967bb [INF] Executed endpoint '"API.Controllers.AuthController.Login (API)"' (99874f2b)
+2025-08-29T17:11:44.0693989+02:00 80000031-0004-fa00-b63f-84710c7967bb [ERR] Ocurrió un error en la petición "/auth/login" (564da9e9)
+System.AggregateException: One or more errors occurred. (Object reference not set to an instance of an object.)
+ ---> System.NullReferenceException: Object reference not set to an instance of an object.
+   at Application.Services.AuthService.ValidateUser(String userName, String password) in C:\Users\David\Desktop\Application\Services\AuthService.cs:line 26
+   --- End of inner exception stack trace ---
+   at System.Threading.Tasks.Task.ThrowIfExceptional(Boolean includeTaskCanceledExceptions)
+   at System.Threading.Tasks.Task`1.GetResultCore(Boolean waitCompletionNotification)
+   at API.Controllers.AuthController.Login(LoginDto dto) in C:\Users\David\Desktop\API\Controllers\AuthController.cs:line 34
+   at lambda_method3(Closure, Object, Object[])
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.SyncActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeActionMethodAsync()
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeNextActionFilterAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|7_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Microsoft.AspNetCore.RateLimiting.RateLimitingMiddleware.InvokeInternal(HttpContext context, EnableRateLimitingAttribute enableRateLimitingAttribute)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at ExceptionMiddleware.InvokeAsync(HttpContext context) in C:\Users\David\Desktop\API\Middlewares\ExceptionMiddleware.cs:line 19
+2025-08-29T17:11:44.0708439+02:00 80000031-0004-fa00-b63f-84710c7967bb [INF] Request finished "HTTP/2" "POST" "https"://"localhost:44311""""/auth/login""" - 500 null "application/json" 122984.4034ms (74253ad3)
+2025-08-29T17:11:49.1848616+02:00 8000004d-0000-fc00-b63f-84710c7967bb [INF] Request starting "HTTP/2" "POST" "https"://"localhost:44311""""/auth/login""" - "application/json" 57 (d509f86a)
+2025-08-29T17:11:49.1852378+02:00 8000004d-0000-fc00-b63f-84710c7967bb [INF] CORS policy execution successful. (5409d6ef)
+2025-08-29T17:11:49.1854635+02:00 8000004d-0000-fc00-b63f-84710c7967bb [INF] Executing endpoint '"API.Controllers.AuthController.Login (API)"' (500cc934)
+2025-08-29T17:11:49.1856323+02:00 8000004d-0000-fc00-b63f-84710c7967bb [INF] Route matched with "{action = \"Login\", controller = \"Auth\"}". Executing controller action with signature "Microsoft.AspNetCore.Mvc.IActionResult Login(Domain.Entities.LoginDto)" on controller "API.Controllers.AuthController" ("API"). (122b2fdf)
+2025-08-29T17:11:57.6678368+02:00 8000004d-0000-fc00-b63f-84710c7967bb [INF] Executed DbCommand ("1"ms) [Parameters=["@__u_0='?'"], CommandType='Text', CommandTimeout='30']"
+""SELECT u.id, u.activo, u.apellidos, u.contraseña, u.correo, u.\"expiracionToken\", u.\"fechaCreación\", u.\"fechaNacimiento\", u.nombre, u.puntos, u.suscrito, u.token, u.\"ultimaConexion\"
+FROM \"Usuarios\" AS u
+WHERE u.nombre = @__u_0
+LIMIT 2" (0723d8ff)
+2025-08-29T17:11:58.3146216+02:00 8000004d-0000-fc00-b63f-84710c7967bb [INF] Executed action "API.Controllers.AuthController.Login (API)" in 9128.7855ms (afa2e885)
+2025-08-29T17:11:58.3151117+02:00 8000004d-0000-fc00-b63f-84710c7967bb [INF] Executed endpoint '"API.Controllers.AuthController.Login (API)"' (99874f2b)
+2025-08-29T17:11:58.3446186+02:00 8000004d-0000-fc00-b63f-84710c7967bb [ERR] Ocurrió un error en la petición "/auth/login" (564da9e9)
+System.AggregateException: One or more errors occurred. (Object reference not set to an instance of an object.)
+ ---> System.NullReferenceException: Object reference not set to an instance of an object.
+   at Application.Services.AuthService.ValidateUser(String userName, String password) in C:\Users\David\Desktop\Application\Services\AuthService.cs:line 26
+   --- End of inner exception stack trace ---
+   at System.Threading.Tasks.Task.ThrowIfExceptional(Boolean includeTaskCanceledExceptions)
+   at System.Threading.Tasks.Task`1.GetResultCore(Boolean waitCompletionNotification)
+   at API.Controllers.AuthController.Login(LoginDto dto) in C:\Users\David\Desktop\API\Controllers\AuthController.cs:line 34
+   at lambda_method3(Closure, Object, Object[])
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.SyncActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeActionMethodAsync()
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeNextActionFilterAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|7_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Microsoft.AspNetCore.RateLimiting.RateLimitingMiddleware.InvokeInternal(HttpContext context, EnableRateLimitingAttribute enableRateLimitingAttribute)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at ExceptionMiddleware.InvokeAsync(HttpContext context) in C:\Users\David\Desktop\API\Middlewares\ExceptionMiddleware.cs:line 19
+2025-08-29T17:11:58.3456750+02:00 8000004d-0000-fc00-b63f-84710c7967bb [INF] Request finished "HTTP/2" "POST" "https"://"localhost:44311""""/auth/login""" - 500 null "application/json" 9160.7816ms (74253ad3)
+2025-08-29T17:30:19.4316739+02:00  [INF] User profile is available. Using '"C:\Users\David\AppData\Local\ASP.NET\DataProtection-Keys"' as key repository and Windows DPAPI to encrypt keys at rest. (7ac5e29c)
+2025-08-29T17:30:24.6814944+02:00  [INF] Application started. Press Ctrl+C to shut down. (dcaefe54)
+2025-08-29T17:30:24.7519886+02:00  [INF] Hosting environment: "Development" (bc5a1a4e)
+2025-08-29T17:30:24.7552309+02:00  [INF] Content root path: "C:\Users\David\Desktop\API" (cc26f24e)
+2025-08-29T17:30:25.4109981+02:00 80000032-0000-fb00-b63f-84710c7967bb [INF] Request starting "HTTP/2" "GET" "https"://"localhost:44311""""/swagger/index.html""" - null null (d509f86a)
+2025-08-29T17:30:29.0895949+02:00 80000032-0000-fb00-b63f-84710c7967bb [INF] Request finished "HTTP/2" "GET" "https"://"localhost:44311""""/swagger/index.html""" - 200 null "text/html;charset=utf-8" 3796.2941ms (74253ad3)
+2025-08-29T17:30:30.0617618+02:00 80000020-0001-fd00-b63f-84710c7967bb [INF] Request starting "HTTP/2" "GET" "https"://"localhost:44311""""/_framework/aspnetcore-browser-refresh.js""" - null null (d509f86a)
+2025-08-29T17:30:30.3958693+02:00 80000020-0001-fd00-b63f-84710c7967bb [INF] Request finished "HTTP/2" "GET" "https"://"localhost:44311""""/_framework/aspnetcore-browser-refresh.js""" - 200 13742 "application/javascript; charset=utf-8" 9.9817ms (74253ad3)
+2025-08-29T17:30:34.7552534+02:00 80000029-0004-fe00-b63f-84710c7967bb [INF] Request starting "HTTP/2" "GET" "https"://"localhost:44311""""/_vs/browserLink""" - null null (d509f86a)
+2025-08-29T17:30:35.2027658+02:00 80000029-0004-fe00-b63f-84710c7967bb [INF] Request finished "HTTP/2" "GET" "https"://"localhost:44311""""/_vs/browserLink""" - 200 null "text/javascript; charset=UTF-8" 447.6227ms (74253ad3)
+2025-08-29T17:30:35.7400929+02:00 80000034-0000-fb00-b63f-84710c7967bb [INF] Request starting "HTTP/2" "GET" "https"://"localhost:44311""""/swagger/v1/swagger.json""" - null null (d509f86a)
+2025-08-29T17:30:35.8647219+02:00 80000034-0000-fb00-b63f-84710c7967bb [INF] Request finished "HTTP/2" "GET" "https"://"localhost:44311""""/swagger/v1/swagger.json""" - 200 null "application/json;charset=utf-8" 124.7743ms (74253ad3)
+2025-08-29T17:31:16.6310941+02:00 80000002-0004-f800-b63f-84710c7967bb [INF] Request starting "HTTP/2" "POST" "https"://"localhost:44311""""/auth/login""" - "application/json" 57 (d509f86a)
+2025-08-29T17:31:16.6548440+02:00 80000002-0004-f800-b63f-84710c7967bb [INF] CORS policy execution successful. (5409d6ef)
+2025-08-29T17:31:16.7919377+02:00 80000002-0004-f800-b63f-84710c7967bb [INF] Executing endpoint '"API.Controllers.AuthController.Login (API)"' (500cc934)
+2025-08-29T17:31:17.0728919+02:00 80000002-0004-f800-b63f-84710c7967bb [INF] Route matched with "{action = \"Login\", controller = \"Auth\"}". Executing controller action with signature "Microsoft.AspNetCore.Mvc.IActionResult Login(Domain.Entities.LoginDto)" on controller "API.Controllers.AuthController" ("API"). (122b2fdf)
+2025-08-29T17:32:55.1440590+02:00 80000002-0004-f800-b63f-84710c7967bb [INF] Executed DbCommand ("449"ms) [Parameters=["@__u_0='?'"], CommandType='Text', CommandTimeout='30']"
+""SELECT u.id, u.activo, u.apellidos, u.contraseña, u.correo, u.\"expiracionToken\", u.\"fechaCreación\", u.\"fechaNacimiento\", u.nombre, u.puntos, u.suscrito, u.token, u.\"ultimaConexion\"
+FROM \"Usuarios\" AS u
+WHERE u.nombre = @__u_0
+LIMIT 2" (0723d8ff)
+2025-08-29T17:35:22.9929318+02:00  [INF] User profile is available. Using '"C:\Users\David\AppData\Local\ASP.NET\DataProtection-Keys"' as key repository and Windows DPAPI to encrypt keys at rest. (7ac5e29c)
+2025-08-29T17:35:24.0644164+02:00  [INF] Application started. Press Ctrl+C to shut down. (dcaefe54)
+2025-08-29T17:35:24.0677483+02:00  [INF] Hosting environment: "Development" (bc5a1a4e)
+2025-08-29T17:35:24.0706231+02:00  [INF] Content root path: "C:\Users\David\Desktop\API" (cc26f24e)
+2025-08-29T17:35:24.1435483+02:00 8000000e-0005-fa00-b63f-84710c7967bb [INF] Request starting "HTTP/2" "GET" "https"://"localhost:44311""""/swagger/index.html""" - null null (d509f86a)
+2025-08-29T17:35:25.0626425+02:00 8000002e-0001-fc00-b63f-84710c7967bb [INF] Request starting "HTTP/2" "GET" "https"://"localhost:44311""""/_framework/aspnetcore-browser-refresh.js""" - null null (d509f86a)
+2025-08-29T17:35:25.0626425+02:00 80000032-0002-fe00-b63f-84710c7967bb [INF] Request starting "HTTP/2" "GET" "https"://"localhost:44311""""/_vs/browserLink""" - null null (d509f86a)
+2025-08-29T17:35:25.0647246+02:00 8000000e-0005-fa00-b63f-84710c7967bb [INF] Request finished "HTTP/2" "GET" "https"://"localhost:44311""""/swagger/index.html""" - 200 null "text/html;charset=utf-8" 930.6708ms (74253ad3)
+2025-08-29T17:35:25.0722591+02:00 8000002e-0001-fc00-b63f-84710c7967bb [INF] Request finished "HTTP/2" "GET" "https"://"localhost:44311""""/_framework/aspnetcore-browser-refresh.js""" - 200 13742 "application/javascript; charset=utf-8" 4.573ms (74253ad3)
+2025-08-29T17:35:25.1245652+02:00 80000032-0002-fe00-b63f-84710c7967bb [INF] Request finished "HTTP/2" "GET" "https"://"localhost:44311""""/_vs/browserLink""" - 200 null "text/javascript; charset=UTF-8" 62.214ms (74253ad3)
+2025-08-29T17:35:26.4275132+02:00 80000036-0000-fb00-b63f-84710c7967bb [INF] Request starting "HTTP/2" "GET" "https"://"localhost:44311""""/swagger/v1/swagger.json""" - null null (d509f86a)
+2025-08-29T17:35:26.4757755+02:00 80000036-0000-fb00-b63f-84710c7967bb [INF] Request finished "HTTP/2" "GET" "https"://"localhost:44311""""/swagger/v1/swagger.json""" - 200 null "application/json;charset=utf-8" 48.4101ms (74253ad3)
+2025-08-29T17:42:13.8515151+02:00 8000000a-0007-fb00-b63f-84710c7967bb [INF] Request starting "HTTP/2" "POST" "https"://"localhost:44311""""/auth/login""" - "application/json" 57 (d509f86a)
+2025-08-29T17:42:13.8695593+02:00 8000000a-0007-fb00-b63f-84710c7967bb [INF] CORS policy execution successful. (5409d6ef)
+2025-08-29T17:42:13.8807987+02:00 8000000a-0007-fb00-b63f-84710c7967bb [INF] Executing endpoint '"API.Controllers.AuthController.Login (API)"' (500cc934)
+2025-08-29T17:42:13.9067137+02:00 8000000a-0007-fb00-b63f-84710c7967bb [INF] Route matched with "{action = \"Login\", controller = \"Auth\"}". Executing controller action with signature "Microsoft.AspNetCore.Mvc.IActionResult Login(Domain.Entities.LoginDto)" on controller "API.Controllers.AuthController" ("API"). (122b2fdf)
+2025-08-29T17:42:25.1029945+02:00 8000000a-0007-fb00-b63f-84710c7967bb [INF] Executed DbCommand ("168"ms) [Parameters=["@__u_0='?'"], CommandType='Text', CommandTimeout='30']"
+""SELECT u.id, u.activo, u.apellidos, u.contraseña, u.correo, u.\"expiracionToken\", u.\"fechaCreación\", u.\"fechaNacimiento\", u.nombre, u.puntos, u.suscrito, u.token, u.\"ultimaConexion\"
+FROM \"Usuarios\" AS u
+WHERE u.nombre = @__u_0
+LIMIT 2" (0723d8ff)
+2025-08-29T17:46:37.3912834+02:00 8000000a-0007-fb00-b63f-84710c7967bb [INF] Executed action "API.Controllers.AuthController.Login (API)" in 263478.9696ms (afa2e885)
+2025-08-29T17:46:37.4238488+02:00 8000000a-0007-fb00-b63f-84710c7967bb [INF] Executed endpoint '"API.Controllers.AuthController.Login (API)"' (99874f2b)
+2025-08-29T17:46:38.6905970+02:00 8000000a-0007-fb00-b63f-84710c7967bb [ERR] Ocurrió un error en la petición "/auth/login" (564da9e9)
+System.AggregateException: One or more errors occurred. (Object reference not set to an instance of an object.)
+ ---> System.NullReferenceException: Object reference not set to an instance of an object.
+   at Application.Services.AuthService.ValidateUser(String userName, String password) in C:\Users\David\Desktop\Application\Services\AuthService.cs:line 30
+   --- End of inner exception stack trace ---
+   at System.Threading.Tasks.Task.ThrowIfExceptional(Boolean includeTaskCanceledExceptions)
+   at System.Threading.Tasks.Task`1.GetResultCore(Boolean waitCompletionNotification)
+   at API.Controllers.AuthController.Login(LoginDto dto) in C:\Users\David\Desktop\API\Controllers\AuthController.cs:line 34
+   at lambda_method3(Closure, Object, Object[])
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.SyncActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeActionMethodAsync()
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeNextActionFilterAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|7_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Microsoft.AspNetCore.RateLimiting.RateLimitingMiddleware.InvokeInternal(HttpContext context, EnableRateLimitingAttribute enableRateLimitingAttribute)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at ExceptionMiddleware.InvokeAsync(HttpContext context) in C:\Users\David\Desktop\API\Middlewares\ExceptionMiddleware.cs:line 19
+2025-08-29T17:46:38.7563783+02:00 8000000a-0007-fb00-b63f-84710c7967bb [INF] Request finished "HTTP/2" "POST" "https"://"localhost:44311""""/auth/login""" - 500 null "application/json" 264905.2913ms (74253ad3)
+2025-08-29T17:46:46.3800857+02:00 80000038-0000-fb00-b63f-84710c7967bb [INF] Request starting "HTTP/2" "POST" "https"://"localhost:44311""""/auth/login""" - "application/json" 57 (d509f86a)
+2025-08-29T17:46:46.3819123+02:00 80000038-0000-fb00-b63f-84710c7967bb [INF] CORS policy execution successful. (5409d6ef)
+2025-08-29T17:46:46.3823429+02:00 80000038-0000-fb00-b63f-84710c7967bb [INF] Executing endpoint '"API.Controllers.AuthController.Login (API)"' (500cc934)
+2025-08-29T17:46:46.4127986+02:00 80000038-0000-fb00-b63f-84710c7967bb [INF] Route matched with "{action = \"Login\", controller = \"Auth\"}". Executing controller action with signature "Microsoft.AspNetCore.Mvc.IActionResult Login(Domain.Entities.LoginDto)" on controller "API.Controllers.AuthController" ("API"). (122b2fdf)
+2025-08-29T17:47:19.1046917+02:00 80000038-0000-fb00-b63f-84710c7967bb [INF] Executed DbCommand ("45"ms) [Parameters=["@__u_0='?'"], CommandType='Text', CommandTimeout='30']"
+""SELECT u.id, u.activo, u.apellidos, u.contraseña, u.correo, u.\"expiracionToken\", u.\"fechaCreación\", u.\"fechaNacimiento\", u.nombre, u.puntos, u.suscrito, u.token, u.\"ultimaConexion\"
+FROM \"Usuarios\" AS u
+WHERE u.nombre = @__u_0
+LIMIT 2" (0723d8ff)
+2025-08-29T17:49:56.0148654+02:00 80000038-0000-fb00-b63f-84710c7967bb [INF] Executed DbCommand ("2,813"ms) [Parameters=["@__id_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT t.id, t.activo, t.apellidos, t.contraseña, t.correo, t.\"expiracionToken\", t.\"fechaCreación\", t.\"fechaNacimiento\", t.nombre, t.puntos, t.suscrito, t.token, t.\"ultimaConexion\", t0.idrol, t0.idusuario, t0.identidad, t0.id, t0.descripcion, t0.nombre, t0.id0, t0.activo, t0.descripcion0, t0.\"fechaAlta\", t0.\"idTipoEntidad\", t0.imagen, t0.nombre0, t0.popularidad, t0.ubicacion
+FROM (
+    SELECT u.id, u.activo, u.apellidos, u.contraseña, u.correo, u.\"expiracionToken\", u.\"fechaCreación\", u.\"fechaNacimiento\", u.nombre, u.puntos, u.suscrito, u.token, u.\"ultimaConexion\"
+    FROM \"Usuarios\" AS u
+    WHERE u.id = @__id_0
+    LIMIT 1
+) AS t
+LEFT JOIN (
+    SELECT u0.idrol, u0.idusuario, u0.identidad, r.id, r.descripcion, r.nombre, e.id AS id0, e.activo, e.descripcion AS descripcion0, e.\"fechaAlta\", e.\"idTipoEntidad\", e.imagen, e.nombre AS nombre0, e.popularidad, e.ubicacion
+    FROM \"UsuarioRoles\" AS u0
+    INNER JOIN \"Roles\" AS r ON u0.idrol = r.id
+    INNER JOIN \"Entidades\" AS e ON u0.identidad = e.id
+) AS t0 ON t.id = t0.idusuario
+ORDER BY t.id, t0.idrol, t0.idusuario, t0.identidad, t0.id" (0723d8ff)
+2025-08-29T17:49:58.9221818+02:00 80000038-0000-fb00-b63f-84710c7967bb [INF] Executing "OkObjectResult", writing value of type '"<>f__AnonymousType1`3[[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.DateTime, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]"'. (605b4265)
+2025-08-29T17:49:59.0481566+02:00 80000038-0000-fb00-b63f-84710c7967bb [INF] Executed DbCommand ("237"ms) [Parameters=["@p2='?' (DbType = Int32), @p0='?' (DbType = DateTime), @p1='?'"], CommandType='Text', CommandTimeout='30']"
+""UPDATE \"Usuarios\" SET \"expiracionToken\" = @p0, token = @p1
+WHERE id = @p2;" (0723d8ff)
+2025-08-29T17:49:59.0832158+02:00 80000038-0000-fb00-b63f-84710c7967bb [INF] Executed action "API.Controllers.AuthController.Login (API)" in 192669.825ms (afa2e885)
+2025-08-29T17:49:59.0834992+02:00 80000038-0000-fb00-b63f-84710c7967bb [INF] Executed endpoint '"API.Controllers.AuthController.Login (API)"' (99874f2b)
+2025-08-29T17:49:59.0848555+02:00 80000038-0000-fb00-b63f-84710c7967bb [INF] Request finished "HTTP/2" "POST" "https"://"localhost:44311""""/auth/login""" - 200 null "application/json; charset=utf-8" 192704.6885ms (74253ad3)
+2025-08-29T17:51:06.2051604+02:00 8000003a-0000-fb00-b63f-84710c7967bb [INF] Request starting "HTTP/2" "GET" "https"://"localhost:44311""""/MotivosConsulta/ObtenerMotivosConsulta""" - null null (d509f86a)
+2025-08-29T17:51:06.8773439+02:00 8000003a-0000-fb00-b63f-84710c7967bb [INF] Executing endpoint '"API.Controllers.MotivosConsultaController.ObtenerMotivosConsulta (API)"' (500cc934)
+2025-08-29T17:51:06.8943491+02:00 8000003a-0000-fb00-b63f-84710c7967bb [INF] Route matched with "{action = \"ObtenerMotivosConsulta\", controller = \"MotivosConsulta\"}". Executing controller action with signature "System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] ObtenerMotivosConsulta()" on controller "API.Controllers.MotivosConsultaController" ("API"). (122b2fdf)
+2025-08-29T17:51:25.6878088+02:00 8000003a-0000-fb00-b63f-84710c7967bb [INF] Executed DbCommand ("73"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT m.id, m.descripcion, m.idtipoentidad, m.nombre
+FROM \"MotivosConsultas\" AS m" (0723d8ff)
+2025-08-29T17:51:27.7504802+02:00 8000003a-0000-fb00-b63f-84710c7967bb [INF] Executing "OkObjectResult", writing value of type '"System.Collections.Generic.List`1[[Domain.Entities.MotivoConsulta, Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]"'. (605b4265)
+2025-08-29T17:51:29.8662597+02:00 8000003a-0000-fb00-b63f-84710c7967bb [INF] Executed action "API.Controllers.MotivosConsultaController.ObtenerMotivosConsulta (API)" in 22971.7058ms (afa2e885)
+2025-08-29T17:51:29.8670923+02:00 8000003a-0000-fb00-b63f-84710c7967bb [INF] Executed endpoint '"API.Controllers.MotivosConsultaController.ObtenerMotivosConsulta (API)"' (99874f2b)
+2025-08-29T17:51:29.8722451+02:00 8000003a-0000-fb00-b63f-84710c7967bb [INF] Request finished "HTTP/2" "GET" "https"://"localhost:44311""""/MotivosConsulta/ObtenerMotivosConsulta""" - 200 null "application/json; charset=utf-8" 23667.2219ms (74253ad3)
+2025-08-29T17:51:55.2795449+02:00 8000004e-0006-fe00-b63f-84710c7967bb [INF] Request starting "HTTP/2" "GET" "https"://"localhost:44311""""/MotivosConsulta/ObtenerMotivoConsulta/c5d11aa5-28f9-402f-829a-e6d4a4794281""" - null null (d509f86a)
+2025-08-29T17:51:55.2877060+02:00 8000004e-0006-fe00-b63f-84710c7967bb [INF] Executing endpoint '"API.Controllers.MotivosConsultaController.ObtenerMotivoConsulta (API)"' (500cc934)
+2025-08-29T17:51:55.3155292+02:00 8000004e-0006-fe00-b63f-84710c7967bb [INF] Route matched with "{action = \"ObtenerMotivoConsulta\", controller = \"MotivosConsulta\"}". Executing controller action with signature "System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] ObtenerMotivoConsulta(System.Guid)" on controller "API.Controllers.MotivosConsultaController" ("API"). (122b2fdf)
+2025-08-29T17:51:58.4746086+02:00 8000004e-0006-fe00-b63f-84710c7967bb [INF] Executed DbCommand ("3"ms) [Parameters=["@__get_Item_0='?' (DbType = Guid)"], CommandType='Text', CommandTimeout='30']"
+""SELECT m.id, m.descripcion, m.idtipoentidad, m.nombre
+FROM \"MotivosConsultas\" AS m
+WHERE m.id = @__get_Item_0
+LIMIT 1" (0723d8ff)
+2025-08-29T17:52:00.6153466+02:00 8000004e-0006-fe00-b63f-84710c7967bb [INF] Executing "OkObjectResult", writing value of type '"Domain.Entities.MotivoConsulta"'. (605b4265)
+2025-08-29T17:52:00.6231251+02:00 8000004e-0006-fe00-b63f-84710c7967bb [INF] Executed action "API.Controllers.MotivosConsultaController.ObtenerMotivoConsulta (API)" in 5307.4582ms (afa2e885)
+2025-08-29T17:52:00.6232810+02:00 8000004e-0006-fe00-b63f-84710c7967bb [INF] Executed endpoint '"API.Controllers.MotivosConsultaController.ObtenerMotivoConsulta (API)"' (99874f2b)
+2025-08-29T17:52:00.6268210+02:00 8000004e-0006-fe00-b63f-84710c7967bb [INF] Request finished "HTTP/2" "GET" "https"://"localhost:44311""""/MotivosConsulta/ObtenerMotivoConsulta/c5d11aa5-28f9-402f-829a-e6d4a4794281""" - 200 null "application/json; charset=utf-8" 5347.422ms (74253ad3)
+2025-08-29T17:52:21.4828416+02:00 80000030-0001-fc00-b63f-84710c7967bb [INF] Request starting "HTTP/2" "GET" "https"://"localhost:44311""""/MotivosConsulta/ObtenerMotivoConsultaByName""?nombre=Motivo%202" - null null (d509f86a)
+2025-08-29T17:52:21.4837532+02:00 80000030-0001-fc00-b63f-84710c7967bb [INF] Executing endpoint '"API.Controllers.MotivosConsultaController.ObtenerMotivoConsultaByName (API)"' (500cc934)
+2025-08-29T17:52:21.4896052+02:00 80000030-0001-fc00-b63f-84710c7967bb [INF] Route matched with "{action = \"ObtenerMotivoConsultaByName\", controller = \"MotivosConsulta\"}". Executing controller action with signature "System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] ObtenerMotivoConsultaByName(System.String)" on controller "API.Controllers.MotivosConsultaController" ("API"). (122b2fdf)
+2025-08-29T17:52:41.9105701+02:00 80000030-0001-fc00-b63f-84710c7967bb [INF] Executed DbCommand ("53"ms) [Parameters=["@__ToLower_0='?'"], CommandType='Text', CommandTimeout='30']"
+""SELECT m.id, m.descripcion, m.idtipoentidad, m.nombre
+FROM \"MotivosConsultas\" AS m
+WHERE lower(m.nombre) = @__ToLower_0
+LIMIT 1" (0723d8ff)
+2025-08-29T17:52:42.8268213+02:00 80000030-0001-fc00-b63f-84710c7967bb [INF] Executing "OkObjectResult", writing value of type '"Domain.Entities.MotivoConsulta"'. (605b4265)
+2025-08-29T17:52:42.8277113+02:00 80000030-0001-fc00-b63f-84710c7967bb [INF] Executed action "API.Controllers.MotivosConsultaController.ObtenerMotivoConsultaByName (API)" in 21337.9589ms (afa2e885)
+2025-08-29T17:52:42.8278339+02:00 80000030-0001-fc00-b63f-84710c7967bb [INF] Executed endpoint '"API.Controllers.MotivosConsultaController.ObtenerMotivoConsultaByName (API)"' (99874f2b)
+2025-08-29T17:52:42.8284656+02:00 80000030-0001-fc00-b63f-84710c7967bb [INF] Request finished "HTTP/2" "GET" "https"://"localhost:44311""""/MotivosConsulta/ObtenerMotivoConsultaByName""?nombre=Motivo%202" - 200 null "application/json; charset=utf-8" 21345.5907ms (74253ad3)
+2025-08-29T17:53:26.9439488+02:00 80000032-0001-fc00-b63f-84710c7967bb [INF] Request starting "HTTP/2" "GET" "https"://"localhost:44311""""/MotivosConsulta/ObtenerMotivoConsultaByEntityType""?idTipoEntidad=e170a0db-660f-4c34-ae71-3e9b9dbbd92b" - null null (d509f86a)
+2025-08-29T17:53:26.9449242+02:00 80000032-0001-fc00-b63f-84710c7967bb [INF] Executing endpoint '"API.Controllers.MotivosConsultaController.ObtenerMotivoConsultaByEntityType (API)"' (500cc934)
+2025-08-29T17:53:26.9492906+02:00 80000032-0001-fc00-b63f-84710c7967bb [INF] Route matched with "{action = \"ObtenerMotivoConsultaByEntityType\", controller = \"MotivosConsulta\"}". Executing controller action with signature "System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] ObtenerMotivoConsultaByEntityType(System.Guid)" on controller "API.Controllers.MotivosConsultaController" ("API"). (122b2fdf)
+2025-08-29T17:53:33.1344132+02:00 80000032-0001-fc00-b63f-84710c7967bb [INF] Executed DbCommand ("2"ms) [Parameters=["@__idTipoEntidad_0='?' (DbType = Guid)"], CommandType='Text', CommandTimeout='30']"
+""SELECT m.id, m.descripcion, m.idtipoentidad, m.nombre
+FROM \"MotivosConsultas\" AS m
+WHERE m.idtipoentidad = @__idTipoEntidad_0" (0723d8ff)
+2025-08-29T17:53:33.9916339+02:00 80000032-0001-fc00-b63f-84710c7967bb [INF] Executing "OkObjectResult", writing value of type '"System.Collections.Generic.List`1[[Domain.Entities.MotivoConsulta, Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]"'. (605b4265)
+2025-08-29T17:53:33.9924918+02:00 80000032-0001-fc00-b63f-84710c7967bb [INF] Executed action "API.Controllers.MotivosConsultaController.ObtenerMotivoConsultaByEntityType (API)" in 7043.0594ms (afa2e885)
+2025-08-29T17:53:33.9926519+02:00 80000032-0001-fc00-b63f-84710c7967bb [INF] Executed endpoint '"API.Controllers.MotivosConsultaController.ObtenerMotivoConsultaByEntityType (API)"' (99874f2b)
+2025-08-29T17:53:33.9932916+02:00 80000032-0001-fc00-b63f-84710c7967bb [INF] Request finished "HTTP/2" "GET" "https"://"localhost:44311""""/MotivosConsulta/ObtenerMotivoConsultaByEntityType""?idTipoEntidad=e170a0db-660f-4c34-ae71-3e9b9dbbd92b" - 200 null "application/json; charset=utf-8" 7049.6983ms (74253ad3)
+2025-08-29T17:53:49.4624954+02:00 80000036-0002-fe00-b63f-84710c7967bb [INF] Request starting "HTTP/2" "GET" "https"://"localhost:44311""""/Recompensas/ObtenerRecompensas""" - null null (d509f86a)
+2025-08-29T17:53:49.4827487+02:00 80000036-0002-fe00-b63f-84710c7967bb [INF] Executing endpoint '"API.Controllers.RecompensasController.ObtenerRecompensas (API)"' (500cc934)
+2025-08-29T17:53:49.4859461+02:00 80000036-0002-fe00-b63f-84710c7967bb [INF] Route matched with "{action = \"ObtenerRecompensas\", controller = \"Recompensas\"}". Executing controller action with signature "System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] ObtenerRecompensas()" on controller "API.Controllers.RecompensasController" ("API"). (122b2fdf)
+2025-08-29T17:53:49.6223430+02:00 80000036-0002-fe00-b63f-84710c7967bb [INF] Executed DbCommand ("64"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT r.id, r.descripcion, r.identidad, r.nombre
+FROM \"Recompensas\" AS r" (0723d8ff)
+2025-08-29T17:53:49.6339617+02:00 80000036-0002-fe00-b63f-84710c7967bb [INF] Executing StatusCodeResult, setting HTTP status code 204 (3fe03d2f)
+2025-08-29T17:53:49.6341821+02:00 80000036-0002-fe00-b63f-84710c7967bb [INF] Executed action "API.Controllers.RecompensasController.ObtenerRecompensas (API)" in 148.1366ms (afa2e885)
+2025-08-29T17:53:49.6343716+02:00 80000036-0002-fe00-b63f-84710c7967bb [INF] Executed endpoint '"API.Controllers.RecompensasController.ObtenerRecompensas (API)"' (99874f2b)
+2025-08-29T17:53:49.6365327+02:00 80000036-0002-fe00-b63f-84710c7967bb [INF] Request finished "HTTP/2" "GET" "https"://"localhost:44311""""/Recompensas/ObtenerRecompensas""" - 204 null null 174.1307ms (74253ad3)
+2025-08-29T17:56:05.6535258+02:00 80000008-0004-f900-b63f-84710c7967bb [INF] Request starting "HTTP/2" "GET" "https"://"localhost:44311""""/Recompensas/ObtenerRecompensas""" - null null (d509f86a)
+2025-08-29T17:56:05.6572789+02:00 80000008-0004-f900-b63f-84710c7967bb [INF] Executing endpoint '"API.Controllers.RecompensasController.ObtenerRecompensas (API)"' (500cc934)
+2025-08-29T17:56:05.6575005+02:00 80000008-0004-f900-b63f-84710c7967bb [INF] Route matched with "{action = \"ObtenerRecompensas\", controller = \"Recompensas\"}". Executing controller action with signature "System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] ObtenerRecompensas()" on controller "API.Controllers.RecompensasController" ("API"). (122b2fdf)
+2025-08-29T17:56:05.9303867+02:00 80000008-0004-f900-b63f-84710c7967bb [INF] Executed DbCommand ("5"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT r.id, r.descripcion, r.identidad, r.nombre
+FROM \"Recompensas\" AS r" (0723d8ff)
+2025-08-29T17:56:05.9541104+02:00 80000008-0004-f900-b63f-84710c7967bb [INF] Executing "OkObjectResult", writing value of type '"System.Collections.Generic.List`1[[Domain.Entities.Recompensa, Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]"'. (605b4265)
+2025-08-29T17:56:05.9618762+02:00 80000008-0004-f900-b63f-84710c7967bb [INF] Executed action "API.Controllers.RecompensasController.ObtenerRecompensas (API)" in 304.2558ms (afa2e885)
+2025-08-29T17:56:05.9620018+02:00 80000008-0004-f900-b63f-84710c7967bb [INF] Executed endpoint '"API.Controllers.RecompensasController.ObtenerRecompensas (API)"' (99874f2b)
+2025-08-29T17:56:05.9626853+02:00 80000008-0004-f900-b63f-84710c7967bb [INF] Request finished "HTTP/2" "GET" "https"://"localhost:44311""""/Recompensas/ObtenerRecompensas""" - 200 null "application/json; charset=utf-8" 309.3747ms (74253ad3)
+2025-08-29T17:56:13.9967770+02:00 8000003c-0000-fb00-b63f-84710c7967bb [INF] Request starting "HTTP/2" "GET" "https"://"localhost:44311""""/Recompensas/ObtenerRecompensas""" - null null (d509f86a)
+2025-08-29T17:56:13.9978210+02:00 8000003c-0000-fb00-b63f-84710c7967bb [INF] Executing endpoint '"API.Controllers.RecompensasController.ObtenerRecompensas (API)"' (500cc934)
+2025-08-29T17:56:13.9980369+02:00 8000003c-0000-fb00-b63f-84710c7967bb [INF] Route matched with "{action = \"ObtenerRecompensas\", controller = \"Recompensas\"}". Executing controller action with signature "System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] ObtenerRecompensas()" on controller "API.Controllers.RecompensasController" ("API"). (122b2fdf)
+2025-08-29T17:56:14.0062307+02:00 8000003c-0000-fb00-b63f-84710c7967bb [INF] Executed DbCommand ("1"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT r.id, r.descripcion, r.identidad, r.nombre
+FROM \"Recompensas\" AS r" (0723d8ff)
+2025-08-29T17:56:14.0082928+02:00 8000003c-0000-fb00-b63f-84710c7967bb [INF] Executing "OkObjectResult", writing value of type '"System.Collections.Generic.List`1[[Domain.Entities.Recompensa, Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]"'. (605b4265)
+2025-08-29T17:56:14.0089266+02:00 8000003c-0000-fb00-b63f-84710c7967bb [INF] Executed action "API.Controllers.RecompensasController.ObtenerRecompensas (API)" in 10.7924ms (afa2e885)
+2025-08-29T17:56:14.0090127+02:00 8000003c-0000-fb00-b63f-84710c7967bb [INF] Executed endpoint '"API.Controllers.RecompensasController.ObtenerRecompensas (API)"' (99874f2b)
+2025-08-29T17:56:14.0093719+02:00 8000003c-0000-fb00-b63f-84710c7967bb [INF] Request finished "HTTP/2" "GET" "https"://"localhost:44311""""/Recompensas/ObtenerRecompensas""" - 200 null "application/json; charset=utf-8" 12.7361ms (74253ad3)
+2025-08-29T17:56:44.1814680+02:00 80000034-0001-fc00-b63f-84710c7967bb [INF] Request starting "HTTP/2" "GET" "https"://"localhost:44311""""/Recompensas/ObtenerRecompensas""" - null null (d509f86a)
+2025-08-29T17:56:44.1833054+02:00 80000034-0001-fc00-b63f-84710c7967bb [INF] Executing endpoint '"API.Controllers.RecompensasController.ObtenerRecompensas (API)"' (500cc934)
+2025-08-29T17:56:44.1836326+02:00 80000034-0001-fc00-b63f-84710c7967bb [INF] Route matched with "{action = \"ObtenerRecompensas\", controller = \"Recompensas\"}". Executing controller action with signature "System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] ObtenerRecompensas()" on controller "API.Controllers.RecompensasController" ("API"). (122b2fdf)
+2025-08-29T17:57:37.8528262+02:00 80000034-0001-fc00-b63f-84710c7967bb [INF] Executed DbCommand ("2"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT r.id, r.descripcion, r.identidad, r.nombre
+FROM \"Recompensas\" AS r" (0723d8ff)
+2025-08-29T17:57:41.8636841+02:00 80000034-0001-fc00-b63f-84710c7967bb [INF] Executing "OkObjectResult", writing value of type '"System.Collections.Generic.List`1[[Domain.Entities.Recompensa, Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]"'. (605b4265)
+2025-08-29T17:57:41.8654549+02:00 80000034-0001-fc00-b63f-84710c7967bb [INF] Executed action "API.Controllers.RecompensasController.ObtenerRecompensas (API)" in 57680.7877ms (afa2e885)
+2025-08-29T17:57:41.8656262+02:00 80000034-0001-fc00-b63f-84710c7967bb [INF] Executed endpoint '"API.Controllers.RecompensasController.ObtenerRecompensas (API)"' (99874f2b)
+2025-08-29T17:57:41.8698764+02:00 80000034-0001-fc00-b63f-84710c7967bb [INF] Request finished "HTTP/2" "GET" "https"://"localhost:44311""""/Recompensas/ObtenerRecompensas""" - 200 null "application/json; charset=utf-8" 57687.5718ms (74253ad3)
+2025-08-29T17:57:51.5133643+02:00 80000038-0002-fe00-b63f-84710c7967bb [INF] Request starting "HTTP/2" "GET" "https"://"localhost:44311""""/Recompensas/ObtenerRecompensa/1""" - null null (d509f86a)
+2025-08-29T17:57:51.5152058+02:00 80000038-0002-fe00-b63f-84710c7967bb [INF] Executing endpoint '"API.Controllers.RecompensasController.ObtenerRecompensaById (API)"' (500cc934)
+2025-08-29T17:57:51.5257241+02:00 80000038-0002-fe00-b63f-84710c7967bb [INF] Route matched with "{action = \"ObtenerRecompensaById\", controller = \"Recompensas\"}". Executing controller action with signature "System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] ObtenerRecompensaById(Int32)" on controller "API.Controllers.RecompensasController" ("API"). (122b2fdf)
+2025-08-29T17:57:54.6794275+02:00 80000038-0002-fe00-b63f-84710c7967bb [INF] Executed DbCommand ("2"ms) [Parameters=["@__p_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT r.id, r.descripcion, r.identidad, r.nombre
+FROM \"Recompensas\" AS r
+WHERE r.id = @__p_0
+LIMIT 1" (0723d8ff)
+2025-08-29T17:57:54.6821390+02:00 80000038-0002-fe00-b63f-84710c7967bb [INF] Executing "OkObjectResult", writing value of type '"Domain.Entities.Recompensa"'. (605b4265)
+2025-08-29T17:57:54.6828492+02:00 80000038-0002-fe00-b63f-84710c7967bb [INF] Executed action "API.Controllers.RecompensasController.ObtenerRecompensaById (API)" in 3156.9728ms (afa2e885)
+2025-08-29T17:57:54.6829298+02:00 80000038-0002-fe00-b63f-84710c7967bb [INF] Executed endpoint '"API.Controllers.RecompensasController.ObtenerRecompensaById (API)"' (99874f2b)
+2025-08-29T17:57:54.6832768+02:00 80000038-0002-fe00-b63f-84710c7967bb [INF] Request finished "HTTP/2" "GET" "https"://"localhost:44311""""/Recompensas/ObtenerRecompensa/1""" - 200 null "application/json; charset=utf-8" 3170.1112ms (74253ad3)
+2025-08-29T17:58:14.2602105+02:00 80000017-0006-fd00-b63f-84710c7967bb [INF] Request starting "HTTP/2" "GET" "https"://"localhost:44311""""/Recompensas/ObtenerRecompensaByName""?nombre=recompensa%201" - null null (d509f86a)
+2025-08-29T17:58:14.2613511+02:00 80000017-0006-fd00-b63f-84710c7967bb [INF] Executing endpoint '"API.Controllers.RecompensasController.ObtenerRecompensaByName (API)"' (500cc934)
+2025-08-29T17:58:14.2698164+02:00 80000017-0006-fd00-b63f-84710c7967bb [INF] Route matched with "{action = \"ObtenerRecompensaByName\", controller = \"Recompensas\"}". Executing controller action with signature "System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] ObtenerRecompensaByName(System.String)" on controller "API.Controllers.RecompensasController" ("API"). (122b2fdf)
+2025-08-29T17:58:23.8425402+02:00 80000017-0006-fd00-b63f-84710c7967bb [INF] Executed DbCommand ("2"ms) [Parameters=["@__ToLower_0='?'"], CommandType='Text', CommandTimeout='30']"
+""SELECT r.id, r.descripcion, r.identidad, r.nombre
+FROM \"Recompensas\" AS r
+WHERE lower(r.nombre) = @__ToLower_0
+LIMIT 1" (0723d8ff)
+2025-08-29T17:58:23.8447492+02:00 80000017-0006-fd00-b63f-84710c7967bb [INF] Executing "OkObjectResult", writing value of type '"Domain.Entities.Recompensa"'. (605b4265)
+2025-08-29T17:58:23.8452948+02:00 80000017-0006-fd00-b63f-84710c7967bb [INF] Executed action "API.Controllers.RecompensasController.ObtenerRecompensaByName (API)" in 9575.3537ms (afa2e885)
+2025-08-29T17:58:23.8453805+02:00 80000017-0006-fd00-b63f-84710c7967bb [INF] Executed endpoint '"API.Controllers.RecompensasController.ObtenerRecompensaByName (API)"' (99874f2b)
+2025-08-29T17:58:23.8457047+02:00 80000017-0006-fd00-b63f-84710c7967bb [INF] Request finished "HTTP/2" "GET" "https"://"localhost:44311""""/Recompensas/ObtenerRecompensaByName""?nombre=recompensa%201" - 200 null "application/json; charset=utf-8" 9585.9707ms (74253ad3)
+2025-08-29T17:58:34.6156918+02:00 80000056-0005-fc00-b63f-84710c7967bb [INF] Request starting "HTTP/2" "GET" "https"://"localhost:44311""""/Recompensas/ObtenerRecompensasByEntity""?idEntidad=2" - null null (d509f86a)
+2025-08-29T17:58:34.6168494+02:00 80000056-0005-fc00-b63f-84710c7967bb [INF] Executing endpoint '"API.Controllers.RecompensasController.ObtenerRecompensasByEntity (API)"' (500cc934)
+2025-08-29T17:58:34.6219638+02:00 80000056-0005-fc00-b63f-84710c7967bb [INF] Route matched with "{action = \"ObtenerRecompensasByEntity\", controller = \"Recompensas\"}". Executing controller action with signature "System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] ObtenerRecompensasByEntity(Int32)" on controller "API.Controllers.RecompensasController" ("API"). (122b2fdf)
+2025-08-29T17:58:36.1204839+02:00 80000056-0005-fc00-b63f-84710c7967bb [INF] Executed DbCommand ("1"ms) [Parameters=["@__idEntidad_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT r.id, r.descripcion, r.identidad, r.nombre
+FROM \"Recompensas\" AS r
+WHERE r.identidad = @__idEntidad_0" (0723d8ff)
+2025-08-29T17:58:36.1229899+02:00 80000056-0005-fc00-b63f-84710c7967bb [INF] Executing "OkObjectResult", writing value of type '"System.Collections.Generic.List`1[[Domain.Entities.Recompensa, Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]"'. (605b4265)
+2025-08-29T17:58:36.1236182+02:00 80000056-0005-fc00-b63f-84710c7967bb [INF] Executed action "API.Controllers.RecompensasController.ObtenerRecompensasByEntity (API)" in 1501.5451ms (afa2e885)
+2025-08-29T17:58:36.1237035+02:00 80000056-0005-fc00-b63f-84710c7967bb [INF] Executed endpoint '"API.Controllers.RecompensasController.ObtenerRecompensasByEntity (API)"' (99874f2b)
+2025-08-29T17:58:36.1241003+02:00 80000056-0005-fc00-b63f-84710c7967bb [INF] Request finished "HTTP/2" "GET" "https"://"localhost:44311""""/Recompensas/ObtenerRecompensasByEntity""?idEntidad=2" - 200 null "application/json; charset=utf-8" 1508.5105ms (74253ad3)
+2025-08-29T17:58:41.5551092+02:00 8000003a-0002-fe00-b63f-84710c7967bb [INF] Request starting "HTTP/2" "GET" "https"://"localhost:44311""""/Recompensas/ObtenerRecompensasByEntity""?idEntidad=1" - null null (d509f86a)
+2025-08-29T17:58:41.5558484+02:00 8000003a-0002-fe00-b63f-84710c7967bb [INF] Executing endpoint '"API.Controllers.RecompensasController.ObtenerRecompensasByEntity (API)"' (500cc934)
+2025-08-29T17:58:41.5560024+02:00 8000003a-0002-fe00-b63f-84710c7967bb [INF] Route matched with "{action = \"ObtenerRecompensasByEntity\", controller = \"Recompensas\"}". Executing controller action with signature "System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] ObtenerRecompensasByEntity(Int32)" on controller "API.Controllers.RecompensasController" ("API"). (122b2fdf)
+2025-08-29T17:58:44.1653712+02:00 8000003a-0002-fe00-b63f-84710c7967bb [INF] Executed DbCommand ("2"ms) [Parameters=["@__idEntidad_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT r.id, r.descripcion, r.identidad, r.nombre
+FROM \"Recompensas\" AS r
+WHERE r.identidad = @__idEntidad_0" (0723d8ff)
+2025-08-29T17:58:44.1693456+02:00 8000003a-0002-fe00-b63f-84710c7967bb [INF] Executing "OkObjectResult", writing value of type '"System.Collections.Generic.List`1[[Domain.Entities.Recompensa, Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]"'. (605b4265)
+2025-08-29T17:58:44.1698738+02:00 8000003a-0002-fe00-b63f-84710c7967bb [INF] Executed action "API.Controllers.RecompensasController.ObtenerRecompensasByEntity (API)" in 2613.7689ms (afa2e885)
+2025-08-29T17:58:44.1699308+02:00 8000003a-0002-fe00-b63f-84710c7967bb [INF] Executed endpoint '"API.Controllers.RecompensasController.ObtenerRecompensasByEntity (API)"' (99874f2b)
+2025-08-29T17:58:44.1702136+02:00 8000003a-0002-fe00-b63f-84710c7967bb [INF] Request finished "HTTP/2" "GET" "https"://"localhost:44311""""/Recompensas/ObtenerRecompensasByEntity""?idEntidad=1" - 200 null "application/json; charset=utf-8" 2615.3067ms (74253ad3)

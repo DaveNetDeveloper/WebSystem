@@ -1,0 +1,20 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    
+    <WarningLevel>0</WarningLevel>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Filters\**" />
+    <Compile Remove="Repositories\**" />
+    <EmbeddedResource Remove="Filters\**" />
+    <EmbeddedResource Remove="Repositories\**" />
+    <None Remove="Filters\**" />
+    <None Remove="Repositories\**" />
+  </ItemGroup>
+
+</Project>

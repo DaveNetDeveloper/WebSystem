@@ -1,0 +1,13 @@
+# achivos de compilación de Visual Studio 
+vs
+vs.*
+.vs
+.vs.*
+bin
+bin.*
+*.dd
+obj
+obj.*
+/obj
+/obj.*
+/.config

@@ -1,0 +1,39 @@
+name: Run Tests from Test Repo
+
+on:
+  push:
+    branches: [ develop ]
+  pull_request:
+    branches: [ develop ]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    name: Run tests from external repo
+
+    steps:
+      - name: Checkout API repo (current repo)
+        uses: actions/checkout@v4
+
+      - name: Checkout Test repo
+        uses: actions/checkout@v4
+        with:
+          repository: DaveNetDeveloper/Test
+          token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
+          path: Test
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '8.0.x'
+
+      - name: Install Playwright
+        run: dotnet tool install --global Microsoft.Playwright.CLI
+
+      - name: Restore, Build and Test Test repo
+        run: |
+          cd Test
+          dotnet restore
+          dotnet build --configuration Release
+          dotnet playwright install
+          dotnet test --no-build --configuration Release

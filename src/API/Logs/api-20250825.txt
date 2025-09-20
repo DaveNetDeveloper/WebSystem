@@ -1,0 +1,65 @@
+2025-08-25T20:26:13.0602194+02:00  [INF] User profile is available. Using '"C:\Users\David\AppData\Local\ASP.NET\DataProtection-Keys"' as key repository and Windows DPAPI to encrypt keys at rest. (7ac5e29c)
+2025-08-25T20:26:30.5793533+02:00  [INF] Application started. Press Ctrl+C to shut down. (dcaefe54)
+2025-08-25T20:26:31.0056403+02:00  [INF] Hosting environment: "Development" (bc5a1a4e)
+2025-08-25T20:26:31.0097920+02:00  [INF] Content root path: "C:\Users\David\Desktop\API" (cc26f24e)
+2025-08-25T20:26:32.5757305+02:00 80000027-0002-fd00-b63f-84710c7967bb [INF] Request starting "HTTP/2" "GET" "https"://"localhost:44311""""/swagger/index.html""" - null null (d509f86a)
+2025-08-25T20:26:42.9761130+02:00 80000027-0002-fd00-b63f-84710c7967bb [INF] Request finished "HTTP/2" "GET" "https"://"localhost:44311""""/swagger/index.html""" - 200 null "text/html;charset=utf-8" 10532.383ms (74253ad3)
+2025-08-25T20:26:55.3069563+02:00 80000002-0004-fb00-b63f-84710c7967bb [INF] Request starting "HTTP/2" "GET" "https"://"localhost:44311""""/_framework/aspnetcore-browser-refresh.js""" - null null (d509f86a)
+2025-08-25T20:26:55.3193540+02:00 80000002-0004-fb00-b63f-84710c7967bb [INF] Request finished "HTTP/2" "GET" "https"://"localhost:44311""""/_framework/aspnetcore-browser-refresh.js""" - 200 13742 "application/javascript; charset=utf-8" 9.1722ms (74253ad3)
+2025-08-25T20:26:58.8814253+02:00 8000000a-0000-fe00-b63f-84710c7967bb [INF] Request starting "HTTP/2" "GET" "https"://"localhost:44311""""/swagger/v1/swagger.json""" - null null (d509f86a)
+2025-08-25T20:26:58.9212547+02:00 8000000a-0000-fe00-b63f-84710c7967bb [INF] Request finished "HTTP/2" "GET" "https"://"localhost:44311""""/swagger/v1/swagger.json""" - 200 null "application/json;charset=utf-8" 39.8799ms (74253ad3)
+2025-08-25T20:30:17.3185785+02:00 80000011-0006-ff00-b63f-84710c7967bb [INF] Request starting "HTTP/2" "GET" "https"://"localhost:44311""""/Actividades/ObtenerActividades""" - null null (d509f86a)
+2025-08-25T20:30:17.5476708+02:00 80000011-0006-ff00-b63f-84710c7967bb [INF] Authorization failed. "These requirements were not met:
+DenyAnonymousAuthorizationRequirement: Requires an authenticated user." (92d7f7d3)
+2025-08-25T20:30:17.5581405+02:00 80000011-0006-ff00-b63f-84710c7967bb [INF] AuthenticationScheme: "Bearer" was challenged. (d45f1f38)
+2025-08-25T20:30:17.6123526+02:00 80000011-0006-ff00-b63f-84710c7967bb [INF] Request finished "HTTP/2" "GET" "https"://"localhost:44311""""/Actividades/ObtenerActividades""" - 401 null null 294.5342ms (74253ad3)
+2025-08-25T20:30:54.3040514+02:00 80000002-0002-fc00-b63f-84710c7967bb [INF] Request starting "HTTP/2" "POST" "https"://"localhost:44311""""/auth/login""" - "application/json" 107 (d509f86a)
+2025-08-25T20:30:54.3307744+02:00 80000002-0002-fc00-b63f-84710c7967bb [INF] CORS policy execution successful. (5409d6ef)
+2025-08-25T20:30:54.3952492+02:00 80000002-0002-fc00-b63f-84710c7967bb [INF] Executing endpoint '"API.Controllers.AuthController.Login (API)"' (500cc934)
+2025-08-25T20:30:54.7379846+02:00 80000002-0002-fc00-b63f-84710c7967bb [INF] Route matched with "{action = \"Login\", controller = \"Auth\"}". Executing controller action with signature "Microsoft.AspNetCore.Mvc.IActionResult Login(Domain.Entities.LoginDto)" on controller "API.Controllers.AuthController" ("API"). (122b2fdf)
+2025-08-25T20:31:29.1975515+02:00 80000002-0002-fc00-b63f-84710c7967bb [INF] Executed DbCommand ("351"ms) [Parameters=["@__u_0='?'"], CommandType='Text', CommandTimeout='30']"
+""SELECT u.id, u.activo, u.apellidos, u.contraseña, u.correo, u.\"expiracionToken\", u.\"fechaCreación\", u.\"fechaNacimiento\", u.nombre, u.puntos, u.suscrito, u.token, u.\"ultimaConexion\"
+FROM \"Usuarios\" AS u
+WHERE u.nombre = @__u_0
+LIMIT 2" (0723d8ff)
+2025-08-25T20:31:36.4422282+02:00 80000002-0002-fc00-b63f-84710c7967bb [INF] Executing "OkObjectResult", writing value of type '"<>f__AnonymousType1`3[[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.DateTime, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]"'. (605b4265)
+2025-08-25T20:31:36.5371823+02:00 80000002-0002-fc00-b63f-84710c7967bb [INF] Executed action "API.Controllers.AuthController.Login (API)" in 41767.4119ms (afa2e885)
+2025-08-25T20:31:36.5374755+02:00 80000002-0002-fc00-b63f-84710c7967bb [INF] Executed endpoint '"API.Controllers.AuthController.Login (API)"' (99874f2b)
+2025-08-25T20:31:36.5713874+02:00 80000002-0002-fc00-b63f-84710c7967bb [INF] Request finished "HTTP/2" "POST" "https"://"localhost:44311""""/auth/login""" - 200 null "application/json; charset=utf-8" 42267.7155ms (74253ad3)
+2025-08-25T20:32:09.3875548+02:00 80000002-0007-fe00-b63f-84710c7967bb [INF] Request starting "HTTP/2" "GET" "https"://"localhost:44311""""/Actividades/ObtenerActividades""" - null null (d509f86a)
+2025-08-25T20:32:09.8465657+02:00 80000002-0007-fe00-b63f-84710c7967bb [INF] Executing endpoint '"API.Controllers.ActividadesController.ObtenerActividades (API)"' (500cc934)
+2025-08-25T20:32:09.8633506+02:00 80000002-0007-fe00-b63f-84710c7967bb [INF] Route matched with "{action = \"ObtenerActividades\", controller = \"Actividades\"}". Executing controller action with signature "System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] ObtenerActividades()" on controller "API.Controllers.ActividadesController" ("API"). (122b2fdf)
+2025-08-25T20:32:10.0763171+02:00 80000002-0007-fe00-b63f-84710c7967bb [INF] Executed DbCommand ("79"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT a.id, a.activo, a.descripcion, a.\"descripcionCorta\", a.\"fechaFin\", a.\"fechaInicio\", a.gratis, a.\"idEntidad\", a.\"idTipoActividad\", a.imagen, a.\"informacioExtra\", a.\"linkEvento\", a.\"linkFacebook\", a.\"linkInstagram\", a.\"linkYoutube\", a.nombre, a.popularidad, a.ubicación
+FROM \"Actividades\" AS a" (0723d8ff)
+2025-08-25T20:32:10.2061541+02:00 80000002-0007-fe00-b63f-84710c7967bb [INF] Executing "OkObjectResult", writing value of type '"System.Collections.Generic.List`1[[Domain.Entities.Actividad, Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]"'. (605b4265)
+2025-08-25T20:32:10.2631140+02:00 80000002-0007-fe00-b63f-84710c7967bb [INF] Executed action "API.Controllers.ActividadesController.ObtenerActividades (API)" in 399.4375ms (afa2e885)
+2025-08-25T20:32:10.2637991+02:00 80000002-0007-fe00-b63f-84710c7967bb [INF] Executed endpoint '"API.Controllers.ActividadesController.ObtenerActividades (API)"' (99874f2b)
+2025-08-25T20:32:10.2689091+02:00 80000002-0007-fe00-b63f-84710c7967bb [INF] Request finished "HTTP/2" "GET" "https"://"localhost:44311""""/Actividades/ObtenerActividades""" - 200 null "application/json; charset=utf-8" 881.759ms (74253ad3)
+2025-08-25T20:35:40.3506377+02:00 8000000c-0000-fe00-b63f-84710c7967bb [INF] Request starting "HTTP/2" "GET" "https"://"localhost:44311""""/Usuarios/ObtenerUsuarios""" - null null (d509f86a)
+2025-08-25T20:35:40.4129151+02:00 8000000c-0000-fe00-b63f-84710c7967bb [INF] Executing endpoint '"API.Controllers.UsuariosController.ObtenerUsuarios (API)"' (500cc934)
+2025-08-25T20:35:40.4534616+02:00 8000000c-0000-fe00-b63f-84710c7967bb [INF] Route matched with "{action = \"ObtenerUsuarios\", controller = \"Usuarios\"}". Executing controller action with signature "System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] ObtenerUsuarios()" on controller "API.Controllers.UsuariosController" ("API"). (122b2fdf)
+2025-08-25T20:35:46.7754295+02:00 8000000c-0000-fe00-b63f-84710c7967bb [INF] Obteniendo usuarios. (16fb1155)
+2025-08-25T20:35:49.9303136+02:00 8000000c-0000-fe00-b63f-84710c7967bb [ERR] Error obteniendo usuarios. (aa204f75)
+System.Exception: Error de prueba.
+   at API.Controllers.UsuariosController.ObtenerUsuarios() in C:\Users\David\Desktop\API\Controllers\UsuariosController.cs:line 37
+2025-08-25T20:35:52.5931306+02:00 8000000c-0000-fe00-b63f-84710c7967bb [INF] Executed DbCommand ("2"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT u.id, u.activo, u.apellidos, u.contraseña, u.correo, u.\"expiracionToken\", u.\"fechaCreación\", u.\"fechaNacimiento\", u.nombre, u.puntos, u.suscrito, u.token, u.\"ultimaConexion\"
+FROM \"Usuarios\" AS u" (0723d8ff)
+2025-08-25T20:35:52.5974936+02:00 8000000c-0000-fe00-b63f-84710c7967bb [INF] Executing "OkObjectResult", writing value of type '"System.Collections.Generic.List`1[[Domain.Entities.Usuario, Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]"'. (605b4265)
+2025-08-25T20:35:52.6056966+02:00 8000000c-0000-fe00-b63f-84710c7967bb [INF] Executed action "API.Controllers.UsuariosController.ObtenerUsuarios (API)" in 12152.0199ms (afa2e885)
+2025-08-25T20:35:52.6058116+02:00 8000000c-0000-fe00-b63f-84710c7967bb [INF] Executed endpoint '"API.Controllers.UsuariosController.ObtenerUsuarios (API)"' (99874f2b)
+2025-08-25T20:35:52.6062051+02:00 8000000c-0000-fe00-b63f-84710c7967bb [INF] Request finished "HTTP/2" "GET" "https"://"localhost:44311""""/Usuarios/ObtenerUsuarios""" - 200 null "application/json; charset=utf-8" 12256.4452ms (74253ad3)
+2025-08-25T20:36:06.0736524+02:00 8000000e-0007-ff00-b63f-84710c7967bb [INF] Request starting "HTTP/2" "GET" "https"://"localhost:44311""""/Usuarios/ObtenerUsuarioByEmail""?email=david%40correo.com" - null null (d509f86a)
+2025-08-25T20:36:06.0796779+02:00 8000000e-0007-ff00-b63f-84710c7967bb [INF] Executing endpoint '"API.Controllers.UsuariosController.ObtenerUsuarioByEmail (API)"' (500cc934)
+2025-08-25T20:36:06.1235349+02:00 8000000e-0007-ff00-b63f-84710c7967bb [INF] Route matched with "{action = \"ObtenerUsuarioByEmail\", controller = \"Usuarios\"}". Executing controller action with signature "System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] ObtenerUsuarioByEmail(System.String)" on controller "API.Controllers.UsuariosController" ("API"). (122b2fdf)
+2025-08-25T20:36:08.9645860+02:00 8000000e-0007-ff00-b63f-84710c7967bb [INF] Executed DbCommand ("89"ms) [Parameters=["@__ToLower_0='?'"], CommandType='Text', CommandTimeout='30']"
+""SELECT u.id, u.activo, u.apellidos, u.contraseña, u.correo, u.\"expiracionToken\", u.\"fechaCreación\", u.\"fechaNacimiento\", u.nombre, u.puntos, u.suscrito, u.token, u.\"ultimaConexion\"
+FROM \"Usuarios\" AS u
+WHERE lower(u.correo) = @__ToLower_0
+LIMIT 1" (0723d8ff)
+2025-08-25T20:36:08.9947163+02:00 8000000e-0007-ff00-b63f-84710c7967bb [INF] Mensaje no definido. (e2ae16ec)
+2025-08-25T20:36:08.9951260+02:00 8000000e-0007-ff00-b63f-84710c7967bb [INF] Executing "OkObjectResult", writing value of type '"Domain.Entities.Usuario"'. (605b4265)
+2025-08-25T20:36:08.9957433+02:00 8000000e-0007-ff00-b63f-84710c7967bb [INF] Executed action "API.Controllers.UsuariosController.ObtenerUsuarioByEmail (API)" in 2872.0103ms (afa2e885)
+2025-08-25T20:36:08.9959000+02:00 8000000e-0007-ff00-b63f-84710c7967bb [INF] Executed endpoint '"API.Controllers.UsuariosController.ObtenerUsuarioByEmail (API)"' (99874f2b)
+2025-08-25T20:36:08.9964481+02:00 8000000e-0007-ff00-b63f-84710c7967bb [INF] Request finished "HTTP/2" "GET" "https"://"localhost:44311""""/Usuarios/ObtenerUsuarioByEmail""?email=david%40correo.com" - 200 null "application/json; charset=utf-8" 2923.753ms (74253ad3)

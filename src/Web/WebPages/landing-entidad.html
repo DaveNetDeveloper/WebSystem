@@ -1,0 +1,494 @@
+<!doctype html>
+<html class="no-js" lang="es">
+<head>
+	<!-- Meta Tags -->
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="keywords" content="Site keywords here">
+	<meta name="description" content="">
+	<meta name='copyright' content='UOC'>
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+	<title>Entidad</title>
+
+	<link rel="icon" href="img/favicon.png">
+
+	<!-- Google Fonts -->
+	<link href="https://fonts.googleapis.com/css?family=Poppins:200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i&display=swap" rel="stylesheet">
+
+	<!-- Bootstrap CSS -->
+	<link rel="stylesheet" href="./css/bootstrap.min.css">
+	<!-- Nice Select CSS -->
+	<link rel="stylesheet" href="./css/nice-select.css">
+	<!-- Font Awesome CSS -->
+	<link rel="stylesheet" href="./css/font-awesome.min.css">
+	<!-- icofont CSS -->
+	<link rel="stylesheet" href="./css/icofont.css">
+	<!-- Slicknav -->
+	<link rel="stylesheet" href="./css/slicknav.min.css">
+	<!-- Owl Carousel CSS -->
+	<link rel="stylesheet" href="./css/owl-carousel.css">
+	<!-- Datepicker CSS -->
+	<link rel="stylesheet" href="./css/datepicker.css">
+	<!-- Animate CSS -->
+	<link rel="stylesheet" href="./css/animate.min.css">
+	<!-- Magnific Popup CSS -->
+	<link rel="stylesheet" href="./css/magnific-popup.css">
+
+	<!-- Medipro CSS -->
+	<link rel="stylesheet" href="./css/normalize.css">
+	<link rel="stylesheet" href="./css/style.css">
+	<link rel="stylesheet" href="./css/responsive.css">
+
+	<script src="./js/libraries/utilities.js"></script>
+	<script src="./js/services/usuariosController.js"></script>
+	<script src="./js/services/entidadesController.js"></script>
+
+    <style>
+        video {
+            width: 100%;
+            height: 100vh;
+            object-fit: cover;
+            margin-bottom: 100px;
+        }
+
+        button {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            font-size: 18px;
+            padding: 10px;
+            cursor: pointer;
+
+        }
+    </style>
+
+</head>
+<body>
+
+	<!-- Preloader -->
+	<div class="preloader">
+		<div class="loader">
+			<div class="loader-outter"></div>
+			<div class="loader-inner"></div>
+
+			<div class="indicator">
+				<svg width="16px" height="12px">
+					<polyline id="back" points="1 6 4 6 6 11 10 1 12 6 15 6"></polyline>
+					<polyline id="front" points="1 6 4 6 6 11 10 1 12 6 15 6"></polyline>
+				</svg>
+			</div>
+		</div>
+	</div>
+	<!-- End Preloader -->
+	<!-- Header Area -->
+	<!-- Header Area -->
+	<header class="header">
+		<!-- Header Inner -->
+		<div class="header-inner">
+			<div class="container">
+				<div class="inner">
+					<div class="row">
+						<div class="col-lg-3 col-md-3 col-12">
+							<!-- Start Logo -->
+							<div class="logo">
+								<a href="home-privada.html"><img src="img/logo.jpg" alt="#"></a>
+							</div>
+							<!-- End Logo -->
+							<!-- Mobile Nav -->
+							<div class="mobile-nav"></div>
+							<!-- End Mobile Nav -->
+						</div>
+						<div class="col-lg-7 col-md-9 col-12">
+							<!-- Main Menu -->
+							<div class="main-menu">
+								<nav class="navigation">
+									<ul class="nav menu">
+										<li><a href="home-privada.html">Inicio </a></li>
+										<li class="active"><a href="explorar.html">Explorar </a></li>
+										<li><a href="#">Recompensas </a></li>
+										<li><a href="#">Cómo ganar puntos? </a></li>
+									</ul>
+								</nav>
+							</div>
+							<!--/ End Main Menu -->
+						</div>
+						<div class="col-lg-2 col-12">
+							<div class="get-quote">
+								<a id="infoUsuario" style="background: goldenrod;" href="#" class="btn">Hola {nombreUsuario}. Tienes {puntosUsuario} pts.</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!--/ End Header Inner -->
+	</header>
+	<!-- End Header Area -->
+
+	<script>
+
+		var infoUsuarioElement = document.getElementById("infoUsuario");
+
+		let cookieToken = getCookie("token");
+
+		let parameters = new Filtros();
+		parameters.agregarElemento('token', cookieToken);
+
+		GetByFilters('ObtenerUsuarioByToken', parameters)
+			.then(data => {
+
+				infoUsuarioElement.innerHTML = infoUsuarioElement.innerHTML.replace("{nombreUsuario}", data.nombre).replace("{puntosUsuario}", data.puntos);
+
+			})
+			.catch(error => {
+				console.error('Error en GetByFilters:', error);
+				//alert('Error en PatchByFilters: ', error);
+			});
+
+	</script>
+
+	<!-- Breadcrumbs -->
+	<div class="breadcrumbs overlay">
+		<div class="container">
+			<div class="bread-inner">
+				<div class="row">
+					<div class="col-12">
+						<h2 id="tituloLanding"></h2>
+						<ul class="bread-list">
+							<li><a href="explorar.html">Explorar</a></li>
+							<li><i class="icofont-simple-right"></i></li>
+							<li id="paginaActual" class="active"></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- End Breadcrumbs -->
+	<!-- Start Portfolio Details Area -->
+	<section class="pf-details section">
+		<div class="container">
+			<div class="row">
+				<div class="col-12">
+					<div class="inner-content">
+						<div class="image-slider">
+							<div id="contenedorImagenesEntidad" class="pf-details-slider">
+
+							</div>
+						</div>
+						<div id="infoEntidad" class="date"> </div>
+						<div class="body-text">
+							<h3 id="h3Entidad"></h3>
+							<p id="pEntidad"></p>
+							<div class="share">
+								<h4>Comparte -</h4>
+								<ul>
+									<li><a id="linkFacebook" href="#" target="_blank"><i id="facebookEntidad" class="fa fa-facebook-official" aria-hidden="true"></i></a></li>
+									<li><a id="linkTwitter" href="#" target="_blank"><i id="twiterrEntidad" class="fa fa-twitter" aria-hidden="true"></i></a></li>
+									<li><a id="linkLinkedin" href="#" target="_blank"><i id="linkedinEntidad" class="fa fa-linkedin" aria-hidden="true"></i></a></li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<!-- End Portfolio Details Area -->
+
+	<video id="miVideo" controls>
+		<source src="videos/sample-mp4-file.mp4" type="video/mp4">
+		Tu navegador no soporta el elemento de video.
+	</video>
+	<script>
+		const miVideo = document.getElementById('miVideo');
+		function toggleVideo() {
+			if (miVideo.paused) {
+				miVideo.play();
+			} else {
+				miVideo.pause();
+			}
+		}
+	</script>
+
+	<!-- Pricing Table -->
+	<section style="padding: 50px 0px 150px; " class="pricing-table section">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-12">
+					<div class="section-title">
+						<h2>Caracteristicas de la entidad</h2>
+						<p>Lorem ipsum dolor sit amet consectetur adipiscing elit praesent aliquet. pretiumts</p>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-lg-4 col-md-12 col-12">
+					<div class="single-table">
+						<div class="table-head">
+							<div class="icon">
+								<i class="icofont icofont-file-check"></i>
+							</div>
+							<h4 class="title">Calidad</h4>
+						</div>
+						<ul class="table-list">
+							<li><i class="icofont icofont-ui-check"></i>Lorem ipsum dolor sit</li>
+							<li><i class="icofont icofont-ui-check"></i>Cubitur sollicitudin fentum</li>
+							<li class="cross"><i class="icofont icofont-ui-close"></i>Nullam interdum enim</li>
+							<li class="cross"><i class="icofont icofont-ui-close"></i>Donec ultricies metus</li>
+							<li class="cross"><i class="icofont icofont-ui-close"></i>Pellentesque eget nibh</li>
+						</ul>
+					</div>
+				</div>
+				<div class="col-lg-4 col-md-12 col-12">
+					<div class="single-table">
+						<div class="table-head">
+							<div class="icon">
+								<i class="icofont-wand"></i>
+							</div>
+							<h4 class="title">Disponibilidad</h4>
+						</div>
+						<ul class="table-list">
+							<li><i class="icofont icofont-ui-check"></i>Lorem ipsum dolor sit</li>
+							<li><i class="icofont icofont-ui-check"></i>Cubitur sollicitudin fentum</li>
+							<li><i class="icofont icofont-ui-check"></i>Nullam interdum enim</li>
+							<li class="cross"><i class="icofont icofont-ui-close"></i>Donec ultricies metus</li>
+							<li class="cross"><i class="icofont icofont-ui-close"></i>Pellentesque eget nibh</li>
+						</ul>
+					</div>
+				</div>
+				<div class="col-lg-4 col-md-12 col-12">
+					<div class="single-table">
+						<div class="table-head">
+							<div class="icon">
+								<i class="icofont icofont-menu-alt"></i>
+							</div>
+							<h4 class="title">Variedad</h4>
+						</div>
+						<ul class="table-list">
+							<li><i class="icofont icofont-ui-check"></i>Lorem ipsum dolor sit</li>
+							<li><i class="icofont icofont-ui-check"></i>Cubitur sollicitudin fentum</li>
+							<li><i class="icofont icofont-ui-check"></i>Nullam interdum enim</li>
+							<li><i class="icofont icofont-ui-check"></i>Donec ultricies metus</li>
+							<li><i class="icofont icofont-ui-check"></i>Pellentesque eget nibh</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<!--/ End Pricing Table -->
+
+	<script>
+
+		var liPaginaActual = document.getElementById("paginaActual");
+		liPaginaActual.innerHTML = document.title;
+
+		//
+		var url = new URL(window.location.href);
+		var urlParams = new URLSearchParams(url.search);
+		var paramIdEntidad = urlParams.get('id');
+
+		GetEntidad(paramIdEntidad)
+			.then(entidad => {
+
+				var contenedor = document.getElementById("contenedorImagenesEntidad");// Obtener el contenedor por su ID
+
+				if (entidad !== undefined && entidad != null) {
+
+					let h2TituloLanding = document.getElementById("tituloLanding");
+					h2TituloLanding.innerHTML = entidad.nombre;
+
+					//TO DO - crear nuevos campos en DB y en entidad y obtenerlos para customizar las redes sociales de la entidad
+					let aFacebook = document.getElementById("linkFacebook");
+					aFacebook.href = "xxx";
+
+					let aTwitter = document.getElementById("linkTwitter");
+					aTwitter.href = "xxx";
+
+					let aLinkedin = document.getElementById("linkLinkedin");
+					aLinkedin.href = "xxx";
+
+					//
+					let nuevaImagen = document.createElement("img");
+					nuevaImagen.src = "img/entidades/" + entidad.imagen;
+					nuevaImagen.alt = "Descripción de la imagen";
+					contenedor.appendChild(nuevaImagen);
+
+					//
+					let nuevaImagen2 = document.createElement("img");
+					nuevaImagen2.src = "img/entidades/nodisponible.png";
+					nuevaImagen2.alt = "";
+					contenedor.appendChild(nuevaImagen2);
+
+					//
+					let nuevaImagen3 = document.createElement("img");
+					nuevaImagen3.src = "img/entidades/nodisponible.png";
+					nuevaImagen3.alt = "";
+					contenedor.appendChild(nuevaImagen3);
+
+
+					var h3Entidad = document.getElementById("h3Entidad");
+					h3Entidad.innerHTML = entidad.nombre;
+
+					var pEntidad = document.getElementById("pEntidad");
+					pEntidad.innerHTML = entidad.descripcion;
+					pEntidad.style.color = "black";
+
+					var infoEntidadDiv = document.getElementById("infoEntidad");
+					var ulElemento = document.createElement("ul");
+					var datos = [
+						{ propiedad: "Tipo", valor: "Asociación cultural" },
+						{ propiedad: "Categorias", valor: "Ayuda social, Cultura" },
+						{ propiedad: "Ubicacion", valor: entidad.ubicacion },
+						{ propiedad: "Popularidad", valor: entidad.popularidad }
+					];
+					datos.forEach(function (item) {
+
+						var liElemento = document.createElement("li");
+						var spanPropiedad = document.createElement("span");
+						spanPropiedad.textContent = item.propiedad + " : ";
+
+						liElemento.appendChild(spanPropiedad);
+						liElemento.textContent += item.valor;
+						ulElemento.appendChild(liElemento);
+					});
+					infoEntidadDiv.appendChild(ulElemento);// Agregar la ul al div
+				} 
+			})
+			.catch(error => {
+				console.error('Error en GetEntidad:', error);
+				alert('Error en GetEntidad: ', error);
+			});
+			 
+	</script>
+
+	<!-- Footer Area -->
+	<footer id="footer" class="footer ">
+		<!-- Footer Top -->
+		<div class="footer-top">
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-3 col-md-6 col-12">
+						<div class="single-footer">
+							<h2>About Us</h2>
+							<p>Lorem ipsum dolor sit am consectetur adipisicing elit do eiusmod tempor incididunt ut labore dolore magna.</p> 
+							<ul class="social">
+								<li><a href="#"><i class="icofont-facebook"></i></a></li>
+								<li><a href="#"><i class="icofont-google-plus"></i></a></li>
+								<li><a href="#"><i class="icofont-twitter"></i></a></li>
+								<li><a href="#"><i class="icofont-vimeo"></i></a></li>
+								<li><a href="#"><i class="icofont-pinterest"></i></a></li>
+							</ul> 
+						</div>
+					</div>
+					<div class="col-lg-3 col-md-6 col-12">
+						<div class="single-footer f-link">
+							<h2>Quick Links</h2>
+							<div class="row">
+								<div class="col-lg-6 col-md-6 col-12">
+									<ul>
+										<li><a href="#"><i class="fa fa-caret-right" aria-hidden="true"></i>Home</a></li>
+										<li><a href="#"><i class="fa fa-caret-right" aria-hidden="true"></i>About Us</a></li>
+										<li><a href="#"><i class="fa fa-caret-right" aria-hidden="true"></i>Services</a></li>
+										<li><a href="#"><i class="fa fa-caret-right" aria-hidden="true"></i>Our Cases</a></li>
+										<li><a href="#"><i class="fa fa-caret-right" aria-hidden="true"></i>Other Links</a></li>
+									</ul>
+								</div>
+								<div class="col-lg-6 col-md-6 col-12">
+									<ul>
+										<li><a href="#"><i class="fa fa-caret-right" aria-hidden="true"></i>Consuling</a></li>
+										<li><a href="#"><i class="fa fa-caret-right" aria-hidden="true"></i>Finance</a></li>
+										<li><a href="#"><i class="fa fa-caret-right" aria-hidden="true"></i>Testimonials</a></li>
+										<li><a href="#"><i class="fa fa-caret-right" aria-hidden="true"></i>FAQ</a></li>
+										<li><a href="#"><i class="fa fa-caret-right" aria-hidden="true"></i>Contact Us</a></li>
+									</ul>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="col-lg-3 col-md-6 col-12">
+						<div class="single-footer">
+							<h2>Open Hours</h2>
+							<p>Lorem ipsum dolor sit ame consectetur adipisicing elit do eiusmod tempor incididunt.</p>
+							<ul class="time-sidual">
+								<li class="day">Monday - Fridayp <span>8.00-20.00</span></li>
+								<li class="day">Saturday <span>9.00-18.30</span></li>
+								<li class="day">Monday - Thusday <span>9.00-15.00</span></li>
+							</ul>
+						</div>
+					</div>
+					<div class="col-lg-3 col-md-6 col-12">
+						<div class="single-footer">
+							<h2>Newsletter</h2>
+							<p>subscribe to our newsletter to get allour news in your inbox.. Lorem ipsum dolor sit amet, consectetur adipisicing elit,</p>
+							<form action="mail/mail.php" method="get" target="_blank" class="newsletter-inner">
+								<input name="email" placeholder="Email Address" class="common-input" onfocus="this.placeholder = ''"
+									   onblur="this.placeholder = 'Your email address'" required="" type="email">
+								<button class="button"><i class="icofont icofont-paper-plane"></i></button>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!--/ End Footer Top -->
+
+		<!-- Copyright -->
+		<div class="copyright">
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-12 col-md-12 col-12">
+						<div class="copyright-content">
+							<p>© Copyright 2023  |  Todos los derechos reservados.</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!--/ End Copyright -->
+	</footer>
+	<!--/ End Footer Area -->
+	<!-- jquery Min JS -->
+	<script src="./js/jquery.min.js"></script>
+	<!-- jquery Migrate JS -->
+	<script src="./js/jquery-migrate-3.0.0.js"></script>
+	<!-- jquery Ui JS -->
+	<script src="./js/jquery-ui.min.js"></script>
+	<!-- Easing JS -->
+	<script src="./js/easing.js"></script>
+	<!-- Color JS -->
+	<script src="./js/colors.js"></script>
+	<!-- Popper JS -->
+	<script src="./js/popper.min.js"></script>
+	<!-- Bootstrap Datepicker JS -->
+	<script src="./js/bootstrap-datepicker.js"></script>
+	<!-- Jquery Nav JS -->
+	<script src="./js/jquery.nav.js"></script>
+	<!-- Slicknav JS -->
+	<script src="./js/slicknav.min.js"></script>
+	<!-- ScrollUp JS -->
+	<script src="./js/jquery.scrollUp.min.js"></script>
+	<!-- Niceselect JS -->
+	<script src="./js/niceselect.js"></script>
+	<!-- Tilt Jquery JS -->
+	<script src="./js/tilt.jquery.min.js"></script>
+	<!-- Owl Carousel JS -->
+	<script src="./js/owl-carousel.js"></script>
+	<!-- counterup JS -->
+	<script src="./js/jquery.counterup.min.js"></script>
+	<!-- Steller JS -->
+	<script src="./js/steller.js"></script>
+	<!-- Wow JS -->
+	<script src="./js/wow.min.js"></script>
+	<!-- Magnific Popup JS -->
+	<script src="./js/jquery.magnific-popup.min.js"></script>
+	<!-- Counter Up CDN JS -->
+	<script type="application/json" src="http://cdnjs.cloudflare.com/ajax/libs/waypoints/2.0.3/waypoints.min.js"></script>
+	<!-- Bootstrap JS -->
+	<script src="./js/bootstrap.min.js"></script>
+	<!-- Main JS -->
+	<script src="./js/main.js"></script>
+</body>
+</html>

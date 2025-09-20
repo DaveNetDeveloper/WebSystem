@@ -1,0 +1,162 @@
+2025-09-04T01:42:52.9791102+02:00  [INF] User profile is available. Using '"C:\Users\David\AppData\Local\ASP.NET\DataProtection-Keys"' as key repository and Windows DPAPI to encrypt keys at rest. (7ac5e29c)
+2025-09-04T01:43:59.3826025+02:00  [INF] Application started. Press Ctrl+C to shut down. (dcaefe54)
+2025-09-04T01:44:02.6285797+02:00  [INF] Hosting environment: "Development" (bc5a1a4e)
+2025-09-04T01:44:02.6334022+02:00  [INF] Content root path: "C:\Users\David\Desktop\API" (cc26f24e)
+2025-09-04T01:44:07.8632123+02:00 80000040-0004-f900-b63f-84710c7967bb [INF] Request starting "HTTP/2" "GET" "https"://"localhost:44311""""/swagger/index.html""" - null null (d509f86a)
+2025-09-04T01:44:32.3422768+02:00 80000040-0004-f900-b63f-84710c7967bb [INF] Request finished "HTTP/2" "GET" "https"://"localhost:44311""""/swagger/index.html""" - 200 null "text/html;charset=utf-8" 25101.226ms (74253ad3)
+2025-09-04T01:44:32.9980861+02:00 80000045-0007-fe00-b63f-84710c7967bb [INF] Request starting "HTTP/2" "GET" "https"://"localhost:44311""""/_framework/aspnetcore-browser-refresh.js""" - null null (d509f86a)
+2025-09-04T01:44:33.1305251+02:00 80000045-0007-fe00-b63f-84710c7967bb [INF] Request finished "HTTP/2" "GET" "https"://"localhost:44311""""/_framework/aspnetcore-browser-refresh.js""" - 200 13742 "application/javascript; charset=utf-8" 8.5316ms (74253ad3)
+2025-09-04T01:44:33.1306810+02:00 80000047-0007-fe00-b63f-84710c7967bb [INF] Request starting "HTTP/2" "GET" "https"://"localhost:44311""""/_vs/browserLink""" - null null (d509f86a)
+2025-09-04T01:44:36.3307821+02:00 80000047-0007-fe00-b63f-84710c7967bb [INF] Request finished "HTTP/2" "GET" "https"://"localhost:44311""""/_vs/browserLink""" - 200 null "text/javascript; charset=UTF-8" 3200.1788ms (74253ad3)
+2025-09-04T01:44:36.8053328+02:00 80000042-0004-f900-b63f-84710c7967bb [INF] Request starting "HTTP/2" "GET" "https"://"localhost:44311""""/swagger/v1/swagger.json""" - null null (d509f86a)
+2025-09-04T01:44:36.8510780+02:00 80000042-0004-f900-b63f-84710c7967bb [INF] Request finished "HTTP/2" "GET" "https"://"localhost:44311""""/swagger/v1/swagger.json""" - 200 null "application/json;charset=utf-8" 45.9157ms (74253ad3)
+2025-09-04T02:07:40.4422101+02:00 8000005c-0007-ff00-b63f-84710c7967bb [INF] Request starting "HTTP/2" "GET" "https"://"localhost:44311""""/Usuarios/FiltrarUsuarios""?Id=1&Nombre=David&Apellidos=Gomez%20Martinez&Correo=david%40correo.com&Status=true" - null null (d509f86a)
+2025-09-04T02:07:40.6113488+02:00 8000005c-0007-ff00-b63f-84710c7967bb [INF] Executing endpoint '"API.Controllers.UsuariosController.GetByFiltersAsync (API)"' (500cc934)
+2025-09-04T02:07:40.9437871+02:00 8000005c-0007-ff00-b63f-84710c7967bb [INF] Route matched with "{action = \"GetByFilters\", controller = \"Usuarios\"}". Executing controller action with signature "System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetByFiltersAsync(Application.DTOs.Filters.UsuarioFilters)" on controller "API.Controllers.UsuariosController" ("API"). (122b2fdf)
+2025-09-04T02:17:30.1897638+02:00 8000005c-0007-ff00-b63f-84710c7967bb [INF] Executed DbCommand ("689"ms) [Parameters=["@__userFilters_Id_Value_0='?' (DbType = Int32), @__userFilters_Nombre_1_contains='?', @__userFilters_Apellidos_2_contains='?', @__userFilters_Correo_3_contains='?', @__userFilters_Status_Value_4='?' (DbType = Boolean)"], CommandType='Text', CommandTimeout='30']"
+""SELECT u.id, u.activo, u.apellidos, u.contraseña, u.correo, u.\"expiracionToken\", u.\"fechaCreación\", u.\"fechaNacimiento\", u.nombre, u.puntos, u.suscrito, u.token, u.\"ultimaConexion\"
+FROM \"Usuarios\" AS u
+WHERE u.id = @__userFilters_Id_Value_0 AND u.nombre LIKE @__userFilters_Nombre_1_contains AND u.apellidos LIKE @__userFilters_Apellidos_2_contains AND u.correo LIKE @__userFilters_Correo_3_contains AND u.activo = @__userFilters_Status_Value_4" (0723d8ff)
+2025-09-04T02:18:06.5145266+02:00 8000005c-0007-ff00-b63f-84710c7967bb [INF] Executing "OkObjectResult", writing value of type '"System.Collections.Generic.List`1[[Domain.Entities.Usuario, Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]"'. (605b4265)
+2025-09-04T02:18:06.8162134+02:00 8000005c-0007-ff00-b63f-84710c7967bb [INF] Executed action "API.Controllers.UsuariosController.GetByFiltersAsync (API)" in 625861.6649ms (afa2e885)
+2025-09-04T02:18:06.8174961+02:00 8000005c-0007-ff00-b63f-84710c7967bb [INF] Executed endpoint '"API.Controllers.UsuariosController.GetByFiltersAsync (API)"' (99874f2b)
+2025-09-04T02:18:06.8994807+02:00 8000005c-0007-ff00-b63f-84710c7967bb [INF] Request finished "HTTP/2" "GET" "https"://"localhost:44311""""/Usuarios/FiltrarUsuarios""?Id=1&Nombre=David&Apellidos=Gomez%20Martinez&Correo=david%40correo.com&Status=true" - 200 null "application/json; charset=utf-8" 626458.9053ms (74253ad3)
+2025-09-04T12:48:21.8610267+02:00  [INF] User profile is available. Using '"C:\Users\David\AppData\Local\ASP.NET\DataProtection-Keys"' as key repository and Windows DPAPI to encrypt keys at rest. (7ac5e29c)
+2025-09-04T12:48:32.8387820+02:00  [INF] Application started. Press Ctrl+C to shut down. (dcaefe54)
+2025-09-04T12:48:32.8432986+02:00  [INF] Hosting environment: "Development" (bc5a1a4e)
+2025-09-04T12:48:32.8682146+02:00  [INF] Content root path: "C:\Users\David\Desktop\API" (cc26f24e)
+2025-09-04T12:48:34.9938074+02:00 80000055-0000-fb00-b63f-84710c7967bb [INF] Request starting "HTTP/2" "GET" "https"://"localhost:44311""""/swagger/index.html""" - null null (d509f86a)
+2025-09-04T12:48:45.2337937+02:00 80000055-0000-fb00-b63f-84710c7967bb [WRN] Unable to contact VS to retrieve Browser Link script tag. (a038f0fa)
+2025-09-04T12:48:49.7234080+02:00 80000055-0000-fb00-b63f-84710c7967bb [INF] Request finished "HTTP/2" "GET" "https"://"localhost:44311""""/swagger/index.html""" - 200 null "text/html;charset=utf-8" 14627.0741ms (74253ad3)
+2025-09-04T12:48:56.2752460+02:00 8000006a-0002-fe00-b63f-84710c7967bb [INF] Request starting "HTTP/2" "GET" "https"://"localhost:44311""""/_framework/aspnetcore-browser-refresh.js""" - null null (d509f86a)
+2025-09-04T12:48:56.3651767+02:00 8000006a-0002-fe00-b63f-84710c7967bb [INF] Request finished "HTTP/2" "GET" "https"://"localhost:44311""""/_framework/aspnetcore-browser-refresh.js""" - 200 13742 "application/javascript; charset=utf-8" 4.8658ms (74253ad3)
+2025-09-04T12:48:57.0863738+02:00 8000006c-0002-fe00-b63f-84710c7967bb [INF] Request starting "HTTP/2" "GET" "https"://"localhost:44311""""/swagger/v1/swagger.json""" - null null (d509f86a)
+2025-09-04T12:48:57.3086233+02:00 8000006c-0002-fe00-b63f-84710c7967bb [INF] Request finished "HTTP/2" "GET" "https"://"localhost:44311""""/swagger/v1/swagger.json""" - 200 null "application/json;charset=utf-8" 222.3748ms (74253ad3)
+2025-09-04T12:51:01.6600048+02:00 80000085-0005-fc00-b63f-84710c7967bb [INF] Request starting "HTTP/2" "POST" "https"://"localhost:44311""""/auth/login""" - "application/json" 57 (d509f86a)
+2025-09-04T12:51:01.6926035+02:00 80000085-0005-fc00-b63f-84710c7967bb [INF] CORS policy execution successful. (5409d6ef)
+2025-09-04T12:51:02.0376839+02:00 80000085-0005-fc00-b63f-84710c7967bb [INF] Executing endpoint '"API.Controllers.AuthController.Login (API)"' (500cc934)
+2025-09-04T12:51:04.1063108+02:00 80000085-0005-fc00-b63f-84710c7967bb [INF] Route matched with "{action = \"Login\", controller = \"Auth\"}". Executing controller action with signature "Microsoft.AspNetCore.Mvc.IActionResult Login(Domain.Entities.LoginDto)" on controller "API.Controllers.AuthController" ("API"). (122b2fdf)
+2025-09-04T12:54:02.0585223+02:00 80000085-0005-fc00-b63f-84710c7967bb [INF] Executed DbCommand ("653"ms) [Parameters=["@__ToLower_0='?'"], CommandType='Text', CommandTimeout='30']"
+""SELECT u.id, u.activo, u.apellidos, u.contraseña, u.correo, u.\"expiracionToken\", u.\"fechaCreación\", u.\"fechaNacimiento\", u.nombre, u.puntos, u.suscrito, u.token, u.\"ultimaConexion\"
+FROM \"Usuarios\" AS u
+WHERE lower(btrim(u.nombre, E' \t\n\r')) = @__ToLower_0
+LIMIT 2" (0723d8ff)
+2025-09-04T12:54:03.4764595+02:00 80000085-0005-fc00-b63f-84710c7967bb [INF] Executed DbCommand ("496"ms) [Parameters=["@__id_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT t.id, t.activo, t.apellidos, t.contraseña, t.correo, t.\"expiracionToken\", t.\"fechaCreación\", t.\"fechaNacimiento\", t.nombre, t.puntos, t.suscrito, t.token, t.\"ultimaConexion\", t0.idrol, t0.idusuario, t0.identidad, t0.id, t0.descripcion, t0.level, t0.nombre, t0.id0, t0.activo, t0.descripcion0, t0.\"fechaAlta\", t0.\"idTipoEntidad\", t0.imagen, t0.nombre0, t0.popularidad, t0.ubicacion
+FROM (
+    SELECT u.id, u.activo, u.apellidos, u.contraseña, u.correo, u.\"expiracionToken\", u.\"fechaCreación\", u.\"fechaNacimiento\", u.nombre, u.puntos, u.suscrito, u.token, u.\"ultimaConexion\"
+    FROM \"Usuarios\" AS u
+    WHERE u.id = @__id_0
+    LIMIT 1
+) AS t
+LEFT JOIN (
+    SELECT u0.idrol, u0.idusuario, u0.identidad, r.id, r.descripcion, r.level, r.nombre, e.id AS id0, e.activo, e.descripcion AS descripcion0, e.\"fechaAlta\", e.\"idTipoEntidad\", e.imagen, e.nombre AS nombre0, e.popularidad, e.ubicacion
+    FROM \"UsuarioRoles\" AS u0
+    INNER JOIN \"Roles\" AS r ON u0.idrol = r.id
+    INNER JOIN \"Entidades\" AS e ON u0.identidad = e.id
+) AS t0 ON t.id = t0.idusuario
+ORDER BY t.id, t0.idrol, t0.idusuario, t0.identidad, t0.id" (0723d8ff)
+2025-09-04T12:54:09.3615776+02:00 80000085-0005-fc00-b63f-84710c7967bb [INF] Executed DbCommand ("4,949"ms) [Parameters=["@p2='?' (DbType = Int32), @p0='?' (DbType = DateTime), @p1='?'"], CommandType='Text', CommandTimeout='30']"
+""UPDATE \"Usuarios\" SET \"expiracionToken\" = @p0, token = @p1
+WHERE id = @p2;" (0723d8ff)
+2025-09-04T12:54:09.4077896+02:00 80000085-0005-fc00-b63f-84710c7967bb [INF] Executing "OkObjectResult", writing value of type '"<>f__AnonymousType1`3[[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.DateTime, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]"'. (605b4265)
+2025-09-04T12:54:09.5204703+02:00 80000085-0005-fc00-b63f-84710c7967bb [INF] Executed action "API.Controllers.AuthController.Login (API)" in 185383.2796ms (afa2e885)
+2025-09-04T12:54:09.5207532+02:00 80000085-0005-fc00-b63f-84710c7967bb [INF] Executed endpoint '"API.Controllers.AuthController.Login (API)"' (99874f2b)
+2025-09-04T12:54:09.5791250+02:00 80000085-0005-fc00-b63f-84710c7967bb [INF] Request finished "HTTP/2" "POST" "https"://"localhost:44311""""/auth/login""" - 200 null "application/json; charset=utf-8" 187919.2419ms (74253ad3)
+2025-09-04T12:57:41.2836437+02:00 8000004b-0007-fe00-b63f-84710c7967bb [INF] Request starting "HTTP/2" "GET" "https"://"localhost:44311""""/Actividades/FiltrarActividades""?Nombre=test" - null null (d509f86a)
+2025-09-04T12:57:41.5504274+02:00 8000004b-0007-fe00-b63f-84710c7967bb [INF] Executing endpoint '"API.Controllers.ActividadesController.GetByFiltersAsync (API)"' (500cc934)
+2025-09-04T12:57:41.6079910+02:00 8000004b-0007-fe00-b63f-84710c7967bb [INF] Route matched with "{action = \"GetByFilters\", controller = \"Actividades\"}". Executing controller action with signature "System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetByFiltersAsync(Application.DTOs.Filters.ActividadFilters)" on controller "API.Controllers.ActividadesController" ("API"). (122b2fdf)
+2025-09-04T12:59:24.9840263+02:00 8000004b-0007-fe00-b63f-84710c7967bb [INF] Executed DbCommand ("4"ms) [Parameters=["@__ToLower_0='?'"], CommandType='Text', CommandTimeout='30']"
+""SELECT a.id, a.activo, a.descripcion, a.\"descripcionCorta\", a.\"fechaFin\", a.\"fechaInicio\", a.gratis, a.\"idEntidad\", a.\"idTipoActividad\", a.imagen, a.\"informacioExtra\", a.\"linkEvento\", a.\"linkFacebook\", a.\"linkInstagram\", a.\"linkYoutube\", a.nombre, a.popularidad, a.ubicación
+FROM \"Actividades\" AS a
+WHERE lower(a.nombre) = @__ToLower_0" (0723d8ff)
+2025-09-04T12:59:27.0496442+02:00 8000004b-0007-fe00-b63f-84710c7967bb [INF] Executing "OkObjectResult", writing value of type '"System.Collections.Generic.List`1[[Domain.Entities.Actividad, Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]"'. (605b4265)
+2025-09-04T12:59:27.1183631+02:00 8000004b-0007-fe00-b63f-84710c7967bb [INF] Executed action "API.Controllers.ActividadesController.GetByFiltersAsync (API)" in 105510.2012ms (afa2e885)
+2025-09-04T12:59:27.1189108+02:00 8000004b-0007-fe00-b63f-84710c7967bb [INF] Executed endpoint '"API.Controllers.ActividadesController.GetByFiltersAsync (API)"' (99874f2b)
+2025-09-04T12:59:27.1221257+02:00 8000004b-0007-fe00-b63f-84710c7967bb [INF] Request finished "HTTP/2" "GET" "https"://"localhost:44311""""/Actividades/FiltrarActividades""?Nombre=test" - 200 null "application/json; charset=utf-8" 105838.8013ms (74253ad3)
+2025-09-04T13:00:05.2116906+02:00 80000057-0000-fb00-b63f-84710c7967bb [INF] Request starting "HTTP/2" "GET" "https"://"localhost:44311""""/Actividades/FiltrarActividades""?IdEntidad=2&Nombre=test&Activo=true&IdTipoActividad=ddaf6bfb-b48e-4714-bc16-aef26183ba73&Gratis=true" - null null (d509f86a)
+2025-09-04T13:00:05.2177934+02:00 80000057-0000-fb00-b63f-84710c7967bb [INF] Executing endpoint '"API.Controllers.ActividadesController.GetByFiltersAsync (API)"' (500cc934)
+2025-09-04T13:00:05.2180530+02:00 80000057-0000-fb00-b63f-84710c7967bb [INF] Route matched with "{action = \"GetByFilters\", controller = \"Actividades\"}". Executing controller action with signature "System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetByFiltersAsync(Application.DTOs.Filters.ActividadFilters)" on controller "API.Controllers.ActividadesController" ("API"). (122b2fdf)
+2025-09-04T13:00:27.4745851+02:00 80000057-0000-fb00-b63f-84710c7967bb [INF] Executed DbCommand ("5"ms) [Parameters=["@__ToLower_0='?', @___filters_IdEntidad_Value_1='?' (DbType = Int32), @___filters_IdTipoActividad_Value_2='?' (DbType = Guid), @___filters_Activo_Value_3='?' (DbType = Boolean), @___filters_Gratis_Value_4='?' (DbType = Boolean)"], CommandType='Text', CommandTimeout='30']"
+""SELECT a.id, a.activo, a.descripcion, a.\"descripcionCorta\", a.\"fechaFin\", a.\"fechaInicio\", a.gratis, a.\"idEntidad\", a.\"idTipoActividad\", a.imagen, a.\"informacioExtra\", a.\"linkEvento\", a.\"linkFacebook\", a.\"linkInstagram\", a.\"linkYoutube\", a.nombre, a.popularidad, a.ubicación
+FROM \"Actividades\" AS a
+WHERE lower(a.nombre) = @__ToLower_0 AND a.\"idEntidad\" = @___filters_IdEntidad_Value_1 AND a.\"idTipoActividad\" = @___filters_IdTipoActividad_Value_2 AND a.activo = @___filters_Activo_Value_3 AND a.gratis = @___filters_Gratis_Value_4" (0723d8ff)
+2025-09-04T13:00:27.4753121+02:00 80000057-0000-fb00-b63f-84710c7967bb [INF] Executing "OkObjectResult", writing value of type '"System.Collections.Generic.List`1[[Domain.Entities.Actividad, Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]"'. (605b4265)
+2025-09-04T13:00:27.4759285+02:00 80000057-0000-fb00-b63f-84710c7967bb [INF] Executed action "API.Controllers.ActividadesController.GetByFiltersAsync (API)" in 22257.7619ms (afa2e885)
+2025-09-04T13:00:27.4759869+02:00 80000057-0000-fb00-b63f-84710c7967bb [INF] Executed endpoint '"API.Controllers.ActividadesController.GetByFiltersAsync (API)"' (99874f2b)
+2025-09-04T13:00:27.4762890+02:00 80000057-0000-fb00-b63f-84710c7967bb [INF] Request finished "HTTP/2" "GET" "https"://"localhost:44311""""/Actividades/FiltrarActividades""?IdEntidad=2&Nombre=test&Activo=true&IdTipoActividad=ddaf6bfb-b48e-4714-bc16-aef26183ba73&Gratis=true" - 200 null "application/json; charset=utf-8" 22264.8583ms (74253ad3)
+2025-09-04T13:00:34.2109111+02:00 80000059-0000-fb00-b63f-84710c7967bb [INF] Request starting "HTTP/2" "GET" "https"://"localhost:44311""""/Actividades/FiltrarActividades""?Id=1&IdEntidad=2&Nombre=test&Activo=true&IdTipoActividad=ddaf6bfb-b48e-4714-bc16-aef26183ba73&Gratis=true" - null null (d509f86a)
+2025-09-04T13:00:34.2228988+02:00 80000059-0000-fb00-b63f-84710c7967bb [INF] Executing endpoint '"API.Controllers.ActividadesController.GetByFiltersAsync (API)"' (500cc934)
+2025-09-04T13:00:34.2230984+02:00 80000059-0000-fb00-b63f-84710c7967bb [INF] Route matched with "{action = \"GetByFilters\", controller = \"Actividades\"}". Executing controller action with signature "System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetByFiltersAsync(Application.DTOs.Filters.ActividadFilters)" on controller "API.Controllers.ActividadesController" ("API"). (122b2fdf)
+2025-09-04T13:00:49.9175672+02:00 80000059-0000-fb00-b63f-84710c7967bb [INF] Executed DbCommand ("1"ms) [Parameters=["@___filters_Id_Value_0='?' (DbType = Int32), @__ToLower_1='?', @___filters_IdEntidad_Value_2='?' (DbType = Int32), @___filters_IdTipoActividad_Value_3='?' (DbType = Guid), @___filters_Activo_Value_4='?' (DbType = Boolean), @___filters_Gratis_Value_5='?' (DbType = Boolean)"], CommandType='Text', CommandTimeout='30']"
+""SELECT a.id, a.activo, a.descripcion, a.\"descripcionCorta\", a.\"fechaFin\", a.\"fechaInicio\", a.gratis, a.\"idEntidad\", a.\"idTipoActividad\", a.imagen, a.\"informacioExtra\", a.\"linkEvento\", a.\"linkFacebook\", a.\"linkInstagram\", a.\"linkYoutube\", a.nombre, a.popularidad, a.ubicación
+FROM \"Actividades\" AS a
+WHERE a.id = @___filters_Id_Value_0 AND lower(a.nombre) = @__ToLower_1 AND a.\"idEntidad\" = @___filters_IdEntidad_Value_2 AND a.\"idTipoActividad\" = @___filters_IdTipoActividad_Value_3 AND a.activo = @___filters_Activo_Value_4 AND a.gratis = @___filters_Gratis_Value_5" (0723d8ff)
+2025-09-04T13:00:49.9193057+02:00 80000059-0000-fb00-b63f-84710c7967bb [INF] Executing "OkObjectResult", writing value of type '"System.Collections.Generic.List`1[[Domain.Entities.Actividad, Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]"'. (605b4265)
+2025-09-04T13:00:49.9198172+02:00 80000059-0000-fb00-b63f-84710c7967bb [INF] Executed action "API.Controllers.ActividadesController.GetByFiltersAsync (API)" in 15696.5333ms (afa2e885)
+2025-09-04T13:00:49.9198936+02:00 80000059-0000-fb00-b63f-84710c7967bb [INF] Executed endpoint '"API.Controllers.ActividadesController.GetByFiltersAsync (API)"' (99874f2b)
+2025-09-04T13:00:49.9202647+02:00 80000059-0000-fb00-b63f-84710c7967bb [INF] Request finished "HTTP/2" "GET" "https"://"localhost:44311""""/Actividades/FiltrarActividades""?Id=1&IdEntidad=2&Nombre=test&Activo=true&IdTipoActividad=ddaf6bfb-b48e-4714-bc16-aef26183ba73&Gratis=true" - 200 null "application/json; charset=utf-8" 15709.6117ms (74253ad3)
+2025-09-04T13:01:02.5458798+02:00 80000072-0006-fd00-b63f-84710c7967bb [INF] Request starting "HTTP/2" "GET" "https"://"localhost:44311""""/Categorias/ObtenerCategorias""" - null null (d509f86a)
+2025-09-04T13:01:02.5473104+02:00 80000072-0006-fd00-b63f-84710c7967bb [INF] Executing endpoint '"API.Controllers.CategoriasController.GetAllAsync (API)"' (500cc934)
+2025-09-04T13:01:02.5519856+02:00 80000072-0006-fd00-b63f-84710c7967bb [INF] Route matched with "{action = \"GetAll\", controller = \"Categorias\"}". Executing controller action with signature "System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAllAsync()" on controller "API.Controllers.CategoriasController" ("API"). (122b2fdf)
+2025-09-04T13:01:02.5577491+02:00 80000072-0006-fd00-b63f-84710c7967bb [INF] Obteniendo todas las categorias. (15f6e554)
+2025-09-04T13:01:02.6187615+02:00 80000072-0006-fd00-b63f-84710c7967bb [INF] Executed DbCommand ("25"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT c.id, c.descripcion, c.\"idTipoEntidad\", c.nombre
+FROM \"Categorias\" AS c" (0723d8ff)
+2025-09-04T13:01:02.6319542+02:00 80000072-0006-fd00-b63f-84710c7967bb [INF] Executing "OkObjectResult", writing value of type '"System.Collections.Generic.List`1[[Domain.Entities.Categoria, Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]"'. (605b4265)
+2025-09-04T13:01:02.6356798+02:00 80000072-0006-fd00-b63f-84710c7967bb [INF] Executed action "API.Controllers.CategoriasController.GetAllAsync (API)" in 83.573ms (afa2e885)
+2025-09-04T13:01:02.6357788+02:00 80000072-0006-fd00-b63f-84710c7967bb [INF] Executed endpoint '"API.Controllers.CategoriasController.GetAllAsync (API)"' (99874f2b)
+2025-09-04T13:01:02.6364157+02:00 80000072-0006-fd00-b63f-84710c7967bb [INF] Request finished "HTTP/2" "GET" "https"://"localhost:44311""""/Categorias/ObtenerCategorias""" - 200 null "application/json; charset=utf-8" 90.4646ms (74253ad3)
+2025-09-04T13:01:14.7948107+02:00 80000025-0003-fd00-b63f-84710c7967bb [INF] Request starting "HTTP/2" "GET" "https"://"localhost:44311""""/Categorias/FiltrarCategorias""?Id=867059df-0301-4656-895d-45c37ad217f0" - null null (d509f86a)
+2025-09-04T13:01:14.7977601+02:00 80000025-0003-fd00-b63f-84710c7967bb [INF] Executing endpoint '"API.Controllers.CategoriasController.GetByFiltersAsync (API)"' (500cc934)
+2025-09-04T13:01:14.8032341+02:00 80000025-0003-fd00-b63f-84710c7967bb [INF] Route matched with "{action = \"GetByFilters\", controller = \"Categorias\"}". Executing controller action with signature "System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetByFiltersAsync(Application.DTOs.Filters.CategoriaFilters)" on controller "API.Controllers.CategoriasController" ("API"). (122b2fdf)
+2025-09-04T13:01:14.8320568+02:00 80000025-0003-fd00-b63f-84710c7967bb [INF] Executed DbCommand ("1"ms) [Parameters=["@___filters_Id_Value_0='?' (DbType = Guid)"], CommandType='Text', CommandTimeout='30']"
+""SELECT c.id, c.descripcion, c.\"idTipoEntidad\", c.nombre
+FROM \"Categorias\" AS c
+WHERE c.id = @___filters_Id_Value_0" (0723d8ff)
+2025-09-04T13:01:14.8338634+02:00 80000025-0003-fd00-b63f-84710c7967bb [INF] Executing "OkObjectResult", writing value of type '"System.Collections.Generic.List`1[[Domain.Entities.Categoria, Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]"'. (605b4265)
+2025-09-04T13:01:14.8344018+02:00 80000025-0003-fd00-b63f-84710c7967bb [INF] Executed action "API.Controllers.CategoriasController.GetByFiltersAsync (API)" in 31.0773ms (afa2e885)
+2025-09-04T13:01:14.8344814+02:00 80000025-0003-fd00-b63f-84710c7967bb [INF] Executed endpoint '"API.Controllers.CategoriasController.GetByFiltersAsync (API)"' (99874f2b)
+2025-09-04T13:01:14.8348362+02:00 80000025-0003-fd00-b63f-84710c7967bb [INF] Request finished "HTTP/2" "GET" "https"://"localhost:44311""""/Categorias/FiltrarCategorias""?Id=867059df-0301-4656-895d-45c37ad217f0" - 200 null "application/json; charset=utf-8" 40.1769ms (74253ad3)
+2025-09-04T13:01:21.5199856+02:00 8000004d-0007-fe00-b63f-84710c7967bb [INF] Request starting "HTTP/2" "GET" "https"://"localhost:44311""""/Entidades/ObtenerEntidades""" - null null (d509f86a)
+2025-09-04T13:01:21.5214886+02:00 8000004d-0007-fe00-b63f-84710c7967bb [INF] Executing endpoint '"API.Controllers.EntidadesController.GetAllAsync (API)"' (500cc934)
+2025-09-04T13:01:21.5274897+02:00 8000004d-0007-fe00-b63f-84710c7967bb [INF] Route matched with "{action = \"GetAll\", controller = \"Entidades\"}". Executing controller action with signature "System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAllAsync()" on controller "API.Controllers.EntidadesController" ("API"). (122b2fdf)
+2025-09-04T13:01:21.5562750+02:00 8000004d-0007-fe00-b63f-84710c7967bb [INF] Executed DbCommand ("3"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT e.id, e.activo, e.descripcion, e.\"fechaAlta\", e.\"idTipoEntidad\", e.imagen, e.nombre, e.popularidad, e.ubicacion
+FROM \"Entidades\" AS e" (0723d8ff)
+2025-09-04T13:01:21.5578446+02:00 8000004d-0007-fe00-b63f-84710c7967bb [INF] Executing "OkObjectResult", writing value of type '"System.Collections.Generic.List`1[[Domain.Entities.Entidad, Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]"'. (605b4265)
+2025-09-04T13:01:21.5624851+02:00 8000004d-0007-fe00-b63f-84710c7967bb [INF] Executed action "API.Controllers.EntidadesController.GetAllAsync (API)" in 34.9178ms (afa2e885)
+2025-09-04T13:01:21.5625457+02:00 8000004d-0007-fe00-b63f-84710c7967bb [INF] Executed endpoint '"API.Controllers.EntidadesController.GetAllAsync (API)"' (99874f2b)
+2025-09-04T13:01:21.5628432+02:00 8000004d-0007-fe00-b63f-84710c7967bb [INF] Request finished "HTTP/2" "GET" "https"://"localhost:44311""""/Entidades/ObtenerEntidades""" - 200 null "application/json; charset=utf-8" 43.1862ms (74253ad3)
+2025-09-04T13:01:31.5952419+02:00 8000006e-0002-fe00-b63f-84710c7967bb [INF] Request starting "HTTP/2" "GET" "https"://"localhost:44311""""/Entidades/FiltrarEntidades""?Nombre=Cin%C3%A8tika" - null null (d509f86a)
+2025-09-04T13:01:31.5979087+02:00 8000006e-0002-fe00-b63f-84710c7967bb [INF] Executing endpoint '"API.Controllers.EntidadesController.GetByFiltersAsync (API)"' (500cc934)
+2025-09-04T13:01:31.6039864+02:00 8000006e-0002-fe00-b63f-84710c7967bb [INF] Route matched with "{action = \"GetByFilters\", controller = \"Entidades\"}". Executing controller action with signature "System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetByFiltersAsync(Application.DTOs.Filters.EntidadFilters)" on controller "API.Controllers.EntidadesController" ("API"). (122b2fdf)
+2025-09-04T13:01:31.6888422+02:00 8000006e-0002-fe00-b63f-84710c7967bb [INF] Executed DbCommand ("1"ms) [Parameters=["@__ToLower_0='?'"], CommandType='Text', CommandTimeout='30']"
+""SELECT e.id, e.activo, e.descripcion, e.\"fechaAlta\", e.\"idTipoEntidad\", e.imagen, e.nombre, e.popularidad, e.ubicacion
+FROM \"Entidades\" AS e
+WHERE lower(e.nombre) = @__ToLower_0" (0723d8ff)
+2025-09-04T13:01:31.6920943+02:00 8000006e-0002-fe00-b63f-84710c7967bb [INF] Executing "OkObjectResult", writing value of type '"System.Collections.Generic.List`1[[Domain.Entities.Entidad, Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]"'. (605b4265)
+2025-09-04T13:01:31.6941630+02:00 8000006e-0002-fe00-b63f-84710c7967bb [INF] Executed action "API.Controllers.EntidadesController.GetByFiltersAsync (API)" in 90.0744ms (afa2e885)
+2025-09-04T13:01:31.6942761+02:00 8000006e-0002-fe00-b63f-84710c7967bb [INF] Executed endpoint '"API.Controllers.EntidadesController.GetByFiltersAsync (API)"' (99874f2b)
+2025-09-04T13:01:31.6947886+02:00 8000006e-0002-fe00-b63f-84710c7967bb [INF] Request finished "HTTP/2" "GET" "https"://"localhost:44311""""/Entidades/FiltrarEntidades""?Nombre=Cin%C3%A8tika" - 200 null "application/json; charset=utf-8" 99.6312ms (74253ad3)
+2025-09-04T13:01:42.7661210+02:00 80000074-0006-fd00-b63f-84710c7967bb [INF] Request starting "HTTP/2" "GET" "https"://"localhost:44311""""/Usuarios/ObtenerUsuarios""" - null null (d509f86a)
+2025-09-04T13:01:42.7683558+02:00 80000074-0006-fd00-b63f-84710c7967bb [INF] Executing endpoint '"API.Controllers.UsuariosController.GetAllAsync (API)"' (500cc934)
+2025-09-04T13:01:42.7726991+02:00 80000074-0006-fd00-b63f-84710c7967bb [INF] Route matched with "{action = \"GetAll\", controller = \"Usuarios\"}". Executing controller action with signature "System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAllAsync()" on controller "API.Controllers.UsuariosController" ("API"). (122b2fdf)
+2025-09-04T13:01:42.8100984+02:00 80000074-0006-fd00-b63f-84710c7967bb [INF] Executed DbCommand ("4"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT u.id, u.activo, u.apellidos, u.contraseña, u.correo, u.\"expiracionToken\", u.\"fechaCreación\", u.\"fechaNacimiento\", u.nombre, u.puntos, u.suscrito, u.token, u.\"ultimaConexion\"
+FROM \"Usuarios\" AS u" (0723d8ff)
+2025-09-04T13:01:42.8119245+02:00 80000074-0006-fd00-b63f-84710c7967bb [INF] Executing "OkObjectResult", writing value of type '"System.Collections.Generic.List`1[[Domain.Entities.Usuario, Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]"'. (605b4265)
+2025-09-04T13:01:42.8166547+02:00 80000074-0006-fd00-b63f-84710c7967bb [INF] Executed action "API.Controllers.UsuariosController.GetAllAsync (API)" in 43.8541ms (afa2e885)
+2025-09-04T13:01:42.8167151+02:00 80000074-0006-fd00-b63f-84710c7967bb [INF] Executed endpoint '"API.Controllers.UsuariosController.GetAllAsync (API)"' (99874f2b)
+2025-09-04T13:01:42.8169698+02:00 80000074-0006-fd00-b63f-84710c7967bb [INF] Request finished "HTTP/2" "GET" "https"://"localhost:44311""""/Usuarios/ObtenerUsuarios""" - 200 null "application/json; charset=utf-8" 51.1273ms (74253ad3)
+2025-09-04T13:02:12.4627762+02:00 80000022-0001-ff00-b63f-84710c7967bb [INF] Request starting "HTTP/2" "GET" "https"://"localhost:44311""""/Usuarios/FiltrarUsuarios""?Status=false" - null null (d509f86a)
+2025-09-04T13:02:12.4677483+02:00 80000022-0001-ff00-b63f-84710c7967bb [INF] Executing endpoint '"API.Controllers.UsuariosController.GetByFiltersAsync (API)"' (500cc934)
+2025-09-04T13:02:12.4717876+02:00 80000022-0001-ff00-b63f-84710c7967bb [INF] Route matched with "{action = \"GetByFilters\", controller = \"Usuarios\"}". Executing controller action with signature "System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetByFiltersAsync(Application.DTOs.Filters.UsuarioFilters)" on controller "API.Controllers.UsuariosController" ("API"). (122b2fdf)
+2025-09-04T13:02:12.5017922+02:00 80000022-0001-ff00-b63f-84710c7967bb [INF] Executed DbCommand ("2"ms) [Parameters=["@__userFilters_Status_Value_0='?' (DbType = Boolean)"], CommandType='Text', CommandTimeout='30']"
+""SELECT u.id, u.activo, u.apellidos, u.contraseña, u.correo, u.\"expiracionToken\", u.\"fechaCreación\", u.\"fechaNacimiento\", u.nombre, u.puntos, u.suscrito, u.token, u.\"ultimaConexion\"
+FROM \"Usuarios\" AS u
+WHERE u.activo = @__userFilters_Status_Value_0" (0723d8ff)
+2025-09-04T13:02:12.5071017+02:00 80000022-0001-ff00-b63f-84710c7967bb [INF] Executing "OkObjectResult", writing value of type '"System.Collections.Generic.List`1[[Domain.Entities.Usuario, Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]"'. (605b4265)
+2025-09-04T13:02:12.5082204+02:00 80000022-0001-ff00-b63f-84710c7967bb [INF] Executed action "API.Controllers.UsuariosController.GetByFiltersAsync (API)" in 36.3605ms (afa2e885)
+2025-09-04T13:02:12.5082938+02:00 80000022-0001-ff00-b63f-84710c7967bb [INF] Executed endpoint '"API.Controllers.UsuariosController.GetByFiltersAsync (API)"' (99874f2b)
+2025-09-04T13:02:12.5086227+02:00 80000022-0001-ff00-b63f-84710c7967bb [INF] Request finished "HTTP/2" "GET" "https"://"localhost:44311""""/Usuarios/FiltrarUsuarios""?Status=false" - 200 null "application/json; charset=utf-8" 46.1734ms (74253ad3)

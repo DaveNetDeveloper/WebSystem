@@ -1,0 +1,888 @@
+2025-09-19T12:22:23.6103861+02:00  [INF] User profile is available. Using '"C:\Users\David\AppData\Local\ASP.NET\DataProtection-Keys"' as key repository and Windows DPAPI to encrypt keys at rest. (7ac5e29c)
+2025-09-19T12:22:36.4638841+02:00  [INF] Application started. Press Ctrl+C to shut down. (dcaefe54)
+2025-09-19T12:22:36.4734937+02:00  [INF] Hosting environment: "Development" (bc5a1a4e)
+2025-09-19T12:22:36.4795775+02:00  [INF] Content root path: "C:\Users\David\Desktop\API" (cc26f24e)
+2025-09-19T12:22:38.1116443+02:00 8000004f-0004-ff00-b63f-84710c7967bb [INF] Request starting "HTTP/2" "GET" "https"://"localhost:44311""""/DataQuery/ObtenerRolesUsuarios""" - null null (d509f86a)
+2025-09-19T12:22:38.1116330+02:00 8000004d-0004-ff00-b63f-84710c7967bb [INF] Request starting "HTTP/2" "GET" "https"://"localhost:44311""""/DataQuery/ObtenerRolesUsuarios""" - null null (d509f86a)
+2025-09-19T12:22:38.1116391+02:00 8000000e-0005-fb00-b63f-84710c7967bb [INF] Request starting "HTTP/2" "GET" "https"://"localhost:44311""""/swagger/index.html""" - null null (d509f86a)
+2025-09-19T12:22:43.8075606+02:00 8000004f-0004-ff00-b63f-84710c7967bb [INF] CORS policy execution successful. (5409d6ef)
+2025-09-19T12:22:43.8075606+02:00 8000004d-0004-ff00-b63f-84710c7967bb [INF] CORS policy execution successful. (5409d6ef)
+2025-09-19T12:22:44.2419447+02:00 8000004d-0004-ff00-b63f-84710c7967bb [INF] Executing endpoint '"API.Controllers.DataQueryController.ObtenerRolesUsuarios (API)"' (500cc934)
+2025-09-19T12:22:44.2419456+02:00 8000004f-0004-ff00-b63f-84710c7967bb [INF] Executing endpoint '"API.Controllers.DataQueryController.ObtenerRolesUsuarios (API)"' (500cc934)
+2025-09-19T12:22:45.2453329+02:00 8000000e-0005-fb00-b63f-84710c7967bb [INF] Request finished "HTTP/2" "GET" "https"://"localhost:44311""""/swagger/index.html""" - 200 null "text/html;charset=utf-8" 7172.1643ms (74253ad3)
+2025-09-19T12:22:45.6153171+02:00 80000010-0000-f700-b63f-84710c7967bb [INF] Request starting "HTTP/2" "GET" "https"://"localhost:44311""""/_framework/aspnetcore-browser-refresh.js""" - null null (d509f86a)
+2025-09-19T12:22:45.6191285+02:00 80000010-0000-f700-b63f-84710c7967bb [INF] Request finished "HTTP/2" "GET" "https"://"localhost:44311""""/_framework/aspnetcore-browser-refresh.js""" - 200 13742 "application/javascript; charset=utf-8" 3.6743ms (74253ad3)
+2025-09-19T12:22:45.8035466+02:00 8000004d-0004-ff00-b63f-84710c7967bb [INF] Route matched with "{action = \"ObtenerRolesUsuarios\", controller = \"DataQuery\"}". Executing controller action with signature "System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] ObtenerRolesUsuarios()" on controller "API.Controllers.DataQueryController" ("API"). (122b2fdf)
+2025-09-19T12:22:45.8035472+02:00 8000004f-0004-ff00-b63f-84710c7967bb [INF] Route matched with "{action = \"ObtenerRolesUsuarios\", controller = \"DataQuery\"}". Executing controller action with signature "System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] ObtenerRolesUsuarios()" on controller "API.Controllers.DataQueryController" ("API"). (122b2fdf)
+2025-09-19T12:22:45.9680852+02:00 80000012-0007-ff00-b63f-84710c7967bb [INF] Request starting "HTTP/2" "GET" "https"://"localhost:44311""""/_vs/browserLink""" - null null (d509f86a)
+2025-09-19T12:22:46.0581001+02:00 80000012-0007-ff00-b63f-84710c7967bb [INF] Request finished "HTTP/2" "GET" "https"://"localhost:44311""""/_vs/browserLink""" - 200 null "text/javascript; charset=UTF-8" 90.1841ms (74253ad3)
+2025-09-19T12:22:46.7250314+02:00 8000001c-0003-ff00-b63f-84710c7967bb [INF] Request starting "HTTP/2" "GET" "https"://"localhost:44311""""/swagger/v1/swagger.json""" - null null (d509f86a)
+2025-09-19T12:22:46.7982103+02:00 8000001c-0003-ff00-b63f-84710c7967bb [INF] Request finished "HTTP/2" "GET" "https"://"localhost:44311""""/swagger/v1/swagger.json""" - 200 null "application/json;charset=utf-8" 73.4153ms (74253ad3)
+2025-09-19T12:23:18.2053981+02:00 8000004f-0004-ff00-b63f-84710c7967bb [WRN] The query uses a row limiting operator ('Skip'/'Take') without an 'OrderBy' operator. This may lead to unpredictable results. If the 'Distinct' operator is used after 'OrderBy', then make sure to use the 'OrderBy' operator after 'Distinct' as the ordering would otherwise get erased. (5b3e5b60)
+2025-09-19T12:23:18.2104082+02:00 8000004f-0004-ff00-b63f-84710c7967bb [WRN] The query uses a row limiting operator ('Skip'/'Take') without an 'OrderBy' operator. This may lead to unpredictable results. If the 'Distinct' operator is used after 'OrderBy', then make sure to use the 'OrderBy' operator after 'Distinct' as the ordering would otherwise get erased. (5b3e5b60)
+2025-09-19T12:23:21.9650974+02:00 8000004f-0004-ff00-b63f-84710c7967bb [INF] Executed DbCommand ("433"ms) [Parameters=["@__p_1='?' (DbType = Int32), @__p_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT v.rol, v.\"rolUsage\", v.\"usuariosCount\"
+FROM \"v_RolesUsuarios\" AS v
+LIMIT @__p_1 OFFSET @__p_0" (0723d8ff)
+2025-09-19T12:23:21.9650965+02:00 8000004d-0004-ff00-b63f-84710c7967bb [INF] Executed DbCommand ("433"ms) [Parameters=["@__p_1='?' (DbType = Int32), @__p_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT v.rol, v.\"rolUsage\", v.\"usuariosCount\"
+FROM \"v_RolesUsuarios\" AS v
+LIMIT @__p_1 OFFSET @__p_0" (0723d8ff)
+2025-09-19T12:23:22.4807696+02:00 8000004d-0004-ff00-b63f-84710c7967bb [INF] Executing "OkObjectResult", writing value of type '"System.Collections.Generic.List`1[[Application.DTOs.DataQuery.vRolesUsuariosDTO, Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]"'. (605b4265)
+2025-09-19T12:23:22.4807832+02:00 8000004f-0004-ff00-b63f-84710c7967bb [INF] Executing "OkObjectResult", writing value of type '"System.Collections.Generic.List`1[[Application.DTOs.DataQuery.vRolesUsuariosDTO, Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]"'. (605b4265)
+2025-09-19T12:23:22.7715717+02:00 8000004f-0004-ff00-b63f-84710c7967bb [INF] Executed action "API.Controllers.DataQueryController.ObtenerRolesUsuarios (API)" in 36849.1021ms (afa2e885)
+2025-09-19T12:23:22.7727534+02:00 8000004f-0004-ff00-b63f-84710c7967bb [INF] Executed endpoint '"API.Controllers.DataQueryController.ObtenerRolesUsuarios (API)"' (99874f2b)
+2025-09-19T12:23:22.8263248+02:00 8000004f-0004-ff00-b63f-84710c7967bb [INF] Request finished "HTTP/2" "GET" "https"://"localhost:44311""""/DataQuery/ObtenerRolesUsuarios""" - 200 null "application/json; charset=utf-8" 44947.8904ms (74253ad3)
+2025-09-19T12:23:22.9706745+02:00 8000004d-0004-ff00-b63f-84710c7967bb [INF] Executed action "API.Controllers.DataQueryController.ObtenerRolesUsuarios (API)" in 37057.859ms (afa2e885)
+2025-09-19T12:23:22.9708419+02:00 8000004d-0004-ff00-b63f-84710c7967bb [INF] Executed endpoint '"API.Controllers.DataQueryController.ObtenerRolesUsuarios (API)"' (99874f2b)
+2025-09-19T12:23:22.9717066+02:00 8000004d-0004-ff00-b63f-84710c7967bb [INF] Request finished "HTTP/2" "GET" "https"://"localhost:44311""""/DataQuery/ObtenerRolesUsuarios""" - 499 null "application/json; charset=utf-8" 45093.1913ms (74253ad3)
+2025-09-19T17:20:47.5072399+02:00  [INF] User profile is available. Using '"C:\Users\David\AppData\Local\ASP.NET\DataProtection-Keys"' as key repository and Windows DPAPI to encrypt keys at rest. (7ac5e29c)
+2025-09-19T17:20:52.1397282+02:00  [INF] Application started. Press Ctrl+C to shut down. (dcaefe54)
+2025-09-19T17:20:52.1441386+02:00  [INF] Hosting environment: "Development" (bc5a1a4e)
+2025-09-19T17:20:52.1471879+02:00  [INF] Content root path: "C:\Users\David\Desktop\API" (cc26f24e)
+2025-09-19T17:20:52.9332696+02:00 80000092-0006-fe00-b63f-84710c7967bb [INF] Request starting "HTTP/2" "GET" "https"://"localhost:44311""""/swagger/index.html""" - null null (d509f86a)
+2025-09-19T17:21:01.3061032+02:00 80000092-0006-fe00-b63f-84710c7967bb [INF] Request finished "HTTP/2" "GET" "https"://"localhost:44311""""/swagger/index.html""" - 200 null "text/html;charset=utf-8" 8538.6449ms (74253ad3)
+2025-09-19T17:21:03.5971572+02:00 80000094-0006-fe00-b63f-84710c7967bb [INF] Request starting "HTTP/2" "GET" "https"://"localhost:44311""""/_framework/aspnetcore-browser-refresh.js""" - null null (d509f86a)
+2025-09-19T17:21:03.6050015+02:00 80000094-0006-fe00-b63f-84710c7967bb [INF] Request finished "HTTP/2" "GET" "https"://"localhost:44311""""/_framework/aspnetcore-browser-refresh.js""" - 200 13742 "application/javascript; charset=utf-8" 3.7297ms (74253ad3)
+2025-09-19T17:21:03.6344703+02:00 80000096-0006-fe00-b63f-84710c7967bb [INF] Request starting "HTTP/2" "GET" "https"://"localhost:44311""""/_vs/browserLink""" - null null (d509f86a)
+2025-09-19T17:21:05.2454635+02:00 80000096-0006-fe00-b63f-84710c7967bb [INF] Request finished "HTTP/2" "GET" "https"://"localhost:44311""""/_vs/browserLink""" - 200 null "text/javascript; charset=UTF-8" 1611.0434ms (74253ad3)
+2025-09-19T17:21:05.7653301+02:00 80000098-0006-fe00-b63f-84710c7967bb [INF] Request starting "HTTP/2" "GET" "https"://"localhost:44311""""/swagger/v1/swagger.json""" - null null (d509f86a)
+2025-09-19T17:21:05.8360629+02:00 80000098-0006-fe00-b63f-84710c7967bb [INF] Request finished "HTTP/2" "GET" "https"://"localhost:44311""""/swagger/v1/swagger.json""" - 200 null "application/json;charset=utf-8" 70.9952ms (74253ad3)
+2025-09-19T17:22:40.5507437+02:00 80000035-0000-f800-b63f-84710c7967bb [INF] Request starting "HTTP/2" "GET" "https"://"localhost:44311""""/DataQuery/ObtenerRolesUsuarios""" - null null (d509f86a)
+2025-09-19T17:22:40.6629191+02:00 80000035-0000-f800-b63f-84710c7967bb [INF] CORS policy execution successful. (5409d6ef)
+2025-09-19T17:22:41.1045698+02:00 80000035-0000-f800-b63f-84710c7967bb [INF] Executing endpoint '"API.Controllers.DataQueryController.ObtenerRolesUsuarios (API)"' (500cc934)
+2025-09-19T17:22:42.8222028+02:00 80000035-0000-f800-b63f-84710c7967bb [INF] Route matched with "{action = \"ObtenerRolesUsuarios\", controller = \"DataQuery\"}". Executing controller action with signature "System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] ObtenerRolesUsuarios()" on controller "API.Controllers.DataQueryController" ("API"). (122b2fdf)
+2025-09-19T17:23:16.2013446+02:00 80000035-0000-f800-b63f-84710c7967bb [WRN] The query uses a row limiting operator ('Skip'/'Take') without an 'OrderBy' operator. This may lead to unpredictable results. If the 'Distinct' operator is used after 'OrderBy', then make sure to use the 'OrderBy' operator after 'Distinct' as the ordering would otherwise get erased. (5b3e5b60)
+2025-09-19T17:23:16.2053203+02:00 80000035-0000-f800-b63f-84710c7967bb [WRN] The query uses a row limiting operator ('Skip'/'Take') without an 'OrderBy' operator. This may lead to unpredictable results. If the 'Distinct' operator is used after 'OrderBy', then make sure to use the 'OrderBy' operator after 'Distinct' as the ordering would otherwise get erased. (5b3e5b60)
+2025-09-19T17:23:19.1248375+02:00 80000035-0000-f800-b63f-84710c7967bb [INF] Executed DbCommand ("364"ms) [Parameters=["@__p_1='?' (DbType = Int32), @__p_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT v.rol, v.\"rolUsage\", v.\"usuariosCount\"
+FROM \"v_RolesUsuarios\" AS v
+LIMIT @__p_1 OFFSET @__p_0" (0723d8ff)
+2025-09-19T17:23:19.3622275+02:00 80000035-0000-f800-b63f-84710c7967bb [INF] Executing "OkObjectResult", writing value of type '"System.Collections.Generic.List`1[[Application.DTOs.DataQuery.vRolesUsuariosDTO, Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]"'. (605b4265)
+2025-09-19T17:23:19.6267719+02:00 80000035-0000-f800-b63f-84710c7967bb [INF] Executed action "API.Controllers.DataQueryController.ObtenerRolesUsuarios (API)" in 36748.7032ms (afa2e885)
+2025-09-19T17:23:19.6277019+02:00 80000035-0000-f800-b63f-84710c7967bb [INF] Executed endpoint '"API.Controllers.DataQueryController.ObtenerRolesUsuarios (API)"' (99874f2b)
+2025-09-19T17:23:19.6428736+02:00 80000035-0000-f800-b63f-84710c7967bb [INF] Request finished "HTTP/2" "GET" "https"://"localhost:44311""""/DataQuery/ObtenerRolesUsuarios""" - 200 null "application/json; charset=utf-8" 39092.2556ms (74253ad3)
+2025-09-19T17:25:23.5223895+02:00 80000055-0004-ff00-b63f-84710c7967bb [INF] Request starting "HTTP/2" "GET" "https"://"localhost:44311""""/DataQuery/ObtenerRolesUsuarios""" - null null (d509f86a)
+2025-09-19T17:25:23.5252439+02:00 80000055-0004-ff00-b63f-84710c7967bb [INF] CORS policy execution successful. (5409d6ef)
+2025-09-19T17:25:23.5256816+02:00 80000055-0004-ff00-b63f-84710c7967bb [INF] Executing endpoint '"API.Controllers.DataQueryController.ObtenerRolesUsuarios (API)"' (500cc934)
+2025-09-19T17:25:23.5260342+02:00 80000055-0004-ff00-b63f-84710c7967bb [INF] Route matched with "{action = \"ObtenerRolesUsuarios\", controller = \"DataQuery\"}". Executing controller action with signature "System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] ObtenerRolesUsuarios()" on controller "API.Controllers.DataQueryController" ("API"). (122b2fdf)
+2025-09-19T17:25:23.7605797+02:00 80000055-0004-ff00-b63f-84710c7967bb [INF] Executed DbCommand ("152"ms) [Parameters=["@__p_1='?' (DbType = Int32), @__p_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT v.rol, v.\"rolUsage\", v.\"usuariosCount\"
+FROM \"v_RolesUsuarios\" AS v
+LIMIT @__p_1 OFFSET @__p_0" (0723d8ff)
+2025-09-19T17:25:23.7617546+02:00 80000055-0004-ff00-b63f-84710c7967bb [INF] Executing "OkObjectResult", writing value of type '"System.Collections.Generic.List`1[[Application.DTOs.DataQuery.vRolesUsuariosDTO, Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]"'. (605b4265)
+2025-09-19T17:25:23.7624863+02:00 80000055-0004-ff00-b63f-84710c7967bb [INF] Executed action "API.Controllers.DataQueryController.ObtenerRolesUsuarios (API)" in 236.3613ms (afa2e885)
+2025-09-19T17:25:23.7625596+02:00 80000055-0004-ff00-b63f-84710c7967bb [INF] Executed endpoint '"API.Controllers.DataQueryController.ObtenerRolesUsuarios (API)"' (99874f2b)
+2025-09-19T17:25:23.7628859+02:00 80000055-0004-ff00-b63f-84710c7967bb [INF] Request finished "HTTP/2" "GET" "https"://"localhost:44311""""/DataQuery/ObtenerRolesUsuarios""" - 200 null "application/json; charset=utf-8" 240.7836ms (74253ad3)
+2025-09-19T17:26:49.1804978+02:00 8000002e-0003-fe00-b63f-84710c7967bb [INF] Request starting "HTTP/2" "GET" "https"://"localhost:44311""""/DataQuery/ObtenerRolesUsuarios""" - null null (d509f86a)
+2025-09-19T17:26:49.2224519+02:00 8000002e-0003-fe00-b63f-84710c7967bb [INF] CORS policy execution successful. (5409d6ef)
+2025-09-19T17:26:49.2226963+02:00 8000002e-0003-fe00-b63f-84710c7967bb [INF] Executing endpoint '"API.Controllers.DataQueryController.ObtenerRolesUsuarios (API)"' (500cc934)
+2025-09-19T17:26:49.2228488+02:00 8000002e-0003-fe00-b63f-84710c7967bb [INF] Route matched with "{action = \"ObtenerRolesUsuarios\", controller = \"DataQuery\"}". Executing controller action with signature "System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] ObtenerRolesUsuarios()" on controller "API.Controllers.DataQueryController" ("API"). (122b2fdf)
+2025-09-19T17:26:49.3084337+02:00 8000002e-0003-fe00-b63f-84710c7967bb [INF] Executed DbCommand ("3"ms) [Parameters=["@__p_1='?' (DbType = Int32), @__p_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT v.rol, v.\"rolUsage\", v.\"usuariosCount\"
+FROM \"v_RolesUsuarios\" AS v
+LIMIT @__p_1 OFFSET @__p_0" (0723d8ff)
+2025-09-19T17:26:49.3101281+02:00 8000002e-0003-fe00-b63f-84710c7967bb [INF] Executing "OkObjectResult", writing value of type '"System.Collections.Generic.List`1[[Application.DTOs.DataQuery.vRolesUsuariosDTO, Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]"'. (605b4265)
+2025-09-19T17:26:49.3106538+02:00 8000002e-0003-fe00-b63f-84710c7967bb [INF] Executed action "API.Controllers.DataQueryController.ObtenerRolesUsuarios (API)" in 87.7307ms (afa2e885)
+2025-09-19T17:26:49.3107294+02:00 8000002e-0003-fe00-b63f-84710c7967bb [INF] Executed endpoint '"API.Controllers.DataQueryController.ObtenerRolesUsuarios (API)"' (99874f2b)
+2025-09-19T17:26:49.3110482+02:00 8000002e-0003-fe00-b63f-84710c7967bb [INF] Request finished "HTTP/2" "GET" "https"://"localhost:44311""""/DataQuery/ObtenerRolesUsuarios""" - 200 null "application/json; charset=utf-8" 130.9854ms (74253ad3)
+2025-09-19T17:27:02.5852315+02:00 8000004f-0002-fe00-b63f-84710c7967bb [INF] Request starting "HTTP/2" "GET" "https"://"localhost:44311""""/DataQuery/ObtenerRolesUsuarios""" - null null (d509f86a)
+2025-09-19T17:27:02.5857520+02:00 8000004f-0002-fe00-b63f-84710c7967bb [INF] CORS policy execution successful. (5409d6ef)
+2025-09-19T17:27:02.5860785+02:00 8000004f-0002-fe00-b63f-84710c7967bb [INF] Executing endpoint '"API.Controllers.DataQueryController.ObtenerRolesUsuarios (API)"' (500cc934)
+2025-09-19T17:27:02.5862917+02:00 8000004f-0002-fe00-b63f-84710c7967bb [INF] Route matched with "{action = \"ObtenerRolesUsuarios\", controller = \"DataQuery\"}". Executing controller action with signature "System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] ObtenerRolesUsuarios()" on controller "API.Controllers.DataQueryController" ("API"). (122b2fdf)
+2025-09-19T17:27:02.5953284+02:00 8000004f-0002-fe00-b63f-84710c7967bb [INF] Executed DbCommand ("3"ms) [Parameters=["@__p_1='?' (DbType = Int32), @__p_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT v.rol, v.\"rolUsage\", v.\"usuariosCount\"
+FROM \"v_RolesUsuarios\" AS v
+LIMIT @__p_1 OFFSET @__p_0" (0723d8ff)
+2025-09-19T17:27:02.5964563+02:00 8000004f-0002-fe00-b63f-84710c7967bb [INF] Executing "OkObjectResult", writing value of type '"System.Collections.Generic.List`1[[Application.DTOs.DataQuery.vRolesUsuariosDTO, Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]"'. (605b4265)
+2025-09-19T17:27:02.5972043+02:00 8000004f-0002-fe00-b63f-84710c7967bb [INF] Executed action "API.Controllers.DataQueryController.ObtenerRolesUsuarios (API)" in 10.514ms (afa2e885)
+2025-09-19T17:27:02.5973184+02:00 8000004f-0002-fe00-b63f-84710c7967bb [INF] Executed endpoint '"API.Controllers.DataQueryController.ObtenerRolesUsuarios (API)"' (99874f2b)
+2025-09-19T17:27:02.5979757+02:00 8000004f-0002-fe00-b63f-84710c7967bb [INF] Request finished "HTTP/2" "GET" "https"://"localhost:44311""""/DataQuery/ObtenerRolesUsuarios""" - 200 null "application/json; charset=utf-8" 12.7575ms (74253ad3)
+2025-09-19T17:27:06.0800912+02:00 8000003b-0000-f800-b63f-84710c7967bb [INF] Request starting "HTTP/2" "GET" "https"://"localhost:44311""""/DataQuery/ObtenerRolesUsuarios""" - null null (d509f86a)
+2025-09-19T17:27:06.0806298+02:00 8000003b-0000-f800-b63f-84710c7967bb [INF] CORS policy execution successful. (5409d6ef)
+2025-09-19T17:27:06.0809967+02:00 8000003b-0000-f800-b63f-84710c7967bb [INF] Executing endpoint '"API.Controllers.DataQueryController.ObtenerRolesUsuarios (API)"' (500cc934)
+2025-09-19T17:27:06.0816214+02:00 8000003b-0000-f800-b63f-84710c7967bb [INF] Route matched with "{action = \"ObtenerRolesUsuarios\", controller = \"DataQuery\"}". Executing controller action with signature "System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] ObtenerRolesUsuarios()" on controller "API.Controllers.DataQueryController" ("API"). (122b2fdf)
+2025-09-19T17:27:06.0911159+02:00 8000003b-0000-f800-b63f-84710c7967bb [INF] Executed DbCommand ("3"ms) [Parameters=["@__p_1='?' (DbType = Int32), @__p_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT v.rol, v.\"rolUsage\", v.\"usuariosCount\"
+FROM \"v_RolesUsuarios\" AS v
+LIMIT @__p_1 OFFSET @__p_0" (0723d8ff)
+2025-09-19T17:27:06.0941760+02:00 8000003b-0000-f800-b63f-84710c7967bb [INF] Executing "OkObjectResult", writing value of type '"System.Collections.Generic.List`1[[Application.DTOs.DataQuery.vRolesUsuariosDTO, Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]"'. (605b4265)
+2025-09-19T17:27:06.0948134+02:00 8000003b-0000-f800-b63f-84710c7967bb [INF] Executed action "API.Controllers.DataQueryController.ObtenerRolesUsuarios (API)" in 12.9741ms (afa2e885)
+2025-09-19T17:27:06.0949285+02:00 8000003b-0000-f800-b63f-84710c7967bb [INF] Executed endpoint '"API.Controllers.DataQueryController.ObtenerRolesUsuarios (API)"' (99874f2b)
+2025-09-19T17:27:06.0954802+02:00 8000003b-0000-f800-b63f-84710c7967bb [INF] Request finished "HTTP/2" "GET" "https"://"localhost:44311""""/DataQuery/ObtenerRolesUsuarios""" - 200 null "application/json; charset=utf-8" 15.6447ms (74253ad3)
+2025-09-19T17:27:19.9108876+02:00 8000005f-0004-ff00-b63f-84710c7967bb [INF] Request starting "HTTP/2" "GET" "https"://"localhost:44311""""/DataQuery/ObtenerRolesUsuarios""" - null null (d509f86a)
+2025-09-19T17:27:19.9112526+02:00 8000005f-0004-ff00-b63f-84710c7967bb [INF] CORS policy execution successful. (5409d6ef)
+2025-09-19T17:27:19.9114724+02:00 8000005f-0004-ff00-b63f-84710c7967bb [INF] Executing endpoint '"API.Controllers.DataQueryController.ObtenerRolesUsuarios (API)"' (500cc934)
+2025-09-19T17:27:19.9116631+02:00 8000005f-0004-ff00-b63f-84710c7967bb [INF] Route matched with "{action = \"ObtenerRolesUsuarios\", controller = \"DataQuery\"}". Executing controller action with signature "System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] ObtenerRolesUsuarios()" on controller "API.Controllers.DataQueryController" ("API"). (122b2fdf)
+2025-09-19T17:27:19.9187033+02:00 8000005f-0004-ff00-b63f-84710c7967bb [INF] Executed DbCommand ("2"ms) [Parameters=["@__p_1='?' (DbType = Int32), @__p_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT v.rol, v.\"rolUsage\", v.\"usuariosCount\"
+FROM \"v_RolesUsuarios\" AS v
+LIMIT @__p_1 OFFSET @__p_0" (0723d8ff)
+2025-09-19T17:27:19.9200554+02:00 8000005f-0004-ff00-b63f-84710c7967bb [INF] Executing "OkObjectResult", writing value of type '"System.Collections.Generic.List`1[[Application.DTOs.DataQuery.vRolesUsuariosDTO, Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]"'. (605b4265)
+2025-09-19T17:27:19.9206615+02:00 8000005f-0004-ff00-b63f-84710c7967bb [INF] Executed action "API.Controllers.DataQueryController.ObtenerRolesUsuarios (API)" in 8.8904ms (afa2e885)
+2025-09-19T17:27:19.9207412+02:00 8000005f-0004-ff00-b63f-84710c7967bb [INF] Executed endpoint '"API.Controllers.DataQueryController.ObtenerRolesUsuarios (API)"' (99874f2b)
+2025-09-19T17:27:19.9210717+02:00 8000005f-0004-ff00-b63f-84710c7967bb [INF] Request finished "HTTP/2" "GET" "https"://"localhost:44311""""/DataQuery/ObtenerRolesUsuarios""" - 200 null "application/json; charset=utf-8" 10.437ms (74253ad3)
+2025-09-19T17:28:40.8071615+02:00 8000002e-0003-ff00-b63f-84710c7967bb [INF] Request starting "HTTP/2" "GET" "https"://"localhost:44311""""/DataQuery/ObtenerRolesUsuarios""" - null null (d509f86a)
+2025-09-19T17:28:40.8076145+02:00 8000002e-0003-ff00-b63f-84710c7967bb [INF] CORS policy execution successful. (5409d6ef)
+2025-09-19T17:28:40.8079009+02:00 8000002e-0003-ff00-b63f-84710c7967bb [INF] Executing endpoint '"API.Controllers.DataQueryController.ObtenerRolesUsuarios (API)"' (500cc934)
+2025-09-19T17:28:40.8080949+02:00 8000002e-0003-ff00-b63f-84710c7967bb [INF] Route matched with "{action = \"ObtenerRolesUsuarios\", controller = \"DataQuery\"}". Executing controller action with signature "System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] ObtenerRolesUsuarios()" on controller "API.Controllers.DataQueryController" ("API"). (122b2fdf)
+2025-09-19T17:28:41.1757275+02:00 8000002e-0003-ff00-b63f-84710c7967bb [INF] Executed DbCommand ("9"ms) [Parameters=["@__p_1='?' (DbType = Int32), @__p_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT v.rol, v.\"rolUsage\", v.\"usuariosCount\"
+FROM \"v_RolesUsuarios\" AS v
+LIMIT @__p_1 OFFSET @__p_0" (0723d8ff)
+2025-09-19T17:28:41.1764148+02:00 8000002e-0003-ff00-b63f-84710c7967bb [INF] Executing "OkObjectResult", writing value of type '"System.Collections.Generic.List`1[[Application.DTOs.DataQuery.vRolesUsuariosDTO, Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]"'. (605b4265)
+2025-09-19T17:28:41.1772170+02:00 8000002e-0003-ff00-b63f-84710c7967bb [INF] Executed action "API.Controllers.DataQueryController.ObtenerRolesUsuarios (API)" in 369.0491ms (afa2e885)
+2025-09-19T17:28:41.1772929+02:00 8000002e-0003-ff00-b63f-84710c7967bb [INF] Executed endpoint '"API.Controllers.DataQueryController.ObtenerRolesUsuarios (API)"' (99874f2b)
+2025-09-19T17:28:41.1777497+02:00 8000002e-0003-ff00-b63f-84710c7967bb [INF] Request finished "HTTP/2" "GET" "https"://"localhost:44311""""/DataQuery/ObtenerRolesUsuarios""" - 200 null "application/json; charset=utf-8" 370.6752ms (74253ad3)
+2025-09-19T17:29:00.6503637+02:00 80000048-0004-fb00-b63f-84710c7967bb [INF] Request starting "HTTP/2" "GET" "https"://"localhost:44311""""/DataQuery/ObtenerRolesUsuarios""" - null null (d509f86a)
+2025-09-19T17:29:00.6510670+02:00 80000048-0004-fb00-b63f-84710c7967bb [INF] CORS policy execution successful. (5409d6ef)
+2025-09-19T17:29:00.6513077+02:00 80000048-0004-fb00-b63f-84710c7967bb [INF] Executing endpoint '"API.Controllers.DataQueryController.ObtenerRolesUsuarios (API)"' (500cc934)
+2025-09-19T17:29:00.6516294+02:00 80000048-0004-fb00-b63f-84710c7967bb [INF] Route matched with "{action = \"ObtenerRolesUsuarios\", controller = \"DataQuery\"}". Executing controller action with signature "System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] ObtenerRolesUsuarios()" on controller "API.Controllers.DataQueryController" ("API"). (122b2fdf)
+2025-09-19T17:29:00.6588542+02:00 80000048-0004-fb00-b63f-84710c7967bb [INF] Executed DbCommand ("2"ms) [Parameters=["@__p_1='?' (DbType = Int32), @__p_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT v.rol, v.\"rolUsage\", v.\"usuariosCount\"
+FROM \"v_RolesUsuarios\" AS v
+LIMIT @__p_1 OFFSET @__p_0" (0723d8ff)
+2025-09-19T17:29:00.6601259+02:00 80000048-0004-fb00-b63f-84710c7967bb [INF] Executing "OkObjectResult", writing value of type '"System.Collections.Generic.List`1[[Application.DTOs.DataQuery.vRolesUsuariosDTO, Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]"'. (605b4265)
+2025-09-19T17:29:00.6607095+02:00 80000048-0004-fb00-b63f-84710c7967bb [INF] Executed action "API.Controllers.DataQueryController.ObtenerRolesUsuarios (API)" in 8.9865ms (afa2e885)
+2025-09-19T17:29:00.6607962+02:00 80000048-0004-fb00-b63f-84710c7967bb [INF] Executed endpoint '"API.Controllers.DataQueryController.ObtenerRolesUsuarios (API)"' (99874f2b)
+2025-09-19T17:29:00.6612045+02:00 80000048-0004-fb00-b63f-84710c7967bb [INF] Request finished "HTTP/2" "GET" "https"://"localhost:44311""""/DataQuery/ObtenerRolesUsuarios""" - 200 null "application/json; charset=utf-8" 11.1344ms (74253ad3)
+2025-09-19T17:29:16.0818206+02:00 80000062-0004-ff00-b63f-84710c7967bb [INF] Request starting "HTTP/2" "GET" "https"://"localhost:44311""""/DataQuery/ObtenerRolesUsuarios""" - null null (d509f86a)
+2025-09-19T17:29:16.0821355+02:00 80000062-0004-ff00-b63f-84710c7967bb [INF] CORS policy execution successful. (5409d6ef)
+2025-09-19T17:29:16.0823211+02:00 80000062-0004-ff00-b63f-84710c7967bb [INF] Executing endpoint '"API.Controllers.DataQueryController.ObtenerRolesUsuarios (API)"' (500cc934)
+2025-09-19T17:29:16.0824981+02:00 80000062-0004-ff00-b63f-84710c7967bb [INF] Route matched with "{action = \"ObtenerRolesUsuarios\", controller = \"DataQuery\"}". Executing controller action with signature "System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] ObtenerRolesUsuarios()" on controller "API.Controllers.DataQueryController" ("API"). (122b2fdf)
+2025-09-19T17:29:16.0928117+02:00 80000062-0004-ff00-b63f-84710c7967bb [INF] Executed DbCommand ("4"ms) [Parameters=["@__p_1='?' (DbType = Int32), @__p_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT v.rol, v.\"rolUsage\", v.\"usuariosCount\"
+FROM \"v_RolesUsuarios\" AS v
+LIMIT @__p_1 OFFSET @__p_0" (0723d8ff)
+2025-09-19T17:29:16.0936453+02:00 80000062-0004-ff00-b63f-84710c7967bb [INF] Executing "OkObjectResult", writing value of type '"System.Collections.Generic.List`1[[Application.DTOs.DataQuery.vRolesUsuariosDTO, Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]"'. (605b4265)
+2025-09-19T17:29:16.0943708+02:00 80000062-0004-ff00-b63f-84710c7967bb [INF] Executed action "API.Controllers.DataQueryController.ObtenerRolesUsuarios (API)" in 11.7565ms (afa2e885)
+2025-09-19T17:29:16.0944663+02:00 80000062-0004-ff00-b63f-84710c7967bb [INF] Executed endpoint '"API.Controllers.DataQueryController.ObtenerRolesUsuarios (API)"' (99874f2b)
+2025-09-19T17:29:16.0948861+02:00 80000062-0004-ff00-b63f-84710c7967bb [INF] Request finished "HTTP/2" "GET" "https"://"localhost:44311""""/DataQuery/ObtenerRolesUsuarios""" - 200 null "application/json; charset=utf-8" 13.1568ms (74253ad3)
+2025-09-19T17:29:23.4592257+02:00 80000041-0005-fd00-b63f-84710c7967bb [INF] Request starting "HTTP/2" "GET" "https"://"localhost:44311""""/DataQuery/ObtenerRolesUsuarios""" - null null (d509f86a)
+2025-09-19T17:29:23.4595270+02:00 80000041-0005-fd00-b63f-84710c7967bb [INF] CORS policy execution successful. (5409d6ef)
+2025-09-19T17:29:23.4597338+02:00 80000041-0005-fd00-b63f-84710c7967bb [INF] Executing endpoint '"API.Controllers.DataQueryController.ObtenerRolesUsuarios (API)"' (500cc934)
+2025-09-19T17:29:23.4599389+02:00 80000041-0005-fd00-b63f-84710c7967bb [INF] Route matched with "{action = \"ObtenerRolesUsuarios\", controller = \"DataQuery\"}". Executing controller action with signature "System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] ObtenerRolesUsuarios()" on controller "API.Controllers.DataQueryController" ("API"). (122b2fdf)
+2025-09-19T17:29:23.4674885+02:00 80000041-0005-fd00-b63f-84710c7967bb [INF] Executed DbCommand ("2"ms) [Parameters=["@__p_1='?' (DbType = Int32), @__p_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT v.rol, v.\"rolUsage\", v.\"usuariosCount\"
+FROM \"v_RolesUsuarios\" AS v
+LIMIT @__p_1 OFFSET @__p_0" (0723d8ff)
+2025-09-19T17:29:23.4685834+02:00 80000041-0005-fd00-b63f-84710c7967bb [INF] Executing "OkObjectResult", writing value of type '"System.Collections.Generic.List`1[[Application.DTOs.DataQuery.vRolesUsuariosDTO, Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]"'. (605b4265)
+2025-09-19T17:29:23.4692273+02:00 80000041-0005-fd00-b63f-84710c7967bb [INF] Executed action "API.Controllers.DataQueryController.ObtenerRolesUsuarios (API)" in 9.1692ms (afa2e885)
+2025-09-19T17:29:23.4696087+02:00 80000041-0005-fd00-b63f-84710c7967bb [INF] Executed endpoint '"API.Controllers.DataQueryController.ObtenerRolesUsuarios (API)"' (99874f2b)
+2025-09-19T17:29:23.4701026+02:00 80000041-0005-fd00-b63f-84710c7967bb [INF] Request finished "HTTP/2" "GET" "https"://"localhost:44311""""/DataQuery/ObtenerRolesUsuarios""" - 200 null "application/json; charset=utf-8" 11.0093ms (74253ad3)
+2025-09-19T17:29:43.6460410+02:00 80000049-0001-fa00-b63f-84710c7967bb [INF] Request starting "HTTP/2" "GET" "https"://"localhost:44311""""/DataQuery/ObtenerRolesUsuarios""" - null null (d509f86a)
+2025-09-19T17:29:43.6467214+02:00 80000049-0001-fa00-b63f-84710c7967bb [INF] CORS policy execution successful. (5409d6ef)
+2025-09-19T17:29:43.6474637+02:00 80000049-0001-fa00-b63f-84710c7967bb [INF] Executing endpoint '"API.Controllers.DataQueryController.ObtenerRolesUsuarios (API)"' (500cc934)
+2025-09-19T17:29:43.6478998+02:00 80000049-0001-fa00-b63f-84710c7967bb [INF] Route matched with "{action = \"ObtenerRolesUsuarios\", controller = \"DataQuery\"}". Executing controller action with signature "System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] ObtenerRolesUsuarios()" on controller "API.Controllers.DataQueryController" ("API"). (122b2fdf)
+2025-09-19T17:29:43.6561461+02:00 80000049-0001-fa00-b63f-84710c7967bb [INF] Executed DbCommand ("2"ms) [Parameters=["@__p_1='?' (DbType = Int32), @__p_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT v.rol, v.\"rolUsage\", v.\"usuariosCount\"
+FROM \"v_RolesUsuarios\" AS v
+LIMIT @__p_1 OFFSET @__p_0" (0723d8ff)
+2025-09-19T17:29:43.6573163+02:00 80000049-0001-fa00-b63f-84710c7967bb [INF] Executing "OkObjectResult", writing value of type '"System.Collections.Generic.List`1[[Application.DTOs.DataQuery.vRolesUsuariosDTO, Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]"'. (605b4265)
+2025-09-19T17:29:43.6583674+02:00 80000049-0001-fa00-b63f-84710c7967bb [INF] Executed action "API.Controllers.DataQueryController.ObtenerRolesUsuarios (API)" in 9.9567ms (afa2e885)
+2025-09-19T17:29:43.6584899+02:00 80000049-0001-fa00-b63f-84710c7967bb [INF] Executed endpoint '"API.Controllers.DataQueryController.ObtenerRolesUsuarios (API)"' (99874f2b)
+2025-09-19T17:29:43.6589353+02:00 80000049-0001-fa00-b63f-84710c7967bb [INF] Request finished "HTTP/2" "GET" "https"://"localhost:44311""""/DataQuery/ObtenerRolesUsuarios""" - 200 null "application/json; charset=utf-8" 13.0625ms (74253ad3)
+2025-09-19T17:29:46.7305388+02:00 80000068-0000-fb00-b63f-84710c7967bb [INF] Request starting "HTTP/2" "GET" "https"://"localhost:44311""""/DataQuery/ObtenerRolesUsuarios""" - null null (d509f86a)
+2025-09-19T17:29:46.7308165+02:00 80000068-0000-fb00-b63f-84710c7967bb [INF] CORS policy execution successful. (5409d6ef)
+2025-09-19T17:29:46.7310521+02:00 80000068-0000-fb00-b63f-84710c7967bb [INF] Executing endpoint '"API.Controllers.DataQueryController.ObtenerRolesUsuarios (API)"' (500cc934)
+2025-09-19T17:29:46.7311983+02:00 80000068-0000-fb00-b63f-84710c7967bb [INF] Route matched with "{action = \"ObtenerRolesUsuarios\", controller = \"DataQuery\"}". Executing controller action with signature "System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] ObtenerRolesUsuarios()" on controller "API.Controllers.DataQueryController" ("API"). (122b2fdf)
+2025-09-19T17:29:46.7413494+02:00 80000068-0000-fb00-b63f-84710c7967bb [INF] Executed DbCommand ("3"ms) [Parameters=["@__p_1='?' (DbType = Int32), @__p_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT v.rol, v.\"rolUsage\", v.\"usuariosCount\"
+FROM \"v_RolesUsuarios\" AS v
+LIMIT @__p_1 OFFSET @__p_0" (0723d8ff)
+2025-09-19T17:29:46.7429768+02:00 80000068-0000-fb00-b63f-84710c7967bb [INF] Executing "OkObjectResult", writing value of type '"System.Collections.Generic.List`1[[Application.DTOs.DataQuery.vRolesUsuariosDTO, Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]"'. (605b4265)
+2025-09-19T17:29:46.7435983+02:00 80000068-0000-fb00-b63f-84710c7967bb [INF] Executed action "API.Controllers.DataQueryController.ObtenerRolesUsuarios (API)" in 12.2527ms (afa2e885)
+2025-09-19T17:29:46.7436904+02:00 80000068-0000-fb00-b63f-84710c7967bb [INF] Executed endpoint '"API.Controllers.DataQueryController.ObtenerRolesUsuarios (API)"' (99874f2b)
+2025-09-19T17:29:46.7442499+02:00 80000068-0000-fb00-b63f-84710c7967bb [INF] Request finished "HTTP/2" "GET" "https"://"localhost:44311""""/DataQuery/ObtenerRolesUsuarios""" - 200 null "application/json; charset=utf-8" 13.8173ms (74253ad3)
+2025-09-19T17:29:58.1649871+02:00 80000037-0002-fa00-b63f-84710c7967bb [INF] Request starting "HTTP/2" "GET" "https"://"localhost:44311""""/DataQuery/ObtenerActividadUsuarios""" - null null (d509f86a)
+2025-09-19T17:29:58.1654930+02:00 80000037-0002-fa00-b63f-84710c7967bb [INF] CORS policy execution successful. (5409d6ef)
+2025-09-19T17:29:58.1659012+02:00 80000037-0002-fa00-b63f-84710c7967bb [INF] Executing endpoint '"API.Controllers.DataQueryController.ObtenerActividadUsuarios (API)"' (500cc934)
+2025-09-19T17:29:58.1798812+02:00 80000037-0002-fa00-b63f-84710c7967bb [INF] Route matched with "{action = \"ObtenerActividadUsuarios\", controller = \"DataQuery\"}". Executing controller action with signature "System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] ObtenerActividadUsuarios()" on controller "API.Controllers.DataQueryController" ("API"). (122b2fdf)
+2025-09-19T17:29:58.1979814+02:00 80000037-0002-fa00-b63f-84710c7967bb [WRN] The query uses a row limiting operator ('Skip'/'Take') without an 'OrderBy' operator. This may lead to unpredictable results. If the 'Distinct' operator is used after 'OrderBy', then make sure to use the 'OrderBy' operator after 'Distinct' as the ordering would otherwise get erased. (5b3e5b60)
+2025-09-19T17:29:58.2003503+02:00 80000037-0002-fa00-b63f-84710c7967bb [WRN] The query uses a row limiting operator ('Skip'/'Take') without an 'OrderBy' operator. This may lead to unpredictable results. If the 'Distinct' operator is used after 'OrderBy', then make sure to use the 'OrderBy' operator after 'Distinct' as the ordering would otherwise get erased. (5b3e5b60)
+2025-09-19T17:29:58.3260760+02:00 80000037-0002-fa00-b63f-84710c7967bb [INF] Executed DbCommand ("116"ms) [Parameters=["@__p_1='?' (DbType = Int32), @__p_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT v.\"idUsuario\", v.apellidos, v.correo, v.nombre, v.region, v.pais, v.\"ultimaConexion\", v.\"totalLogins\"
+FROM \"v_ActividadUsuarios\" AS v
+LIMIT @__p_1 OFFSET @__p_0" (0723d8ff)
+2025-09-19T17:29:58.4907410+02:00 80000037-0002-fa00-b63f-84710c7967bb [INF] Executing "OkObjectResult", writing value of type '"System.Collections.Generic.List`1[[Application.DTOs.DataQuery.vActividadUsuariosDTO, Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]"'. (605b4265)
+2025-09-19T17:29:58.5421456+02:00 80000037-0002-fa00-b63f-84710c7967bb [INF] Executed action "API.Controllers.DataQueryController.ObtenerActividadUsuarios (API)" in 362.1147ms (afa2e885)
+2025-09-19T17:29:58.5422749+02:00 80000037-0002-fa00-b63f-84710c7967bb [INF] Executed endpoint '"API.Controllers.DataQueryController.ObtenerActividadUsuarios (API)"' (99874f2b)
+2025-09-19T17:29:58.5426241+02:00 80000037-0002-fa00-b63f-84710c7967bb [INF] Request finished "HTTP/2" "GET" "https"://"localhost:44311""""/DataQuery/ObtenerActividadUsuarios""" - 200 null "application/json; charset=utf-8" 377.8556ms (74253ad3)
+2025-09-19T17:30:00.2456692+02:00 800000ea-0000-fc00-b63f-84710c7967bb [INF] Request starting "HTTP/2" "GET" "https"://"localhost:44311""""/DataQuery/ObtenerRolesUsuarios""" - null null (d509f86a)
+2025-09-19T17:30:00.2458812+02:00 800000ea-0000-fc00-b63f-84710c7967bb [INF] CORS policy execution successful. (5409d6ef)
+2025-09-19T17:30:00.2460166+02:00 800000ea-0000-fc00-b63f-84710c7967bb [INF] Executing endpoint '"API.Controllers.DataQueryController.ObtenerRolesUsuarios (API)"' (500cc934)
+2025-09-19T17:30:00.2461288+02:00 800000ea-0000-fc00-b63f-84710c7967bb [INF] Route matched with "{action = \"ObtenerRolesUsuarios\", controller = \"DataQuery\"}". Executing controller action with signature "System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] ObtenerRolesUsuarios()" on controller "API.Controllers.DataQueryController" ("API"). (122b2fdf)
+2025-09-19T17:30:00.2561016+02:00 800000ea-0000-fc00-b63f-84710c7967bb [INF] Executed DbCommand ("3"ms) [Parameters=["@__p_1='?' (DbType = Int32), @__p_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT v.rol, v.\"rolUsage\", v.\"usuariosCount\"
+FROM \"v_RolesUsuarios\" AS v
+LIMIT @__p_1 OFFSET @__p_0" (0723d8ff)
+2025-09-19T17:30:00.2635883+02:00 800000ea-0000-fc00-b63f-84710c7967bb [INF] Executing "OkObjectResult", writing value of type '"System.Collections.Generic.List`1[[Application.DTOs.DataQuery.vRolesUsuariosDTO, Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]"'. (605b4265)
+2025-09-19T17:30:00.2646979+02:00 800000ea-0000-fc00-b63f-84710c7967bb [INF] Executed action "API.Controllers.DataQueryController.ObtenerRolesUsuarios (API)" in 18.4479ms (afa2e885)
+2025-09-19T17:30:00.2647732+02:00 800000ea-0000-fc00-b63f-84710c7967bb [INF] Executed endpoint '"API.Controllers.DataQueryController.ObtenerRolesUsuarios (API)"' (99874f2b)
+2025-09-19T17:30:00.2651138+02:00 800000ea-0000-fc00-b63f-84710c7967bb [INF] Request finished "HTTP/2" "GET" "https"://"localhost:44311""""/DataQuery/ObtenerRolesUsuarios""" - 200 null "application/json; charset=utf-8" 19.4921ms (74253ad3)
+2025-09-19T17:30:03.3386501+02:00 8000006a-0000-fb00-b63f-84710c7967bb [INF] Request starting "HTTP/2" "GET" "https"://"localhost:44311""""/WorkerServiceExecution/ObtenerWorkerServiceExecutions""" - null null (d509f86a)
+2025-09-19T17:30:03.3392839+02:00 8000006a-0000-fb00-b63f-84710c7967bb [INF] CORS policy execution successful. (5409d6ef)
+2025-09-19T17:30:03.3946646+02:00 8000006a-0000-fb00-b63f-84710c7967bb [INF] Authorization failed. "These requirements were not met:
+DenyAnonymousAuthorizationRequirement: Requires an authenticated user." (92d7f7d3)
+2025-09-19T17:30:03.3986800+02:00 8000006a-0000-fb00-b63f-84710c7967bb [INF] AuthenticationScheme: "Bearer" was challenged. (d45f1f38)
+2025-09-19T17:30:03.4464524+02:00 8000006a-0000-fb00-b63f-84710c7967bb [INF] Request finished "HTTP/2" "GET" "https"://"localhost:44311""""/WorkerServiceExecution/ObtenerWorkerServiceExecutions""" - 401 null null 108.0538ms (74253ad3)
+2025-09-19T17:30:12.7465062+02:00 8000004c-0001-fa00-b63f-84710c7967bb [INF] Request starting "HTTP/2" "GET" "https"://"localhost:44311""""/WorkerServiceExecution/ObtenerWorkerServiceExecutions""" - null null (d509f86a)
+2025-09-19T17:30:12.7507159+02:00 8000004c-0001-fa00-b63f-84710c7967bb [INF] CORS policy execution successful. (5409d6ef)
+2025-09-19T17:30:12.7536671+02:00 8000004c-0001-fa00-b63f-84710c7967bb [INF] Authorization failed. "These requirements were not met:
+DenyAnonymousAuthorizationRequirement: Requires an authenticated user." (92d7f7d3)
+2025-09-19T17:30:12.7545389+02:00 8000004c-0001-fa00-b63f-84710c7967bb [INF] AuthenticationScheme: "Bearer" was challenged. (d45f1f38)
+2025-09-19T17:30:12.7556020+02:00 8000004c-0001-fa00-b63f-84710c7967bb [INF] Request finished "HTTP/2" "GET" "https"://"localhost:44311""""/WorkerServiceExecution/ObtenerWorkerServiceExecutions""" - 401 null null 8.9759ms (74253ad3)
+2025-09-19T17:32:53.1669408+02:00 80000046-0000-f800-b63f-84710c7967bb [INF] Request starting "HTTP/2" "GET" "https"://"localhost:44311""""/WorkerServiceExecution/ObtenerWorkerServiceExecutions""" - null null (d509f86a)
+2025-09-19T17:32:53.1673604+02:00 80000046-0000-f800-b63f-84710c7967bb [INF] CORS policy execution successful. (5409d6ef)
+2025-09-19T17:32:53.4446153+02:00 80000046-0000-f800-b63f-84710c7967bb [INF] Authorization failed. "These requirements were not met:
+DenyAnonymousAuthorizationRequirement: Requires an authenticated user." (92d7f7d3)
+2025-09-19T17:32:53.4448046+02:00 80000046-0000-f800-b63f-84710c7967bb [INF] AuthenticationScheme: "Bearer" was challenged. (d45f1f38)
+2025-09-19T17:32:53.4454432+02:00 80000046-0000-f800-b63f-84710c7967bb [INF] Request finished "HTTP/2" "GET" "https"://"localhost:44311""""/WorkerServiceExecution/ObtenerWorkerServiceExecutions""" - 401 null null 278.597ms (74253ad3)
+2025-09-19T17:33:05.4760616+02:00 800000bb-0006-ff00-b63f-84710c7967bb [INF] Request starting "HTTP/2" "GET" "https"://"localhost:44311""""/DataQuery/ObtenerActividadUsuarios""" - null null (d509f86a)
+2025-09-19T17:33:05.4762786+02:00 800000bb-0006-ff00-b63f-84710c7967bb [INF] CORS policy execution successful. (5409d6ef)
+2025-09-19T17:33:05.4765215+02:00 800000bb-0006-ff00-b63f-84710c7967bb [INF] Executing endpoint '"API.Controllers.DataQueryController.ObtenerActividadUsuarios (API)"' (500cc934)
+2025-09-19T17:33:05.4768700+02:00 800000bb-0006-ff00-b63f-84710c7967bb [INF] Route matched with "{action = \"ObtenerActividadUsuarios\", controller = \"DataQuery\"}". Executing controller action with signature "System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] ObtenerActividadUsuarios()" on controller "API.Controllers.DataQueryController" ("API"). (122b2fdf)
+2025-09-19T17:33:05.4862774+02:00 800000bb-0006-ff00-b63f-84710c7967bb [INF] Executed DbCommand ("3"ms) [Parameters=["@__p_1='?' (DbType = Int32), @__p_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT v.\"idUsuario\", v.apellidos, v.correo, v.nombre, v.region, v.pais, v.\"ultimaConexion\", v.\"totalLogins\"
+FROM \"v_ActividadUsuarios\" AS v
+LIMIT @__p_1 OFFSET @__p_0" (0723d8ff)
+2025-09-19T17:33:05.4877968+02:00 800000bb-0006-ff00-b63f-84710c7967bb [INF] Executing "OkObjectResult", writing value of type '"System.Collections.Generic.List`1[[Application.DTOs.DataQuery.vActividadUsuariosDTO, Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]"'. (605b4265)
+2025-09-19T17:33:05.4886813+02:00 800000bb-0006-ff00-b63f-84710c7967bb [INF] Executed action "API.Controllers.DataQueryController.ObtenerActividadUsuarios (API)" in 11.7053ms (afa2e885)
+2025-09-19T17:33:05.4887698+02:00 800000bb-0006-ff00-b63f-84710c7967bb [INF] Executed endpoint '"API.Controllers.DataQueryController.ObtenerActividadUsuarios (API)"' (99874f2b)
+2025-09-19T17:33:05.4893454+02:00 800000bb-0006-ff00-b63f-84710c7967bb [INF] Request finished "HTTP/2" "GET" "https"://"localhost:44311""""/DataQuery/ObtenerActividadUsuarios""" - 200 null "application/json; charset=utf-8" 13.3108ms (74253ad3)
+2025-09-19T19:37:30.0600726+02:00  [INF] User profile is available. Using '"C:\Users\David\AppData\Local\ASP.NET\DataProtection-Keys"' as key repository and Windows DPAPI to encrypt keys at rest. (7ac5e29c)
+2025-09-19T19:37:39.8467336+02:00  [INF] Application started. Press Ctrl+C to shut down. (dcaefe54)
+2025-09-19T19:37:39.8527519+02:00  [INF] Hosting environment: "Development" (bc5a1a4e)
+2025-09-19T19:37:39.8577424+02:00  [INF] Content root path: "C:\Users\David\Desktop\API" (cc26f24e)
+2025-09-19T19:37:41.4339719+02:00 80000026-0007-ff00-b63f-84710c7967bb [INF] Request starting "HTTP/2" "GET" "https"://"localhost:44311""""/DataQuery/ObtenerRolesUsuarios""" - null null (d509f86a)
+2025-09-19T19:37:41.4339679+02:00 80000049-0004-fa00-b63f-84710c7967bb [INF] Request starting "HTTP/2" "GET" "https"://"localhost:44311""""/swagger/index.html""" - null null (d509f86a)
+2025-09-19T19:37:41.4339698+02:00 80000055-0002-fc00-b63f-84710c7967bb [INF] Request starting "HTTP/2" "GET" "https"://"localhost:44311""""/DataQuery/ObtenerRolesUsuarios""" - null null (d509f86a)
+2025-09-19T19:37:41.4339620+02:00 8000007e-0000-fb00-b63f-84710c7967bb [INF] Request starting "HTTP/2" "GET" "https"://"localhost:44311""""/DataQuery/ObtenerRolesUsuarios""" - null null (d509f86a)
+2025-09-19T19:37:46.4810583+02:00 80000055-0002-fc00-b63f-84710c7967bb [INF] CORS policy execution successful. (5409d6ef)
+2025-09-19T19:37:46.4810599+02:00 80000026-0007-ff00-b63f-84710c7967bb [INF] CORS policy execution successful. (5409d6ef)
+2025-09-19T19:37:46.4810595+02:00 8000007e-0000-fb00-b63f-84710c7967bb [INF] CORS policy execution successful. (5409d6ef)
+2025-09-19T19:37:47.0541286+02:00 80000055-0002-fc00-b63f-84710c7967bb [INF] Executing endpoint '"API.Controllers.DataQueryController.ObtenerRolesUsuarios (API)"' (500cc934)
+2025-09-19T19:37:47.0541307+02:00 80000026-0007-ff00-b63f-84710c7967bb [INF] Executing endpoint '"API.Controllers.DataQueryController.ObtenerRolesUsuarios (API)"' (500cc934)
+2025-09-19T19:37:47.0541293+02:00 8000007e-0000-fb00-b63f-84710c7967bb [INF] Executing endpoint '"API.Controllers.DataQueryController.ObtenerRolesUsuarios (API)"' (500cc934)
+2025-09-19T19:37:48.7082840+02:00 80000049-0004-fa00-b63f-84710c7967bb [INF] Request finished "HTTP/2" "GET" "https"://"localhost:44311""""/swagger/index.html""" - 200 null "text/html;charset=utf-8" 7475.3062ms (74253ad3)
+2025-09-19T19:37:49.9408849+02:00 80000055-0002-fc00-b63f-84710c7967bb [INF] Route matched with "{action = \"ObtenerRolesUsuarios\", controller = \"DataQuery\"}". Executing controller action with signature "System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] ObtenerRolesUsuarios()" on controller "API.Controllers.DataQueryController" ("API"). (122b2fdf)
+2025-09-19T19:37:49.9408853+02:00 80000026-0007-ff00-b63f-84710c7967bb [INF] Route matched with "{action = \"ObtenerRolesUsuarios\", controller = \"DataQuery\"}". Executing controller action with signature "System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] ObtenerRolesUsuarios()" on controller "API.Controllers.DataQueryController" ("API"). (122b2fdf)
+2025-09-19T19:37:49.9408846+02:00 8000007e-0000-fb00-b63f-84710c7967bb [INF] Route matched with "{action = \"ObtenerRolesUsuarios\", controller = \"DataQuery\"}". Executing controller action with signature "System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] ObtenerRolesUsuarios()" on controller "API.Controllers.DataQueryController" ("API"). (122b2fdf)
+2025-09-19T19:37:59.0992405+02:00 8000001d-0000-f700-b63f-84710c7967bb [INF] Request starting "HTTP/2" "GET" "https"://"localhost:44311""""/_framework/aspnetcore-browser-refresh.js""" - null null (d509f86a)
+2025-09-19T19:37:59.1051818+02:00 8000001d-0000-f700-b63f-84710c7967bb [INF] Request finished "HTTP/2" "GET" "https"://"localhost:44311""""/_framework/aspnetcore-browser-refresh.js""" - 200 13742 "application/javascript; charset=utf-8" 5.4754ms (74253ad3)
+2025-09-19T19:37:59.3030769+02:00 80000056-0007-fb00-b63f-84710c7967bb [INF] Request starting "HTTP/2" "GET" "https"://"localhost:44311""""/_vs/browserLink""" - null null (d509f86a)
+2025-09-19T19:37:59.5258601+02:00 80000056-0007-fb00-b63f-84710c7967bb [INF] Request finished "HTTP/2" "GET" "https"://"localhost:44311""""/_vs/browserLink""" - 200 null "text/javascript; charset=UTF-8" 222.9319ms (74253ad3)
+2025-09-19T19:38:01.6160753+02:00 8000001f-0000-f700-b63f-84710c7967bb [INF] Request starting "HTTP/2" "GET" "https"://"localhost:44311""""/swagger/v1/swagger.json""" - null null (d509f86a)
+2025-09-19T19:38:01.6884199+02:00 8000001f-0000-f700-b63f-84710c7967bb [INF] Request finished "HTTP/2" "GET" "https"://"localhost:44311""""/swagger/v1/swagger.json""" - 200 null "application/json;charset=utf-8" 72.425ms (74253ad3)
+2025-09-19T19:38:33.7337063+02:00 80000055-0002-fc00-b63f-84710c7967bb [WRN] The query uses a row limiting operator ('Skip'/'Take') without an 'OrderBy' operator. This may lead to unpredictable results. If the 'Distinct' operator is used after 'OrderBy', then make sure to use the 'OrderBy' operator after 'Distinct' as the ordering would otherwise get erased. (5b3e5b60)
+2025-09-19T19:38:33.7438106+02:00 80000055-0002-fc00-b63f-84710c7967bb [WRN] The query uses a row limiting operator ('Skip'/'Take') without an 'OrderBy' operator. This may lead to unpredictable results. If the 'Distinct' operator is used after 'OrderBy', then make sure to use the 'OrderBy' operator after 'Distinct' as the ordering would otherwise get erased. (5b3e5b60)
+2025-09-19T19:38:40.9574572+02:00 8000007e-0000-fb00-b63f-84710c7967bb [INF] Executed DbCommand ("1,017"ms) [Parameters=["@__p_1='?' (DbType = Int32), @__p_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT v.rol, v.\"rolUsage\", v.\"usuariosCount\"
+FROM \"v_RolesUsuarios\" AS v
+LIMIT @__p_1 OFFSET @__p_0" (0723d8ff)
+2025-09-19T19:38:40.9574514+02:00 80000026-0007-ff00-b63f-84710c7967bb [INF] Executed DbCommand ("1,017"ms) [Parameters=["@__p_1='?' (DbType = Int32), @__p_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT v.rol, v.\"rolUsage\", v.\"usuariosCount\"
+FROM \"v_RolesUsuarios\" AS v
+LIMIT @__p_1 OFFSET @__p_0" (0723d8ff)
+2025-09-19T19:38:40.9574485+02:00 80000055-0002-fc00-b63f-84710c7967bb [INF] Executed DbCommand ("1,017"ms) [Parameters=["@__p_1='?' (DbType = Int32), @__p_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT v.rol, v.\"rolUsage\", v.\"usuariosCount\"
+FROM \"v_RolesUsuarios\" AS v
+LIMIT @__p_1 OFFSET @__p_0" (0723d8ff)
+2025-09-19T19:38:41.2834673+02:00 80000026-0007-ff00-b63f-84710c7967bb [INF] Executing "OkObjectResult", writing value of type '"System.Collections.Generic.List`1[[Application.DTOs.DataQuery.vRolesUsuariosDTO, Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]"'. (605b4265)
+2025-09-19T19:38:41.2834662+02:00 8000007e-0000-fb00-b63f-84710c7967bb [INF] Executing "OkObjectResult", writing value of type '"System.Collections.Generic.List`1[[Application.DTOs.DataQuery.vRolesUsuariosDTO, Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]"'. (605b4265)
+2025-09-19T19:38:41.2834576+02:00 80000055-0002-fc00-b63f-84710c7967bb [INF] Executing "OkObjectResult", writing value of type '"System.Collections.Generic.List`1[[Application.DTOs.DataQuery.vRolesUsuariosDTO, Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]"'. (605b4265)
+2025-09-19T19:38:41.6150699+02:00 80000055-0002-fc00-b63f-84710c7967bb [INF] Executed action "API.Controllers.DataQueryController.ObtenerRolesUsuarios (API)" in 51526.711ms (afa2e885)
+2025-09-19T19:38:41.6158397+02:00 80000055-0002-fc00-b63f-84710c7967bb [INF] Executed endpoint '"API.Controllers.DataQueryController.ObtenerRolesUsuarios (API)"' (99874f2b)
+2025-09-19T19:38:41.6983317+02:00 80000055-0002-fc00-b63f-84710c7967bb [INF] Request finished "HTTP/2" "GET" "https"://"localhost:44311""""/DataQuery/ObtenerRolesUsuarios""" - 200 null "application/json; charset=utf-8" 60509.7136ms (74253ad3)
+2025-09-19T19:38:41.9080653+02:00 80000026-0007-ff00-b63f-84710c7967bb [INF] Executed action "API.Controllers.DataQueryController.ObtenerRolesUsuarios (API)" in 51824.9939ms (afa2e885)
+2025-09-19T19:38:41.9080700+02:00 8000007e-0000-fb00-b63f-84710c7967bb [INF] Executed action "API.Controllers.DataQueryController.ObtenerRolesUsuarios (API)" in 51825.0014ms (afa2e885)
+2025-09-19T19:38:41.9082659+02:00 8000007e-0000-fb00-b63f-84710c7967bb [INF] Executed endpoint '"API.Controllers.DataQueryController.ObtenerRolesUsuarios (API)"' (99874f2b)
+2025-09-19T19:38:41.9082673+02:00 80000026-0007-ff00-b63f-84710c7967bb [INF] Executed endpoint '"API.Controllers.DataQueryController.ObtenerRolesUsuarios (API)"' (99874f2b)
+2025-09-19T19:38:41.9094526+02:00 80000026-0007-ff00-b63f-84710c7967bb [INF] Request finished "HTTP/2" "GET" "https"://"localhost:44311""""/DataQuery/ObtenerRolesUsuarios""" - 499 null "application/json; charset=utf-8" 60720.8304ms (74253ad3)
+2025-09-19T19:38:41.9094526+02:00 8000007e-0000-fb00-b63f-84710c7967bb [INF] Request finished "HTTP/2" "GET" "https"://"localhost:44311""""/DataQuery/ObtenerRolesUsuarios""" - 499 null "application/json; charset=utf-8" 60720.8344ms (74253ad3)
+2025-09-19T19:40:23.1761771+02:00 8000002a-0007-ff00-b63f-84710c7967bb [INF] Request starting "HTTP/2" "GET" "https"://"localhost:44311""""/DataQuery/ObtenerVisitasTipoDispositivo""" - null null (d509f86a)
+2025-09-19T19:40:23.1839856+02:00 8000002a-0007-ff00-b63f-84710c7967bb [INF] Executing endpoint '"API.Controllers.DataQueryController.ObtenerVisitasTipoDispositivo (API)"' (500cc934)
+2025-09-19T19:40:23.1957707+02:00 8000002a-0007-ff00-b63f-84710c7967bb [INF] Route matched with "{action = \"ObtenerVisitasTipoDispositivo\", controller = \"DataQuery\"}". Executing controller action with signature "System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] ObtenerVisitasTipoDispositivo()" on controller "API.Controllers.DataQueryController" ("API"). (122b2fdf)
+2025-09-19T19:40:23.3874875+02:00 8000002a-0007-ff00-b63f-84710c7967bb [WRN] The query uses a row limiting operator ('Skip'/'Take') without an 'OrderBy' operator. This may lead to unpredictable results. If the 'Distinct' operator is used after 'OrderBy', then make sure to use the 'OrderBy' operator after 'Distinct' as the ordering would otherwise get erased. (5b3e5b60)
+2025-09-19T19:40:23.3911902+02:00 8000002a-0007-ff00-b63f-84710c7967bb [WRN] The query uses a row limiting operator ('Skip'/'Take') without an 'OrderBy' operator. This may lead to unpredictable results. If the 'Distinct' operator is used after 'OrderBy', then make sure to use the 'OrderBy' operator after 'Distinct' as the ordering would otherwise get erased. (5b3e5b60)
+2025-09-19T19:40:23.6685267+02:00 8000002a-0007-ff00-b63f-84710c7967bb [INF] Executed DbCommand ("64"ms) [Parameters=["@__p_1='?' (DbType = Int32), @__p_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT v.semana, v.\"tipoDispositivo\", v.visitas
+FROM \"v_VisitasTipoDispositivo\" AS v
+LIMIT @__p_1 OFFSET @__p_0" (0723d8ff)
+2025-09-19T19:40:24.2609150+02:00 8000002a-0007-ff00-b63f-84710c7967bb [ERR] An exception occurred while iterating over the results of a query for context type '"Infrastructure.Persistence.ApplicationDbContext"'."
+""System.InvalidCastException: Reading as 'System.String' is not supported for fields having DataTypeName 'date'
+   at Npgsql.Internal.AdoSerializerHelpers.<GetTypeInfoForReading>g__ThrowReadingNotSupported|0_0(Type type, PgSerializerOptions options, PgTypeId pgTypeId, Exception inner)
+   at Npgsql.Internal.AdoSerializerHelpers.GetTypeInfoForReading(Type type, PgTypeId pgTypeId, PgSerializerOptions options)
+   at Npgsql.BackendMessages.FieldDescription.<GetInfo>g__GetInfoSlow|50_0(Type type, ColumnInfo& lastColumnInfo)
+   at Npgsql.BackendMessages.FieldDescription.GetInfo(Type type, ColumnInfo& lastColumnInfo)
+   at Npgsql.NpgsqlDataReader.<GetInfo>g__Slow|133_0(ColumnInfo& info, PgConverter& converter, Size& bufferRequirement, Boolean& asObject, <>c__DisplayClass133_0&)
+   at Npgsql.NpgsqlDataReader.GetFieldValueCore[T](Int32 ordinal)
+   at Npgsql.NpgsqlDataReader.GetString(Int32 ordinal)
+   at lambda_method142(Closure, QueryContext, DbDataReader, ResultContext, SingleQueryResultCoordinator)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()" (f5c7ac34)
+System.InvalidCastException: Reading as 'System.String' is not supported for fields having DataTypeName 'date'
+   at Npgsql.Internal.AdoSerializerHelpers.<GetTypeInfoForReading>g__ThrowReadingNotSupported|0_0(Type type, PgSerializerOptions options, PgTypeId pgTypeId, Exception inner)
+   at Npgsql.Internal.AdoSerializerHelpers.GetTypeInfoForReading(Type type, PgTypeId pgTypeId, PgSerializerOptions options)
+   at Npgsql.BackendMessages.FieldDescription.<GetInfo>g__GetInfoSlow|50_0(Type type, ColumnInfo& lastColumnInfo)
+   at Npgsql.BackendMessages.FieldDescription.GetInfo(Type type, ColumnInfo& lastColumnInfo)
+   at Npgsql.NpgsqlDataReader.<GetInfo>g__Slow|133_0(ColumnInfo& info, PgConverter& converter, Size& bufferRequirement, Boolean& asObject, <>c__DisplayClass133_0&)
+   at Npgsql.NpgsqlDataReader.GetFieldValueCore[T](Int32 ordinal)
+   at Npgsql.NpgsqlDataReader.GetString(Int32 ordinal)
+   at lambda_method142(Closure, QueryContext, DbDataReader, ResultContext, SingleQueryResultCoordinator)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+2025-09-19T19:40:27.3854985+02:00 8000002a-0007-ff00-b63f-84710c7967bb [INF] Executed action "API.Controllers.DataQueryController.ObtenerVisitasTipoDispositivo (API)" in 4189.467ms (afa2e885)
+2025-09-19T19:40:27.4267144+02:00 8000002a-0007-ff00-b63f-84710c7967bb [INF] Executed endpoint '"API.Controllers.DataQueryController.ObtenerVisitasTipoDispositivo (API)"' (99874f2b)
+2025-09-19T19:40:29.1111736+02:00 8000002a-0007-ff00-b63f-84710c7967bb [ERR] Ocurrió un error en la petición "/DataQuery/ObtenerVisitasTipoDispositivo" (564da9e9)
+System.InvalidCastException: Reading as 'System.String' is not supported for fields having DataTypeName 'date'
+   at Npgsql.Internal.AdoSerializerHelpers.<GetTypeInfoForReading>g__ThrowReadingNotSupported|0_0(Type type, PgSerializerOptions options, PgTypeId pgTypeId, Exception inner)
+   at Npgsql.Internal.AdoSerializerHelpers.GetTypeInfoForReading(Type type, PgTypeId pgTypeId, PgSerializerOptions options)
+   at Npgsql.BackendMessages.FieldDescription.<GetInfo>g__GetInfoSlow|50_0(Type type, ColumnInfo& lastColumnInfo)
+   at Npgsql.BackendMessages.FieldDescription.GetInfo(Type type, ColumnInfo& lastColumnInfo)
+   at Npgsql.NpgsqlDataReader.<GetInfo>g__Slow|133_0(ColumnInfo& info, PgConverter& converter, Size& bufferRequirement, Boolean& asObject, <>c__DisplayClass133_0&)
+   at Npgsql.NpgsqlDataReader.GetFieldValueCore[T](Int32 ordinal)
+   at Npgsql.NpgsqlDataReader.GetString(Int32 ordinal)
+   at lambda_method142(Closure, QueryContext, DbDataReader, ResultContext, SingleQueryResultCoordinator)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+   at Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.ToListAsync[TSource](IQueryable`1 source, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.ToListAsync[TSource](IQueryable`1 source, CancellationToken cancellationToken)
+   at Infrastructure.Repositories.DataQueryRepository.ObtenerVisitasTipoDispositivo(Int32 page, Int32 pageSize) in C:\Users\David\Desktop\Infrastructure\Repositories\DataQueryRepository.cs:line 122
+   at Application.Services.DataQueryService.ObtenerVisitasTipoDispositivo(Int32 page, Int32 pageSize) in C:\Users\David\Desktop\Application\Services\DataQueryService.cs:line 32
+   at API.Controllers.DataQueryController.ObtenerVisitasTipoDispositivo() in C:\Users\David\Desktop\API\Controllers\DataQueryController.cs:line 64
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|7_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Microsoft.AspNetCore.RateLimiting.RateLimitingMiddleware.InvokeInternal(HttpContext context, EnableRateLimitingAttribute enableRateLimitingAttribute)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at API.Middlewares.ExceptionMiddleware.InvokeAsync(HttpContext context) in C:\Users\David\Desktop\API\Middlewares\ExceptionMiddleware.cs:line 21
+2025-09-19T19:40:29.1695658+02:00 8000002a-0007-ff00-b63f-84710c7967bb [INF] Request finished "HTTP/2" "GET" "https"://"localhost:44311""""/DataQuery/ObtenerVisitasTipoDispositivo""" - 500 null "application/json" 5993.8375ms (74253ad3)
+2025-09-19T19:42:44.5666900+02:00 8000001f-0005-f800-b63f-84710c7967bb [INF] Request starting "HTTP/2" "GET" "https"://"localhost:44311""""/DataQuery/ObtenerVisitasTipoDispositivo""" - null null (d509f86a)
+2025-09-19T19:42:44.5679058+02:00 8000001f-0005-f800-b63f-84710c7967bb [INF] Executing endpoint '"API.Controllers.DataQueryController.ObtenerVisitasTipoDispositivo (API)"' (500cc934)
+2025-09-19T19:42:44.5683135+02:00 8000001f-0005-f800-b63f-84710c7967bb [INF] Route matched with "{action = \"ObtenerVisitasTipoDispositivo\", controller = \"DataQuery\"}". Executing controller action with signature "System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] ObtenerVisitasTipoDispositivo()" on controller "API.Controllers.DataQueryController" ("API"). (122b2fdf)
+2025-09-19T19:43:20.9293977+02:00 8000001f-0005-f800-b63f-84710c7967bb [INF] Executed DbCommand ("142"ms) [Parameters=["@__p_1='?' (DbType = Int32), @__p_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT v.semana, v.\"tipoDispositivo\", v.visitas
+FROM \"v_VisitasTipoDispositivo\" AS v
+LIMIT @__p_1 OFFSET @__p_0" (0723d8ff)
+2025-09-19T19:43:20.9495871+02:00 8000001f-0005-f800-b63f-84710c7967bb [ERR] An exception occurred while iterating over the results of a query for context type '"Infrastructure.Persistence.ApplicationDbContext"'."
+""System.InvalidCastException: Reading as 'System.String' is not supported for fields having DataTypeName 'date'
+   at Npgsql.Internal.AdoSerializerHelpers.<GetTypeInfoForReading>g__ThrowReadingNotSupported|0_0(Type type, PgSerializerOptions options, PgTypeId pgTypeId, Exception inner)
+   at Npgsql.Internal.AdoSerializerHelpers.GetTypeInfoForReading(Type type, PgTypeId pgTypeId, PgSerializerOptions options)
+   at Npgsql.BackendMessages.FieldDescription.<GetInfo>g__GetInfoSlow|50_0(Type type, ColumnInfo& lastColumnInfo)
+   at Npgsql.BackendMessages.FieldDescription.GetInfo(Type type, ColumnInfo& lastColumnInfo)
+   at Npgsql.NpgsqlDataReader.<GetInfo>g__Slow|133_0(ColumnInfo& info, PgConverter& converter, Size& bufferRequirement, Boolean& asObject, <>c__DisplayClass133_0&)
+   at Npgsql.NpgsqlDataReader.GetFieldValueCore[T](Int32 ordinal)
+   at Npgsql.NpgsqlDataReader.GetString(Int32 ordinal)
+   at lambda_method142(Closure, QueryContext, DbDataReader, ResultContext, SingleQueryResultCoordinator)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()" (f5c7ac34)
+System.InvalidCastException: Reading as 'System.String' is not supported for fields having DataTypeName 'date'
+   at Npgsql.Internal.AdoSerializerHelpers.<GetTypeInfoForReading>g__ThrowReadingNotSupported|0_0(Type type, PgSerializerOptions options, PgTypeId pgTypeId, Exception inner)
+   at Npgsql.Internal.AdoSerializerHelpers.GetTypeInfoForReading(Type type, PgTypeId pgTypeId, PgSerializerOptions options)
+   at Npgsql.BackendMessages.FieldDescription.<GetInfo>g__GetInfoSlow|50_0(Type type, ColumnInfo& lastColumnInfo)
+   at Npgsql.BackendMessages.FieldDescription.GetInfo(Type type, ColumnInfo& lastColumnInfo)
+   at Npgsql.NpgsqlDataReader.<GetInfo>g__Slow|133_0(ColumnInfo& info, PgConverter& converter, Size& bufferRequirement, Boolean& asObject, <>c__DisplayClass133_0&)
+   at Npgsql.NpgsqlDataReader.GetFieldValueCore[T](Int32 ordinal)
+   at Npgsql.NpgsqlDataReader.GetString(Int32 ordinal)
+   at lambda_method142(Closure, QueryContext, DbDataReader, ResultContext, SingleQueryResultCoordinator)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+2025-09-19T19:43:21.2840109+02:00 8000001f-0005-f800-b63f-84710c7967bb [INF] Executed action "API.Controllers.DataQueryController.ObtenerVisitasTipoDispositivo (API)" in 36715.5838ms (afa2e885)
+2025-09-19T19:43:21.2844490+02:00 8000001f-0005-f800-b63f-84710c7967bb [INF] Executed endpoint '"API.Controllers.DataQueryController.ObtenerVisitasTipoDispositivo (API)"' (99874f2b)
+2025-09-19T19:43:21.4830617+02:00 8000001f-0005-f800-b63f-84710c7967bb [ERR] Ocurrió un error en la petición "/DataQuery/ObtenerVisitasTipoDispositivo" (564da9e9)
+System.InvalidCastException: Reading as 'System.String' is not supported for fields having DataTypeName 'date'
+   at Npgsql.Internal.AdoSerializerHelpers.<GetTypeInfoForReading>g__ThrowReadingNotSupported|0_0(Type type, PgSerializerOptions options, PgTypeId pgTypeId, Exception inner)
+   at Npgsql.Internal.AdoSerializerHelpers.GetTypeInfoForReading(Type type, PgTypeId pgTypeId, PgSerializerOptions options)
+   at Npgsql.BackendMessages.FieldDescription.<GetInfo>g__GetInfoSlow|50_0(Type type, ColumnInfo& lastColumnInfo)
+   at Npgsql.BackendMessages.FieldDescription.GetInfo(Type type, ColumnInfo& lastColumnInfo)
+   at Npgsql.NpgsqlDataReader.<GetInfo>g__Slow|133_0(ColumnInfo& info, PgConverter& converter, Size& bufferRequirement, Boolean& asObject, <>c__DisplayClass133_0&)
+   at Npgsql.NpgsqlDataReader.GetFieldValueCore[T](Int32 ordinal)
+   at Npgsql.NpgsqlDataReader.GetString(Int32 ordinal)
+   at lambda_method142(Closure, QueryContext, DbDataReader, ResultContext, SingleQueryResultCoordinator)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+   at Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.ToListAsync[TSource](IQueryable`1 source, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.ToListAsync[TSource](IQueryable`1 source, CancellationToken cancellationToken)
+   at Infrastructure.Repositories.DataQueryRepository.ObtenerVisitasTipoDispositivo(Int32 page, Int32 pageSize) in C:\Users\David\Desktop\Infrastructure\Repositories\DataQueryRepository.cs:line 122
+   at Application.Services.DataQueryService.ObtenerVisitasTipoDispositivo(Int32 page, Int32 pageSize) in C:\Users\David\Desktop\Application\Services\DataQueryService.cs:line 32
+   at API.Controllers.DataQueryController.ObtenerVisitasTipoDispositivo() in C:\Users\David\Desktop\API\Controllers\DataQueryController.cs:line 64
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|7_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Microsoft.AspNetCore.RateLimiting.RateLimitingMiddleware.InvokeInternal(HttpContext context, EnableRateLimitingAttribute enableRateLimitingAttribute)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at API.Middlewares.ExceptionMiddleware.InvokeAsync(HttpContext context) in C:\Users\David\Desktop\API\Middlewares\ExceptionMiddleware.cs:line 21
+2025-09-19T19:43:21.4846915+02:00 8000001f-0005-f800-b63f-84710c7967bb [INF] Request finished "HTTP/2" "GET" "https"://"localhost:44311""""/DataQuery/ObtenerVisitasTipoDispositivo""" - 500 null "application/json" 36918.1164ms (74253ad3)
+2025-09-19T19:43:44.8310537+02:00 80000004-0006-f700-b63f-84710c7967bb [INF] Request starting "HTTP/2" "GET" "https"://"localhost:44311""""/DataQuery/ObtenerVisitasTipoDispositivo""" - null null (d509f86a)
+2025-09-19T19:43:44.8668475+02:00 80000004-0006-f700-b63f-84710c7967bb [INF] Executing endpoint '"API.Controllers.DataQueryController.ObtenerVisitasTipoDispositivo (API)"' (500cc934)
+2025-09-19T19:43:44.8670418+02:00 80000004-0006-f700-b63f-84710c7967bb [INF] Route matched with "{action = \"ObtenerVisitasTipoDispositivo\", controller = \"DataQuery\"}". Executing controller action with signature "System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] ObtenerVisitasTipoDispositivo()" on controller "API.Controllers.DataQueryController" ("API"). (122b2fdf)
+2025-09-19T19:43:48.3993565+02:00 80000004-0006-f700-b63f-84710c7967bb [INF] Executed DbCommand ("106"ms) [Parameters=["@__p_1='?' (DbType = Int32), @__p_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT v.semana, v.\"tipoDispositivo\", v.visitas
+FROM \"v_VisitasTipoDispositivo\" AS v
+LIMIT @__p_1 OFFSET @__p_0" (0723d8ff)
+2025-09-19T19:43:48.4053153+02:00 80000004-0006-f700-b63f-84710c7967bb [ERR] An exception occurred while iterating over the results of a query for context type '"Infrastructure.Persistence.ApplicationDbContext"'."
+""System.InvalidCastException: Reading as 'System.String' is not supported for fields having DataTypeName 'date'
+   at Npgsql.Internal.AdoSerializerHelpers.<GetTypeInfoForReading>g__ThrowReadingNotSupported|0_0(Type type, PgSerializerOptions options, PgTypeId pgTypeId, Exception inner)
+   at Npgsql.Internal.AdoSerializerHelpers.GetTypeInfoForReading(Type type, PgTypeId pgTypeId, PgSerializerOptions options)
+   at Npgsql.BackendMessages.FieldDescription.<GetInfo>g__GetInfoSlow|50_0(Type type, ColumnInfo& lastColumnInfo)
+   at Npgsql.BackendMessages.FieldDescription.GetInfo(Type type, ColumnInfo& lastColumnInfo)
+   at Npgsql.NpgsqlDataReader.<GetInfo>g__Slow|133_0(ColumnInfo& info, PgConverter& converter, Size& bufferRequirement, Boolean& asObject, <>c__DisplayClass133_0&)
+   at Npgsql.NpgsqlDataReader.GetFieldValueCore[T](Int32 ordinal)
+   at Npgsql.NpgsqlDataReader.GetString(Int32 ordinal)
+   at lambda_method142(Closure, QueryContext, DbDataReader, ResultContext, SingleQueryResultCoordinator)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()" (f5c7ac34)
+System.InvalidCastException: Reading as 'System.String' is not supported for fields having DataTypeName 'date'
+   at Npgsql.Internal.AdoSerializerHelpers.<GetTypeInfoForReading>g__ThrowReadingNotSupported|0_0(Type type, PgSerializerOptions options, PgTypeId pgTypeId, Exception inner)
+   at Npgsql.Internal.AdoSerializerHelpers.GetTypeInfoForReading(Type type, PgTypeId pgTypeId, PgSerializerOptions options)
+   at Npgsql.BackendMessages.FieldDescription.<GetInfo>g__GetInfoSlow|50_0(Type type, ColumnInfo& lastColumnInfo)
+   at Npgsql.BackendMessages.FieldDescription.GetInfo(Type type, ColumnInfo& lastColumnInfo)
+   at Npgsql.NpgsqlDataReader.<GetInfo>g__Slow|133_0(ColumnInfo& info, PgConverter& converter, Size& bufferRequirement, Boolean& asObject, <>c__DisplayClass133_0&)
+   at Npgsql.NpgsqlDataReader.GetFieldValueCore[T](Int32 ordinal)
+   at Npgsql.NpgsqlDataReader.GetString(Int32 ordinal)
+   at lambda_method142(Closure, QueryContext, DbDataReader, ResultContext, SingleQueryResultCoordinator)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+2025-09-19T19:43:48.8395160+02:00 80000004-0006-f700-b63f-84710c7967bb [INF] Executed action "API.Controllers.DataQueryController.ObtenerVisitasTipoDispositivo (API)" in 3972.3791ms (afa2e885)
+2025-09-19T19:43:48.8400292+02:00 80000004-0006-f700-b63f-84710c7967bb [INF] Executed endpoint '"API.Controllers.DataQueryController.ObtenerVisitasTipoDispositivo (API)"' (99874f2b)
+2025-09-19T19:55:53.4469318+02:00  [INF] User profile is available. Using '"C:\Users\David\AppData\Local\ASP.NET\DataProtection-Keys"' as key repository and Windows DPAPI to encrypt keys at rest. (7ac5e29c)
+2025-09-19T19:56:00.6077488+02:00  [INF] Application started. Press Ctrl+C to shut down. (dcaefe54)
+2025-09-19T19:56:00.6754586+02:00  [INF] Hosting environment: "Development" (bc5a1a4e)
+2025-09-19T19:56:00.6808533+02:00  [INF] Content root path: "C:\Users\David\Desktop\API" (cc26f24e)
+2025-09-19T19:56:00.6872782+02:00 800000cb-0004-fd00-b63f-84710c7967bb [INF] Request starting "HTTP/2" "GET" "https"://"localhost:44311""""/swagger/index.html""" - null null (d509f86a)
+2025-09-19T19:56:07.1439171+02:00 800000cb-0004-fd00-b63f-84710c7967bb [INF] Request finished "HTTP/2" "GET" "https"://"localhost:44311""""/swagger/index.html""" - 200 null "text/html;charset=utf-8" 6535.6065ms (74253ad3)
+2025-09-19T19:56:07.4395617+02:00 80000008-0006-f900-b63f-84710c7967bb [INF] Request starting "HTTP/2" "GET" "https"://"localhost:44311""""/_framework/aspnetcore-browser-refresh.js""" - null null (d509f86a)
+2025-09-19T19:56:07.4724362+02:00 80000059-0002-fe00-b63f-84710c7967bb [INF] Request starting "HTTP/2" "GET" "https"://"localhost:44311""""/_vs/browserLink""" - null null (d509f86a)
+2025-09-19T19:56:07.5142322+02:00 80000008-0006-f900-b63f-84710c7967bb [INF] Request finished "HTTP/2" "GET" "https"://"localhost:44311""""/_framework/aspnetcore-browser-refresh.js""" - 200 13742 "application/javascript; charset=utf-8" 5.3164ms (74253ad3)
+2025-09-19T19:56:07.8775692+02:00 80000059-0002-fe00-b63f-84710c7967bb [INF] Request finished "HTTP/2" "GET" "https"://"localhost:44311""""/_vs/browserLink""" - 200 null "text/javascript; charset=UTF-8" 404.9635ms (74253ad3)
+2025-09-19T19:56:08.8826953+02:00 80000074-0000-fd00-b63f-84710c7967bb [INF] Request starting "HTTP/2" "GET" "https"://"localhost:44311""""/swagger/v1/swagger.json""" - null null (d509f86a)
+2025-09-19T19:56:08.9868288+02:00 80000074-0000-fd00-b63f-84710c7967bb [INF] Request finished "HTTP/2" "GET" "https"://"localhost:44311""""/swagger/v1/swagger.json""" - 200 null "application/json;charset=utf-8" 104.0129ms (74253ad3)
+2025-09-19T19:58:38.7582109+02:00 8000003b-0007-fc00-b63f-84710c7967bb [INF] Request starting "HTTP/2" "GET" "https"://"localhost:44311""""/DataQuery/ObtenerVisitasTipoDispositivo""" - null null (d509f86a)
+2025-09-19T19:58:38.9140687+02:00 8000003b-0007-fc00-b63f-84710c7967bb [INF] Executing endpoint '"API.Controllers.DataQueryController.ObtenerVisitasTipoDispositivo (API)"' (500cc934)
+2025-09-19T19:58:39.3482482+02:00 8000003b-0007-fc00-b63f-84710c7967bb [INF] Route matched with "{action = \"ObtenerVisitasTipoDispositivo\", controller = \"DataQuery\"}". Executing controller action with signature "System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] ObtenerVisitasTipoDispositivo()" on controller "API.Controllers.DataQueryController" ("API"). (122b2fdf)
+2025-09-19T19:59:04.8121171+02:00 8000003b-0007-fc00-b63f-84710c7967bb [WRN] The query uses a row limiting operator ('Skip'/'Take') without an 'OrderBy' operator. This may lead to unpredictable results. If the 'Distinct' operator is used after 'OrderBy', then make sure to use the 'OrderBy' operator after 'Distinct' as the ordering would otherwise get erased. (5b3e5b60)
+2025-09-19T19:59:04.8158698+02:00 8000003b-0007-fc00-b63f-84710c7967bb [WRN] The query uses a row limiting operator ('Skip'/'Take') without an 'OrderBy' operator. This may lead to unpredictable results. If the 'Distinct' operator is used after 'OrderBy', then make sure to use the 'OrderBy' operator after 'Distinct' as the ordering would otherwise get erased. (5b3e5b60)
+2025-09-19T19:59:06.6820747+02:00 8000003b-0007-fc00-b63f-84710c7967bb [INF] Executed DbCommand ("240"ms) [Parameters=["@__p_1='?' (DbType = Int32), @__p_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT v.semana, v.\"tipoDispositivo\", v.visitas
+FROM \"v_VisitasTipoDispositivo\" AS v
+LIMIT @__p_1 OFFSET @__p_0" (0723d8ff)
+2025-09-19T20:01:03.0623396+02:00 8000003b-0007-fc00-b63f-84710c7967bb [INF] Executed DbCommand ("17"ms) [Parameters=["@__p_1='?' (DbType = Int32), @__p_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT v.semana, v.\"tipoDispositivo\", v.visitas
+FROM \"v_VisitasTipoDispositivo\" AS v
+LIMIT @__p_1 OFFSET @__p_0" (0723d8ff)
+2025-09-19T20:01:27.3763023+02:00 8000003b-0007-fc00-b63f-84710c7967bb [INF] Executing "OkObjectResult", writing value of type '"System.Collections.Generic.List`1[[Application.DTOs.DataQuery.vVisitasTipoDispositivoDTO, Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]"'. (605b4265)
+2025-09-19T20:01:27.6757016+02:00 8000003b-0007-fc00-b63f-84710c7967bb [INF] Executed action "API.Controllers.DataQueryController.ObtenerVisitasTipoDispositivo (API)" in 168321.6706ms (afa2e885)
+2025-09-19T20:01:27.6763761+02:00 8000003b-0007-fc00-b63f-84710c7967bb [INF] Executed endpoint '"API.Controllers.DataQueryController.ObtenerVisitasTipoDispositivo (API)"' (99874f2b)
+2025-09-19T20:01:27.7942452+02:00 8000003b-0007-fc00-b63f-84710c7967bb [INF] Request finished "HTTP/2" "GET" "https"://"localhost:44311""""/DataQuery/ObtenerVisitasTipoDispositivo""" - 200 null "application/json; charset=utf-8" 169036.5746ms (74253ad3)
+2025-09-19T20:12:01.0894694+02:00 8000000f-0007-f800-b63f-84710c7967bb [INF] Request starting "HTTP/2" "GET" "https"://"localhost:44311""""/DataQuery/ObtenerVisitasTipoDispositivo""" - null null (d509f86a)
+2025-09-19T20:12:01.1150439+02:00 8000000f-0007-f800-b63f-84710c7967bb [INF] CORS policy execution successful. (5409d6ef)
+2025-09-19T20:12:01.1167498+02:00 8000000f-0007-f800-b63f-84710c7967bb [INF] Executing endpoint '"API.Controllers.DataQueryController.ObtenerVisitasTipoDispositivo (API)"' (500cc934)
+2025-09-19T20:12:01.1172770+02:00 8000000f-0007-f800-b63f-84710c7967bb [INF] Route matched with "{action = \"ObtenerVisitasTipoDispositivo\", controller = \"DataQuery\"}". Executing controller action with signature "System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] ObtenerVisitasTipoDispositivo()" on controller "API.Controllers.DataQueryController" ("API"). (122b2fdf)
+2025-09-19T20:19:54.7993734+02:00  [INF] User profile is available. Using '"C:\Users\David\AppData\Local\ASP.NET\DataProtection-Keys"' as key repository and Windows DPAPI to encrypt keys at rest. (7ac5e29c)
+2025-09-19T20:19:55.3789975+02:00  [INF] Application started. Press Ctrl+C to shut down. (dcaefe54)
+2025-09-19T20:19:55.3843249+02:00  [INF] Hosting environment: "Development" (bc5a1a4e)
+2025-09-19T20:19:55.3883705+02:00  [INF] Content root path: "C:\Users\David\Desktop\API" (cc26f24e)
+2025-09-19T20:19:55.4165461+02:00 8000005b-0007-fb00-b63f-84710c7967bb [INF] Request starting "HTTP/2" "GET" "https"://"localhost:44311""""/swagger/index.html""" - null null (d509f86a)
+2025-09-19T20:19:56.2937074+02:00 8000005b-0007-fb00-b63f-84710c7967bb [INF] Request finished "HTTP/2" "GET" "https"://"localhost:44311""""/swagger/index.html""" - 200 null "text/html;charset=utf-8" 887.3395ms (74253ad3)
+2025-09-19T20:19:56.3686629+02:00 80000093-0002-fe00-b63f-84710c7967bb [INF] Request starting "HTTP/2" "GET" "https"://"localhost:44311""""/_framework/aspnetcore-browser-refresh.js""" - null null (d509f86a)
+2025-09-19T20:19:56.3743718+02:00 80000093-0002-fe00-b63f-84710c7967bb [INF] Request finished "HTTP/2" "GET" "https"://"localhost:44311""""/_framework/aspnetcore-browser-refresh.js""" - 200 13742 "application/javascript; charset=utf-8" 5.1694ms (74253ad3)
+2025-09-19T20:19:56.4008543+02:00 80000083-0001-fe00-b63f-84710c7967bb [INF] Request starting "HTTP/2" "GET" "https"://"localhost:44311""""/_vs/browserLink""" - null null (d509f86a)
+2025-09-19T20:19:56.4986272+02:00 80000083-0001-fe00-b63f-84710c7967bb [INF] Request finished "HTTP/2" "GET" "https"://"localhost:44311""""/_vs/browserLink""" - 200 null "text/javascript; charset=UTF-8" 97.8423ms (74253ad3)
+2025-09-19T20:19:56.8279426+02:00 8000004b-0003-fe00-b63f-84710c7967bb [INF] Request starting "HTTP/2" "GET" "https"://"localhost:44311""""/swagger/v1/swagger.json""" - null null (d509f86a)
+2025-09-19T20:19:56.9052500+02:00 8000004b-0003-fe00-b63f-84710c7967bb [INF] Request finished "HTTP/2" "GET" "https"://"localhost:44311""""/swagger/v1/swagger.json""" - 200 null "application/json;charset=utf-8" 77.443ms (74253ad3)
+2025-09-19T20:20:04.9987499+02:00 8000002d-0005-fb00-b63f-84710c7967bb [INF] Request starting "HTTP/2" "GET" "https"://"localhost:44311""""/DataQuery/ObtenerVisitasTipoDispositivo""" - null null (d509f86a)
+2025-09-19T20:20:05.0138707+02:00 8000002d-0005-fb00-b63f-84710c7967bb [INF] CORS policy execution successful. (5409d6ef)
+2025-09-19T20:20:05.0336035+02:00 8000002d-0005-fb00-b63f-84710c7967bb [INF] Executing endpoint '"API.Controllers.DataQueryController.ObtenerVisitasTipoDispositivo (API)"' (500cc934)
+2025-09-19T20:20:05.0647059+02:00 8000002d-0005-fb00-b63f-84710c7967bb [INF] Route matched with "{action = \"ObtenerVisitasTipoDispositivo\", controller = \"DataQuery\"}". Executing controller action with signature "System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] ObtenerVisitasTipoDispositivo()" on controller "API.Controllers.DataQueryController" ("API"). (122b2fdf)
+2025-09-19T20:20:59.8210487+02:00 8000002f-0005-fb00-b63f-84710c7967bb [INF] Request starting "HTTP/2" "GET" "https"://"localhost:44311""""/DataQuery/ObtenerVisitasTipoDispositivo""" - null null (d509f86a)
+2025-09-19T20:20:59.8402040+02:00 8000002f-0005-fb00-b63f-84710c7967bb [INF] CORS policy execution successful. (5409d6ef)
+2025-09-19T20:20:59.8539289+02:00 8000002f-0005-fb00-b63f-84710c7967bb [INF] Executing endpoint '"API.Controllers.DataQueryController.ObtenerVisitasTipoDispositivo (API)"' (500cc934)
+2025-09-19T20:20:59.8621179+02:00 8000002f-0005-fb00-b63f-84710c7967bb [INF] Route matched with "{action = \"ObtenerVisitasTipoDispositivo\", controller = \"DataQuery\"}". Executing controller action with signature "System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] ObtenerVisitasTipoDispositivo()" on controller "API.Controllers.DataQueryController" ("API"). (122b2fdf)
+2025-09-19T20:21:03.3418405+02:00 8000002f-0005-fb00-b63f-84710c7967bb [WRN] The query uses a row limiting operator ('Skip'/'Take') without an 'OrderBy' operator. This may lead to unpredictable results. If the 'Distinct' operator is used after 'OrderBy', then make sure to use the 'OrderBy' operator after 'Distinct' as the ordering would otherwise get erased. (5b3e5b60)
+2025-09-19T20:21:03.3456965+02:00 8000002f-0005-fb00-b63f-84710c7967bb [WRN] The query uses a row limiting operator ('Skip'/'Take') without an 'OrderBy' operator. This may lead to unpredictable results. If the 'Distinct' operator is used after 'OrderBy', then make sure to use the 'OrderBy' operator after 'Distinct' as the ordering would otherwise get erased. (5b3e5b60)
+2025-09-19T20:21:04.2381600+02:00 8000002d-0005-fb00-b63f-84710c7967bb [INF] Executed DbCommand ("134"ms) [Parameters=["@__p_1='?' (DbType = Int32), @__p_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT v.semana, v.\"tipoDispositivo\", v.visitas
+FROM \"v_VisitasTipoDispositivo\" AS v
+LIMIT @__p_1 OFFSET @__p_0" (0723d8ff)
+2025-09-19T20:21:04.2382516+02:00 8000002f-0005-fb00-b63f-84710c7967bb [INF] Executed DbCommand ("133"ms) [Parameters=["@__p_1='?' (DbType = Int32), @__p_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT v.semana, v.\"tipoDispositivo\", v.visitas
+FROM \"v_VisitasTipoDispositivo\" AS v
+LIMIT @__p_1 OFFSET @__p_0" (0723d8ff)
+2025-09-19T20:21:16.0147732+02:00 8000002f-0005-fb00-b63f-84710c7967bb [INF] Executing "OkObjectResult", writing value of type '"System.Collections.Generic.List`1[[Application.DTOs.DataQuery.vVisitasTipoDispositivoDTO, Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]"'. (605b4265)
+2025-09-19T20:21:16.0147348+02:00 8000002d-0005-fb00-b63f-84710c7967bb [INF] Executing "OkObjectResult", writing value of type '"System.Collections.Generic.List`1[[Application.DTOs.DataQuery.vVisitasTipoDispositivoDTO, Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]"'. (605b4265)
+2025-09-19T20:21:22.0684746+02:00 8000002d-0005-fb00-b63f-84710c7967bb [INF] Executed action "API.Controllers.DataQueryController.ObtenerVisitasTipoDispositivo (API)" in 76226.9327ms (afa2e885)
+2025-09-19T20:21:22.0694651+02:00 8000002d-0005-fb00-b63f-84710c7967bb [INF] Executed endpoint '"API.Controllers.DataQueryController.ObtenerVisitasTipoDispositivo (API)"' (99874f2b)
+2025-09-19T20:21:22.0927118+02:00 8000002f-0005-fb00-b63f-84710c7967bb [INF] Executed action "API.Controllers.DataQueryController.ObtenerVisitasTipoDispositivo (API)" in 22230.1503ms (afa2e885)
+2025-09-19T20:21:22.0928658+02:00 8000002f-0005-fb00-b63f-84710c7967bb [INF] Executed endpoint '"API.Controllers.DataQueryController.ObtenerVisitasTipoDispositivo (API)"' (99874f2b)
+2025-09-19T20:21:22.1049331+02:00 8000002d-0005-fb00-b63f-84710c7967bb [INF] Request finished "HTTP/2" "GET" "https"://"localhost:44311""""/DataQuery/ObtenerVisitasTipoDispositivo""" - 499 null "application/json; charset=utf-8" 77106.2181ms (74253ad3)
+2025-09-19T20:21:22.1049637+02:00 8000002f-0005-fb00-b63f-84710c7967bb [INF] Request finished "HTTP/2" "GET" "https"://"localhost:44311""""/DataQuery/ObtenerVisitasTipoDispositivo""" - 200 null "application/json; charset=utf-8" 22289.5934ms (74253ad3)
+2025-09-19T20:22:46.1813952+02:00 8000004c-0003-ff00-b63f-84710c7967bb [INF] Request starting "HTTP/2" "GET" "https"://"localhost:44311""""/DataQuery/ObtenerVisitasTipoDispositivo""" - null null (d509f86a)
+2025-09-19T20:22:46.1822202+02:00 8000004c-0003-ff00-b63f-84710c7967bb [INF] CORS policy execution successful. (5409d6ef)
+2025-09-19T20:22:46.1826655+02:00 8000004c-0003-ff00-b63f-84710c7967bb [INF] Executing endpoint '"API.Controllers.DataQueryController.ObtenerVisitasTipoDispositivo (API)"' (500cc934)
+2025-09-19T20:22:46.1828976+02:00 8000004c-0003-ff00-b63f-84710c7967bb [INF] Route matched with "{action = \"ObtenerVisitasTipoDispositivo\", controller = \"DataQuery\"}". Executing controller action with signature "System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] ObtenerVisitasTipoDispositivo()" on controller "API.Controllers.DataQueryController" ("API"). (122b2fdf)
+2025-09-19T20:22:48.4700754+02:00 8000004c-0003-ff00-b63f-84710c7967bb [INF] Executed DbCommand ("3"ms) [Parameters=["@__p_1='?' (DbType = Int32), @__p_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT v.semana, v.\"tipoDispositivo\", v.visitas
+FROM \"v_VisitasTipoDispositivo\" AS v
+LIMIT @__p_1 OFFSET @__p_0" (0723d8ff)
+2025-09-19T20:22:49.2034885+02:00 8000004c-0003-ff00-b63f-84710c7967bb [INF] Executing "OkObjectResult", writing value of type '"System.Collections.Generic.List`1[[Application.DTOs.DataQuery.vVisitasTipoDispositivoDTO, Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]"'. (605b4265)
+2025-09-19T20:22:49.2049721+02:00 8000004c-0003-ff00-b63f-84710c7967bb [INF] Executed action "API.Controllers.DataQueryController.ObtenerVisitasTipoDispositivo (API)" in 3021.9316ms (afa2e885)
+2025-09-19T20:22:49.2051108+02:00 8000004c-0003-ff00-b63f-84710c7967bb [INF] Executed endpoint '"API.Controllers.DataQueryController.ObtenerVisitasTipoDispositivo (API)"' (99874f2b)
+2025-09-19T20:22:49.2059780+02:00 8000004c-0003-ff00-b63f-84710c7967bb [INF] Request finished "HTTP/2" "GET" "https"://"localhost:44311""""/DataQuery/ObtenerVisitasTipoDispositivo""" - 200 null "application/json; charset=utf-8" 3024.891ms (74253ad3)
+2025-09-19T20:23:56.5047689+02:00 8000005b-0004-fb00-b63f-84710c7967bb [INF] Request starting "HTTP/2" "GET" "https"://"localhost:44311""""/DataQuery/ObtenerVisitasTipoDispositivo""" - null null (d509f86a)
+2025-09-19T20:23:56.5055602+02:00 8000005b-0004-fb00-b63f-84710c7967bb [INF] CORS policy execution successful. (5409d6ef)
+2025-09-19T20:23:56.5059613+02:00 8000005b-0004-fb00-b63f-84710c7967bb [INF] Executing endpoint '"API.Controllers.DataQueryController.ObtenerVisitasTipoDispositivo (API)"' (500cc934)
+2025-09-19T20:23:56.5061474+02:00 8000005b-0004-fb00-b63f-84710c7967bb [INF] Route matched with "{action = \"ObtenerVisitasTipoDispositivo\", controller = \"DataQuery\"}". Executing controller action with signature "System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] ObtenerVisitasTipoDispositivo()" on controller "API.Controllers.DataQueryController" ("API"). (122b2fdf)
+2025-09-19T20:23:58.5143039+02:00 8000005b-0004-fb00-b63f-84710c7967bb [INF] Executed DbCommand ("4"ms) [Parameters=["@__p_1='?' (DbType = Int32), @__p_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT v.semana, v.\"tipoDispositivo\", v.visitas
+FROM \"v_VisitasTipoDispositivo\" AS v
+LIMIT @__p_1 OFFSET @__p_0" (0723d8ff)
+2025-09-19T20:23:59.4041297+02:00 8000005b-0004-fb00-b63f-84710c7967bb [INF] Executing "OkObjectResult", writing value of type '"System.Collections.Generic.List`1[[Application.DTOs.DataQuery.vVisitasTipoDispositivoDTO, Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]"'. (605b4265)
+2025-09-19T20:23:59.4051654+02:00 8000005b-0004-fb00-b63f-84710c7967bb [INF] Executed action "API.Controllers.DataQueryController.ObtenerVisitasTipoDispositivo (API)" in 2898.8887ms (afa2e885)
+2025-09-19T20:23:59.4053140+02:00 8000005b-0004-fb00-b63f-84710c7967bb [INF] Executed endpoint '"API.Controllers.DataQueryController.ObtenerVisitasTipoDispositivo (API)"' (99874f2b)
+2025-09-19T20:23:59.4059831+02:00 8000005b-0004-fb00-b63f-84710c7967bb [INF] Request finished "HTTP/2" "GET" "https"://"localhost:44311""""/DataQuery/ObtenerVisitasTipoDispositivo""" - 200 null "application/json; charset=utf-8" 2901.5546ms (74253ad3)
+2025-09-19T20:24:34.0566522+02:00 800000fc-0000-fc00-b63f-84710c7967bb [INF] Request starting "HTTP/2" "GET" "https"://"localhost:44311""""/DataQuery/ObtenerVisitasTipoDispositivo""" - null null (d509f86a)
+2025-09-19T20:24:34.0572576+02:00 800000fc-0000-fc00-b63f-84710c7967bb [INF] CORS policy execution successful. (5409d6ef)
+2025-09-19T20:24:34.0576159+02:00 800000fc-0000-fc00-b63f-84710c7967bb [INF] Executing endpoint '"API.Controllers.DataQueryController.ObtenerVisitasTipoDispositivo (API)"' (500cc934)
+2025-09-19T20:24:34.0579167+02:00 800000fc-0000-fc00-b63f-84710c7967bb [INF] Route matched with "{action = \"ObtenerVisitasTipoDispositivo\", controller = \"DataQuery\"}". Executing controller action with signature "System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] ObtenerVisitasTipoDispositivo()" on controller "API.Controllers.DataQueryController" ("API"). (122b2fdf)
+2025-09-19T20:24:38.3713107+02:00 800000fc-0000-fc00-b63f-84710c7967bb [INF] Executed DbCommand ("3"ms) [Parameters=["@__p_1='?' (DbType = Int32), @__p_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT v.semana, v.\"tipoDispositivo\", v.visitas
+FROM \"v_VisitasTipoDispositivo\" AS v
+LIMIT @__p_1 OFFSET @__p_0" (0723d8ff)
+2025-09-19T20:24:41.5445922+02:00 800000fc-0000-fc00-b63f-84710c7967bb [INF] Executing "OkObjectResult", writing value of type '"System.Collections.Generic.List`1[[Application.DTOs.DataQuery.vVisitasTipoDispositivoDTO, Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]"'. (605b4265)
+2025-09-19T20:24:41.5456055+02:00 800000fc-0000-fc00-b63f-84710c7967bb [INF] Executed action "API.Controllers.DataQueryController.ObtenerVisitasTipoDispositivo (API)" in 7487.0401ms (afa2e885)
+2025-09-19T20:24:41.5457130+02:00 800000fc-0000-fc00-b63f-84710c7967bb [INF] Executed endpoint '"API.Controllers.DataQueryController.ObtenerVisitasTipoDispositivo (API)"' (99874f2b)
+2025-09-19T20:24:41.5463285+02:00 800000fc-0000-fc00-b63f-84710c7967bb [INF] Request finished "HTTP/2" "GET" "https"://"localhost:44311""""/DataQuery/ObtenerVisitasTipoDispositivo""" - 200 null "application/json; charset=utf-8" 7490.024ms (74253ad3)
+2025-09-19T20:24:50.7166448+02:00 8000005f-0007-fb00-b63f-84710c7967bb [INF] Request starting "HTTP/2" "GET" "https"://"localhost:44311""""/DataQuery/ObtenerVisitasTipoDispositivo""" - null null (d509f86a)
+2025-09-19T20:24:50.7169927+02:00 8000005f-0007-fb00-b63f-84710c7967bb [INF] CORS policy execution successful. (5409d6ef)
+2025-09-19T20:24:50.7172078+02:00 8000005f-0007-fb00-b63f-84710c7967bb [INF] Executing endpoint '"API.Controllers.DataQueryController.ObtenerVisitasTipoDispositivo (API)"' (500cc934)
+2025-09-19T20:24:50.7173950+02:00 8000005f-0007-fb00-b63f-84710c7967bb [INF] Route matched with "{action = \"ObtenerVisitasTipoDispositivo\", controller = \"DataQuery\"}". Executing controller action with signature "System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] ObtenerVisitasTipoDispositivo()" on controller "API.Controllers.DataQueryController" ("API"). (122b2fdf)
+2025-09-19T20:24:50.7251357+02:00 8000005f-0007-fb00-b63f-84710c7967bb [INF] Executed DbCommand ("2"ms) [Parameters=["@__p_1='?' (DbType = Int32), @__p_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT v.semana, v.\"tipoDispositivo\", v.visitas
+FROM \"v_VisitasTipoDispositivo\" AS v
+LIMIT @__p_1 OFFSET @__p_0" (0723d8ff)
+2025-09-19T20:24:50.7280619+02:00 8000005f-0007-fb00-b63f-84710c7967bb [INF] Executing "OkObjectResult", writing value of type '"System.Collections.Generic.List`1[[Application.DTOs.DataQuery.vVisitasTipoDispositivoDTO, Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]"'. (605b4265)
+2025-09-19T20:24:50.7289567+02:00 8000005f-0007-fb00-b63f-84710c7967bb [INF] Executed action "API.Controllers.DataQueryController.ObtenerVisitasTipoDispositivo (API)" in 11.412ms (afa2e885)
+2025-09-19T20:24:50.7290956+02:00 8000005f-0007-fb00-b63f-84710c7967bb [INF] Executed endpoint '"API.Controllers.DataQueryController.ObtenerVisitasTipoDispositivo (API)"' (99874f2b)
+2025-09-19T20:24:50.7302012+02:00 8000005f-0007-fb00-b63f-84710c7967bb [INF] Request finished "HTTP/2" "GET" "https"://"localhost:44311""""/DataQuery/ObtenerVisitasTipoDispositivo""" - 200 null "application/json; charset=utf-8" 13.3851ms (74253ad3)
+2025-09-19T20:25:14.1912484+02:00 80000051-0005-f700-b63f-84710c7967bb [INF] Request starting "HTTP/2" "GET" "https"://"localhost:44311""""/DataQuery/ObtenerVisitasTipoDispositivo""" - null null (d509f86a)
+2025-09-19T20:25:14.1917246+02:00 80000051-0005-f700-b63f-84710c7967bb [INF] CORS policy execution successful. (5409d6ef)
+2025-09-19T20:25:14.1919884+02:00 80000051-0005-f700-b63f-84710c7967bb [INF] Executing endpoint '"API.Controllers.DataQueryController.ObtenerVisitasTipoDispositivo (API)"' (500cc934)
+2025-09-19T20:25:14.1921652+02:00 80000051-0005-f700-b63f-84710c7967bb [INF] Route matched with "{action = \"ObtenerVisitasTipoDispositivo\", controller = \"DataQuery\"}". Executing controller action with signature "System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] ObtenerVisitasTipoDispositivo()" on controller "API.Controllers.DataQueryController" ("API"). (122b2fdf)
+2025-09-19T20:25:14.1992888+02:00 80000051-0005-f700-b63f-84710c7967bb [INF] Executed DbCommand ("2"ms) [Parameters=["@__p_1='?' (DbType = Int32), @__p_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT v.semana, v.\"tipoDispositivo\", v.visitas
+FROM \"v_VisitasTipoDispositivo\" AS v
+LIMIT @__p_1 OFFSET @__p_0" (0723d8ff)
+2025-09-19T20:25:14.2011190+02:00 80000051-0005-f700-b63f-84710c7967bb [INF] Executing "OkObjectResult", writing value of type '"System.Collections.Generic.List`1[[Application.DTOs.DataQuery.vVisitasTipoDispositivoDTO, Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]"'. (605b4265)
+2025-09-19T20:25:14.2018648+02:00 80000051-0005-f700-b63f-84710c7967bb [INF] Executed action "API.Controllers.DataQueryController.ObtenerVisitasTipoDispositivo (API)" in 9.598ms (afa2e885)
+2025-09-19T20:25:14.2019593+02:00 80000051-0005-f700-b63f-84710c7967bb [INF] Executed endpoint '"API.Controllers.DataQueryController.ObtenerVisitasTipoDispositivo (API)"' (99874f2b)
+2025-09-19T20:25:14.2023253+02:00 80000051-0005-f700-b63f-84710c7967bb [INF] Request finished "HTTP/2" "GET" "https"://"localhost:44311""""/DataQuery/ObtenerVisitasTipoDispositivo""" - 200 null "application/json; charset=utf-8" 11.2878ms (74253ad3)
+2025-09-19T20:26:02.5444609+02:00 8000008c-0001-fe00-b63f-84710c7967bb [INF] Request starting "HTTP/2" "GET" "https"://"localhost:44311""""/DataQuery/ObtenerVisitasTipoDispositivo""" - null null (d509f86a)
+2025-09-19T20:26:02.5450098+02:00 8000008c-0001-fe00-b63f-84710c7967bb [INF] CORS policy execution successful. (5409d6ef)
+2025-09-19T20:26:02.5452807+02:00 8000008c-0001-fe00-b63f-84710c7967bb [INF] Executing endpoint '"API.Controllers.DataQueryController.ObtenerVisitasTipoDispositivo (API)"' (500cc934)
+2025-09-19T20:26:02.5454848+02:00 8000008c-0001-fe00-b63f-84710c7967bb [INF] Route matched with "{action = \"ObtenerVisitasTipoDispositivo\", controller = \"DataQuery\"}". Executing controller action with signature "System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] ObtenerVisitasTipoDispositivo()" on controller "API.Controllers.DataQueryController" ("API"). (122b2fdf)
+2025-09-19T20:26:02.5609305+02:00 8000008c-0001-fe00-b63f-84710c7967bb [INF] Executed DbCommand ("3"ms) [Parameters=["@__p_1='?' (DbType = Int32), @__p_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT v.semana, v.\"tipoDispositivo\", v.visitas
+FROM \"v_VisitasTipoDispositivo\" AS v
+LIMIT @__p_1 OFFSET @__p_0" (0723d8ff)
+2025-09-19T20:26:02.5776910+02:00 8000008c-0001-fe00-b63f-84710c7967bb [INF] Executing "OkObjectResult", writing value of type '"System.Collections.Generic.List`1[[Application.DTOs.DataQuery.vVisitasTipoDispositivoDTO, Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]"'. (605b4265)
+2025-09-19T20:26:02.5783823+02:00 8000008c-0001-fe00-b63f-84710c7967bb [INF] Executed action "API.Controllers.DataQueryController.ObtenerVisitasTipoDispositivo (API)" in 32.7766ms (afa2e885)
+2025-09-19T20:26:02.5784642+02:00 8000008c-0001-fe00-b63f-84710c7967bb [INF] Executed endpoint '"API.Controllers.DataQueryController.ObtenerVisitasTipoDispositivo (API)"' (99874f2b)
+2025-09-19T20:26:02.5788750+02:00 8000008c-0001-fe00-b63f-84710c7967bb [INF] Request finished "HTTP/2" "GET" "https"://"localhost:44311""""/DataQuery/ObtenerVisitasTipoDispositivo""" - 200 null "application/json; charset=utf-8" 34.5375ms (74253ad3)
+2025-09-19T20:26:04.1343216+02:00 80000007-0006-f800-b63f-84710c7967bb [INF] Request starting "HTTP/2" "GET" "https"://"localhost:44311""""/DataQuery/ObtenerVisitasTipoDispositivo""" - null null (d509f86a)
+2025-09-19T20:26:04.1346393+02:00 80000007-0006-f800-b63f-84710c7967bb [INF] CORS policy execution successful. (5409d6ef)
+2025-09-19T20:26:04.1348313+02:00 80000007-0006-f800-b63f-84710c7967bb [INF] Executing endpoint '"API.Controllers.DataQueryController.ObtenerVisitasTipoDispositivo (API)"' (500cc934)
+2025-09-19T20:26:04.1350745+02:00 80000007-0006-f800-b63f-84710c7967bb [INF] Route matched with "{action = \"ObtenerVisitasTipoDispositivo\", controller = \"DataQuery\"}". Executing controller action with signature "System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] ObtenerVisitasTipoDispositivo()" on controller "API.Controllers.DataQueryController" ("API"). (122b2fdf)
+2025-09-19T20:26:04.1422410+02:00 80000007-0006-f800-b63f-84710c7967bb [INF] Executed DbCommand ("2"ms) [Parameters=["@__p_1='?' (DbType = Int32), @__p_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT v.semana, v.\"tipoDispositivo\", v.visitas
+FROM \"v_VisitasTipoDispositivo\" AS v
+LIMIT @__p_1 OFFSET @__p_0" (0723d8ff)
+2025-09-19T20:26:04.1435175+02:00 80000007-0006-f800-b63f-84710c7967bb [INF] Executing "OkObjectResult", writing value of type '"System.Collections.Generic.List`1[[Application.DTOs.DataQuery.vVisitasTipoDispositivoDTO, Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]"'. (605b4265)
+2025-09-19T20:26:04.1440842+02:00 80000007-0006-f800-b63f-84710c7967bb [INF] Executed action "API.Controllers.DataQueryController.ObtenerVisitasTipoDispositivo (API)" in 8.9123ms (afa2e885)
+2025-09-19T20:26:04.1441889+02:00 80000007-0006-f800-b63f-84710c7967bb [INF] Executed endpoint '"API.Controllers.DataQueryController.ObtenerVisitasTipoDispositivo (API)"' (99874f2b)
+2025-09-19T20:26:04.1446286+02:00 80000007-0006-f800-b63f-84710c7967bb [INF] Request finished "HTTP/2" "GET" "https"://"localhost:44311""""/DataQuery/ObtenerVisitasTipoDispositivo""" - 200 null "application/json; charset=utf-8" 10.3579ms (74253ad3)
+2025-09-19T20:33:57.7472020+02:00 80000063-0007-fb00-b63f-84710c7967bb [INF] Request starting "HTTP/2" "GET" "https"://"localhost:44311""""/DataQuery/ObtenerVisitasTipoDispositivo""" - null null (d509f86a)
+2025-09-19T20:33:57.7477524+02:00 80000063-0007-fb00-b63f-84710c7967bb [INF] CORS policy execution successful. (5409d6ef)
+2025-09-19T20:33:57.7480713+02:00 80000063-0007-fb00-b63f-84710c7967bb [INF] Executing endpoint '"API.Controllers.DataQueryController.ObtenerVisitasTipoDispositivo (API)"' (500cc934)
+2025-09-19T20:33:57.7483217+02:00 80000063-0007-fb00-b63f-84710c7967bb [INF] Route matched with "{action = \"ObtenerVisitasTipoDispositivo\", controller = \"DataQuery\"}". Executing controller action with signature "System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] ObtenerVisitasTipoDispositivo()" on controller "API.Controllers.DataQueryController" ("API"). (122b2fdf)
+2025-09-19T20:33:57.9699524+02:00 80000063-0007-fb00-b63f-84710c7967bb [INF] Executed DbCommand ("7"ms) [Parameters=["@__p_1='?' (DbType = Int32), @__p_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT v.semana, v.\"tipoDispositivo\", v.visitas
+FROM \"v_VisitasTipoDispositivo\" AS v
+LIMIT @__p_1 OFFSET @__p_0" (0723d8ff)
+2025-09-19T20:33:57.9707197+02:00 80000063-0007-fb00-b63f-84710c7967bb [INF] Executing "OkObjectResult", writing value of type '"System.Collections.Generic.List`1[[Application.DTOs.DataQuery.vVisitasTipoDispositivoDTO, Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]"'. (605b4265)
+2025-09-19T20:33:57.9717882+02:00 80000063-0007-fb00-b63f-84710c7967bb [INF] Executed action "API.Controllers.DataQueryController.ObtenerVisitasTipoDispositivo (API)" in 223.3509ms (afa2e885)
+2025-09-19T20:33:57.9718756+02:00 80000063-0007-fb00-b63f-84710c7967bb [INF] Executed endpoint '"API.Controllers.DataQueryController.ObtenerVisitasTipoDispositivo (API)"' (99874f2b)
+2025-09-19T20:33:57.9722673+02:00 80000063-0007-fb00-b63f-84710c7967bb [INF] Request finished "HTTP/2" "GET" "https"://"localhost:44311""""/DataQuery/ObtenerVisitasTipoDispositivo""" - 200 null "application/json; charset=utf-8" 225.2732ms (74253ad3)
+2025-09-19T20:43:30.2788316+02:00 80000061-0002-fb00-b63f-84710c7967bb [INF] Request starting "HTTP/2" "GET" "https"://"localhost:44311""""/DataQuery/ObtenerVisitasTipoDispositivo""" - null null (d509f86a)
+2025-09-19T20:43:30.2793541+02:00 80000061-0002-fb00-b63f-84710c7967bb [INF] CORS policy execution successful. (5409d6ef)
+2025-09-19T20:43:30.2796988+02:00 80000061-0002-fb00-b63f-84710c7967bb [INF] Executing endpoint '"API.Controllers.DataQueryController.ObtenerVisitasTipoDispositivo (API)"' (500cc934)
+2025-09-19T20:43:30.2799864+02:00 80000061-0002-fb00-b63f-84710c7967bb [INF] Route matched with "{action = \"ObtenerVisitasTipoDispositivo\", controller = \"DataQuery\"}". Executing controller action with signature "System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] ObtenerVisitasTipoDispositivo()" on controller "API.Controllers.DataQueryController" ("API"). (122b2fdf)
+2025-09-19T20:43:30.4578453+02:00 80000061-0002-fb00-b63f-84710c7967bb [INF] Executed DbCommand ("4"ms) [Parameters=["@__p_1='?' (DbType = Int32), @__p_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT v.semana, v.\"tipoDispositivo\", v.visitas
+FROM \"v_VisitasTipoDispositivo\" AS v
+LIMIT @__p_1 OFFSET @__p_0" (0723d8ff)
+2025-09-19T20:43:30.4582898+02:00 80000061-0002-fb00-b63f-84710c7967bb [INF] Executing "OkObjectResult", writing value of type '"System.Collections.Generic.List`1[[Application.DTOs.DataQuery.vVisitasTipoDispositivoDTO, Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]"'. (605b4265)
+2025-09-19T20:43:30.4588375+02:00 80000061-0002-fb00-b63f-84710c7967bb [INF] Executed action "API.Controllers.DataQueryController.ObtenerVisitasTipoDispositivo (API)" in 178.7582ms (afa2e885)
+2025-09-19T20:43:30.4588894+02:00 80000061-0002-fb00-b63f-84710c7967bb [INF] Executed endpoint '"API.Controllers.DataQueryController.ObtenerVisitasTipoDispositivo (API)"' (99874f2b)
+2025-09-19T20:43:30.4591783+02:00 80000061-0002-fb00-b63f-84710c7967bb [INF] Request finished "HTTP/2" "GET" "https"://"localhost:44311""""/DataQuery/ObtenerVisitasTipoDispositivo""" - 200 null "application/json; charset=utf-8" 180.7912ms (74253ad3)
+2025-09-19T20:47:02.8732529+02:00 8000005d-0004-fa00-b63f-84710c7967bb [INF] Request starting "HTTP/2" "GET" "https"://"localhost:44311""""/DataQuery/ObtenerVisitasTipoDispositivo""" - null null (d509f86a)
+2025-09-19T20:47:02.8737161+02:00 8000005d-0004-fa00-b63f-84710c7967bb [INF] CORS policy execution successful. (5409d6ef)
+2025-09-19T20:47:02.8740488+02:00 8000005d-0004-fa00-b63f-84710c7967bb [INF] Executing endpoint '"API.Controllers.DataQueryController.ObtenerVisitasTipoDispositivo (API)"' (500cc934)
+2025-09-19T20:47:02.8742707+02:00 8000005d-0004-fa00-b63f-84710c7967bb [INF] Route matched with "{action = \"ObtenerVisitasTipoDispositivo\", controller = \"DataQuery\"}". Executing controller action with signature "System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] ObtenerVisitasTipoDispositivo()" on controller "API.Controllers.DataQueryController" ("API"). (122b2fdf)
+2025-09-19T20:47:02.8906066+02:00 8000005d-0004-fa00-b63f-84710c7967bb [INF] Executed DbCommand ("4"ms) [Parameters=["@__p_1='?' (DbType = Int32), @__p_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT v.semana, v.\"tipoDispositivo\", v.visitas
+FROM \"v_VisitasTipoDispositivo\" AS v
+LIMIT @__p_1 OFFSET @__p_0" (0723d8ff)
+2025-09-19T20:47:02.8922291+02:00 8000005d-0004-fa00-b63f-84710c7967bb [INF] Executing "OkObjectResult", writing value of type '"System.Collections.Generic.List`1[[Application.DTOs.DataQuery.vVisitasTipoDispositivoDTO, Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]"'. (605b4265)
+2025-09-19T20:47:02.8929268+02:00 8000005d-0004-fa00-b63f-84710c7967bb [INF] Executed action "API.Controllers.DataQueryController.ObtenerVisitasTipoDispositivo (API)" in 18.5537ms (afa2e885)
+2025-09-19T20:47:02.8929997+02:00 8000005d-0004-fa00-b63f-84710c7967bb [INF] Executed endpoint '"API.Controllers.DataQueryController.ObtenerVisitasTipoDispositivo (API)"' (99874f2b)
+2025-09-19T20:47:02.8934289+02:00 8000005d-0004-fa00-b63f-84710c7967bb [INF] Request finished "HTTP/2" "GET" "https"://"localhost:44311""""/DataQuery/ObtenerVisitasTipoDispositivo""" - 200 null "application/json; charset=utf-8" 20.4041ms (74253ad3)
+2025-09-19T21:39:06.1840552+02:00 80000011-0006-f700-b63f-84710c7967bb [INF] Request starting "HTTP/2" "GET" "https"://"localhost:44311""""/DataQuery/ObtenerVisitasTipoDispositivo""" - null null (d509f86a)
+2025-09-19T21:39:06.1861646+02:00 80000011-0006-f700-b63f-84710c7967bb [INF] CORS policy execution successful. (5409d6ef)
+2025-09-19T21:39:06.1873529+02:00 80000011-0006-f700-b63f-84710c7967bb [INF] Executing endpoint '"API.Controllers.DataQueryController.ObtenerVisitasTipoDispositivo (API)"' (500cc934)
+2025-09-19T21:39:06.1881087+02:00 80000011-0006-f700-b63f-84710c7967bb [INF] Route matched with "{action = \"ObtenerVisitasTipoDispositivo\", controller = \"DataQuery\"}". Executing controller action with signature "System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] ObtenerVisitasTipoDispositivo()" on controller "API.Controllers.DataQueryController" ("API"). (122b2fdf)
+2025-09-19T21:39:06.4424597+02:00 80000011-0006-f700-b63f-84710c7967bb [INF] Executed DbCommand ("5"ms) [Parameters=["@__p_1='?' (DbType = Int32), @__p_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT v.semana, v.\"tipoDispositivo\", v.visitas
+FROM \"v_VisitasTipoDispositivo\" AS v
+LIMIT @__p_1 OFFSET @__p_0" (0723d8ff)
+2025-09-19T21:39:06.4443023+02:00 80000011-0006-f700-b63f-84710c7967bb [INF] Executing "OkObjectResult", writing value of type '"System.Collections.Generic.List`1[[Application.DTOs.DataQuery.vVisitasTipoDispositivoDTO, Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]"'. (605b4265)
+2025-09-19T21:39:06.4478396+02:00 80000011-0006-f700-b63f-84710c7967bb [INF] Executed action "API.Controllers.DataQueryController.ObtenerVisitasTipoDispositivo (API)" in 259.5667ms (afa2e885)
+2025-09-19T21:39:06.4480300+02:00 80000011-0006-f700-b63f-84710c7967bb [INF] Executed endpoint '"API.Controllers.DataQueryController.ObtenerVisitasTipoDispositivo (API)"' (99874f2b)
+2025-09-19T21:39:06.4514675+02:00 80000011-0006-f700-b63f-84710c7967bb [INF] Request finished "HTTP/2" "GET" "https"://"localhost:44311""""/DataQuery/ObtenerVisitasTipoDispositivo""" - 200 null "application/json; charset=utf-8" 268.5593ms (74253ad3)
+2025-09-19T21:40:22.0917829+02:00 80000093-0000-fb00-b63f-84710c7967bb [INF] Request starting "HTTP/2" "GET" "https"://"localhost:44311""""/DataQuery/ObtenerVisitasTipoDispositivo""" - null null (d509f86a)
+2025-09-19T21:40:22.0923002+02:00 80000093-0000-fb00-b63f-84710c7967bb [INF] CORS policy execution successful. (5409d6ef)
+2025-09-19T21:40:22.0925706+02:00 80000093-0000-fb00-b63f-84710c7967bb [INF] Executing endpoint '"API.Controllers.DataQueryController.ObtenerVisitasTipoDispositivo (API)"' (500cc934)
+2025-09-19T21:40:22.0927298+02:00 80000093-0000-fb00-b63f-84710c7967bb [INF] Route matched with "{action = \"ObtenerVisitasTipoDispositivo\", controller = \"DataQuery\"}". Executing controller action with signature "System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] ObtenerVisitasTipoDispositivo()" on controller "API.Controllers.DataQueryController" ("API"). (122b2fdf)
+2025-09-19T21:40:22.1311556+02:00 80000093-0000-fb00-b63f-84710c7967bb [INF] Executed DbCommand ("2"ms) [Parameters=["@__p_1='?' (DbType = Int32), @__p_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT v.semana, v.\"tipoDispositivo\", v.visitas
+FROM \"v_VisitasTipoDispositivo\" AS v
+LIMIT @__p_1 OFFSET @__p_0" (0723d8ff)
+2025-09-19T21:40:22.2497241+02:00 80000093-0000-fb00-b63f-84710c7967bb [INF] Executing "OkObjectResult", writing value of type '"System.Collections.Generic.List`1[[Application.DTOs.DataQuery.vVisitasTipoDispositivoDTO, Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]"'. (605b4265)
+2025-09-19T21:40:22.2537472+02:00 80000093-0000-fb00-b63f-84710c7967bb [INF] Executed action "API.Controllers.DataQueryController.ObtenerVisitasTipoDispositivo (API)" in 160.8617ms (afa2e885)
+2025-09-19T21:40:22.2539331+02:00 80000093-0000-fb00-b63f-84710c7967bb [INF] Executed endpoint '"API.Controllers.DataQueryController.ObtenerVisitasTipoDispositivo (API)"' (99874f2b)
+2025-09-19T21:40:22.2583152+02:00 80000093-0000-fb00-b63f-84710c7967bb [INF] Request finished "HTTP/2" "GET" "https"://"localhost:44311""""/DataQuery/ObtenerVisitasTipoDispositivo""" - 200 null "application/json; charset=utf-8" 163.7843ms (74253ad3)
+2025-09-19T21:41:00.8174490+02:00 8000008b-0001-fd00-b63f-84710c7967bb [INF] Request starting "HTTP/2" "GET" "https"://"localhost:44311""""/DataQuery/ObtenerVisitasTipoDispositivo""" - null null (d509f86a)
+2025-09-19T21:41:00.8179772+02:00 8000008b-0001-fd00-b63f-84710c7967bb [INF] CORS policy execution successful. (5409d6ef)
+2025-09-19T21:41:00.8185172+02:00 8000008b-0001-fd00-b63f-84710c7967bb [INF] Executing endpoint '"API.Controllers.DataQueryController.ObtenerVisitasTipoDispositivo (API)"' (500cc934)
+2025-09-19T21:41:00.8188392+02:00 8000008b-0001-fd00-b63f-84710c7967bb [INF] Route matched with "{action = \"ObtenerVisitasTipoDispositivo\", controller = \"DataQuery\"}". Executing controller action with signature "System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] ObtenerVisitasTipoDispositivo()" on controller "API.Controllers.DataQueryController" ("API"). (122b2fdf)
+2025-09-19T21:41:00.9234377+02:00 8000008b-0001-fd00-b63f-84710c7967bb [INF] Executed DbCommand ("3"ms) [Parameters=["@__p_1='?' (DbType = Int32), @__p_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT v.semana, v.\"tipoDispositivo\", v.visitas
+FROM \"v_VisitasTipoDispositivo\" AS v
+LIMIT @__p_1 OFFSET @__p_0" (0723d8ff)
+2025-09-19T21:41:00.9250646+02:00 8000008b-0001-fd00-b63f-84710c7967bb [INF] Executing "OkObjectResult", writing value of type '"System.Collections.Generic.List`1[[Application.DTOs.DataQuery.vVisitasTipoDispositivoDTO, Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]"'. (605b4265)
+2025-09-19T21:41:00.9264477+02:00 8000008b-0001-fd00-b63f-84710c7967bb [INF] Executed action "API.Controllers.DataQueryController.ObtenerVisitasTipoDispositivo (API)" in 107.5092ms (afa2e885)
+2025-09-19T21:41:00.9265418+02:00 8000008b-0001-fd00-b63f-84710c7967bb [INF] Executed endpoint '"API.Controllers.DataQueryController.ObtenerVisitasTipoDispositivo (API)"' (99874f2b)
+2025-09-19T21:41:00.9270512+02:00 8000008b-0001-fd00-b63f-84710c7967bb [INF] Request finished "HTTP/2" "GET" "https"://"localhost:44311""""/DataQuery/ObtenerVisitasTipoDispositivo""" - 200 null "application/json; charset=utf-8" 109.9581ms (74253ad3)
+2025-09-19T21:41:31.8901739+02:00 80000015-0006-f700-b63f-84710c7967bb [INF] Request starting "HTTP/2" "GET" "https"://"localhost:44311""""/DataQuery/ObtenerVisitasTipoDispositivo""" - null null (d509f86a)
+2025-09-19T21:41:31.8906821+02:00 80000015-0006-f700-b63f-84710c7967bb [INF] CORS policy execution successful. (5409d6ef)
+2025-09-19T21:41:31.8910989+02:00 80000015-0006-f700-b63f-84710c7967bb [INF] Executing endpoint '"API.Controllers.DataQueryController.ObtenerVisitasTipoDispositivo (API)"' (500cc934)
+2025-09-19T21:41:31.8912768+02:00 80000015-0006-f700-b63f-84710c7967bb [INF] Route matched with "{action = \"ObtenerVisitasTipoDispositivo\", controller = \"DataQuery\"}". Executing controller action with signature "System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] ObtenerVisitasTipoDispositivo()" on controller "API.Controllers.DataQueryController" ("API"). (122b2fdf)
+2025-09-19T21:41:31.9938391+02:00 80000015-0006-f700-b63f-84710c7967bb [INF] Executed DbCommand ("98"ms) [Parameters=["@__p_1='?' (DbType = Int32), @__p_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT v.semana, v.\"tipoDispositivo\", v.visitas
+FROM \"v_VisitasTipoDispositivo\" AS v
+LIMIT @__p_1 OFFSET @__p_0" (0723d8ff)
+2025-09-19T21:41:31.9944351+02:00 80000015-0006-f700-b63f-84710c7967bb [INF] Executing "OkObjectResult", writing value of type '"System.Collections.Generic.List`1[[Application.DTOs.DataQuery.vVisitasTipoDispositivoDTO, Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]"'. (605b4265)
+2025-09-19T21:41:31.9953174+02:00 80000015-0006-f700-b63f-84710c7967bb [INF] Executed action "API.Controllers.DataQueryController.ObtenerVisitasTipoDispositivo (API)" in 103.9471ms (afa2e885)
+2025-09-19T21:41:31.9953937+02:00 80000015-0006-f700-b63f-84710c7967bb [INF] Executed endpoint '"API.Controllers.DataQueryController.ObtenerVisitasTipoDispositivo (API)"' (99874f2b)
+2025-09-19T21:41:31.9959069+02:00 80000015-0006-f700-b63f-84710c7967bb [INF] Request finished "HTTP/2" "GET" "https"://"localhost:44311""""/DataQuery/ObtenerVisitasTipoDispositivo""" - 200 null "application/json; charset=utf-8" 105.8333ms (74253ad3)
+2025-09-19T21:42:03.2875014+02:00 80000102-0000-fc00-b63f-84710c7967bb [INF] Request starting "HTTP/2" "GET" "https"://"localhost:44311""""/DataQuery/ObtenerVisitasTipoDispositivo""" - null null (d509f86a)
+2025-09-19T21:42:03.2880477+02:00 80000102-0000-fc00-b63f-84710c7967bb [INF] CORS policy execution successful. (5409d6ef)
+2025-09-19T21:42:03.2882585+02:00 80000102-0000-fc00-b63f-84710c7967bb [INF] Executing endpoint '"API.Controllers.DataQueryController.ObtenerVisitasTipoDispositivo (API)"' (500cc934)
+2025-09-19T21:42:03.2884516+02:00 80000102-0000-fc00-b63f-84710c7967bb [INF] Route matched with "{action = \"ObtenerVisitasTipoDispositivo\", controller = \"DataQuery\"}". Executing controller action with signature "System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] ObtenerVisitasTipoDispositivo()" on controller "API.Controllers.DataQueryController" ("API"). (122b2fdf)
+2025-09-19T21:42:03.3112132+02:00 80000102-0000-fc00-b63f-84710c7967bb [INF] Executed DbCommand ("3"ms) [Parameters=["@__p_1='?' (DbType = Int32), @__p_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT v.semana, v.\"tipoDispositivo\", v.visitas
+FROM \"v_VisitasTipoDispositivo\" AS v
+LIMIT @__p_1 OFFSET @__p_0" (0723d8ff)
+2025-09-19T21:42:03.3131097+02:00 80000102-0000-fc00-b63f-84710c7967bb [INF] Executing "OkObjectResult", writing value of type '"System.Collections.Generic.List`1[[Application.DTOs.DataQuery.vVisitasTipoDispositivoDTO, Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]"'. (605b4265)
+2025-09-19T21:42:03.3138361+02:00 80000102-0000-fc00-b63f-84710c7967bb [INF] Executed action "API.Controllers.DataQueryController.ObtenerVisitasTipoDispositivo (API)" in 25.286ms (afa2e885)
+2025-09-19T21:42:03.3139015+02:00 80000102-0000-fc00-b63f-84710c7967bb [INF] Executed endpoint '"API.Controllers.DataQueryController.ObtenerVisitasTipoDispositivo (API)"' (99874f2b)
+2025-09-19T21:42:03.3142022+02:00 80000102-0000-fc00-b63f-84710c7967bb [INF] Request finished "HTTP/2" "GET" "https"://"localhost:44311""""/DataQuery/ObtenerVisitasTipoDispositivo""" - 200 null "application/json; charset=utf-8" 26.8061ms (74253ad3)
+2025-09-19T21:42:10.7220869+02:00 800000d3-0002-ff00-b63f-84710c7967bb [INF] Request starting "HTTP/2" "GET" "https"://"localhost:44311""""/DataQuery/ObtenerVisitasTipoDispositivo""" - null null (d509f86a)
+2025-09-19T21:42:10.7223761+02:00 800000d3-0002-ff00-b63f-84710c7967bb [INF] CORS policy execution successful. (5409d6ef)
+2025-09-19T21:42:10.7227409+02:00 800000d3-0002-ff00-b63f-84710c7967bb [INF] Executing endpoint '"API.Controllers.DataQueryController.ObtenerVisitasTipoDispositivo (API)"' (500cc934)
+2025-09-19T21:42:10.7228960+02:00 800000d3-0002-ff00-b63f-84710c7967bb [INF] Route matched with "{action = \"ObtenerVisitasTipoDispositivo\", controller = \"DataQuery\"}". Executing controller action with signature "System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] ObtenerVisitasTipoDispositivo()" on controller "API.Controllers.DataQueryController" ("API"). (122b2fdf)
+2025-09-19T21:42:10.7329768+02:00 800000d3-0002-ff00-b63f-84710c7967bb [INF] Executed DbCommand ("4"ms) [Parameters=["@__p_1='?' (DbType = Int32), @__p_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT v.semana, v.\"tipoDispositivo\", v.visitas
+FROM \"v_VisitasTipoDispositivo\" AS v
+LIMIT @__p_1 OFFSET @__p_0" (0723d8ff)
+2025-09-19T21:42:10.7336289+02:00 800000d3-0002-ff00-b63f-84710c7967bb [INF] Executing "OkObjectResult", writing value of type '"System.Collections.Generic.List`1[[Application.DTOs.DataQuery.vVisitasTipoDispositivoDTO, Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]"'. (605b4265)
+2025-09-19T21:42:10.7341952+02:00 800000d3-0002-ff00-b63f-84710c7967bb [INF] Executed action "API.Controllers.DataQueryController.ObtenerVisitasTipoDispositivo (API)" in 11.2056ms (afa2e885)
+2025-09-19T21:42:10.7343041+02:00 800000d3-0002-ff00-b63f-84710c7967bb [INF] Executed endpoint '"API.Controllers.DataQueryController.ObtenerVisitasTipoDispositivo (API)"' (99874f2b)
+2025-09-19T21:42:10.7346347+02:00 800000d3-0002-ff00-b63f-84710c7967bb [INF] Request finished "HTTP/2" "GET" "https"://"localhost:44311""""/DataQuery/ObtenerVisitasTipoDispositivo""" - 200 null "application/json; charset=utf-8" 12.6019ms (74253ad3)
+2025-09-19T21:42:22.5478263+02:00 800000e6-0006-fe00-b63f-84710c7967bb [INF] Request starting "HTTP/2" "GET" "https"://"localhost:44311""""/DataQuery/ObtenerVisitasTipoDispositivo""" - null null (d509f86a)
+2025-09-19T21:42:22.5480768+02:00 800000e6-0006-fe00-b63f-84710c7967bb [INF] CORS policy execution successful. (5409d6ef)
+2025-09-19T21:42:22.5482511+02:00 800000e6-0006-fe00-b63f-84710c7967bb [INF] Executing endpoint '"API.Controllers.DataQueryController.ObtenerVisitasTipoDispositivo (API)"' (500cc934)
+2025-09-19T21:42:22.5484196+02:00 800000e6-0006-fe00-b63f-84710c7967bb [INF] Route matched with "{action = \"ObtenerVisitasTipoDispositivo\", controller = \"DataQuery\"}". Executing controller action with signature "System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] ObtenerVisitasTipoDispositivo()" on controller "API.Controllers.DataQueryController" ("API"). (122b2fdf)
+2025-09-19T21:42:22.5588897+02:00 800000e6-0006-fe00-b63f-84710c7967bb [INF] Executed DbCommand ("3"ms) [Parameters=["@__p_1='?' (DbType = Int32), @__p_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT v.semana, v.\"tipoDispositivo\", v.visitas
+FROM \"v_VisitasTipoDispositivo\" AS v
+LIMIT @__p_1 OFFSET @__p_0" (0723d8ff)
+2025-09-19T21:42:22.5594453+02:00 800000e6-0006-fe00-b63f-84710c7967bb [INF] Executing "OkObjectResult", writing value of type '"System.Collections.Generic.List`1[[Application.DTOs.DataQuery.vVisitasTipoDispositivoDTO, Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]"'. (605b4265)
+2025-09-19T21:42:22.5600758+02:00 800000e6-0006-fe00-b63f-84710c7967bb [INF] Executed action "API.Controllers.DataQueryController.ObtenerVisitasTipoDispositivo (API)" in 11.5577ms (afa2e885)
+2025-09-19T21:42:22.5601495+02:00 800000e6-0006-fe00-b63f-84710c7967bb [INF] Executed endpoint '"API.Controllers.DataQueryController.ObtenerVisitasTipoDispositivo (API)"' (99874f2b)
+2025-09-19T21:42:22.5605133+02:00 800000e6-0006-fe00-b63f-84710c7967bb [INF] Request finished "HTTP/2" "GET" "https"://"localhost:44311""""/DataQuery/ObtenerVisitasTipoDispositivo""" - 200 null "application/json; charset=utf-8" 12.7246ms (74253ad3)
+2025-09-19T21:43:03.4408340+02:00 80000106-0000-fc00-b63f-84710c7967bb [INF] Request starting "HTTP/2" "GET" "https"://"localhost:44311""""/DataQuery/ObtenerVisitasTipoDispositivo""" - null null (d509f86a)
+2025-09-19T21:43:03.4413700+02:00 80000106-0000-fc00-b63f-84710c7967bb [INF] CORS policy execution successful. (5409d6ef)
+2025-09-19T21:43:03.4418940+02:00 80000106-0000-fc00-b63f-84710c7967bb [INF] Executing endpoint '"API.Controllers.DataQueryController.ObtenerVisitasTipoDispositivo (API)"' (500cc934)
+2025-09-19T21:43:03.4421134+02:00 80000106-0000-fc00-b63f-84710c7967bb [INF] Route matched with "{action = \"ObtenerVisitasTipoDispositivo\", controller = \"DataQuery\"}". Executing controller action with signature "System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] ObtenerVisitasTipoDispositivo()" on controller "API.Controllers.DataQueryController" ("API"). (122b2fdf)
+2025-09-19T21:43:03.4523736+02:00 80000106-0000-fc00-b63f-84710c7967bb [INF] Executed DbCommand ("3"ms) [Parameters=["@__p_1='?' (DbType = Int32), @__p_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT v.semana, v.\"tipoDispositivo\", v.visitas
+FROM \"v_VisitasTipoDispositivo\" AS v
+LIMIT @__p_1 OFFSET @__p_0" (0723d8ff)
+2025-09-19T21:43:03.4584072+02:00 80000106-0000-fc00-b63f-84710c7967bb [INF] Executing "OkObjectResult", writing value of type '"System.Collections.Generic.List`1[[Application.DTOs.DataQuery.vVisitasTipoDispositivoDTO, Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]"'. (605b4265)
+2025-09-19T21:43:03.4598008+02:00 80000106-0000-fc00-b63f-84710c7967bb [INF] Executed action "API.Controllers.DataQueryController.ObtenerVisitasTipoDispositivo (API)" in 17.4876ms (afa2e885)
+2025-09-19T21:43:03.4598831+02:00 80000106-0000-fc00-b63f-84710c7967bb [INF] Executed endpoint '"API.Controllers.DataQueryController.ObtenerVisitasTipoDispositivo (API)"' (99874f2b)
+2025-09-19T21:43:03.4602342+02:00 80000106-0000-fc00-b63f-84710c7967bb [INF] Request finished "HTTP/2" "GET" "https"://"localhost:44311""""/DataQuery/ObtenerVisitasTipoDispositivo""" - 200 null "application/json; charset=utf-8" 19.5803ms (74253ad3)
+2025-09-19T21:43:11.2378865+02:00 80000060-0002-fc00-b63f-84710c7967bb [INF] Request starting "HTTP/2" "GET" "https"://"localhost:44311""""/DataQuery/ObtenerVisitasTipoDispositivo""" - null null (d509f86a)
+2025-09-19T21:43:11.2382406+02:00 80000060-0002-fc00-b63f-84710c7967bb [INF] CORS policy execution successful. (5409d6ef)
+2025-09-19T21:43:11.2385251+02:00 80000060-0002-fc00-b63f-84710c7967bb [INF] Executing endpoint '"API.Controllers.DataQueryController.ObtenerVisitasTipoDispositivo (API)"' (500cc934)
+2025-09-19T21:43:11.2388341+02:00 80000060-0002-fc00-b63f-84710c7967bb [INF] Route matched with "{action = \"ObtenerVisitasTipoDispositivo\", controller = \"DataQuery\"}". Executing controller action with signature "System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] ObtenerVisitasTipoDispositivo()" on controller "API.Controllers.DataQueryController" ("API"). (122b2fdf)
+2025-09-19T21:43:11.2482065+02:00 80000060-0002-fc00-b63f-84710c7967bb [INF] Executed DbCommand ("3"ms) [Parameters=["@__p_1='?' (DbType = Int32), @__p_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT v.semana, v.\"tipoDispositivo\", v.visitas
+FROM \"v_VisitasTipoDispositivo\" AS v
+LIMIT @__p_1 OFFSET @__p_0" (0723d8ff)
+2025-09-19T21:43:11.2488955+02:00 80000060-0002-fc00-b63f-84710c7967bb [INF] Executing "OkObjectResult", writing value of type '"System.Collections.Generic.List`1[[Application.DTOs.DataQuery.vVisitasTipoDispositivoDTO, Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]"'. (605b4265)
+2025-09-19T21:43:11.2497107+02:00 80000060-0002-fc00-b63f-84710c7967bb [INF] Executed action "API.Controllers.DataQueryController.ObtenerVisitasTipoDispositivo (API)" in 10.5272ms (afa2e885)
+2025-09-19T21:43:11.2497972+02:00 80000060-0002-fc00-b63f-84710c7967bb [INF] Executed endpoint '"API.Controllers.DataQueryController.ObtenerVisitasTipoDispositivo (API)"' (99874f2b)
+2025-09-19T21:43:11.2501886+02:00 80000060-0002-fc00-b63f-84710c7967bb [INF] Request finished "HTTP/2" "GET" "https"://"localhost:44311""""/DataQuery/ObtenerVisitasTipoDispositivo""" - 200 null "application/json; charset=utf-8" 12.6273ms (74253ad3)
+2025-09-19T21:44:18.3806339+02:00 80000037-0005-fb00-b63f-84710c7967bb [INF] Request starting "HTTP/2" "GET" "https"://"localhost:44311""""/DataQuery/ObtenerVisitasTipoDispositivo""" - null null (d509f86a)
+2025-09-19T21:44:18.3808880+02:00 80000037-0005-fb00-b63f-84710c7967bb [INF] CORS policy execution successful. (5409d6ef)
+2025-09-19T21:44:18.3810920+02:00 80000037-0005-fb00-b63f-84710c7967bb [INF] Executing endpoint '"API.Controllers.DataQueryController.ObtenerVisitasTipoDispositivo (API)"' (500cc934)
+2025-09-19T21:44:18.3812613+02:00 80000037-0005-fb00-b63f-84710c7967bb [INF] Route matched with "{action = \"ObtenerVisitasTipoDispositivo\", controller = \"DataQuery\"}". Executing controller action with signature "System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] ObtenerVisitasTipoDispositivo()" on controller "API.Controllers.DataQueryController" ("API"). (122b2fdf)
+2025-09-19T21:44:18.5414502+02:00 80000037-0005-fb00-b63f-84710c7967bb [INF] Executed DbCommand ("5"ms) [Parameters=["@__p_1='?' (DbType = Int32), @__p_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT v.semana, v.\"tipoDispositivo\", v.visitas
+FROM \"v_VisitasTipoDispositivo\" AS v
+LIMIT @__p_1 OFFSET @__p_0" (0723d8ff)
+2025-09-19T21:44:18.5419808+02:00 80000037-0005-fb00-b63f-84710c7967bb [INF] Executing "OkObjectResult", writing value of type '"System.Collections.Generic.List`1[[Application.DTOs.DataQuery.vVisitasTipoDispositivoDTO, Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]"'. (605b4265)
+2025-09-19T21:44:18.5425190+02:00 80000037-0005-fb00-b63f-84710c7967bb [INF] Executed action "API.Controllers.DataQueryController.ObtenerVisitasTipoDispositivo (API)" in 161.1751ms (afa2e885)
+2025-09-19T21:44:18.5425783+02:00 80000037-0005-fb00-b63f-84710c7967bb [INF] Executed endpoint '"API.Controllers.DataQueryController.ObtenerVisitasTipoDispositivo (API)"' (99874f2b)
+2025-09-19T21:44:18.5428832+02:00 80000037-0005-fb00-b63f-84710c7967bb [INF] Request finished "HTTP/2" "GET" "https"://"localhost:44311""""/DataQuery/ObtenerVisitasTipoDispositivo""" - 200 null "application/json; charset=utf-8" 162.5438ms (74253ad3)
+2025-09-19T21:44:40.5581873+02:00 800000d7-0002-ff00-b63f-84710c7967bb [INF] Request starting "HTTP/2" "GET" "https"://"localhost:44311""""/DataQuery/ObtenerVisitasTipoDispositivo""" - null null (d509f86a)
+2025-09-19T21:44:40.5584346+02:00 800000d7-0002-ff00-b63f-84710c7967bb [INF] CORS policy execution successful. (5409d6ef)
+2025-09-19T21:44:40.5585859+02:00 800000d7-0002-ff00-b63f-84710c7967bb [INF] Executing endpoint '"API.Controllers.DataQueryController.ObtenerVisitasTipoDispositivo (API)"' (500cc934)
+2025-09-19T21:44:40.5587593+02:00 800000d7-0002-ff00-b63f-84710c7967bb [INF] Route matched with "{action = \"ObtenerVisitasTipoDispositivo\", controller = \"DataQuery\"}". Executing controller action with signature "System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] ObtenerVisitasTipoDispositivo()" on controller "API.Controllers.DataQueryController" ("API"). (122b2fdf)
+2025-09-19T21:44:40.5672821+02:00 800000d7-0002-ff00-b63f-84710c7967bb [INF] Executed DbCommand ("5"ms) [Parameters=["@__p_1='?' (DbType = Int32), @__p_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT v.semana, v.\"tipoDispositivo\", v.visitas
+FROM \"v_VisitasTipoDispositivo\" AS v
+LIMIT @__p_1 OFFSET @__p_0" (0723d8ff)
+2025-09-19T21:44:40.5677508+02:00 800000d7-0002-ff00-b63f-84710c7967bb [INF] Executing "OkObjectResult", writing value of type '"System.Collections.Generic.List`1[[Application.DTOs.DataQuery.vVisitasTipoDispositivoDTO, Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]"'. (605b4265)
+2025-09-19T21:44:40.5681966+02:00 800000d7-0002-ff00-b63f-84710c7967bb [INF] Executed action "API.Controllers.DataQueryController.ObtenerVisitasTipoDispositivo (API)" in 9.3635ms (afa2e885)
+2025-09-19T21:44:40.5682396+02:00 800000d7-0002-ff00-b63f-84710c7967bb [INF] Executed endpoint '"API.Controllers.DataQueryController.ObtenerVisitasTipoDispositivo (API)"' (99874f2b)
+2025-09-19T21:44:40.5684674+02:00 800000d7-0002-ff00-b63f-84710c7967bb [INF] Request finished "HTTP/2" "GET" "https"://"localhost:44311""""/DataQuery/ObtenerVisitasTipoDispositivo""" - 200 null "application/json; charset=utf-8" 10.454ms (74253ad3)
+2025-09-19T21:44:45.8389598+02:00 80000034-0007-ff00-b63f-84710c7967bb [INF] Request starting "HTTP/2" "GET" "https"://"localhost:44311""""/DataQuery/ObtenerVisitasTipoDispositivo""" - null null (d509f86a)
+2025-09-19T21:44:45.8393167+02:00 80000034-0007-ff00-b63f-84710c7967bb [INF] CORS policy execution successful. (5409d6ef)
+2025-09-19T21:44:45.8395833+02:00 80000034-0007-ff00-b63f-84710c7967bb [INF] Executing endpoint '"API.Controllers.DataQueryController.ObtenerVisitasTipoDispositivo (API)"' (500cc934)
+2025-09-19T21:44:45.8398314+02:00 80000034-0007-ff00-b63f-84710c7967bb [INF] Route matched with "{action = \"ObtenerVisitasTipoDispositivo\", controller = \"DataQuery\"}". Executing controller action with signature "System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] ObtenerVisitasTipoDispositivo()" on controller "API.Controllers.DataQueryController" ("API"). (122b2fdf)
+2025-09-19T21:44:45.8500329+02:00 80000034-0007-ff00-b63f-84710c7967bb [INF] Executed DbCommand ("3"ms) [Parameters=["@__p_1='?' (DbType = Int32), @__p_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT v.semana, v.\"tipoDispositivo\", v.visitas
+FROM \"v_VisitasTipoDispositivo\" AS v
+LIMIT @__p_1 OFFSET @__p_0" (0723d8ff)
+2025-09-19T21:44:45.8512315+02:00 80000034-0007-ff00-b63f-84710c7967bb [INF] Executing "OkObjectResult", writing value of type '"System.Collections.Generic.List`1[[Application.DTOs.DataQuery.vVisitasTipoDispositivoDTO, Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]"'. (605b4265)
+2025-09-19T21:44:45.8519838+02:00 80000034-0007-ff00-b63f-84710c7967bb [INF] Executed action "API.Controllers.DataQueryController.ObtenerVisitasTipoDispositivo (API)" in 12.0213ms (afa2e885)
+2025-09-19T21:44:45.8520837+02:00 80000034-0007-ff00-b63f-84710c7967bb [INF] Executed endpoint '"API.Controllers.DataQueryController.ObtenerVisitasTipoDispositivo (API)"' (99874f2b)
+2025-09-19T21:44:45.8526376+02:00 80000034-0007-ff00-b63f-84710c7967bb [INF] Request finished "HTTP/2" "GET" "https"://"localhost:44311""""/DataQuery/ObtenerVisitasTipoDispositivo""" - 200 null "application/json; charset=utf-8" 14.0085ms (74253ad3)
+2025-09-19T21:44:50.1531625+02:00 800000ea-0006-fe00-b63f-84710c7967bb [INF] Request starting "HTTP/2" "GET" "https"://"localhost:44311""""/DataQuery/ObtenerVisitasTipoDispositivo""" - null null (d509f86a)
+2025-09-19T21:44:50.1534413+02:00 800000ea-0006-fe00-b63f-84710c7967bb [INF] CORS policy execution successful. (5409d6ef)
+2025-09-19T21:44:50.1535839+02:00 800000ea-0006-fe00-b63f-84710c7967bb [INF] Executing endpoint '"API.Controllers.DataQueryController.ObtenerVisitasTipoDispositivo (API)"' (500cc934)
+2025-09-19T21:44:50.1537309+02:00 800000ea-0006-fe00-b63f-84710c7967bb [INF] Route matched with "{action = \"ObtenerVisitasTipoDispositivo\", controller = \"DataQuery\"}". Executing controller action with signature "System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] ObtenerVisitasTipoDispositivo()" on controller "API.Controllers.DataQueryController" ("API"). (122b2fdf)
+2025-09-19T21:44:50.1619849+02:00 800000ea-0006-fe00-b63f-84710c7967bb [INF] Executed DbCommand ("3"ms) [Parameters=["@__p_1='?' (DbType = Int32), @__p_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT v.semana, v.\"tipoDispositivo\", v.visitas
+FROM \"v_VisitasTipoDispositivo\" AS v
+LIMIT @__p_1 OFFSET @__p_0" (0723d8ff)
+2025-09-19T21:44:50.1627123+02:00 800000ea-0006-fe00-b63f-84710c7967bb [INF] Executing "OkObjectResult", writing value of type '"System.Collections.Generic.List`1[[Application.DTOs.DataQuery.vVisitasTipoDispositivoDTO, Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]"'. (605b4265)
+2025-09-19T21:44:50.1634217+02:00 800000ea-0006-fe00-b63f-84710c7967bb [INF] Executed action "API.Controllers.DataQueryController.ObtenerVisitasTipoDispositivo (API)" in 9.5645ms (afa2e885)
+2025-09-19T21:44:50.1635404+02:00 800000ea-0006-fe00-b63f-84710c7967bb [INF] Executed endpoint '"API.Controllers.DataQueryController.ObtenerVisitasTipoDispositivo (API)"' (99874f2b)
+2025-09-19T21:44:50.1639582+02:00 800000ea-0006-fe00-b63f-84710c7967bb [INF] Request finished "HTTP/2" "GET" "https"://"localhost:44311""""/DataQuery/ObtenerVisitasTipoDispositivo""" - 200 null "application/json; charset=utf-8" 10.8257ms (74253ad3)
+2025-09-19T21:44:57.0779425+02:00 80000067-0007-fb00-b63f-84710c7967bb [INF] Request starting "HTTP/2" "GET" "https"://"localhost:44311""""/DataQuery/ObtenerVisitasTipoDispositivo""" - null null (d509f86a)
+2025-09-19T21:44:57.0782156+02:00 80000067-0007-fb00-b63f-84710c7967bb [INF] CORS policy execution successful. (5409d6ef)
+2025-09-19T21:44:57.0783729+02:00 80000067-0007-fb00-b63f-84710c7967bb [INF] Executing endpoint '"API.Controllers.DataQueryController.ObtenerVisitasTipoDispositivo (API)"' (500cc934)
+2025-09-19T21:44:57.0785371+02:00 80000067-0007-fb00-b63f-84710c7967bb [INF] Route matched with "{action = \"ObtenerVisitasTipoDispositivo\", controller = \"DataQuery\"}". Executing controller action with signature "System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] ObtenerVisitasTipoDispositivo()" on controller "API.Controllers.DataQueryController" ("API"). (122b2fdf)
+2025-09-19T21:44:57.0865083+02:00 80000067-0007-fb00-b63f-84710c7967bb [INF] Executed DbCommand ("3"ms) [Parameters=["@__p_1='?' (DbType = Int32), @__p_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT v.semana, v.\"tipoDispositivo\", v.visitas
+FROM \"v_VisitasTipoDispositivo\" AS v
+LIMIT @__p_1 OFFSET @__p_0" (0723d8ff)
+2025-09-19T21:44:57.0874823+02:00 80000067-0007-fb00-b63f-84710c7967bb [INF] Executing "OkObjectResult", writing value of type '"System.Collections.Generic.List`1[[Application.DTOs.DataQuery.vVisitasTipoDispositivoDTO, Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]"'. (605b4265)
+2025-09-19T21:44:57.0880545+02:00 80000067-0007-fb00-b63f-84710c7967bb [INF] Executed action "API.Controllers.DataQueryController.ObtenerVisitasTipoDispositivo (API)" in 9.439ms (afa2e885)
+2025-09-19T21:44:57.0881261+02:00 80000067-0007-fb00-b63f-84710c7967bb [INF] Executed endpoint '"API.Controllers.DataQueryController.ObtenerVisitasTipoDispositivo (API)"' (99874f2b)
+2025-09-19T21:44:57.0885990+02:00 80000067-0007-fb00-b63f-84710c7967bb [INF] Request finished "HTTP/2" "GET" "https"://"localhost:44311""""/DataQuery/ObtenerVisitasTipoDispositivo""" - 200 null "application/json; charset=utf-8" 10.5901ms (74253ad3)
+2025-09-19T21:45:03.3671119+02:00 80000108-0000-fc00-b63f-84710c7967bb [INF] Request starting "HTTP/2" "GET" "https"://"localhost:44311""""/DataQuery/ObtenerVisitasTipoDispositivo""" - null null (d509f86a)
+2025-09-19T21:45:03.3673405+02:00 80000108-0000-fc00-b63f-84710c7967bb [INF] CORS policy execution successful. (5409d6ef)
+2025-09-19T21:45:03.3679371+02:00 80000108-0000-fc00-b63f-84710c7967bb [INF] Executing endpoint '"API.Controllers.DataQueryController.ObtenerVisitasTipoDispositivo (API)"' (500cc934)
+2025-09-19T21:45:03.3681092+02:00 80000108-0000-fc00-b63f-84710c7967bb [INF] Route matched with "{action = \"ObtenerVisitasTipoDispositivo\", controller = \"DataQuery\"}". Executing controller action with signature "System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] ObtenerVisitasTipoDispositivo()" on controller "API.Controllers.DataQueryController" ("API"). (122b2fdf)
+2025-09-19T21:45:03.3777029+02:00 80000108-0000-fc00-b63f-84710c7967bb [INF] Executed DbCommand ("3"ms) [Parameters=["@__p_1='?' (DbType = Int32), @__p_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT v.semana, v.\"tipoDispositivo\", v.visitas
+FROM \"v_VisitasTipoDispositivo\" AS v
+LIMIT @__p_1 OFFSET @__p_0" (0723d8ff)
+2025-09-19T21:45:03.3787871+02:00 80000108-0000-fc00-b63f-84710c7967bb [INF] Executing "OkObjectResult", writing value of type '"System.Collections.Generic.List`1[[Application.DTOs.DataQuery.vVisitasTipoDispositivoDTO, Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]"'. (605b4265)
+2025-09-19T21:45:03.3795093+02:00 80000108-0000-fc00-b63f-84710c7967bb [INF] Executed action "API.Controllers.DataQueryController.ObtenerVisitasTipoDispositivo (API)" in 11.276ms (afa2e885)
+2025-09-19T21:45:03.3796199+02:00 80000108-0000-fc00-b63f-84710c7967bb [INF] Executed endpoint '"API.Controllers.DataQueryController.ObtenerVisitasTipoDispositivo (API)"' (99874f2b)
+2025-09-19T21:45:03.3800266+02:00 80000108-0000-fc00-b63f-84710c7967bb [INF] Request finished "HTTP/2" "GET" "https"://"localhost:44311""""/DataQuery/ObtenerVisitasTipoDispositivo""" - 200 null "application/json; charset=utf-8" 13.0816ms (74253ad3)
+2025-09-19T21:45:12.6090591+02:00 8000002b-0003-f800-b63f-84710c7967bb [INF] Request starting "HTTP/2" "GET" "https"://"localhost:44311""""/DataQuery/ObtenerVisitasTipoDispositivo""" - null null (d509f86a)
+2025-09-19T21:45:12.6095623+02:00 8000002b-0003-f800-b63f-84710c7967bb [INF] CORS policy execution successful. (5409d6ef)
+2025-09-19T21:45:12.6099329+02:00 8000002b-0003-f800-b63f-84710c7967bb [INF] Executing endpoint '"API.Controllers.DataQueryController.ObtenerVisitasTipoDispositivo (API)"' (500cc934)
+2025-09-19T21:45:12.6100959+02:00 8000002b-0003-f800-b63f-84710c7967bb [INF] Route matched with "{action = \"ObtenerVisitasTipoDispositivo\", controller = \"DataQuery\"}". Executing controller action with signature "System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] ObtenerVisitasTipoDispositivo()" on controller "API.Controllers.DataQueryController" ("API"). (122b2fdf)
+2025-09-19T21:45:12.6269521+02:00 8000002b-0003-f800-b63f-84710c7967bb [INF] Executed DbCommand ("4"ms) [Parameters=["@__p_1='?' (DbType = Int32), @__p_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT v.semana, v.\"tipoDispositivo\", v.visitas
+FROM \"v_VisitasTipoDispositivo\" AS v
+LIMIT @__p_1 OFFSET @__p_0" (0723d8ff)
+2025-09-19T21:45:12.6286038+02:00 8000002b-0003-f800-b63f-84710c7967bb [INF] Executing "OkObjectResult", writing value of type '"System.Collections.Generic.List`1[[Application.DTOs.DataQuery.vVisitasTipoDispositivoDTO, Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]"'. (605b4265)
+2025-09-19T21:45:12.6293024+02:00 8000002b-0003-f800-b63f-84710c7967bb [INF] Executed action "API.Controllers.DataQueryController.ObtenerVisitasTipoDispositivo (API)" in 19.0855ms (afa2e885)
+2025-09-19T21:45:12.6293723+02:00 8000002b-0003-f800-b63f-84710c7967bb [INF] Executed endpoint '"API.Controllers.DataQueryController.ObtenerVisitasTipoDispositivo (API)"' (99874f2b)
+2025-09-19T21:45:12.6296704+02:00 8000002b-0003-f800-b63f-84710c7967bb [INF] Request finished "HTTP/2" "GET" "https"://"localhost:44311""""/DataQuery/ObtenerVisitasTipoDispositivo""" - 200 null "application/json; charset=utf-8" 20.6692ms (74253ad3)
+2025-09-19T21:45:31.5949447+02:00 800000ee-0006-fe00-b63f-84710c7967bb [INF] Request starting "HTTP/2" "GET" "https"://"localhost:44311""""/DataQuery/ObtenerVisitasTipoDispositivo""" - null null (d509f86a)
+2025-09-19T21:45:31.5954508+02:00 800000ee-0006-fe00-b63f-84710c7967bb [INF] CORS policy execution successful. (5409d6ef)
+2025-09-19T21:45:31.5956745+02:00 800000ee-0006-fe00-b63f-84710c7967bb [INF] Executing endpoint '"API.Controllers.DataQueryController.ObtenerVisitasTipoDispositivo (API)"' (500cc934)
+2025-09-19T21:45:31.5958257+02:00 800000ee-0006-fe00-b63f-84710c7967bb [INF] Route matched with "{action = \"ObtenerVisitasTipoDispositivo\", controller = \"DataQuery\"}". Executing controller action with signature "System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] ObtenerVisitasTipoDispositivo()" on controller "API.Controllers.DataQueryController" ("API"). (122b2fdf)
+2025-09-19T21:45:31.6052497+02:00 800000ee-0006-fe00-b63f-84710c7967bb [INF] Executed DbCommand ("4"ms) [Parameters=["@__p_1='?' (DbType = Int32), @__p_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT v.semana, v.\"tipoDispositivo\", v.visitas
+FROM \"v_VisitasTipoDispositivo\" AS v
+LIMIT @__p_1 OFFSET @__p_0" (0723d8ff)
+2025-09-19T21:45:31.6059264+02:00 800000ee-0006-fe00-b63f-84710c7967bb [INF] Executing "OkObjectResult", writing value of type '"System.Collections.Generic.List`1[[Application.DTOs.DataQuery.vVisitasTipoDispositivoDTO, Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]"'. (605b4265)
+2025-09-19T21:45:31.6066608+02:00 800000ee-0006-fe00-b63f-84710c7967bb [INF] Executed action "API.Controllers.DataQueryController.ObtenerVisitasTipoDispositivo (API)" in 10.7291ms (afa2e885)
+2025-09-19T21:45:31.6067479+02:00 800000ee-0006-fe00-b63f-84710c7967bb [INF] Executed endpoint '"API.Controllers.DataQueryController.ObtenerVisitasTipoDispositivo (API)"' (99874f2b)
+2025-09-19T21:45:31.6071891+02:00 800000ee-0006-fe00-b63f-84710c7967bb [INF] Request finished "HTTP/2" "GET" "https"://"localhost:44311""""/DataQuery/ObtenerVisitasTipoDispositivo""" - 200 null "application/json; charset=utf-8" 12.8389ms (74253ad3)
+2025-09-19T21:45:53.5996752+02:00 800000f0-0006-fe00-b63f-84710c7967bb [INF] Request starting "HTTP/2" "GET" "https"://"localhost:44311""""/DataQuery/ObtenerVisitasTipoDispositivo""" - null null (d509f86a)
+2025-09-19T21:45:53.6001999+02:00 800000f0-0006-fe00-b63f-84710c7967bb [INF] CORS policy execution successful. (5409d6ef)
+2025-09-19T21:45:53.6009904+02:00 800000f0-0006-fe00-b63f-84710c7967bb [INF] Executing endpoint '"API.Controllers.DataQueryController.ObtenerVisitasTipoDispositivo (API)"' (500cc934)
+2025-09-19T21:45:53.6012734+02:00 800000f0-0006-fe00-b63f-84710c7967bb [INF] Route matched with "{action = \"ObtenerVisitasTipoDispositivo\", controller = \"DataQuery\"}". Executing controller action with signature "System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] ObtenerVisitasTipoDispositivo()" on controller "API.Controllers.DataQueryController" ("API"). (122b2fdf)
+2025-09-19T21:45:53.6098014+02:00 800000f0-0006-fe00-b63f-84710c7967bb [INF] Executed DbCommand ("3"ms) [Parameters=["@__p_1='?' (DbType = Int32), @__p_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT v.semana, v.\"tipoDispositivo\", v.visitas
+FROM \"v_VisitasTipoDispositivo\" AS v
+LIMIT @__p_1 OFFSET @__p_0" (0723d8ff)
+2025-09-19T21:45:53.6106607+02:00 800000f0-0006-fe00-b63f-84710c7967bb [INF] Executing "OkObjectResult", writing value of type '"System.Collections.Generic.List`1[[Application.DTOs.DataQuery.vVisitasTipoDispositivoDTO, Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]"'. (605b4265)
+2025-09-19T21:45:53.6113094+02:00 800000f0-0006-fe00-b63f-84710c7967bb [INF] Executed action "API.Controllers.DataQueryController.ObtenerVisitasTipoDispositivo (API)" in 9.9531ms (afa2e885)
+2025-09-19T21:45:53.6114303+02:00 800000f0-0006-fe00-b63f-84710c7967bb [INF] Executed endpoint '"API.Controllers.DataQueryController.ObtenerVisitasTipoDispositivo (API)"' (99874f2b)
+2025-09-19T21:45:53.6117689+02:00 800000f0-0006-fe00-b63f-84710c7967bb [INF] Request finished "HTTP/2" "GET" "https"://"localhost:44311""""/DataQuery/ObtenerVisitasTipoDispositivo""" - 200 null "application/json; charset=utf-8" 12.2441ms (74253ad3)
+2025-09-19T21:46:15.9504736+02:00 80000093-0001-fd00-b63f-84710c7967bb [INF] Request starting "HTTP/2" "GET" "https"://"localhost:44311""""/DataQuery/ObtenerVisitasTipoDispositivo""" - null null (d509f86a)
+2025-09-19T21:46:15.9508814+02:00 80000093-0001-fd00-b63f-84710c7967bb [INF] CORS policy execution successful. (5409d6ef)
+2025-09-19T21:46:15.9510826+02:00 80000093-0001-fd00-b63f-84710c7967bb [INF] Executing endpoint '"API.Controllers.DataQueryController.ObtenerVisitasTipoDispositivo (API)"' (500cc934)
+2025-09-19T21:46:15.9515253+02:00 80000093-0001-fd00-b63f-84710c7967bb [INF] Route matched with "{action = \"ObtenerVisitasTipoDispositivo\", controller = \"DataQuery\"}". Executing controller action with signature "System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] ObtenerVisitasTipoDispositivo()" on controller "API.Controllers.DataQueryController" ("API"). (122b2fdf)
+2025-09-19T21:46:15.9713203+02:00 80000093-0001-fd00-b63f-84710c7967bb [INF] Executed DbCommand ("5"ms) [Parameters=["@__p_1='?' (DbType = Int32), @__p_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT v.semana, v.\"tipoDispositivo\", v.visitas
+FROM \"v_VisitasTipoDispositivo\" AS v
+LIMIT @__p_1 OFFSET @__p_0" (0723d8ff)
+2025-09-19T21:46:15.9726242+02:00 80000093-0001-fd00-b63f-84710c7967bb [INF] Executing "OkObjectResult", writing value of type '"System.Collections.Generic.List`1[[Application.DTOs.DataQuery.vVisitasTipoDispositivoDTO, Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]"'. (605b4265)
+2025-09-19T21:46:15.9732132+02:00 80000093-0001-fd00-b63f-84710c7967bb [INF] Executed action "API.Controllers.DataQueryController.ObtenerVisitasTipoDispositivo (API)" in 21.6187ms (afa2e885)
+2025-09-19T21:46:15.9732657+02:00 80000093-0001-fd00-b63f-84710c7967bb [INF] Executed endpoint '"API.Controllers.DataQueryController.ObtenerVisitasTipoDispositivo (API)"' (99874f2b)
+2025-09-19T21:46:15.9734981+02:00 80000093-0001-fd00-b63f-84710c7967bb [INF] Request finished "HTTP/2" "GET" "https"://"localhost:44311""""/DataQuery/ObtenerVisitasTipoDispositivo""" - 200 null "application/json; charset=utf-8" 23.0998ms (74253ad3)
+2025-09-19T21:47:13.4977954+02:00 8000010a-0000-fc00-b63f-84710c7967bb [INF] Request starting "HTTP/2" "GET" "https"://"localhost:44311""""/DataQuery/ObtenerVisitasTipoDispositivo""" - null null (d509f86a)
+2025-09-19T21:47:13.4987235+02:00 8000010a-0000-fc00-b63f-84710c7967bb [INF] Executing endpoint '"API.Controllers.DataQueryController.ObtenerVisitasTipoDispositivo (API)"' (500cc934)
+2025-09-19T21:47:13.4990733+02:00 8000010a-0000-fc00-b63f-84710c7967bb [INF] Route matched with "{action = \"ObtenerVisitasTipoDispositivo\", controller = \"DataQuery\"}". Executing controller action with signature "System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] ObtenerVisitasTipoDispositivo()" on controller "API.Controllers.DataQueryController" ("API"). (122b2fdf)
+2025-09-19T21:47:13.5166436+02:00 8000010a-0000-fc00-b63f-84710c7967bb [INF] Executed DbCommand ("9"ms) [Parameters=["@__p_1='?' (DbType = Int32), @__p_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT v.semana, v.\"tipoDispositivo\", v.visitas
+FROM \"v_VisitasTipoDispositivo\" AS v
+LIMIT @__p_1 OFFSET @__p_0" (0723d8ff)
+2025-09-19T21:47:13.5174002+02:00 8000010a-0000-fc00-b63f-84710c7967bb [INF] Executing "OkObjectResult", writing value of type '"System.Collections.Generic.List`1[[Application.DTOs.DataQuery.vVisitasTipoDispositivoDTO, Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]"'. (605b4265)
+2025-09-19T21:47:13.5181287+02:00 8000010a-0000-fc00-b63f-84710c7967bb [INF] Executed action "API.Controllers.DataQueryController.ObtenerVisitasTipoDispositivo (API)" in 18.9335ms (afa2e885)
+2025-09-19T21:47:13.5182128+02:00 8000010a-0000-fc00-b63f-84710c7967bb [INF] Executed endpoint '"API.Controllers.DataQueryController.ObtenerVisitasTipoDispositivo (API)"' (99874f2b)
+2025-09-19T21:47:13.5186084+02:00 8000010a-0000-fc00-b63f-84710c7967bb [INF] Request finished "HTTP/2" "GET" "https"://"localhost:44311""""/DataQuery/ObtenerVisitasTipoDispositivo""" - 200 null "application/json; charset=utf-8" 20.8658ms (74253ad3)

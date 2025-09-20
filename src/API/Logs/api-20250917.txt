@@ -1,0 +1,805 @@
+2025-09-17T12:12:22.4380950+02:00  [INF] User profile is available. Using '"C:\Users\David\AppData\Local\ASP.NET\DataProtection-Keys"' as key repository and Windows DPAPI to encrypt keys at rest. (7ac5e29c)
+2025-09-17T12:12:43.5762697+02:00  [INF] Application started. Press Ctrl+C to shut down. (dcaefe54)
+2025-09-17T12:12:43.7973762+02:00  [INF] Hosting environment: "Development" (bc5a1a4e)
+2025-09-17T12:12:43.7996479+02:00  [INF] Content root path: "C:\Users\David\Desktop\API" (cc26f24e)
+2025-09-17T12:12:44.8751060+02:00 80000007-0006-ff00-b63f-84710c7967bb [INF] Request starting "HTTP/2" "GET" "https"://"localhost:44311""""/swagger/index.html""" - null null (d509f86a)
+2025-09-17T12:12:52.9890994+02:00 80000007-0006-ff00-b63f-84710c7967bb [INF] Request finished "HTTP/2" "GET" "https"://"localhost:44311""""/swagger/index.html""" - 200 null "text/html;charset=utf-8" 8455.7332ms (74253ad3)
+2025-09-17T12:12:55.3374390+02:00 80000007-0003-ff00-b63f-84710c7967bb [INF] Request starting "HTTP/2" "GET" "https"://"localhost:44311""""/_framework/aspnetcore-browser-refresh.js""" - null null (d509f86a)
+2025-09-17T12:12:55.8189281+02:00 80000007-0003-ff00-b63f-84710c7967bb [INF] Request finished "HTTP/2" "GET" "https"://"localhost:44311""""/_framework/aspnetcore-browser-refresh.js""" - 200 13742 "application/javascript; charset=utf-8" 7.5036ms (74253ad3)
+2025-09-17T12:12:56.1447636+02:00 80000005-0000-fd00-b63f-84710c7967bb [INF] Request starting "HTTP/2" "GET" "https"://"localhost:44311""""/_vs/browserLink""" - null null (d509f86a)
+2025-09-17T12:12:57.0329139+02:00 80000005-0000-fd00-b63f-84710c7967bb [INF] Request finished "HTTP/2" "GET" "https"://"localhost:44311""""/_vs/browserLink""" - 200 null "text/javascript; charset=UTF-8" 888.4723ms (74253ad3)
+2025-09-17T12:12:57.6416087+02:00 80000009-0006-ff00-b63f-84710c7967bb [INF] Request starting "HTTP/2" "GET" "https"://"localhost:44311""""/swagger/v1/swagger.json""" - null null (d509f86a)
+2025-09-17T12:12:57.7456662+02:00 80000009-0006-ff00-b63f-84710c7967bb [INF] Request finished "HTTP/2" "GET" "https"://"localhost:44311""""/swagger/v1/swagger.json""" - 200 null "application/json;charset=utf-8" 104.1705ms (74253ad3)
+2025-09-17T12:14:18.8405245+02:00 80000009-0004-fd00-b63f-84710c7967bb [INF] Request starting "HTTP/2" "GET" "https"://"localhost:44311""""/TipoSegmentos/ObtenerTipoSegmentos""" - null null (d509f86a)
+2025-09-17T12:14:19.0349309+02:00 80000009-0004-fd00-b63f-84710c7967bb [INF] Executing endpoint '"API.Controllers.TipoSegmentosController.GetAllAsync (API)"' (500cc934)
+2025-09-17T12:14:19.4584074+02:00 80000009-0004-fd00-b63f-84710c7967bb [INF] Route matched with "{action = \"GetAll\", controller = \"TipoSegmentos\"}". Executing controller action with signature "System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAllAsync()" on controller "API.Controllers.TipoSegmentosController" ("API"). (122b2fdf)
+2025-09-17T12:14:19.5802109+02:00 80000009-0004-fd00-b63f-84710c7967bb [INF] Executed action "API.Controllers.TipoSegmentosController.GetAllAsync (API)" in 108.5111ms (afa2e885)
+2025-09-17T12:14:19.6469372+02:00 80000009-0004-fd00-b63f-84710c7967bb [INF] Executed endpoint '"API.Controllers.TipoSegmentosController.GetAllAsync (API)"' (99874f2b)
+2025-09-17T12:14:21.8437333+02:00 80000009-0004-fd00-b63f-84710c7967bb [ERR] Ocurrió un error en la petición "/TipoSegmentos/ObtenerTipoSegmentos" (564da9e9)
+System.InvalidOperationException: Unable to resolve service for type 'Application.Interfaces.Services.ITipoSegmentoService' while attempting to activate 'API.Controllers.TipoSegmentosController'.
+   at Microsoft.Extensions.DependencyInjection.ActivatorUtilities.ThrowHelperUnableToResolveService(Type type, Type requiredBy)
+   at lambda_method10(Closure, IServiceProvider, Object[])
+   at Microsoft.AspNetCore.Mvc.Controllers.ControllerFactoryProvider.<>c__DisplayClass6_0.<CreateControllerFactory>g__CreateController|0(ControllerContext controllerContext)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|7_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Microsoft.AspNetCore.RateLimiting.RateLimitingMiddleware.InvokeInternal(HttpContext context, EnableRateLimitingAttribute enableRateLimitingAttribute)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at API.Middlewares.ExceptionMiddleware.InvokeAsync(HttpContext context) in C:\Users\David\Desktop\API\Middlewares\ExceptionMiddleware.cs:line 21
+2025-09-17T12:14:21.9131332+02:00 80000009-0004-fd00-b63f-84710c7967bb [INF] Request finished "HTTP/2" "GET" "https"://"localhost:44311""""/TipoSegmentos/ObtenerTipoSegmentos""" - 500 null "application/json" 3072.7013ms (74253ad3)
+2025-09-17T12:14:53.3571716+02:00 80000006-0002-fd00-b63f-84710c7967bb [INF] Request starting "HTTP/2" "GET" "https"://"localhost:44311""""/TipoSegmentos/ObtenerTipoSegmentos""" - null null (d509f86a)
+2025-09-17T12:14:53.3599125+02:00 80000006-0002-fd00-b63f-84710c7967bb [INF] Executing endpoint '"API.Controllers.TipoSegmentosController.GetAllAsync (API)"' (500cc934)
+2025-09-17T12:14:53.3604044+02:00 80000006-0002-fd00-b63f-84710c7967bb [INF] Route matched with "{action = \"GetAll\", controller = \"TipoSegmentos\"}". Executing controller action with signature "System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAllAsync()" on controller "API.Controllers.TipoSegmentosController" ("API"). (122b2fdf)
+2025-09-17T12:14:53.3612270+02:00 80000006-0002-fd00-b63f-84710c7967bb [INF] Executed action "API.Controllers.TipoSegmentosController.GetAllAsync (API)" in 0.6729ms (afa2e885)
+2025-09-17T12:14:53.3615917+02:00 80000006-0002-fd00-b63f-84710c7967bb [INF] Executed endpoint '"API.Controllers.TipoSegmentosController.GetAllAsync (API)"' (99874f2b)
+2025-09-17T12:14:53.4025863+02:00 80000006-0002-fd00-b63f-84710c7967bb [ERR] Ocurrió un error en la petición "/TipoSegmentos/ObtenerTipoSegmentos" (564da9e9)
+System.InvalidOperationException: Unable to resolve service for type 'Application.Interfaces.Services.ITipoSegmentoService' while attempting to activate 'API.Controllers.TipoSegmentosController'.
+   at Microsoft.Extensions.DependencyInjection.ActivatorUtilities.ThrowHelperUnableToResolveService(Type type, Type requiredBy)
+   at lambda_method10(Closure, IServiceProvider, Object[])
+   at Microsoft.AspNetCore.Mvc.Controllers.ControllerFactoryProvider.<>c__DisplayClass6_0.<CreateControllerFactory>g__CreateController|0(ControllerContext controllerContext)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|7_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Microsoft.AspNetCore.RateLimiting.RateLimitingMiddleware.InvokeInternal(HttpContext context, EnableRateLimitingAttribute enableRateLimitingAttribute)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at API.Middlewares.ExceptionMiddleware.InvokeAsync(HttpContext context) in C:\Users\David\Desktop\API\Middlewares\ExceptionMiddleware.cs:line 21
+2025-09-17T12:14:53.4035428+02:00 80000006-0002-fd00-b63f-84710c7967bb [INF] Request finished "HTTP/2" "GET" "https"://"localhost:44311""""/TipoSegmentos/ObtenerTipoSegmentos""" - 500 null "application/json" 46.3964ms (74253ad3)
+2025-09-17T12:14:57.8234713+02:00 80000005-0000-fc00-b63f-84710c7967bb [INF] Request starting "HTTP/2" "GET" "https"://"localhost:44311""""/TipoSegmentos/ObtenerTipoSegmentos""" - null null (d509f86a)
+2025-09-17T12:14:57.8240335+02:00 80000005-0000-fc00-b63f-84710c7967bb [INF] Executing endpoint '"API.Controllers.TipoSegmentosController.GetAllAsync (API)"' (500cc934)
+2025-09-17T12:14:57.8241966+02:00 80000005-0000-fc00-b63f-84710c7967bb [INF] Route matched with "{action = \"GetAll\", controller = \"TipoSegmentos\"}". Executing controller action with signature "System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAllAsync()" on controller "API.Controllers.TipoSegmentosController" ("API"). (122b2fdf)
+2025-09-17T12:14:57.8250408+02:00 80000005-0000-fc00-b63f-84710c7967bb [INF] Executed action "API.Controllers.TipoSegmentosController.GetAllAsync (API)" in 0.7233ms (afa2e885)
+2025-09-17T12:14:57.8253968+02:00 80000005-0000-fc00-b63f-84710c7967bb [INF] Executed endpoint '"API.Controllers.TipoSegmentosController.GetAllAsync (API)"' (99874f2b)
+2025-09-17T12:14:57.8721074+02:00 80000005-0000-fc00-b63f-84710c7967bb [ERR] Ocurrió un error en la petición "/TipoSegmentos/ObtenerTipoSegmentos" (564da9e9)
+System.InvalidOperationException: Unable to resolve service for type 'Application.Interfaces.Services.ITipoSegmentoService' while attempting to activate 'API.Controllers.TipoSegmentosController'.
+   at Microsoft.Extensions.DependencyInjection.ActivatorUtilities.ThrowHelperUnableToResolveService(Type type, Type requiredBy)
+   at lambda_method10(Closure, IServiceProvider, Object[])
+   at Microsoft.AspNetCore.Mvc.Controllers.ControllerFactoryProvider.<>c__DisplayClass6_0.<CreateControllerFactory>g__CreateController|0(ControllerContext controllerContext)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|7_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Microsoft.AspNetCore.RateLimiting.RateLimitingMiddleware.InvokeInternal(HttpContext context, EnableRateLimitingAttribute enableRateLimitingAttribute)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at API.Middlewares.ExceptionMiddleware.InvokeAsync(HttpContext context) in C:\Users\David\Desktop\API\Middlewares\ExceptionMiddleware.cs:line 21
+2025-09-17T12:14:57.8728661+02:00 80000005-0000-fc00-b63f-84710c7967bb [INF] Request finished "HTTP/2" "GET" "https"://"localhost:44311""""/TipoSegmentos/ObtenerTipoSegmentos""" - 500 null "application/json" 49.4837ms (74253ad3)
+2025-09-17T12:20:21.1645133+02:00  [INF] User profile is available. Using '"C:\Users\David\AppData\Local\ASP.NET\DataProtection-Keys"' as key repository and Windows DPAPI to encrypt keys at rest. (7ac5e29c)
+2025-09-17T12:20:25.3909000+02:00  [INF] Application started. Press Ctrl+C to shut down. (dcaefe54)
+2025-09-17T12:20:25.4305677+02:00  [INF] Hosting environment: "Development" (bc5a1a4e)
+2025-09-17T12:20:25.4353025+02:00  [INF] Content root path: "C:\Users\David\Desktop\API" (cc26f24e)
+2025-09-17T12:20:26.4442910+02:00 8000000c-0006-ff00-b63f-84710c7967bb [INF] Request starting "HTTP/2" "GET" "https"://"localhost:44311""""/swagger/index.html""" - null null (d509f86a)
+2025-09-17T12:20:29.6595386+02:00 80000010-0004-fc00-b63f-84710c7967bb [INF] Request starting "HTTP/2" "GET" "https"://"localhost:44311""""/_framework/aspnetcore-browser-refresh.js""" - null null (d509f86a)
+2025-09-17T12:20:29.6957674+02:00 80000008-0001-fe00-b63f-84710c7967bb [INF] Request starting "HTTP/2" "GET" "https"://"localhost:44311""""/_vs/browserLink""" - null null (d509f86a)
+2025-09-17T12:20:29.8615053+02:00 8000000c-0006-ff00-b63f-84710c7967bb [INF] Request finished "HTTP/2" "GET" "https"://"localhost:44311""""/swagger/index.html""" - 200 null "text/html;charset=utf-8" 3387.5243ms (74253ad3)
+2025-09-17T12:20:29.8929546+02:00 80000010-0004-fc00-b63f-84710c7967bb [INF] Request finished "HTTP/2" "GET" "https"://"localhost:44311""""/_framework/aspnetcore-browser-refresh.js""" - 200 13742 "application/javascript; charset=utf-8" 55.05ms (74253ad3)
+2025-09-17T12:20:30.1273435+02:00 80000008-0001-fe00-b63f-84710c7967bb [INF] Request finished "HTTP/2" "GET" "https"://"localhost:44311""""/_vs/browserLink""" - 200 null "text/javascript; charset=UTF-8" 431.6426ms (74253ad3)
+2025-09-17T12:20:31.0478003+02:00 80000008-0002-fd00-b63f-84710c7967bb [INF] Request starting "HTTP/2" "GET" "https"://"localhost:44311""""/swagger/v1/swagger.json""" - null null (d509f86a)
+2025-09-17T12:20:31.1052956+02:00 80000008-0002-fd00-b63f-84710c7967bb [INF] Request finished "HTTP/2" "GET" "https"://"localhost:44311""""/swagger/v1/swagger.json""" - 200 null "application/json;charset=utf-8" 57.6798ms (74253ad3)
+2025-09-17T12:28:30.3399713+02:00 80000005-0000-fe00-b63f-84710c7967bb [INF] Request starting "HTTP/2" "GET" "https"://"localhost:44311""""/TipoSegmentos/ObtenerTipoSegmentos""" - null null (d509f86a)
+2025-09-17T12:28:30.6256890+02:00 80000005-0000-fe00-b63f-84710c7967bb [INF] Executing endpoint '"API.Controllers.TipoSegmentosController.GetAllAsync (API)"' (500cc934)
+2025-09-17T12:28:31.9036669+02:00 80000005-0000-fe00-b63f-84710c7967bb [INF] Route matched with "{action = \"GetAll\", controller = \"TipoSegmentos\"}". Executing controller action with signature "System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAllAsync()" on controller "API.Controllers.TipoSegmentosController" ("API"). (122b2fdf)
+2025-09-17T12:29:04.9785443+02:00 80000005-0000-fe00-b63f-84710c7967bb [INF] Executed DbCommand ("522"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT t.id, t.descripcion, t.nombre
+FROM \"TipoSegmentos\" AS t" (0723d8ff)
+2025-09-17T12:29:05.5115895+02:00 80000005-0000-fe00-b63f-84710c7967bb [INF] Executing "OkObjectResult", writing value of type '"System.Collections.Generic.List`1[[Domain.Entities.TipoSegmento, Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]"'. (605b4265)
+2025-09-17T12:29:05.6947188+02:00 80000005-0000-fe00-b63f-84710c7967bb [INF] Executed action "API.Controllers.TipoSegmentosController.GetAllAsync (API)" in 33785.2888ms (afa2e885)
+2025-09-17T12:29:05.6953372+02:00 80000005-0000-fe00-b63f-84710c7967bb [INF] Executed endpoint '"API.Controllers.TipoSegmentosController.GetAllAsync (API)"' (99874f2b)
+2025-09-17T12:29:05.7182522+02:00 80000005-0000-fe00-b63f-84710c7967bb [INF] Request finished "HTTP/2" "GET" "https"://"localhost:44311""""/TipoSegmentos/ObtenerTipoSegmentos""" - 200 null "application/json; charset=utf-8" 35378.3299ms (74253ad3)
+2025-09-17T14:49:25.6757380+02:00  [INF] User profile is available. Using '"C:\Users\David\AppData\Local\ASP.NET\DataProtection-Keys"' as key repository and Windows DPAPI to encrypt keys at rest. (7ac5e29c)
+2025-09-17T14:49:36.6737893+02:00  [INF] Application started. Press Ctrl+C to shut down. (dcaefe54)
+2025-09-17T14:49:36.7719993+02:00  [INF] Hosting environment: "Development" (bc5a1a4e)
+2025-09-17T14:49:36.7744579+02:00  [INF] Content root path: "C:\Users\David\Desktop\API" (cc26f24e)
+2025-09-17T14:49:37.6715187+02:00 8000000a-0005-fc00-b63f-84710c7967bb [INF] Request starting "HTTP/2" "GET" "https"://"localhost:44311""""/swagger/index.html""" - null null (d509f86a)
+2025-09-17T14:49:42.6908216+02:00 8000000a-0005-fc00-b63f-84710c7967bb [INF] Request finished "HTTP/2" "GET" "https"://"localhost:44311""""/swagger/index.html""" - 200 null "text/html;charset=utf-8" 5223.8337ms (74253ad3)
+2025-09-17T14:49:49.6385024+02:00 80000002-0004-fa00-b63f-84710c7967bb [INF] Request starting "HTTP/2" "GET" "https"://"localhost:44311""""/_vs/browserLink""" - null null (d509f86a)
+2025-09-17T14:49:49.6386360+02:00 80000004-0006-fc00-b63f-84710c7967bb [INF] Request starting "HTTP/2" "GET" "https"://"localhost:44311""""/_framework/aspnetcore-browser-refresh.js""" - null null (d509f86a)
+2025-09-17T14:49:49.7059243+02:00 80000004-0006-fc00-b63f-84710c7967bb [INF] Request finished "HTTP/2" "GET" "https"://"localhost:44311""""/_framework/aspnetcore-browser-refresh.js""" - 200 13742 "application/javascript; charset=utf-8" 3.4662ms (74253ad3)
+2025-09-17T14:49:51.0561942+02:00 80000002-0004-fa00-b63f-84710c7967bb [INF] Request finished "HTTP/2" "GET" "https"://"localhost:44311""""/_vs/browserLink""" - 200 null "text/javascript; charset=UTF-8" 1420.4962ms (74253ad3)
+2025-09-17T14:49:51.3898090+02:00 80000008-0006-fe00-b63f-84710c7967bb [INF] Request starting "HTTP/2" "GET" "https"://"localhost:44311""""/swagger/v1/swagger.json""" - null null (d509f86a)
+2025-09-17T14:49:51.4594939+02:00 80000008-0006-fe00-b63f-84710c7967bb [INF] Request finished "HTTP/2" "GET" "https"://"localhost:44311""""/swagger/v1/swagger.json""" - 200 null "application/json;charset=utf-8" 69.9839ms (74253ad3)
+2025-09-17T15:08:46.1904122+02:00 80000007-0006-fd00-b63f-84710c7967bb [INF] Request starting "HTTP/2" "GET" "https"://"localhost:44311""""/Segmentos/ObtenerSegmentos""" - null null (d509f86a)
+2025-09-17T15:08:46.3396612+02:00 80000007-0006-fd00-b63f-84710c7967bb [INF] Executing endpoint '"API.Controllers.SegmentosController.GetAllAsync (API)"' (500cc934)
+2025-09-17T15:08:46.7441451+02:00 80000007-0006-fd00-b63f-84710c7967bb [INF] Route matched with "{action = \"GetAll\", controller = \"Segmentos\"}". Executing controller action with signature "System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAllAsync()" on controller "API.Controllers.SegmentosController" ("API"). (122b2fdf)
+2025-09-17T15:09:23.4679821+02:00 80000007-0006-fd00-b63f-84710c7967bb [ERR] Failed executing DbCommand ("211"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT s.id, s.\"activalorReglavo\", s.\"campoRegla\", s.descripcion, s.\"idTipoSegmento\", s.nombre, s.\"operadorRegla\"
+FROM \"Segmentos\" AS s" (627a98df)
+2025-09-17T15:09:23.7732891+02:00 80000007-0006-fd00-b63f-84710c7967bb [ERR] An exception occurred while iterating over the results of a query for context type '"Infrastructure.Persistence.ApplicationDbContext"'."
+""Npgsql.PostgresException (0x80004005): 42703: no existe la columna s.activalorReglavo
+
+POSITION: 14
+   at Npgsql.Internal.NpgsqlConnector.ReadMessageLong(Boolean async, DataRowLoadingMode dataRowLoadingMode, Boolean readingNotifications, Boolean isReadingPrependedMessage)
+   at System.Runtime.CompilerServices.PoolingAsyncValueTaskMethodBuilder`1.StateMachineBox`1.System.Threading.Tasks.Sources.IValueTaskSource<TResult>.GetResult(Int16 token)
+   at Npgsql.NpgsqlDataReader.NextResult(Boolean async, Boolean isConsuming, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlDataReader.NextResult(Boolean async, Boolean isConsuming, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(Boolean async, CommandBehavior behavior, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(Boolean async, CommandBehavior behavior, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteDbDataReaderAsync(CommandBehavior behavior, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.InitializeReaderAsync(AsyncEnumerator enumerator, CancellationToken cancellationToken)
+   at Npgsql.EntityFrameworkCore.PostgreSQL.Storage.Internal.NpgsqlExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+  Exception data:
+    Severity: ERROR
+    SqlState: 42703
+    MessageText: no existe la columna s.activalorReglavo
+    Position: 14
+    File: parse_relation.c
+    Line: 3721
+    Routine: errorMissingColumn" (f5c7ac34)
+Npgsql.PostgresException (0x80004005): 42703: no existe la columna s.activalorReglavo
+
+POSITION: 14
+   at Npgsql.Internal.NpgsqlConnector.ReadMessageLong(Boolean async, DataRowLoadingMode dataRowLoadingMode, Boolean readingNotifications, Boolean isReadingPrependedMessage)
+   at System.Runtime.CompilerServices.PoolingAsyncValueTaskMethodBuilder`1.StateMachineBox`1.System.Threading.Tasks.Sources.IValueTaskSource<TResult>.GetResult(Int16 token)
+   at Npgsql.NpgsqlDataReader.NextResult(Boolean async, Boolean isConsuming, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlDataReader.NextResult(Boolean async, Boolean isConsuming, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(Boolean async, CommandBehavior behavior, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(Boolean async, CommandBehavior behavior, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteDbDataReaderAsync(CommandBehavior behavior, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.InitializeReaderAsync(AsyncEnumerator enumerator, CancellationToken cancellationToken)
+   at Npgsql.EntityFrameworkCore.PostgreSQL.Storage.Internal.NpgsqlExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+  Exception data:
+    Severity: ERROR
+    SqlState: 42703
+    MessageText: no existe la columna s.activalorReglavo
+    Position: 14
+    File: parse_relation.c
+    Line: 3721
+    Routine: errorMissingColumn
+2025-09-17T15:09:24.5205993+02:00 80000007-0006-fd00-b63f-84710c7967bb [INF] Executed action "API.Controllers.SegmentosController.GetAllAsync (API)" in 37770.5814ms (afa2e885)
+2025-09-17T15:09:24.6136428+02:00 80000007-0006-fd00-b63f-84710c7967bb [INF] Executed endpoint '"API.Controllers.SegmentosController.GetAllAsync (API)"' (99874f2b)
+2025-09-17T15:09:25.9341720+02:00 80000007-0006-fd00-b63f-84710c7967bb [ERR] Ocurrió un error en la petición "/Segmentos/ObtenerSegmentos" (564da9e9)
+Npgsql.PostgresException (0x80004005): 42703: no existe la columna s.activalorReglavo
+
+POSITION: 14
+   at Npgsql.Internal.NpgsqlConnector.ReadMessageLong(Boolean async, DataRowLoadingMode dataRowLoadingMode, Boolean readingNotifications, Boolean isReadingPrependedMessage)
+   at System.Runtime.CompilerServices.PoolingAsyncValueTaskMethodBuilder`1.StateMachineBox`1.System.Threading.Tasks.Sources.IValueTaskSource<TResult>.GetResult(Int16 token)
+   at Npgsql.NpgsqlDataReader.NextResult(Boolean async, Boolean isConsuming, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlDataReader.NextResult(Boolean async, Boolean isConsuming, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(Boolean async, CommandBehavior behavior, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(Boolean async, CommandBehavior behavior, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteDbDataReaderAsync(CommandBehavior behavior, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.InitializeReaderAsync(AsyncEnumerator enumerator, CancellationToken cancellationToken)
+   at Npgsql.EntityFrameworkCore.PostgreSQL.Storage.Internal.NpgsqlExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+   at Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.ToListAsync[TSource](IQueryable`1 source, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.ToListAsync[TSource](IQueryable`1 source, CancellationToken cancellationToken)
+   at Infrastructure.Repositories.SegmentoRepository.GetAllAsync() in C:\Users\David\Desktop\Infrastructure\Repositories\SegmentoRepository.cs:line 27
+   at API.Controllers.SegmentosController.GetAllAsync() in C:\Users\David\Desktop\API\Controllers\SegmentosController.cs:line 31
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|7_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Microsoft.AspNetCore.RateLimiting.RateLimitingMiddleware.InvokeInternal(HttpContext context, EnableRateLimitingAttribute enableRateLimitingAttribute)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at API.Middlewares.ExceptionMiddleware.InvokeAsync(HttpContext context) in C:\Users\David\Desktop\API\Middlewares\ExceptionMiddleware.cs:line 21
+  Exception data:
+    Severity: ERROR
+    SqlState: 42703
+    MessageText: no existe la columna s.activalorReglavo
+    Position: 14
+    File: parse_relation.c
+    Line: 3721
+    Routine: errorMissingColumn
+2025-09-17T15:09:26.0940992+02:00 80000007-0006-fd00-b63f-84710c7967bb [INF] Request finished "HTTP/2" "GET" "https"://"localhost:44311""""/Segmentos/ObtenerSegmentos""" - 500 null "application/json" 39903.8837ms (74253ad3)
+2025-09-17T15:21:52.3709834+02:00 80000006-0004-f900-b63f-84710c7967bb [INF] Request starting "HTTP/2" "GET" "https"://"localhost:44311""""/Segmentos/ObtenerSegmentos""" - null null (d509f86a)
+2025-09-17T15:21:52.3749650+02:00 80000006-0004-f900-b63f-84710c7967bb [INF] Executing endpoint '"API.Controllers.SegmentosController.GetAllAsync (API)"' (500cc934)
+2025-09-17T15:21:52.3756285+02:00 80000006-0004-f900-b63f-84710c7967bb [INF] Route matched with "{action = \"GetAll\", controller = \"Segmentos\"}". Executing controller action with signature "System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAllAsync()" on controller "API.Controllers.SegmentosController" ("API"). (122b2fdf)
+2025-09-17T15:21:56.8650907+02:00 80000006-0004-f900-b63f-84710c7967bb [ERR] Failed executing DbCommand ("6"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT s.id, s.\"activalorReglavo\", s.\"campoRegla\", s.descripcion, s.\"idTipoSegmento\", s.nombre, s.\"operadorRegla\"
+FROM \"Segmentos\" AS s" (627a98df)
+2025-09-17T15:21:56.8782790+02:00 80000006-0004-f900-b63f-84710c7967bb [ERR] An exception occurred while iterating over the results of a query for context type '"Infrastructure.Persistence.ApplicationDbContext"'."
+""Npgsql.PostgresException (0x80004005): 42703: no existe la columna s.activalorReglavo
+
+POSITION: 14
+   at Npgsql.Internal.NpgsqlConnector.ReadMessageLong(Boolean async, DataRowLoadingMode dataRowLoadingMode, Boolean readingNotifications, Boolean isReadingPrependedMessage)
+   at System.Runtime.CompilerServices.PoolingAsyncValueTaskMethodBuilder`1.StateMachineBox`1.System.Threading.Tasks.Sources.IValueTaskSource<TResult>.GetResult(Int16 token)
+   at Npgsql.NpgsqlDataReader.NextResult(Boolean async, Boolean isConsuming, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlDataReader.NextResult(Boolean async, Boolean isConsuming, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(Boolean async, CommandBehavior behavior, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(Boolean async, CommandBehavior behavior, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteDbDataReaderAsync(CommandBehavior behavior, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.InitializeReaderAsync(AsyncEnumerator enumerator, CancellationToken cancellationToken)
+   at Npgsql.EntityFrameworkCore.PostgreSQL.Storage.Internal.NpgsqlExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+  Exception data:
+    Severity: ERROR
+    SqlState: 42703
+    MessageText: no existe la columna s.activalorReglavo
+    Position: 14
+    File: parse_relation.c
+    Line: 3721
+    Routine: errorMissingColumn" (f5c7ac34)
+Npgsql.PostgresException (0x80004005): 42703: no existe la columna s.activalorReglavo
+
+POSITION: 14
+   at Npgsql.Internal.NpgsqlConnector.ReadMessageLong(Boolean async, DataRowLoadingMode dataRowLoadingMode, Boolean readingNotifications, Boolean isReadingPrependedMessage)
+   at System.Runtime.CompilerServices.PoolingAsyncValueTaskMethodBuilder`1.StateMachineBox`1.System.Threading.Tasks.Sources.IValueTaskSource<TResult>.GetResult(Int16 token)
+   at Npgsql.NpgsqlDataReader.NextResult(Boolean async, Boolean isConsuming, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlDataReader.NextResult(Boolean async, Boolean isConsuming, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(Boolean async, CommandBehavior behavior, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(Boolean async, CommandBehavior behavior, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteDbDataReaderAsync(CommandBehavior behavior, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.InitializeReaderAsync(AsyncEnumerator enumerator, CancellationToken cancellationToken)
+   at Npgsql.EntityFrameworkCore.PostgreSQL.Storage.Internal.NpgsqlExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+   at Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.ToListAsync[TSource](IQueryable`1 source, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.ToListAsync[TSource](IQueryable`1 source, CancellationToken cancellationToken)
+   at Infrastructure.Repositories.SegmentoRepository.GetAllAsync() in C:\Users\David\Desktop\Infrastructure\Repositories\SegmentoRepository.cs:line 27
+  Exception data:
+    Severity: ERROR
+    SqlState: 42703
+    MessageText: no existe la columna s.activalorReglavo
+    Position: 14
+    File: parse_relation.c
+    Line: 3721
+    Routine: errorMissingColumn
+2025-09-17T15:21:57.0980086+02:00 80000006-0004-f900-b63f-84710c7967bb [INF] Executed action "API.Controllers.SegmentosController.GetAllAsync (API)" in 4722.1919ms (afa2e885)
+2025-09-17T15:21:57.0985423+02:00 80000006-0004-f900-b63f-84710c7967bb [INF] Executed endpoint '"API.Controllers.SegmentosController.GetAllAsync (API)"' (99874f2b)
+2025-09-17T15:21:57.2074597+02:00 80000006-0004-f900-b63f-84710c7967bb [ERR] Ocurrió un error en la petición "/Segmentos/ObtenerSegmentos" (564da9e9)
+Npgsql.PostgresException (0x80004005): 42703: no existe la columna s.activalorReglavo
+
+POSITION: 14
+   at Npgsql.Internal.NpgsqlConnector.ReadMessageLong(Boolean async, DataRowLoadingMode dataRowLoadingMode, Boolean readingNotifications, Boolean isReadingPrependedMessage)
+   at System.Runtime.CompilerServices.PoolingAsyncValueTaskMethodBuilder`1.StateMachineBox`1.System.Threading.Tasks.Sources.IValueTaskSource<TResult>.GetResult(Int16 token)
+   at Npgsql.NpgsqlDataReader.NextResult(Boolean async, Boolean isConsuming, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlDataReader.NextResult(Boolean async, Boolean isConsuming, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(Boolean async, CommandBehavior behavior, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(Boolean async, CommandBehavior behavior, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteDbDataReaderAsync(CommandBehavior behavior, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.InitializeReaderAsync(AsyncEnumerator enumerator, CancellationToken cancellationToken)
+   at Npgsql.EntityFrameworkCore.PostgreSQL.Storage.Internal.NpgsqlExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+   at Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.ToListAsync[TSource](IQueryable`1 source, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.ToListAsync[TSource](IQueryable`1 source, CancellationToken cancellationToken)
+   at Infrastructure.Repositories.SegmentoRepository.GetAllAsync() in C:\Users\David\Desktop\Infrastructure\Repositories\SegmentoRepository.cs:line 27
+   at API.Controllers.SegmentosController.GetAllAsync() in C:\Users\David\Desktop\API\Controllers\SegmentosController.cs:line 31
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|7_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Microsoft.AspNetCore.RateLimiting.RateLimitingMiddleware.InvokeInternal(HttpContext context, EnableRateLimitingAttribute enableRateLimitingAttribute)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at API.Middlewares.ExceptionMiddleware.InvokeAsync(HttpContext context) in C:\Users\David\Desktop\API\Middlewares\ExceptionMiddleware.cs:line 21
+  Exception data:
+    Severity: ERROR
+    SqlState: 42703
+    MessageText: no existe la columna s.activalorReglavo
+    Position: 14
+    File: parse_relation.c
+    Line: 3721
+    Routine: errorMissingColumn
+2025-09-17T15:21:57.2104570+02:00 80000006-0004-f900-b63f-84710c7967bb [INF] Request finished "HTTP/2" "GET" "https"://"localhost:44311""""/Segmentos/ObtenerSegmentos""" - 500 null "application/json" 4839.8039ms (74253ad3)
+2025-09-17T15:22:34.7809723+02:00 80000002-0007-fc00-b63f-84710c7967bb [INF] Request starting "HTTP/2" "GET" "https"://"localhost:44311""""/Segmentos/ObtenerSegmentos""" - null null (d509f86a)
+2025-09-17T15:22:34.7817119+02:00 80000002-0007-fc00-b63f-84710c7967bb [INF] Executing endpoint '"API.Controllers.SegmentosController.GetAllAsync (API)"' (500cc934)
+2025-09-17T15:22:34.7819340+02:00 80000002-0007-fc00-b63f-84710c7967bb [INF] Route matched with "{action = \"GetAll\", controller = \"Segmentos\"}". Executing controller action with signature "System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAllAsync()" on controller "API.Controllers.SegmentosController" ("API"). (122b2fdf)
+2025-09-17T15:22:39.2392951+02:00 80000002-0007-fc00-b63f-84710c7967bb [ERR] Failed executing DbCommand ("52"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT s.id, s.\"activalorReglavo\", s.\"campoRegla\", s.descripcion, s.\"idTipoSegmento\", s.nombre, s.\"operadorRegla\"
+FROM \"Segmentos\" AS s" (627a98df)
+2025-09-17T15:22:39.2551389+02:00 80000002-0007-fc00-b63f-84710c7967bb [ERR] An exception occurred while iterating over the results of a query for context type '"Infrastructure.Persistence.ApplicationDbContext"'."
+""Npgsql.PostgresException (0x80004005): 42703: no existe la columna s.activalorReglavo
+
+POSITION: 14
+   at Npgsql.Internal.NpgsqlConnector.ReadMessageLong(Boolean async, DataRowLoadingMode dataRowLoadingMode, Boolean readingNotifications, Boolean isReadingPrependedMessage)
+   at System.Runtime.CompilerServices.PoolingAsyncValueTaskMethodBuilder`1.StateMachineBox`1.System.Threading.Tasks.Sources.IValueTaskSource<TResult>.GetResult(Int16 token)
+   at Npgsql.NpgsqlDataReader.NextResult(Boolean async, Boolean isConsuming, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlDataReader.NextResult(Boolean async, Boolean isConsuming, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(Boolean async, CommandBehavior behavior, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(Boolean async, CommandBehavior behavior, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteDbDataReaderAsync(CommandBehavior behavior, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.InitializeReaderAsync(AsyncEnumerator enumerator, CancellationToken cancellationToken)
+   at Npgsql.EntityFrameworkCore.PostgreSQL.Storage.Internal.NpgsqlExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+  Exception data:
+    Severity: ERROR
+    SqlState: 42703
+    MessageText: no existe la columna s.activalorReglavo
+    Position: 14
+    File: parse_relation.c
+    Line: 3721
+    Routine: errorMissingColumn" (f5c7ac34)
+Npgsql.PostgresException (0x80004005): 42703: no existe la columna s.activalorReglavo
+
+POSITION: 14
+   at Npgsql.Internal.NpgsqlConnector.ReadMessageLong(Boolean async, DataRowLoadingMode dataRowLoadingMode, Boolean readingNotifications, Boolean isReadingPrependedMessage)
+   at System.Runtime.CompilerServices.PoolingAsyncValueTaskMethodBuilder`1.StateMachineBox`1.System.Threading.Tasks.Sources.IValueTaskSource<TResult>.GetResult(Int16 token)
+   at Npgsql.NpgsqlDataReader.NextResult(Boolean async, Boolean isConsuming, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlDataReader.NextResult(Boolean async, Boolean isConsuming, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(Boolean async, CommandBehavior behavior, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(Boolean async, CommandBehavior behavior, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteDbDataReaderAsync(CommandBehavior behavior, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.InitializeReaderAsync(AsyncEnumerator enumerator, CancellationToken cancellationToken)
+   at Npgsql.EntityFrameworkCore.PostgreSQL.Storage.Internal.NpgsqlExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+   at Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.ToListAsync[TSource](IQueryable`1 source, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.ToListAsync[TSource](IQueryable`1 source, CancellationToken cancellationToken)
+   at Infrastructure.Repositories.SegmentoRepository.GetAllAsync() in C:\Users\David\Desktop\Infrastructure\Repositories\SegmentoRepository.cs:line 27
+  Exception data:
+    Severity: ERROR
+    SqlState: 42703
+    MessageText: no existe la columna s.activalorReglavo
+    Position: 14
+    File: parse_relation.c
+    Line: 3721
+    Routine: errorMissingColumn
+2025-09-17T15:22:39.5161311+02:00 80000002-0007-fc00-b63f-84710c7967bb [INF] Executed action "API.Controllers.SegmentosController.GetAllAsync (API)" in 4734.0869ms (afa2e885)
+2025-09-17T15:22:39.5166457+02:00 80000002-0007-fc00-b63f-84710c7967bb [INF] Executed endpoint '"API.Controllers.SegmentosController.GetAllAsync (API)"' (99874f2b)
+2025-09-17T15:22:39.6358407+02:00 80000002-0007-fc00-b63f-84710c7967bb [ERR] Ocurrió un error en la petición "/Segmentos/ObtenerSegmentos" (564da9e9)
+Npgsql.PostgresException (0x80004005): 42703: no existe la columna s.activalorReglavo
+
+POSITION: 14
+   at Npgsql.Internal.NpgsqlConnector.ReadMessageLong(Boolean async, DataRowLoadingMode dataRowLoadingMode, Boolean readingNotifications, Boolean isReadingPrependedMessage)
+   at System.Runtime.CompilerServices.PoolingAsyncValueTaskMethodBuilder`1.StateMachineBox`1.System.Threading.Tasks.Sources.IValueTaskSource<TResult>.GetResult(Int16 token)
+   at Npgsql.NpgsqlDataReader.NextResult(Boolean async, Boolean isConsuming, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlDataReader.NextResult(Boolean async, Boolean isConsuming, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(Boolean async, CommandBehavior behavior, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(Boolean async, CommandBehavior behavior, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteDbDataReaderAsync(CommandBehavior behavior, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.InitializeReaderAsync(AsyncEnumerator enumerator, CancellationToken cancellationToken)
+   at Npgsql.EntityFrameworkCore.PostgreSQL.Storage.Internal.NpgsqlExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+   at Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.ToListAsync[TSource](IQueryable`1 source, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.ToListAsync[TSource](IQueryable`1 source, CancellationToken cancellationToken)
+   at Infrastructure.Repositories.SegmentoRepository.GetAllAsync() in C:\Users\David\Desktop\Infrastructure\Repositories\SegmentoRepository.cs:line 27
+   at API.Controllers.SegmentosController.GetAllAsync() in C:\Users\David\Desktop\API\Controllers\SegmentosController.cs:line 31
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|7_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Microsoft.AspNetCore.RateLimiting.RateLimitingMiddleware.InvokeInternal(HttpContext context, EnableRateLimitingAttribute enableRateLimitingAttribute)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at API.Middlewares.ExceptionMiddleware.InvokeAsync(HttpContext context) in C:\Users\David\Desktop\API\Middlewares\ExceptionMiddleware.cs:line 21
+  Exception data:
+    Severity: ERROR
+    SqlState: 42703
+    MessageText: no existe la columna s.activalorReglavo
+    Position: 14
+    File: parse_relation.c
+    Line: 3721
+    Routine: errorMissingColumn
+2025-09-17T15:22:39.6366488+02:00 80000002-0007-fc00-b63f-84710c7967bb [INF] Request finished "HTTP/2" "GET" "https"://"localhost:44311""""/Segmentos/ObtenerSegmentos""" - 500 null "application/json" 4855.7335ms (74253ad3)
+2025-09-17T15:23:29.1738795+02:00 80000005-0007-fd00-b63f-84710c7967bb [INF] Request starting "HTTP/2" "GET" "https"://"localhost:44311""""/Segmentos/ObtenerSegmentos""" - null null (d509f86a)
+2025-09-17T15:23:31.7189602+02:00 80000005-0007-fd00-b63f-84710c7967bb [INF] Executing endpoint '"API.Controllers.SegmentosController.GetAllAsync (API)"' (500cc934)
+2025-09-17T15:23:31.7191085+02:00 80000005-0007-fd00-b63f-84710c7967bb [INF] Route matched with "{action = \"GetAll\", controller = \"Segmentos\"}". Executing controller action with signature "System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAllAsync()" on controller "API.Controllers.SegmentosController" ("API"). (122b2fdf)
+2025-09-17T15:23:36.3169524+02:00 80000005-0007-fd00-b63f-84710c7967bb [ERR] Failed executing DbCommand ("29"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT s.id, s.\"activalorReglavo\", s.\"campoRegla\", s.descripcion, s.\"idTipoSegmento\", s.nombre, s.\"operadorRegla\"
+FROM \"Segmentos\" AS s" (627a98df)
+2025-09-17T15:23:36.3309738+02:00 80000005-0007-fd00-b63f-84710c7967bb [ERR] An exception occurred while iterating over the results of a query for context type '"Infrastructure.Persistence.ApplicationDbContext"'."
+""Npgsql.PostgresException (0x80004005): 42703: no existe la columna s.activalorReglavo
+
+POSITION: 14
+   at Npgsql.Internal.NpgsqlConnector.ReadMessageLong(Boolean async, DataRowLoadingMode dataRowLoadingMode, Boolean readingNotifications, Boolean isReadingPrependedMessage)
+   at System.Runtime.CompilerServices.PoolingAsyncValueTaskMethodBuilder`1.StateMachineBox`1.System.Threading.Tasks.Sources.IValueTaskSource<TResult>.GetResult(Int16 token)
+   at Npgsql.NpgsqlDataReader.NextResult(Boolean async, Boolean isConsuming, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlDataReader.NextResult(Boolean async, Boolean isConsuming, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(Boolean async, CommandBehavior behavior, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(Boolean async, CommandBehavior behavior, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteDbDataReaderAsync(CommandBehavior behavior, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.InitializeReaderAsync(AsyncEnumerator enumerator, CancellationToken cancellationToken)
+   at Npgsql.EntityFrameworkCore.PostgreSQL.Storage.Internal.NpgsqlExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+  Exception data:
+    Severity: ERROR
+    SqlState: 42703
+    MessageText: no existe la columna s.activalorReglavo
+    Position: 14
+    File: parse_relation.c
+    Line: 3721
+    Routine: errorMissingColumn" (f5c7ac34)
+Npgsql.PostgresException (0x80004005): 42703: no existe la columna s.activalorReglavo
+
+POSITION: 14
+   at Npgsql.Internal.NpgsqlConnector.ReadMessageLong(Boolean async, DataRowLoadingMode dataRowLoadingMode, Boolean readingNotifications, Boolean isReadingPrependedMessage)
+   at System.Runtime.CompilerServices.PoolingAsyncValueTaskMethodBuilder`1.StateMachineBox`1.System.Threading.Tasks.Sources.IValueTaskSource<TResult>.GetResult(Int16 token)
+   at Npgsql.NpgsqlDataReader.NextResult(Boolean async, Boolean isConsuming, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlDataReader.NextResult(Boolean async, Boolean isConsuming, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(Boolean async, CommandBehavior behavior, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(Boolean async, CommandBehavior behavior, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteDbDataReaderAsync(CommandBehavior behavior, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.InitializeReaderAsync(AsyncEnumerator enumerator, CancellationToken cancellationToken)
+   at Npgsql.EntityFrameworkCore.PostgreSQL.Storage.Internal.NpgsqlExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+   at Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.ToListAsync[TSource](IQueryable`1 source, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.ToListAsync[TSource](IQueryable`1 source, CancellationToken cancellationToken)
+   at Infrastructure.Repositories.SegmentoRepository.GetAllAsync() in C:\Users\David\Desktop\Infrastructure\Repositories\SegmentoRepository.cs:line 27
+  Exception data:
+    Severity: ERROR
+    SqlState: 42703
+    MessageText: no existe la columna s.activalorReglavo
+    Position: 14
+    File: parse_relation.c
+    Line: 3721
+    Routine: errorMissingColumn
+2025-09-17T15:23:36.6043463+02:00 80000005-0007-fd00-b63f-84710c7967bb [INF] Executed action "API.Controllers.SegmentosController.GetAllAsync (API)" in 4885.1555ms (afa2e885)
+2025-09-17T15:23:36.6047048+02:00 80000005-0007-fd00-b63f-84710c7967bb [INF] Executed endpoint '"API.Controllers.SegmentosController.GetAllAsync (API)"' (99874f2b)
+2025-09-17T15:27:10.4020194+02:00  [INF] User profile is available. Using '"C:\Users\David\AppData\Local\ASP.NET\DataProtection-Keys"' as key repository and Windows DPAPI to encrypt keys at rest. (7ac5e29c)
+2025-09-17T15:27:16.0360422+02:00  [INF] Application started. Press Ctrl+C to shut down. (dcaefe54)
+2025-09-17T15:27:16.1213750+02:00  [INF] Hosting environment: "Development" (bc5a1a4e)
+2025-09-17T15:27:16.1233988+02:00  [INF] Content root path: "C:\Users\David\Desktop\API" (cc26f24e)
+2025-09-17T15:27:16.7890125+02:00 80000008-0006-fc00-b63f-84710c7967bb [INF] Request starting "HTTP/2" "GET" "https"://"localhost:44311""""/swagger/index.html""" - null null (d509f86a)
+2025-09-17T15:32:35.9505523+02:00 80000008-0006-fc00-b63f-84710c7967bb [INF] Request finished "HTTP/2" "GET" "https"://"localhost:44311""""/swagger/index.html""" - 200 null "text/html;charset=utf-8" 319147.8746ms (74253ad3)
+2025-09-17T15:32:36.3976483+02:00 80000007-0000-fe00-b63f-84710c7967bb [INF] Request starting "HTTP/2" "GET" "https"://"localhost:44311""""/_framework/aspnetcore-browser-refresh.js""" - null null (d509f86a)
+2025-09-17T15:32:36.6266275+02:00 80000007-0000-fe00-b63f-84710c7967bb [INF] Request finished "HTTP/2" "GET" "https"://"localhost:44311""""/_framework/aspnetcore-browser-refresh.js""" - 200 13742 "application/javascript; charset=utf-8" 3.6623ms (74253ad3)
+2025-09-17T15:32:36.6658708+02:00 8000000b-0004-f900-b63f-84710c7967bb [INF] Request starting "HTTP/2" "GET" "https"://"localhost:44311""""/_vs/browserLink""" - null null (d509f86a)
+2025-09-17T15:32:37.0120905+02:00 8000000b-0004-f900-b63f-84710c7967bb [INF] Request finished "HTTP/2" "GET" "https"://"localhost:44311""""/_vs/browserLink""" - 200 null "text/javascript; charset=UTF-8" 346.2458ms (74253ad3)
+2025-09-17T15:32:37.4734981+02:00 8000000d-0004-f900-b63f-84710c7967bb [INF] Request starting "HTTP/2" "GET" "https"://"localhost:44311""""/swagger/v1/swagger.json""" - null null (d509f86a)
+2025-09-17T15:32:37.7176726+02:00 8000000d-0004-f900-b63f-84710c7967bb [INF] Request finished "HTTP/2" "GET" "https"://"localhost:44311""""/swagger/v1/swagger.json""" - 200 null "application/json;charset=utf-8" 244.1998ms (74253ad3)
+2025-09-17T15:32:47.4600615+02:00 8000000c-0002-fd00-b63f-84710c7967bb [INF] Request starting "HTTP/2" "GET" "https"://"localhost:44311""""/Segmentos/ObtenerSegmentos""" - null null (d509f86a)
+2025-09-17T15:32:47.5771503+02:00 8000000c-0002-fd00-b63f-84710c7967bb [INF] Executing endpoint '"API.Controllers.SegmentosController.GetAllAsync (API)"' (500cc934)
+2025-09-17T15:32:47.9321113+02:00 8000000c-0002-fd00-b63f-84710c7967bb [INF] Route matched with "{action = \"GetAll\", controller = \"Segmentos\"}". Executing controller action with signature "System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAllAsync()" on controller "API.Controllers.SegmentosController" ("API"). (122b2fdf)
+2025-09-17T15:32:57.9230447+02:00 8000000c-0002-fd00-b63f-84710c7967bb [INF] Executed DbCommand ("92"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT s.id, s.\"campoRegla\", s.descripcion, s.\"idTipoSegmento\", s.nombre, s.\"operadorRegla\", s.\"valorRegla\"
+FROM \"Segmentos\" AS s" (0723d8ff)
+2025-09-17T15:33:05.4049886+02:00 8000000c-0002-fd00-b63f-84710c7967bb [INF] Executing "OkObjectResult", writing value of type '"System.Collections.Generic.List`1[[Domain.Entities.Segmento, Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]"'. (605b4265)
+2025-09-17T15:33:05.5187288+02:00 8000000c-0002-fd00-b63f-84710c7967bb [INF] Executed action "API.Controllers.SegmentosController.GetAllAsync (API)" in 17576.4124ms (afa2e885)
+2025-09-17T15:33:05.5202719+02:00 8000000c-0002-fd00-b63f-84710c7967bb [INF] Executed endpoint '"API.Controllers.SegmentosController.GetAllAsync (API)"' (99874f2b)
+2025-09-17T15:33:05.5392693+02:00 8000000c-0002-fd00-b63f-84710c7967bb [INF] Request finished "HTTP/2" "GET" "https"://"localhost:44311""""/Segmentos/ObtenerSegmentos""" - 200 null "application/json; charset=utf-8" 18079.3874ms (74253ad3)
+2025-09-17T15:48:27.4532700+02:00  [INF] User profile is available. Using '"C:\Users\David\AppData\Local\ASP.NET\DataProtection-Keys"' as key repository and Windows DPAPI to encrypt keys at rest. (7ac5e29c)
+2025-09-17T15:48:34.9491093+02:00  [INF] Application started. Press Ctrl+C to shut down. (dcaefe54)
+2025-09-17T15:48:35.0417745+02:00  [INF] Hosting environment: "Development" (bc5a1a4e)
+2025-09-17T15:48:35.0441875+02:00  [INF] Content root path: "C:\Users\David\Desktop\API" (cc26f24e)
+2025-09-17T15:48:40.0388259+02:00 80000011-0004-fd00-b63f-84710c7967bb [INF] Request starting "HTTP/2" "GET" "https"://"localhost:44311""""/swagger/index.html""" - null null (d509f86a)
+2025-09-17T15:48:49.1987645+02:00 80000011-0004-fd00-b63f-84710c7967bb [INF] Request finished "HTTP/2" "GET" "https"://"localhost:44311""""/swagger/index.html""" - 200 null "text/html;charset=utf-8" 13521.2401ms (74253ad3)
+2025-09-17T15:48:49.3759818+02:00 8000000b-0006-fc00-b63f-84710c7967bb [INF] Request starting "HTTP/2" "GET" "https"://"localhost:44311""""/_framework/aspnetcore-browser-refresh.js""" - null null (d509f86a)
+2025-09-17T15:48:49.4449316+02:00 80000013-0004-fd00-b63f-84710c7967bb [INF] Request starting "HTTP/2" "GET" "https"://"localhost:44311""""/_vs/browserLink""" - null null (d509f86a)
+2025-09-17T15:48:49.5081704+02:00 8000000b-0006-fc00-b63f-84710c7967bb [INF] Request finished "HTTP/2" "GET" "https"://"localhost:44311""""/_framework/aspnetcore-browser-refresh.js""" - 200 13742 "application/javascript; charset=utf-8" 4.9772ms (74253ad3)
+2025-09-17T15:48:50.0463522+02:00 80000013-0004-fd00-b63f-84710c7967bb [INF] Request finished "HTTP/2" "GET" "https"://"localhost:44311""""/_vs/browserLink""" - 200 null "text/javascript; charset=UTF-8" 601.5051ms (74253ad3)
+2025-09-17T15:48:50.1244769+02:00 8000000e-0000-ff00-b63f-84710c7967bb [INF] Request starting "HTTP/2" "GET" "https"://"localhost:44311""""/swagger/v1/swagger.json""" - null null (d509f86a)
+2025-09-17T15:48:50.1697261+02:00 8000000e-0000-ff00-b63f-84710c7967bb [INF] Request finished "HTTP/2" "GET" "https"://"localhost:44311""""/swagger/v1/swagger.json""" - 200 null "application/json;charset=utf-8" 45.2941ms (74253ad3)
+2025-09-17T20:03:44.7190527+02:00  [INF] User profile is available. Using '"C:\Users\David\AppData\Local\ASP.NET\DataProtection-Keys"' as key repository and Windows DPAPI to encrypt keys at rest. (7ac5e29c)
+2025-09-17T20:03:53.9887268+02:00  [INF] Application started. Press Ctrl+C to shut down. (dcaefe54)
+2025-09-17T20:03:54.2181034+02:00  [INF] Hosting environment: "Development" (bc5a1a4e)
+2025-09-17T20:03:54.2208767+02:00  [INF] Content root path: "C:\Users\David\Desktop\API" (cc26f24e)
+2025-09-17T20:03:54.8002763+02:00 8000000f-0006-fc00-b63f-84710c7967bb [INF] Request starting "HTTP/2" "GET" "https"://"localhost:44311""""/swagger/index.html""" - null null (d509f86a)
+2025-09-17T20:04:00.1420832+02:00 8000000f-0006-fc00-b63f-84710c7967bb [INF] Request finished "HTTP/2" "GET" "https"://"localhost:44311""""/swagger/index.html""" - 200 null "text/html;charset=utf-8" 5613.7837ms (74253ad3)
+2025-09-17T20:04:00.4577544+02:00 80000011-0006-fc00-b63f-84710c7967bb [INF] Request starting "HTTP/2" "GET" "https"://"localhost:44311""""/_framework/aspnetcore-browser-refresh.js""" - null null (d509f86a)
+2025-09-17T20:04:00.5284013+02:00 80000011-0006-fc00-b63f-84710c7967bb [INF] Request finished "HTTP/2" "GET" "https"://"localhost:44311""""/_framework/aspnetcore-browser-refresh.js""" - 200 13742 "application/javascript; charset=utf-8" 5.2738ms (74253ad3)
+2025-09-17T20:04:01.6688877+02:00 80000017-0004-fd00-b63f-84710c7967bb [INF] Request starting "HTTP/2" "GET" "https"://"localhost:44311""""/_vs/browserLink""" - null null (d509f86a)
+2025-09-17T20:04:02.6655195+02:00 80000017-0004-fd00-b63f-84710c7967bb [INF] Request finished "HTTP/2" "GET" "https"://"localhost:44311""""/_vs/browserLink""" - 200 null "text/javascript; charset=UTF-8" 996.3705ms (74253ad3)
+2025-09-17T20:04:03.1484152+02:00 80000008-0007-fd00-b63f-84710c7967bb [INF] Request starting "HTTP/2" "GET" "https"://"localhost:44311""""/swagger/v1/swagger.json""" - null null (d509f86a)
+2025-09-17T20:04:03.2173481+02:00 80000008-0007-fd00-b63f-84710c7967bb [INF] Request finished "HTTP/2" "GET" "https"://"localhost:44311""""/swagger/v1/swagger.json""" - 200 null "application/json;charset=utf-8" 69.0432ms (74253ad3)
+2025-09-17T20:08:47.8676283+02:00 80000013-0006-fc00-b63f-84710c7967bb [INF] Request starting "HTTP/2" "POST" "https"://"localhost:44311""""/auth/login""" - "application/json" 57 (d509f86a)
+2025-09-17T20:08:47.9029959+02:00 80000013-0006-fc00-b63f-84710c7967bb [INF] CORS policy execution successful. (5409d6ef)
+2025-09-17T20:08:48.8508846+02:00 80000013-0006-fc00-b63f-84710c7967bb [INF] Executing endpoint '"API.Controllers.AuthController.Login (API)"' (500cc934)
+2025-09-17T20:08:51.1552084+02:00 80000013-0006-fc00-b63f-84710c7967bb [INF] Route matched with "{action = \"Login\", controller = \"Auth\"}". Executing controller action with signature "Microsoft.AspNetCore.Mvc.IActionResult Login(Domain.Entities.LoginDto)" on controller "API.Controllers.AuthController" ("API"). (122b2fdf)
+2025-09-17T20:09:51.0036989+02:00 80000013-0006-fc00-b63f-84710c7967bb [INF] Executed DbCommand ("581"ms) [Parameters=["@__ToLower_0='?'"], CommandType='Text', CommandTimeout='30']"
+""SELECT u.id, u.activo, u.apellidos, u.contraseña, u.correo, u.\"expiracionToken\", u.\"fechaCreación\", u.\"fechaNacimiento\", u.genero, u.nombre, u.puntos, u.suscrito, u.token, u.\"ultimaConexion\"
+FROM \"Usuarios\" AS u
+WHERE lower(btrim(u.nombre, E' \t\n\r')) = @__ToLower_0
+LIMIT 2" (0723d8ff)
+2025-09-17T20:11:29.4029244+02:00 80000013-0006-fc00-b63f-84710c7967bb [INF] Executed action "API.Controllers.AuthController.Login (API)" in 157304.9522ms (afa2e885)
+2025-09-17T20:11:29.5102264+02:00 80000013-0006-fc00-b63f-84710c7967bb [INF] Executed endpoint '"API.Controllers.AuthController.Login (API)"' (99874f2b)
+2025-09-17T20:11:33.0500437+02:00 80000013-0006-fc00-b63f-84710c7967bb [ERR] Ocurrió un error en la petición "/auth/login" (564da9e9)
+System.AggregateException: One or more errors occurred. (Object reference not set to an instance of an object.)
+ ---> System.NullReferenceException: Object reference not set to an instance of an object.
+   at Application.Services.AuthService.Login(String userName, String password) in C:\Users\David\Desktop\Application\Services\AuthService.cs:line 32
+   --- End of inner exception stack trace ---
+   at System.Threading.Tasks.Task.ThrowIfExceptional(Boolean includeTaskCanceledExceptions)
+   at System.Threading.Tasks.Task`1.GetResultCore(Boolean waitCompletionNotification)
+   at API.Controllers.AuthController.Login(LoginDto dto) in C:\Users\David\Desktop\API\Controllers\AuthController.cs:line 41
+   at lambda_method3(Closure, Object, Object[])
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.SyncActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeActionMethodAsync()
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeNextActionFilterAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|7_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Microsoft.AspNetCore.RateLimiting.RateLimitingMiddleware.InvokeInternal(HttpContext context, EnableRateLimitingAttribute enableRateLimitingAttribute)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at API.Middlewares.ExceptionMiddleware.InvokeAsync(HttpContext context) in C:\Users\David\Desktop\API\Middlewares\ExceptionMiddleware.cs:line 21
+2025-09-17T20:11:33.1270187+02:00 80000013-0006-fc00-b63f-84710c7967bb [INF] Request finished "HTTP/2" "POST" "https"://"localhost:44311""""/auth/login""" - 500 null "application/json" 165259.7475ms (74253ad3)
+2025-09-17T20:11:38.2319048+02:00 80000004-0003-fd00-b63f-84710c7967bb [INF] Request starting "HTTP/2" "POST" "https"://"localhost:44311""""/auth/login""" - "application/json" 57 (d509f86a)
+2025-09-17T20:11:38.2335154+02:00 80000004-0003-fd00-b63f-84710c7967bb [INF] CORS policy execution successful. (5409d6ef)
+2025-09-17T20:11:38.2342654+02:00 80000004-0003-fd00-b63f-84710c7967bb [INF] Executing endpoint '"API.Controllers.AuthController.Login (API)"' (500cc934)
+2025-09-17T20:11:38.2347761+02:00 80000004-0003-fd00-b63f-84710c7967bb [INF] Route matched with "{action = \"Login\", controller = \"Auth\"}". Executing controller action with signature "Microsoft.AspNetCore.Mvc.IActionResult Login(Domain.Entities.LoginDto)" on controller "API.Controllers.AuthController" ("API"). (122b2fdf)
+2025-09-17T20:11:57.9092415+02:00 80000004-0003-fd00-b63f-84710c7967bb [INF] Executed DbCommand ("1"ms) [Parameters=["@__ToLower_0='?'"], CommandType='Text', CommandTimeout='30']"
+""SELECT u.id, u.activo, u.apellidos, u.contraseña, u.correo, u.\"expiracionToken\", u.\"fechaCreación\", u.\"fechaNacimiento\", u.genero, u.nombre, u.puntos, u.suscrito, u.token, u.\"ultimaConexion\"
+FROM \"Usuarios\" AS u
+WHERE lower(btrim(u.nombre, E' \t\n\r')) = @__ToLower_0
+LIMIT 2" (0723d8ff)
+2025-09-17T20:12:31.3350819+02:00 80000004-0003-fd00-b63f-84710c7967bb [INF] Executed DbCommand ("262"ms) [Parameters=["@__idUsuario_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT t.id, t.activo, t.apellidos, t.contraseña, t.correo, t.\"expiracionToken\", t.\"fechaCreación\", t.\"fechaNacimiento\", t.genero, t.nombre, t.puntos, t.suscrito, t.token, t.\"ultimaConexion\", t0.idrol, t0.idusuario, t0.identidad, t0.id, t0.descripcion, t0.level, t0.nombre, t0.id0, t0.activo, t0.descripcion0, t0.\"fechaAlta\", t0.\"idTipoEntidad\", t0.imagen, t0.nombre0, t0.popularidad, t0.ubicacion
+FROM (
+    SELECT u.id, u.activo, u.apellidos, u.contraseña, u.correo, u.\"expiracionToken\", u.\"fechaCreación\", u.\"fechaNacimiento\", u.genero, u.nombre, u.puntos, u.suscrito, u.token, u.\"ultimaConexion\"
+    FROM \"Usuarios\" AS u
+    WHERE u.id = @__idUsuario_0
+    LIMIT 1
+) AS t
+LEFT JOIN (
+    SELECT u0.idrol, u0.idusuario, u0.identidad, r.id, r.descripcion, r.level, r.nombre, e.id AS id0, e.activo, e.descripcion AS descripcion0, e.\"fechaAlta\", e.\"idTipoEntidad\", e.imagen, e.nombre AS nombre0, e.popularidad, e.ubicacion
+    FROM \"UsuarioRoles\" AS u0
+    INNER JOIN \"Roles\" AS r ON u0.idrol = r.id
+    INNER JOIN \"Entidades\" AS e ON u0.identidad = e.id
+) AS t0 ON t.id = t0.idusuario
+ORDER BY t.id, t0.idrol, t0.idusuario, t0.identidad, t0.id" (0723d8ff)
+2025-09-17T20:12:36.7583805+02:00 80000004-0003-fd00-b63f-84710c7967bb [INF] Executed DbCommand ("6"ms) [Parameters=["@p2='?' (DbType = Int32), @p0='?' (DbType = DateTime), @p1='?'"], CommandType='Text', CommandTimeout='30']"
+""UPDATE \"Usuarios\" SET \"expiracionToken\" = @p0, token = @p1
+WHERE id = @p2;" (0723d8ff)
+2025-09-17T20:15:11.1458441+02:00 80000004-0003-fd00-b63f-84710c7967bb [INF] Executed DbCommand ("8"ms) [Parameters=["@p0='?' (DbType = Guid), @p1='?', @p2='?' (DbType = DateTime), @p3='?' (DbType = Int32), @p4='?', @p5='?', @p6='?', @p7='?', @p8='?', @p9='?', @p10='?', @p11='?'"], CommandType='Text', CommandTimeout='30']"
+""INSERT INTO \"Logins\" (id, browser, fecha, \"idUsuario\", \"idiomaNavegador\", ip, \"modeloDispositivo\", pais, plataforma, region, \"sistemaOperativo\", \"tipoDispositivo\")
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8, @p9, @p10, @p11);" (0723d8ff)
+2025-09-17T20:15:17.7287292+02:00 80000004-0003-fd00-b63f-84710c7967bb [INF] Executing "OkObjectResult", writing value of type '"<>f__AnonymousType1`3[[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.DateTime, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]"'. (605b4265)
+2025-09-17T20:15:17.8066105+02:00 80000004-0003-fd00-b63f-84710c7967bb [INF] Executed action "API.Controllers.AuthController.Login (API)" in 219571.5956ms (afa2e885)
+2025-09-17T20:15:17.8067456+02:00 80000004-0003-fd00-b63f-84710c7967bb [INF] Executed endpoint '"API.Controllers.AuthController.Login (API)"' (99874f2b)
+2025-09-17T20:15:17.8083275+02:00 80000004-0003-fd00-b63f-84710c7967bb [INF] Request finished "HTTP/2" "POST" "https"://"localhost:44311""""/auth/login""" - 200 null "application/json; charset=utf-8" 219575.61ms (74253ad3)
+2025-09-17T23:11:13.7388970+02:00  [INF] User profile is available. Using '"C:\Users\David\AppData\Local\ASP.NET\DataProtection-Keys"' as key repository and Windows DPAPI to encrypt keys at rest. (7ac5e29c)
+2025-09-17T23:11:23.6016497+02:00  [INF] Application started. Press Ctrl+C to shut down. (dcaefe54)
+2025-09-17T23:11:23.7082148+02:00  [INF] Hosting environment: "Development" (bc5a1a4e)
+2025-09-17T23:11:23.7111814+02:00  [INF] Content root path: "C:\Users\David\Desktop\API" (cc26f24e)
+2025-09-17T23:11:23.7661632+02:00 80000004-0002-ff00-b63f-84710c7967bb [INF] Request starting "HTTP/2" "GET" "https"://"localhost:44311""""/swagger/index.html""" - null null (d509f86a)
+2025-09-17T23:11:27.4310120+02:00 80000004-0002-ff00-b63f-84710c7967bb [INF] Request finished "HTTP/2" "GET" "https"://"localhost:44311""""/swagger/index.html""" - 200 null "text/html;charset=utf-8" 3829.307ms (74253ad3)
+2025-09-17T23:11:27.7141227+02:00 80000004-0004-fd00-b63f-84710c7967bb [INF] Request starting "HTTP/2" "GET" "https"://"localhost:44311""""/_framework/aspnetcore-browser-refresh.js""" - null null (d509f86a)
+2025-09-17T23:11:27.7298065+02:00 80000004-0004-fd00-b63f-84710c7967bb [INF] Request finished "HTTP/2" "GET" "https"://"localhost:44311""""/_framework/aspnetcore-browser-refresh.js""" - 200 13742 "application/javascript; charset=utf-8" 7.9163ms (74253ad3)
+2025-09-17T23:11:27.7929078+02:00 80000002-0006-ff00-b63f-84710c7967bb [INF] Request starting "HTTP/2" "GET" "https"://"localhost:44311""""/_vs/browserLink""" - null null (d509f86a)
+2025-09-17T23:11:28.6739273+02:00 80000002-0006-ff00-b63f-84710c7967bb [INF] Request finished "HTTP/2" "GET" "https"://"localhost:44311""""/_vs/browserLink""" - 200 null "text/javascript; charset=UTF-8" 881.0071ms (74253ad3)
+2025-09-17T23:11:28.7584962+02:00 80000002-0002-fe00-b63f-84710c7967bb [INF] Request starting "HTTP/2" "GET" "https"://"localhost:44311""""/swagger/v1/swagger.json""" - null null (d509f86a)
+2025-09-17T23:11:28.8108294+02:00 80000002-0002-fe00-b63f-84710c7967bb [INF] Request finished "HTTP/2" "GET" "https"://"localhost:44311""""/swagger/v1/swagger.json""" - 200 null "application/json;charset=utf-8" 52.4797ms (74253ad3)
+2025-09-17T23:13:57.3800571+02:00  [INF] User profile is available. Using '"C:\Users\David\AppData\Local\ASP.NET\DataProtection-Keys"' as key repository and Windows DPAPI to encrypt keys at rest. (7ac5e29c)
+2025-09-17T23:13:57.6482522+02:00 80000002-0001-ff00-b63f-84710c7967bb [INF] Request starting "HTTP/2" "GET" "https"://"localhost:44311""""/swagger/index.html""" - null null (d509f86a)
+2025-09-17T23:13:57.8020691+02:00  [INF] Application started. Press Ctrl+C to shut down. (dcaefe54)
+2025-09-17T23:13:57.8060004+02:00  [INF] Hosting environment: "Development" (bc5a1a4e)
+2025-09-17T23:13:57.8087138+02:00  [INF] Content root path: "C:\Users\David\Desktop\API" (cc26f24e)
+2025-09-17T23:13:58.0955073+02:00 80000002-0001-ff00-b63f-84710c7967bb [INF] Request finished "HTTP/2" "GET" "https"://"localhost:44311""""/swagger/index.html""" - 200 null "text/html;charset=utf-8" 455.3349ms (74253ad3)
+2025-09-17T23:13:58.0981480+02:00 80000002-0005-fd00-b63f-84710c7967bb [INF] Request starting "HTTP/2" "GET" "https"://"localhost:44311""""/_framework/aspnetcore-browser-refresh.js""" - null null (d509f86a)
+2025-09-17T23:13:58.1144778+02:00 8000000a-0002-ff00-b63f-84710c7967bb [INF] Request starting "HTTP/2" "GET" "https"://"localhost:44311""""/_vs/browserLink""" - null null (d509f86a)
+2025-09-17T23:13:58.1222312+02:00 80000002-0005-fd00-b63f-84710c7967bb [INF] Request finished "HTTP/2" "GET" "https"://"localhost:44311""""/_framework/aspnetcore-browser-refresh.js""" - 200 13742 "application/javascript; charset=utf-8" 18.4572ms (74253ad3)
+2025-09-17T23:13:58.1757211+02:00 8000000a-0002-ff00-b63f-84710c7967bb [INF] Request finished "HTTP/2" "GET" "https"://"localhost:44311""""/_vs/browserLink""" - 200 null "text/javascript; charset=UTF-8" 61.2001ms (74253ad3)
+2025-09-17T23:13:58.2525660+02:00 80000002-0004-fc00-b63f-84710c7967bb [INF] Request starting "HTTP/2" "GET" "https"://"localhost:44311""""/swagger/v1/swagger.json""" - null null (d509f86a)
+2025-09-17T23:13:58.3287842+02:00 80000002-0004-fc00-b63f-84710c7967bb [INF] Request finished "HTTP/2" "GET" "https"://"localhost:44311""""/swagger/v1/swagger.json""" - 200 null "application/json;charset=utf-8" 76.3197ms (74253ad3)
+2025-09-17T23:14:22.2315003+02:00 80000004-0000-fb00-b63f-84710c7967bb [INF] Request starting "HTTP/2" "GET" "https"://"localhost:44311""""/DataQuery/ObtenerGetUsuariosInactivos""" - null null (d509f86a)
+2025-09-17T23:14:22.3613611+02:00 80000004-0000-fb00-b63f-84710c7967bb [INF] Executing endpoint '"API.Controllers.DataQueryController.GetUsuariosInactivosAsync (API)"' (500cc934)
+2025-09-17T23:14:22.6389660+02:00 80000004-0000-fb00-b63f-84710c7967bb [INF] Route matched with "{action = \"GetUsuariosInactivos\", controller = \"DataQuery\"}". Executing controller action with signature "System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetUsuariosInactivosAsync()" on controller "API.Controllers.DataQueryController" ("API"). (122b2fdf)
+2025-09-17T23:14:47.4785799+02:00 80000004-0000-fb00-b63f-84710c7967bb [INF] Executed action "API.Controllers.DataQueryController.GetUsuariosInactivosAsync (API)" in 24828.5067ms (afa2e885)
+2025-09-17T23:14:47.5841560+02:00 80000004-0000-fb00-b63f-84710c7967bb [INF] Executed endpoint '"API.Controllers.DataQueryController.GetUsuariosInactivosAsync (API)"' (99874f2b)
+2025-09-17T23:15:48.0050366+02:00 80000004-0000-fb00-b63f-84710c7967bb [ERR] Ocurrió un error en la petición "/DataQuery/ObtenerGetUsuariosInactivos" (564da9e9)
+System.IO.FileNotFoundException: Could not load file or assembly 'Microsoft.EntityFrameworkCore.Relational, Version=8.0.19.0, Culture=neutral, PublicKeyToken=adb9793829ddae60'. El sistema no puede encontrar el archivo especificado.
+File name: 'Microsoft.EntityFrameworkCore.Relational, Version=8.0.19.0, Culture=neutral, PublicKeyToken=adb9793829ddae60'
+   at Infrastructure.Persistence.ApplicationDbContext.<>c.<OnModelCreating>b__121_48(EntityTypeBuilder`1 eb)
+   at Microsoft.EntityFrameworkCore.ModelBuilder.Entity[TEntity](Action`1 buildAction)
+   at Infrastructure.Persistence.ApplicationDbContext.OnModelCreating(ModelBuilder modelBuilder) in C:\Users\David\Desktop\Infrastructure\Persistence\ApplicationDbContext.cs:line 172
+   at Microsoft.EntityFrameworkCore.Infrastructure.ModelCustomizer.Customize(ModelBuilder modelBuilder, DbContext context)
+   at Microsoft.EntityFrameworkCore.Infrastructure.ModelSource.CreateModel(DbContext context, IConventionSetBuilder conventionSetBuilder, ModelDependencies modelDependencies)
+   at Microsoft.EntityFrameworkCore.Infrastructure.ModelSource.GetModel(DbContext context, ModelCreationDependencies modelCreationDependencies, Boolean designTime)
+   at Microsoft.EntityFrameworkCore.Internal.DbContextServices.CreateModel(Boolean designTime)
+   at Microsoft.EntityFrameworkCore.Internal.DbContextServices.get_Model()
+   at Microsoft.EntityFrameworkCore.Infrastructure.EntityFrameworkServicesBuilder.<>c.<TryAddCoreServices>b__8_4(IServiceProvider p)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteVisitor`2.VisitCallSiteMain(ServiceCallSite callSite, TArgument argument)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteRuntimeResolver.VisitCache(ServiceCallSite callSite, RuntimeResolverContext context, ServiceProviderEngineScope serviceProviderEngine, RuntimeResolverLock lockType)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteRuntimeResolver.VisitScopeCache(ServiceCallSite callSite, RuntimeResolverContext context)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteVisitor`2.VisitCallSite(ServiceCallSite callSite, TArgument argument)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteRuntimeResolver.VisitConstructor(ConstructorCallSite constructorCallSite, RuntimeResolverContext context)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteVisitor`2.VisitCallSiteMain(ServiceCallSite callSite, TArgument argument)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteRuntimeResolver.VisitCache(ServiceCallSite callSite, RuntimeResolverContext context, ServiceProviderEngineScope serviceProviderEngine, RuntimeResolverLock lockType)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteRuntimeResolver.VisitScopeCache(ServiceCallSite callSite, RuntimeResolverContext context)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteVisitor`2.VisitCallSite(ServiceCallSite callSite, TArgument argument)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteRuntimeResolver.VisitConstructor(ConstructorCallSite constructorCallSite, RuntimeResolverContext context)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteVisitor`2.VisitCallSiteMain(ServiceCallSite callSite, TArgument argument)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteRuntimeResolver.VisitCache(ServiceCallSite callSite, RuntimeResolverContext context, ServiceProviderEngineScope serviceProviderEngine, RuntimeResolverLock lockType)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteRuntimeResolver.VisitScopeCache(ServiceCallSite callSite, RuntimeResolverContext context)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteVisitor`2.VisitCallSite(ServiceCallSite callSite, TArgument argument)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteRuntimeResolver.VisitConstructor(ConstructorCallSite constructorCallSite, RuntimeResolverContext context)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteVisitor`2.VisitCallSiteMain(ServiceCallSite callSite, TArgument argument)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteRuntimeResolver.VisitCache(ServiceCallSite callSite, RuntimeResolverContext context, ServiceProviderEngineScope serviceProviderEngine, RuntimeResolverLock lockType)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteRuntimeResolver.VisitScopeCache(ServiceCallSite callSite, RuntimeResolverContext context)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteVisitor`2.VisitCallSite(ServiceCallSite callSite, TArgument argument)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteRuntimeResolver.VisitConstructor(ConstructorCallSite constructorCallSite, RuntimeResolverContext context)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteVisitor`2.VisitCallSiteMain(ServiceCallSite callSite, TArgument argument)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteRuntimeResolver.VisitCache(ServiceCallSite callSite, RuntimeResolverContext context, ServiceProviderEngineScope serviceProviderEngine, RuntimeResolverLock lockType)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteRuntimeResolver.VisitScopeCache(ServiceCallSite callSite, RuntimeResolverContext context)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteVisitor`2.VisitCallSite(ServiceCallSite callSite, TArgument argument)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteRuntimeResolver.VisitConstructor(ConstructorCallSite constructorCallSite, RuntimeResolverContext context)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteVisitor`2.VisitCallSiteMain(ServiceCallSite callSite, TArgument argument)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteRuntimeResolver.VisitCache(ServiceCallSite callSite, RuntimeResolverContext context, ServiceProviderEngineScope serviceProviderEngine, RuntimeResolverLock lockType)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteRuntimeResolver.VisitScopeCache(ServiceCallSite callSite, RuntimeResolverContext context)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteVisitor`2.VisitCallSite(ServiceCallSite callSite, TArgument argument)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteRuntimeResolver.Resolve(ServiceCallSite callSite, ServiceProviderEngineScope scope)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.DynamicServiceProviderEngine.<>c__DisplayClass2_0.<RealizeService>b__0(ServiceProviderEngineScope scope)
+   at Microsoft.Extensions.DependencyInjection.ServiceProvider.GetService(ServiceIdentifier serviceIdentifier, ServiceProviderEngineScope serviceProviderEngineScope)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.ServiceProviderEngineScope.GetService(Type serviceType)
+   at Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService(IServiceProvider provider, Type serviceType)
+   at Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService[T](IServiceProvider provider)
+   at Microsoft.EntityFrameworkCore.DbContext.get_DbContextDependencies()
+   at Microsoft.EntityFrameworkCore.DbContext.get_ContextServices()
+   at Microsoft.EntityFrameworkCore.DbContext.get_Model()
+   at Microsoft.EntityFrameworkCore.Internal.InternalDbSet`1.get_EntityType()
+   at Microsoft.EntityFrameworkCore.Internal.InternalDbSet`1.CheckState()
+   at Microsoft.EntityFrameworkCore.Internal.InternalDbSet`1.get_EntityQueryable()
+   at Microsoft.EntityFrameworkCore.Internal.InternalDbSet`1.System.Linq.IQueryable.get_Provider()
+   at Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.AsNoTracking[TEntity](IQueryable`1 source)
+   at Infrastructure.Repositories.DataQueryRepository.GetUsuariosInactivosAsync(Int32 page, Int32 pageSize) in C:\Users\David\Desktop\Infrastructure\Repositories\DataQueryRepository.cs:line 48
+   at Application.Services.DataQueryService.GetUsuariosInactivosAsync(Int32 page, Int32 pageSize) in C:\Users\David\Desktop\Application\Services\DataQueryService.cs:line 21
+   at API.Controllers.DataQueryController.GetUsuariosInactivosAsync() in C:\Users\David\Desktop\API\Controllers\DataQueryController.cs:line 28
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|7_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Microsoft.AspNetCore.RateLimiting.RateLimitingMiddleware.InvokeInternal(HttpContext context, EnableRateLimitingAttribute enableRateLimitingAttribute)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at API.Middlewares.ExceptionMiddleware.InvokeAsync(HttpContext context) in C:\Users\David\Desktop\API\Middlewares\ExceptionMiddleware.cs:line 21
+2025-09-17T23:15:48.0613655+02:00 80000004-0000-fb00-b63f-84710c7967bb [INF] Request finished "HTTP/2" "GET" "https"://"localhost:44311""""/DataQuery/ObtenerGetUsuariosInactivos""" - 500 null "application/json" 85829.9594ms (74253ad3)
+2025-09-17T23:22:13.2547143+02:00  [INF] User profile is available. Using '"C:\Users\David\AppData\Local\ASP.NET\DataProtection-Keys"' as key repository and Windows DPAPI to encrypt keys at rest. (7ac5e29c)
+2025-09-17T23:22:13.5220901+02:00 80000005-0001-ff00-b63f-84710c7967bb [INF] Request starting "HTTP/2" "GET" "https"://"localhost:44311""""/swagger/index.html""" - null null (d509f86a)
+2025-09-17T23:22:13.6627920+02:00  [INF] Application started. Press Ctrl+C to shut down. (dcaefe54)
+2025-09-17T23:22:13.6665611+02:00  [INF] Hosting environment: "Development" (bc5a1a4e)
+2025-09-17T23:22:13.6689924+02:00  [INF] Content root path: "C:\Users\David\Desktop\API" (cc26f24e)
+2025-09-17T23:22:13.9303781+02:00 80000005-0001-ff00-b63f-84710c7967bb [INF] Request finished "HTTP/2" "GET" "https"://"localhost:44311""""/swagger/index.html""" - 200 null "text/html;charset=utf-8" 417.9125ms (74253ad3)
+2025-09-17T23:22:13.9991736+02:00 80000004-0005-fd00-b63f-84710c7967bb [INF] Request starting "HTTP/2" "GET" "https"://"localhost:44311""""/_framework/aspnetcore-browser-refresh.js""" - null null (d509f86a)
+2025-09-17T23:22:14.0016457+02:00 80000002-0005-fc00-b63f-84710c7967bb [INF] Request starting "HTTP/2" "GET" "https"://"localhost:44311""""/_vs/browserLink""" - null null (d509f86a)
+2025-09-17T23:22:14.0126542+02:00 80000004-0005-fd00-b63f-84710c7967bb [INF] Request finished "HTTP/2" "GET" "https"://"localhost:44311""""/_framework/aspnetcore-browser-refresh.js""" - 200 13742 "application/javascript; charset=utf-8" 5.8864ms (74253ad3)
+2025-09-17T23:22:14.0621384+02:00 80000002-0005-fc00-b63f-84710c7967bb [INF] Request finished "HTTP/2" "GET" "https"://"localhost:44311""""/_vs/browserLink""" - 200 null "text/javascript; charset=UTF-8" 60.5925ms (74253ad3)
+2025-09-17T23:22:14.1303638+02:00 8000000e-0002-ff00-b63f-84710c7967bb [INF] Request starting "HTTP/2" "GET" "https"://"localhost:44311""""/swagger/v1/swagger.json""" - null null (d509f86a)
+2025-09-17T23:22:14.1967749+02:00 8000000e-0002-ff00-b63f-84710c7967bb [INF] Request finished "HTTP/2" "GET" "https"://"localhost:44311""""/swagger/v1/swagger.json""" - 200 null "application/json;charset=utf-8" 66.4495ms (74253ad3)
+2025-09-17T23:31:21.1913737+02:00 80000002-0001-fe00-b63f-84710c7967bb [INF] Request starting "HTTP/2" "GET" "https"://"localhost:44311""""/DataQuery/ObtenerGetUsuariosInactivos""" - null null (d509f86a)
+2025-09-17T23:31:21.2099543+02:00 80000002-0001-fe00-b63f-84710c7967bb [INF] Executing endpoint '"API.Controllers.DataQueryController.GetUsuariosInactivosAsync (API)"' (500cc934)
+2025-09-17T23:31:21.2389270+02:00 80000002-0001-fe00-b63f-84710c7967bb [INF] Route matched with "{action = \"GetUsuariosInactivos\", controller = \"DataQuery\"}". Executing controller action with signature "System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetUsuariosInactivosAsync()" on controller "API.Controllers.DataQueryController" ("API"). (122b2fdf)
+2025-09-17T23:32:05.6978125+02:00 80000002-0001-fe00-b63f-84710c7967bb [INF] Executed action "API.Controllers.DataQueryController.GetUsuariosInactivosAsync (API)" in 44453.4426ms (afa2e885)
+2025-09-17T23:32:05.7026397+02:00 80000002-0001-fe00-b63f-84710c7967bb [INF] Executed endpoint '"API.Controllers.DataQueryController.GetUsuariosInactivosAsync (API)"' (99874f2b)
+2025-09-17T23:35:38.1781363+02:00  [INF] User profile is available. Using '"C:\Users\David\AppData\Local\ASP.NET\DataProtection-Keys"' as key repository and Windows DPAPI to encrypt keys at rest. (7ac5e29c)
+2025-09-17T23:35:41.0700257+02:00  [INF] Application started. Press Ctrl+C to shut down. (dcaefe54)
+2025-09-17T23:35:41.0733392+02:00  [INF] Hosting environment: "Development" (bc5a1a4e)
+2025-09-17T23:35:41.0757704+02:00  [INF] Content root path: "C:\Users\David\Desktop\API" (cc26f24e)
+2025-09-17T23:35:41.2035095+02:00 80000006-0005-fd00-b63f-84710c7967bb [INF] Request starting "HTTP/2" "GET" "https"://"localhost:44311""""/swagger/index.html""" - null null (d509f86a)
+2025-09-17T23:35:43.2504149+02:00 80000006-0005-fd00-b63f-84710c7967bb [INF] Request finished "HTTP/2" "GET" "https"://"localhost:44311""""/swagger/index.html""" - 200 null "text/html;charset=utf-8" 2088.5837ms (74253ad3)
+2025-09-17T23:35:43.5211642+02:00 80000004-0000-fc00-b63f-84710c7967bb [INF] Request starting "HTTP/2" "GET" "https"://"localhost:44311""""/_framework/aspnetcore-browser-refresh.js""" - null null (d509f86a)
+2025-09-17T23:35:43.5360388+02:00 80000004-0000-fc00-b63f-84710c7967bb [INF] Request finished "HTTP/2" "GET" "https"://"localhost:44311""""/_framework/aspnetcore-browser-refresh.js""" - 200 13742 "application/javascript; charset=utf-8" 5.6346ms (74253ad3)
+2025-09-17T23:35:43.5361705+02:00 8000000b-0006-ff00-b63f-84710c7967bb [INF] Request starting "HTTP/2" "GET" "https"://"localhost:44311""""/_vs/browserLink""" - null null (d509f86a)
+2025-09-17T23:35:47.0456734+02:00 8000000b-0006-ff00-b63f-84710c7967bb [INF] Request finished "HTTP/2" "GET" "https"://"localhost:44311""""/_vs/browserLink""" - 200 null "text/javascript; charset=UTF-8" 3509.48ms (74253ad3)
+2025-09-17T23:35:47.6104565+02:00 8000000d-0006-ff00-b63f-84710c7967bb [INF] Request starting "HTTP/2" "GET" "https"://"localhost:44311""""/swagger/v1/swagger.json""" - null null (d509f86a)
+2025-09-17T23:35:47.6700739+02:00 8000000d-0006-ff00-b63f-84710c7967bb [INF] Request finished "HTTP/2" "GET" "https"://"localhost:44311""""/swagger/v1/swagger.json""" - 200 null "application/json;charset=utf-8" 59.6613ms (74253ad3)
+2025-09-17T23:36:03.3592375+02:00 80000002-0004-fb00-b63f-84710c7967bb [INF] Request starting "HTTP/2" "GET" "https"://"localhost:44311""""/DataQuery/ObtenerGetUsuariosInactivos""" - null null (d509f86a)
+2025-09-17T23:36:03.4440909+02:00 80000002-0004-fb00-b63f-84710c7967bb [INF] Executing endpoint '"API.Controllers.DataQueryController.GetUsuariosInactivosAsync (API)"' (500cc934)
+2025-09-17T23:36:03.5943822+02:00 80000002-0004-fb00-b63f-84710c7967bb [INF] Route matched with "{action = \"GetUsuariosInactivos\", controller = \"DataQuery\"}". Executing controller action with signature "System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetUsuariosInactivosAsync()" on controller "API.Controllers.DataQueryController" ("API"). (122b2fdf)
+2025-09-17T23:37:24.8201204+02:00 80000002-0004-fb00-b63f-84710c7967bb [INF] Executed action "API.Controllers.DataQueryController.GetUsuariosInactivosAsync (API)" in 81220.1843ms (afa2e885)
+2025-09-17T23:37:24.8250296+02:00 80000002-0004-fb00-b63f-84710c7967bb [INF] Executed endpoint '"API.Controllers.DataQueryController.GetUsuariosInactivosAsync (API)"' (99874f2b)
+2025-09-17T23:47:35.7197278+02:00  [INF] User profile is available. Using '"C:\Users\David\AppData\Local\ASP.NET\DataProtection-Keys"' as key repository and Windows DPAPI to encrypt keys at rest. (7ac5e29c)
+2025-09-17T23:47:42.5933018+02:00  [INF] Application started. Press Ctrl+C to shut down. (dcaefe54)
+2025-09-17T23:47:42.6815068+02:00  [INF] Hosting environment: "Development" (bc5a1a4e)
+2025-09-17T23:47:42.6846518+02:00  [INF] Content root path: "C:\Users\David\Desktop\API" (cc26f24e)
+2025-09-17T23:47:43.2477861+02:00 80000006-0000-fb00-b63f-84710c7967bb [INF] Request starting "HTTP/2" "GET" "https"://"localhost:44311""""/swagger/index.html""" - null null (d509f86a)
+2025-09-17T23:47:49.8689101+02:00 80000006-0000-fb00-b63f-84710c7967bb [INF] Request finished "HTTP/2" "GET" "https"://"localhost:44311""""/swagger/index.html""" - 200 null "text/html;charset=utf-8" 6787.7103ms (74253ad3)
+2025-09-17T23:47:49.9755155+02:00 8000000c-0003-fc00-b63f-84710c7967bb [INF] Request starting "HTTP/2" "GET" "https"://"localhost:44311""""/_framework/aspnetcore-browser-refresh.js""" - null null (d509f86a)
+2025-09-17T23:47:50.0076212+02:00 8000000c-0003-fc00-b63f-84710c7967bb [INF] Request finished "HTTP/2" "GET" "https"://"localhost:44311""""/_framework/aspnetcore-browser-refresh.js""" - 200 13742 "application/javascript; charset=utf-8" 3.8642ms (74253ad3)
+2025-09-17T23:47:50.0560427+02:00 80000006-0002-fe00-b63f-84710c7967bb [INF] Request starting "HTTP/2" "GET" "https"://"localhost:44311""""/_vs/browserLink""" - null null (d509f86a)
+2025-09-17T23:47:50.2877703+02:00 80000006-0002-fe00-b63f-84710c7967bb [INF] Request finished "HTTP/2" "GET" "https"://"localhost:44311""""/_vs/browserLink""" - 200 null "text/javascript; charset=UTF-8" 231.7826ms (74253ad3)
+2025-09-17T23:47:50.9539740+02:00 8000000c-0004-fd00-b63f-84710c7967bb [INF] Request starting "HTTP/2" "GET" "https"://"localhost:44311""""/swagger/v1/swagger.json""" - null null (d509f86a)
+2025-09-17T23:47:51.0169122+02:00 8000000c-0004-fd00-b63f-84710c7967bb [INF] Request finished "HTTP/2" "GET" "https"://"localhost:44311""""/swagger/v1/swagger.json""" - 200 null "application/json;charset=utf-8" 62.9091ms (74253ad3)
+2025-09-17T23:48:10.9078066+02:00 80000008-0000-fb00-b63f-84710c7967bb [INF] Request starting "HTTP/2" "GET" "https"://"localhost:44311""""/DataQuery/ObtenerGetUsuariosInactivos""" - null null (d509f86a)
+2025-09-17T23:48:11.1225238+02:00 80000008-0000-fb00-b63f-84710c7967bb [INF] Executing endpoint '"API.Controllers.DataQueryController.GetUsuariosInactivosAsync (API)"' (500cc934)
+2025-09-17T23:48:11.7314210+02:00 80000008-0000-fb00-b63f-84710c7967bb [INF] Route matched with "{action = \"GetUsuariosInactivos\", controller = \"DataQuery\"}". Executing controller action with signature "System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetUsuariosInactivosAsync()" on controller "API.Controllers.DataQueryController" ("API"). (122b2fdf)
+2025-09-17T23:48:36.2374541+02:00 80000008-0000-fb00-b63f-84710c7967bb [WRN] The query uses a row limiting operator ('Skip'/'Take') without an 'OrderBy' operator. This may lead to unpredictable results. If the 'Distinct' operator is used after 'OrderBy', then make sure to use the 'OrderBy' operator after 'Distinct' as the ordering would otherwise get erased. (5b3e5b60)
+2025-09-17T23:48:36.2418445+02:00 80000008-0000-fb00-b63f-84710c7967bb [WRN] The query uses a row limiting operator ('Skip'/'Take') without an 'OrderBy' operator. This may lead to unpredictable results. If the 'Distinct' operator is used after 'OrderBy', then make sure to use the 'OrderBy' operator after 'Distinct' as the ordering would otherwise get erased. (5b3e5b60)
+2025-09-17T23:48:39.9605834+02:00 80000008-0000-fb00-b63f-84710c7967bb [ERR] Failed executing DbCommand ("1,165"ms) [Parameters=["@__p_1='?' (DbType = Int32), @__p_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT v.\"idUsuario\" AS \"IdUsuario\", v.descripcion AS \"Descripcion\", v.correo AS \"Correo\", v.nombre AS \"Nombre\", v.\"ultimaConexion\" AS \"UltimaConexion\", v.\"diasInactivo\" AS \"DiasInactivo\"
+FROM v_usuariosinactivos AS v
+LIMIT @__p_1 OFFSET @__p_0" (627a98df)
+2025-09-17T23:48:40.4205666+02:00 80000008-0000-fb00-b63f-84710c7967bb [ERR] An exception occurred while iterating over the results of a query for context type '"Infrastructure.Persistence.ApplicationDbContext"'."
+""Npgsql.PostgresException (0x80004005): 42703: no existe la columna v.descripcion
+
+POSITION: 38
+   at Npgsql.Internal.NpgsqlConnector.ReadMessageLong(Boolean async, DataRowLoadingMode dataRowLoadingMode, Boolean readingNotifications, Boolean isReadingPrependedMessage)
+   at System.Runtime.CompilerServices.PoolingAsyncValueTaskMethodBuilder`1.StateMachineBox`1.System.Threading.Tasks.Sources.IValueTaskSource<TResult>.GetResult(Int16 token)
+   at Npgsql.NpgsqlDataReader.NextResult(Boolean async, Boolean isConsuming, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlDataReader.NextResult(Boolean async, Boolean isConsuming, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(Boolean async, CommandBehavior behavior, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(Boolean async, CommandBehavior behavior, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteDbDataReaderAsync(CommandBehavior behavior, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.InitializeReaderAsync(AsyncEnumerator enumerator, CancellationToken cancellationToken)
+   at Npgsql.EntityFrameworkCore.PostgreSQL.Storage.Internal.NpgsqlExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+  Exception data:
+    Severity: ERROR
+    SqlState: 42703
+    MessageText: no existe la columna v.descripcion
+    Position: 38
+    File: parse_relation.c
+    Line: 3721
+    Routine: errorMissingColumn" (f5c7ac34)
+Npgsql.PostgresException (0x80004005): 42703: no existe la columna v.descripcion
+
+POSITION: 38
+   at Npgsql.Internal.NpgsqlConnector.ReadMessageLong(Boolean async, DataRowLoadingMode dataRowLoadingMode, Boolean readingNotifications, Boolean isReadingPrependedMessage)
+   at System.Runtime.CompilerServices.PoolingAsyncValueTaskMethodBuilder`1.StateMachineBox`1.System.Threading.Tasks.Sources.IValueTaskSource<TResult>.GetResult(Int16 token)
+   at Npgsql.NpgsqlDataReader.NextResult(Boolean async, Boolean isConsuming, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlDataReader.NextResult(Boolean async, Boolean isConsuming, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(Boolean async, CommandBehavior behavior, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(Boolean async, CommandBehavior behavior, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteDbDataReaderAsync(CommandBehavior behavior, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.InitializeReaderAsync(AsyncEnumerator enumerator, CancellationToken cancellationToken)
+   at Npgsql.EntityFrameworkCore.PostgreSQL.Storage.Internal.NpgsqlExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+   at Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.ToListAsync[TSource](IQueryable`1 source, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.ToListAsync[TSource](IQueryable`1 source, CancellationToken cancellationToken)
+  Exception data:
+    Severity: ERROR
+    SqlState: 42703
+    MessageText: no existe la columna v.descripcion
+    Position: 38
+    File: parse_relation.c
+    Line: 3721
+    Routine: errorMissingColumn
+2025-09-17T23:48:41.0484036+02:00 80000008-0000-fb00-b63f-84710c7967bb [INF] Executed action "API.Controllers.DataQueryController.GetUsuariosInactivosAsync (API)" in 29055.8521ms (afa2e885)
+2025-09-17T23:48:41.1116064+02:00 80000008-0000-fb00-b63f-84710c7967bb [INF] Executed endpoint '"API.Controllers.DataQueryController.GetUsuariosInactivosAsync (API)"' (99874f2b)

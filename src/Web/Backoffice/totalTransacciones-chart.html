@@ -1,0 +1,139 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>Reports / Total Transacciones</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="manifest" href="site.webmanifest">
+		<link rel="shortcut icon" type="image/x-icon" href="img/favicon.png"> 
+
+		<!-- CSS -->
+        <link rel="stylesheet" href="css/bootstrap.min.css"> 
+        <link rel="stylesheet" href="css/animate.min.css"> 
+        <link rel="stylesheet" href="css/fontawesome-all.min.css">
+        <link rel="stylesheet" href="css/et-line-fonts.css">  
+        <link rel="stylesheet" href="css/default.css">
+        <link rel="stylesheet" href="css/style.css">
+        <link rel="stylesheet" href="css/responsive.css">
+    </head>
+    <body> 
+        <div class="body-wrapper body-bg">
+            <header>
+             
+            </header> 
+            
+            <div class="dashboard-area pt-30">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="pannel-wrapper white-bg mb-30">
+                                <div class="panel-heading heading-border">
+                                    <h4>Reports / Total Transacciones</h4>
+                                </div>
+                                <div class="panel-body mt-30 pt-0">
+                                    <div class="chart-js-warpper">
+                                        <div class="flot-js-warpper">
+                                            <div id="flot-graph" style="height: 250px">
+                                                <!--  Contenido dinamico -->
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <br /><br /><br /><br /><br />
+            <footer>
+                <div class="footer-area">
+                    <div class="container">
+                        <div class="copyright white-bg pt-25 pb-25 text-center">
+                            <p>Copyright © 2025. All rights reserved. Design by David Martíinez.</p>
+                        </div>
+                    </div>
+                </div>
+            </footer> 
+        </div>
+
+       <script>
+
+           document.addEventListener("DOMContentLoaded", async () => {
+               var gridColor = "#aaaaaa";
+               var gridBorder = "#eeeeee";
+               var legendBg = "#f5f5f5";
+
+               const baseUrl = `https://localhost`;
+               const controllerName = `DataQuery`;
+               const port = `44311`;
+               const apiUrl = `${baseUrl}:${port}/${controllerName}/ObtenerTotalUltimasTransacciones`; 
+
+               const response = await fetch(apiUrl);
+               const data = await response.json();
+
+               // Función para obtener solo el día (dd) de la fecha
+               const formatDay = (isoDate) => {
+                   const d = new Date(isoDate);
+                   return d.getDate().toString(); // solo día (1-31)
+               };
+
+               // Procesamos los datos con etiquetas cortas (día del mes)
+               const qrData = data.map(item => [formatDay(item.dia), item.totalQR]);
+               const eventoData = data.map(item => [formatDay(item.dia), item.totalEvento]);
+
+               if ($("#flot-graph").length) {
+                   $.plot(
+                       $("#flot-graph"),
+                       [
+                           {
+                               label: "QR",
+                               data: qrData
+                           },
+                           {
+                               label: "Evento",
+                               data: eventoData
+                           }
+                       ],
+                       {
+                           series: {
+                               shadowSize: 0,
+                               lines: { show: true },
+                               points: { show: true, radius: 4 }
+                           },
+
+                           grid: {
+                               color: gridColor,
+                               borderColor: gridBorder,
+                               borderWidth: 1,
+                               hoverable: true,
+                               clickable: true
+                           },
+
+                           // Ahora los ticks muestran solo el número de día
+                           xaxis: {
+                               mode: "categories",
+                               tickColor: gridBorder
+                           },
+                           yaxis: { tickColor: gridBorder },
+                           legend: { backgroundColor: legendBg },
+                           tooltip: {
+                               show: true,
+                               content: "%s (%x): %y"
+                           },
+                           colors: ["#E040FB", "#00BCD4"]
+                       }
+                   );
+               }
+           });
+
+
+       </script>
+
+        <!-- JS here --> 
+        <script src="js/vendor/jquery-1.12.4.min.js"></script>   
+        <script src="js/flot.js"></script> 
+    </body>
+</html>

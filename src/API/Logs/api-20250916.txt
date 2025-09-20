@@ -1,0 +1,246 @@
+2025-09-16T10:49:51.6667429+02:00  [INF] User profile is available. Using '"C:\Users\David\AppData\Local\ASP.NET\DataProtection-Keys"' as key repository and Windows DPAPI to encrypt keys at rest. (7ac5e29c)
+2025-09-16T10:49:59.0969974+02:00  [INF] Application started. Press Ctrl+C to shut down. (dcaefe54)
+2025-09-16T10:49:59.1001480+02:00  [INF] Hosting environment: "Development" (bc5a1a4e)
+2025-09-16T10:49:59.1019496+02:00  [INF] Content root path: "C:\Users\David\Desktop\API" (cc26f24e)
+2025-09-16T10:50:00.7361590+02:00 80000002-0001-fe00-b63f-84710c7967bb [INF] Request starting "HTTP/2" "GET" "https"://"localhost:44311""""/swagger/index.html""" - null null (d509f86a)
+2025-09-16T10:51:03.3996551+02:00 80000002-0001-fe00-b63f-84710c7967bb [INF] Request finished "HTTP/2" "GET" "https"://"localhost:44311""""/swagger/index.html""" - 200 null "text/html;charset=utf-8" 62645.743ms (74253ad3)
+2025-09-16T10:51:27.8387659+02:00 80000016-0004-fd00-b63f-84710c7967bb [INF] Request starting "HTTP/2" "GET" "https"://"localhost:44311""""/_framework/aspnetcore-browser-refresh.js""" - null null (d509f86a)
+2025-09-16T10:51:28.1623572+02:00 80000016-0004-fd00-b63f-84710c7967bb [INF] Request finished "HTTP/2" "GET" "https"://"localhost:44311""""/_framework/aspnetcore-browser-refresh.js""" - 200 13742 "application/javascript; charset=utf-8" 3.9385ms (74253ad3)
+2025-09-16T10:51:28.7515580+02:00 80000018-0004-fd00-b63f-84710c7967bb [INF] Request starting "HTTP/2" "GET" "https"://"localhost:44311""""/_vs/browserLink""" - null null (d509f86a)
+2025-09-16T10:51:59.8144047+02:00 80000018-0004-fd00-b63f-84710c7967bb [INF] Request finished "HTTP/2" "GET" "https"://"localhost:44311""""/_vs/browserLink""" - 200 null "text/javascript; charset=UTF-8" 31062.8356ms (74253ad3)
+2025-09-16T10:52:00.3103565+02:00 80000002-0001-fb00-b63f-84710c7967bb [INF] Request starting "HTTP/2" "GET" "https"://"localhost:44311""""/swagger/v1/swagger.json""" - null null (d509f86a)
+2025-09-16T10:52:00.6340938+02:00 80000002-0001-fb00-b63f-84710c7967bb [INF] Request finished "HTTP/2" "GET" "https"://"localhost:44311""""/swagger/v1/swagger.json""" - 200 null "application/json;charset=utf-8" 323.761ms (74253ad3)
+2025-09-16T10:58:47.4090024+02:00 80000003-0005-fb00-b63f-84710c7967bb [INF] Request starting "HTTP/2" "DELETE" "https"://"localhost:44311""""/EmailTokens/CheckEmailToken""?email=dgomezmart%40uoc.edu" - "application/json" 46 (d509f86a)
+2025-09-16T10:58:47.4887566+02:00 80000003-0005-fb00-b63f-84710c7967bb [INF] CORS policy execution successful. (5409d6ef)
+2025-09-16T10:58:48.3190985+02:00 80000003-0005-fb00-b63f-84710c7967bb [INF] Executing endpoint '"API.Controllers.EmailTokensController.CheckEmailToken (API)"' (500cc934)
+2025-09-16T10:58:51.4527419+02:00 80000003-0005-fb00-b63f-84710c7967bb [INF] Route matched with "{action = \"CheckEmailToken\", controller = \"EmailTokens\"}". Executing controller action with signature "System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] CheckEmailToken(System.Guid, System.String)" on controller "API.Controllers.EmailTokensController" ("API"). (122b2fdf)
+2025-09-16T11:00:22.8446906+02:00 80000003-0005-fb00-b63f-84710c7967bb [INF] Executing "BadRequestObjectResult", writing value of type '"Microsoft.AspNetCore.Mvc.ValidationProblemDetails"'. (605b4265)
+2025-09-16T11:00:23.2803499+02:00 80000003-0005-fb00-b63f-84710c7967bb [INF] Executed action "API.Controllers.EmailTokensController.CheckEmailToken (API)" in 91584.118ms (afa2e885)
+2025-09-16T11:00:23.2805287+02:00 80000003-0005-fb00-b63f-84710c7967bb [INF] Executed endpoint '"API.Controllers.EmailTokensController.CheckEmailToken (API)"' (99874f2b)
+2025-09-16T11:00:23.2838475+02:00 80000003-0005-fb00-b63f-84710c7967bb [INF] Request finished "HTTP/2" "DELETE" "https"://"localhost:44311""""/EmailTokens/CheckEmailToken""?email=dgomezmart%40uoc.edu" - 400 null "application/problem+json; charset=utf-8" 95896.7155ms (74253ad3)
+2025-09-16T11:06:19.7264170+02:00 80000003-0003-fe00-b63f-84710c7967bb [INF] Request starting "HTTP/2" "DELETE" "https"://"localhost:44311""""/EmailTokens/CheckEmailToken""?email=dgomezmart%40uoc.edu" - "application/json" 44 (d509f86a)
+2025-09-16T11:06:19.7297335+02:00 80000003-0003-fe00-b63f-84710c7967bb [INF] CORS policy execution successful. (5409d6ef)
+2025-09-16T11:06:19.7302513+02:00 80000003-0003-fe00-b63f-84710c7967bb [INF] Executing endpoint '"API.Controllers.EmailTokensController.CheckEmailToken (API)"' (500cc934)
+2025-09-16T11:06:19.7307248+02:00 80000003-0003-fe00-b63f-84710c7967bb [INF] Route matched with "{action = \"CheckEmailToken\", controller = \"EmailTokens\"}". Executing controller action with signature "System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] CheckEmailToken(System.Guid, System.String)" on controller "API.Controllers.EmailTokensController" ("API"). (122b2fdf)
+2025-09-16T11:06:20.2574373+02:00 80000003-0003-fe00-b63f-84710c7967bb [INF] Executing "BadRequestObjectResult", writing value of type '"Microsoft.AspNetCore.Mvc.ValidationProblemDetails"'. (605b4265)
+2025-09-16T11:06:20.2589839+02:00 80000003-0003-fe00-b63f-84710c7967bb [INF] Executed action "API.Controllers.EmailTokensController.CheckEmailToken (API)" in 528.0848ms (afa2e885)
+2025-09-16T11:06:20.2591193+02:00 80000003-0003-fe00-b63f-84710c7967bb [INF] Executed endpoint '"API.Controllers.EmailTokensController.CheckEmailToken (API)"' (99874f2b)
+2025-09-16T11:06:20.2595609+02:00 80000003-0003-fe00-b63f-84710c7967bb [INF] Request finished "HTTP/2" "DELETE" "https"://"localhost:44311""""/EmailTokens/CheckEmailToken""?email=dgomezmart%40uoc.edu" - 400 null "application/problem+json; charset=utf-8" 533.3779ms (74253ad3)
+2025-09-16T11:21:55.2745526+02:00  [INF] User profile is available. Using '"C:\Users\David\AppData\Local\ASP.NET\DataProtection-Keys"' as key repository and Windows DPAPI to encrypt keys at rest. (7ac5e29c)
+2025-09-16T11:22:16.2767248+02:00  [INF] Application started. Press Ctrl+C to shut down. (dcaefe54)
+2025-09-16T11:22:16.4761756+02:00  [INF] Hosting environment: "Development" (bc5a1a4e)
+2025-09-16T11:22:16.4812340+02:00  [INF] Content root path: "C:\Users\David\Desktop\API" (cc26f24e)
+2025-09-16T11:22:19.3593343+02:00 80000004-0001-fd00-b63f-84710c7967bb [INF] Request starting "HTTP/2" "GET" "https"://"localhost:44311""""/swagger/index.html""" - null null (d509f86a)
+2025-09-16T11:22:35.1622591+02:00 80000004-0001-fd00-b63f-84710c7967bb [INF] Request finished "HTTP/2" "GET" "https"://"localhost:44311""""/swagger/index.html""" - 200 null "text/html;charset=utf-8" 16132.7486ms (74253ad3)
+2025-09-16T11:22:44.4534485+02:00 80000002-0000-fd00-b63f-84710c7967bb [INF] Request starting "HTTP/2" "GET" "https"://"localhost:44311""""/_framework/aspnetcore-browser-refresh.js""" - null null (d509f86a)
+2025-09-16T11:22:44.5169117+02:00 80000002-0000-fd00-b63f-84710c7967bb [INF] Request finished "HTTP/2" "GET" "https"://"localhost:44311""""/_framework/aspnetcore-browser-refresh.js""" - 200 13742 "application/javascript; charset=utf-8" 8.1932ms (74253ad3)
+2025-09-16T11:22:44.7053457+02:00 80000002-0005-f900-b63f-84710c7967bb [INF] Request starting "HTTP/2" "GET" "https"://"localhost:44311""""/_vs/browserLink""" - null null (d509f86a)
+2025-09-16T11:22:46.5388069+02:00 80000002-0005-f900-b63f-84710c7967bb [INF] Request finished "HTTP/2" "GET" "https"://"localhost:44311""""/_vs/browserLink""" - 200 null "text/javascript; charset=UTF-8" 1833.5585ms (74253ad3)
+2025-09-16T11:22:47.4779733+02:00 80000016-0002-ff00-b63f-84710c7967bb [INF] Request starting "HTTP/2" "GET" "https"://"localhost:44311""""/swagger/v1/swagger.json""" - null null (d509f86a)
+2025-09-16T11:22:47.6802254+02:00 80000016-0002-ff00-b63f-84710c7967bb [INF] Request finished "HTTP/2" "GET" "https"://"localhost:44311""""/swagger/v1/swagger.json""" - 200 null "application/json;charset=utf-8" 202.4089ms (74253ad3)
+2025-09-16T11:24:28.7293008+02:00 80000004-0004-fc00-b63f-84710c7967bb [INF] Request starting "HTTP/2" "GET" "https"://"localhost:44311""""/EmailTokens/CheckEmailToken""?emailToken=dgomezmart%40uoc.edu&email=dgomezmart%40uoc.edu" - null null (d509f86a)
+2025-09-16T11:24:29.2494779+02:00 80000004-0004-fc00-b63f-84710c7967bb [INF] Executing endpoint '"API.Controllers.EmailTokensController.CheckEmailToken (API)"' (500cc934)
+2025-09-16T11:24:31.1579955+02:00 80000004-0004-fc00-b63f-84710c7967bb [INF] Route matched with "{action = \"CheckEmailToken\", controller = \"EmailTokens\"}". Executing controller action with signature "System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] CheckEmailToken(System.String, System.String)" on controller "API.Controllers.EmailTokensController" ("API"). (122b2fdf)
+2025-09-16T11:57:52.1659153+02:00  [INF] User profile is available. Using '"C:\Users\David\AppData\Local\ASP.NET\DataProtection-Keys"' as key repository and Windows DPAPI to encrypt keys at rest. (7ac5e29c)
+2025-09-16T11:57:58.6261460+02:00  [INF] Application started. Press Ctrl+C to shut down. (dcaefe54)
+2025-09-16T11:57:58.7266399+02:00  [INF] Hosting environment: "Development" (bc5a1a4e)
+2025-09-16T11:57:58.7285775+02:00  [INF] Content root path: "C:\Users\David\Desktop\API" (cc26f24e)
+2025-09-16T11:57:59.9228268+02:00 80000010-0006-fc00-b63f-84710c7967bb [INF] Request starting "HTTP/2" "GET" "https"://"localhost:44311""""/swagger/index.html""" - null null (d509f86a)
+2025-09-16T11:58:06.6491643+02:00 80000010-0006-fc00-b63f-84710c7967bb [INF] Request finished "HTTP/2" "GET" "https"://"localhost:44311""""/swagger/index.html""" - 200 null "text/html;charset=utf-8" 6923.8975ms (74253ad3)
+2025-09-16T11:58:08.1816345+02:00 80000006-0002-fb00-b63f-84710c7967bb [INF] Request starting "HTTP/2" "GET" "https"://"localhost:44311""""/_framework/aspnetcore-browser-refresh.js""" - null null (d509f86a)
+2025-09-16T11:58:08.3318740+02:00 80000006-0002-fb00-b63f-84710c7967bb [INF] Request finished "HTTP/2" "GET" "https"://"localhost:44311""""/_framework/aspnetcore-browser-refresh.js""" - 200 13742 "application/javascript; charset=utf-8" 4.1966ms (74253ad3)
+2025-09-16T11:58:08.5581119+02:00 80000012-0007-fe00-b63f-84710c7967bb [INF] Request starting "HTTP/2" "GET" "https"://"localhost:44311""""/_vs/browserLink""" - null null (d509f86a)
+2025-09-16T11:58:09.0128729+02:00 80000012-0007-fe00-b63f-84710c7967bb [INF] Request finished "HTTP/2" "GET" "https"://"localhost:44311""""/_vs/browserLink""" - 200 null "text/javascript; charset=UTF-8" 454.9748ms (74253ad3)
+2025-09-16T11:58:11.6015246+02:00 80000014-0007-fe00-b63f-84710c7967bb [INF] Request starting "HTTP/2" "GET" "https"://"localhost:44311""""/swagger/v1/swagger.json""" - null null (d509f86a)
+2025-09-16T11:58:11.6529698+02:00 80000014-0007-fe00-b63f-84710c7967bb [INF] Request finished "HTTP/2" "GET" "https"://"localhost:44311""""/swagger/v1/swagger.json""" - 200 null "application/json;charset=utf-8" 51.5649ms (74253ad3)
+2025-09-16T11:59:12.1345094+02:00 80000015-0000-fc00-b63f-84710c7967bb [INF] Request starting "HTTP/2" "GET" "https"://"localhost:44311""""/EmailTokens/CheckEmailToken""?emailToken=23b99978-056b-4b52-8659-c4b0e6d254b1&email=dgomezmart%40uoc.edu" - null null (d509f86a)
+2025-09-16T11:59:12.5934130+02:00 80000015-0000-fc00-b63f-84710c7967bb [INF] Executing endpoint '"API.Controllers.EmailTokensController.CheckEmailToken (API)"' (500cc934)
+2025-09-16T11:59:13.9357269+02:00 80000015-0000-fc00-b63f-84710c7967bb [INF] Route matched with "{action = \"CheckEmailToken\", controller = \"EmailTokens\"}". Executing controller action with signature "System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] CheckEmailToken(System.String, System.String)" on controller "API.Controllers.EmailTokensController" ("API"). (122b2fdf)
+2025-09-16T12:01:38.5591367+02:00 80000015-0000-fc00-b63f-84710c7967bb [INF] Executed DbCommand ("501"ms) [Parameters=["@__ToLower_0='?'"], CommandType='Text', CommandTimeout='30']"
+""SELECT u.id, u.activo, u.apellidos, u.contraseña, u.correo, u.\"expiracionToken\", u.\"fechaCreación\", u.\"fechaNacimiento\", u.nombre, u.puntos, u.suscrito, u.token, u.\"ultimaConexion\"
+FROM \"Usuarios\" AS u
+WHERE lower(u.correo) = @__ToLower_0
+LIMIT 2" (0723d8ff)
+2025-09-16T12:01:44.7101358+02:00 80000015-0000-fc00-b63f-84710c7967bb [INF] Executed DbCommand ("45"ms) [Parameters=["@__emailToken_0='?', @__userId_1='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT e.id, e.consumido, e.\"emailAction\", e.\"fechaConsumido\", e.\"fechaCreacion\", e.\"fechaExpiracion\", e.ip, e.token, e.\"userAgent\", e.\"userId\"
+FROM \"EmailTokens\" AS e
+WHERE e.token::text = @__emailToken_0 AND e.\"userId\" = @__userId_1
+LIMIT 2" (0723d8ff)
+2025-09-16T12:01:58.1976683+02:00 80000015-0000-fc00-b63f-84710c7967bb [INF] Mensaje no definido. (e2ae16ec)
+2025-09-16T12:01:59.8393426+02:00 80000015-0000-fc00-b63f-84710c7967bb [INF] Executing "OkObjectResult", writing value of type '"System.Boolean"'. (605b4265)
+2025-09-16T12:02:00.1191602+02:00 80000015-0000-fc00-b63f-84710c7967bb [INF] Executed action "API.Controllers.EmailTokensController.CheckEmailToken (API)" in 166143.7452ms (afa2e885)
+2025-09-16T12:02:00.1194650+02:00 80000015-0000-fc00-b63f-84710c7967bb [INF] Executed endpoint '"API.Controllers.EmailTokensController.CheckEmailToken (API)"' (99874f2b)
+2025-09-16T12:02:00.1715072+02:00 80000015-0000-fc00-b63f-84710c7967bb [INF] Request finished "HTTP/2" "GET" "https"://"localhost:44311""""/EmailTokens/CheckEmailToken""?emailToken=23b99978-056b-4b52-8659-c4b0e6d254b1&email=dgomezmart%40uoc.edu" - 200 null "application/json; charset=utf-8" 168037.3461ms (74253ad3)
+2025-09-16T12:02:47.5251004+02:00 80000017-0000-fc00-b63f-84710c7967bb [INF] Request starting "HTTP/2" "PATCH" "https"://"localhost:44311""""/Usuarios/ActivacionSuscripcion""?token=23b99978-056b-4b52-8659-c4b0e6d254b1&email=dgomezmart%40uoc.edu" - null null (d509f86a)
+2025-09-16T12:02:47.5470476+02:00 80000017-0000-fc00-b63f-84710c7967bb [INF] CORS policy execution successful. (5409d6ef)
+2025-09-16T12:02:47.5481297+02:00 80000017-0000-fc00-b63f-84710c7967bb [INF] Executing endpoint '"API.Controllers.UsuariosController.ActivacionSuscripcion (API)"' (500cc934)
+2025-09-16T12:02:47.5715025+02:00 80000017-0000-fc00-b63f-84710c7967bb [INF] Route matched with "{action = \"ActivacionSuscripcion\", controller = \"Usuarios\"}". Executing controller action with signature "System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] ActivacionSuscripcion(System.String, System.String)" on controller "API.Controllers.UsuariosController" ("API"). (122b2fdf)
+2025-09-16T12:03:11.6875624+02:00 80000017-0000-fc00-b63f-84710c7967bb [INF] Executed DbCommand ("1"ms) [Parameters=["@__ToLower_0='?'"], CommandType='Text', CommandTimeout='30']"
+""SELECT u.id, u.activo, u.apellidos, u.contraseña, u.correo, u.\"expiracionToken\", u.\"fechaCreación\", u.\"fechaNacimiento\", u.nombre, u.puntos, u.suscrito, u.token, u.\"ultimaConexion\"
+FROM \"Usuarios\" AS u
+WHERE lower(u.correo) = @__ToLower_0
+LIMIT 2" (0723d8ff)
+2025-09-16T12:03:12.3886146+02:00 80000017-0000-fc00-b63f-84710c7967bb [INF] Executed DbCommand ("1"ms) [Parameters=["@__emailToken_0='?', @__userId_1='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT e.id, e.consumido, e.\"emailAction\", e.\"fechaConsumido\", e.\"fechaCreacion\", e.\"fechaExpiracion\", e.ip, e.token, e.\"userAgent\", e.\"userId\"
+FROM \"EmailTokens\" AS e
+WHERE e.token::text = @__emailToken_0 AND e.\"userId\" = @__userId_1
+LIMIT 2" (0723d8ff)
+2025-09-16T12:03:38.1551104+02:00 80000017-0000-fc00-b63f-84710c7967bb [INF] Executed DbCommand ("14"ms) [Parameters=["@__ToLower_0='?'"], CommandType='Text', CommandTimeout='30']"
+""SELECT u.id, u.activo, u.apellidos, u.contraseña, u.correo, u.\"expiracionToken\", u.\"fechaCreación\", u.\"fechaNacimiento\", u.nombre, u.puntos, u.suscrito, u.token, u.\"ultimaConexion\"
+FROM \"Usuarios\" AS u
+WHERE lower(u.correo) = @__ToLower_0
+LIMIT 1" (0723d8ff)
+2025-09-16T12:03:57.3283257+02:00 80000017-0000-fc00-b63f-84710c7967bb [INF] Executed DbCommand ("177"ms) [Parameters=["@p1='?' (DbType = Int32), @p0='?' (DbType = Boolean)"], CommandType='Text', CommandTimeout='30']"
+""UPDATE \"Usuarios\" SET suscrito = @p0
+WHERE id = @p1;" (0723d8ff)
+2025-09-16T12:04:05.9217334+02:00 80000017-0000-fc00-b63f-84710c7967bb [INF] Executed DbCommand ("1"ms) [Parameters=["@__emailToken_0='?'"], CommandType='Text', CommandTimeout='30']"
+""SELECT e.id, e.consumido, e.\"emailAction\", e.\"fechaConsumido\", e.\"fechaCreacion\", e.\"fechaExpiracion\", e.ip, e.token, e.\"userAgent\", e.\"userId\"
+FROM \"EmailTokens\" AS e
+WHERE e.token::text = @__emailToken_0
+LIMIT 2" (0723d8ff)
+2025-09-16T12:04:14.6945884+02:00 80000017-0000-fc00-b63f-84710c7967bb [INF] Mensaje no definido. (e2ae16ec)
+2025-09-16T12:04:14.6980427+02:00 80000017-0000-fc00-b63f-84710c7967bb [INF] Executing "OkObjectResult", writing value of type '"System.Boolean"'. (605b4265)
+2025-09-16T12:04:14.6998077+02:00 80000017-0000-fc00-b63f-84710c7967bb [INF] Executed action "API.Controllers.UsuariosController.ActivacionSuscripcion (API)" in 87128.1004ms (afa2e885)
+2025-09-16T12:04:14.7005129+02:00 80000017-0000-fc00-b63f-84710c7967bb [INF] Executed endpoint '"API.Controllers.UsuariosController.ActivacionSuscripcion (API)"' (99874f2b)
+2025-09-16T12:04:14.9317416+02:00 80000017-0000-fc00-b63f-84710c7967bb [ERR] Failed executing DbCommand ("276"ms) [Parameters=["@p4='?' (DbType = Guid), @p0='?' (DbType = Boolean), @p1='?' (DbType = DateTime), @p2='?', @p3='?'"], CommandType='Text', CommandTimeout='30']"
+""UPDATE \"EmailTokens\" SET consumido = @p0, \"fechaConsumido\" = @p1, ip = @p2, \"userAgent\" = @p3
+WHERE id = @p4;" (627a98df)
+2025-09-16T12:13:18.2482781+02:00  [INF] User profile is available. Using '"C:\Users\David\AppData\Local\ASP.NET\DataProtection-Keys"' as key repository and Windows DPAPI to encrypt keys at rest. (7ac5e29c)
+2025-09-16T12:13:20.6217403+02:00  [INF] Application started. Press Ctrl+C to shut down. (dcaefe54)
+2025-09-16T12:13:20.6255806+02:00  [INF] Hosting environment: "Development" (bc5a1a4e)
+2025-09-16T12:13:20.6277247+02:00  [INF] Content root path: "C:\Users\David\Desktop\API" (cc26f24e)
+2025-09-16T12:13:21.5642744+02:00 8000001a-0002-ff00-b63f-84710c7967bb [INF] Request starting "HTTP/2" "GET" "https"://"localhost:44311""""/swagger/index.html""" - null null (d509f86a)
+2025-09-16T12:13:34.7911134+02:00 8000001a-0002-ff00-b63f-84710c7967bb [INF] Request finished "HTTP/2" "GET" "https"://"localhost:44311""""/swagger/index.html""" - 200 null "text/html;charset=utf-8" 13369.0766ms (74253ad3)
+2025-09-16T12:13:38.4102642+02:00 80000017-0000-ff00-b63f-84710c7967bb [INF] Request starting "HTTP/2" "GET" "https"://"localhost:44311""""/_framework/aspnetcore-browser-refresh.js""" - null null (d509f86a)
+2025-09-16T12:13:38.4205663+02:00 80000017-0000-ff00-b63f-84710c7967bb [INF] Request finished "HTTP/2" "GET" "https"://"localhost:44311""""/_framework/aspnetcore-browser-refresh.js""" - 200 13742 "application/javascript; charset=utf-8" 6.0619ms (74253ad3)
+2025-09-16T12:13:38.8636042+02:00 80000019-0000-ff00-b63f-84710c7967bb [INF] Request starting "HTTP/2" "GET" "https"://"localhost:44311""""/_vs/browserLink""" - null null (d509f86a)
+2025-09-16T12:13:38.9477813+02:00 80000019-0000-ff00-b63f-84710c7967bb [INF] Request finished "HTTP/2" "GET" "https"://"localhost:44311""""/_vs/browserLink""" - 200 null "text/javascript; charset=UTF-8" 84.399ms (74253ad3)
+2025-09-16T12:13:42.3919901+02:00 8000001b-0000-ff00-b63f-84710c7967bb [INF] Request starting "HTTP/2" "GET" "https"://"localhost:44311""""/swagger/v1/swagger.json""" - null null (d509f86a)
+2025-09-16T12:13:42.4621803+02:00 8000001b-0000-ff00-b63f-84710c7967bb [INF] Request finished "HTTP/2" "GET" "https"://"localhost:44311""""/swagger/v1/swagger.json""" - 200 null "application/json;charset=utf-8" 70.4033ms (74253ad3)
+2025-09-16T12:16:26.6430836+02:00 8000000b-0002-fb00-b63f-84710c7967bb [INF] Request starting "HTTP/2" "PATCH" "https"://"localhost:44311""""/Usuarios/ActivacionSuscripcion""?token=23b99978-056b-4b52-8659-c4b0e6d254b1&email=dgomezmart%40uoc.edu" - null null (d509f86a)
+2025-09-16T12:16:26.6570264+02:00 8000000b-0002-fb00-b63f-84710c7967bb [INF] CORS policy execution successful. (5409d6ef)
+2025-09-16T12:16:26.6692840+02:00 8000000b-0002-fb00-b63f-84710c7967bb [INF] Executing endpoint '"API.Controllers.UsuariosController.ActivacionSuscripcion (API)"' (500cc934)
+2025-09-16T12:16:26.8264351+02:00 8000000b-0002-fb00-b63f-84710c7967bb [INF] Route matched with "{action = \"ActivacionSuscripcion\", controller = \"Usuarios\"}". Executing controller action with signature "System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] ActivacionSuscripcion(System.String, System.String)" on controller "API.Controllers.UsuariosController" ("API"). (122b2fdf)
+2025-09-16T12:16:59.8096797+02:00 8000000b-0002-fb00-b63f-84710c7967bb [INF] Executed DbCommand ("119"ms) [Parameters=["@__ToLower_0='?'"], CommandType='Text', CommandTimeout='30']"
+""SELECT u.id, u.activo, u.apellidos, u.contraseña, u.correo, u.\"expiracionToken\", u.\"fechaCreación\", u.\"fechaNacimiento\", u.nombre, u.puntos, u.suscrito, u.token, u.\"ultimaConexion\"
+FROM \"Usuarios\" AS u
+WHERE lower(u.correo) = @__ToLower_0
+LIMIT 2" (0723d8ff)
+2025-09-16T12:17:00.1486507+02:00 8000000b-0002-fb00-b63f-84710c7967bb [INF] Executed DbCommand ("69"ms) [Parameters=["@__emailToken_0='?', @__userId_1='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT e.id, e.consumido, e.\"emailAction\", e.\"fechaConsumido\", e.\"fechaCreacion\", e.\"fechaExpiracion\", e.ip, e.token, e.\"userAgent\", e.\"userId\"
+FROM \"EmailTokens\" AS e
+WHERE e.token::text = @__emailToken_0 AND e.\"userId\" = @__userId_1
+LIMIT 2" (0723d8ff)
+2025-09-16T12:17:10.2531583+02:00 8000000b-0002-fb00-b63f-84710c7967bb [INF] Executed DbCommand ("12"ms) [Parameters=["@__ToLower_0='?'"], CommandType='Text', CommandTimeout='30']"
+""SELECT u.id, u.activo, u.apellidos, u.contraseña, u.correo, u.\"expiracionToken\", u.\"fechaCreación\", u.\"fechaNacimiento\", u.nombre, u.puntos, u.suscrito, u.token, u.\"ultimaConexion\"
+FROM \"Usuarios\" AS u
+WHERE lower(u.correo) = @__ToLower_0
+LIMIT 1" (0723d8ff)
+2025-09-16T12:17:11.2600643+02:00 8000000b-0002-fb00-b63f-84710c7967bb [INF] Executed DbCommand ("38"ms) [Parameters=["@p1='?' (DbType = Int32), @p0='?' (DbType = Boolean)"], CommandType='Text', CommandTimeout='30']"
+""UPDATE \"Usuarios\" SET suscrito = @p0
+WHERE id = @p1;" (0723d8ff)
+2025-09-16T12:17:16.9957404+02:00 8000000b-0002-fb00-b63f-84710c7967bb [INF] Executed DbCommand ("1"ms) [Parameters=["@__emailToken_0='?'"], CommandType='Text', CommandTimeout='30']"
+""SELECT e.id, e.consumido, e.\"emailAction\", e.\"fechaConsumido\", e.\"fechaCreacion\", e.\"fechaExpiracion\", e.ip, e.token, e.\"userAgent\", e.\"userId\"
+FROM \"EmailTokens\" AS e
+WHERE e.token::text = @__emailToken_0
+LIMIT 2" (0723d8ff)
+2025-09-16T12:17:26.2204907+02:00 8000000b-0002-fb00-b63f-84710c7967bb [INF] Executed DbCommand ("742"ms) [Parameters=["@p4='?' (DbType = Guid), @p0='?' (DbType = Boolean), @p1='?' (DbType = DateTime), @p2='?', @p3='?'"], CommandType='Text', CommandTimeout='30']"
+""UPDATE \"EmailTokens\" SET consumido = @p0, \"fechaConsumido\" = @p1, ip = @p2, \"userAgent\" = @p3
+WHERE id = @p4;" (0723d8ff)
+2025-09-16T12:17:28.8276990+02:00 8000000b-0002-fb00-b63f-84710c7967bb [INF] Mensaje no definido. (e2ae16ec)
+2025-09-16T12:17:32.1306840+02:00 8000000b-0002-fb00-b63f-84710c7967bb [INF] Executing "OkObjectResult", writing value of type '"System.Boolean"'. (605b4265)
+2025-09-16T12:17:32.1427715+02:00 8000000b-0002-fb00-b63f-84710c7967bb [INF] Executed action "API.Controllers.UsuariosController.ActivacionSuscripcion (API)" in 65311.6883ms (afa2e885)
+2025-09-16T12:17:32.1433448+02:00 8000000b-0002-fb00-b63f-84710c7967bb [INF] Executed endpoint '"API.Controllers.UsuariosController.ActivacionSuscripcion (API)"' (99874f2b)
+2025-09-16T12:17:32.1588880+02:00 8000000b-0002-fb00-b63f-84710c7967bb [INF] Request finished "HTTP/2" "PATCH" "https"://"localhost:44311""""/Usuarios/ActivacionSuscripcion""?token=23b99978-056b-4b52-8659-c4b0e6d254b1&email=dgomezmart%40uoc.edu" - 200 null "application/json; charset=utf-8" 65519.1501ms (74253ad3)
+2025-09-16T12:20:23.5885915+02:00 80000013-0006-fc00-b63f-84710c7967bb [INF] Request starting "HTTP/2" "GET" "https"://"localhost:44311""""/EmailTokens/CheckEmailToken""?emailToken=23b99978-056b-4b52-8659-c4b0e6d254b1&email=dgomezmart%40uoc.edu" - null null (d509f86a)
+2025-09-16T12:20:23.5901407+02:00 80000013-0006-fc00-b63f-84710c7967bb [INF] Executing endpoint '"API.Controllers.EmailTokensController.CheckEmailToken (API)"' (500cc934)
+2025-09-16T12:20:23.5968315+02:00 80000013-0006-fc00-b63f-84710c7967bb [INF] Route matched with "{action = \"CheckEmailToken\", controller = \"EmailTokens\"}". Executing controller action with signature "System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] CheckEmailToken(System.String, System.String)" on controller "API.Controllers.EmailTokensController" ("API"). (122b2fdf)
+2025-09-16T12:20:23.7072259+02:00 80000013-0006-fc00-b63f-84710c7967bb [INF] Executed DbCommand ("1"ms) [Parameters=["@__ToLower_0='?'"], CommandType='Text', CommandTimeout='30']"
+""SELECT u.id, u.activo, u.apellidos, u.contraseña, u.correo, u.\"expiracionToken\", u.\"fechaCreación\", u.\"fechaNacimiento\", u.nombre, u.puntos, u.suscrito, u.token, u.\"ultimaConexion\"
+FROM \"Usuarios\" AS u
+WHERE lower(u.correo) = @__ToLower_0
+LIMIT 2" (0723d8ff)
+2025-09-16T12:20:23.7116561+02:00 80000013-0006-fc00-b63f-84710c7967bb [INF] Executed DbCommand ("1"ms) [Parameters=["@__emailToken_0='?', @__userId_1='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT e.id, e.consumido, e.\"emailAction\", e.\"fechaConsumido\", e.\"fechaCreacion\", e.\"fechaExpiracion\", e.ip, e.token, e.\"userAgent\", e.\"userId\"
+FROM \"EmailTokens\" AS e
+WHERE e.token::text = @__emailToken_0 AND e.\"userId\" = @__userId_1
+LIMIT 2" (0723d8ff)
+2025-09-16T12:20:23.8817481+02:00 80000013-0006-fc00-b63f-84710c7967bb [INF] Executing "ObjectResult", writing value of type '"Microsoft.AspNetCore.Mvc.ProblemDetails"'. (605b4265)
+2025-09-16T12:20:24.1191343+02:00 80000013-0006-fc00-b63f-84710c7967bb [INF] Executed action "API.Controllers.EmailTokensController.CheckEmailToken (API)" in 521.9157ms (afa2e885)
+2025-09-16T12:20:24.1193021+02:00 80000013-0006-fc00-b63f-84710c7967bb [INF] Executed endpoint '"API.Controllers.EmailTokensController.CheckEmailToken (API)"' (99874f2b)
+2025-09-16T12:20:24.1202143+02:00 80000013-0006-fc00-b63f-84710c7967bb [INF] Request finished "HTTP/2" "GET" "https"://"localhost:44311""""/EmailTokens/CheckEmailToken""?emailToken=23b99978-056b-4b52-8659-c4b0e6d254b1&email=dgomezmart%40uoc.edu" - 404 null "application/problem+json; charset=utf-8" 531.8271ms (74253ad3)
+2025-09-16T12:20:42.3375543+02:00 8000001d-0000-ff00-b63f-84710c7967bb [INF] Request starting "HTTP/2" "GET" "https"://"localhost:44311""""/EmailTokens/CheckEmailToken""?emailToken=23b99978-056b-4b52-8659-c4b0e6d254b1&email=dgomezmart%40uoc.edu" - null null (d509f86a)
+2025-09-16T12:20:42.3401958+02:00 8000001d-0000-ff00-b63f-84710c7967bb [INF] Executing endpoint '"API.Controllers.EmailTokensController.CheckEmailToken (API)"' (500cc934)
+2025-09-16T12:20:42.3404684+02:00 8000001d-0000-ff00-b63f-84710c7967bb [INF] Route matched with "{action = \"CheckEmailToken\", controller = \"EmailTokens\"}". Executing controller action with signature "System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] CheckEmailToken(System.String, System.String)" on controller "API.Controllers.EmailTokensController" ("API"). (122b2fdf)
+2025-09-16T12:20:52.0346858+02:00 8000001d-0000-ff00-b63f-84710c7967bb [INF] Executed DbCommand ("1"ms) [Parameters=["@__ToLower_0='?'"], CommandType='Text', CommandTimeout='30']"
+""SELECT u.id, u.activo, u.apellidos, u.contraseña, u.correo, u.\"expiracionToken\", u.\"fechaCreación\", u.\"fechaNacimiento\", u.nombre, u.puntos, u.suscrito, u.token, u.\"ultimaConexion\"
+FROM \"Usuarios\" AS u
+WHERE lower(u.correo) = @__ToLower_0
+LIMIT 2" (0723d8ff)
+2025-09-16T12:20:53.9231294+02:00 8000001d-0000-ff00-b63f-84710c7967bb [INF] Executed DbCommand ("1"ms) [Parameters=["@__emailToken_0='?', @__userId_1='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT e.id, e.consumido, e.\"emailAction\", e.\"fechaConsumido\", e.\"fechaCreacion\", e.\"fechaExpiracion\", e.ip, e.token, e.\"userAgent\", e.\"userId\"
+FROM \"EmailTokens\" AS e
+WHERE e.token::text = @__emailToken_0 AND e.\"userId\" = @__userId_1
+LIMIT 2" (0723d8ff)
+2025-09-16T12:21:10.4415172+02:00 8000001d-0000-ff00-b63f-84710c7967bb [INF] Executing "ObjectResult", writing value of type '"Microsoft.AspNetCore.Mvc.ProblemDetails"'. (605b4265)
+2025-09-16T12:21:10.4422194+02:00 8000001d-0000-ff00-b63f-84710c7967bb [INF] Executed action "API.Controllers.EmailTokensController.CheckEmailToken (API)" in 28101.6458ms (afa2e885)
+2025-09-16T12:21:10.4423072+02:00 8000001d-0000-ff00-b63f-84710c7967bb [INF] Executed endpoint '"API.Controllers.EmailTokensController.CheckEmailToken (API)"' (99874f2b)
+2025-09-16T12:21:10.4427124+02:00 8000001d-0000-ff00-b63f-84710c7967bb [INF] Request finished "HTTP/2" "GET" "https"://"localhost:44311""""/EmailTokens/CheckEmailToken""?emailToken=23b99978-056b-4b52-8659-c4b0e6d254b1&email=dgomezmart%40uoc.edu" - 404 null "application/problem+json; charset=utf-8" 28105.2665ms (74253ad3)
+2025-09-16T12:22:22.6593461+02:00 80000009-0004-fc00-b63f-84710c7967bb [INF] Request starting "HTTP/2" "PATCH" "https"://"localhost:44311""""/EmailTokens/ConsumeEmailToken""?emailToken=23b99978-056b-4b52-8659-c4b0e6d254b1&ip=0.0.0.1%3A3026&userAgent=IOS%20Safari%202x.1235.28" - null null (d509f86a)
+2025-09-16T12:22:22.6603727+02:00 80000009-0004-fc00-b63f-84710c7967bb [INF] CORS policy execution successful. (5409d6ef)
+2025-09-16T12:22:22.6607278+02:00 80000009-0004-fc00-b63f-84710c7967bb [INF] Executing endpoint '"API.Controllers.EmailTokensController.ConsumeEmailToken (API)"' (500cc934)
+2025-09-16T12:22:22.6658182+02:00 80000009-0004-fc00-b63f-84710c7967bb [INF] Route matched with "{action = \"ConsumeEmailToken\", controller = \"EmailTokens\"}". Executing controller action with signature "System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] ConsumeEmailToken(System.String, System.String, System.String)" on controller "API.Controllers.EmailTokensController" ("API"). (122b2fdf)
+2025-09-16T12:22:38.5373937+02:00 80000009-0004-fc00-b63f-84710c7967bb [INF] Executed DbCommand ("2"ms) [Parameters=["@__emailToken_0='?'"], CommandType='Text', CommandTimeout='30']"
+""SELECT e.id, e.consumido, e.\"emailAction\", e.\"fechaConsumido\", e.\"fechaCreacion\", e.\"fechaExpiracion\", e.ip, e.token, e.\"userAgent\", e.\"userId\"
+FROM \"EmailTokens\" AS e
+WHERE e.token::text = @__emailToken_0
+LIMIT 2" (0723d8ff)
+2025-09-16T12:40:21.8924097+02:00  [INF] User profile is available. Using '"C:\Users\David\AppData\Local\ASP.NET\DataProtection-Keys"' as key repository and Windows DPAPI to encrypt keys at rest. (7ac5e29c)
+2025-09-16T12:40:27.8538024+02:00  [INF] Application started. Press Ctrl+C to shut down. (dcaefe54)
+2025-09-16T12:40:27.8918701+02:00  [INF] Hosting environment: "Development" (bc5a1a4e)
+2025-09-16T12:40:27.8943272+02:00  [INF] Content root path: "C:\Users\David\Desktop\API" (cc26f24e)
+2025-09-16T12:40:29.0262351+02:00 8000000b-0004-fc00-b63f-84710c7967bb [INF] Request starting "HTTP/2" "GET" "https"://"localhost:44311""""/swagger/index.html""" - null null (d509f86a)
+2025-09-16T12:40:33.2433509+02:00 8000000b-0004-fc00-b63f-84710c7967bb [INF] Request finished "HTTP/2" "GET" "https"://"localhost:44311""""/swagger/index.html""" - 200 null "text/html;charset=utf-8" 4358.4056ms (74253ad3)
+2025-09-16T12:40:40.4122651+02:00 8000000d-0002-fb00-b63f-84710c7967bb [INF] Request starting "HTTP/2" "GET" "https"://"localhost:44311""""/_vs/browserLink""" - null null (d509f86a)
+2025-09-16T12:40:40.4122647+02:00 80000007-0001-ff00-b63f-84710c7967bb [INF] Request starting "HTTP/2" "GET" "https"://"localhost:44311""""/_framework/aspnetcore-browser-refresh.js""" - null null (d509f86a)
+2025-09-16T12:40:40.4621317+02:00 80000007-0001-ff00-b63f-84710c7967bb [INF] Request finished "HTTP/2" "GET" "https"://"localhost:44311""""/_framework/aspnetcore-browser-refresh.js""" - 200 13742 "application/javascript; charset=utf-8" 3.8066ms (74253ad3)
+2025-09-16T12:40:40.7291101+02:00 8000000d-0002-fb00-b63f-84710c7967bb [INF] Request finished "HTTP/2" "GET" "https"://"localhost:44311""""/_vs/browserLink""" - 200 null "text/javascript; charset=UTF-8" 316.972ms (74253ad3)
+2025-09-16T12:40:40.9993925+02:00 8000000e-0003-ff00-b63f-84710c7967bb [INF] Request starting "HTTP/2" "GET" "https"://"localhost:44311""""/swagger/v1/swagger.json""" - null null (d509f86a)
+2025-09-16T12:40:41.0553663+02:00 8000000e-0003-ff00-b63f-84710c7967bb [INF] Request finished "HTTP/2" "GET" "https"://"localhost:44311""""/swagger/v1/swagger.json""" - 200 null "application/json;charset=utf-8" 56.103ms (74253ad3)
+2025-09-16T12:53:18.3224214+02:00 8000001c-0002-ff00-b63f-84710c7967bb [INF] Request starting "HTTP/2" "GET" "https"://"localhost:44311""""/WorkerServiceExecution/ObtenerWorkerServiceExecutions""" - null null (d509f86a)
+2025-09-16T12:53:18.4221810+02:00 8000001c-0002-ff00-b63f-84710c7967bb [INF] Authorization failed. "These requirements were not met:
+DenyAnonymousAuthorizationRequirement: Requires an authenticated user." (92d7f7d3)
+2025-09-16T12:53:18.4323240+02:00 8000001c-0002-ff00-b63f-84710c7967bb [INF] AuthenticationScheme: "Bearer" was challenged. (d45f1f38)
+2025-09-16T12:53:18.4507340+02:00 8000001c-0002-ff00-b63f-84710c7967bb [INF] Request finished "HTTP/2" "GET" "https"://"localhost:44311""""/WorkerServiceExecution/ObtenerWorkerServiceExecutions""" - 401 null null 128.5725ms (74253ad3)
+2025-09-16T19:35:25.3792163+02:00  [INF] User profile is available. Using '"C:\Users\David\AppData\Local\ASP.NET\DataProtection-Keys"' as key repository and Windows DPAPI to encrypt keys at rest. (7ac5e29c)
+2025-09-16T19:35:30.4714506+02:00  [INF] Application started. Press Ctrl+C to shut down. (dcaefe54)
+2025-09-16T19:35:30.5292544+02:00  [INF] Hosting environment: "Development" (bc5a1a4e)
+2025-09-16T19:35:30.5328461+02:00  [INF] Content root path: "C:\Users\David\Desktop\API" (cc26f24e)
+2025-09-16T19:35:31.6526218+02:00 80000002-0006-fe00-b63f-84710c7967bb [INF] Request starting "HTTP/2" "GET" "https"://"localhost:44311""""/swagger/index.html""" - null null (d509f86a)
+2025-09-16T19:35:59.8422999+02:00 80000002-0006-fe00-b63f-84710c7967bb [INF] Request finished "HTTP/2" "GET" "https"://"localhost:44311""""/swagger/index.html""" - 200 null "text/html;charset=utf-8" 28460.5643ms (74253ad3)
+2025-09-16T19:36:00.0822275+02:00 80000002-0005-fd00-b63f-84710c7967bb [INF] Request starting "HTTP/2" "GET" "https"://"localhost:44311""""/_framework/aspnetcore-browser-refresh.js""" - null null (d509f86a)
+2025-09-16T19:36:00.0859485+02:00 80000002-0005-fd00-b63f-84710c7967bb [INF] Request finished "HTTP/2" "GET" "https"://"localhost:44311""""/_framework/aspnetcore-browser-refresh.js""" - 200 13742 "application/javascript; charset=utf-8" 3.5079ms (74253ad3)
+2025-09-16T19:36:00.1981768+02:00 80000004-0006-fe00-b63f-84710c7967bb [INF] Request starting "HTTP/2" "GET" "https"://"localhost:44311""""/_vs/browserLink""" - null null (d509f86a)
+2025-09-16T19:36:00.8789811+02:00 80000004-0006-fe00-b63f-84710c7967bb [INF] Request finished "HTTP/2" "GET" "https"://"localhost:44311""""/_vs/browserLink""" - 200 null "text/javascript; charset=UTF-8" 680.8361ms (74253ad3)
+2025-09-16T19:36:01.1397367+02:00 80000002-0004-fd00-b63f-84710c7967bb [INF] Request starting "HTTP/2" "GET" "https"://"localhost:44311""""/swagger/v1/swagger.json""" - null null (d509f86a)
+2025-09-16T19:36:01.1992254+02:00 80000002-0004-fd00-b63f-84710c7967bb [INF] Request finished "HTTP/2" "GET" "https"://"localhost:44311""""/swagger/v1/swagger.json""" - 200 null "application/json;charset=utf-8" 59.7943ms (74253ad3)
+2025-09-16T19:41:11.4425364+02:00 80000002-0005-fc00-b63f-84710c7967bb [INF] Request starting "HTTP/2" "GET" "https"://"localhost:44311""""/Segmentos/Obtenerxxx""" - null null (d509f86a)
+2025-09-16T19:41:11.7306486+02:00 80000002-0005-fc00-b63f-84710c7967bb [INF] Executing endpoint '"API.Controllers.SegmentosController.GetAllAsync (API)"' (500cc934)
+2025-09-16T19:41:13.2323775+02:00 80000002-0005-fc00-b63f-84710c7967bb [INF] Route matched with "{action = \"GetAll\", controller = \"Segmentos\"}". Executing controller action with signature "System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAllAsync()" on controller "API.Controllers.SegmentosController" ("API"). (122b2fdf)
+2025-09-16T19:42:06.8781440+02:00 80000002-0005-fc00-b63f-84710c7967bb [INF] Executed DbCommand ("82"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT u.\"idUsuario\", u.\"idSegmento\", u.fecha
+FROM \"UsuarioSegmentos\" AS u" (0723d8ff)
+2025-09-16T19:42:07.4031073+02:00 80000002-0005-fc00-b63f-84710c7967bb [INF] Executing StatusCodeResult, setting HTTP status code 204 (3fe03d2f)
+2025-09-16T19:42:07.4124160+02:00 80000002-0005-fc00-b63f-84710c7967bb [INF] Executed action "API.Controllers.SegmentosController.GetAllAsync (API)" in 54158.1733ms (afa2e885)
+2025-09-16T19:42:07.4137583+02:00 80000002-0005-fc00-b63f-84710c7967bb [INF] Executed endpoint '"API.Controllers.SegmentosController.GetAllAsync (API)"' (99874f2b)
+2025-09-16T19:42:07.4489197+02:00 80000002-0005-fc00-b63f-84710c7967bb [INF] Request finished "HTTP/2" "GET" "https"://"localhost:44311""""/Segmentos/Obtenerxxx""" - 204 null null 56006.5663ms (74253ad3)
+2025-09-16T19:42:54.3131169+02:00 80000002-0004-fc00-b63f-84710c7967bb [INF] Request starting "HTTP/2" "GET" "https"://"localhost:44311""""/Segmentos/Obtenerxxx""" - null null (d509f86a)
+2025-09-16T19:42:58.0261752+02:00 80000002-0004-fc00-b63f-84710c7967bb [INF] Executing endpoint '"API.Controllers.SegmentosController.GetAllAsync (API)"' (500cc934)
+2025-09-16T19:42:58.0277108+02:00 80000002-0004-fc00-b63f-84710c7967bb [INF] Route matched with "{action = \"GetAll\", controller = \"Segmentos\"}". Executing controller action with signature "System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAllAsync()" on controller "API.Controllers.SegmentosController" ("API"). (122b2fdf)
+2025-09-16T19:42:59.5958223+02:00 80000002-0004-fc00-b63f-84710c7967bb [INF] Executed DbCommand ("43"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT u.\"idUsuario\", u.\"idSegmento\", u.fecha
+FROM \"UsuarioSegmentos\" AS u" (0723d8ff)
+2025-09-16T19:43:00.3862448+02:00 80000002-0004-fc00-b63f-84710c7967bb [INF] Executing "OkObjectResult", writing value of type '"System.Collections.Generic.List`1[[Domain.Entities.UsuarioSegmentos, Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]"'. (605b4265)
+2025-09-16T19:43:00.4377261+02:00 80000002-0004-fc00-b63f-84710c7967bb [INF] Executed action "API.Controllers.SegmentosController.GetAllAsync (API)" in 2409.7933ms (afa2e885)
+2025-09-16T19:43:00.4378423+02:00 80000002-0004-fc00-b63f-84710c7967bb [INF] Executed endpoint '"API.Controllers.SegmentosController.GetAllAsync (API)"' (99874f2b)
+2025-09-16T19:43:00.4383374+02:00 80000002-0004-fc00-b63f-84710c7967bb [INF] Request finished "HTTP/2" "GET" "https"://"localhost:44311""""/Segmentos/Obtenerxxx""" - 200 null "application/json; charset=utf-8" 6125.6245ms (74253ad3)

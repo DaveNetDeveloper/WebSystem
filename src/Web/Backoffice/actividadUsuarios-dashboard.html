@@ -1,0 +1,154 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>Reports / User Activity</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="manifest" href="site.webmanifest">
+		<link rel="shortcut icon" type="image/x-icon" href="img/favicon.png"> 
+
+		<!-- CSS here -->
+        <link rel="stylesheet" href="css/bootstrap.min.css"> 
+        <link rel="stylesheet" href="css/animate.min.css"> 
+        <link rel="stylesheet" href="css/fontawesome-all.min.css">
+        <link rel="stylesheet" href="css/et-line-fonts.css">
+        <link rel="stylesheet" href="css/themify-icons.css"> 
+        <link rel="stylesheet" href="css/default.css">
+        <link rel="stylesheet" href="css/style.css">
+        <link rel="stylesheet" href="css/responsive.css">
+    </head>
+    <body> 
+
+        <div class="body-wrapper body-bg">
+            <header>
+
+            </header>
+
+            <!-- dashboard-area start -->
+            <div class="dashboard-area pt-30">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="pannel-wrapper white-bg mb-30">
+                                <div class="panel-heading heading-border">
+                                    <h4>Reports / User Activity</h4>
+                                </div>
+                                <div class="panel-body p-0">
+                                    <div class="card">
+                                        <div class="table-responsive">
+                                            <table class="table card-table">
+                                                <thead>
+                                                    <tr>
+                                                        <th style="width: 40px;">
+                                                            <label class="custom-control custom-checkbox m-0">
+                                                                <input class="custom-control-input" type="checkbox">
+                                                                <span class="custom-control-label"></span>
+                                                            </label>
+                                                        </th>
+                                                        <th>Id </th>
+                                                        <th>Nombre</th>
+                                                        <th>Apellidos</th>
+                                                        <th>Correo</th>
+                                                        <th>Pais</th>
+                                                        <th>Region</th>
+                                                        <th>Count Logins</th>
+                                                        <th>Ultima Conexion</th>
+                                                        <th style="width: 130px;"></th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody id="users-activity-body">
+                                                    <!--  Contenido dinamico -->
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- dashboard-area end -->
+
+            <script>
+                document.addEventListener("DOMContentLoaded", async () => {
+                    const tbody = document.getElementById("users-activity-body"); 
+                    try {
+                        const baseUrl = `https://localhost`;
+                        const controllerName = `DataQuery`;
+                        const port = `44311`;
+                        const apiUrl = `${baseUrl}:${port}/${controllerName}/ObtenerActividadUsuarios`; 
+
+                        const response = await fetch(apiUrl);
+                        if (!response.ok) throw new Error("Error al obtener los datos");
+
+                        const data = await response.json();
+
+                        tbody.innerHTML = "";  
+
+                        data.forEach((user) => {
+                            const row = document.createElement("tr");
+
+                        row.innerHTML = `
+                                      <td class="align-middle">
+                                        <label class="custom-control custom-checkbox m-0">
+                                          <input class="custom-control-input" type="checkbox">
+                                          <span class="custom-control-label"></span>
+                                        </label>
+                                      </td>
+                                      <td class="align-middle"><a href="#" class="text-dark">${user.idUsuario}</a></td>
+                                      <td class="align-middle">${user.nombre}</td>
+                                      <td class="align-middle">${user.apellidos}</td>
+                                      <td class="align-middle">${user.correo}</td>
+                                      <td class="align-middle">${user.pais}</td>
+                                      <td class="align-middle">${user.region}</td>
+                                      <td class="align-middle">${user.totalLogins}</td>
+                                      <td class="align-middle">${user.ultimaConexion}</td>
+                                      <td class="align-middle">
+                                        <button type="button" class="btn btn-sm btn-default md-btn-flat">Ver</button>
+                                        <button type="button" class="btn icon-btn btn-sm btn-default md-btn-flat">
+                                          <span class="ti-close"></span>
+                                        </button>
+                                      </td>
+                                    `;
+
+                            tbody.appendChild(row);
+                        });
+                    } catch (error) {
+                        console.error("Error al cargar los datos:", error);
+                        tbody.innerHTML = `
+                    <tr>
+                      <td colspan="10" class="text-center text-danger">
+                        No se pudieron cargar los datos
+                      </td>
+                    </tr>`;
+                    }
+                });
+            </script>
+
+
+            <!-- footer start -->
+            <footer>
+                <div class="footer-area">
+                    <div class="container">
+                        <div class="copyright white-bg pt-25 pb-25 text-center">
+                            <p>Copyright © 2025. All rights reserved. Design by David Martínez.</p>
+                        </div>
+                    </div>
+                </div>
+            </footer>
+            <!-- footer start -->
+        </div>
+         
+		<!-- JS here -->
+        <script src="js/vendor/modernizr-3.5.0.min.js"></script>
+        <script src="js/vendor/jquery-1.12.4.min.js"></script>
+        <script src="js/popper.min.js"></script>
+        <script src="js/bootstrap.min.js"></script> 
+        <script src="js/plugins.js"></script>
+        <script src="js/main.js"></script>
+    </body>
+</html>

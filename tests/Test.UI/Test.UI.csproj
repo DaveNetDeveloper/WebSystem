@@ -1,0 +1,80 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <Target Name="PlaywrightInstall" AfterTargets="Build">
+   <Exec Command="powershell bin\Debug\net8.0\playwright.ps1 install" />
+  </Target>
+    
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+
+    <IsPackable>false</IsPackable>
+    <IsTestProject>true</IsTestProject>
+    <WarningLevel>0</WarningLevel>
+</PropertyGroup> 
+
+  <ItemGroup>
+    <Compile Remove=".github\**" />
+    <EmbeddedResource Remove=".github\**" />
+    <None Remove=".github\**" />
+    <SpecFlowFeatureFiles Remove=".github\**" />
+    <SpecFlowObsoleteCodeBehindFiles Remove=".github\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="TestData\logins.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="appsettings.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Include="TestData\logins.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="Features\Login.feature">
+      <Generator></Generator>
+      <CustomToolNamespace></CustomToolNamespace>
+    </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="FluentAssertions" Version="8.5.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Testing" Version="8.0.18" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="8.0.19" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.6.0" />
+    <PackageReference Include="Microsoft.Playwright" Version="1.43.0" />
+    <PackageReference Include="Microsoft.Playwright.NUnit" Version="1.43.0" />
+    <PackageReference Include="Microsoft.Playwright.TestAdapter" Version="1.43.0" />
+    <PackageReference Include="Npm" Version="3.5.2" />
+    <PackageReference Include="NUnit" Version="3.13.3" />
+    <PackageReference Include="NUnit3TestAdapter" Version="4.2.1" />
+    <PackageReference Include="NUnit.Analyzers" Version="3.6.1" />
+    <PackageReference Include="coverlet.collector" Version="6.0.0" />
+    <PackageReference Include="SpecFlow" Version="4.0.31-beta" />
+    <PackageReference Include="SpecFlow.NUnit" Version="4.0.31-beta" />
+    <PackageReference Include="SpecFlow.Tools.MsBuild.Generation" Version="4.0.31-beta" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\Application\Application.csproj" />
+    <ProjectReference Include="..\..\src\Domain\Domain.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="tests\Test\bin\Debug\net8.0\Microsoft.Playwright.deps.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
+  <PropertyGroup>
+      <PreserveCompilationContext>true</PreserveCompilationContext>
+  </PropertyGroup>
+
+</Project>

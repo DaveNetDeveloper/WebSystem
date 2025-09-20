@@ -1,0 +1,841 @@
+<!doctype html>
+<html class="no-js" lang="es">
+<head>
+	<!-- Meta Tags -->
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="keywords" content="Site keywords here">
+	<meta name="description" content="">
+	<meta name='copyright' content='UOC'>
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+	<title>Explorar entidades</title>
+
+	<link rel="icon" href="img/favicon.png">
+
+	<!-- Google Fonts -->
+	<link href="https://fonts.googleapis.com/./css?family=Poppins:200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i&display=swap" rel="stylesheet">
+
+	<!-- Bootstrap CSS -->
+	<link rel="stylesheet" href="./css/bootstrap.min.css">
+	<!-- Nice Select ./css -->
+	<link rel="stylesheet" href="./css/nice-select.css">
+	<!-- Font Awesome CSS -->
+	<link rel="stylesheet" href="./css/font-awesome.min.css">
+	<!-- icofont CSS -->
+	<link rel="stylesheet" href="./css/icofont.css">
+	<!-- Slicknav -->
+	<link rel="stylesheet" href="./css/slicknav.min.css">
+	<!-- Owl Carousel CSS -->
+	<link rel="stylesheet" href="./css/owl-carousel.css">
+	<!-- Datepicker CSS -->
+	<link rel="stylesheet" href="./css/datepicker.css">
+	<!-- Animate CSS -->
+	<link rel="stylesheet" href="./css/animate.min.css">
+	<!-- Magnific Popup CSS -->
+	<link rel="stylesheet" href="./css/magnific-popup.css">
+
+	<!-- Medipro CSS -->
+	<link rel="stylesheet" href="./css/normalize.css">
+	<link rel="stylesheet" href="./css/style.css">
+	<link rel="stylesheet" href="./css/responsive.css">
+	<!-- Modal Panel CSS -->
+	<link rel="stylesheet" href="./css/modalPanel.css">
+
+	<script src="./js/libraries/utilities.js"></script>
+	<script src="./js/services/entidadesController.js"></script>
+	<script src="./js/services/usuariosController.js"></script>
+	<script src="./js/libraries/modalPanel.js"></script>
+
+	<style>
+		.filter-pills {
+			display: flex;
+			gap: 10px;
+			margin-bottom: 10px;
+		}
+
+        .filter-pill {
+            background-color: goldenrod;
+            padding: 5px 10px;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            margin-top: 20px;
+            width: min-content;
+            color: black;
+        }
+
+            .filter-pill button {
+                margin-left: 5px;
+                cursor: pointer;
+                background: transparent;
+            }
+	</style>
+
+</head>
+<body>
+
+	<!-- Preloader -->
+	<div class="preloader">
+		<div class="loader">
+			<div class="loader-outter"></div>
+			<div class="loader-inner"></div>
+
+			<div class="indicator">
+				<svg width="16px" height="12px">
+					<polyline id="back" points="1 6 4 6 6 11 10 1 12 6 15 6"></polyline>
+					<polyline id="front" points="1 6 4 6 6 11 10 1 12 6 15 6"></polyline>
+				</svg>
+			</div>
+		</div>
+	</div>
+	<!-- End Preloader -->
+	<!-- Header Area -->
+	<header class="header">
+		<!-- Header Inner -->
+		<div class="header-inner">
+			<div class="container">
+				<div class="inner">
+					<div class="row">
+						<div class="col-lg-3 col-md-3 col-12">
+							<!-- Start Logo -->
+							<div class="logo">
+								<a href="home-privada.html"><img src="img/logo.jpg" alt="#"></a>
+							</div>
+							<!-- End Logo -->
+							<!-- Mobile Nav -->
+							<div class="mobile-nav"></div>
+							<!-- End Mobile Nav -->
+						</div>
+						<div class="col-lg-7 col-md-9 col-12">
+							<!-- Main Menu -->
+							<div class="main-menu">
+								<nav class="navigation">
+									<ul class="nav menu">
+										<li ><a href="home-privada.html">Inicio </a></li>
+										<li class="active"><a href="explorar.html">Explorar </a></li>
+										<li><a href="#">Recompensas </a></li>
+										<li><a href="#">Cómo ganar puntos? </a></li>
+									</ul>
+								</nav>
+							</div>
+							<!--/ End Main Menu -->
+						</div>
+						<div class="col-lg-2 col-12">
+							<div class="get-quote">
+								<a id="infoUsuario" style="background: goldenrod;" href="#" class="btn">Hola {nombreUsuario}. Tienes {puntosUsuario} pts.</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!--/ End Header Inner -->
+	</header>
+	<!-- End Header Area -->
+
+	<script>
+
+		var infoUsuarioElement = document.getElementById("infoUsuario"); 
+
+        let cookieToken =  getCookie("token");
+		 
+        let parameters = new Filtros();
+        parameters.agregarElemento('token', cookieToken);
+
+        GetByFilters('ObtenerUsuarioByToken', parameters)
+            .then(data => {
+
+                infoUsuarioElement.innerHTML = infoUsuarioElement.innerHTML.replace("{nombreUsuario}", data.nombre).replace("{puntosUsuario}", data.puntos);
+            })
+            .catch(error => {
+                console.error('Error en GetByFilters:', error);
+                //alert('Error en PatchByFilters: ', error);
+            }); 
+
+	</script>
+
+	<!-- Start Newsletter Area -->
+	<section class="newsletter section">
+		<div class="container">
+			<div class="row ">
+				<div class="col-lg-4  col-12">
+					<!-- Start Newsletter Form -->
+					<div class="subscribe-text ">
+						<h6>Encuentra la entidad que andabas buscando</h6>
+						<!--<p class="">Descubre entidades cercanas.</p>-->
+					</div>
+					<!-- End Newsletter Form -->
+				</div>
+				<div class="col-lg-8  col-12">
+					<!-- Start Newsletter Form -->
+					<div class="subscribe-form ">
+						<div class="newsletter-inner">
+							<input id="textEntidad" name="textEntidad" placeholder="Buscar entidad" class="common-input" onfocus="this.placeholder = ''"
+								   onblur="this.placeholder = 'Buscar entidad'" type="text">
+							<button id="btnBuscarEntidad" class="btn" onclick="buscarPorNombre()">BUSCAR</button>
+							<button id="abrirModal" class="btn" onclick="filtros()">FILTROS</button>
+						</div>
+					</div>
+					<!-- End Newsletter Form -->
+				</div>
+			</div>
+		</div>
+	</section>
+	<!-- /End Newsletter Area -->
+	<!-- Start Modal Panel -->
+	<span id="modalPanelContainer"></span>
+
+	<!--<button id="abrirModal">Abrir Modal</button>-->
+	<div id="miModal" class="modal">
+		<div id="containerModal" class="modal-contenido">
+			<span class="cerrar" id="cerrarModal">&times;</span>
+			<h3 id="h3Modal" style="text-align: center; margin-top: 3%"></h3>
+			<p id="pModal" style="margin-top: 5%"></p>
+
+		</div>
+	</div>
+	<!--End Modal Panel-->
+
+
+	<div id="filterContainer" class="filter-pills">
+		<!-- Pastillas de filtro se agregan dinámicamente -->
+	</div>
+
+	<!-- Start Blog Area -->
+	<section class="blog section" id="blog">
+		<div class="container">
+
+			<!--<div class="row">
+				<div class="col-lg-12">
+					<div class="section-title">
+						<h2>Keep up with Our Most Recent Medical News.</h2>
+						<img src="img/section-img.png" alt="#">
+						<p>Lorem ipsum dolor sit amet consectetur adipiscing elit praesent aliquet. pretiumts</p>
+					</div>
+				</div>
+			</div>-->
+
+			<div id="cardsPanel" class="row">
+
+			</div>
+		</div>
+	</section>
+	<!-- End Blog Area -->
+
+
+	<script type="text/javascript">
+
+        var url = new URL(window.location.href);
+        var urlParams = new URLSearchParams(url.search);
+		var paramNombreEntidad = urlParams.get('textSearch');
+
+		var paramTipoEntidad = urlParams.get('typeSearch');
+
+        if (paramTipoEntidad != null && paramTipoEntidad.trim() != '') { 
+			buscarEntidadByFilters('', 0, paramTipoEntidad, 0);
+		}
+
+		if (paramNombreEntidad != null) {
+			busquedaInicial(paramNombreEntidad);
+		}
+
+		cargarContenidoModal('Filtros de la búsqueda', '');
+
+		const FiltrosBusqueda = {};
+     
+		crearInputTexto('Nombre');
+
+		crearDropdown('Tipo', ['Tipo 1', 'Tipo 2', 'Tipo 3']);
+
+		crearDropdown('Categoria', ['Categoría 1', 'Categoría 2', 'Categoría 3']);
+
+		crearSlider('Distancia', 200, 1500);
+
+		crearBoton();
+		 
+        function busquedaInicial(paramNombreEntidad) {
+
+            document.getElementById('textEntidad').value = paramNombreEntidad;
+
+			if (paramNombreEntidad.trim() === '' || !/^[a-zA-Z\u00C0-\u017F]+$/.test(paramNombreEntidad)) {
+				alert('Valor no válido para la búsqueda.');
+			}
+			else {
+				buscarEntidad(paramNombreEntidad);
+			}
+        }
+
+        function crearInputTexto(titulo) {
+            const input = document.createElement('input');
+            input.type = 'text';
+            input.name = titulo.toLowerCase();
+            input.placeholder = '';
+
+            input.addEventListener('input', function () {
+
+                //alert(input.name + " " + input.value);
+                actualizarFiltros(input.name, input.value);
+            });
+
+            const row = crearFila(titulo, input);
+            document.getElementById('containerModal').appendChild(row);
+        }
+
+        function crearDropdown(titulo, opciones) {
+            const select = document.createElement('select');
+            select.name = titulo.toLowerCase();
+            select.style.float = "right";
+
+            let i = 1;
+            opciones.forEach(opcion => {
+                const option = document.createElement('option');
+                option.text = opcion;
+                option.value = i;
+                select.add(option);
+                i++;
+            });
+
+            select.addEventListener('change', function () {
+                actualizarFiltros(select.name, select.value);
+            });
+
+            const row = crearFila(titulo, select);
+            document.getElementById('containerModal').appendChild(row);
+        }
+
+        function crearSlider(titulo, min, max) {
+            const slider = document.createElement('input');
+            slider.type = 'range';
+            slider.name = titulo.toLowerCase();
+            slider.min = min;
+            slider.max = max;
+
+            slider.addEventListener('input', function () {
+                actualizarFiltros(slider.name, slider.value);
+            });
+
+            const row = crearFila(titulo, slider);
+            document.getElementById('containerModal').appendChild(row);
+        }
+
+        function crearFila(titulo, input) {
+            const row = document.createElement('div');
+            row.classList.add('input-row');
+            row.style.marginTop = "40px";
+
+            const label = document.createElement('label');
+            label.textContent = titulo;
+            //label.style.float = "left";
+
+            row.appendChild(label);
+            row.appendChild(input);
+
+            return row;
+        }
+
+        function crearBoton() {
+            const boton = document.createElement('button');
+            boton.classList.add('btn');
+
+            boton.textContent = 'APLICAR';
+            boton.style.marginTop = '20px';
+
+            boton.addEventListener('click', function () {
+
+                //alert(FiltrosBusqueda.nombre + " - " + FiltrosBusqueda.distancia + " - " + document.getElementsByName("tipo")[0].value + " - " + document.getElementsByName("categoria")[0].value);
+                buscarEntidadByFilters(FiltrosBusqueda.nombre, FiltrosBusqueda.distancia, document.getElementsByName("tipo")[0].value, document.getElementsByName("categoria")[0].value);
+            });
+            document.getElementById('containerModal').appendChild(boton);
+        }
+
+        // Función para actualizar los filtros si el valor no está vacío
+        function actualizarFiltros(nombreCampo, valor) {
+            if (valor.trim() !== '') {
+
+                FiltrosBusqueda[nombreCampo] = valor.trim();
+            } else {
+
+                delete FiltrosBusqueda[nombreCampo];
+            }
+        }
+		 
+		function filtros() {
+
+			document.getElementsByName("nombre")[0].value = "";
+			document.getElementsByName("distancia")[0].value = 0;
+
+			document.getElementsByName("categoria")[0].selectedIndex = 0;
+			document.getElementsByName("tipo")[0].selectedIndex = 0;
+		}
+
+		function buscarPorNombre() {
+			const textEntidadValue = document.getElementById('textEntidad').value;
+
+			if (textEntidadValue.trim() === '' || !/^[a-zA-Z\u00C0-\u017F]+$/.test(textEntidadValue)) {
+				alert('Por favor, ingrese un valor válido para la entidad.');
+			}
+			else {
+				buscarEntidad(textEntidadValue);
+			}
+		}
+
+		function buscarEntidadByFilters(nombre, proximidad, tipo, categoria) {
+
+			const searchParams = new Filtros();
+			searchParams.agregarElemento('nombre', nombre);
+			searchParams.agregarElemento('tipo', tipo);
+			searchParams.agregarElemento('categoria', categoria);
+			searchParams.agregarElemento('proximidad', proximidad);
+
+			let contenedor = document.getElementById('cardsPanel');
+			contenedor.innerHTML = '';
+
+
+			GetEntidadByFilters('ObtenerEntidadesByFilters', searchParams)
+				.then(entidades => { 
+                  
+					resetFiltroBusqueda(); 
+
+					if (entidades !== undefined && entidades.length > 0) {
+                      
+						var i = 1;
+						entidades.forEach(function (entidad) {
+
+							//alert(entidad.nombre);
+
+							//Construir card de la entidad
+							let card = crearCard(entidad.id, entidad.nombre, entidad.tipo, entidad.categoria, entidad.descripcion, entidad.imagen, entidad.ubicacion);
+							contenedor.appendChild(card);
+							i++;
+						})
+					}
+
+					//alert("pre aplicarFiltros");
+					aplicarFiltros(searchParams);
+					//alert("post  aplicarFiltros");
+					miModal.style.display = 'none';
+				})
+				.catch(error => {
+					console.error('Error en GetEntidades:', error);
+					alert('Error en GetEntidades: ', error);
+				});
+		}
+
+		function aplicarFiltros(searchParams) {
+
+			//alert("aplicarFiltros");
+
+			resetEtiquetas();
+
+			searchParams.elementos.forEach(filtro => {
+
+				switch (filtro[0]) {
+					case "nombre":
+
+						//alert("nombre - " + filtro[1]);
+						if (filtro[1].length > 0) {
+							agregarFiltro(filtro[0]);
+						}
+						break;
+					case "tipo":
+
+						//alert("tipo - " + filtro[1]);
+						if (filtro[1] > 0) {
+							agregarFiltro(filtro[0]);
+						}
+						break;
+					case "categoria":
+
+						//alert("categoria - " + filtro[1]);
+						if (filtro[1] > 0) {
+							agregarFiltro(filtro[0]);
+						}
+						break;
+					case "proximidad":
+
+						//alert("proximidad - " + filtro[1]);
+						if (filtro[1] > 0) {
+							agregarFiltro(filtro[0]);
+						}
+						break;
+				}
+			});
+		}
+
+		function buscarEntidad(textEntidad) {
+
+			const searchParams = new Filtros();
+			let nombre = textEntidad;
+			searchParams.agregarElemento('nombre', nombre);
+
+			let contenedor = document.getElementById('cardsPanel');
+			contenedor.innerHTML = '';
+
+			GetEntidadByFilters('ObtenerEntidadByName', searchParams)
+				.then(entidades => {
+					var i = 1;
+					entidades.forEach(function (entidad) {
+
+						let card = crearCard(entidad.id, entidad.nombre, entidad.tipo, entidad.categoria, entidad.descripcion, entidad.imagen, entidad.ubicacion);
+						contenedor.appendChild(card);
+						i++;
+					})
+				})
+				.catch(error => {
+					console.error('Error en GetEntidades:', error);
+					alert('Error en GetEntidades: ', error);
+				});
+		}
+
+		//
+		function crearCard(id, nombre, tipo, categoria, descripcion, imagen, ubicacion) {
+
+			const divCol = document.createElement('div');
+			divCol.id = id;
+
+			divCol.addEventListener("click", function () {
+
+				redirectToPage('landing-entidad.html?id=' + id);
+			});
+
+			divCol.className = 'col-lg-4 col-md-6 col-12';
+
+			const divSingleNews = document.createElement('div');
+			divSingleNews.className = 'single-news';
+
+			const divNewsHead = document.createElement('div');
+			divNewsHead.className = 'news-head';
+
+			const img = document.createElement('img');
+			img.src = 'img/entidades/' + imagen;
+			img.alt = '#';
+            img.style.minHeight = "235px";
+
+			const divNewsBody = document.createElement('div');
+			divNewsBody.className = 'news-body';
+
+			const divNewsContent = document.createElement('div');
+			divNewsContent.className = 'news-content';
+
+			const divDate = document.createElement('div');
+			divDate.className = 'date';
+			divDate.textContent = '22 Aug, 2020';
+
+			const h2 = document.createElement('h2');
+			const a = document.createElement('a');
+			a.href = 'blog-single.html';
+			a.textContent = nombre;
+			h2.appendChild(a);
+
+			const p = document.createElement('p');
+			p.className = 'text';
+            p.textContent = descripcion.slice(0, 300);; 
+
+			//
+			divNewsContent.appendChild(divDate);
+			divNewsContent.appendChild(h2);
+			divNewsContent.appendChild(p);
+
+			divNewsBody.appendChild(divNewsContent);
+
+			divNewsHead.appendChild(img);
+
+			divSingleNews.appendChild(divNewsHead);
+			divSingleNews.appendChild(divNewsBody);
+
+			divCol.appendChild(divSingleNews);
+
+			return divCol;
+		}
+
+		function resetEtiquetas() {
+
+			var elementos = document.getElementsByClassName("filter-pill");
+			var elementosArray = Array.from(elementos);
+			elementosArray.forEach(function (elemento) {
+				elemento.remove();
+			});
+		}
+
+		function resetFiltroBusqueda() {
+
+			FiltrosBusqueda.nombre = "";
+			FiltrosBusqueda.proximidad = 200;
+		}
+
+		function agregarFiltro(tipoFiltro) {
+			// Crear la pastilla de filtro
+			const filterPill = document.createElement('div');
+			filterPill.classList.add('filter-pill');
+            filterPill.classList.add('container');
+
+			// Contenido de la pastilla
+			filterPill.innerHTML = tipoFiltro + '<button id="' + tipoFiltro + '" onclick="eliminarFiltro(this, \'' + tipoFiltro + '\')">❌</button>';
+
+
+			// Agregar la pastilla al contenedor
+			document.getElementById('filterContainer').appendChild(filterPill);
+		}
+
+		function eliminarFiltro(btnEliminar, tipoFiltro) {
+
+			// Obtener el padre (la pastilla) del botón de eliminar y eliminarlo
+			const filterPill = btnEliminar.parentNode;
+
+			//alert(tipoFiltro);
+			switch (tipoFiltro) {
+				case "nombre":
+					FiltrosBusqueda.nombre = "";
+					break;
+				case "tipo":
+
+					break;
+				case "categoria":
+
+					break;
+				case "proximidad":
+					FiltrosBusqueda.distancia = 200;
+					break;
+			}
+			filterPill.remove();
+
+			buscarEntidadByFilters(FiltrosBusqueda.nombre, FiltrosBusqueda.distancia, document.getElementsByName("tipo")[0].value, document.getElementsByName("categoria")[0].value);
+
+		}
+
+	</script>
+
+	<!-- Start Why choose -->
+	<section class="why-choose section">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-6 col-12">
+					<!-- Start Choose Left -->
+					<div class="choose-left">
+						<h3>¿Cómo puntuar entidades?</h3>
+						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas pharetra antege vel est lobortis, a commodo magna rhoncus. In quis nisi non emet quam pharetra commodo. </p>
+						<p>Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. </p>
+						<div class="row">
+							<div class="col-lg-6">
+								<ul class="list">
+									<li><i class="fa fa-caret-right"></i>Maecenas vitae luctus nibh. </li>
+									<li><i class="fa fa-caret-right"></i>Duis massa massa.</li>
+									<li><i class="fa fa-caret-right"></i>Aliquam feugiat interdum.</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+					<!-- End Choose Left -->
+				</div>
+				<div class="col-lg-6 col-12">
+					<!-- Start Choose Rights -->
+					<div class="choose-right">
+						<div class="video-image">
+							<!-- Video Animation -->
+							<div class="promo-video">
+								<div class="waves-block">
+									<div class="waves wave-1"></div>
+									<div class="waves wave-2"></div>
+									<div class="waves wave-3"></div>
+								</div>
+							</div>
+							<!--/ End Video Animation -->
+							<a href="https://www.youtube.com/watch?v=RFVXy6CRVR4" class="video video-popup mfp-iframe"><i class="fa fa-play"></i></a>
+						</div>
+					</div>
+					<!-- End Choose Rights -->
+				</div>
+			</div>
+		</div>
+	</section>
+	<!--/ End Why choose -->
+	 
+	<!-- Start portfolio -->
+	<section class="portfolio section">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-12">
+					<div class="section-title">
+						<h2>Encuentra las entidades mejor valoradas.</h2>
+						<img src="img/logo.jpg" alt="#">
+						<p>Lorem ipsum dolor sit amet consectetur adipiscing elit praesent aliquet. pretiumts</p>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-lg-12 col-12">
+					<div class="owl-carousel portfolio-slider">
+						<div class="single-pf">
+							<img src="img/fotos/31_Foto.1569071024.png" alt="#">
+							<a style="height: 300px;" href="#" class="btn">View Details</a>
+						</div>
+						<div class="single-pf">
+							<img style="height: 300px;" src="img/fotos/1.jpg" alt="#">
+							<a href="#" class="btn">View Details</a>
+						</div>
+						<div class="single-pf">
+							<img style="height: 300px;" src="img/fotos/foto7.jpg" alt="#">
+							<a href="#" class="btn">View Details</a>
+						</div>
+						<div class="single-pf">
+							<img style="height: 300px;" src="img/fotos/cal-ton-sant-andreu-barca-cruz-01.jpg" alt="#">
+							<a href="#" class="btn">View Details</a>
+						</div>
+						<div class="single-pf">
+							<img style="height: 300px;" src="img/fotos/photo5780873586842643674-1024x682-1.jpg" alt="#">
+							<a href="#" class="btn">View Details</a>
+						</div>
+						<div class="single-pf">
+							<img style="height: 300px;" src="img/fotos/foto4.jpg" alt="#">
+							<a href="#" class="btn">View Details</a>
+						</div>
+						<div class="single-pf">
+							<img style="height: 300px;"  src="img/fotos/foto1.jpg" alt="#">
+							<a href="#" class="btn">View Details</a>
+						</div>
+						<div class="single-pf">
+							<img style="height: 300px;" src="img/fotos/farmacia_guinart.jpg" alt="#">
+							<a href="#" class="btn">View Details</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<!--/ End portfolio -->
+	 
+	
+
+
+	<!-- Footer Area -->
+	<footer id="footer" class="footer ">
+		<!-- Footer Top -->
+		<div class="footer-top">
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-3 col-md-6 col-12">
+						<div class="single-footer">
+							<h2>About Us</h2>
+							<p>Lorem ipsum dolor sit am consectetur adipisicing elit do eiusmod tempor incididunt ut labore dolore magna.</p>
+							<!-- Social -->
+							<ul class="social">
+								<li><a href="#"><i class="icofont-facebook"></i></a></li>
+								<li><a href="#"><i class="icofont-google-plus"></i></a></li>
+								<li><a href="#"><i class="icofont-twitter"></i></a></li>
+								<li><a href="#"><i class="icofont-vimeo"></i></a></li>
+								<li><a href="#"><i class="icofont-pinterest"></i></a></li>
+							</ul>
+							<!-- End Social -->
+						</div>
+					</div>
+					<div class="col-lg-3 col-md-6 col-12">
+						<div class="single-footer f-link">
+							<h2>Quick Links</h2>
+							<div class="row">
+								<div class="col-lg-6 col-md-6 col-12">
+									<ul>
+										<li><a href="#"><i class="fa fa-caret-right" aria-hidden="true"></i>Home</a></li>
+										<li><a href="#"><i class="fa fa-caret-right" aria-hidden="true"></i>About Us</a></li>
+										<li><a href="#"><i class="fa fa-caret-right" aria-hidden="true"></i>Services</a></li>
+										<li><a href="#"><i class="fa fa-caret-right" aria-hidden="true"></i>Our Cases</a></li>
+										<li><a href="#"><i class="fa fa-caret-right" aria-hidden="true"></i>Other Links</a></li>
+									</ul>
+								</div>
+								<div class="col-lg-6 col-md-6 col-12">
+									<ul>
+										<li><a href="#"><i class="fa fa-caret-right" aria-hidden="true"></i>Consuling</a></li>
+										<li><a href="#"><i class="fa fa-caret-right" aria-hidden="true"></i>Finance</a></li>
+										<li><a href="#"><i class="fa fa-caret-right" aria-hidden="true"></i>Testimonials</a></li>
+										<li><a href="#"><i class="fa fa-caret-right" aria-hidden="true"></i>FAQ</a></li>
+										<li><a href="#"><i class="fa fa-caret-right" aria-hidden="true"></i>Contact Us</a></li>
+									</ul>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="col-lg-3 col-md-6 col-12">
+						<div class="single-footer">
+							<h2>Open Hours</h2>
+							<p>Lorem ipsum dolor sit ame consectetur adipisicing elit do eiusmod tempor incididunt.</p>
+							<ul class="time-sidual">
+								<li class="day">Monday - Fridayp <span>8.00-20.00</span></li>
+								<li class="day">Saturday <span>9.00-18.30</span></li>
+								<li class="day">Monday - Thusday <span>9.00-15.00</span></li>
+							</ul>
+						</div>
+					</div>
+					<div class="col-lg-3 col-md-6 col-12">
+						<div class="single-footer">
+							<h2>Newsletter</h2>
+							<p>subscribe to our newsletter to get allour news in your inbox.. Lorem ipsum dolor sit amet, consectetur adipisicing elit,</p>
+							<form action="mail/mail.php" method="get" target="_blank" class="newsletter-inner">
+								<input name="email" placeholder="Email Address" class="common-input" onfocus="this.placeholder = ''"
+									   onblur="this.placeholder = 'Your email address'" required="" type="email">
+								<button class="button"><i class="icofont icofont-paper-plane"></i></button>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!--/ End Footer Top -->
+		<!-- Copyright -->
+		<div class="copyright">
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-12 col-md-12 col-12">
+						<div class="copyright-content">
+							<p>© Copyright 2023  |  Todos los derechos reservados.</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!--/ End Copyright -->
+	</footer>
+	<!--/ End Footer Area -->
+	<!-- jquery Min JS -->
+	<script src="./js/jquery.min.js"></script>
+	<!-- jquery Migrate JS -->
+	<script src="./js/jquery-migrate-3.0.0.js"></script>
+	<!-- jquery Ui JS -->
+	<script src="./js/jquery-ui.min.js"></script>
+	<!-- Easing JS -->
+	<script src="./js/easing.js"></script>
+	<!-- Color JS -->
+	<script src="./js/colors.js"></script>
+	<!-- Popper JS -->
+	<script src="./js/popper.min.js"></script>
+	<!-- Bootstrap Datepicker JS -->
+	<script src="./js/bootstrap-datepicker.js"></script>
+	<!-- Jquery Nav JS -->
+	<script src="./js/jquery.nav.js"></script>
+	<!-- Slicknav JS -->
+	<script src="./js/slicknav.min.js"></script>
+	<!-- ScrollUp JS -->
+	<script src="./js/jquery.scrollUp.min.js"></script>
+	<!-- Niceselect JS -->
+	<script src="./js/niceselect.js"></script>
+	<!-- Tilt Jquery JS -->
+	<script src="./js/tilt.jquery.min.js"></script>
+	<!-- Owl Carousel JS -->
+	<script src="./js/owl-carousel.js"></script>
+	<!-- counterup JS -->
+	<script src="./js/jquery.counterup.min.js"></script>
+	<!-- Steller JS -->
+	<script src="./js/steller.js"></script>
+	<!-- Wow JS -->
+	<script src="./js/wow.min.js"></script>
+	<!-- Magnific Popup JS -->
+	<script src="./js/jquery.magnific-popup.min.js"></script>
+	<!-- Counter Up CDN JS -->
+	<script src="http://cdnjs.cloudflare.com/ajax/libs/waypoints/2.0.3/waypoints.min.js"></script>
+	<!-- Bootstrap JS -->
+	<script src="./js/bootstrap.min.js"></script>
+	<!-- Main JS -->
+	<script src="./js/main.js"></script>
+</body>
+</html>

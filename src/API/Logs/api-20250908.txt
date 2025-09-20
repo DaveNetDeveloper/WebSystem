@@ -1,0 +1,170 @@
+2025-09-08T23:14:22.4862183+02:00  [INF] User profile is available. Using '"C:\Users\David\AppData\Local\ASP.NET\DataProtection-Keys"' as key repository and Windows DPAPI to encrypt keys at rest. (7ac5e29c)
+2025-09-08T23:14:38.2322103+02:00  [INF] Application started. Press Ctrl+C to shut down. (dcaefe54)
+2025-09-08T23:14:38.3369059+02:00  [INF] Hosting environment: "Development" (bc5a1a4e)
+2025-09-08T23:14:38.3396249+02:00  [INF] Content root path: "C:\Users\David\Desktop\API" (cc26f24e)
+2025-09-08T23:14:38.7562061+02:00 8000005c-0002-ff00-b63f-84710c7967bb [INF] Request starting "HTTP/2" "GET" "https"://"localhost:44311""""/swagger/index.html""" - null null (d509f86a)
+2025-09-08T23:14:51.9771152+02:00 8000005c-0002-ff00-b63f-84710c7967bb [INF] Request finished "HTTP/2" "GET" "https"://"localhost:44311""""/swagger/index.html""" - 200 null "text/html;charset=utf-8" 13468.9246ms (74253ad3)
+2025-09-08T23:14:52.4081673+02:00 80000064-0004-fb00-b63f-84710c7967bb [INF] Request starting "HTTP/2" "GET" "https"://"localhost:44311""""/_framework/aspnetcore-browser-refresh.js""" - null null (d509f86a)
+2025-09-08T23:14:52.4522059+02:00 80000064-0004-fb00-b63f-84710c7967bb [INF] Request finished "HTTP/2" "GET" "https"://"localhost:44311""""/_framework/aspnetcore-browser-refresh.js""" - 200 13742 "application/javascript; charset=utf-8" 3.696ms (74253ad3)
+2025-09-08T23:14:52.5163546+02:00 80000066-0004-fb00-b63f-84710c7967bb [INF] Request starting "HTTP/2" "GET" "https"://"localhost:44311""""/_vs/browserLink""" - null null (d509f86a)
+2025-09-08T23:14:56.0831777+02:00 80000066-0004-fb00-b63f-84710c7967bb [INF] Request finished "HTTP/2" "GET" "https"://"localhost:44311""""/_vs/browserLink""" - 200 null "text/javascript; charset=UTF-8" 3566.925ms (74253ad3)
+2025-09-08T23:14:56.2499078+02:00 80000068-0004-fb00-b63f-84710c7967bb [INF] Request starting "HTTP/2" "GET" "https"://"localhost:44311""""/swagger/v1/swagger.json""" - null null (d509f86a)
+2025-09-08T23:14:56.3104871+02:00 80000068-0004-fb00-b63f-84710c7967bb [INF] Request finished "HTTP/2" "GET" "https"://"localhost:44311""""/swagger/v1/swagger.json""" - 200 null "application/json;charset=utf-8" 60.6929ms (74253ad3)
+2025-09-08T23:48:18.0818391+02:00 80000070-0000-fb00-b63f-84710c7967bb [INF] Request starting "HTTP/2" "POST" "https"://"localhost:44311""""/auth/login""" - "application/json" 57 (d509f86a)
+2025-09-08T23:48:18.1164766+02:00 80000070-0000-fb00-b63f-84710c7967bb [INF] CORS policy execution successful. (5409d6ef)
+2025-09-08T23:48:18.2074023+02:00 80000070-0000-fb00-b63f-84710c7967bb [INF] Executing endpoint '"API.Controllers.AuthController.Login (API)"' (500cc934)
+2025-09-08T23:48:18.5666636+02:00 80000070-0000-fb00-b63f-84710c7967bb [INF] Route matched with "{action = \"Login\", controller = \"Auth\"}". Executing controller action with signature "Microsoft.AspNetCore.Mvc.IActionResult Login(Domain.Entities.LoginDto)" on controller "API.Controllers.AuthController" ("API"). (122b2fdf)
+2025-09-08T23:48:32.4165971+02:00 80000070-0000-fb00-b63f-84710c7967bb [INF] Executed DbCommand ("337"ms) [Parameters=["@__ToLower_0='?'"], CommandType='Text', CommandTimeout='30']"
+""SELECT u.id, u.activo, u.apellidos, u.contraseña, u.correo, u.\"expiracionToken\", u.\"fechaCreación\", u.\"fechaNacimiento\", u.nombre, u.puntos, u.suscrito, u.token, u.\"ultimaConexion\"
+FROM \"Usuarios\" AS u
+WHERE lower(btrim(u.nombre, E' \t\n\r')) = @__ToLower_0
+LIMIT 2" (0723d8ff)
+2025-09-08T23:48:33.5836824+02:00 80000070-0000-fb00-b63f-84710c7967bb [INF] Executed DbCommand ("284"ms) [Parameters=["@__idUsuario_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT t.id, t.activo, t.apellidos, t.contraseña, t.correo, t.\"expiracionToken\", t.\"fechaCreación\", t.\"fechaNacimiento\", t.nombre, t.puntos, t.suscrito, t.token, t.\"ultimaConexion\", t0.idrol, t0.idusuario, t0.identidad, t0.id, t0.descripcion, t0.level, t0.nombre, t0.id0, t0.activo, t0.descripcion0, t0.\"fechaAlta\", t0.\"idTipoEntidad\", t0.imagen, t0.nombre0, t0.popularidad, t0.ubicacion
+FROM (
+    SELECT u.id, u.activo, u.apellidos, u.contraseña, u.correo, u.\"expiracionToken\", u.\"fechaCreación\", u.\"fechaNacimiento\", u.nombre, u.puntos, u.suscrito, u.token, u.\"ultimaConexion\"
+    FROM \"Usuarios\" AS u
+    WHERE u.id = @__idUsuario_0
+    LIMIT 1
+) AS t
+LEFT JOIN (
+    SELECT u0.idrol, u0.idusuario, u0.identidad, r.id, r.descripcion, r.level, r.nombre, e.id AS id0, e.activo, e.descripcion AS descripcion0, e.\"fechaAlta\", e.\"idTipoEntidad\", e.imagen, e.nombre AS nombre0, e.popularidad, e.ubicacion
+    FROM \"UsuarioRoles\" AS u0
+    INNER JOIN \"Roles\" AS r ON u0.idrol = r.id
+    INNER JOIN \"Entidades\" AS e ON u0.identidad = e.id
+) AS t0 ON t.id = t0.idusuario
+ORDER BY t.id, t0.idrol, t0.idusuario, t0.identidad, t0.id" (0723d8ff)
+2025-09-08T23:48:34.6547142+02:00 80000070-0000-fb00-b63f-84710c7967bb [INF] Executing "OkObjectResult", writing value of type '"<>f__AnonymousType1`3[[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.DateTime, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]"'. (605b4265)
+2025-09-08T23:48:34.7671012+02:00 80000070-0000-fb00-b63f-84710c7967bb [INF] Executed action "API.Controllers.AuthController.Login (API)" in 16186.0242ms (afa2e885)
+2025-09-08T23:48:34.7674176+02:00 80000070-0000-fb00-b63f-84710c7967bb [INF] Executed endpoint '"API.Controllers.AuthController.Login (API)"' (99874f2b)
+2025-09-08T23:48:34.9345128+02:00 80000070-0000-fb00-b63f-84710c7967bb [ERR] Failed executing DbCommand ("366"ms) [Parameters=["@p2='?' (DbType = Int32), @p0='?' (DbType = DateTime), @p1='?'"], CommandType='Text', CommandTimeout='30']"
+""UPDATE \"Usuarios\" SET \"expiracionToken\" = @p0, token = @p1
+WHERE id = @p2;" (627a98df)
+2025-09-08T23:49:15.6521713+02:00 80000049-0001-ff00-b63f-84710c7967bb [INF] Request starting "HTTP/2" "GET" "https"://"localhost:44311""""/WorkerServiceExecution/ObtenerWorkerServiceExecutions""" - null null (d509f86a)
+2025-09-08T23:49:15.9313054+02:00 80000049-0001-ff00-b63f-84710c7967bb [INF] Executing endpoint '"API.Controllers.WorkerServiceExecutionController.GetAllAsync (API)"' (500cc934)
+2025-09-08T23:49:15.9610752+02:00 80000049-0001-ff00-b63f-84710c7967bb [INF] Route matched with "{action = \"GetAll\", controller = \"WorkerServiceExecution\"}". Executing controller action with signature "System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAllAsync()" on controller "API.Controllers.WorkerServiceExecutionController" ("API"). (122b2fdf)
+2025-09-08T23:49:16.1429148+02:00 80000049-0001-ff00-b63f-84710c7967bb [INF] Executed DbCommand ("6"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT w.id, w.\"executionTime\", w.result, w.\"resultDetailed\", w.\"workerService\"
+FROM \"WorkerServiceExecutions\" AS w" (0723d8ff)
+2025-09-08T23:49:16.1873064+02:00 80000049-0001-ff00-b63f-84710c7967bb [INF] Executing "OkObjectResult", writing value of type '"System.Collections.Generic.List`1[[Domain.Entities.WorkerServiceExecution, Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]"'. (605b4265)
+2025-09-08T23:49:16.2270407+02:00 80000049-0001-ff00-b63f-84710c7967bb [INF] Executed action "API.Controllers.WorkerServiceExecutionController.GetAllAsync (API)" in 265.5619ms (afa2e885)
+2025-09-08T23:49:16.2284686+02:00 80000049-0001-ff00-b63f-84710c7967bb [INF] Executed endpoint '"API.Controllers.WorkerServiceExecutionController.GetAllAsync (API)"' (99874f2b)
+2025-09-08T23:49:16.2467214+02:00 80000049-0001-ff00-b63f-84710c7967bb [INF] Request finished "HTTP/2" "GET" "https"://"localhost:44311""""/WorkerServiceExecution/ObtenerWorkerServiceExecutions""" - 200 null "application/json; charset=utf-8" 594.5313ms (74253ad3)
+2025-09-08T23:49:48.7561997+02:00 800000a1-0004-fc00-b63f-84710c7967bb [INF] Request starting "HTTP/2" "GET" "https"://"localhost:44311""""/WorkerServiceExecution/ObtenerWorkerServiceExecution/b35b3eb6-fe1e-43f2-9447-e697ccfa4509""" - null null (d509f86a)
+2025-09-08T23:49:48.7626475+02:00 800000a1-0004-fc00-b63f-84710c7967bb [INF] Executing endpoint '"API.Controllers.WorkerServiceExecutionController.GetByIdAsync (API)"' (500cc934)
+2025-09-08T23:49:48.8329171+02:00 800000a1-0004-fc00-b63f-84710c7967bb [INF] Route matched with "{action = \"GetById\", controller = \"WorkerServiceExecution\"}". Executing controller action with signature "System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetByIdAsync(System.Guid)" on controller "API.Controllers.WorkerServiceExecutionController" ("API"). (122b2fdf)
+2025-09-08T23:49:48.9834029+02:00 800000a1-0004-fc00-b63f-84710c7967bb [INF] Executed DbCommand ("2"ms) [Parameters=["@__get_Item_0='?' (DbType = Guid)"], CommandType='Text', CommandTimeout='30']"
+""SELECT w.id, w.\"executionTime\", w.result, w.\"resultDetailed\", w.\"workerService\"
+FROM \"WorkerServiceExecutions\" AS w
+WHERE w.id = @__get_Item_0
+LIMIT 1" (0723d8ff)
+2025-09-08T23:49:48.9858585+02:00 800000a1-0004-fc00-b63f-84710c7967bb [INF] Executing "OkObjectResult", writing value of type '"Domain.Entities.WorkerServiceExecution"'. (605b4265)
+2025-09-08T23:49:48.9875657+02:00 800000a1-0004-fc00-b63f-84710c7967bb [INF] Executed action "API.Controllers.WorkerServiceExecutionController.GetByIdAsync (API)" in 154.4015ms (afa2e885)
+2025-09-08T23:49:48.9876761+02:00 800000a1-0004-fc00-b63f-84710c7967bb [INF] Executed endpoint '"API.Controllers.WorkerServiceExecutionController.GetByIdAsync (API)"' (99874f2b)
+2025-09-08T23:49:48.9883183+02:00 800000a1-0004-fc00-b63f-84710c7967bb [INF] Request finished "HTTP/2" "GET" "https"://"localhost:44311""""/WorkerServiceExecution/ObtenerWorkerServiceExecution/b35b3eb6-fe1e-43f2-9447-e697ccfa4509""" - 200 null "application/json; charset=utf-8" 232.3467ms (74253ad3)
+2025-09-08T23:50:50.0775563+02:00 80000044-0006-f900-b63f-84710c7967bb [INF] Request starting "HTTP/2" "PUT" "https"://"localhost:44311""""/WorkerServiceExecution/ActualizarWorkerServiceExecution""" - "application/json" 182 (d509f86a)
+2025-09-08T23:50:50.0788479+02:00 80000044-0006-f900-b63f-84710c7967bb [INF] CORS policy execution successful. (5409d6ef)
+2025-09-08T23:50:50.0979788+02:00 80000044-0006-f900-b63f-84710c7967bb [INF] Executing endpoint '"API.Controllers.WorkerServiceExecutionController.UpdateAsync (API)"' (500cc934)
+2025-09-08T23:50:50.1025425+02:00 80000044-0006-f900-b63f-84710c7967bb [INF] Route matched with "{action = \"Update\", controller = \"WorkerServiceExecution\"}". Executing controller action with signature "System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] UpdateAsync(Domain.Entities.WorkerServiceExecution)" on controller "API.Controllers.WorkerServiceExecutionController" ("API"). (122b2fdf)
+2025-09-08T23:50:50.1703310+02:00 80000044-0006-f900-b63f-84710c7967bb [INF] Executed DbCommand ("2"ms) [Parameters=["@__workerServiceExecution_id_0='?' (DbType = Guid)"], CommandType='Text', CommandTimeout='30']"
+""SELECT w.id, w.\"executionTime\", w.result, w.\"resultDetailed\", w.\"workerService\"
+FROM \"WorkerServiceExecutions\" AS w
+WHERE w.id = @__workerServiceExecution_id_0
+LIMIT 2" (0723d8ff)
+2025-09-08T23:50:50.2012683+02:00 80000044-0006-f900-b63f-84710c7967bb [INF] Executing "ObjectResult", writing value of type '"Microsoft.AspNetCore.Mvc.ProblemDetails"'. (605b4265)
+2025-09-08T23:50:50.2821592+02:00 80000044-0006-f900-b63f-84710c7967bb [INF] Executed action "API.Controllers.WorkerServiceExecutionController.UpdateAsync (API)" in 179.3358ms (afa2e885)
+2025-09-08T23:50:50.2823283+02:00 80000044-0006-f900-b63f-84710c7967bb [INF] Executed endpoint '"API.Controllers.WorkerServiceExecutionController.UpdateAsync (API)"' (99874f2b)
+2025-09-08T23:50:50.2830091+02:00 80000044-0006-f900-b63f-84710c7967bb [INF] Request finished "HTTP/2" "PUT" "https"://"localhost:44311""""/WorkerServiceExecution/ActualizarWorkerServiceExecution""" - 404 null "application/problem+json; charset=utf-8" 205.6473ms (74253ad3)
+2025-09-08T23:51:06.9695328+02:00 800000a3-0004-fc00-b63f-84710c7967bb [INF] Request starting "HTTP/2" "PUT" "https"://"localhost:44311""""/WorkerServiceExecution/ActualizarWorkerServiceExecution""" - "application/json" 182 (d509f86a)
+2025-09-08T23:51:06.9702475+02:00 800000a3-0004-fc00-b63f-84710c7967bb [INF] CORS policy execution successful. (5409d6ef)
+2025-09-08T23:51:06.9707271+02:00 800000a3-0004-fc00-b63f-84710c7967bb [INF] Executing endpoint '"API.Controllers.WorkerServiceExecutionController.UpdateAsync (API)"' (500cc934)
+2025-09-08T23:51:06.9709603+02:00 800000a3-0004-fc00-b63f-84710c7967bb [INF] Route matched with "{action = \"Update\", controller = \"WorkerServiceExecution\"}". Executing controller action with signature "System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] UpdateAsync(Domain.Entities.WorkerServiceExecution)" on controller "API.Controllers.WorkerServiceExecutionController" ("API"). (122b2fdf)
+2025-09-08T23:51:06.9951761+02:00 800000a3-0004-fc00-b63f-84710c7967bb [INF] Executed DbCommand ("2"ms) [Parameters=["@__workerServiceExecution_id_0='?' (DbType = Guid)"], CommandType='Text', CommandTimeout='30']"
+""SELECT w.id, w.\"executionTime\", w.result, w.\"resultDetailed\", w.\"workerService\"
+FROM \"WorkerServiceExecutions\" AS w
+WHERE w.id = @__workerServiceExecution_id_0
+LIMIT 2" (0723d8ff)
+2025-09-08T23:51:07.0004820+02:00 800000a3-0004-fc00-b63f-84710c7967bb [INF] Executing "ObjectResult", writing value of type '"Microsoft.AspNetCore.Mvc.ProblemDetails"'. (605b4265)
+2025-09-08T23:51:07.0012152+02:00 800000a3-0004-fc00-b63f-84710c7967bb [INF] Executed action "API.Controllers.WorkerServiceExecutionController.UpdateAsync (API)" in 30.1596ms (afa2e885)
+2025-09-08T23:51:07.0013575+02:00 800000a3-0004-fc00-b63f-84710c7967bb [INF] Executed endpoint '"API.Controllers.WorkerServiceExecutionController.UpdateAsync (API)"' (99874f2b)
+2025-09-08T23:51:07.0020337+02:00 800000a3-0004-fc00-b63f-84710c7967bb [INF] Request finished "HTTP/2" "PUT" "https"://"localhost:44311""""/WorkerServiceExecution/ActualizarWorkerServiceExecution""" - 404 null "application/problem+json; charset=utf-8" 32.384ms (74253ad3)
+2025-09-08T23:51:49.3380431+02:00 800000a5-0004-fc00-b63f-84710c7967bb [INF] Request starting "HTTP/2" "PUT" "https"://"localhost:44311""""/WorkerServiceExecution/ActualizarWorkerServiceExecution""" - "application/json" 182 (d509f86a)
+2025-09-08T23:51:49.3387917+02:00 800000a5-0004-fc00-b63f-84710c7967bb [INF] CORS policy execution successful. (5409d6ef)
+2025-09-08T23:51:49.3390194+02:00 800000a5-0004-fc00-b63f-84710c7967bb [INF] Executing endpoint '"API.Controllers.WorkerServiceExecutionController.UpdateAsync (API)"' (500cc934)
+2025-09-08T23:51:49.3391818+02:00 800000a5-0004-fc00-b63f-84710c7967bb [INF] Route matched with "{action = \"Update\", controller = \"WorkerServiceExecution\"}". Executing controller action with signature "System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] UpdateAsync(Domain.Entities.WorkerServiceExecution)" on controller "API.Controllers.WorkerServiceExecutionController" ("API"). (122b2fdf)
+2025-09-08T23:52:23.5930870+02:00 800000a5-0004-fc00-b63f-84710c7967bb [INF] Mensaje no definido. (e2ae16ec)
+2025-09-08T23:52:23.5939933+02:00 800000a5-0004-fc00-b63f-84710c7967bb [INF] Executing "OkObjectResult", writing value of type '"System.Boolean"'. (605b4265)
+2025-09-08T23:52:23.6210018+02:00 800000a5-0004-fc00-b63f-84710c7967bb [INF] Executed action "API.Controllers.WorkerServiceExecutionController.UpdateAsync (API)" in 34281.6695ms (afa2e885)
+2025-09-08T23:52:23.6211189+02:00 800000a5-0004-fc00-b63f-84710c7967bb [INF] Executed endpoint '"API.Controllers.WorkerServiceExecutionController.UpdateAsync (API)"' (99874f2b)
+2025-09-08T23:52:23.6214643+02:00 800000a5-0004-fc00-b63f-84710c7967bb [INF] Request finished "HTTP/2" "PUT" "https"://"localhost:44311""""/WorkerServiceExecution/ActualizarWorkerServiceExecution""" - 200 null "application/json; charset=utf-8" 34283.7194ms (74253ad3)
+2025-09-08T23:53:19.1599607+02:00 800000b1-0002-fc00-b63f-84710c7967bb [INF] Request starting "HTTP/2" "POST" "https"://"localhost:44311""""/WorkerServiceExecution/CrearWorkerServiceExecution""" - "application/json" 182 (d509f86a)
+2025-09-08T23:53:19.1608580+02:00 800000b1-0002-fc00-b63f-84710c7967bb [INF] CORS policy execution successful. (5409d6ef)
+2025-09-08T23:53:19.1611633+02:00 800000b1-0002-fc00-b63f-84710c7967bb [INF] Executing endpoint '"API.Controllers.WorkerServiceExecutionController.AddAsync (API)"' (500cc934)
+2025-09-08T23:53:19.1664304+02:00 800000b1-0002-fc00-b63f-84710c7967bb [INF] Route matched with "{action = \"Add\", controller = \"WorkerServiceExecution\"}". Executing controller action with signature "System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] AddAsync(Domain.Entities.WorkerServiceExecution)" on controller "API.Controllers.WorkerServiceExecutionController" ("API"). (122b2fdf)
+2025-09-08T23:53:19.3495940+02:00 800000b1-0002-fc00-b63f-84710c7967bb [INF] Executed DbCommand ("99"ms) [Parameters=["@p0='?' (DbType = Guid), @p1='?' (DbType = DateTime), @p2='?', @p3='?', @p4='?'"], CommandType='Text', CommandTimeout='30']"
+""INSERT INTO \"WorkerServiceExecutions\" (id, \"executionTime\", result, \"resultDetailed\", \"workerService\")
+VALUES (@p0, @p1, @p2, @p3, @p4);" (0723d8ff)
+2025-09-08T23:53:19.3616645+02:00 800000b1-0002-fc00-b63f-84710c7967bb [INF] Mensaje no definido. (e2ae16ec)
+2025-09-08T23:53:19.3619550+02:00 800000b1-0002-fc00-b63f-84710c7967bb [INF] Executing "OkObjectResult", writing value of type '"System.Boolean"'. (605b4265)
+2025-09-08T23:53:19.3624689+02:00 800000b1-0002-fc00-b63f-84710c7967bb [INF] Executed action "API.Controllers.WorkerServiceExecutionController.AddAsync (API)" in 195.9528ms (afa2e885)
+2025-09-08T23:53:19.3625537+02:00 800000b1-0002-fc00-b63f-84710c7967bb [INF] Executed endpoint '"API.Controllers.WorkerServiceExecutionController.AddAsync (API)"' (99874f2b)
+2025-09-08T23:53:19.3629602+02:00 800000b1-0002-fc00-b63f-84710c7967bb [INF] Request finished "HTTP/2" "POST" "https"://"localhost:44311""""/WorkerServiceExecution/CrearWorkerServiceExecution""" - 200 null "application/json; charset=utf-8" 203.3143ms (74253ad3)
+2025-09-08T23:54:15.1099001+02:00 800000a7-0004-fc00-b63f-84710c7967bb [INF] Request starting "HTTP/2" "PUT" "https"://"localhost:44311""""/WorkerServiceExecution/ActualizarWorkerServiceExecution""" - "application/json" 188 (d509f86a)
+2025-09-08T23:54:15.1107463+02:00 800000a7-0004-fc00-b63f-84710c7967bb [INF] CORS policy execution successful. (5409d6ef)
+2025-09-08T23:54:15.1110475+02:00 800000a7-0004-fc00-b63f-84710c7967bb [INF] Executing endpoint '"API.Controllers.WorkerServiceExecutionController.UpdateAsync (API)"' (500cc934)
+2025-09-08T23:54:15.1112217+02:00 800000a7-0004-fc00-b63f-84710c7967bb [INF] Route matched with "{action = \"Update\", controller = \"WorkerServiceExecution\"}". Executing controller action with signature "System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] UpdateAsync(Domain.Entities.WorkerServiceExecution)" on controller "API.Controllers.WorkerServiceExecutionController" ("API"). (122b2fdf)
+2025-09-08T23:54:15.2449848+02:00 800000a7-0004-fc00-b63f-84710c7967bb [INF] Executing "BadRequestObjectResult", writing value of type '"Microsoft.AspNetCore.Mvc.ValidationProblemDetails"'. (605b4265)
+2025-09-08T23:54:15.2572982+02:00 800000a7-0004-fc00-b63f-84710c7967bb [INF] Executed action "API.Controllers.WorkerServiceExecutionController.UpdateAsync (API)" in 145.9448ms (afa2e885)
+2025-09-08T23:54:15.2574920+02:00 800000a7-0004-fc00-b63f-84710c7967bb [INF] Executed endpoint '"API.Controllers.WorkerServiceExecutionController.UpdateAsync (API)"' (99874f2b)
+2025-09-08T23:54:15.2578748+02:00 800000a7-0004-fc00-b63f-84710c7967bb [INF] Request finished "HTTP/2" "PUT" "https"://"localhost:44311""""/WorkerServiceExecution/ActualizarWorkerServiceExecution""" - 400 null "application/problem+json; charset=utf-8" 148.102ms (74253ad3)
+2025-09-08T23:54:27.7856696+02:00 800000b3-0002-fc00-b63f-84710c7967bb [INF] Request starting "HTTP/2" "PUT" "https"://"localhost:44311""""/WorkerServiceExecution/ActualizarWorkerServiceExecution""" - "application/json" 186 (d509f86a)
+2025-09-08T23:54:27.7862763+02:00 800000b3-0002-fc00-b63f-84710c7967bb [INF] CORS policy execution successful. (5409d6ef)
+2025-09-08T23:54:27.7864856+02:00 800000b3-0002-fc00-b63f-84710c7967bb [INF] Executing endpoint '"API.Controllers.WorkerServiceExecutionController.UpdateAsync (API)"' (500cc934)
+2025-09-08T23:54:27.7866384+02:00 800000b3-0002-fc00-b63f-84710c7967bb [INF] Route matched with "{action = \"Update\", controller = \"WorkerServiceExecution\"}". Executing controller action with signature "System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] UpdateAsync(Domain.Entities.WorkerServiceExecution)" on controller "API.Controllers.WorkerServiceExecutionController" ("API"). (122b2fdf)
+2025-09-08T23:54:30.5345013+02:00 800000b3-0002-fc00-b63f-84710c7967bb [INF] Executed DbCommand ("3"ms) [Parameters=["@__workerServiceExecution_id_0='?' (DbType = Guid)"], CommandType='Text', CommandTimeout='30']"
+""SELECT w.id, w.\"executionTime\", w.result, w.\"resultDetailed\", w.\"workerService\"
+FROM \"WorkerServiceExecutions\" AS w
+WHERE w.id = @__workerServiceExecution_id_0
+LIMIT 2" (0723d8ff)
+2025-09-08T23:54:30.5460308+02:00 800000b3-0002-fc00-b63f-84710c7967bb [INF] Executed DbCommand ("2"ms) [Parameters=["@p4='?' (DbType = Guid), @p0='?' (DbType = DateTime), @p1='?', @p2='?', @p3='?'"], CommandType='Text', CommandTimeout='30']"
+""UPDATE \"WorkerServiceExecutions\" SET \"executionTime\" = @p0, result = @p1, \"resultDetailed\" = @p2, \"workerService\" = @p3
+WHERE id = @p4;" (0723d8ff)
+2025-09-08T23:54:30.5489707+02:00 800000b3-0002-fc00-b63f-84710c7967bb [INF] Mensaje no definido. (e2ae16ec)
+2025-09-08T23:54:30.5494780+02:00 800000b3-0002-fc00-b63f-84710c7967bb [INF] Executing "OkObjectResult", writing value of type '"System.Boolean"'. (605b4265)
+2025-09-08T23:54:30.5502571+02:00 800000b3-0002-fc00-b63f-84710c7967bb [INF] Executed action "API.Controllers.WorkerServiceExecutionController.UpdateAsync (API)" in 2763.395ms (afa2e885)
+2025-09-08T23:54:30.5505232+02:00 800000b3-0002-fc00-b63f-84710c7967bb [INF] Executed endpoint '"API.Controllers.WorkerServiceExecutionController.UpdateAsync (API)"' (99874f2b)
+2025-09-08T23:54:30.5510786+02:00 800000b3-0002-fc00-b63f-84710c7967bb [INF] Request finished "HTTP/2" "PUT" "https"://"localhost:44311""""/WorkerServiceExecution/ActualizarWorkerServiceExecution""" - 200 null "application/json; charset=utf-8" 2765.5629ms (74253ad3)
+2025-09-08T23:54:50.1743807+02:00 80000072-0000-fb00-b63f-84710c7967bb [INF] Request starting "HTTP/2" "PUT" "https"://"localhost:44311""""/WorkerServiceExecution/ActualizarWorkerServiceExecution""" - "application/json" 182 (d509f86a)
+2025-09-08T23:54:50.1749748+02:00 80000072-0000-fb00-b63f-84710c7967bb [INF] CORS policy execution successful. (5409d6ef)
+2025-09-08T23:54:50.1751920+02:00 80000072-0000-fb00-b63f-84710c7967bb [INF] Executing endpoint '"API.Controllers.WorkerServiceExecutionController.UpdateAsync (API)"' (500cc934)
+2025-09-08T23:54:50.1753363+02:00 80000072-0000-fb00-b63f-84710c7967bb [INF] Route matched with "{action = \"Update\", controller = \"WorkerServiceExecution\"}". Executing controller action with signature "System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] UpdateAsync(Domain.Entities.WorkerServiceExecution)" on controller "API.Controllers.WorkerServiceExecutionController" ("API"). (122b2fdf)
+2025-09-08T23:54:51.8249704+02:00 80000072-0000-fb00-b63f-84710c7967bb [INF] Executed DbCommand ("13"ms) [Parameters=["@__workerServiceExecution_id_0='?' (DbType = Guid)"], CommandType='Text', CommandTimeout='30']"
+""SELECT w.id, w.\"executionTime\", w.result, w.\"resultDetailed\", w.\"workerService\"
+FROM \"WorkerServiceExecutions\" AS w
+WHERE w.id = @__workerServiceExecution_id_0
+LIMIT 2" (0723d8ff)
+2025-09-08T23:54:51.8930828+02:00 80000072-0000-fb00-b63f-84710c7967bb [INF] Executed DbCommand ("61"ms) [Parameters=["@p3='?' (DbType = Guid), @p0='?' (DbType = DateTime), @p1='?', @p2='?'"], CommandType='Text', CommandTimeout='30']"
+""UPDATE \"WorkerServiceExecutions\" SET \"executionTime\" = @p0, \"resultDetailed\" = @p1, \"workerService\" = @p2
+WHERE id = @p3;" (0723d8ff)
+2025-09-08T23:54:51.8966068+02:00 80000072-0000-fb00-b63f-84710c7967bb [INF] Mensaje no definido. (e2ae16ec)
+2025-09-08T23:54:51.8968521+02:00 80000072-0000-fb00-b63f-84710c7967bb [INF] Executing "OkObjectResult", writing value of type '"System.Boolean"'. (605b4265)
+2025-09-08T23:54:51.8974074+02:00 80000072-0000-fb00-b63f-84710c7967bb [INF] Executed action "API.Controllers.WorkerServiceExecutionController.UpdateAsync (API)" in 1721.9814ms (afa2e885)
+2025-09-08T23:54:51.8974714+02:00 80000072-0000-fb00-b63f-84710c7967bb [INF] Executed endpoint '"API.Controllers.WorkerServiceExecutionController.UpdateAsync (API)"' (99874f2b)
+2025-09-08T23:54:51.8977994+02:00 80000072-0000-fb00-b63f-84710c7967bb [INF] Request finished "HTTP/2" "PUT" "https"://"localhost:44311""""/WorkerServiceExecution/ActualizarWorkerServiceExecution""" - 200 null "application/json; charset=utf-8" 1723.6057ms (74253ad3)
+2025-09-08T23:55:21.6298067+02:00 8000003a-0006-fb00-b63f-84710c7967bb [INF] Request starting "HTTP/2" "DELETE" "https"://"localhost:44311""""/WorkerServiceExecution/Eliminar/0ef35d23-eaaf-4fae-8b77-5cd2d22a0893""" - null null (d509f86a)
+2025-09-08T23:55:21.6307977+02:00 8000003a-0006-fb00-b63f-84710c7967bb [INF] CORS policy execution successful. (5409d6ef)
+2025-09-08T23:55:21.6310640+02:00 8000003a-0006-fb00-b63f-84710c7967bb [INF] Executing endpoint '"API.Controllers.WorkerServiceExecutionController.Remove (API)"' (500cc934)
+2025-09-08T23:55:21.6367023+02:00 8000003a-0006-fb00-b63f-84710c7967bb [INF] Route matched with "{action = \"Remove\", controller = \"WorkerServiceExecution\"}". Executing controller action with signature "System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Remove(System.Guid)" on controller "API.Controllers.WorkerServiceExecutionController" ("API"). (122b2fdf)
+2025-09-08T23:55:21.6635377+02:00 8000003a-0006-fb00-b63f-84710c7967bb [INF] Executed DbCommand ("4"ms) [Parameters=["@__get_Item_0='?' (DbType = Guid)"], CommandType='Text', CommandTimeout='30']"
+""SELECT w.id, w.\"executionTime\", w.result, w.\"resultDetailed\", w.\"workerService\"
+FROM \"WorkerServiceExecutions\" AS w
+WHERE w.id = @__get_Item_0
+LIMIT 1" (0723d8ff)
+2025-09-08T23:55:21.6788446+02:00 8000003a-0006-fb00-b63f-84710c7967bb [INF] Executed DbCommand ("1"ms) [Parameters=["@p0='?' (DbType = Guid)"], CommandType='Text', CommandTimeout='30']"
+""DELETE FROM \"WorkerServiceExecutions\"
+WHERE id = @p0;" (0723d8ff)
+2025-09-08T23:55:21.6869783+02:00 8000003a-0006-fb00-b63f-84710c7967bb [INF] Mensaje no definido. (e2ae16ec)
+2025-09-08T23:55:21.6872355+02:00 8000003a-0006-fb00-b63f-84710c7967bb [INF] Executing "OkObjectResult", writing value of type '"System.Boolean"'. (605b4265)
+2025-09-08T23:55:21.6876875+02:00 8000003a-0006-fb00-b63f-84710c7967bb [INF] Executed action "API.Controllers.WorkerServiceExecutionController.Remove (API)" in 50.8937ms (afa2e885)
+2025-09-08T23:55:21.6877632+02:00 8000003a-0006-fb00-b63f-84710c7967bb [INF] Executed endpoint '"API.Controllers.WorkerServiceExecutionController.Remove (API)"' (99874f2b)
+2025-09-08T23:55:21.6881341+02:00 8000003a-0006-fb00-b63f-84710c7967bb [INF] Request finished "HTTP/2" "DELETE" "https"://"localhost:44311""""/WorkerServiceExecution/Eliminar/0ef35d23-eaaf-4fae-8b77-5cd2d22a0893""" - 200 null "application/json; charset=utf-8" 58.4104ms (74253ad3)

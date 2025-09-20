@@ -1,0 +1,908 @@
+2025-09-20T13:34:45.1474707+02:00  [INF] User profile is available. Using '"C:\Users\David\AppData\Local\ASP.NET\DataProtection-Keys"' as key repository and Windows DPAPI to encrypt keys at rest. (7ac5e29c)
+2025-09-20T13:35:00.1904595+02:00  [INF] Application started. Press Ctrl+C to shut down. (dcaefe54)
+2025-09-20T13:35:00.3799511+02:00  [INF] Hosting environment: "Development" (bc5a1a4e)
+2025-09-20T13:35:00.3901603+02:00  [INF] Content root path: "C:\Users\David\Desktop\API" (cc26f24e)
+2025-09-20T13:35:00.5914501+02:00 800000e0-0004-fd00-b63f-84710c7967bb [INF] Request starting "HTTP/2" "GET" "https"://"localhost:44311""""/swagger/index.html""" - null null (d509f86a)
+2025-09-20T13:35:07.6395449+02:00 80000059-0005-f700-b63f-84710c7967bb [INF] Request starting "HTTP/2" "GET" "https"://"localhost:44311""""/_framework/aspnetcore-browser-refresh.js""" - null null (d509f86a)
+2025-09-20T13:35:07.7046780+02:00 800000e0-0004-fd00-b63f-84710c7967bb [INF] Request finished "HTTP/2" "GET" "https"://"localhost:44311""""/swagger/index.html""" - 200 null "text/html;charset=utf-8" 7047.3569ms (74253ad3)
+2025-09-20T13:35:07.7714722+02:00 80000059-0005-f700-b63f-84710c7967bb [INF] Request finished "HTTP/2" "GET" "https"://"localhost:44311""""/_framework/aspnetcore-browser-refresh.js""" - 200 13742 "application/javascript; charset=utf-8" 10.2057ms (74253ad3)
+2025-09-20T13:35:08.6118555+02:00 80000063-0004-fc00-b63f-84710c7967bb [INF] Request starting "HTTP/2" "GET" "https"://"localhost:44311""""/_vs/browserLink""" - null null (d509f86a)
+2025-09-20T13:35:10.7631619+02:00 80000063-0004-fc00-b63f-84710c7967bb [INF] Request finished "HTTP/2" "GET" "https"://"localhost:44311""""/_vs/browserLink""" - 200 null "text/javascript; charset=UTF-8" 2151.507ms (74253ad3)
+2025-09-20T13:35:11.2410371+02:00 8000000f-0006-fb00-b63f-84710c7967bb [INF] Request starting "HTTP/2" "GET" "https"://"localhost:44311""""/swagger/v1/swagger.json""" - null null (d509f86a)
+2025-09-20T13:35:11.3102084+02:00 8000000f-0006-fb00-b63f-84710c7967bb [INF] Request finished "HTTP/2" "GET" "https"://"localhost:44311""""/swagger/v1/swagger.json""" - 200 null "application/json;charset=utf-8" 69.3168ms (74253ad3)
+2025-09-20T13:39:29.8155654+02:00 8000007a-0006-fd00-b63f-84710c7967bb [INF] Request starting "HTTP/2" "GET" "https"://"localhost:44311""""/TipoTransaccion/ObtenerTipoTransacciones""" - null null (d509f86a)
+2025-09-20T13:39:29.9844435+02:00 8000007a-0006-fd00-b63f-84710c7967bb [INF] Executing endpoint '"API.Controllers.TipoTransaccionController.GetAllAsync (API)"' (500cc934)
+2025-09-20T13:39:30.7442983+02:00 8000007a-0006-fd00-b63f-84710c7967bb [INF] Route matched with "{action = \"GetAll\", controller = \"TipoTransaccion\"}". Executing controller action with signature "System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAllAsync()" on controller "API.Controllers.TipoTransaccionController" ("API"). (122b2fdf)
+2025-09-20T13:39:41.6261065+02:00 8000007a-0006-fd00-b63f-84710c7967bb [INF] Executed DbCommand ("122"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT t.id, t.descripcion, t.nombre
+FROM \"TipoTransacciones\" AS t" (0723d8ff)
+2025-09-20T13:39:41.9513142+02:00 8000007a-0006-fd00-b63f-84710c7967bb [INF] Executing "OkObjectResult", writing value of type '"System.Collections.Generic.List`1[[Domain.Entities.TipoTransaccion, Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]"'. (605b4265)
+2025-09-20T13:39:42.0131792+02:00 8000007a-0006-fd00-b63f-84710c7967bb [INF] Executed action "API.Controllers.TipoTransaccionController.GetAllAsync (API)" in 11263.7133ms (afa2e885)
+2025-09-20T13:39:42.0139596+02:00 8000007a-0006-fd00-b63f-84710c7967bb [INF] Executed endpoint '"API.Controllers.TipoTransaccionController.GetAllAsync (API)"' (99874f2b)
+2025-09-20T13:39:42.0247949+02:00 8000007a-0006-fd00-b63f-84710c7967bb [INF] Request finished "HTTP/2" "GET" "https"://"localhost:44311""""/TipoTransaccion/ObtenerTipoTransacciones""" - 200 null "application/json; charset=utf-8" 12209.8993ms (74253ad3)
+2025-09-20T13:40:06.0252820+02:00 80000088-0004-ff00-b63f-84710c7967bb [INF] Request starting "HTTP/2" "GET" "https"://"localhost:44311""""/DataQuery/ObtenerTotalUltimasTransacciones""" - null null (d509f86a)
+2025-09-20T13:40:06.0276917+02:00 80000088-0004-ff00-b63f-84710c7967bb [INF] Executing endpoint '"API.Controllers.DataQueryController.ObtenerTotalUltimasTransacciones (API)"' (500cc934)
+2025-09-20T13:40:06.0342881+02:00 80000088-0004-ff00-b63f-84710c7967bb [INF] Route matched with "{action = \"ObtenerTotalUltimasTransacciones\", controller = \"DataQuery\"}". Executing controller action with signature "System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] ObtenerTotalUltimasTransacciones()" on controller "API.Controllers.DataQueryController" ("API"). (122b2fdf)
+2025-09-20T13:40:06.4098151+02:00 80000088-0004-ff00-b63f-84710c7967bb [WRN] The query uses a row limiting operator ('Skip'/'Take') without an 'OrderBy' operator. This may lead to unpredictable results. If the 'Distinct' operator is used after 'OrderBy', then make sure to use the 'OrderBy' operator after 'Distinct' as the ordering would otherwise get erased. (5b3e5b60)
+2025-09-20T13:40:06.4150377+02:00 80000088-0004-ff00-b63f-84710c7967bb [WRN] The query uses a row limiting operator ('Skip'/'Take') without an 'OrderBy' operator. This may lead to unpredictable results. If the 'Distinct' operator is used after 'OrderBy', then make sure to use the 'OrderBy' operator after 'Distinct' as the ordering would otherwise get erased. (5b3e5b60)
+2025-09-20T13:40:06.6319146+02:00 80000088-0004-ff00-b63f-84710c7967bb [INF] Executed DbCommand ("149"ms) [Parameters=["@__p_1='?' (DbType = Int32), @__p_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT v.dia, v.\"totalPuntosBienvenida\", v.\"totalPuntosCompletarPerfil\", v.\"totalPuntosQR\", v.\"totalPuntosEvento\", v.\"totalTransacciones\"
+FROM \"v_TotalUltimasTransacciones\" AS v
+LIMIT @__p_1 OFFSET @__p_0" (0723d8ff)
+2025-09-20T13:40:06.6812223+02:00 80000088-0004-ff00-b63f-84710c7967bb [INF] Executing "OkObjectResult", writing value of type '"System.Collections.Generic.List`1[[Application.DTOs.DataQuery.vTotalUltimasTransaccionesDTO, Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]"'. (605b4265)
+2025-09-20T13:40:06.7393857+02:00 80000088-0004-ff00-b63f-84710c7967bb [INF] Executed action "API.Controllers.DataQueryController.ObtenerTotalUltimasTransacciones (API)" in 704.5791ms (afa2e885)
+2025-09-20T13:40:06.7396235+02:00 80000088-0004-ff00-b63f-84710c7967bb [INF] Executed endpoint '"API.Controllers.DataQueryController.ObtenerTotalUltimasTransacciones (API)"' (99874f2b)
+2025-09-20T13:40:06.7406980+02:00 80000088-0004-ff00-b63f-84710c7967bb [INF] Request finished "HTTP/2" "GET" "https"://"localhost:44311""""/DataQuery/ObtenerTotalUltimasTransacciones""" - 200 null "application/json; charset=utf-8" 715.6065ms (74253ad3)
+2025-09-20T14:23:31.6609468+02:00  [INF] User profile is available. Using '"C:\Users\David\AppData\Local\ASP.NET\DataProtection-Keys"' as key repository and Windows DPAPI to encrypt keys at rest. (7ac5e29c)
+2025-09-20T14:23:36.6973699+02:00  [INF] Application started. Press Ctrl+C to shut down. (dcaefe54)
+2025-09-20T14:23:36.7050756+02:00  [INF] Hosting environment: "Development" (bc5a1a4e)
+2025-09-20T14:23:36.7104774+02:00  [INF] Content root path: "C:\Users\David\Desktop\API" (cc26f24e)
+2025-09-20T14:23:36.9749460+02:00 80000067-0004-fc00-b63f-84710c7967bb [INF] Request starting "HTTP/2" "GET" "https"://"localhost:44311""""/swagger/index.html""" - null null (d509f86a)
+2025-09-20T14:23:50.3751976+02:00 80000067-0004-fc00-b63f-84710c7967bb [INF] Request finished "HTTP/2" "GET" "https"://"localhost:44311""""/swagger/index.html""" - 200 null "text/html;charset=utf-8" 13526.2928ms (74253ad3)
+2025-09-20T14:23:50.6996186+02:00 8000006f-0001-fa00-b63f-84710c7967bb [INF] Request starting "HTTP/2" "GET" "https"://"localhost:44311""""/_framework/aspnetcore-browser-refresh.js""" - null null (d509f86a)
+2025-09-20T14:23:50.7618761+02:00 8000006f-0001-fa00-b63f-84710c7967bb [INF] Request finished "HTTP/2" "GET" "https"://"localhost:44311""""/_framework/aspnetcore-browser-refresh.js""" - 200 13742 "application/javascript; charset=utf-8" 3.5306ms (74253ad3)
+2025-09-20T14:23:51.5403203+02:00 80000069-0004-fc00-b63f-84710c7967bb [INF] Request starting "HTTP/2" "GET" "https"://"localhost:44311""""/_vs/browserLink""" - null null (d509f86a)
+2025-09-20T14:23:56.6314479+02:00 80000069-0004-fc00-b63f-84710c7967bb [INF] Request finished "HTTP/2" "GET" "https"://"localhost:44311""""/_vs/browserLink""" - 200 null "text/javascript; charset=UTF-8" 5091.1688ms (74253ad3)
+2025-09-20T14:23:56.8540955+02:00 8000007c-0006-fd00-b63f-84710c7967bb [INF] Request starting "HTTP/2" "GET" "https"://"localhost:44311""""/swagger/v1/swagger.json""" - null null (d509f86a)
+2025-09-20T14:23:56.9065079+02:00 8000007c-0006-fd00-b63f-84710c7967bb [INF] Request finished "HTTP/2" "GET" "https"://"localhost:44311""""/swagger/v1/swagger.json""" - 200 null "application/json;charset=utf-8" 52.462ms (74253ad3)
+2025-09-20T14:24:41.6872321+02:00 8000007c-0000-fd00-b63f-84710c7967bb [INF] Request starting "HTTP/2" "GET" "https"://"localhost:44311""""/DataQuery/ObtenerTotalUltimasTransacciones""" - null null (d509f86a)
+2025-09-20T14:24:41.7217064+02:00 8000007c-0000-fd00-b63f-84710c7967bb [INF] CORS policy execution successful. (5409d6ef)
+2025-09-20T14:24:41.8299438+02:00 8000007c-0000-fd00-b63f-84710c7967bb [INF] Executing endpoint '"API.Controllers.DataQueryController.ObtenerTotalUltimasTransacciones (API)"' (500cc934)
+2025-09-20T14:24:42.1393566+02:00 8000007c-0000-fd00-b63f-84710c7967bb [INF] Route matched with "{action = \"ObtenerTotalUltimasTransacciones\", controller = \"DataQuery\"}". Executing controller action with signature "System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] ObtenerTotalUltimasTransacciones()" on controller "API.Controllers.DataQueryController" ("API"). (122b2fdf)
+2025-09-20T14:24:56.2091531+02:00 8000007c-0000-fd00-b63f-84710c7967bb [WRN] The query uses a row limiting operator ('Skip'/'Take') without an 'OrderBy' operator. This may lead to unpredictable results. If the 'Distinct' operator is used after 'OrderBy', then make sure to use the 'OrderBy' operator after 'Distinct' as the ordering would otherwise get erased. (5b3e5b60)
+2025-09-20T14:24:56.2138589+02:00 8000007c-0000-fd00-b63f-84710c7967bb [WRN] The query uses a row limiting operator ('Skip'/'Take') without an 'OrderBy' operator. This may lead to unpredictable results. If the 'Distinct' operator is used after 'OrderBy', then make sure to use the 'OrderBy' operator after 'Distinct' as the ordering would otherwise get erased. (5b3e5b60)
+2025-09-20T14:24:58.5024280+02:00 8000007c-0000-fd00-b63f-84710c7967bb [INF] Executed DbCommand ("210"ms) [Parameters=["@__p_1='?' (DbType = Int32), @__p_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT v.dia, v.\"totalBienvenida\", v.\"totalCompletarPerfil\", v.\"totalQR\", v.\"totalEvento\", v.\"totalTransacciones\"
+FROM \"v_TotalUltimasTransacciones\" AS v
+LIMIT @__p_1 OFFSET @__p_0" (0723d8ff)
+2025-09-20T14:24:58.6603987+02:00 8000007c-0000-fd00-b63f-84710c7967bb [INF] Executing "OkObjectResult", writing value of type '"System.Collections.Generic.List`1[[Application.DTOs.DataQuery.vTotalUltimasTransaccionesDTO, Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]"'. (605b4265)
+2025-09-20T14:24:58.9098454+02:00 8000007c-0000-fd00-b63f-84710c7967bb [INF] Executed action "API.Controllers.DataQueryController.ObtenerTotalUltimasTransacciones (API)" in 16764.8659ms (afa2e885)
+2025-09-20T14:24:58.9107434+02:00 8000007c-0000-fd00-b63f-84710c7967bb [INF] Executed endpoint '"API.Controllers.DataQueryController.ObtenerTotalUltimasTransacciones (API)"' (99874f2b)
+2025-09-20T14:24:58.9461455+02:00 8000007c-0000-fd00-b63f-84710c7967bb [INF] Request finished "HTTP/2" "GET" "https"://"localhost:44311""""/DataQuery/ObtenerTotalUltimasTransacciones""" - 200 null "application/json; charset=utf-8" 17259.0658ms (74253ad3)
+2025-09-20T14:25:33.0516072+02:00 80000066-0002-fb00-b63f-84710c7967bb [INF] Request starting "HTTP/2" "GET" "https"://"localhost:44311""""/DataQuery/ObtenerTotalUltimasTransacciones""" - null null (d509f86a)
+2025-09-20T14:25:33.0561344+02:00 80000066-0002-fb00-b63f-84710c7967bb [INF] CORS policy execution successful. (5409d6ef)
+2025-09-20T14:25:33.0566128+02:00 80000066-0002-fb00-b63f-84710c7967bb [INF] Executing endpoint '"API.Controllers.DataQueryController.ObtenerTotalUltimasTransacciones (API)"' (500cc934)
+2025-09-20T14:25:33.0570386+02:00 80000066-0002-fb00-b63f-84710c7967bb [INF] Route matched with "{action = \"ObtenerTotalUltimasTransacciones\", controller = \"DataQuery\"}". Executing controller action with signature "System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] ObtenerTotalUltimasTransacciones()" on controller "API.Controllers.DataQueryController" ("API"). (122b2fdf)
+2025-09-20T14:25:33.1382077+02:00 80000066-0002-fb00-b63f-84710c7967bb [INF] Executed DbCommand ("19"ms) [Parameters=["@__p_1='?' (DbType = Int32), @__p_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT v.dia, v.\"totalBienvenida\", v.\"totalCompletarPerfil\", v.\"totalQR\", v.\"totalEvento\", v.\"totalTransacciones\"
+FROM \"v_TotalUltimasTransacciones\" AS v
+LIMIT @__p_1 OFFSET @__p_0" (0723d8ff)
+2025-09-20T14:25:33.1395064+02:00 80000066-0002-fb00-b63f-84710c7967bb [INF] Executing "OkObjectResult", writing value of type '"System.Collections.Generic.List`1[[Application.DTOs.DataQuery.vTotalUltimasTransaccionesDTO, Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]"'. (605b4265)
+2025-09-20T14:25:33.1402569+02:00 80000066-0002-fb00-b63f-84710c7967bb [INF] Executed action "API.Controllers.DataQueryController.ObtenerTotalUltimasTransacciones (API)" in 83.0999ms (afa2e885)
+2025-09-20T14:25:33.1403649+02:00 80000066-0002-fb00-b63f-84710c7967bb [INF] Executed endpoint '"API.Controllers.DataQueryController.ObtenerTotalUltimasTransacciones (API)"' (99874f2b)
+2025-09-20T14:25:33.1408383+02:00 80000066-0002-fb00-b63f-84710c7967bb [INF] Request finished "HTTP/2" "GET" "https"://"localhost:44311""""/DataQuery/ObtenerTotalUltimasTransacciones""" - 200 null "application/json; charset=utf-8" 89.3679ms (74253ad3)
+2025-09-20T14:25:40.2557085+02:00 80000017-0007-f800-b63f-84710c7967bb [INF] Request starting "HTTP/2" "GET" "https"://"localhost:44311""""/DataQuery/ObtenerTotalUltimasTransacciones""" - null null (d509f86a)
+2025-09-20T14:25:40.2561051+02:00 80000017-0007-f800-b63f-84710c7967bb [INF] CORS policy execution successful. (5409d6ef)
+2025-09-20T14:25:40.2563046+02:00 80000017-0007-f800-b63f-84710c7967bb [INF] Executing endpoint '"API.Controllers.DataQueryController.ObtenerTotalUltimasTransacciones (API)"' (500cc934)
+2025-09-20T14:25:40.2564755+02:00 80000017-0007-f800-b63f-84710c7967bb [INF] Route matched with "{action = \"ObtenerTotalUltimasTransacciones\", controller = \"DataQuery\"}". Executing controller action with signature "System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] ObtenerTotalUltimasTransacciones()" on controller "API.Controllers.DataQueryController" ("API"). (122b2fdf)
+2025-09-20T14:25:40.3658866+02:00 80000017-0007-f800-b63f-84710c7967bb [INF] Executed DbCommand ("2"ms) [Parameters=["@__p_1='?' (DbType = Int32), @__p_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT v.dia, v.\"totalBienvenida\", v.\"totalCompletarPerfil\", v.\"totalQR\", v.\"totalEvento\", v.\"totalTransacciones\"
+FROM \"v_TotalUltimasTransacciones\" AS v
+LIMIT @__p_1 OFFSET @__p_0" (0723d8ff)
+2025-09-20T14:25:40.3670460+02:00 80000017-0007-f800-b63f-84710c7967bb [INF] Executing "OkObjectResult", writing value of type '"System.Collections.Generic.List`1[[Application.DTOs.DataQuery.vTotalUltimasTransaccionesDTO, Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]"'. (605b4265)
+2025-09-20T14:25:40.3675204+02:00 80000017-0007-f800-b63f-84710c7967bb [INF] Executed action "API.Controllers.DataQueryController.ObtenerTotalUltimasTransacciones (API)" in 110.9518ms (afa2e885)
+2025-09-20T14:25:40.3675792+02:00 80000017-0007-f800-b63f-84710c7967bb [INF] Executed endpoint '"API.Controllers.DataQueryController.ObtenerTotalUltimasTransacciones (API)"' (99874f2b)
+2025-09-20T14:25:40.3678399+02:00 80000017-0007-f800-b63f-84710c7967bb [INF] Request finished "HTTP/2" "GET" "https"://"localhost:44311""""/DataQuery/ObtenerTotalUltimasTransacciones""" - 200 null "application/json; charset=utf-8" 112.2566ms (74253ad3)
+2025-09-20T14:28:48.2834381+02:00 80000070-0004-fc00-b63f-84710c7967bb [INF] Request starting "HTTP/2" "GET" "https"://"localhost:44311""""/DataQuery/ObtenerTotalUltimasTransacciones""" - null null (d509f86a)
+2025-09-20T14:28:48.2841678+02:00 80000070-0004-fc00-b63f-84710c7967bb [INF] CORS policy execution successful. (5409d6ef)
+2025-09-20T14:28:48.2846100+02:00 80000070-0004-fc00-b63f-84710c7967bb [INF] Executing endpoint '"API.Controllers.DataQueryController.ObtenerTotalUltimasTransacciones (API)"' (500cc934)
+2025-09-20T14:28:48.2848036+02:00 80000070-0004-fc00-b63f-84710c7967bb [INF] Route matched with "{action = \"ObtenerTotalUltimasTransacciones\", controller = \"DataQuery\"}". Executing controller action with signature "System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] ObtenerTotalUltimasTransacciones()" on controller "API.Controllers.DataQueryController" ("API"). (122b2fdf)
+2025-09-20T14:28:48.3000426+02:00 80000070-0004-fc00-b63f-84710c7967bb [INF] Executed DbCommand ("6"ms) [Parameters=["@__p_1='?' (DbType = Int32), @__p_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT v.dia, v.\"totalBienvenida\", v.\"totalCompletarPerfil\", v.\"totalQR\", v.\"totalEvento\", v.\"totalTransacciones\"
+FROM \"v_TotalUltimasTransacciones\" AS v
+LIMIT @__p_1 OFFSET @__p_0" (0723d8ff)
+2025-09-20T14:28:48.3013216+02:00 80000070-0004-fc00-b63f-84710c7967bb [INF] Executing "OkObjectResult", writing value of type '"System.Collections.Generic.List`1[[Application.DTOs.DataQuery.vTotalUltimasTransaccionesDTO, Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]"'. (605b4265)
+2025-09-20T14:28:48.3019352+02:00 80000070-0004-fc00-b63f-84710c7967bb [INF] Executed action "API.Controllers.DataQueryController.ObtenerTotalUltimasTransacciones (API)" in 16.5467ms (afa2e885)
+2025-09-20T14:28:48.3020313+02:00 80000070-0004-fc00-b63f-84710c7967bb [INF] Executed endpoint '"API.Controllers.DataQueryController.ObtenerTotalUltimasTransacciones (API)"' (99874f2b)
+2025-09-20T14:28:48.3024533+02:00 80000070-0004-fc00-b63f-84710c7967bb [INF] Request finished "HTTP/2" "GET" "https"://"localhost:44311""""/DataQuery/ObtenerTotalUltimasTransacciones""" - 200 null "application/json; charset=utf-8" 19.4096ms (74253ad3)
+2025-09-20T14:31:27.4807510+02:00 80000072-0004-fc00-b63f-84710c7967bb [INF] Request starting "HTTP/2" "GET" "https"://"localhost:44311""""/DataQuery/ObtenerTotalUltimasTransacciones""" - null null (d509f86a)
+2025-09-20T14:31:27.4812603+02:00 80000072-0004-fc00-b63f-84710c7967bb [INF] CORS policy execution successful. (5409d6ef)
+2025-09-20T14:31:27.4816231+02:00 80000072-0004-fc00-b63f-84710c7967bb [INF] Executing endpoint '"API.Controllers.DataQueryController.ObtenerTotalUltimasTransacciones (API)"' (500cc934)
+2025-09-20T14:31:27.4818687+02:00 80000072-0004-fc00-b63f-84710c7967bb [INF] Route matched with "{action = \"ObtenerTotalUltimasTransacciones\", controller = \"DataQuery\"}". Executing controller action with signature "System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] ObtenerTotalUltimasTransacciones()" on controller "API.Controllers.DataQueryController" ("API"). (122b2fdf)
+2025-09-20T14:31:27.6646321+02:00 80000072-0004-fc00-b63f-84710c7967bb [INF] Executed DbCommand ("5"ms) [Parameters=["@__p_1='?' (DbType = Int32), @__p_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT v.dia, v.\"totalBienvenida\", v.\"totalCompletarPerfil\", v.\"totalQR\", v.\"totalEvento\", v.\"totalTransacciones\"
+FROM \"v_TotalUltimasTransacciones\" AS v
+LIMIT @__p_1 OFFSET @__p_0" (0723d8ff)
+2025-09-20T14:31:27.6651304+02:00 80000072-0004-fc00-b63f-84710c7967bb [INF] Executing "OkObjectResult", writing value of type '"System.Collections.Generic.List`1[[Application.DTOs.DataQuery.vTotalUltimasTransaccionesDTO, Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]"'. (605b4265)
+2025-09-20T14:31:27.6656698+02:00 80000072-0004-fc00-b63f-84710c7967bb [INF] Executed action "API.Controllers.DataQueryController.ObtenerTotalUltimasTransacciones (API)" in 183.7305ms (afa2e885)
+2025-09-20T14:31:27.6657273+02:00 80000072-0004-fc00-b63f-84710c7967bb [INF] Executed endpoint '"API.Controllers.DataQueryController.ObtenerTotalUltimasTransacciones (API)"' (99874f2b)
+2025-09-20T14:31:27.7029150+02:00 80000072-0004-fc00-b63f-84710c7967bb [INF] Request finished "HTTP/2" "GET" "https"://"localhost:44311""""/DataQuery/ObtenerTotalUltimasTransacciones""" - 200 null "application/json; charset=utf-8" 185.5506ms (74253ad3)
+2025-09-20T14:31:49.2090232+02:00 8000003a-0000-f700-b63f-84710c7967bb [INF] Request starting "HTTP/2" "GET" "https"://"localhost:44311""""/DataQuery/ObtenerTotalUltimasTransacciones""" - null null (d509f86a)
+2025-09-20T14:31:49.2094517+02:00 8000003a-0000-f700-b63f-84710c7967bb [INF] CORS policy execution successful. (5409d6ef)
+2025-09-20T14:31:49.2096677+02:00 8000003a-0000-f700-b63f-84710c7967bb [INF] Executing endpoint '"API.Controllers.DataQueryController.ObtenerTotalUltimasTransacciones (API)"' (500cc934)
+2025-09-20T14:31:49.2102170+02:00 8000003a-0000-f700-b63f-84710c7967bb [INF] Route matched with "{action = \"ObtenerTotalUltimasTransacciones\", controller = \"DataQuery\"}". Executing controller action with signature "System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] ObtenerTotalUltimasTransacciones()" on controller "API.Controllers.DataQueryController" ("API"). (122b2fdf)
+2025-09-20T14:31:49.2187065+02:00 8000003a-0000-f700-b63f-84710c7967bb [INF] Executed DbCommand ("3"ms) [Parameters=["@__p_1='?' (DbType = Int32), @__p_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT v.dia, v.\"totalBienvenida\", v.\"totalCompletarPerfil\", v.\"totalQR\", v.\"totalEvento\", v.\"totalTransacciones\"
+FROM \"v_TotalUltimasTransacciones\" AS v
+LIMIT @__p_1 OFFSET @__p_0" (0723d8ff)
+2025-09-20T14:31:49.2198357+02:00 8000003a-0000-f700-b63f-84710c7967bb [INF] Executing "OkObjectResult", writing value of type '"System.Collections.Generic.List`1[[Application.DTOs.DataQuery.vTotalUltimasTransaccionesDTO, Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]"'. (605b4265)
+2025-09-20T14:31:49.2204167+02:00 8000003a-0000-f700-b63f-84710c7967bb [INF] Executed action "API.Controllers.DataQueryController.ObtenerTotalUltimasTransacciones (API)" in 10.0348ms (afa2e885)
+2025-09-20T14:31:49.2205051+02:00 8000003a-0000-f700-b63f-84710c7967bb [INF] Executed endpoint '"API.Controllers.DataQueryController.ObtenerTotalUltimasTransacciones (API)"' (99874f2b)
+2025-09-20T14:31:49.2210202+02:00 8000003a-0000-f700-b63f-84710c7967bb [INF] Request finished "HTTP/2" "GET" "https"://"localhost:44311""""/DataQuery/ObtenerTotalUltimasTransacciones""" - 200 null "application/json; charset=utf-8" 12.2019ms (74253ad3)
+2025-09-20T14:50:51.0674057+02:00 80000069-0002-fb00-b63f-84710c7967bb [INF] Request starting "HTTP/2" "GET" "https"://"localhost:44311""""/DataQuery/ObtenerTotalUltimasTransacciones""" - null null (d509f86a)
+2025-09-20T14:50:51.0677934+02:00 80000069-0002-fb00-b63f-84710c7967bb [INF] CORS policy execution successful. (5409d6ef)
+2025-09-20T14:50:51.0682623+02:00 80000069-0002-fb00-b63f-84710c7967bb [INF] Executing endpoint '"API.Controllers.DataQueryController.ObtenerTotalUltimasTransacciones (API)"' (500cc934)
+2025-09-20T14:50:51.0684943+02:00 80000069-0002-fb00-b63f-84710c7967bb [INF] Route matched with "{action = \"ObtenerTotalUltimasTransacciones\", controller = \"DataQuery\"}". Executing controller action with signature "System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] ObtenerTotalUltimasTransacciones()" on controller "API.Controllers.DataQueryController" ("API"). (122b2fdf)
+2025-09-20T14:50:51.4398310+02:00 80000069-0002-fb00-b63f-84710c7967bb [INF] Executed DbCommand ("5"ms) [Parameters=["@__p_1='?' (DbType = Int32), @__p_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT v.dia, v.\"totalBienvenida\", v.\"totalCompletarPerfil\", v.\"totalQR\", v.\"totalEvento\", v.\"totalTransacciones\"
+FROM \"v_TotalUltimasTransacciones\" AS v
+LIMIT @__p_1 OFFSET @__p_0" (0723d8ff)
+2025-09-20T14:50:51.4403770+02:00 80000069-0002-fb00-b63f-84710c7967bb [INF] Executing "OkObjectResult", writing value of type '"System.Collections.Generic.List`1[[Application.DTOs.DataQuery.vTotalUltimasTransaccionesDTO, Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]"'. (605b4265)
+2025-09-20T14:50:51.4409418+02:00 80000069-0002-fb00-b63f-84710c7967bb [INF] Executed action "API.Controllers.DataQueryController.ObtenerTotalUltimasTransacciones (API)" in 372.3816ms (afa2e885)
+2025-09-20T14:50:51.4410098+02:00 80000069-0002-fb00-b63f-84710c7967bb [INF] Executed endpoint '"API.Controllers.DataQueryController.ObtenerTotalUltimasTransacciones (API)"' (99874f2b)
+2025-09-20T14:50:51.4413651+02:00 80000069-0002-fb00-b63f-84710c7967bb [INF] Request finished "HTTP/2" "GET" "https"://"localhost:44311""""/DataQuery/ObtenerTotalUltimasTransacciones""" - 200 null "application/json; charset=utf-8" 374.1771ms (74253ad3)
+2025-09-20T14:51:16.6929103+02:00 80000011-0006-fb00-b63f-84710c7967bb [INF] Request starting "HTTP/2" "GET" "https"://"localhost:44311""""/DataQuery/ObtenerTotalUltimasTransacciones""" - null null (d509f86a)
+2025-09-20T14:51:16.6932557+02:00 80000011-0006-fb00-b63f-84710c7967bb [INF] CORS policy execution successful. (5409d6ef)
+2025-09-20T14:51:16.6934943+02:00 80000011-0006-fb00-b63f-84710c7967bb [INF] Executing endpoint '"API.Controllers.DataQueryController.ObtenerTotalUltimasTransacciones (API)"' (500cc934)
+2025-09-20T14:51:16.6937046+02:00 80000011-0006-fb00-b63f-84710c7967bb [INF] Route matched with "{action = \"ObtenerTotalUltimasTransacciones\", controller = \"DataQuery\"}". Executing controller action with signature "System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] ObtenerTotalUltimasTransacciones()" on controller "API.Controllers.DataQueryController" ("API"). (122b2fdf)
+2025-09-20T14:51:16.7027056+02:00 80000011-0006-fb00-b63f-84710c7967bb [INF] Executed DbCommand ("2"ms) [Parameters=["@__p_1='?' (DbType = Int32), @__p_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT v.dia, v.\"totalBienvenida\", v.\"totalCompletarPerfil\", v.\"totalQR\", v.\"totalEvento\", v.\"totalTransacciones\"
+FROM \"v_TotalUltimasTransacciones\" AS v
+LIMIT @__p_1 OFFSET @__p_0" (0723d8ff)
+2025-09-20T14:51:16.7057152+02:00 80000011-0006-fb00-b63f-84710c7967bb [INF] Executing "OkObjectResult", writing value of type '"System.Collections.Generic.List`1[[Application.DTOs.DataQuery.vTotalUltimasTransaccionesDTO, Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]"'. (605b4265)
+2025-09-20T14:51:16.7070726+02:00 80000011-0006-fb00-b63f-84710c7967bb [INF] Executed action "API.Controllers.DataQueryController.ObtenerTotalUltimasTransacciones (API)" in 13.2603ms (afa2e885)
+2025-09-20T14:51:16.7071724+02:00 80000011-0006-fb00-b63f-84710c7967bb [INF] Executed endpoint '"API.Controllers.DataQueryController.ObtenerTotalUltimasTransacciones (API)"' (99874f2b)
+2025-09-20T14:51:16.7075570+02:00 80000011-0006-fb00-b63f-84710c7967bb [INF] Request finished "HTTP/2" "GET" "https"://"localhost:44311""""/DataQuery/ObtenerTotalUltimasTransacciones""" - 200 null "application/json; charset=utf-8" 14.8229ms (74253ad3)
+2025-09-20T14:57:11.7464456+02:00 8000003f-0007-fc00-b63f-84710c7967bb [INF] Request starting "HTTP/2" "GET" "https"://"localhost:44311""""/DataQuery/ObtenerTotalUltimasTransacciones""" - null null (d509f86a)
+2025-09-20T14:57:11.7469351+02:00 8000003f-0007-fc00-b63f-84710c7967bb [INF] CORS policy execution successful. (5409d6ef)
+2025-09-20T14:57:11.7473125+02:00 8000003f-0007-fc00-b63f-84710c7967bb [INF] Executing endpoint '"API.Controllers.DataQueryController.ObtenerTotalUltimasTransacciones (API)"' (500cc934)
+2025-09-20T14:57:11.7475550+02:00 8000003f-0007-fc00-b63f-84710c7967bb [INF] Route matched with "{action = \"ObtenerTotalUltimasTransacciones\", controller = \"DataQuery\"}". Executing controller action with signature "System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] ObtenerTotalUltimasTransacciones()" on controller "API.Controllers.DataQueryController" ("API"). (122b2fdf)
+2025-09-20T14:57:11.8933116+02:00 8000003f-0007-fc00-b63f-84710c7967bb [INF] Executed DbCommand ("6"ms) [Parameters=["@__p_1='?' (DbType = Int32), @__p_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT v.dia, v.\"totalBienvenida\", v.\"totalCompletarPerfil\", v.\"totalQR\", v.\"totalEvento\", v.\"totalTransacciones\"
+FROM \"v_TotalUltimasTransacciones\" AS v
+LIMIT @__p_1 OFFSET @__p_0" (0723d8ff)
+2025-09-20T14:57:11.8937905+02:00 8000003f-0007-fc00-b63f-84710c7967bb [INF] Executing "OkObjectResult", writing value of type '"System.Collections.Generic.List`1[[Application.DTOs.DataQuery.vTotalUltimasTransaccionesDTO, Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]"'. (605b4265)
+2025-09-20T14:57:11.8943581+02:00 8000003f-0007-fc00-b63f-84710c7967bb [INF] Executed action "API.Controllers.DataQueryController.ObtenerTotalUltimasTransacciones (API)" in 146.7072ms (afa2e885)
+2025-09-20T14:57:11.8944289+02:00 8000003f-0007-fc00-b63f-84710c7967bb [INF] Executed endpoint '"API.Controllers.DataQueryController.ObtenerTotalUltimasTransacciones (API)"' (99874f2b)
+2025-09-20T14:57:11.8947652+02:00 8000003f-0007-fc00-b63f-84710c7967bb [INF] Request finished "HTTP/2" "GET" "https"://"localhost:44311""""/DataQuery/ObtenerTotalUltimasTransacciones""" - 200 null "application/json; charset=utf-8" 148.6028ms (74253ad3)
+2025-09-20T15:03:08.6447711+02:00 80000083-0000-fd00-b63f-84710c7967bb [INF] Request starting "HTTP/2" "GET" "https"://"localhost:44311""""/DataQuery/ObtenerTotalUltimasTransacciones""" - null null (d509f86a)
+2025-09-20T15:03:08.6451806+02:00 80000083-0000-fd00-b63f-84710c7967bb [INF] CORS policy execution successful. (5409d6ef)
+2025-09-20T15:03:08.6454777+02:00 80000083-0000-fd00-b63f-84710c7967bb [INF] Executing endpoint '"API.Controllers.DataQueryController.ObtenerTotalUltimasTransacciones (API)"' (500cc934)
+2025-09-20T15:03:08.6456496+02:00 80000083-0000-fd00-b63f-84710c7967bb [INF] Route matched with "{action = \"ObtenerTotalUltimasTransacciones\", controller = \"DataQuery\"}". Executing controller action with signature "System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] ObtenerTotalUltimasTransacciones()" on controller "API.Controllers.DataQueryController" ("API"). (122b2fdf)
+2025-09-20T15:03:08.7258405+02:00 80000083-0000-fd00-b63f-84710c7967bb [INF] Executed DbCommand ("5"ms) [Parameters=["@__p_1='?' (DbType = Int32), @__p_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT v.dia, v.\"totalBienvenida\", v.\"totalCompletarPerfil\", v.\"totalQR\", v.\"totalEvento\", v.\"totalTransacciones\"
+FROM \"v_TotalUltimasTransacciones\" AS v
+LIMIT @__p_1 OFFSET @__p_0" (0723d8ff)
+2025-09-20T15:03:08.7263578+02:00 80000083-0000-fd00-b63f-84710c7967bb [INF] Executing "OkObjectResult", writing value of type '"System.Collections.Generic.List`1[[Application.DTOs.DataQuery.vTotalUltimasTransaccionesDTO, Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]"'. (605b4265)
+2025-09-20T15:03:08.7270482+02:00 80000083-0000-fd00-b63f-84710c7967bb [INF] Executed action "API.Controllers.DataQueryController.ObtenerTotalUltimasTransacciones (API)" in 81.3319ms (afa2e885)
+2025-09-20T15:03:08.7271034+02:00 80000083-0000-fd00-b63f-84710c7967bb [INF] Executed endpoint '"API.Controllers.DataQueryController.ObtenerTotalUltimasTransacciones (API)"' (99874f2b)
+2025-09-20T15:03:08.7273921+02:00 80000083-0000-fd00-b63f-84710c7967bb [INF] Request finished "HTTP/2" "GET" "https"://"localhost:44311""""/DataQuery/ObtenerTotalUltimasTransacciones""" - 200 null "application/json; charset=utf-8" 82.9673ms (74253ad3)
+2025-09-20T15:04:54.5860538+02:00 80000081-0006-fd00-b63f-84710c7967bb [INF] Request starting "HTTP/2" "GET" "https"://"localhost:44311""""/DataQuery/ObtenerTotalUltimasTransacciones""" - null null (d509f86a)
+2025-09-20T15:04:54.5864109+02:00 80000081-0006-fd00-b63f-84710c7967bb [INF] CORS policy execution successful. (5409d6ef)
+2025-09-20T15:04:54.5866009+02:00 80000081-0006-fd00-b63f-84710c7967bb [INF] Executing endpoint '"API.Controllers.DataQueryController.ObtenerTotalUltimasTransacciones (API)"' (500cc934)
+2025-09-20T15:04:54.5868050+02:00 80000081-0006-fd00-b63f-84710c7967bb [INF] Route matched with "{action = \"ObtenerTotalUltimasTransacciones\", controller = \"DataQuery\"}". Executing controller action with signature "System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] ObtenerTotalUltimasTransacciones()" on controller "API.Controllers.DataQueryController" ("API"). (122b2fdf)
+2025-09-20T15:04:54.5988745+02:00 80000081-0006-fd00-b63f-84710c7967bb [INF] Executed DbCommand ("6"ms) [Parameters=["@__p_1='?' (DbType = Int32), @__p_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT v.dia, v.\"totalBienvenida\", v.\"totalCompletarPerfil\", v.\"totalQR\", v.\"totalEvento\", v.\"totalTransacciones\"
+FROM \"v_TotalUltimasTransacciones\" AS v
+LIMIT @__p_1 OFFSET @__p_0" (0723d8ff)
+2025-09-20T15:04:54.6007104+02:00 80000081-0006-fd00-b63f-84710c7967bb [INF] Executing "OkObjectResult", writing value of type '"System.Collections.Generic.List`1[[Application.DTOs.DataQuery.vTotalUltimasTransaccionesDTO, Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]"'. (605b4265)
+2025-09-20T15:04:54.6016673+02:00 80000081-0006-fd00-b63f-84710c7967bb [INF] Executed action "API.Controllers.DataQueryController.ObtenerTotalUltimasTransacciones (API)" in 14.7655ms (afa2e885)
+2025-09-20T15:04:54.6017622+02:00 80000081-0006-fd00-b63f-84710c7967bb [INF] Executed endpoint '"API.Controllers.DataQueryController.ObtenerTotalUltimasTransacciones (API)"' (99874f2b)
+2025-09-20T15:04:54.6023216+02:00 80000081-0006-fd00-b63f-84710c7967bb [INF] Request finished "HTTP/2" "GET" "https"://"localhost:44311""""/DataQuery/ObtenerTotalUltimasTransacciones""" - 200 null "application/json; charset=utf-8" 16.4945ms (74253ad3)
+2025-09-20T15:06:18.2714235+02:00 80000083-0006-fd00-b63f-84710c7967bb [INF] Request starting "HTTP/2" "GET" "https"://"localhost:44311""""/DataQuery/ObtenerTotalUltimasTransacciones""" - null null (d509f86a)
+2025-09-20T15:06:18.2718179+02:00 80000083-0006-fd00-b63f-84710c7967bb [INF] CORS policy execution successful. (5409d6ef)
+2025-09-20T15:06:18.2722279+02:00 80000083-0006-fd00-b63f-84710c7967bb [INF] Executing endpoint '"API.Controllers.DataQueryController.ObtenerTotalUltimasTransacciones (API)"' (500cc934)
+2025-09-20T15:06:18.2724332+02:00 80000083-0006-fd00-b63f-84710c7967bb [INF] Route matched with "{action = \"ObtenerTotalUltimasTransacciones\", controller = \"DataQuery\"}". Executing controller action with signature "System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] ObtenerTotalUltimasTransacciones()" on controller "API.Controllers.DataQueryController" ("API"). (122b2fdf)
+2025-09-20T15:06:18.2864473+02:00 80000083-0006-fd00-b63f-84710c7967bb [INF] Executed DbCommand ("7"ms) [Parameters=["@__p_1='?' (DbType = Int32), @__p_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT v.dia, v.\"totalBienvenida\", v.\"totalCompletarPerfil\", v.\"totalQR\", v.\"totalEvento\", v.\"totalTransacciones\"
+FROM \"v_TotalUltimasTransacciones\" AS v
+LIMIT @__p_1 OFFSET @__p_0" (0723d8ff)
+2025-09-20T15:06:18.2887024+02:00 80000083-0006-fd00-b63f-84710c7967bb [INF] Executing "OkObjectResult", writing value of type '"System.Collections.Generic.List`1[[Application.DTOs.DataQuery.vTotalUltimasTransaccionesDTO, Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]"'. (605b4265)
+2025-09-20T15:06:18.2896260+02:00 80000083-0006-fd00-b63f-84710c7967bb [INF] Executed action "API.Controllers.DataQueryController.ObtenerTotalUltimasTransacciones (API)" in 17.0471ms (afa2e885)
+2025-09-20T15:06:18.2897916+02:00 80000083-0006-fd00-b63f-84710c7967bb [INF] Executed endpoint '"API.Controllers.DataQueryController.ObtenerTotalUltimasTransacciones (API)"' (99874f2b)
+2025-09-20T15:06:18.2902393+02:00 80000083-0006-fd00-b63f-84710c7967bb [INF] Request finished "HTTP/2" "GET" "https"://"localhost:44311""""/DataQuery/ObtenerTotalUltimasTransacciones""" - 200 null "application/json; charset=utf-8" 19.0058ms (74253ad3)
+2025-09-20T15:07:42.4713682+02:00 80000085-0006-fd00-b63f-84710c7967bb [INF] Request starting "HTTP/2" "GET" "https"://"localhost:44311""""/DataQuery/ObtenerTotalUltimasTransacciones""" - null null (d509f86a)
+2025-09-20T15:07:42.4717865+02:00 80000085-0006-fd00-b63f-84710c7967bb [INF] CORS policy execution successful. (5409d6ef)
+2025-09-20T15:07:42.4721133+02:00 80000085-0006-fd00-b63f-84710c7967bb [INF] Executing endpoint '"API.Controllers.DataQueryController.ObtenerTotalUltimasTransacciones (API)"' (500cc934)
+2025-09-20T15:07:42.4723139+02:00 80000085-0006-fd00-b63f-84710c7967bb [INF] Route matched with "{action = \"ObtenerTotalUltimasTransacciones\", controller = \"DataQuery\"}". Executing controller action with signature "System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] ObtenerTotalUltimasTransacciones()" on controller "API.Controllers.DataQueryController" ("API"). (122b2fdf)
+2025-09-20T15:07:42.4807687+02:00 80000085-0006-fd00-b63f-84710c7967bb [INF] Executed DbCommand ("3"ms) [Parameters=["@__p_1='?' (DbType = Int32), @__p_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT v.dia, v.\"totalBienvenida\", v.\"totalCompletarPerfil\", v.\"totalQR\", v.\"totalEvento\", v.\"totalTransacciones\"
+FROM \"v_TotalUltimasTransacciones\" AS v
+LIMIT @__p_1 OFFSET @__p_0" (0723d8ff)
+2025-09-20T15:07:42.4871755+02:00 80000085-0006-fd00-b63f-84710c7967bb [INF] Executing "OkObjectResult", writing value of type '"System.Collections.Generic.List`1[[Application.DTOs.DataQuery.vTotalUltimasTransaccionesDTO, Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]"'. (605b4265)
+2025-09-20T15:07:42.4915933+02:00 80000085-0006-fd00-b63f-84710c7967bb [INF] Executed action "API.Controllers.DataQueryController.ObtenerTotalUltimasTransacciones (API)" in 19.1798ms (afa2e885)
+2025-09-20T15:07:42.4916811+02:00 80000085-0006-fd00-b63f-84710c7967bb [INF] Executed endpoint '"API.Controllers.DataQueryController.ObtenerTotalUltimasTransacciones (API)"' (99874f2b)
+2025-09-20T15:07:42.4921408+02:00 80000085-0006-fd00-b63f-84710c7967bb [INF] Request finished "HTTP/2" "GET" "https"://"localhost:44311""""/DataQuery/ObtenerTotalUltimasTransacciones""" - 200 null "application/json; charset=utf-8" 20.9174ms (74253ad3)
+2025-09-20T15:09:33.5809334+02:00 80000087-0006-fd00-b63f-84710c7967bb [INF] Request starting "HTTP/2" "GET" "https"://"localhost:44311""""/DataQuery/ObtenerTotalUltimasTransacciones""" - null null (d509f86a)
+2025-09-20T15:09:33.5814665+02:00 80000087-0006-fd00-b63f-84710c7967bb [INF] CORS policy execution successful. (5409d6ef)
+2025-09-20T15:09:33.5817944+02:00 80000087-0006-fd00-b63f-84710c7967bb [INF] Executing endpoint '"API.Controllers.DataQueryController.ObtenerTotalUltimasTransacciones (API)"' (500cc934)
+2025-09-20T15:09:33.5819898+02:00 80000087-0006-fd00-b63f-84710c7967bb [INF] Route matched with "{action = \"ObtenerTotalUltimasTransacciones\", controller = \"DataQuery\"}". Executing controller action with signature "System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] ObtenerTotalUltimasTransacciones()" on controller "API.Controllers.DataQueryController" ("API"). (122b2fdf)
+2025-09-20T15:09:33.7155826+02:00 80000087-0006-fd00-b63f-84710c7967bb [INF] Executed DbCommand ("7"ms) [Parameters=["@__p_1='?' (DbType = Int32), @__p_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT v.dia, v.\"totalBienvenida\", v.\"totalCompletarPerfil\", v.\"totalQR\", v.\"totalEvento\", v.\"totalTransacciones\"
+FROM \"v_TotalUltimasTransacciones\" AS v
+LIMIT @__p_1 OFFSET @__p_0" (0723d8ff)
+2025-09-20T15:09:33.7161120+02:00 80000087-0006-fd00-b63f-84710c7967bb [INF] Executing "OkObjectResult", writing value of type '"System.Collections.Generic.List`1[[Application.DTOs.DataQuery.vTotalUltimasTransaccionesDTO, Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]"'. (605b4265)
+2025-09-20T15:09:33.7167743+02:00 80000087-0006-fd00-b63f-84710c7967bb [INF] Executed action "API.Controllers.DataQueryController.ObtenerTotalUltimasTransacciones (API)" in 134.6802ms (afa2e885)
+2025-09-20T15:09:33.7168625+02:00 80000087-0006-fd00-b63f-84710c7967bb [INF] Executed endpoint '"API.Controllers.DataQueryController.ObtenerTotalUltimasTransacciones (API)"' (99874f2b)
+2025-09-20T15:09:33.7172035+02:00 80000087-0006-fd00-b63f-84710c7967bb [INF] Request finished "HTTP/2" "GET" "https"://"localhost:44311""""/DataQuery/ObtenerTotalUltimasTransacciones""" - 200 null "application/json; charset=utf-8" 136.4949ms (74253ad3)
+2025-09-20T15:10:56.0804860+02:00 80000043-0005-f800-b63f-84710c7967bb [INF] Request starting "HTTP/2" "GET" "https"://"localhost:44311""""/DataQuery/ObtenerTotalUltimasTransacciones""" - null null (d509f86a)
+2025-09-20T15:10:56.0812518+02:00 80000043-0005-f800-b63f-84710c7967bb [INF] CORS policy execution successful. (5409d6ef)
+2025-09-20T15:10:56.0817339+02:00 80000043-0005-f800-b63f-84710c7967bb [INF] Executing endpoint '"API.Controllers.DataQueryController.ObtenerTotalUltimasTransacciones (API)"' (500cc934)
+2025-09-20T15:10:56.0819686+02:00 80000043-0005-f800-b63f-84710c7967bb [INF] Route matched with "{action = \"ObtenerTotalUltimasTransacciones\", controller = \"DataQuery\"}". Executing controller action with signature "System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] ObtenerTotalUltimasTransacciones()" on controller "API.Controllers.DataQueryController" ("API"). (122b2fdf)
+2025-09-20T15:10:56.0985263+02:00 80000043-0005-f800-b63f-84710c7967bb [INF] Executed DbCommand ("5"ms) [Parameters=["@__p_1='?' (DbType = Int32), @__p_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT v.dia, v.\"totalBienvenida\", v.\"totalCompletarPerfil\", v.\"totalQR\", v.\"totalEvento\", v.\"totalTransacciones\"
+FROM \"v_TotalUltimasTransacciones\" AS v
+LIMIT @__p_1 OFFSET @__p_0" (0723d8ff)
+2025-09-20T15:10:56.0999889+02:00 80000043-0005-f800-b63f-84710c7967bb [INF] Executing "OkObjectResult", writing value of type '"System.Collections.Generic.List`1[[Application.DTOs.DataQuery.vTotalUltimasTransaccionesDTO, Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]"'. (605b4265)
+2025-09-20T15:10:56.1005916+02:00 80000043-0005-f800-b63f-84710c7967bb [INF] Executed action "API.Controllers.DataQueryController.ObtenerTotalUltimasTransacciones (API)" in 18.4929ms (afa2e885)
+2025-09-20T15:10:56.1006514+02:00 80000043-0005-f800-b63f-84710c7967bb [INF] Executed endpoint '"API.Controllers.DataQueryController.ObtenerTotalUltimasTransacciones (API)"' (99874f2b)
+2025-09-20T15:10:56.1009062+02:00 80000043-0005-f800-b63f-84710c7967bb [INF] Request finished "HTTP/2" "GET" "https"://"localhost:44311""""/DataQuery/ObtenerTotalUltimasTransacciones""" - 200 null "application/json; charset=utf-8" 20.6236ms (74253ad3)
+2025-09-20T15:11:27.6423991+02:00 80000085-0000-fd00-b63f-84710c7967bb [INF] Request starting "HTTP/2" "GET" "https"://"localhost:44311""""/DataQuery/ObtenerTotalUltimasTransacciones""" - null null (d509f86a)
+2025-09-20T15:11:27.6428351+02:00 80000085-0000-fd00-b63f-84710c7967bb [INF] CORS policy execution successful. (5409d6ef)
+2025-09-20T15:11:27.6433569+02:00 80000085-0000-fd00-b63f-84710c7967bb [INF] Executing endpoint '"API.Controllers.DataQueryController.ObtenerTotalUltimasTransacciones (API)"' (500cc934)
+2025-09-20T15:11:27.6435731+02:00 80000085-0000-fd00-b63f-84710c7967bb [INF] Route matched with "{action = \"ObtenerTotalUltimasTransacciones\", controller = \"DataQuery\"}". Executing controller action with signature "System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] ObtenerTotalUltimasTransacciones()" on controller "API.Controllers.DataQueryController" ("API"). (122b2fdf)
+2025-09-20T15:11:27.6568187+02:00 80000085-0000-fd00-b63f-84710c7967bb [INF] Executed DbCommand ("3"ms) [Parameters=["@__p_1='?' (DbType = Int32), @__p_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT v.dia, v.\"totalBienvenida\", v.\"totalCompletarPerfil\", v.\"totalQR\", v.\"totalEvento\", v.\"totalTransacciones\"
+FROM \"v_TotalUltimasTransacciones\" AS v
+LIMIT @__p_1 OFFSET @__p_0" (0723d8ff)
+2025-09-20T15:11:27.6585517+02:00 80000085-0000-fd00-b63f-84710c7967bb [INF] Executing "OkObjectResult", writing value of type '"System.Collections.Generic.List`1[[Application.DTOs.DataQuery.vTotalUltimasTransaccionesDTO, Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]"'. (605b4265)
+2025-09-20T15:11:27.6592181+02:00 80000085-0000-fd00-b63f-84710c7967bb [INF] Executed action "API.Controllers.DataQueryController.ObtenerTotalUltimasTransacciones (API)" in 15.4793ms (afa2e885)
+2025-09-20T15:11:27.6593068+02:00 80000085-0000-fd00-b63f-84710c7967bb [INF] Executed endpoint '"API.Controllers.DataQueryController.ObtenerTotalUltimasTransacciones (API)"' (99874f2b)
+2025-09-20T15:11:27.6599727+02:00 80000085-0000-fd00-b63f-84710c7967bb [INF] Request finished "HTTP/2" "GET" "https"://"localhost:44311""""/DataQuery/ObtenerTotalUltimasTransacciones""" - 200 null "application/json; charset=utf-8" 17.8586ms (74253ad3)
+2025-09-20T15:11:50.3484287+02:00 80000087-0000-fd00-b63f-84710c7967bb [INF] Request starting "HTTP/2" "GET" "https"://"localhost:44311""""/DataQuery/ObtenerTotalUltimasTransacciones""" - null null (d509f86a)
+2025-09-20T15:11:50.3486921+02:00 80000087-0000-fd00-b63f-84710c7967bb [INF] CORS policy execution successful. (5409d6ef)
+2025-09-20T15:11:50.3488887+02:00 80000087-0000-fd00-b63f-84710c7967bb [INF] Executing endpoint '"API.Controllers.DataQueryController.ObtenerTotalUltimasTransacciones (API)"' (500cc934)
+2025-09-20T15:11:50.3490440+02:00 80000087-0000-fd00-b63f-84710c7967bb [INF] Route matched with "{action = \"ObtenerTotalUltimasTransacciones\", controller = \"DataQuery\"}". Executing controller action with signature "System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] ObtenerTotalUltimasTransacciones()" on controller "API.Controllers.DataQueryController" ("API"). (122b2fdf)
+2025-09-20T15:11:50.3582449+02:00 80000087-0000-fd00-b63f-84710c7967bb [INF] Executed DbCommand ("3"ms) [Parameters=["@__p_1='?' (DbType = Int32), @__p_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT v.dia, v.\"totalBienvenida\", v.\"totalCompletarPerfil\", v.\"totalQR\", v.\"totalEvento\", v.\"totalTransacciones\"
+FROM \"v_TotalUltimasTransacciones\" AS v
+LIMIT @__p_1 OFFSET @__p_0" (0723d8ff)
+2025-09-20T15:11:50.3630564+02:00 80000087-0000-fd00-b63f-84710c7967bb [INF] Executing "OkObjectResult", writing value of type '"System.Collections.Generic.List`1[[Application.DTOs.DataQuery.vTotalUltimasTransaccionesDTO, Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]"'. (605b4265)
+2025-09-20T15:11:50.3649352+02:00 80000087-0000-fd00-b63f-84710c7967bb [INF] Executed action "API.Controllers.DataQueryController.ObtenerTotalUltimasTransacciones (API)" in 15.7949ms (afa2e885)
+2025-09-20T15:11:50.3650322+02:00 80000087-0000-fd00-b63f-84710c7967bb [INF] Executed endpoint '"API.Controllers.DataQueryController.ObtenerTotalUltimasTransacciones (API)"' (99874f2b)
+2025-09-20T15:11:50.3654947+02:00 80000087-0000-fd00-b63f-84710c7967bb [INF] Request finished "HTTP/2" "GET" "https"://"localhost:44311""""/DataQuery/ObtenerTotalUltimasTransacciones""" - 200 null "application/json; charset=utf-8" 17.1422ms (74253ad3)
+2025-09-20T15:12:33.2790270+02:00 8000006b-0002-fb00-b63f-84710c7967bb [INF] Request starting "HTTP/2" "GET" "https"://"localhost:44311""""/DataQuery/ObtenerTotalUltimasTransacciones""" - null null (d509f86a)
+2025-09-20T15:12:33.2792475+02:00 8000006b-0002-fb00-b63f-84710c7967bb [INF] CORS policy execution successful. (5409d6ef)
+2025-09-20T15:12:33.2794196+02:00 8000006b-0002-fb00-b63f-84710c7967bb [INF] Executing endpoint '"API.Controllers.DataQueryController.ObtenerTotalUltimasTransacciones (API)"' (500cc934)
+2025-09-20T15:12:33.2795621+02:00 8000006b-0002-fb00-b63f-84710c7967bb [INF] Route matched with "{action = \"ObtenerTotalUltimasTransacciones\", controller = \"DataQuery\"}". Executing controller action with signature "System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] ObtenerTotalUltimasTransacciones()" on controller "API.Controllers.DataQueryController" ("API"). (122b2fdf)
+2025-09-20T15:12:33.2910002+02:00 8000006b-0002-fb00-b63f-84710c7967bb [INF] Executed DbCommand ("3"ms) [Parameters=["@__p_1='?' (DbType = Int32), @__p_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT v.dia, v.\"totalBienvenida\", v.\"totalCompletarPerfil\", v.\"totalQR\", v.\"totalEvento\", v.\"totalTransacciones\"
+FROM \"v_TotalUltimasTransacciones\" AS v
+LIMIT @__p_1 OFFSET @__p_0" (0723d8ff)
+2025-09-20T15:12:33.2954914+02:00 8000006b-0002-fb00-b63f-84710c7967bb [INF] Executing "OkObjectResult", writing value of type '"System.Collections.Generic.List`1[[Application.DTOs.DataQuery.vTotalUltimasTransaccionesDTO, Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]"'. (605b4265)
+2025-09-20T15:12:33.2968441+02:00 8000006b-0002-fb00-b63f-84710c7967bb [INF] Executed action "API.Controllers.DataQueryController.ObtenerTotalUltimasTransacciones (API)" in 17.1778ms (afa2e885)
+2025-09-20T15:12:33.2969240+02:00 8000006b-0002-fb00-b63f-84710c7967bb [INF] Executed endpoint '"API.Controllers.DataQueryController.ObtenerTotalUltimasTransacciones (API)"' (99874f2b)
+2025-09-20T15:12:33.2974149+02:00 8000006b-0002-fb00-b63f-84710c7967bb [INF] Request finished "HTTP/2" "GET" "https"://"localhost:44311""""/DataQuery/ObtenerTotalUltimasTransacciones""" - 200 null "application/json; charset=utf-8" 18.3272ms (74253ad3)
+2025-09-20T15:14:33.8762355+02:00 8000006d-0002-fb00-b63f-84710c7967bb [INF] Request starting "HTTP/2" "GET" "https"://"localhost:44311""""/DataQuery/ObtenerTotalUltimasTransacciones""" - null null (d509f86a)
+2025-09-20T15:14:33.8767102+02:00 8000006d-0002-fb00-b63f-84710c7967bb [INF] CORS policy execution successful. (5409d6ef)
+2025-09-20T15:14:33.8772742+02:00 8000006d-0002-fb00-b63f-84710c7967bb [INF] Executing endpoint '"API.Controllers.DataQueryController.ObtenerTotalUltimasTransacciones (API)"' (500cc934)
+2025-09-20T15:14:33.8775724+02:00 8000006d-0002-fb00-b63f-84710c7967bb [INF] Route matched with "{action = \"ObtenerTotalUltimasTransacciones\", controller = \"DataQuery\"}". Executing controller action with signature "System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] ObtenerTotalUltimasTransacciones()" on controller "API.Controllers.DataQueryController" ("API"). (122b2fdf)
+2025-09-20T15:14:33.8935961+02:00 8000006d-0002-fb00-b63f-84710c7967bb [INF] Executed DbCommand ("5"ms) [Parameters=["@__p_1='?' (DbType = Int32), @__p_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT v.dia, v.\"totalBienvenida\", v.\"totalCompletarPerfil\", v.\"totalQR\", v.\"totalEvento\", v.\"totalTransacciones\"
+FROM \"v_TotalUltimasTransacciones\" AS v
+LIMIT @__p_1 OFFSET @__p_0" (0723d8ff)
+2025-09-20T15:14:33.9338946+02:00 8000006d-0002-fb00-b63f-84710c7967bb [INF] Executing "OkObjectResult", writing value of type '"System.Collections.Generic.List`1[[Application.DTOs.DataQuery.vTotalUltimasTransaccionesDTO, Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]"'. (605b4265)
+2025-09-20T15:14:33.9353155+02:00 8000006d-0002-fb00-b63f-84710c7967bb [INF] Executed action "API.Controllers.DataQueryController.ObtenerTotalUltimasTransacciones (API)" in 57.619ms (afa2e885)
+2025-09-20T15:14:33.9354033+02:00 8000006d-0002-fb00-b63f-84710c7967bb [INF] Executed endpoint '"API.Controllers.DataQueryController.ObtenerTotalUltimasTransacciones (API)"' (99874f2b)
+2025-09-20T15:14:33.9358007+02:00 8000006d-0002-fb00-b63f-84710c7967bb [INF] Request finished "HTTP/2" "GET" "https"://"localhost:44311""""/DataQuery/ObtenerTotalUltimasTransacciones""" - 200 null "application/json; charset=utf-8" 59.7353ms (74253ad3)
+2025-09-20T15:16:27.3721601+02:00 80000045-0005-f800-b63f-84710c7967bb [INF] Request starting "HTTP/2" "GET" "https"://"localhost:44311""""/DataQuery/ObtenerTotalUltimasTransacciones""" - null null (d509f86a)
+2025-09-20T15:16:27.3724691+02:00 80000045-0005-f800-b63f-84710c7967bb [INF] CORS policy execution successful. (5409d6ef)
+2025-09-20T15:16:27.3728879+02:00 80000045-0005-f800-b63f-84710c7967bb [INF] Executing endpoint '"API.Controllers.DataQueryController.ObtenerTotalUltimasTransacciones (API)"' (500cc934)
+2025-09-20T15:16:27.3730908+02:00 80000045-0005-f800-b63f-84710c7967bb [INF] Route matched with "{action = \"ObtenerTotalUltimasTransacciones\", controller = \"DataQuery\"}". Executing controller action with signature "System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] ObtenerTotalUltimasTransacciones()" on controller "API.Controllers.DataQueryController" ("API"). (122b2fdf)
+2025-09-20T15:16:27.4626408+02:00 80000045-0005-f800-b63f-84710c7967bb [INF] Executed DbCommand ("5"ms) [Parameters=["@__p_1='?' (DbType = Int32), @__p_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT v.dia, v.\"totalBienvenida\", v.\"totalCompletarPerfil\", v.\"totalQR\", v.\"totalEvento\", v.\"totalTransacciones\"
+FROM \"v_TotalUltimasTransacciones\" AS v
+LIMIT @__p_1 OFFSET @__p_0" (0723d8ff)
+2025-09-20T15:16:27.4631521+02:00 80000045-0005-f800-b63f-84710c7967bb [INF] Executing "OkObjectResult", writing value of type '"System.Collections.Generic.List`1[[Application.DTOs.DataQuery.vTotalUltimasTransaccionesDTO, Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]"'. (605b4265)
+2025-09-20T15:16:27.4637687+02:00 80000045-0005-f800-b63f-84710c7967bb [INF] Executed action "API.Controllers.DataQueryController.ObtenerTotalUltimasTransacciones (API)" in 90.5728ms (afa2e885)
+2025-09-20T15:16:27.4638499+02:00 80000045-0005-f800-b63f-84710c7967bb [INF] Executed endpoint '"API.Controllers.DataQueryController.ObtenerTotalUltimasTransacciones (API)"' (99874f2b)
+2025-09-20T15:16:27.4642467+02:00 80000045-0005-f800-b63f-84710c7967bb [INF] Request finished "HTTP/2" "GET" "https"://"localhost:44311""""/DataQuery/ObtenerTotalUltimasTransacciones""" - 200 null "application/json; charset=utf-8" 92.1964ms (74253ad3)
+2025-09-20T15:16:43.1429476+02:00 80000032-0003-f800-b63f-84710c7967bb [INF] Request starting "HTTP/2" "GET" "https"://"localhost:44311""""/DataQuery/ObtenerTotalUltimasTransacciones""" - null null (d509f86a)
+2025-09-20T15:16:43.1432853+02:00 80000032-0003-f800-b63f-84710c7967bb [INF] CORS policy execution successful. (5409d6ef)
+2025-09-20T15:16:43.1437911+02:00 80000032-0003-f800-b63f-84710c7967bb [INF] Executing endpoint '"API.Controllers.DataQueryController.ObtenerTotalUltimasTransacciones (API)"' (500cc934)
+2025-09-20T15:16:43.1439838+02:00 80000032-0003-f800-b63f-84710c7967bb [INF] Route matched with "{action = \"ObtenerTotalUltimasTransacciones\", controller = \"DataQuery\"}". Executing controller action with signature "System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] ObtenerTotalUltimasTransacciones()" on controller "API.Controllers.DataQueryController" ("API"). (122b2fdf)
+2025-09-20T15:16:43.1521185+02:00 80000032-0003-f800-b63f-84710c7967bb [INF] Executed DbCommand ("3"ms) [Parameters=["@__p_1='?' (DbType = Int32), @__p_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT v.dia, v.\"totalBienvenida\", v.\"totalCompletarPerfil\", v.\"totalQR\", v.\"totalEvento\", v.\"totalTransacciones\"
+FROM \"v_TotalUltimasTransacciones\" AS v
+LIMIT @__p_1 OFFSET @__p_0" (0723d8ff)
+2025-09-20T15:16:43.1525869+02:00 80000032-0003-f800-b63f-84710c7967bb [INF] Executing "OkObjectResult", writing value of type '"System.Collections.Generic.List`1[[Application.DTOs.DataQuery.vTotalUltimasTransaccionesDTO, Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]"'. (605b4265)
+2025-09-20T15:16:43.1530673+02:00 80000032-0003-f800-b63f-84710c7967bb [INF] Executed action "API.Controllers.DataQueryController.ObtenerTotalUltimasTransacciones (API)" in 8.9982ms (afa2e885)
+2025-09-20T15:16:43.1531586+02:00 80000032-0003-f800-b63f-84710c7967bb [INF] Executed endpoint '"API.Controllers.DataQueryController.ObtenerTotalUltimasTransacciones (API)"' (99874f2b)
+2025-09-20T15:16:43.1534921+02:00 80000032-0003-f800-b63f-84710c7967bb [INF] Request finished "HTTP/2" "GET" "https"://"localhost:44311""""/DataQuery/ObtenerTotalUltimasTransacciones""" - 200 null "application/json; charset=utf-8" 10.6465ms (74253ad3)
+2025-09-20T15:41:25.5825396+02:00  [INF] User profile is available. Using '"C:\Users\David\AppData\Local\ASP.NET\DataProtection-Keys"' as key repository and Windows DPAPI to encrypt keys at rest. (7ac5e29c)
+2025-09-20T15:41:26.8564012+02:00  [INF] Application started. Press Ctrl+C to shut down. (dcaefe54)
+2025-09-20T15:41:26.8554995+02:00 80000075-0001-fa00-b63f-84710c7967bb [INF] Request starting "HTTP/2" "GET" "https"://"localhost:44311""""/swagger/index.html""" - null null (d509f86a)
+2025-09-20T15:41:26.8592626+02:00  [INF] Hosting environment: "Development" (bc5a1a4e)
+2025-09-20T15:41:26.8611343+02:00  [INF] Content root path: "C:\Users\David\Desktop\API" (cc26f24e)
+2025-09-20T15:41:28.4265191+02:00 80000075-0001-fa00-b63f-84710c7967bb [INF] Request finished "HTTP/2" "GET" "https"://"localhost:44311""""/swagger/index.html""" - 200 null "text/html;charset=utf-8" 1588.6139ms (74253ad3)
+2025-09-20T15:41:28.7620634+02:00 8000008b-0000-fd00-b63f-84710c7967bb [INF] Request starting "HTTP/2" "GET" "https"://"localhost:44311""""/_framework/aspnetcore-browser-refresh.js""" - null null (d509f86a)
+2025-09-20T15:41:28.7658074+02:00 8000008b-0000-fd00-b63f-84710c7967bb [INF] Request finished "HTTP/2" "GET" "https"://"localhost:44311""""/_framework/aspnetcore-browser-refresh.js""" - 200 13742 "application/javascript; charset=utf-8" 3.6148ms (74253ad3)
+2025-09-20T15:41:28.8495426+02:00 80000078-0004-fc00-b63f-84710c7967bb [INF] Request starting "HTTP/2" "GET" "https"://"localhost:44311""""/_vs/browserLink""" - null null (d509f86a)
+2025-09-20T15:41:29.1354954+02:00 80000078-0004-fc00-b63f-84710c7967bb [INF] Request finished "HTTP/2" "GET" "https"://"localhost:44311""""/_vs/browserLink""" - 200 null "text/javascript; charset=UTF-8" 285.9519ms (74253ad3)
+2025-09-20T15:41:33.0650836+02:00 80000089-0006-fd00-b63f-84710c7967bb [INF] Request starting "HTTP/2" "GET" "https"://"localhost:44311""""/swagger/v1/swagger.json""" - null null (d509f86a)
+2025-09-20T15:41:33.1315951+02:00 80000089-0006-fd00-b63f-84710c7967bb [INF] Request finished "HTTP/2" "GET" "https"://"localhost:44311""""/swagger/v1/swagger.json""" - 200 null "application/json;charset=utf-8" 66.5874ms (74253ad3)
+2025-09-20T15:42:21.9454953+02:00 800000f6-0006-fe00-b63f-84710c7967bb [INF] Request starting "HTTP/2" "GET" "https"://"localhost:44311""""/DataQuery/ObtenerTotalUltimasTransacciones""" - null null (d509f86a)
+2025-09-20T15:42:21.9545673+02:00 800000f6-0006-fe00-b63f-84710c7967bb [INF] CORS policy execution successful. (5409d6ef)
+2025-09-20T15:42:21.9683794+02:00 800000f6-0006-fe00-b63f-84710c7967bb [INF] Executing endpoint '"API.Controllers.DataQueryController.ObtenerTotalUltimasTransacciones (API)"' (500cc934)
+2025-09-20T15:42:21.9945710+02:00 800000f6-0006-fe00-b63f-84710c7967bb [INF] Route matched with "{action = \"ObtenerTotalUltimasTransacciones\", controller = \"DataQuery\"}". Executing controller action with signature "System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] ObtenerTotalUltimasTransacciones()" on controller "API.Controllers.DataQueryController" ("API"). (122b2fdf)
+2025-09-20T15:42:24.1744920+02:00 800000f6-0006-fe00-b63f-84710c7967bb [WRN] The query uses a row limiting operator ('Skip'/'Take') without an 'OrderBy' operator. This may lead to unpredictable results. If the 'Distinct' operator is used after 'OrderBy', then make sure to use the 'OrderBy' operator after 'Distinct' as the ordering would otherwise get erased. (5b3e5b60)
+2025-09-20T15:42:24.1789887+02:00 800000f6-0006-fe00-b63f-84710c7967bb [WRN] The query uses a row limiting operator ('Skip'/'Take') without an 'OrderBy' operator. This may lead to unpredictable results. If the 'Distinct' operator is used after 'OrderBy', then make sure to use the 'OrderBy' operator after 'Distinct' as the ordering would otherwise get erased. (5b3e5b60)
+2025-09-20T15:42:24.8805479+02:00 800000f6-0006-fe00-b63f-84710c7967bb [INF] Executed DbCommand ("89"ms) [Parameters=["@__p_1='?' (DbType = Int32), @__p_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT v.dia, v.\"totalBienvenida\", v.\"totalCompletarPerfil\", v.\"totalQR\", v.\"totalEvento\", v.\"totalTransacciones\"
+FROM \"v_TotalUltimasTransacciones\" AS v
+LIMIT @__p_1 OFFSET @__p_0" (0723d8ff)
+2025-09-20T15:42:24.9345117+02:00 800000f6-0006-fe00-b63f-84710c7967bb [INF] Executing "OkObjectResult", writing value of type '"System.Collections.Generic.List`1[[Application.DTOs.DataQuery.vTotalUltimasTransaccionesDTO, Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]"'. (605b4265)
+2025-09-20T15:42:24.9523180+02:00 800000f6-0006-fe00-b63f-84710c7967bb [INF] Executed action "API.Controllers.DataQueryController.ObtenerTotalUltimasTransacciones (API)" in 2953.0782ms (afa2e885)
+2025-09-20T15:42:24.9529176+02:00 800000f6-0006-fe00-b63f-84710c7967bb [INF] Executed endpoint '"API.Controllers.DataQueryController.ObtenerTotalUltimasTransacciones (API)"' (99874f2b)
+2025-09-20T15:42:24.9637788+02:00 800000f6-0006-fe00-b63f-84710c7967bb [INF] Request finished "HTTP/2" "GET" "https"://"localhost:44311""""/DataQuery/ObtenerTotalUltimasTransacciones""" - 200 null "application/json; charset=utf-8" 3018.4782ms (74253ad3)
+2025-09-20T15:43:50.3881044+02:00 80000067-0000-fa00-b63f-84710c7967bb [INF] Request starting "HTTP/2" "GET" "https"://"localhost:44311""""/DataQuery/ObtenerTotalUltimasTransacciones""" - null null (d509f86a)
+2025-09-20T15:43:50.3925219+02:00 80000067-0000-fa00-b63f-84710c7967bb [INF] CORS policy execution successful. (5409d6ef)
+2025-09-20T15:43:50.3930439+02:00 80000067-0000-fa00-b63f-84710c7967bb [INF] Executing endpoint '"API.Controllers.DataQueryController.ObtenerTotalUltimasTransacciones (API)"' (500cc934)
+2025-09-20T15:43:50.3934248+02:00 80000067-0000-fa00-b63f-84710c7967bb [INF] Route matched with "{action = \"ObtenerTotalUltimasTransacciones\", controller = \"DataQuery\"}". Executing controller action with signature "System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] ObtenerTotalUltimasTransacciones()" on controller "API.Controllers.DataQueryController" ("API"). (122b2fdf)
+2025-09-20T15:43:50.4935943+02:00 80000067-0000-fa00-b63f-84710c7967bb [INF] Executed DbCommand ("7"ms) [Parameters=["@__p_1='?' (DbType = Int32), @__p_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT v.dia, v.\"totalBienvenida\", v.\"totalCompletarPerfil\", v.\"totalQR\", v.\"totalEvento\", v.\"totalTransacciones\"
+FROM \"v_TotalUltimasTransacciones\" AS v
+LIMIT @__p_1 OFFSET @__p_0" (0723d8ff)
+2025-09-20T15:43:50.4950142+02:00 80000067-0000-fa00-b63f-84710c7967bb [INF] Executing "OkObjectResult", writing value of type '"System.Collections.Generic.List`1[[Application.DTOs.DataQuery.vTotalUltimasTransaccionesDTO, Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]"'. (605b4265)
+2025-09-20T15:43:50.4957202+02:00 80000067-0000-fa00-b63f-84710c7967bb [INF] Executed action "API.Controllers.DataQueryController.ObtenerTotalUltimasTransacciones (API)" in 102.1952ms (afa2e885)
+2025-09-20T15:43:50.4957969+02:00 80000067-0000-fa00-b63f-84710c7967bb [INF] Executed endpoint '"API.Controllers.DataQueryController.ObtenerTotalUltimasTransacciones (API)"' (99874f2b)
+2025-09-20T15:43:50.4962130+02:00 80000067-0000-fa00-b63f-84710c7967bb [INF] Request finished "HTTP/2" "GET" "https"://"localhost:44311""""/DataQuery/ObtenerTotalUltimasTransacciones""" - 200 null "application/json; charset=utf-8" 108.4088ms (74253ad3)
+2025-09-20T15:46:14.8277568+02:00 80000034-0003-f800-b63f-84710c7967bb [INF] Request starting "HTTP/2" "GET" "https"://"localhost:44311""""/DataQuery/ObtenerTotalUltimasTransacciones""" - null null (d509f86a)
+2025-09-20T15:46:14.8284591+02:00 80000034-0003-f800-b63f-84710c7967bb [INF] CORS policy execution successful. (5409d6ef)
+2025-09-20T15:46:14.8289498+02:00 80000034-0003-f800-b63f-84710c7967bb [INF] Executing endpoint '"API.Controllers.DataQueryController.ObtenerTotalUltimasTransacciones (API)"' (500cc934)
+2025-09-20T15:46:14.8291973+02:00 80000034-0003-f800-b63f-84710c7967bb [INF] Route matched with "{action = \"ObtenerTotalUltimasTransacciones\", controller = \"DataQuery\"}". Executing controller action with signature "System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] ObtenerTotalUltimasTransacciones()" on controller "API.Controllers.DataQueryController" ("API"). (122b2fdf)
+2025-09-20T15:46:14.9360169+02:00 80000034-0003-f800-b63f-84710c7967bb [INF] Executed DbCommand ("7"ms) [Parameters=["@__p_1='?' (DbType = Int32), @__p_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT v.dia, v.\"totalBienvenida\", v.\"totalCompletarPerfil\", v.\"totalQR\", v.\"totalEvento\", v.\"totalTransacciones\"
+FROM \"v_TotalUltimasTransacciones\" AS v
+LIMIT @__p_1 OFFSET @__p_0" (0723d8ff)
+2025-09-20T15:46:14.9374505+02:00 80000034-0003-f800-b63f-84710c7967bb [INF] Executing "OkObjectResult", writing value of type '"System.Collections.Generic.List`1[[Application.DTOs.DataQuery.vTotalUltimasTransaccionesDTO, Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]"'. (605b4265)
+2025-09-20T15:46:14.9380450+02:00 80000034-0003-f800-b63f-84710c7967bb [INF] Executed action "API.Controllers.DataQueryController.ObtenerTotalUltimasTransacciones (API)" in 108.729ms (afa2e885)
+2025-09-20T15:46:14.9381010+02:00 80000034-0003-f800-b63f-84710c7967bb [INF] Executed endpoint '"API.Controllers.DataQueryController.ObtenerTotalUltimasTransacciones (API)"' (99874f2b)
+2025-09-20T15:46:14.9383659+02:00 80000034-0003-f800-b63f-84710c7967bb [INF] Request finished "HTTP/2" "GET" "https"://"localhost:44311""""/DataQuery/ObtenerTotalUltimasTransacciones""" - 200 null "application/json; charset=utf-8" 110.9607ms (74253ad3)
+2025-09-20T15:47:19.9728278+02:00 8000001c-0004-fe00-b63f-84710c7967bb [INF] Request starting "HTTP/2" "GET" "https"://"localhost:44311""""/DataQuery/ObtenerTotalUltimasTransacciones""" - null null (d509f86a)
+2025-09-20T15:47:19.9732232+02:00 8000001c-0004-fe00-b63f-84710c7967bb [INF] CORS policy execution successful. (5409d6ef)
+2025-09-20T15:47:19.9735377+02:00 8000001c-0004-fe00-b63f-84710c7967bb [INF] Executing endpoint '"API.Controllers.DataQueryController.ObtenerTotalUltimasTransacciones (API)"' (500cc934)
+2025-09-20T15:47:19.9737816+02:00 8000001c-0004-fe00-b63f-84710c7967bb [INF] Route matched with "{action = \"ObtenerTotalUltimasTransacciones\", controller = \"DataQuery\"}". Executing controller action with signature "System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] ObtenerTotalUltimasTransacciones()" on controller "API.Controllers.DataQueryController" ("API"). (122b2fdf)
+2025-09-20T15:47:20.0028142+02:00 8000001c-0004-fe00-b63f-84710c7967bb [INF] Executed DbCommand ("15"ms) [Parameters=["@__p_1='?' (DbType = Int32), @__p_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT v.dia, v.\"totalBienvenida\", v.\"totalCompletarPerfil\", v.\"totalQR\", v.\"totalEvento\", v.\"totalTransacciones\"
+FROM \"v_TotalUltimasTransacciones\" AS v
+LIMIT @__p_1 OFFSET @__p_0" (0723d8ff)
+2025-09-20T15:47:20.0036995+02:00 8000001c-0004-fe00-b63f-84710c7967bb [INF] Executing "OkObjectResult", writing value of type '"System.Collections.Generic.List`1[[Application.DTOs.DataQuery.vTotalUltimasTransaccionesDTO, Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]"'. (605b4265)
+2025-09-20T15:47:20.0042187+02:00 8000001c-0004-fe00-b63f-84710c7967bb [INF] Executed action "API.Controllers.DataQueryController.ObtenerTotalUltimasTransacciones (API)" in 30.0792ms (afa2e885)
+2025-09-20T15:47:20.0042924+02:00 8000001c-0004-fe00-b63f-84710c7967bb [INF] Executed endpoint '"API.Controllers.DataQueryController.ObtenerTotalUltimasTransacciones (API)"' (99874f2b)
+2025-09-20T15:47:20.0047263+02:00 8000001c-0004-fe00-b63f-84710c7967bb [INF] Request finished "HTTP/2" "GET" "https"://"localhost:44311""""/DataQuery/ObtenerTotalUltimasTransacciones""" - 200 null "application/json; charset=utf-8" 32.207ms (74253ad3)
+2025-09-20T15:47:24.8811769+02:00 80000051-0002-fa00-b63f-84710c7967bb [INF] Request starting "HTTP/2" "GET" "https"://"localhost:44311""""/DataQuery/ObtenerTotalUltimasTransacciones""" - null null (d509f86a)
+2025-09-20T15:47:24.8816100+02:00 80000051-0002-fa00-b63f-84710c7967bb [INF] CORS policy execution successful. (5409d6ef)
+2025-09-20T15:47:24.8820968+02:00 80000051-0002-fa00-b63f-84710c7967bb [INF] Executing endpoint '"API.Controllers.DataQueryController.ObtenerTotalUltimasTransacciones (API)"' (500cc934)
+2025-09-20T15:47:24.8822755+02:00 80000051-0002-fa00-b63f-84710c7967bb [INF] Route matched with "{action = \"ObtenerTotalUltimasTransacciones\", controller = \"DataQuery\"}". Executing controller action with signature "System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] ObtenerTotalUltimasTransacciones()" on controller "API.Controllers.DataQueryController" ("API"). (122b2fdf)
+2025-09-20T15:47:24.8914589+02:00 80000051-0002-fa00-b63f-84710c7967bb [INF] Executed DbCommand ("4"ms) [Parameters=["@__p_1='?' (DbType = Int32), @__p_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT v.dia, v.\"totalBienvenida\", v.\"totalCompletarPerfil\", v.\"totalQR\", v.\"totalEvento\", v.\"totalTransacciones\"
+FROM \"v_TotalUltimasTransacciones\" AS v
+LIMIT @__p_1 OFFSET @__p_0" (0723d8ff)
+2025-09-20T15:47:24.8924358+02:00 80000051-0002-fa00-b63f-84710c7967bb [INF] Executing "OkObjectResult", writing value of type '"System.Collections.Generic.List`1[[Application.DTOs.DataQuery.vTotalUltimasTransaccionesDTO, Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]"'. (605b4265)
+2025-09-20T15:47:24.8934291+02:00 80000051-0002-fa00-b63f-84710c7967bb [INF] Executed action "API.Controllers.DataQueryController.ObtenerTotalUltimasTransacciones (API)" in 11.0321ms (afa2e885)
+2025-09-20T15:47:24.8935385+02:00 80000051-0002-fa00-b63f-84710c7967bb [INF] Executed endpoint '"API.Controllers.DataQueryController.ObtenerTotalUltimasTransacciones (API)"' (99874f2b)
+2025-09-20T15:47:24.8940123+02:00 80000051-0002-fa00-b63f-84710c7967bb [INF] Request finished "HTTP/2" "GET" "https"://"localhost:44311""""/DataQuery/ObtenerTotalUltimasTransacciones""" - 200 null "application/json; charset=utf-8" 12.9172ms (74253ad3)
+2025-09-20T15:47:33.1233123+02:00 80000014-0006-fb00-b63f-84710c7967bb [INF] Request starting "HTTP/2" "GET" "https"://"localhost:44311""""/DataQuery/ObtenerTotalUltimasTransacciones""" - null null (d509f86a)
+2025-09-20T15:47:33.1236961+02:00 80000014-0006-fb00-b63f-84710c7967bb [INF] CORS policy execution successful. (5409d6ef)
+2025-09-20T15:47:33.1239296+02:00 80000014-0006-fb00-b63f-84710c7967bb [INF] Executing endpoint '"API.Controllers.DataQueryController.ObtenerTotalUltimasTransacciones (API)"' (500cc934)
+2025-09-20T15:47:33.1241108+02:00 80000014-0006-fb00-b63f-84710c7967bb [INF] Route matched with "{action = \"ObtenerTotalUltimasTransacciones\", controller = \"DataQuery\"}". Executing controller action with signature "System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] ObtenerTotalUltimasTransacciones()" on controller "API.Controllers.DataQueryController" ("API"). (122b2fdf)
+2025-09-20T15:47:33.2170470+02:00 80000014-0006-fb00-b63f-84710c7967bb [INF] Executed DbCommand ("5"ms) [Parameters=["@__p_1='?' (DbType = Int32), @__p_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT v.dia, v.\"totalBienvenida\", v.\"totalCompletarPerfil\", v.\"totalQR\", v.\"totalEvento\", v.\"totalTransacciones\"
+FROM \"v_TotalUltimasTransacciones\" AS v
+LIMIT @__p_1 OFFSET @__p_0" (0723d8ff)
+2025-09-20T15:47:33.2175727+02:00 80000014-0006-fb00-b63f-84710c7967bb [INF] Executing "OkObjectResult", writing value of type '"System.Collections.Generic.List`1[[Application.DTOs.DataQuery.vTotalUltimasTransaccionesDTO, Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]"'. (605b4265)
+2025-09-20T15:47:33.2181050+02:00 80000014-0006-fb00-b63f-84710c7967bb [INF] Executed action "API.Controllers.DataQueryController.ObtenerTotalUltimasTransacciones (API)" in 93.89ms (afa2e885)
+2025-09-20T15:47:33.2182025+02:00 80000014-0006-fb00-b63f-84710c7967bb [INF] Executed endpoint '"API.Controllers.DataQueryController.ObtenerTotalUltimasTransacciones (API)"' (99874f2b)
+2025-09-20T15:47:33.2186802+02:00 80000014-0006-fb00-b63f-84710c7967bb [INF] Request finished "HTTP/2" "GET" "https"://"localhost:44311""""/DataQuery/ObtenerTotalUltimasTransacciones""" - 200 null "application/json; charset=utf-8" 95.6929ms (74253ad3)
+2025-09-20T15:47:41.3230825+02:00 80000016-0006-fb00-b63f-84710c7967bb [INF] Request starting "HTTP/2" "GET" "https"://"localhost:44311""""/DataQuery/ObtenerTotalUltimasTransacciones""" - null null (d509f86a)
+2025-09-20T15:47:41.3234524+02:00 80000016-0006-fb00-b63f-84710c7967bb [INF] CORS policy execution successful. (5409d6ef)
+2025-09-20T15:47:41.3236638+02:00 80000016-0006-fb00-b63f-84710c7967bb [INF] Executing endpoint '"API.Controllers.DataQueryController.ObtenerTotalUltimasTransacciones (API)"' (500cc934)
+2025-09-20T15:47:41.3238675+02:00 80000016-0006-fb00-b63f-84710c7967bb [INF] Route matched with "{action = \"ObtenerTotalUltimasTransacciones\", controller = \"DataQuery\"}". Executing controller action with signature "System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] ObtenerTotalUltimasTransacciones()" on controller "API.Controllers.DataQueryController" ("API"). (122b2fdf)
+2025-09-20T15:47:41.3315782+02:00 80000016-0006-fb00-b63f-84710c7967bb [INF] Executed DbCommand ("3"ms) [Parameters=["@__p_1='?' (DbType = Int32), @__p_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT v.dia, v.\"totalBienvenida\", v.\"totalCompletarPerfil\", v.\"totalQR\", v.\"totalEvento\", v.\"totalTransacciones\"
+FROM \"v_TotalUltimasTransacciones\" AS v
+LIMIT @__p_1 OFFSET @__p_0" (0723d8ff)
+2025-09-20T15:47:41.3321871+02:00 80000016-0006-fb00-b63f-84710c7967bb [INF] Executing "OkObjectResult", writing value of type '"System.Collections.Generic.List`1[[Application.DTOs.DataQuery.vTotalUltimasTransaccionesDTO, Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]"'. (605b4265)
+2025-09-20T15:47:41.3326254+02:00 80000016-0006-fb00-b63f-84710c7967bb [INF] Executed action "API.Controllers.DataQueryController.ObtenerTotalUltimasTransacciones (API)" in 8.672ms (afa2e885)
+2025-09-20T15:47:41.3326729+02:00 80000016-0006-fb00-b63f-84710c7967bb [INF] Executed endpoint '"API.Controllers.DataQueryController.ObtenerTotalUltimasTransacciones (API)"' (99874f2b)
+2025-09-20T15:47:41.3329092+02:00 80000016-0006-fb00-b63f-84710c7967bb [INF] Request finished "HTTP/2" "GET" "https"://"localhost:44311""""/DataQuery/ObtenerTotalUltimasTransacciones""" - 200 null "application/json; charset=utf-8" 10.0922ms (74253ad3)
+2025-09-20T15:48:33.7998486+02:00 80000018-0006-fb00-b63f-84710c7967bb [INF] Request starting "HTTP/2" "GET" "https"://"localhost:44311""""/DataQuery/ObtenerTotalUltimasTransacciones""" - null null (d509f86a)
+2025-09-20T15:48:33.8002022+02:00 80000018-0006-fb00-b63f-84710c7967bb [INF] CORS policy execution successful. (5409d6ef)
+2025-09-20T15:48:33.8004540+02:00 80000018-0006-fb00-b63f-84710c7967bb [INF] Executing endpoint '"API.Controllers.DataQueryController.ObtenerTotalUltimasTransacciones (API)"' (500cc934)
+2025-09-20T15:48:33.8006330+02:00 80000018-0006-fb00-b63f-84710c7967bb [INF] Route matched with "{action = \"ObtenerTotalUltimasTransacciones\", controller = \"DataQuery\"}". Executing controller action with signature "System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] ObtenerTotalUltimasTransacciones()" on controller "API.Controllers.DataQueryController" ("API"). (122b2fdf)
+2025-09-20T15:48:33.8177781+02:00 80000018-0006-fb00-b63f-84710c7967bb [INF] Executed DbCommand ("9"ms) [Parameters=["@__p_1='?' (DbType = Int32), @__p_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT v.dia, v.\"totalBienvenida\", v.\"totalCompletarPerfil\", v.\"totalQR\", v.\"totalEvento\", v.\"totalTransacciones\"
+FROM \"v_TotalUltimasTransacciones\" AS v
+LIMIT @__p_1 OFFSET @__p_0" (0723d8ff)
+2025-09-20T15:48:33.8275608+02:00 80000018-0006-fb00-b63f-84710c7967bb [INF] Executing "OkObjectResult", writing value of type '"System.Collections.Generic.List`1[[Application.DTOs.DataQuery.vTotalUltimasTransaccionesDTO, Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]"'. (605b4265)
+2025-09-20T15:48:33.8288478+02:00 80000018-0006-fb00-b63f-84710c7967bb [INF] Executed action "API.Controllers.DataQueryController.ObtenerTotalUltimasTransacciones (API)" in 28.1206ms (afa2e885)
+2025-09-20T15:48:33.8289321+02:00 80000018-0006-fb00-b63f-84710c7967bb [INF] Executed endpoint '"API.Controllers.DataQueryController.ObtenerTotalUltimasTransacciones (API)"' (99874f2b)
+2025-09-20T15:48:33.8293140+02:00 80000018-0006-fb00-b63f-84710c7967bb [INF] Request finished "HTTP/2" "GET" "https"://"localhost:44311""""/DataQuery/ObtenerTotalUltimasTransacciones""" - 200 null "application/json; charset=utf-8" 29.5951ms (74253ad3)
+2025-09-20T15:50:16.9070440+02:00 8000006f-0002-fb00-b63f-84710c7967bb [INF] Request starting "HTTP/2" "GET" "https"://"localhost:44311""""/DataQuery/ObtenerTotalUltimasTransacciones""" - null null (d509f86a)
+2025-09-20T15:50:16.9076864+02:00 8000006f-0002-fb00-b63f-84710c7967bb [INF] CORS policy execution successful. (5409d6ef)
+2025-09-20T15:50:16.9081791+02:00 8000006f-0002-fb00-b63f-84710c7967bb [INF] Executing endpoint '"API.Controllers.DataQueryController.ObtenerTotalUltimasTransacciones (API)"' (500cc934)
+2025-09-20T15:50:16.9083858+02:00 8000006f-0002-fb00-b63f-84710c7967bb [INF] Route matched with "{action = \"ObtenerTotalUltimasTransacciones\", controller = \"DataQuery\"}". Executing controller action with signature "System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] ObtenerTotalUltimasTransacciones()" on controller "API.Controllers.DataQueryController" ("API"). (122b2fdf)
+2025-09-20T15:50:16.9261141+02:00 8000006f-0002-fb00-b63f-84710c7967bb [INF] Executed DbCommand ("9"ms) [Parameters=["@__p_1='?' (DbType = Int32), @__p_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT v.dia, v.\"totalBienvenida\", v.\"totalCompletarPerfil\", v.\"totalQR\", v.\"totalEvento\", v.\"totalTransacciones\"
+FROM \"v_TotalUltimasTransacciones\" AS v
+LIMIT @__p_1 OFFSET @__p_0" (0723d8ff)
+2025-09-20T15:50:16.9268469+02:00 8000006f-0002-fb00-b63f-84710c7967bb [INF] Executing "OkObjectResult", writing value of type '"System.Collections.Generic.List`1[[Application.DTOs.DataQuery.vTotalUltimasTransaccionesDTO, Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]"'. (605b4265)
+2025-09-20T15:50:16.9275024+02:00 8000006f-0002-fb00-b63f-84710c7967bb [INF] Executed action "API.Controllers.DataQueryController.ObtenerTotalUltimasTransacciones (API)" in 18.9956ms (afa2e885)
+2025-09-20T15:50:16.9275750+02:00 8000006f-0002-fb00-b63f-84710c7967bb [INF] Executed endpoint '"API.Controllers.DataQueryController.ObtenerTotalUltimasTransacciones (API)"' (99874f2b)
+2025-09-20T15:50:16.9279579+02:00 8000006f-0002-fb00-b63f-84710c7967bb [INF] Request finished "HTTP/2" "GET" "https"://"localhost:44311""""/DataQuery/ObtenerTotalUltimasTransacciones""" - 200 null "application/json; charset=utf-8" 21.033ms (74253ad3)
+2025-09-20T15:50:39.9692079+02:00 8000007e-0001-fa00-b63f-84710c7967bb [INF] Request starting "HTTP/2" "GET" "https"://"localhost:44311""""/DataQuery/ObtenerTotalUltimasTransacciones""" - null null (d509f86a)
+2025-09-20T15:50:39.9695315+02:00 8000007e-0001-fa00-b63f-84710c7967bb [INF] CORS policy execution successful. (5409d6ef)
+2025-09-20T15:50:39.9698091+02:00 8000007e-0001-fa00-b63f-84710c7967bb [INF] Executing endpoint '"API.Controllers.DataQueryController.ObtenerTotalUltimasTransacciones (API)"' (500cc934)
+2025-09-20T15:50:39.9700723+02:00 8000007e-0001-fa00-b63f-84710c7967bb [INF] Route matched with "{action = \"ObtenerTotalUltimasTransacciones\", controller = \"DataQuery\"}". Executing controller action with signature "System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] ObtenerTotalUltimasTransacciones()" on controller "API.Controllers.DataQueryController" ("API"). (122b2fdf)
+2025-09-20T15:50:39.9820438+02:00 8000007e-0001-fa00-b63f-84710c7967bb [INF] Executed DbCommand ("4"ms) [Parameters=["@__p_1='?' (DbType = Int32), @__p_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT v.dia, v.\"totalBienvenida\", v.\"totalCompletarPerfil\", v.\"totalQR\", v.\"totalEvento\", v.\"totalTransacciones\"
+FROM \"v_TotalUltimasTransacciones\" AS v
+LIMIT @__p_1 OFFSET @__p_0" (0723d8ff)
+2025-09-20T15:50:39.9841354+02:00 8000007e-0001-fa00-b63f-84710c7967bb [INF] Executing "OkObjectResult", writing value of type '"System.Collections.Generic.List`1[[Application.DTOs.DataQuery.vTotalUltimasTransaccionesDTO, Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]"'. (605b4265)
+2025-09-20T15:50:39.9876174+02:00 8000007e-0001-fa00-b63f-84710c7967bb [INF] Executed action "API.Controllers.DataQueryController.ObtenerTotalUltimasTransacciones (API)" in 17.4451ms (afa2e885)
+2025-09-20T15:50:39.9877053+02:00 8000007e-0001-fa00-b63f-84710c7967bb [INF] Executed endpoint '"API.Controllers.DataQueryController.ObtenerTotalUltimasTransacciones (API)"' (99874f2b)
+2025-09-20T15:50:39.9881006+02:00 8000007e-0001-fa00-b63f-84710c7967bb [INF] Request finished "HTTP/2" "GET" "https"://"localhost:44311""""/DataQuery/ObtenerTotalUltimasTransacciones""" - 200 null "application/json; charset=utf-8" 18.9517ms (74253ad3)
+2025-09-20T15:55:42.3267470+02:00 8000001e-0004-fe00-b63f-84710c7967bb [INF] Request starting "HTTP/2" "GET" "https"://"localhost:44311""""/DataQuery/ObtenerTotalUltimasTransacciones""" - null null (d509f86a)
+2025-09-20T15:55:42.3272216+02:00 8000001e-0004-fe00-b63f-84710c7967bb [INF] CORS policy execution successful. (5409d6ef)
+2025-09-20T15:55:42.3277624+02:00 8000001e-0004-fe00-b63f-84710c7967bb [INF] Executing endpoint '"API.Controllers.DataQueryController.ObtenerTotalUltimasTransacciones (API)"' (500cc934)
+2025-09-20T15:55:42.3280148+02:00 8000001e-0004-fe00-b63f-84710c7967bb [INF] Route matched with "{action = \"ObtenerTotalUltimasTransacciones\", controller = \"DataQuery\"}". Executing controller action with signature "System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] ObtenerTotalUltimasTransacciones()" on controller "API.Controllers.DataQueryController" ("API"). (122b2fdf)
+2025-09-20T15:55:42.5721199+02:00 8000001e-0004-fe00-b63f-84710c7967bb [INF] Executed DbCommand ("8"ms) [Parameters=["@__p_1='?' (DbType = Int32), @__p_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT v.dia, v.\"totalBienvenida\", v.\"totalCompletarPerfil\", v.\"totalQR\", v.\"totalEvento\", v.\"totalTransacciones\"
+FROM \"v_TotalUltimasTransacciones\" AS v
+LIMIT @__p_1 OFFSET @__p_0" (0723d8ff)
+2025-09-20T15:55:42.5728099+02:00 8000001e-0004-fe00-b63f-84710c7967bb [INF] Executing "OkObjectResult", writing value of type '"System.Collections.Generic.List`1[[Application.DTOs.DataQuery.vTotalUltimasTransaccionesDTO, Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]"'. (605b4265)
+2025-09-20T15:55:42.5736730+02:00 8000001e-0004-fe00-b63f-84710c7967bb [INF] Executed action "API.Controllers.DataQueryController.ObtenerTotalUltimasTransacciones (API)" in 245.539ms (afa2e885)
+2025-09-20T15:55:42.5737717+02:00 8000001e-0004-fe00-b63f-84710c7967bb [INF] Executed endpoint '"API.Controllers.DataQueryController.ObtenerTotalUltimasTransacciones (API)"' (99874f2b)
+2025-09-20T15:55:42.5742182+02:00 8000001e-0004-fe00-b63f-84710c7967bb [INF] Request finished "HTTP/2" "GET" "https"://"localhost:44311""""/DataQuery/ObtenerTotalUltimasTransacciones""" - 200 null "application/json; charset=utf-8" 247.9823ms (74253ad3)
+2025-09-20T15:58:16.6699309+02:00 80000020-0004-fe00-b63f-84710c7967bb [INF] Request starting "HTTP/2" "GET" "https"://"localhost:44311""""/DataQuery/ObtenerTotalUltimasTransacciones""" - null null (d509f86a)
+2025-09-20T15:58:16.6704217+02:00 80000020-0004-fe00-b63f-84710c7967bb [INF] CORS policy execution successful. (5409d6ef)
+2025-09-20T15:58:16.6707486+02:00 80000020-0004-fe00-b63f-84710c7967bb [INF] Executing endpoint '"API.Controllers.DataQueryController.ObtenerTotalUltimasTransacciones (API)"' (500cc934)
+2025-09-20T15:58:16.6709398+02:00 80000020-0004-fe00-b63f-84710c7967bb [INF] Route matched with "{action = \"ObtenerTotalUltimasTransacciones\", controller = \"DataQuery\"}". Executing controller action with signature "System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] ObtenerTotalUltimasTransacciones()" on controller "API.Controllers.DataQueryController" ("API"). (122b2fdf)
+2025-09-20T15:58:16.6858640+02:00 80000020-0004-fe00-b63f-84710c7967bb [INF] Executed DbCommand ("9"ms) [Parameters=["@__p_1='?' (DbType = Int32), @__p_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT v.dia, v.\"totalBienvenida\", v.\"totalCompletarPerfil\", v.\"totalQR\", v.\"totalEvento\", v.\"totalTransacciones\"
+FROM \"v_TotalUltimasTransacciones\" AS v
+LIMIT @__p_1 OFFSET @__p_0" (0723d8ff)
+2025-09-20T15:58:16.6880922+02:00 80000020-0004-fe00-b63f-84710c7967bb [INF] Executing "OkObjectResult", writing value of type '"System.Collections.Generic.List`1[[Application.DTOs.DataQuery.vTotalUltimasTransaccionesDTO, Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]"'. (605b4265)
+2025-09-20T15:58:16.6890236+02:00 80000020-0004-fe00-b63f-84710c7967bb [INF] Executed action "API.Controllers.DataQueryController.ObtenerTotalUltimasTransacciones (API)" in 17.958ms (afa2e885)
+2025-09-20T15:58:16.6891234+02:00 80000020-0004-fe00-b63f-84710c7967bb [INF] Executed endpoint '"API.Controllers.DataQueryController.ObtenerTotalUltimasTransacciones (API)"' (99874f2b)
+2025-09-20T15:58:16.6895333+02:00 80000020-0004-fe00-b63f-84710c7967bb [INF] Request finished "HTTP/2" "GET" "https"://"localhost:44311""""/DataQuery/ObtenerTotalUltimasTransacciones""" - 200 null "application/json; charset=utf-8" 19.9943ms (74253ad3)
+2025-09-20T15:59:09.9863282+02:00 80000084-0001-fa00-b63f-84710c7967bb [INF] Request starting "HTTP/2" "GET" "https"://"localhost:44311""""/DataQuery/ObtenerTotalUltimasTransacciones""" - null null (d509f86a)
+2025-09-20T15:59:09.9867460+02:00 80000084-0001-fa00-b63f-84710c7967bb [INF] CORS policy execution successful. (5409d6ef)
+2025-09-20T15:59:09.9871181+02:00 80000084-0001-fa00-b63f-84710c7967bb [INF] Executing endpoint '"API.Controllers.DataQueryController.ObtenerTotalUltimasTransacciones (API)"' (500cc934)
+2025-09-20T15:59:09.9873008+02:00 80000084-0001-fa00-b63f-84710c7967bb [INF] Route matched with "{action = \"ObtenerTotalUltimasTransacciones\", controller = \"DataQuery\"}". Executing controller action with signature "System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] ObtenerTotalUltimasTransacciones()" on controller "API.Controllers.DataQueryController" ("API"). (122b2fdf)
+2025-09-20T15:59:10.0010601+02:00 80000084-0001-fa00-b63f-84710c7967bb [INF] Executed DbCommand ("5"ms) [Parameters=["@__p_1='?' (DbType = Int32), @__p_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT v.dia, v.\"totalBienvenida\", v.\"totalCompletarPerfil\", v.\"totalQR\", v.\"totalEvento\", v.\"totalTransacciones\"
+FROM \"v_TotalUltimasTransacciones\" AS v
+LIMIT @__p_1 OFFSET @__p_0" (0723d8ff)
+2025-09-20T15:59:10.0061557+02:00 80000084-0001-fa00-b63f-84710c7967bb [INF] Executing "OkObjectResult", writing value of type '"System.Collections.Generic.List`1[[Application.DTOs.DataQuery.vTotalUltimasTransaccionesDTO, Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]"'. (605b4265)
+2025-09-20T15:59:10.0521172+02:00 80000084-0001-fa00-b63f-84710c7967bb [INF] Executed action "API.Controllers.DataQueryController.ObtenerTotalUltimasTransacciones (API)" in 64.7011ms (afa2e885)
+2025-09-20T15:59:10.0522133+02:00 80000084-0001-fa00-b63f-84710c7967bb [INF] Executed endpoint '"API.Controllers.DataQueryController.ObtenerTotalUltimasTransacciones (API)"' (99874f2b)
+2025-09-20T15:59:10.0526296+02:00 80000084-0001-fa00-b63f-84710c7967bb [INF] Request finished "HTTP/2" "GET" "https"://"localhost:44311""""/DataQuery/ObtenerTotalUltimasTransacciones""" - 200 null "application/json; charset=utf-8" 66.4416ms (74253ad3)
+2025-09-20T15:59:23.4378303+02:00 8000001a-0006-fb00-b63f-84710c7967bb [INF] Request starting "HTTP/2" "GET" "https"://"localhost:44311""""/DataQuery/ObtenerTotalUltimasTransacciones""" - null null (d509f86a)
+2025-09-20T15:59:23.4381906+02:00 8000001a-0006-fb00-b63f-84710c7967bb [INF] CORS policy execution successful. (5409d6ef)
+2025-09-20T15:59:23.4383874+02:00 8000001a-0006-fb00-b63f-84710c7967bb [INF] Executing endpoint '"API.Controllers.DataQueryController.ObtenerTotalUltimasTransacciones (API)"' (500cc934)
+2025-09-20T15:59:23.4385392+02:00 8000001a-0006-fb00-b63f-84710c7967bb [INF] Route matched with "{action = \"ObtenerTotalUltimasTransacciones\", controller = \"DataQuery\"}". Executing controller action with signature "System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] ObtenerTotalUltimasTransacciones()" on controller "API.Controllers.DataQueryController" ("API"). (122b2fdf)
+2025-09-20T15:59:23.4458860+02:00 8000001a-0006-fb00-b63f-84710c7967bb [INF] Executed DbCommand ("3"ms) [Parameters=["@__p_1='?' (DbType = Int32), @__p_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT v.dia, v.\"totalBienvenida\", v.\"totalCompletarPerfil\", v.\"totalQR\", v.\"totalEvento\", v.\"totalTransacciones\"
+FROM \"v_TotalUltimasTransacciones\" AS v
+LIMIT @__p_1 OFFSET @__p_0" (0723d8ff)
+2025-09-20T15:59:23.4463464+02:00 8000001a-0006-fb00-b63f-84710c7967bb [INF] Executing "OkObjectResult", writing value of type '"System.Collections.Generic.List`1[[Application.DTOs.DataQuery.vTotalUltimasTransaccionesDTO, Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]"'. (605b4265)
+2025-09-20T15:59:23.4467905+02:00 8000001a-0006-fb00-b63f-84710c7967bb [INF] Executed action "API.Controllers.DataQueryController.ObtenerTotalUltimasTransacciones (API)" in 8.1763ms (afa2e885)
+2025-09-20T15:59:23.4468604+02:00 8000001a-0006-fb00-b63f-84710c7967bb [INF] Executed endpoint '"API.Controllers.DataQueryController.ObtenerTotalUltimasTransacciones (API)"' (99874f2b)
+2025-09-20T15:59:23.4471603+02:00 8000001a-0006-fb00-b63f-84710c7967bb [INF] Request finished "HTTP/2" "GET" "https"://"localhost:44311""""/DataQuery/ObtenerTotalUltimasTransacciones""" - 200 null "application/json; charset=utf-8" 9.5029ms (74253ad3)
+2025-09-20T15:59:50.6715169+02:00 8000006b-0000-fa00-b63f-84710c7967bb [INF] Request starting "HTTP/2" "GET" "https"://"localhost:44311""""/DataQuery/ObtenerTotalUltimasTransacciones""" - null null (d509f86a)
+2025-09-20T15:59:50.6719145+02:00 8000006b-0000-fa00-b63f-84710c7967bb [INF] CORS policy execution successful. (5409d6ef)
+2025-09-20T15:59:50.6721549+02:00 8000006b-0000-fa00-b63f-84710c7967bb [INF] Executing endpoint '"API.Controllers.DataQueryController.ObtenerTotalUltimasTransacciones (API)"' (500cc934)
+2025-09-20T15:59:50.6723108+02:00 8000006b-0000-fa00-b63f-84710c7967bb [INF] Route matched with "{action = \"ObtenerTotalUltimasTransacciones\", controller = \"DataQuery\"}". Executing controller action with signature "System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] ObtenerTotalUltimasTransacciones()" on controller "API.Controllers.DataQueryController" ("API"). (122b2fdf)
+2025-09-20T15:59:50.6836887+02:00 8000006b-0000-fa00-b63f-84710c7967bb [INF] Executed DbCommand ("3"ms) [Parameters=["@__p_1='?' (DbType = Int32), @__p_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT v.dia, v.\"totalBienvenida\", v.\"totalCompletarPerfil\", v.\"totalQR\", v.\"totalEvento\", v.\"totalTransacciones\"
+FROM \"v_TotalUltimasTransacciones\" AS v
+LIMIT @__p_1 OFFSET @__p_0" (0723d8ff)
+2025-09-20T15:59:50.6878752+02:00 8000006b-0000-fa00-b63f-84710c7967bb [INF] Executing "OkObjectResult", writing value of type '"System.Collections.Generic.List`1[[Application.DTOs.DataQuery.vTotalUltimasTransaccionesDTO, Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]"'. (605b4265)
+2025-09-20T15:59:50.6890836+02:00 8000006b-0000-fa00-b63f-84710c7967bb [INF] Executed action "API.Controllers.DataQueryController.ObtenerTotalUltimasTransacciones (API)" in 16.6662ms (afa2e885)
+2025-09-20T15:59:50.6891917+02:00 8000006b-0000-fa00-b63f-84710c7967bb [INF] Executed endpoint '"API.Controllers.DataQueryController.ObtenerTotalUltimasTransacciones (API)"' (99874f2b)
+2025-09-20T15:59:50.6896689+02:00 8000006b-0000-fa00-b63f-84710c7967bb [INF] Request finished "HTTP/2" "GET" "https"://"localhost:44311""""/DataQuery/ObtenerTotalUltimasTransacciones""" - 200 null "application/json; charset=utf-8" 18.2526ms (74253ad3)
+2025-09-20T16:00:59.9213730+02:00 80000022-0004-fe00-b63f-84710c7967bb [INF] Request starting "HTTP/2" "GET" "https"://"localhost:44311""""/DataQuery/ObtenerTotalUltimasTransacciones""" - null null (d509f86a)
+2025-09-20T16:00:59.9220850+02:00 80000022-0004-fe00-b63f-84710c7967bb [INF] CORS policy execution successful. (5409d6ef)
+2025-09-20T16:00:59.9234381+02:00 80000022-0004-fe00-b63f-84710c7967bb [INF] Executing endpoint '"API.Controllers.DataQueryController.ObtenerTotalUltimasTransacciones (API)"' (500cc934)
+2025-09-20T16:00:59.9235975+02:00 80000022-0004-fe00-b63f-84710c7967bb [INF] Route matched with "{action = \"ObtenerTotalUltimasTransacciones\", controller = \"DataQuery\"}". Executing controller action with signature "System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] ObtenerTotalUltimasTransacciones()" on controller "API.Controllers.DataQueryController" ("API"). (122b2fdf)
+2025-09-20T16:01:00.0198969+02:00 80000022-0004-fe00-b63f-84710c7967bb [INF] Executed DbCommand ("5"ms) [Parameters=["@__p_1='?' (DbType = Int32), @__p_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT v.dia, v.\"totalBienvenida\", v.\"totalCompletarPerfil\", v.\"totalQR\", v.\"totalEvento\", v.\"totalTransacciones\"
+FROM \"v_TotalUltimasTransacciones\" AS v
+LIMIT @__p_1 OFFSET @__p_0" (0723d8ff)
+2025-09-20T16:01:00.0204696+02:00 80000022-0004-fe00-b63f-84710c7967bb [INF] Executing "OkObjectResult", writing value of type '"System.Collections.Generic.List`1[[Application.DTOs.DataQuery.vTotalUltimasTransaccionesDTO, Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]"'. (605b4265)
+2025-09-20T16:01:00.0212958+02:00 80000022-0004-fe00-b63f-84710c7967bb [INF] Executed action "API.Controllers.DataQueryController.ObtenerTotalUltimasTransacciones (API)" in 97.6225ms (afa2e885)
+2025-09-20T16:01:00.0213887+02:00 80000022-0004-fe00-b63f-84710c7967bb [INF] Executed endpoint '"API.Controllers.DataQueryController.ObtenerTotalUltimasTransacciones (API)"' (99874f2b)
+2025-09-20T16:01:00.0224005+02:00 80000022-0004-fe00-b63f-84710c7967bb [INF] Request finished "HTTP/2" "GET" "https"://"localhost:44311""""/DataQuery/ObtenerTotalUltimasTransacciones""" - 200 null "application/json; charset=utf-8" 101.1286ms (74253ad3)
+2025-09-20T16:01:14.4714086+02:00 8000006d-0000-fa00-b63f-84710c7967bb [INF] Request starting "HTTP/2" "GET" "https"://"localhost:44311""""/DataQuery/ObtenerTotalUltimasTransacciones""" - null null (d509f86a)
+2025-09-20T16:01:14.4717369+02:00 8000006d-0000-fa00-b63f-84710c7967bb [INF] CORS policy execution successful. (5409d6ef)
+2025-09-20T16:01:14.4719590+02:00 8000006d-0000-fa00-b63f-84710c7967bb [INF] Executing endpoint '"API.Controllers.DataQueryController.ObtenerTotalUltimasTransacciones (API)"' (500cc934)
+2025-09-20T16:01:14.4721509+02:00 8000006d-0000-fa00-b63f-84710c7967bb [INF] Route matched with "{action = \"ObtenerTotalUltimasTransacciones\", controller = \"DataQuery\"}". Executing controller action with signature "System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] ObtenerTotalUltimasTransacciones()" on controller "API.Controllers.DataQueryController" ("API"). (122b2fdf)
+2025-09-20T16:01:14.4805687+02:00 8000006d-0000-fa00-b63f-84710c7967bb [INF] Executed DbCommand ("3"ms) [Parameters=["@__p_1='?' (DbType = Int32), @__p_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT v.dia, v.\"totalBienvenida\", v.\"totalCompletarPerfil\", v.\"totalQR\", v.\"totalEvento\", v.\"totalTransacciones\"
+FROM \"v_TotalUltimasTransacciones\" AS v
+LIMIT @__p_1 OFFSET @__p_0" (0723d8ff)
+2025-09-20T16:01:14.4813746+02:00 8000006d-0000-fa00-b63f-84710c7967bb [INF] Executing "OkObjectResult", writing value of type '"System.Collections.Generic.List`1[[Application.DTOs.DataQuery.vTotalUltimasTransaccionesDTO, Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]"'. (605b4265)
+2025-09-20T16:01:14.4818488+02:00 8000006d-0000-fa00-b63f-84710c7967bb [INF] Executed action "API.Controllers.DataQueryController.ObtenerTotalUltimasTransacciones (API)" in 9.551ms (afa2e885)
+2025-09-20T16:01:14.4819074+02:00 8000006d-0000-fa00-b63f-84710c7967bb [INF] Executed endpoint '"API.Controllers.DataQueryController.ObtenerTotalUltimasTransacciones (API)"' (99874f2b)
+2025-09-20T16:01:14.4822895+02:00 8000006d-0000-fa00-b63f-84710c7967bb [INF] Request finished "HTTP/2" "GET" "https"://"localhost:44311""""/DataQuery/ObtenerTotalUltimasTransacciones""" - 200 null "application/json; charset=utf-8" 11.1021ms (74253ad3)
+2025-09-20T16:02:00.2994021+02:00 80000026-0004-fe00-b63f-84710c7967bb [INF] Request starting "HTTP/2" "GET" "https"://"localhost:44311""""/DataQuery/ObtenerTotalUltimasTransacciones""" - null null (d509f86a)
+2025-09-20T16:02:00.2997620+02:00 80000026-0004-fe00-b63f-84710c7967bb [INF] CORS policy execution successful. (5409d6ef)
+2025-09-20T16:02:00.2999906+02:00 80000026-0004-fe00-b63f-84710c7967bb [INF] Executing endpoint '"API.Controllers.DataQueryController.ObtenerTotalUltimasTransacciones (API)"' (500cc934)
+2025-09-20T16:02:00.3002075+02:00 80000026-0004-fe00-b63f-84710c7967bb [INF] Route matched with "{action = \"ObtenerTotalUltimasTransacciones\", controller = \"DataQuery\"}". Executing controller action with signature "System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] ObtenerTotalUltimasTransacciones()" on controller "API.Controllers.DataQueryController" ("API"). (122b2fdf)
+2025-09-20T16:02:00.3110828+02:00 80000026-0004-fe00-b63f-84710c7967bb [INF] Executed DbCommand ("3"ms) [Parameters=["@__p_1='?' (DbType = Int32), @__p_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT v.dia, v.\"totalBienvenida\", v.\"totalCompletarPerfil\", v.\"totalQR\", v.\"totalEvento\", v.\"totalTransacciones\"
+FROM \"v_TotalUltimasTransacciones\" AS v
+LIMIT @__p_1 OFFSET @__p_0" (0723d8ff)
+2025-09-20T16:02:00.3202346+02:00 80000026-0004-fe00-b63f-84710c7967bb [INF] Executing "OkObjectResult", writing value of type '"System.Collections.Generic.List`1[[Application.DTOs.DataQuery.vTotalUltimasTransaccionesDTO, Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]"'. (605b4265)
+2025-09-20T16:02:00.3214480+02:00 80000026-0004-fe00-b63f-84710c7967bb [INF] Executed action "API.Controllers.DataQueryController.ObtenerTotalUltimasTransacciones (API)" in 21.0824ms (afa2e885)
+2025-09-20T16:02:00.3215225+02:00 80000026-0004-fe00-b63f-84710c7967bb [INF] Executed endpoint '"API.Controllers.DataQueryController.ObtenerTotalUltimasTransacciones (API)"' (99874f2b)
+2025-09-20T16:02:00.3218983+02:00 80000026-0004-fe00-b63f-84710c7967bb [INF] Request finished "HTTP/2" "GET" "https"://"localhost:44311""""/DataQuery/ObtenerTotalUltimasTransacciones""" - 200 null "application/json; charset=utf-8" 22.6238ms (74253ad3)
+2025-09-20T16:09:05.1586975+02:00 8000001e-0006-fb00-b63f-84710c7967bb [INF] Request starting "HTTP/2" "GET" "https"://"localhost:44311""""/DataQuery/ObtenerTotalUltimasTransacciones""" - null null (d509f86a)
+2025-09-20T16:09:05.1590404+02:00 8000001e-0006-fb00-b63f-84710c7967bb [INF] CORS policy execution successful. (5409d6ef)
+2025-09-20T16:09:05.1592677+02:00 8000001e-0006-fb00-b63f-84710c7967bb [INF] Executing endpoint '"API.Controllers.DataQueryController.ObtenerTotalUltimasTransacciones (API)"' (500cc934)
+2025-09-20T16:09:05.1595253+02:00 8000001e-0006-fb00-b63f-84710c7967bb [INF] Route matched with "{action = \"ObtenerTotalUltimasTransacciones\", controller = \"DataQuery\"}". Executing controller action with signature "System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] ObtenerTotalUltimasTransacciones()" on controller "API.Controllers.DataQueryController" ("API"). (122b2fdf)
+2025-09-20T16:09:05.3429598+02:00 8000001e-0006-fb00-b63f-84710c7967bb [INF] Executed DbCommand ("5"ms) [Parameters=["@__p_1='?' (DbType = Int32), @__p_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT v.dia, v.\"totalBienvenida\", v.\"totalCompletarPerfil\", v.\"totalQR\", v.\"totalEvento\", v.\"totalTransacciones\"
+FROM \"v_TotalUltimasTransacciones\" AS v
+LIMIT @__p_1 OFFSET @__p_0" (0723d8ff)
+2025-09-20T16:09:05.3437839+02:00 8000001e-0006-fb00-b63f-84710c7967bb [INF] Executing "OkObjectResult", writing value of type '"System.Collections.Generic.List`1[[Application.DTOs.DataQuery.vTotalUltimasTransaccionesDTO, Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]"'. (605b4265)
+2025-09-20T16:09:05.3446648+02:00 8000001e-0006-fb00-b63f-84710c7967bb [INF] Executed action "API.Controllers.DataQueryController.ObtenerTotalUltimasTransacciones (API)" in 185.0378ms (afa2e885)
+2025-09-20T16:09:05.3447560+02:00 8000001e-0006-fb00-b63f-84710c7967bb [INF] Executed endpoint '"API.Controllers.DataQueryController.ObtenerTotalUltimasTransacciones (API)"' (99874f2b)
+2025-09-20T16:09:05.3452408+02:00 8000001e-0006-fb00-b63f-84710c7967bb [INF] Request finished "HTTP/2" "GET" "https"://"localhost:44311""""/DataQuery/ObtenerTotalUltimasTransacciones""" - 200 null "application/json; charset=utf-8" 186.6587ms (74253ad3)
+2025-09-20T16:09:17.6630767+02:00 80000056-0002-fa00-b63f-84710c7967bb [INF] Request starting "HTTP/2" "GET" "https"://"localhost:44311""""/DataQuery/ObtenerTotalUltimasTransacciones""" - null null (d509f86a)
+2025-09-20T16:09:17.6633477+02:00 80000056-0002-fa00-b63f-84710c7967bb [INF] CORS policy execution successful. (5409d6ef)
+2025-09-20T16:09:17.6635342+02:00 80000056-0002-fa00-b63f-84710c7967bb [INF] Executing endpoint '"API.Controllers.DataQueryController.ObtenerTotalUltimasTransacciones (API)"' (500cc934)
+2025-09-20T16:09:17.6636707+02:00 80000056-0002-fa00-b63f-84710c7967bb [INF] Route matched with "{action = \"ObtenerTotalUltimasTransacciones\", controller = \"DataQuery\"}". Executing controller action with signature "System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] ObtenerTotalUltimasTransacciones()" on controller "API.Controllers.DataQueryController" ("API"). (122b2fdf)
+2025-09-20T16:09:17.6705352+02:00 80000056-0002-fa00-b63f-84710c7967bb [INF] Executed DbCommand ("2"ms) [Parameters=["@__p_1='?' (DbType = Int32), @__p_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT v.dia, v.\"totalBienvenida\", v.\"totalCompletarPerfil\", v.\"totalQR\", v.\"totalEvento\", v.\"totalTransacciones\"
+FROM \"v_TotalUltimasTransacciones\" AS v
+LIMIT @__p_1 OFFSET @__p_0" (0723d8ff)
+2025-09-20T16:09:17.6718925+02:00 80000056-0002-fa00-b63f-84710c7967bb [INF] Executing "OkObjectResult", writing value of type '"System.Collections.Generic.List`1[[Application.DTOs.DataQuery.vTotalUltimasTransaccionesDTO, Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]"'. (605b4265)
+2025-09-20T16:09:17.6724034+02:00 80000056-0002-fa00-b63f-84710c7967bb [INF] Executed action "API.Controllers.DataQueryController.ObtenerTotalUltimasTransacciones (API)" in 8.6333ms (afa2e885)
+2025-09-20T16:09:17.6725068+02:00 80000056-0002-fa00-b63f-84710c7967bb [INF] Executed endpoint '"API.Controllers.DataQueryController.ObtenerTotalUltimasTransacciones (API)"' (99874f2b)
+2025-09-20T16:09:17.6730431+02:00 80000056-0002-fa00-b63f-84710c7967bb [INF] Request finished "HTTP/2" "GET" "https"://"localhost:44311""""/DataQuery/ObtenerTotalUltimasTransacciones""" - 200 null "application/json; charset=utf-8" 9.8705ms (74253ad3)
+2025-09-20T16:09:29.7820146+02:00 80000061-0005-f700-b63f-84710c7967bb [INF] Request starting "HTTP/2" "GET" "https"://"localhost:44311""""/DataQuery/ObtenerTotalUltimasTransacciones""" - null null (d509f86a)
+2025-09-20T16:09:29.7831168+02:00 80000061-0005-f700-b63f-84710c7967bb [INF] CORS policy execution successful. (5409d6ef)
+2025-09-20T16:09:29.7836267+02:00 80000061-0005-f700-b63f-84710c7967bb [INF] Executing endpoint '"API.Controllers.DataQueryController.ObtenerTotalUltimasTransacciones (API)"' (500cc934)
+2025-09-20T16:09:29.7838405+02:00 80000061-0005-f700-b63f-84710c7967bb [INF] Route matched with "{action = \"ObtenerTotalUltimasTransacciones\", controller = \"DataQuery\"}". Executing controller action with signature "System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] ObtenerTotalUltimasTransacciones()" on controller "API.Controllers.DataQueryController" ("API"). (122b2fdf)
+2025-09-20T16:09:29.7907436+02:00 80000061-0005-f700-b63f-84710c7967bb [INF] Executed DbCommand ("3"ms) [Parameters=["@__p_1='?' (DbType = Int32), @__p_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT v.dia, v.\"totalBienvenida\", v.\"totalCompletarPerfil\", v.\"totalQR\", v.\"totalEvento\", v.\"totalTransacciones\"
+FROM \"v_TotalUltimasTransacciones\" AS v
+LIMIT @__p_1 OFFSET @__p_0" (0723d8ff)
+2025-09-20T16:09:29.7917508+02:00 80000061-0005-f700-b63f-84710c7967bb [INF] Executing "OkObjectResult", writing value of type '"System.Collections.Generic.List`1[[Application.DTOs.DataQuery.vTotalUltimasTransaccionesDTO, Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]"'. (605b4265)
+2025-09-20T16:09:29.7921904+02:00 80000061-0005-f700-b63f-84710c7967bb [INF] Executed action "API.Controllers.DataQueryController.ObtenerTotalUltimasTransacciones (API)" in 8.2667ms (afa2e885)
+2025-09-20T16:09:29.7922417+02:00 80000061-0005-f700-b63f-84710c7967bb [INF] Executed endpoint '"API.Controllers.DataQueryController.ObtenerTotalUltimasTransacciones (API)"' (99874f2b)
+2025-09-20T16:09:29.7924600+02:00 80000061-0005-f700-b63f-84710c7967bb [INF] Request finished "HTTP/2" "GET" "https"://"localhost:44311""""/DataQuery/ObtenerTotalUltimasTransacciones""" - 200 null "application/json; charset=utf-8" 10.618ms (74253ad3)
+2025-09-20T16:10:15.3207160+02:00 80000037-0003-f800-b63f-84710c7967bb [INF] Request starting "HTTP/2" "GET" "https"://"localhost:44311""""/DataQuery/ObtenerTotalUltimasTransacciones""" - null null (d509f86a)
+2025-09-20T16:10:15.3210204+02:00 80000037-0003-f800-b63f-84710c7967bb [INF] CORS policy execution successful. (5409d6ef)
+2025-09-20T16:10:15.3212845+02:00 80000037-0003-f800-b63f-84710c7967bb [INF] Executing endpoint '"API.Controllers.DataQueryController.ObtenerTotalUltimasTransacciones (API)"' (500cc934)
+2025-09-20T16:10:15.3214685+02:00 80000037-0003-f800-b63f-84710c7967bb [INF] Route matched with "{action = \"ObtenerTotalUltimasTransacciones\", controller = \"DataQuery\"}". Executing controller action with signature "System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] ObtenerTotalUltimasTransacciones()" on controller "API.Controllers.DataQueryController" ("API"). (122b2fdf)
+2025-09-20T16:10:15.3340514+02:00 80000037-0003-f800-b63f-84710c7967bb [INF] Executed DbCommand ("7"ms) [Parameters=["@__p_1='?' (DbType = Int32), @__p_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT v.dia, v.\"totalBienvenida\", v.\"totalCompletarPerfil\", v.\"totalQR\", v.\"totalEvento\", v.\"totalTransacciones\"
+FROM \"v_TotalUltimasTransacciones\" AS v
+LIMIT @__p_1 OFFSET @__p_0" (0723d8ff)
+2025-09-20T16:10:15.3356902+02:00 80000037-0003-f800-b63f-84710c7967bb [INF] Executing "OkObjectResult", writing value of type '"System.Collections.Generic.List`1[[Application.DTOs.DataQuery.vTotalUltimasTransaccionesDTO, Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]"'. (605b4265)
+2025-09-20T16:10:15.3365240+02:00 80000037-0003-f800-b63f-84710c7967bb [INF] Executed action "API.Controllers.DataQueryController.ObtenerTotalUltimasTransacciones (API)" in 14.9637ms (afa2e885)
+2025-09-20T16:10:15.3366009+02:00 80000037-0003-f800-b63f-84710c7967bb [INF] Executed endpoint '"API.Controllers.DataQueryController.ObtenerTotalUltimasTransacciones (API)"' (99874f2b)
+2025-09-20T16:10:15.3369768+02:00 80000037-0003-f800-b63f-84710c7967bb [INF] Request finished "HTTP/2" "GET" "https"://"localhost:44311""""/DataQuery/ObtenerTotalUltimasTransacciones""" - 200 null "application/json; charset=utf-8" 16.7318ms (74253ad3)
+2025-09-20T16:12:26.0837095+02:00 80000071-0002-fb00-b63f-84710c7967bb [INF] Request starting "HTTP/2" "GET" "https"://"localhost:44311""""/DataQuery/ObtenerTotalUltimasTransacciones""" - null null (d509f86a)
+2025-09-20T16:12:26.0842587+02:00 80000071-0002-fb00-b63f-84710c7967bb [INF] CORS policy execution successful. (5409d6ef)
+2025-09-20T16:12:26.0844912+02:00 80000071-0002-fb00-b63f-84710c7967bb [INF] Executing endpoint '"API.Controllers.DataQueryController.ObtenerTotalUltimasTransacciones (API)"' (500cc934)
+2025-09-20T16:12:26.0846730+02:00 80000071-0002-fb00-b63f-84710c7967bb [INF] Route matched with "{action = \"ObtenerTotalUltimasTransacciones\", controller = \"DataQuery\"}". Executing controller action with signature "System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] ObtenerTotalUltimasTransacciones()" on controller "API.Controllers.DataQueryController" ("API"). (122b2fdf)
+2025-09-20T16:12:26.0987193+02:00 80000071-0002-fb00-b63f-84710c7967bb [INF] Executed DbCommand ("8"ms) [Parameters=["@__p_1='?' (DbType = Int32), @__p_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT v.dia, v.\"totalBienvenida\", v.\"totalCompletarPerfil\", v.\"totalQR\", v.\"totalEvento\", v.\"totalTransacciones\"
+FROM \"v_TotalUltimasTransacciones\" AS v
+LIMIT @__p_1 OFFSET @__p_0" (0723d8ff)
+2025-09-20T16:12:26.1003339+02:00 80000071-0002-fb00-b63f-84710c7967bb [INF] Executing "OkObjectResult", writing value of type '"System.Collections.Generic.List`1[[Application.DTOs.DataQuery.vTotalUltimasTransaccionesDTO, Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]"'. (605b4265)
+2025-09-20T16:12:26.1009961+02:00 80000071-0002-fb00-b63f-84710c7967bb [INF] Executed action "API.Controllers.DataQueryController.ObtenerTotalUltimasTransacciones (API)" in 16.2245ms (afa2e885)
+2025-09-20T16:12:26.1010809+02:00 80000071-0002-fb00-b63f-84710c7967bb [INF] Executed endpoint '"API.Controllers.DataQueryController.ObtenerTotalUltimasTransacciones (API)"' (99874f2b)
+2025-09-20T16:12:26.1014646+02:00 80000071-0002-fb00-b63f-84710c7967bb [INF] Request finished "HTTP/2" "GET" "https"://"localhost:44311""""/DataQuery/ObtenerTotalUltimasTransacciones""" - 200 null "application/json; charset=utf-8" 17.9774ms (74253ad3)
+2025-09-20T16:14:38.3860722+02:00 8000008d-0000-fd00-b63f-84710c7967bb [INF] Request starting "HTTP/2" "GET" "https"://"localhost:44311""""/DataQuery/ObtenerTotalUltimasTransacciones""" - null null (d509f86a)
+2025-09-20T16:14:38.3864545+02:00 8000008d-0000-fd00-b63f-84710c7967bb [INF] CORS policy execution successful. (5409d6ef)
+2025-09-20T16:14:38.3866914+02:00 8000008d-0000-fd00-b63f-84710c7967bb [INF] Executing endpoint '"API.Controllers.DataQueryController.ObtenerTotalUltimasTransacciones (API)"' (500cc934)
+2025-09-20T16:14:38.3868704+02:00 8000008d-0000-fd00-b63f-84710c7967bb [INF] Route matched with "{action = \"ObtenerTotalUltimasTransacciones\", controller = \"DataQuery\"}". Executing controller action with signature "System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] ObtenerTotalUltimasTransacciones()" on controller "API.Controllers.DataQueryController" ("API"). (122b2fdf)
+2025-09-20T16:14:38.4600225+02:00 8000008d-0000-fd00-b63f-84710c7967bb [INF] Executed DbCommand ("6"ms) [Parameters=["@__p_1='?' (DbType = Int32), @__p_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT v.dia, v.\"totalBienvenida\", v.\"totalCompletarPerfil\", v.\"totalQR\", v.\"totalEvento\", v.\"totalTransacciones\"
+FROM \"v_TotalUltimasTransacciones\" AS v
+LIMIT @__p_1 OFFSET @__p_0" (0723d8ff)
+2025-09-20T16:14:38.4605574+02:00 8000008d-0000-fd00-b63f-84710c7967bb [INF] Executing "OkObjectResult", writing value of type '"System.Collections.Generic.List`1[[Application.DTOs.DataQuery.vTotalUltimasTransaccionesDTO, Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]"'. (605b4265)
+2025-09-20T16:14:38.4611036+02:00 8000008d-0000-fd00-b63f-84710c7967bb [INF] Executed action "API.Controllers.DataQueryController.ObtenerTotalUltimasTransacciones (API)" in 74.1564ms (afa2e885)
+2025-09-20T16:14:38.4611814+02:00 8000008d-0000-fd00-b63f-84710c7967bb [INF] Executed endpoint '"API.Controllers.DataQueryController.ObtenerTotalUltimasTransacciones (API)"' (99874f2b)
+2025-09-20T16:14:38.4615745+02:00 8000008d-0000-fd00-b63f-84710c7967bb [INF] Request finished "HTTP/2" "GET" "https"://"localhost:44311""""/DataQuery/ObtenerTotalUltimasTransacciones""" - 200 null "application/json; charset=utf-8" 75.6059ms (74253ad3)
+2025-09-20T16:22:07.4000382+02:00  [INF] User profile is available. Using '"C:\Users\David\AppData\Local\ASP.NET\DataProtection-Keys"' as key repository and Windows DPAPI to encrypt keys at rest. (7ac5e29c)
+2025-09-20T16:22:07.6938780+02:00 80000063-0005-f700-b63f-84710c7967bb [INF] Request starting "HTTP/2" "GET" "https"://"localhost:44311""""/swagger/index.html""" - null null (d509f86a)
+2025-09-20T16:22:07.8176053+02:00  [INF] Application started. Press Ctrl+C to shut down. (dcaefe54)
+2025-09-20T16:22:07.8208540+02:00  [INF] Hosting environment: "Development" (bc5a1a4e)
+2025-09-20T16:22:07.8232436+02:00  [INF] Content root path: "C:\Users\David\Desktop\API" (cc26f24e)
+2025-09-20T16:22:08.2387891+02:00 80000063-0005-f700-b63f-84710c7967bb [INF] Request finished "HTTP/2" "GET" "https"://"localhost:44311""""/swagger/index.html""" - 200 null "text/html;charset=utf-8" 551.8445ms (74253ad3)
+2025-09-20T16:22:08.2821385+02:00 8000009a-0003-fe00-b63f-84710c7967bb [INF] Request starting "HTTP/2" "GET" "https"://"localhost:44311""""/_framework/aspnetcore-browser-refresh.js""" - null null (d509f86a)
+2025-09-20T16:22:08.2974067+02:00 8000009a-0003-fe00-b63f-84710c7967bb [INF] Request finished "HTTP/2" "GET" "https"://"localhost:44311""""/_framework/aspnetcore-browser-refresh.js""" - 200 13742 "application/javascript; charset=utf-8" 4.035ms (74253ad3)
+2025-09-20T16:22:08.2974427+02:00 8000009c-0003-fe00-b63f-84710c7967bb [INF] Request starting "HTTP/2" "GET" "https"://"localhost:44311""""/_vs/browserLink""" - null null (d509f86a)
+2025-09-20T16:22:08.3622780+02:00 8000009c-0003-fe00-b63f-84710c7967bb [INF] Request finished "HTTP/2" "GET" "https"://"localhost:44311""""/_vs/browserLink""" - 200 null "text/javascript; charset=UTF-8" 64.8762ms (74253ad3)
+2025-09-20T16:22:08.5355114+02:00 80000028-0004-fe00-b63f-84710c7967bb [INF] Request starting "HTTP/2" "GET" "https"://"localhost:44311""""/swagger/v1/swagger.json""" - null null (d509f86a)
+2025-09-20T16:22:08.6044746+02:00 80000028-0004-fe00-b63f-84710c7967bb [INF] Request finished "HTTP/2" "GET" "https"://"localhost:44311""""/swagger/v1/swagger.json""" - 200 null "application/json;charset=utf-8" 69.0167ms (74253ad3)
+2025-09-20T16:22:52.1720545+02:00 8000009e-0003-fe00-b63f-84710c7967bb [INF] Request starting "HTTP/2" "GET" "https"://"localhost:44311""""/DataQuery/ObtenerTotalUltimasTransacciones""" - null null (d509f86a)
+2025-09-20T16:22:52.1799784+02:00 8000009e-0003-fe00-b63f-84710c7967bb [INF] CORS policy execution successful. (5409d6ef)
+2025-09-20T16:22:52.1938617+02:00 8000009e-0003-fe00-b63f-84710c7967bb [INF] Executing endpoint '"API.Controllers.DataQueryController.ObtenerTotalUltimasTransacciones (API)"' (500cc934)
+2025-09-20T16:22:52.2216280+02:00 8000009e-0003-fe00-b63f-84710c7967bb [INF] Route matched with "{action = \"ObtenerTotalUltimasTransacciones\", controller = \"DataQuery\"}". Executing controller action with signature "System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] ObtenerTotalUltimasTransacciones()" on controller "API.Controllers.DataQueryController" ("API"). (122b2fdf)
+2025-09-20T16:22:53.8989521+02:00 8000009e-0003-fe00-b63f-84710c7967bb [WRN] The query uses a row limiting operator ('Skip'/'Take') without an 'OrderBy' operator. This may lead to unpredictable results. If the 'Distinct' operator is used after 'OrderBy', then make sure to use the 'OrderBy' operator after 'Distinct' as the ordering would otherwise get erased. (5b3e5b60)
+2025-09-20T16:22:53.9033474+02:00 8000009e-0003-fe00-b63f-84710c7967bb [WRN] The query uses a row limiting operator ('Skip'/'Take') without an 'OrderBy' operator. This may lead to unpredictable results. If the 'Distinct' operator is used after 'OrderBy', then make sure to use the 'OrderBy' operator after 'Distinct' as the ordering would otherwise get erased. (5b3e5b60)
+2025-09-20T16:22:54.6960886+02:00 8000009e-0003-fe00-b63f-84710c7967bb [INF] Executed DbCommand ("84"ms) [Parameters=["@__p_1='?' (DbType = Int32), @__p_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT v.dia, v.\"totalBienvenida\", v.\"totalCompletarPerfil\", v.\"totalQR\", v.\"totalEvento\", v.\"totalTransacciones\"
+FROM \"v_TotalUltimasTransacciones\" AS v
+LIMIT @__p_1 OFFSET @__p_0" (0723d8ff)
+2025-09-20T16:22:54.7590307+02:00 8000009e-0003-fe00-b63f-84710c7967bb [INF] Executing "OkObjectResult", writing value of type '"System.Collections.Generic.List`1[[Application.DTOs.DataQuery.vTotalUltimasTransaccionesDTO, Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]"'. (605b4265)
+2025-09-20T16:22:54.7786269+02:00 8000009e-0003-fe00-b63f-84710c7967bb [INF] Executed action "API.Controllers.DataQueryController.ObtenerTotalUltimasTransacciones (API)" in 2552.3593ms (afa2e885)
+2025-09-20T16:22:54.7792103+02:00 8000009e-0003-fe00-b63f-84710c7967bb [INF] Executed endpoint '"API.Controllers.DataQueryController.ObtenerTotalUltimasTransacciones (API)"' (99874f2b)
+2025-09-20T16:22:54.7914159+02:00 8000009e-0003-fe00-b63f-84710c7967bb [INF] Request finished "HTTP/2" "GET" "https"://"localhost:44311""""/DataQuery/ObtenerTotalUltimasTransacciones""" - 200 null "application/json; charset=utf-8" 2619.5312ms (74253ad3)
+2025-09-20T16:22:57.1979758+02:00 80000065-0005-f700-b63f-84710c7967bb [INF] Request starting "HTTP/2" "GET" "https"://"localhost:44311""""/swagger/index.html""" - null null (d509f86a)
+2025-09-20T16:22:57.2079511+02:00 80000065-0005-f700-b63f-84710c7967bb [INF] Request finished "HTTP/2" "GET" "https"://"localhost:44311""""/swagger/index.html""" - 200 null "text/html;charset=utf-8" 10.0783ms (74253ad3)
+2025-09-20T16:22:57.2309975+02:00 8000001a-0004-f900-b63f-84710c7967bb [INF] Request starting "HTTP/2" "GET" "https"://"localhost:44311""""/_vs/browserLink""" - null null (d509f86a)
+2025-09-20T16:22:57.2310310+02:00 80000067-0005-f700-b63f-84710c7967bb [INF] Request starting "HTTP/2" "GET" "https"://"localhost:44311""""/_framework/aspnetcore-browser-refresh.js""" - null null (d509f86a)
+2025-09-20T16:22:57.2329359+02:00 80000067-0005-f700-b63f-84710c7967bb [INF] Request finished "HTTP/2" "GET" "https"://"localhost:44311""""/_framework/aspnetcore-browser-refresh.js""" - 200 13742 "application/javascript; charset=utf-8" 1.1925ms (74253ad3)
+2025-09-20T16:22:57.2538532+02:00 8000001a-0004-f900-b63f-84710c7967bb [INF] Request finished "HTTP/2" "GET" "https"://"localhost:44311""""/_vs/browserLink""" - 200 null "text/javascript; charset=UTF-8" 22.9095ms (74253ad3)
+2025-09-20T16:22:57.4109219+02:00 8000008f-0006-fd00-b63f-84710c7967bb [INF] Request starting "HTTP/2" "GET" "https"://"localhost:44311""""/swagger/v1/swagger.json""" - null null (d509f86a)
+2025-09-20T16:22:57.4810705+02:00 8000008f-0006-fd00-b63f-84710c7967bb [INF] Request finished "HTTP/2" "GET" "https"://"localhost:44311""""/swagger/v1/swagger.json""" - 200 null "application/json;charset=utf-8" 70.1511ms (74253ad3)
+2025-09-20T16:23:00.2617280+02:00 80000073-0002-fb00-b63f-84710c7967bb [INF] Request starting "HTTP/2" "GET" "https"://"localhost:44311""""/DataQuery/ObtenerTotalUltimasTransacciones""" - null null (d509f86a)
+2025-09-20T16:23:00.2655505+02:00 80000073-0002-fb00-b63f-84710c7967bb [INF] CORS policy execution successful. (5409d6ef)
+2025-09-20T16:23:00.2665261+02:00 80000073-0002-fb00-b63f-84710c7967bb [INF] Executing endpoint '"API.Controllers.DataQueryController.ObtenerTotalUltimasTransacciones (API)"' (500cc934)
+2025-09-20T16:23:00.2670415+02:00 80000073-0002-fb00-b63f-84710c7967bb [INF] Route matched with "{action = \"ObtenerTotalUltimasTransacciones\", controller = \"DataQuery\"}". Executing controller action with signature "System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] ObtenerTotalUltimasTransacciones()" on controller "API.Controllers.DataQueryController" ("API"). (122b2fdf)
+2025-09-20T16:23:00.3030326+02:00 80000073-0002-fb00-b63f-84710c7967bb [INF] Executed DbCommand ("6"ms) [Parameters=["@__p_1='?' (DbType = Int32), @__p_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT v.dia, v.\"totalBienvenida\", v.\"totalCompletarPerfil\", v.\"totalQR\", v.\"totalEvento\", v.\"totalTransacciones\"
+FROM \"v_TotalUltimasTransacciones\" AS v
+LIMIT @__p_1 OFFSET @__p_0" (0723d8ff)
+2025-09-20T16:23:00.3054448+02:00 80000073-0002-fb00-b63f-84710c7967bb [INF] Executing "OkObjectResult", writing value of type '"System.Collections.Generic.List`1[[Application.DTOs.DataQuery.vTotalUltimasTransaccionesDTO, Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]"'. (605b4265)
+2025-09-20T16:23:00.3063853+02:00 80000073-0002-fb00-b63f-84710c7967bb [INF] Executed action "API.Controllers.DataQueryController.ObtenerTotalUltimasTransacciones (API)" in 39.1558ms (afa2e885)
+2025-09-20T16:23:00.3064671+02:00 80000073-0002-fb00-b63f-84710c7967bb [INF] Executed endpoint '"API.Controllers.DataQueryController.ObtenerTotalUltimasTransacciones (API)"' (99874f2b)
+2025-09-20T16:23:00.3069599+02:00 80000073-0002-fb00-b63f-84710c7967bb [INF] Request finished "HTTP/2" "GET" "https"://"localhost:44311""""/DataQuery/ObtenerTotalUltimasTransacciones""" - 200 null "application/json; charset=utf-8" 45.3492ms (74253ad3)
+2025-09-20T16:23:16.9970720+02:00 80000075-0002-fb00-b63f-84710c7967bb [INF] Request starting "HTTP/2" "GET" "https"://"localhost:44311""""/DataQuery/ObtenerTotalUltimasTransacciones""" - null null (d509f86a)
+2025-09-20T16:23:16.9975228+02:00 80000075-0002-fb00-b63f-84710c7967bb [INF] CORS policy execution successful. (5409d6ef)
+2025-09-20T16:23:16.9979232+02:00 80000075-0002-fb00-b63f-84710c7967bb [INF] Executing endpoint '"API.Controllers.DataQueryController.ObtenerTotalUltimasTransacciones (API)"' (500cc934)
+2025-09-20T16:23:16.9981143+02:00 80000075-0002-fb00-b63f-84710c7967bb [INF] Route matched with "{action = \"ObtenerTotalUltimasTransacciones\", controller = \"DataQuery\"}". Executing controller action with signature "System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] ObtenerTotalUltimasTransacciones()" on controller "API.Controllers.DataQueryController" ("API"). (122b2fdf)
+2025-09-20T16:23:17.0866605+02:00 80000075-0002-fb00-b63f-84710c7967bb [INF] Executed DbCommand ("3"ms) [Parameters=["@__p_1='?' (DbType = Int32), @__p_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT v.dia, v.\"totalBienvenida\", v.\"totalCompletarPerfil\", v.\"totalQR\", v.\"totalEvento\", v.\"totalTransacciones\"
+FROM \"v_TotalUltimasTransacciones\" AS v
+LIMIT @__p_1 OFFSET @__p_0" (0723d8ff)
+2025-09-20T16:23:17.0879645+02:00 80000075-0002-fb00-b63f-84710c7967bb [INF] Executing "OkObjectResult", writing value of type '"System.Collections.Generic.List`1[[Application.DTOs.DataQuery.vTotalUltimasTransaccionesDTO, Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]"'. (605b4265)
+2025-09-20T16:23:17.0884488+02:00 80000075-0002-fb00-b63f-84710c7967bb [INF] Executed action "API.Controllers.DataQueryController.ObtenerTotalUltimasTransacciones (API)" in 90.112ms (afa2e885)
+2025-09-20T16:23:17.0885076+02:00 80000075-0002-fb00-b63f-84710c7967bb [INF] Executed endpoint '"API.Controllers.DataQueryController.ObtenerTotalUltimasTransacciones (API)"' (99874f2b)
+2025-09-20T16:23:17.0888455+02:00 80000075-0002-fb00-b63f-84710c7967bb [INF] Request finished "HTTP/2" "GET" "https"://"localhost:44311""""/DataQuery/ObtenerTotalUltimasTransacciones""" - 200 null "application/json; charset=utf-8" 92.1749ms (74253ad3)
+2025-09-20T16:29:17.6587341+02:00 8000000b-0001-f900-b63f-84710c7967bb [INF] Request starting "HTTP/2" "GET" "https"://"localhost:44311""""/DataQuery/ObtenerTotalUltimasTransacciones""" - null null (d509f86a)
+2025-09-20T16:29:17.6592801+02:00 8000000b-0001-f900-b63f-84710c7967bb [INF] CORS policy execution successful. (5409d6ef)
+2025-09-20T16:29:17.6595566+02:00 8000000b-0001-f900-b63f-84710c7967bb [INF] Executing endpoint '"API.Controllers.DataQueryController.ObtenerTotalUltimasTransacciones (API)"' (500cc934)
+2025-09-20T16:29:17.6597533+02:00 8000000b-0001-f900-b63f-84710c7967bb [INF] Route matched with "{action = \"ObtenerTotalUltimasTransacciones\", controller = \"DataQuery\"}". Executing controller action with signature "System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] ObtenerTotalUltimasTransacciones()" on controller "API.Controllers.DataQueryController" ("API"). (122b2fdf)
+2025-09-20T16:29:17.7287457+02:00 8000000b-0001-f900-b63f-84710c7967bb [INF] Executed DbCommand ("5"ms) [Parameters=["@__p_1='?' (DbType = Int32), @__p_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT v.dia, v.\"totalBienvenida\", v.\"totalCompletarPerfil\", v.\"totalQR\", v.\"totalEvento\", v.\"totalTransacciones\"
+FROM \"v_TotalUltimasTransacciones\" AS v
+LIMIT @__p_1 OFFSET @__p_0" (0723d8ff)
+2025-09-20T16:29:17.7292830+02:00 8000000b-0001-f900-b63f-84710c7967bb [INF] Executing "OkObjectResult", writing value of type '"System.Collections.Generic.List`1[[Application.DTOs.DataQuery.vTotalUltimasTransaccionesDTO, Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]"'. (605b4265)
+2025-09-20T16:29:17.7299000+02:00 8000000b-0001-f900-b63f-84710c7967bb [INF] Executed action "API.Controllers.DataQueryController.ObtenerTotalUltimasTransacciones (API)" in 70.0745ms (afa2e885)
+2025-09-20T16:29:17.7299555+02:00 8000000b-0001-f900-b63f-84710c7967bb [INF] Executed endpoint '"API.Controllers.DataQueryController.ObtenerTotalUltimasTransacciones (API)"' (99874f2b)
+2025-09-20T16:29:17.7302558+02:00 8000000b-0001-f900-b63f-84710c7967bb [INF] Request finished "HTTP/2" "GET" "https"://"localhost:44311""""/DataQuery/ObtenerTotalUltimasTransacciones""" - 200 null "application/json; charset=utf-8" 71.8125ms (74253ad3)
+2025-09-20T16:29:27.0815499+02:00 80000091-0006-fd00-b63f-84710c7967bb [INF] Request starting "HTTP/2" "GET" "https"://"localhost:44311""""/DataQuery/ObtenerTotalUltimasTransacciones""" - null null (d509f86a)
+2025-09-20T16:29:27.0819222+02:00 80000091-0006-fd00-b63f-84710c7967bb [INF] CORS policy execution successful. (5409d6ef)
+2025-09-20T16:29:27.0821591+02:00 80000091-0006-fd00-b63f-84710c7967bb [INF] Executing endpoint '"API.Controllers.DataQueryController.ObtenerTotalUltimasTransacciones (API)"' (500cc934)
+2025-09-20T16:29:27.0823591+02:00 80000091-0006-fd00-b63f-84710c7967bb [INF] Route matched with "{action = \"ObtenerTotalUltimasTransacciones\", controller = \"DataQuery\"}". Executing controller action with signature "System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] ObtenerTotalUltimasTransacciones()" on controller "API.Controllers.DataQueryController" ("API"). (122b2fdf)
+2025-09-20T16:29:27.0896963+02:00 80000091-0006-fd00-b63f-84710c7967bb [INF] Executed DbCommand ("2"ms) [Parameters=["@__p_1='?' (DbType = Int32), @__p_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT v.dia, v.\"totalBienvenida\", v.\"totalCompletarPerfil\", v.\"totalQR\", v.\"totalEvento\", v.\"totalTransacciones\"
+FROM \"v_TotalUltimasTransacciones\" AS v
+LIMIT @__p_1 OFFSET @__p_0" (0723d8ff)
+2025-09-20T16:29:27.0913482+02:00 80000091-0006-fd00-b63f-84710c7967bb [INF] Executing "OkObjectResult", writing value of type '"System.Collections.Generic.List`1[[Application.DTOs.DataQuery.vTotalUltimasTransaccionesDTO, Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]"'. (605b4265)
+2025-09-20T16:29:27.0922538+02:00 80000091-0006-fd00-b63f-84710c7967bb [INF] Executed action "API.Controllers.DataQueryController.ObtenerTotalUltimasTransacciones (API)" in 9.7787ms (afa2e885)
+2025-09-20T16:29:27.0923443+02:00 80000091-0006-fd00-b63f-84710c7967bb [INF] Executed endpoint '"API.Controllers.DataQueryController.ObtenerTotalUltimasTransacciones (API)"' (99874f2b)
+2025-09-20T16:29:27.0930571+02:00 80000091-0006-fd00-b63f-84710c7967bb [INF] Request finished "HTTP/2" "GET" "https"://"localhost:44311""""/DataQuery/ObtenerTotalUltimasTransacciones""" - 200 null "application/json; charset=utf-8" 11.4256ms (74253ad3)
+2025-09-20T16:29:28.5398199+02:00 8000008e-0004-ff00-b63f-84710c7967bb [INF] Request starting "HTTP/2" "GET" "https"://"localhost:44311""""/DataQuery/ObtenerTotalUltimasTransacciones""" - null null (d509f86a)
+2025-09-20T16:29:28.5403325+02:00 8000008e-0004-ff00-b63f-84710c7967bb [INF] CORS policy execution successful. (5409d6ef)
+2025-09-20T16:29:28.5409247+02:00 8000008e-0004-ff00-b63f-84710c7967bb [INF] Executing endpoint '"API.Controllers.DataQueryController.ObtenerTotalUltimasTransacciones (API)"' (500cc934)
+2025-09-20T16:29:28.5412753+02:00 8000008e-0004-ff00-b63f-84710c7967bb [INF] Route matched with "{action = \"ObtenerTotalUltimasTransacciones\", controller = \"DataQuery\"}". Executing controller action with signature "System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] ObtenerTotalUltimasTransacciones()" on controller "API.Controllers.DataQueryController" ("API"). (122b2fdf)
+2025-09-20T16:29:28.5534124+02:00 8000008e-0004-ff00-b63f-84710c7967bb [INF] Executed DbCommand ("4"ms) [Parameters=["@__p_1='?' (DbType = Int32), @__p_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT v.dia, v.\"totalBienvenida\", v.\"totalCompletarPerfil\", v.\"totalQR\", v.\"totalEvento\", v.\"totalTransacciones\"
+FROM \"v_TotalUltimasTransacciones\" AS v
+LIMIT @__p_1 OFFSET @__p_0" (0723d8ff)
+2025-09-20T16:29:28.5539186+02:00 8000008e-0004-ff00-b63f-84710c7967bb [INF] Executing "OkObjectResult", writing value of type '"System.Collections.Generic.List`1[[Application.DTOs.DataQuery.vTotalUltimasTransaccionesDTO, Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]"'. (605b4265)
+2025-09-20T16:29:28.5545664+02:00 8000008e-0004-ff00-b63f-84710c7967bb [INF] Executed action "API.Controllers.DataQueryController.ObtenerTotalUltimasTransacciones (API)" in 13.1265ms (afa2e885)
+2025-09-20T16:29:28.5546730+02:00 8000008e-0004-ff00-b63f-84710c7967bb [INF] Executed endpoint '"API.Controllers.DataQueryController.ObtenerTotalUltimasTransacciones (API)"' (99874f2b)
+2025-09-20T16:29:28.5550997+02:00 8000008e-0004-ff00-b63f-84710c7967bb [INF] Request finished "HTTP/2" "GET" "https"://"localhost:44311""""/DataQuery/ObtenerTotalUltimasTransacciones""" - 200 null "application/json; charset=utf-8" 15.4292ms (74253ad3)
+2025-09-20T16:29:52.4426508+02:00 8000003a-0003-f800-b63f-84710c7967bb [INF] Request starting "HTTP/2" "GET" "https"://"localhost:44311""""/DataQuery/ObtenerTotalUltimasTransacciones""" - null null (d509f86a)
+2025-09-20T16:29:52.4433655+02:00 8000003a-0003-f800-b63f-84710c7967bb [INF] CORS policy execution successful. (5409d6ef)
+2025-09-20T16:29:52.4437123+02:00 8000003a-0003-f800-b63f-84710c7967bb [INF] Executing endpoint '"API.Controllers.DataQueryController.ObtenerTotalUltimasTransacciones (API)"' (500cc934)
+2025-09-20T16:29:52.4440013+02:00 8000003a-0003-f800-b63f-84710c7967bb [INF] Route matched with "{action = \"ObtenerTotalUltimasTransacciones\", controller = \"DataQuery\"}". Executing controller action with signature "System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] ObtenerTotalUltimasTransacciones()" on controller "API.Controllers.DataQueryController" ("API"). (122b2fdf)
+2025-09-20T16:29:52.4625951+02:00 8000003a-0003-f800-b63f-84710c7967bb [INF] Executed DbCommand ("5"ms) [Parameters=["@__p_1='?' (DbType = Int32), @__p_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT v.dia, v.\"totalBienvenida\", v.\"totalCompletarPerfil\", v.\"totalQR\", v.\"totalEvento\", v.\"totalTransacciones\"
+FROM \"v_TotalUltimasTransacciones\" AS v
+LIMIT @__p_1 OFFSET @__p_0" (0723d8ff)
+2025-09-20T16:29:52.4631451+02:00 8000003a-0003-f800-b63f-84710c7967bb [INF] Executing "OkObjectResult", writing value of type '"System.Collections.Generic.List`1[[Application.DTOs.DataQuery.vTotalUltimasTransaccionesDTO, Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]"'. (605b4265)
+2025-09-20T16:29:52.4678989+02:00 8000003a-0003-f800-b63f-84710c7967bb [INF] Executed action "API.Controllers.DataQueryController.ObtenerTotalUltimasTransacciones (API)" in 23.4136ms (afa2e885)
+2025-09-20T16:29:52.4682391+02:00 8000003a-0003-f800-b63f-84710c7967bb [INF] Executed endpoint '"API.Controllers.DataQueryController.ObtenerTotalUltimasTransacciones (API)"' (99874f2b)
+2025-09-20T16:29:52.4687549+02:00 8000003a-0003-f800-b63f-84710c7967bb [INF] Request finished "HTTP/2" "GET" "https"://"localhost:44311""""/DataQuery/ObtenerTotalUltimasTransacciones""" - 200 null "application/json; charset=utf-8" 26.546ms (74253ad3)
+2025-09-20T16:31:21.1455268+02:00 80000068-0002-fc00-b63f-84710c7967bb [INF] Request starting "HTTP/2" "GET" "https"://"localhost:44311""""/DataQuery/ObtenerTotalUltimasTransacciones""" - null null (d509f86a)
+2025-09-20T16:31:21.1459918+02:00 80000068-0002-fc00-b63f-84710c7967bb [INF] CORS policy execution successful. (5409d6ef)
+2025-09-20T16:31:21.1462825+02:00 80000068-0002-fc00-b63f-84710c7967bb [INF] Executing endpoint '"API.Controllers.DataQueryController.ObtenerTotalUltimasTransacciones (API)"' (500cc934)
+2025-09-20T16:31:21.1465241+02:00 80000068-0002-fc00-b63f-84710c7967bb [INF] Route matched with "{action = \"ObtenerTotalUltimasTransacciones\", controller = \"DataQuery\"}". Executing controller action with signature "System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] ObtenerTotalUltimasTransacciones()" on controller "API.Controllers.DataQueryController" ("API"). (122b2fdf)
+2025-09-20T16:31:21.1580702+02:00 80000068-0002-fc00-b63f-84710c7967bb [INF] Executed DbCommand ("3"ms) [Parameters=["@__p_1='?' (DbType = Int32), @__p_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT v.dia, v.\"totalBienvenida\", v.\"totalCompletarPerfil\", v.\"totalQR\", v.\"totalEvento\", v.\"totalTransacciones\"
+FROM \"v_TotalUltimasTransacciones\" AS v
+LIMIT @__p_1 OFFSET @__p_0" (0723d8ff)
+2025-09-20T16:31:21.1586084+02:00 80000068-0002-fc00-b63f-84710c7967bb [INF] Executing "OkObjectResult", writing value of type '"System.Collections.Generic.List`1[[Application.DTOs.DataQuery.vTotalUltimasTransaccionesDTO, Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]"'. (605b4265)
+2025-09-20T16:31:21.1594761+02:00 80000068-0002-fc00-b63f-84710c7967bb [INF] Executed action "API.Controllers.DataQueryController.ObtenerTotalUltimasTransacciones (API)" in 12.8383ms (afa2e885)
+2025-09-20T16:31:21.1595607+02:00 80000068-0002-fc00-b63f-84710c7967bb [INF] Executed endpoint '"API.Controllers.DataQueryController.ObtenerTotalUltimasTransacciones (API)"' (99874f2b)
+2025-09-20T16:31:21.1599255+02:00 80000068-0002-fc00-b63f-84710c7967bb [INF] Request finished "HTTP/2" "GET" "https"://"localhost:44311""""/DataQuery/ObtenerTotalUltimasTransacciones""" - 200 null "application/json; charset=utf-8" 14.8688ms (74253ad3)
+2025-09-20T16:31:28.6621303+02:00 80000080-0004-fc00-b63f-84710c7967bb [INF] Request starting "HTTP/2" "GET" "https"://"localhost:44311""""/DataQuery/ObtenerTotalUltimasTransacciones""" - null null (d509f86a)
+2025-09-20T16:31:28.6624569+02:00 80000080-0004-fc00-b63f-84710c7967bb [INF] CORS policy execution successful. (5409d6ef)
+2025-09-20T16:31:28.6628164+02:00 80000080-0004-fc00-b63f-84710c7967bb [INF] Executing endpoint '"API.Controllers.DataQueryController.ObtenerTotalUltimasTransacciones (API)"' (500cc934)
+2025-09-20T16:31:28.6632691+02:00 80000080-0004-fc00-b63f-84710c7967bb [INF] Route matched with "{action = \"ObtenerTotalUltimasTransacciones\", controller = \"DataQuery\"}". Executing controller action with signature "System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] ObtenerTotalUltimasTransacciones()" on controller "API.Controllers.DataQueryController" ("API"). (122b2fdf)
+2025-09-20T16:31:28.6731007+02:00 80000080-0004-fc00-b63f-84710c7967bb [INF] Executed DbCommand ("4"ms) [Parameters=["@__p_1='?' (DbType = Int32), @__p_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT v.dia, v.\"totalBienvenida\", v.\"totalCompletarPerfil\", v.\"totalQR\", v.\"totalEvento\", v.\"totalTransacciones\"
+FROM \"v_TotalUltimasTransacciones\" AS v
+LIMIT @__p_1 OFFSET @__p_0" (0723d8ff)
+2025-09-20T16:31:28.6738543+02:00 80000080-0004-fc00-b63f-84710c7967bb [INF] Executing "OkObjectResult", writing value of type '"System.Collections.Generic.List`1[[Application.DTOs.DataQuery.vTotalUltimasTransaccionesDTO, Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]"'. (605b4265)
+2025-09-20T16:31:28.6755802+02:00 80000080-0004-fc00-b63f-84710c7967bb [INF] Executed action "API.Controllers.DataQueryController.ObtenerTotalUltimasTransacciones (API)" in 11.2552ms (afa2e885)
+2025-09-20T16:31:28.6757042+02:00 80000080-0004-fc00-b63f-84710c7967bb [INF] Executed endpoint '"API.Controllers.DataQueryController.ObtenerTotalUltimasTransacciones (API)"' (99874f2b)
+2025-09-20T16:31:28.6762806+02:00 80000080-0004-fc00-b63f-84710c7967bb [INF] Request finished "HTTP/2" "GET" "https"://"localhost:44311""""/DataQuery/ObtenerTotalUltimasTransacciones""" - 200 null "application/json; charset=utf-8" 14.3088ms (74253ad3)
+2025-09-20T16:31:45.6229562+02:00 80000093-0006-fd00-b63f-84710c7967bb [INF] Request starting "HTTP/2" "GET" "https"://"localhost:44311""""/DataQuery/ObtenerTotalUltimasTransacciones""" - null null (d509f86a)
+2025-09-20T16:31:45.6232995+02:00 80000093-0006-fd00-b63f-84710c7967bb [INF] CORS policy execution successful. (5409d6ef)
+2025-09-20T16:31:45.6235491+02:00 80000093-0006-fd00-b63f-84710c7967bb [INF] Executing endpoint '"API.Controllers.DataQueryController.ObtenerTotalUltimasTransacciones (API)"' (500cc934)
+2025-09-20T16:31:45.6238239+02:00 80000093-0006-fd00-b63f-84710c7967bb [INF] Route matched with "{action = \"ObtenerTotalUltimasTransacciones\", controller = \"DataQuery\"}". Executing controller action with signature "System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] ObtenerTotalUltimasTransacciones()" on controller "API.Controllers.DataQueryController" ("API"). (122b2fdf)
+2025-09-20T16:31:45.6324809+02:00 80000093-0006-fd00-b63f-84710c7967bb [INF] Executed DbCommand ("4"ms) [Parameters=["@__p_1='?' (DbType = Int32), @__p_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT v.dia, v.\"totalBienvenida\", v.\"totalCompletarPerfil\", v.\"totalQR\", v.\"totalEvento\", v.\"totalTransacciones\"
+FROM \"v_TotalUltimasTransacciones\" AS v
+LIMIT @__p_1 OFFSET @__p_0" (0723d8ff)
+2025-09-20T16:31:45.6331550+02:00 80000093-0006-fd00-b63f-84710c7967bb [INF] Executing "OkObjectResult", writing value of type '"System.Collections.Generic.List`1[[Application.DTOs.DataQuery.vTotalUltimasTransaccionesDTO, Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]"'. (605b4265)
+2025-09-20T16:31:45.6342035+02:00 80000093-0006-fd00-b63f-84710c7967bb [INF] Executed action "API.Controllers.DataQueryController.ObtenerTotalUltimasTransacciones (API)" in 10.2763ms (afa2e885)
+2025-09-20T16:31:45.6342901+02:00 80000093-0006-fd00-b63f-84710c7967bb [INF] Executed endpoint '"API.Controllers.DataQueryController.ObtenerTotalUltimasTransacciones (API)"' (99874f2b)
+2025-09-20T16:31:45.6355855+02:00 80000093-0006-fd00-b63f-84710c7967bb [INF] Request finished "HTTP/2" "GET" "https"://"localhost:44311""""/DataQuery/ObtenerTotalUltimasTransacciones""" - 200 null "application/json; charset=utf-8" 12.7694ms (74253ad3)
+2025-09-20T16:31:46.4162295+02:00 80000070-0000-fa00-b63f-84710c7967bb [INF] Request starting "HTTP/2" "GET" "https"://"localhost:44311""""/DataQuery/ObtenerTotalUltimasTransacciones""" - null null (d509f86a)
+2025-09-20T16:31:46.4166942+02:00 80000070-0000-fa00-b63f-84710c7967bb [INF] CORS policy execution successful. (5409d6ef)
+2025-09-20T16:31:46.4176347+02:00 80000070-0000-fa00-b63f-84710c7967bb [INF] Executing endpoint '"API.Controllers.DataQueryController.ObtenerTotalUltimasTransacciones (API)"' (500cc934)
+2025-09-20T16:31:46.4179302+02:00 80000070-0000-fa00-b63f-84710c7967bb [INF] Route matched with "{action = \"ObtenerTotalUltimasTransacciones\", controller = \"DataQuery\"}". Executing controller action with signature "System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] ObtenerTotalUltimasTransacciones()" on controller "API.Controllers.DataQueryController" ("API"). (122b2fdf)
+2025-09-20T16:31:46.4281433+02:00 80000070-0000-fa00-b63f-84710c7967bb [INF] Executed DbCommand ("4"ms) [Parameters=["@__p_1='?' (DbType = Int32), @__p_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT v.dia, v.\"totalBienvenida\", v.\"totalCompletarPerfil\", v.\"totalQR\", v.\"totalEvento\", v.\"totalTransacciones\"
+FROM \"v_TotalUltimasTransacciones\" AS v
+LIMIT @__p_1 OFFSET @__p_0" (0723d8ff)
+2025-09-20T16:31:46.4286223+02:00 80000070-0000-fa00-b63f-84710c7967bb [INF] Executing "OkObjectResult", writing value of type '"System.Collections.Generic.List`1[[Application.DTOs.DataQuery.vTotalUltimasTransaccionesDTO, Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]"'. (605b4265)
+2025-09-20T16:31:46.4291851+02:00 80000070-0000-fa00-b63f-84710c7967bb [INF] Executed action "API.Controllers.DataQueryController.ObtenerTotalUltimasTransacciones (API)" in 11.1512ms (afa2e885)
+2025-09-20T16:31:46.4292465+02:00 80000070-0000-fa00-b63f-84710c7967bb [INF] Executed endpoint '"API.Controllers.DataQueryController.ObtenerTotalUltimasTransacciones (API)"' (99874f2b)
+2025-09-20T16:31:46.4297118+02:00 80000070-0000-fa00-b63f-84710c7967bb [INF] Request finished "HTTP/2" "GET" "https"://"localhost:44311""""/DataQuery/ObtenerTotalUltimasTransacciones""" - 200 null "application/json; charset=utf-8" 13.6408ms (74253ad3)
+2025-09-20T16:31:46.6612021+02:00 80000072-0000-fa00-b63f-84710c7967bb [INF] Request starting "HTTP/2" "GET" "https"://"localhost:44311""""/DataQuery/ObtenerTotalUltimasTransacciones""" - null null (d509f86a)
+2025-09-20T16:31:46.6615463+02:00 80000072-0000-fa00-b63f-84710c7967bb [INF] CORS policy execution successful. (5409d6ef)
+2025-09-20T16:31:46.6621472+02:00 80000072-0000-fa00-b63f-84710c7967bb [INF] Executing endpoint '"API.Controllers.DataQueryController.ObtenerTotalUltimasTransacciones (API)"' (500cc934)
+2025-09-20T16:31:46.6623441+02:00 80000072-0000-fa00-b63f-84710c7967bb [INF] Route matched with "{action = \"ObtenerTotalUltimasTransacciones\", controller = \"DataQuery\"}". Executing controller action with signature "System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] ObtenerTotalUltimasTransacciones()" on controller "API.Controllers.DataQueryController" ("API"). (122b2fdf)
+2025-09-20T16:31:46.6724256+02:00 80000072-0000-fa00-b63f-84710c7967bb [INF] Executed DbCommand ("4"ms) [Parameters=["@__p_1='?' (DbType = Int32), @__p_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT v.dia, v.\"totalBienvenida\", v.\"totalCompletarPerfil\", v.\"totalQR\", v.\"totalEvento\", v.\"totalTransacciones\"
+FROM \"v_TotalUltimasTransacciones\" AS v
+LIMIT @__p_1 OFFSET @__p_0" (0723d8ff)
+2025-09-20T16:31:46.6731280+02:00 80000072-0000-fa00-b63f-84710c7967bb [INF] Executing "OkObjectResult", writing value of type '"System.Collections.Generic.List`1[[Application.DTOs.DataQuery.vTotalUltimasTransaccionesDTO, Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]"'. (605b4265)
+2025-09-20T16:31:46.6738847+02:00 80000072-0000-fa00-b63f-84710c7967bb [INF] Executed action "API.Controllers.DataQueryController.ObtenerTotalUltimasTransacciones (API)" in 11.3875ms (afa2e885)
+2025-09-20T16:31:46.6740225+02:00 80000072-0000-fa00-b63f-84710c7967bb [INF] Executed endpoint '"API.Controllers.DataQueryController.ObtenerTotalUltimasTransacciones (API)"' (99874f2b)
+2025-09-20T16:31:46.6744984+02:00 80000072-0000-fa00-b63f-84710c7967bb [INF] Request finished "HTTP/2" "GET" "https"://"localhost:44311""""/DataQuery/ObtenerTotalUltimasTransacciones""" - 200 null "application/json; charset=utf-8" 13.4051ms (74253ad3)
+2025-09-20T16:31:49.6224950+02:00 80000082-0004-fc00-b63f-84710c7967bb [INF] Request starting "HTTP/2" "GET" "https"://"localhost:44311""""/DataQuery/ObtenerTotalUltimasTransacciones""" - null null (d509f86a)
+2025-09-20T16:31:49.6228345+02:00 80000082-0004-fc00-b63f-84710c7967bb [INF] CORS policy execution successful. (5409d6ef)
+2025-09-20T16:31:49.6388440+02:00 80000082-0004-fc00-b63f-84710c7967bb [INF] Request finished "HTTP/2" "GET" "https"://"localhost:44311""""/DataQuery/ObtenerTotalUltimasTransacciones""" - 503 null null 16.5395ms (74253ad3)
+2025-09-20T16:31:54.8163500+02:00 8000007a-0002-fb00-b63f-84710c7967bb [INF] Request starting "HTTP/2" "GET" "https"://"localhost:44311""""/DataQuery/ObtenerTotalUltimasTransacciones""" - null null (d509f86a)
+2025-09-20T16:31:54.8167743+02:00 8000007a-0002-fb00-b63f-84710c7967bb [INF] CORS policy execution successful. (5409d6ef)
+2025-09-20T16:31:54.8171194+02:00 8000007a-0002-fb00-b63f-84710c7967bb [INF] Executing endpoint '"API.Controllers.DataQueryController.ObtenerTotalUltimasTransacciones (API)"' (500cc934)
+2025-09-20T16:31:54.8173835+02:00 8000007a-0002-fb00-b63f-84710c7967bb [INF] Route matched with "{action = \"ObtenerTotalUltimasTransacciones\", controller = \"DataQuery\"}". Executing controller action with signature "System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] ObtenerTotalUltimasTransacciones()" on controller "API.Controllers.DataQueryController" ("API"). (122b2fdf)
+2025-09-20T16:31:54.8254989+02:00 8000007a-0002-fb00-b63f-84710c7967bb [INF] Executed DbCommand ("4"ms) [Parameters=["@__p_1='?' (DbType = Int32), @__p_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT v.dia, v.\"totalBienvenida\", v.\"totalCompletarPerfil\", v.\"totalQR\", v.\"totalEvento\", v.\"totalTransacciones\"
+FROM \"v_TotalUltimasTransacciones\" AS v
+LIMIT @__p_1 OFFSET @__p_0" (0723d8ff)
+2025-09-20T16:31:54.8260990+02:00 8000007a-0002-fb00-b63f-84710c7967bb [INF] Executing "OkObjectResult", writing value of type '"System.Collections.Generic.List`1[[Application.DTOs.DataQuery.vTotalUltimasTransaccionesDTO, Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]"'. (605b4265)
+2025-09-20T16:31:54.8269098+02:00 8000007a-0002-fb00-b63f-84710c7967bb [INF] Executed action "API.Controllers.DataQueryController.ObtenerTotalUltimasTransacciones (API)" in 9.4324ms (afa2e885)
+2025-09-20T16:31:54.8269832+02:00 8000007a-0002-fb00-b63f-84710c7967bb [INF] Executed endpoint '"API.Controllers.DataQueryController.ObtenerTotalUltimasTransacciones (API)"' (99874f2b)
+2025-09-20T16:31:54.8274361+02:00 8000007a-0002-fb00-b63f-84710c7967bb [INF] Request finished "HTTP/2" "GET" "https"://"localhost:44311""""/DataQuery/ObtenerTotalUltimasTransacciones""" - 200 null "application/json; charset=utf-8" 11.4231ms (74253ad3)
+2025-09-20T16:33:13.6734833+02:00 8000003c-0003-f800-b63f-84710c7967bb [INF] Request starting "HTTP/2" "GET" "https"://"localhost:44311""""/DataQuery/ObtenerTotalUltimasTransacciones""" - null null (d509f86a)
+2025-09-20T16:33:13.6739532+02:00 8000003c-0003-f800-b63f-84710c7967bb [INF] CORS policy execution successful. (5409d6ef)
+2025-09-20T16:33:13.6745228+02:00 8000003c-0003-f800-b63f-84710c7967bb [INF] Executing endpoint '"API.Controllers.DataQueryController.ObtenerTotalUltimasTransacciones (API)"' (500cc934)
+2025-09-20T16:33:13.6747944+02:00 8000003c-0003-f800-b63f-84710c7967bb [INF] Route matched with "{action = \"ObtenerTotalUltimasTransacciones\", controller = \"DataQuery\"}". Executing controller action with signature "System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] ObtenerTotalUltimasTransacciones()" on controller "API.Controllers.DataQueryController" ("API"). (122b2fdf)
+2025-09-20T16:33:13.7207226+02:00 8000003c-0003-f800-b63f-84710c7967bb [INF] Executed DbCommand ("34"ms) [Parameters=["@__p_1='?' (DbType = Int32), @__p_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT v.dia, v.\"totalBienvenida\", v.\"totalCompletarPerfil\", v.\"totalQR\", v.\"totalEvento\", v.\"totalTransacciones\"
+FROM \"v_TotalUltimasTransacciones\" AS v
+LIMIT @__p_1 OFFSET @__p_0" (0723d8ff)
+2025-09-20T16:33:13.7232836+02:00 8000003c-0003-f800-b63f-84710c7967bb [INF] Executing "OkObjectResult", writing value of type '"System.Collections.Generic.List`1[[Application.DTOs.DataQuery.vTotalUltimasTransaccionesDTO, Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]"'. (605b4265)
+2025-09-20T16:33:13.7459880+02:00 8000003c-0003-f800-b63f-84710c7967bb [INF] Executed action "API.Controllers.DataQueryController.ObtenerTotalUltimasTransacciones (API)" in 70.9892ms (afa2e885)
+2025-09-20T16:33:13.7461129+02:00 8000003c-0003-f800-b63f-84710c7967bb [INF] Executed endpoint '"API.Controllers.DataQueryController.ObtenerTotalUltimasTransacciones (API)"' (99874f2b)
+2025-09-20T16:33:13.7467034+02:00 8000003c-0003-f800-b63f-84710c7967bb [INF] Request finished "HTTP/2" "GET" "https"://"localhost:44311""""/DataQuery/ObtenerTotalUltimasTransacciones""" - 200 null "application/json; charset=utf-8" 73.4274ms (74253ad3)
+2025-09-20T16:33:33.1436492+02:00 8000008e-0001-fa00-b63f-84710c7967bb [INF] Request starting "HTTP/2" "GET" "https"://"localhost:44311""""/DataQuery/ObtenerTotalUltimasTransacciones""" - null null (d509f86a)
+2025-09-20T16:33:33.1449229+02:00 8000008e-0001-fa00-b63f-84710c7967bb [INF] CORS policy execution successful. (5409d6ef)
+2025-09-20T16:33:33.1452767+02:00 8000008e-0001-fa00-b63f-84710c7967bb [INF] Executing endpoint '"API.Controllers.DataQueryController.ObtenerTotalUltimasTransacciones (API)"' (500cc934)
+2025-09-20T16:33:33.1454466+02:00 8000008e-0001-fa00-b63f-84710c7967bb [INF] Route matched with "{action = \"ObtenerTotalUltimasTransacciones\", controller = \"DataQuery\"}". Executing controller action with signature "System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] ObtenerTotalUltimasTransacciones()" on controller "API.Controllers.DataQueryController" ("API"). (122b2fdf)
+2025-09-20T16:33:33.1571016+02:00 8000008e-0001-fa00-b63f-84710c7967bb [INF] Executed DbCommand ("4"ms) [Parameters=["@__p_1='?' (DbType = Int32), @__p_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT v.dia, v.\"totalBienvenida\", v.\"totalCompletarPerfil\", v.\"totalQR\", v.\"totalEvento\", v.\"totalTransacciones\"
+FROM \"v_TotalUltimasTransacciones\" AS v
+LIMIT @__p_1 OFFSET @__p_0" (0723d8ff)
+2025-09-20T16:33:33.1590653+02:00 8000008e-0001-fa00-b63f-84710c7967bb [INF] Executing "OkObjectResult", writing value of type '"System.Collections.Generic.List`1[[Application.DTOs.DataQuery.vTotalUltimasTransaccionesDTO, Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]"'. (605b4265)
+2025-09-20T16:33:33.1597232+02:00 8000008e-0001-fa00-b63f-84710c7967bb [INF] Executed action "API.Controllers.DataQueryController.ObtenerTotalUltimasTransacciones (API)" in 14.174ms (afa2e885)
+2025-09-20T16:33:33.1598304+02:00 8000008e-0001-fa00-b63f-84710c7967bb [INF] Executed endpoint '"API.Controllers.DataQueryController.ObtenerTotalUltimasTransacciones (API)"' (99874f2b)
+2025-09-20T16:33:33.1602255+02:00 8000008e-0001-fa00-b63f-84710c7967bb [INF] Request finished "HTTP/2" "GET" "https"://"localhost:44311""""/DataQuery/ObtenerTotalUltimasTransacciones""" - 200 null "application/json; charset=utf-8" 16.7303ms (74253ad3)
+2025-09-20T16:33:40.4008718+02:00 80000091-0004-ff00-b63f-84710c7967bb [INF] Request starting "HTTP/2" "GET" "https"://"localhost:44311""""/DataQuery/ObtenerTotalUltimasTransacciones""" - null null (d509f86a)
+2025-09-20T16:33:40.4011295+02:00 80000091-0004-ff00-b63f-84710c7967bb [INF] CORS policy execution successful. (5409d6ef)
+2025-09-20T16:33:40.4019888+02:00 80000091-0004-ff00-b63f-84710c7967bb [INF] Executing endpoint '"API.Controllers.DataQueryController.ObtenerTotalUltimasTransacciones (API)"' (500cc934)
+2025-09-20T16:33:40.4021726+02:00 80000091-0004-ff00-b63f-84710c7967bb [INF] Route matched with "{action = \"ObtenerTotalUltimasTransacciones\", controller = \"DataQuery\"}". Executing controller action with signature "System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] ObtenerTotalUltimasTransacciones()" on controller "API.Controllers.DataQueryController" ("API"). (122b2fdf)
+2025-09-20T16:33:40.4119898+02:00 80000091-0004-ff00-b63f-84710c7967bb [INF] Executed DbCommand ("4"ms) [Parameters=["@__p_1='?' (DbType = Int32), @__p_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT v.dia, v.\"totalBienvenida\", v.\"totalCompletarPerfil\", v.\"totalQR\", v.\"totalEvento\", v.\"totalTransacciones\"
+FROM \"v_TotalUltimasTransacciones\" AS v
+LIMIT @__p_1 OFFSET @__p_0" (0723d8ff)
+2025-09-20T16:33:40.4133912+02:00 80000091-0004-ff00-b63f-84710c7967bb [INF] Executing "OkObjectResult", writing value of type '"System.Collections.Generic.List`1[[Application.DTOs.DataQuery.vTotalUltimasTransaccionesDTO, Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]"'. (605b4265)
+2025-09-20T16:33:40.4139788+02:00 80000091-0004-ff00-b63f-84710c7967bb [INF] Executed action "API.Controllers.DataQueryController.ObtenerTotalUltimasTransacciones (API)" in 11.7363ms (afa2e885)
+2025-09-20T16:33:40.4140399+02:00 80000091-0004-ff00-b63f-84710c7967bb [INF] Executed endpoint '"API.Controllers.DataQueryController.ObtenerTotalUltimasTransacciones (API)"' (99874f2b)
+2025-09-20T16:33:40.4143218+02:00 80000091-0004-ff00-b63f-84710c7967bb [INF] Request finished "HTTP/2" "GET" "https"://"localhost:44311""""/DataQuery/ObtenerTotalUltimasTransacciones""" - 200 null "application/json; charset=utf-8" 13.5538ms (74253ad3)
+2025-09-20T16:33:59.6791947+02:00 80000095-0006-fd00-b63f-84710c7967bb [INF] Request starting "HTTP/2" "GET" "https"://"localhost:44311""""/DataQuery/ObtenerTotalUltimasTransacciones""" - null null (d509f86a)
+2025-09-20T16:33:59.6794311+02:00 80000095-0006-fd00-b63f-84710c7967bb [INF] CORS policy execution successful. (5409d6ef)
+2025-09-20T16:33:59.6796302+02:00 80000095-0006-fd00-b63f-84710c7967bb [INF] Executing endpoint '"API.Controllers.DataQueryController.ObtenerTotalUltimasTransacciones (API)"' (500cc934)
+2025-09-20T16:33:59.6802700+02:00 80000095-0006-fd00-b63f-84710c7967bb [INF] Route matched with "{action = \"ObtenerTotalUltimasTransacciones\", controller = \"DataQuery\"}". Executing controller action with signature "System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] ObtenerTotalUltimasTransacciones()" on controller "API.Controllers.DataQueryController" ("API"). (122b2fdf)
+2025-09-20T16:33:59.6899257+02:00 80000095-0006-fd00-b63f-84710c7967bb [INF] Executed DbCommand ("3"ms) [Parameters=["@__p_1='?' (DbType = Int32), @__p_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT v.dia, v.\"totalBienvenida\", v.\"totalCompletarPerfil\", v.\"totalQR\", v.\"totalEvento\", v.\"totalTransacciones\"
+FROM \"v_TotalUltimasTransacciones\" AS v
+LIMIT @__p_1 OFFSET @__p_0" (0723d8ff)
+2025-09-20T16:33:59.6903797+02:00 80000095-0006-fd00-b63f-84710c7967bb [INF] Executing "OkObjectResult", writing value of type '"System.Collections.Generic.List`1[[Application.DTOs.DataQuery.vTotalUltimasTransaccionesDTO, Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]"'. (605b4265)
+2025-09-20T16:33:59.6908968+02:00 80000095-0006-fd00-b63f-84710c7967bb [INF] Executed action "API.Controllers.DataQueryController.ObtenerTotalUltimasTransacciones (API)" in 10.5378ms (afa2e885)
+2025-09-20T16:33:59.6909486+02:00 80000095-0006-fd00-b63f-84710c7967bb [INF] Executed endpoint '"API.Controllers.DataQueryController.ObtenerTotalUltimasTransacciones (API)"' (99874f2b)
+2025-09-20T16:33:59.6912423+02:00 80000095-0006-fd00-b63f-84710c7967bb [INF] Request finished "HTTP/2" "GET" "https"://"localhost:44311""""/DataQuery/ObtenerTotalUltimasTransacciones""" - 200 null "application/json; charset=utf-8" 12.134ms (74253ad3)
+2025-09-20T16:34:11.2749617+02:00 80000069-0005-f700-b63f-84710c7967bb [INF] Request starting "HTTP/2" "GET" "https"://"localhost:44311""""/Transacciones/ObtenerTransacciones""" - null null (d509f86a)
+2025-09-20T16:34:11.3334138+02:00 80000069-0005-f700-b63f-84710c7967bb [INF] Authorization failed. "These requirements were not met:
+DenyAnonymousAuthorizationRequirement: Requires an authenticated user." (92d7f7d3)
+2025-09-20T16:34:11.3376079+02:00 80000069-0005-f700-b63f-84710c7967bb [INF] AuthenticationScheme: "Bearer" was challenged. (d45f1f38)
+2025-09-20T16:34:11.3382035+02:00 80000069-0005-f700-b63f-84710c7967bb [INF] Request finished "HTTP/2" "GET" "https"://"localhost:44311""""/Transacciones/ObtenerTransacciones""" - 401 null null 63.3006ms (74253ad3)
+2025-09-20T16:34:44.0140100+02:00 8000000d-0001-f900-b63f-84710c7967bb [INF] Request starting "HTTP/2" "GET" "https"://"localhost:44311""""/DataQuery/ObtenerTotalUltimasTransacciones""" - null null (d509f86a)
+2025-09-20T16:34:44.0143646+02:00 8000000d-0001-f900-b63f-84710c7967bb [INF] Executing endpoint '"API.Controllers.DataQueryController.ObtenerTotalUltimasTransacciones (API)"' (500cc934)
+2025-09-20T16:34:44.0145069+02:00 8000000d-0001-f900-b63f-84710c7967bb [INF] Route matched with "{action = \"ObtenerTotalUltimasTransacciones\", controller = \"DataQuery\"}". Executing controller action with signature "System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] ObtenerTotalUltimasTransacciones()" on controller "API.Controllers.DataQueryController" ("API"). (122b2fdf)
+2025-09-20T16:34:44.0884486+02:00 8000000d-0001-f900-b63f-84710c7967bb [INF] Executed DbCommand ("4"ms) [Parameters=["@__p_1='?' (DbType = Int32), @__p_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT v.dia, v.\"totalBienvenida\", v.\"totalCompletarPerfil\", v.\"totalQR\", v.\"totalEvento\", v.\"totalTransacciones\"
+FROM \"v_TotalUltimasTransacciones\" AS v
+LIMIT @__p_1 OFFSET @__p_0" (0723d8ff)
+2025-09-20T16:34:44.0889326+02:00 8000000d-0001-f900-b63f-84710c7967bb [INF] Executing "OkObjectResult", writing value of type '"System.Collections.Generic.List`1[[Application.DTOs.DataQuery.vTotalUltimasTransaccionesDTO, Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]"'. (605b4265)
+2025-09-20T16:34:44.0894545+02:00 8000000d-0001-f900-b63f-84710c7967bb [INF] Executed action "API.Controllers.DataQueryController.ObtenerTotalUltimasTransacciones (API)" in 74.8397ms (afa2e885)
+2025-09-20T16:34:44.0895214+02:00 8000000d-0001-f900-b63f-84710c7967bb [INF] Executed endpoint '"API.Controllers.DataQueryController.ObtenerTotalUltimasTransacciones (API)"' (99874f2b)
+2025-09-20T16:34:44.0898932+02:00 8000000d-0001-f900-b63f-84710c7967bb [INF] Request finished "HTTP/2" "GET" "https"://"localhost:44311""""/DataQuery/ObtenerTotalUltimasTransacciones""" - 200 null "application/json; charset=utf-8" 76.0978ms (74253ad3)
+2025-09-20T16:34:59.9106901+02:00 80000084-0004-fc00-b63f-84710c7967bb [INF] Request starting "HTTP/2" "GET" "https"://"localhost:44311""""/DataQuery/ObtenerTotalUltimasTransacciones""" - null null (d509f86a)
+2025-09-20T16:34:59.9111479+02:00 80000084-0004-fc00-b63f-84710c7967bb [INF] CORS policy execution successful. (5409d6ef)
+2025-09-20T16:34:59.9113720+02:00 80000084-0004-fc00-b63f-84710c7967bb [INF] Executing endpoint '"API.Controllers.DataQueryController.ObtenerTotalUltimasTransacciones (API)"' (500cc934)
+2025-09-20T16:34:59.9116190+02:00 80000084-0004-fc00-b63f-84710c7967bb [INF] Route matched with "{action = \"ObtenerTotalUltimasTransacciones\", controller = \"DataQuery\"}". Executing controller action with signature "System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] ObtenerTotalUltimasTransacciones()" on controller "API.Controllers.DataQueryController" ("API"). (122b2fdf)
+2025-09-20T16:34:59.9221959+02:00 80000084-0004-fc00-b63f-84710c7967bb [INF] Executed DbCommand ("3"ms) [Parameters=["@__p_1='?' (DbType = Int32), @__p_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT v.dia, v.\"totalBienvenida\", v.\"totalCompletarPerfil\", v.\"totalQR\", v.\"totalEvento\", v.\"totalTransacciones\"
+FROM \"v_TotalUltimasTransacciones\" AS v
+LIMIT @__p_1 OFFSET @__p_0" (0723d8ff)
+2025-09-20T16:34:59.9264354+02:00 80000084-0004-fc00-b63f-84710c7967bb [INF] Executing "OkObjectResult", writing value of type '"System.Collections.Generic.List`1[[Application.DTOs.DataQuery.vTotalUltimasTransaccionesDTO, Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]"'. (605b4265)
+2025-09-20T16:34:59.9277773+02:00 80000084-0004-fc00-b63f-84710c7967bb [INF] Executed action "API.Controllers.DataQueryController.ObtenerTotalUltimasTransacciones (API)" in 16.0568ms (afa2e885)
+2025-09-20T16:34:59.9278774+02:00 80000084-0004-fc00-b63f-84710c7967bb [INF] Executed endpoint '"API.Controllers.DataQueryController.ObtenerTotalUltimasTransacciones (API)"' (99874f2b)
+2025-09-20T16:34:59.9282188+02:00 80000084-0004-fc00-b63f-84710c7967bb [INF] Request finished "HTTP/2" "GET" "https"://"localhost:44311""""/DataQuery/ObtenerTotalUltimasTransacciones""" - 200 null "application/json; charset=utf-8" 17.5636ms (74253ad3)
+2025-09-20T16:35:22.6207815+02:00 80000076-0000-fa00-b63f-84710c7967bb [INF] Request starting "HTTP/2" "GET" "https"://"localhost:44311""""/DataQuery/ObtenerTotalUltimasTransacciones""" - null null (d509f86a)
+2025-09-20T16:35:22.6213769+02:00 80000076-0000-fa00-b63f-84710c7967bb [INF] CORS policy execution successful. (5409d6ef)
+2025-09-20T16:35:22.6216466+02:00 80000076-0000-fa00-b63f-84710c7967bb [INF] Executing endpoint '"API.Controllers.DataQueryController.ObtenerTotalUltimasTransacciones (API)"' (500cc934)
+2025-09-20T16:35:22.6218837+02:00 80000076-0000-fa00-b63f-84710c7967bb [INF] Route matched with "{action = \"ObtenerTotalUltimasTransacciones\", controller = \"DataQuery\"}". Executing controller action with signature "System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] ObtenerTotalUltimasTransacciones()" on controller "API.Controllers.DataQueryController" ("API"). (122b2fdf)
+2025-09-20T16:35:22.6343480+02:00 80000076-0000-fa00-b63f-84710c7967bb [INF] Executed DbCommand ("4"ms) [Parameters=["@__p_1='?' (DbType = Int32), @__p_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT v.dia, v.\"totalBienvenida\", v.\"totalCompletarPerfil\", v.\"totalQR\", v.\"totalEvento\", v.\"totalTransacciones\"
+FROM \"v_TotalUltimasTransacciones\" AS v
+LIMIT @__p_1 OFFSET @__p_0" (0723d8ff)
+2025-09-20T16:35:22.6397749+02:00 80000076-0000-fa00-b63f-84710c7967bb [INF] Executing "OkObjectResult", writing value of type '"System.Collections.Generic.List`1[[Application.DTOs.DataQuery.vTotalUltimasTransaccionesDTO, Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]"'. (605b4265)
+2025-09-20T16:35:22.6412368+02:00 80000076-0000-fa00-b63f-84710c7967bb [INF] Executed action "API.Controllers.DataQueryController.ObtenerTotalUltimasTransacciones (API)" in 19.2702ms (afa2e885)
+2025-09-20T16:35:22.6413113+02:00 80000076-0000-fa00-b63f-84710c7967bb [INF] Executed endpoint '"API.Controllers.DataQueryController.ObtenerTotalUltimasTransacciones (API)"' (99874f2b)
+2025-09-20T16:35:22.6417342+02:00 80000076-0000-fa00-b63f-84710c7967bb [INF] Request finished "HTTP/2" "GET" "https"://"localhost:44311""""/DataQuery/ObtenerTotalUltimasTransacciones""" - 200 null "application/json; charset=utf-8" 21.0293ms (74253ad3)
+2025-09-20T16:36:31.2342210+02:00 80000086-0004-fc00-b63f-84710c7967bb [INF] Request starting "HTTP/2" "GET" "https"://"localhost:44311""""/DataQuery/ObtenerTotalUltimasTransacciones""" - null null (d509f86a)
+2025-09-20T16:36:31.2349438+02:00 80000086-0004-fc00-b63f-84710c7967bb [INF] CORS policy execution successful. (5409d6ef)
+2025-09-20T16:36:31.3521836+02:00 80000086-0004-fc00-b63f-84710c7967bb [INF] Executing endpoint '"API.Controllers.DataQueryController.ObtenerTotalUltimasTransacciones (API)"' (500cc934)
+2025-09-20T16:36:31.3525895+02:00 80000086-0004-fc00-b63f-84710c7967bb [INF] Route matched with "{action = \"ObtenerTotalUltimasTransacciones\", controller = \"DataQuery\"}". Executing controller action with signature "System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] ObtenerTotalUltimasTransacciones()" on controller "API.Controllers.DataQueryController" ("API"). (122b2fdf)
+2025-09-20T16:36:31.3766033+02:00 80000086-0004-fc00-b63f-84710c7967bb [INF] Executed DbCommand ("8"ms) [Parameters=["@__p_1='?' (DbType = Int32), @__p_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT v.dia, v.\"totalBienvenida\", v.\"totalCompletarPerfil\", v.\"totalQR\", v.\"totalEvento\", v.\"totalTransacciones\"
+FROM \"v_TotalUltimasTransacciones\" AS v
+LIMIT @__p_1 OFFSET @__p_0" (0723d8ff)
+2025-09-20T16:36:31.3842548+02:00 80000086-0004-fc00-b63f-84710c7967bb [INF] Executing "OkObjectResult", writing value of type '"System.Collections.Generic.List`1[[Application.DTOs.DataQuery.vTotalUltimasTransaccionesDTO, Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]"'. (605b4265)
+2025-09-20T16:36:31.3868854+02:00 80000086-0004-fc00-b63f-84710c7967bb [INF] Executed action "API.Controllers.DataQueryController.ObtenerTotalUltimasTransacciones (API)" in 33.8382ms (afa2e885)
+2025-09-20T16:36:31.3871933+02:00 80000086-0004-fc00-b63f-84710c7967bb [INF] Executed endpoint '"API.Controllers.DataQueryController.ObtenerTotalUltimasTransacciones (API)"' (99874f2b)
+2025-09-20T16:36:31.3876963+02:00 80000086-0004-fc00-b63f-84710c7967bb [INF] Request finished "HTTP/2" "GET" "https"://"localhost:44311""""/DataQuery/ObtenerTotalUltimasTransacciones""" - 200 null "application/json; charset=utf-8" 154.1508ms (74253ad3)
+2025-09-20T16:37:01.5698820+02:00 80000095-0004-ff00-b63f-84710c7967bb [INF] Request starting "HTTP/2" "GET" "https"://"localhost:44311""""/DataQuery/ObtenerTotalUltimasTransacciones""" - null null (d509f86a)
+2025-09-20T16:37:01.5703328+02:00 80000095-0004-ff00-b63f-84710c7967bb [INF] CORS policy execution successful. (5409d6ef)
+2025-09-20T16:37:01.5706348+02:00 80000095-0004-ff00-b63f-84710c7967bb [INF] Executing endpoint '"API.Controllers.DataQueryController.ObtenerTotalUltimasTransacciones (API)"' (500cc934)
+2025-09-20T16:37:01.5709935+02:00 80000095-0004-ff00-b63f-84710c7967bb [INF] Route matched with "{action = \"ObtenerTotalUltimasTransacciones\", controller = \"DataQuery\"}". Executing controller action with signature "System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] ObtenerTotalUltimasTransacciones()" on controller "API.Controllers.DataQueryController" ("API"). (122b2fdf)
+2025-09-20T16:37:01.5849390+02:00 80000095-0004-ff00-b63f-84710c7967bb [INF] Executed DbCommand ("4"ms) [Parameters=["@__p_1='?' (DbType = Int32), @__p_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT v.dia, v.\"totalBienvenida\", v.\"totalCompletarPerfil\", v.\"totalQR\", v.\"totalEvento\", v.\"totalTransacciones\"
+FROM \"v_TotalUltimasTransacciones\" AS v
+LIMIT @__p_1 OFFSET @__p_0" (0723d8ff)
+2025-09-20T16:37:01.5890981+02:00 80000095-0004-ff00-b63f-84710c7967bb [INF] Executing "OkObjectResult", writing value of type '"System.Collections.Generic.List`1[[Application.DTOs.DataQuery.vTotalUltimasTransaccionesDTO, Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]"'. (605b4265)
+2025-09-20T16:37:01.5951964+02:00 80000095-0004-ff00-b63f-84710c7967bb [INF] Executed action "API.Controllers.DataQueryController.ObtenerTotalUltimasTransacciones (API)" in 24.0758ms (afa2e885)
+2025-09-20T16:37:01.5952757+02:00 80000095-0004-ff00-b63f-84710c7967bb [INF] Executed endpoint '"API.Controllers.DataQueryController.ObtenerTotalUltimasTransacciones (API)"' (99874f2b)
+2025-09-20T16:37:01.5984152+02:00 80000095-0004-ff00-b63f-84710c7967bb [INF] Request finished "HTTP/2" "GET" "https"://"localhost:44311""""/DataQuery/ObtenerTotalUltimasTransacciones""" - 200 null "application/json; charset=utf-8" 29.0101ms (74253ad3)
+2025-09-20T16:38:00.3902015+02:00 80000081-0002-fb00-b63f-84710c7967bb [INF] Request starting "HTTP/2" "GET" "https"://"localhost:44311""""/DataQuery/ObtenerTotalUltimasTransacciones""" - null null (d509f86a)
+2025-09-20T16:38:00.3908224+02:00 80000081-0002-fb00-b63f-84710c7967bb [INF] CORS policy execution successful. (5409d6ef)
+2025-09-20T16:38:00.3912582+02:00 80000081-0002-fb00-b63f-84710c7967bb [INF] Executing endpoint '"API.Controllers.DataQueryController.ObtenerTotalUltimasTransacciones (API)"' (500cc934)
+2025-09-20T16:38:00.3916418+02:00 80000081-0002-fb00-b63f-84710c7967bb [INF] Route matched with "{action = \"ObtenerTotalUltimasTransacciones\", controller = \"DataQuery\"}". Executing controller action with signature "System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] ObtenerTotalUltimasTransacciones()" on controller "API.Controllers.DataQueryController" ("API"). (122b2fdf)
+2025-09-20T16:38:00.4161779+02:00 80000081-0002-fb00-b63f-84710c7967bb [INF] Executed DbCommand ("6"ms) [Parameters=["@__p_1='?' (DbType = Int32), @__p_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT v.dia, v.\"totalBienvenida\", v.\"totalCompletarPerfil\", v.\"totalQR\", v.\"totalEvento\", v.\"totalTransacciones\"
+FROM \"v_TotalUltimasTransacciones\" AS v
+LIMIT @__p_1 OFFSET @__p_0" (0723d8ff)
+2025-09-20T16:38:00.4200985+02:00 80000081-0002-fb00-b63f-84710c7967bb [INF] Executing "OkObjectResult", writing value of type '"System.Collections.Generic.List`1[[Application.DTOs.DataQuery.vTotalUltimasTransaccionesDTO, Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]"'. (605b4265)
+2025-09-20T16:38:00.4270324+02:00 80000081-0002-fb00-b63f-84710c7967bb [INF] Executed action "API.Controllers.DataQueryController.ObtenerTotalUltimasTransacciones (API)" in 35.2093ms (afa2e885)
+2025-09-20T16:38:00.4271920+02:00 80000081-0002-fb00-b63f-84710c7967bb [INF] Executed endpoint '"API.Controllers.DataQueryController.ObtenerTotalUltimasTransacciones (API)"' (99874f2b)
+2025-09-20T16:38:00.4280026+02:00 80000081-0002-fb00-b63f-84710c7967bb [INF] Request finished "HTTP/2" "GET" "https"://"localhost:44311""""/DataQuery/ObtenerTotalUltimasTransacciones""" - 200 null "application/json; charset=utf-8" 38.8251ms (74253ad3)

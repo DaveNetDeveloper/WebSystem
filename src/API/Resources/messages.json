@@ -1,0 +1,84 @@
+{
+  "Messages": {
+    "Actividad": {
+      "Obtener": {
+        "Success": "Actividades obtenidas correctamente.",
+        "Error": "Se produjo un error al obtener las actividades."
+      },
+      "ObtenerPorId": {
+        "Success": "TODO",
+        "Error": "TODO"
+      },
+      "ObtenerPorName": {
+        "Success": "TODO.",
+        "Error": "TODO"
+      },
+      "Crear": {
+        "Success": "TODO",
+        "Error": "TODO"
+      },
+      "Actualizar": {
+        "Success": "TODO",
+        "Error": "TODO"
+      },
+      "Eliminar": {
+        "Success": "TODO.",
+        "Error": "TODO."
+      }
+    },
+    "Auth": {
+      "Login": {
+        "Success": "Inicio de sesión exitoso.",
+        "Error": "Error en el inicio de sesión."
+      }
+    },
+    "Producto": {
+      "Obtener": {
+        "Success": "Productos obtenidos correctamente.",
+        "Error": "Se produjo un error al obtener los productos."
+      }
+    },
+    "Usuario": {
+      "ObtenerUsuarios": {
+        "Success": "Usuarios obtenidos correctamente.",
+        "Error": "Se produjo un error al obtener los usuarios."
+      },
+      "ObtenerPorId": {
+        "Success": "Usuario obtenido correctamente.",
+        "Error": "Se produjo un error al obtener un usuario por Id."
+      },
+      "ObtenerPorEmail": {
+        "Success": "Usuario obtenido correctamente.",
+        "Error": "Se produjo un error al obtener un usuario por email."
+      },
+      "Crear": {
+        "Success": "Usuario creado con éxito.",
+        "Error": "Se produjo un error al crear el usuario."
+      },
+      "Actualizar": {
+        "Success": "Usuario actualizado con éxito.",
+        "Error": "Se produjo un error al actualizar el usuario."
+      },
+      "Eliminar": {
+        "Success": "Usuario eliminado con éxito.",
+        "Error": "Se produjo un error al eliminar el usuario."
+      },
+      "ActivarCuenta": {
+        "Success": "Usuario activado con éxito.",
+        "Error": "Se produjo un error al activar el usuario."
+      },
+      "Suscripcion": {
+        "Success": "Usuario suscrito con éxito.",
+        "Error": "Se produjo un error al suscribir al usuario."
+      },
+      "ObtenerPorToken": {
+        "Success": "Usuario obtenido correctamente.",
+        "Error": "Se produjo un error al obtener un usuario por token."
+      },
+      "Login": {
+        "Success": "El usuario ha iniciado sesión correctamente.",
+        "Error": "Se produjo un error al iniciar sesion."
+      }
+    }
+  }
+}

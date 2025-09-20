@@ -1,0 +1,77 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TestRun id="ec225f8e-c9d8-470f-8ad4-fa1f9291e7a7" name="David@DG 2025-08-01 14:41:46" runUser="DG\David" xmlns="http://microsoft.com/schemas/VisualStudio/TeamTest/2010">
+  <Times creation="2025-08-01T14:41:46.3189075+02:00" queuing="2025-08-01T14:41:46.3189079+02:00" start="2025-08-01T14:41:41.1175000+02:00" finish="2025-08-01T14:41:46.5061237+02:00" />
+  <TestSettings name="default" id="bb30450c-a461-4721-b04d-c44a4e93ec2e">
+    <Deployment runDeploymentRoot="David_DG_2025-08-01_14_41_46" />
+  </TestSettings>
+  <Results>
+    <UnitTestResult executionId="8b66904b-7701-4906-b2ea-6166239cc644" testId="ff7189cd-f242-982f-6610-3b399589092b" testName="ObtenerUsuarios" computerName="DG" duration="00:00:00.1826800" startTime="2025-08-01T14:41:46.1548682+02:00" endTime="2025-08-01T14:41:46.3375482+02:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="8b66904b-7701-4906-b2ea-6166239cc644">
+      <Output>
+        <StdOut>info: Microsoft.EntityFrameworkCore.Update[30100]&#xD;
+      Saved 0 entities to in-memory store.&#xD;
+info: Microsoft.EntityFrameworkCore.Update[30100]&#xD;
+      Saved 3 entities to in-memory store.&#xD;
+warn: Microsoft.AspNetCore.HttpsPolicy.HttpsRedirectionMiddleware[3]&#xD;
+      Failed to determine the https port for redirect.</StdOut>
+      </Output>
+    </UnitTestResult>
+    <UnitTestResult executionId="bb69c8e3-8276-4326-a09c-b6e9bd96236f" testId="f89d6fe7-b623-60b6-ef96-ddf075b077b1" testName="ObtenerUsuarioById" computerName="DG" duration="00:00:02.5492190" startTime="2025-08-01T14:41:43.6020307+02:00" endTime="2025-08-01T14:41:46.1510782+02:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="bb69c8e3-8276-4326-a09c-b6e9bd96236f">
+      <Output>
+        <StdOut>info: Microsoft.EntityFrameworkCore.Update[30100]&#xD;
+      Saved 0 entities to in-memory store.&#xD;
+info: Microsoft.EntityFrameworkCore.Update[30100]&#xD;
+      Saved 3 entities to in-memory store.&#xD;
+warn: Microsoft.AspNetCore.HttpsPolicy.HttpsRedirectionMiddleware[3]&#xD;
+      Failed to determine the https port for redirect.</StdOut>
+      </Output>
+    </UnitTestResult>
+  </Results>
+  <TestDefinitions>
+    <UnitTest name="ObtenerUsuarioById" storage="c:\users\david\desktop\integrationtest\bin\mcd\debug\net8.0\integrationtest.dll" id="f89d6fe7-b623-60b6-ef96-ddf075b077b1">
+      <Execution id="bb69c8e3-8276-4326-a09c-b6e9bd96236f" />
+      <TestMethod codeBase="C:\Users\David\Desktop\IntegrationTest\bin\MCD\Debug\net8.0\IntegrationTest.dll" adapterTypeName="executor://nunit3testexecutor/" className="IntegrationTest.UsuariosControllerTests" name="ObtenerUsuarioById" />
+    </UnitTest>
+    <UnitTest name="ObtenerUsuarios" storage="c:\users\david\desktop\integrationtest\bin\mcd\debug\net8.0\integrationtest.dll" id="ff7189cd-f242-982f-6610-3b399589092b">
+      <Execution id="8b66904b-7701-4906-b2ea-6166239cc644" />
+      <TestMethod codeBase="C:\Users\David\Desktop\IntegrationTest\bin\MCD\Debug\net8.0\IntegrationTest.dll" adapterTypeName="executor://nunit3testexecutor/" className="IntegrationTest.UsuariosControllerTests" name="ObtenerUsuarios" />
+    </UnitTest>
+  </TestDefinitions>
+  <TestEntries>
+    <TestEntry testId="ff7189cd-f242-982f-6610-3b399589092b" executionId="8b66904b-7701-4906-b2ea-6166239cc644" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="f89d6fe7-b623-60b6-ef96-ddf075b077b1" executionId="bb69c8e3-8276-4326-a09c-b6e9bd96236f" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+  </TestEntries>
+  <TestLists>
+    <TestList name="Resultados sin formato de lista" id="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestList name="Todos los resultados cargados" id="19431567-8539-422a-85d7-44ee4e166bda" />
+  </TestLists>
+  <ResultSummary outcome="Completed">
+    <Counters total="2" executed="2" passed="2" failed="0" error="0" timeout="0" aborted="0" inconclusive="0" passedButRunAborted="0" notRunnable="0" notExecuted="0" disconnected="0" warning="0" completed="0" inProgress="0" pending="0" />
+    <Output>
+      <StdOut>NUnit Adapter 4.5.0.0: Test execution started&#xD;
+Running all tests in C:\Users\David\Desktop\IntegrationTest\bin\MCD\Debug\net8.0\IntegrationTest.dll&#xD;
+   NUnit3TestExecutor discovered 2 of 2 NUnit test cases using Current Discovery mode, Non-Explicit run&#xD;
+NUnit Adapter 4.5.0.0: Test execution complete&#xD;
+</StdOut>
+    </Output>
+    <RunInfos>
+      <RunInfo computerName="DG" outcome="Warning" timestamp="2025-08-01T14:41:46.1876503+02:00">
+        <Text>info: Microsoft.EntityFrameworkCore.Update[30100]&#xD;
+      Saved 0 entities to in-memory store.&#xD;
+info: Microsoft.EntityFrameworkCore.Update[30100]&#xD;
+      Saved 3 entities to in-memory store.&#xD;
+warn: Microsoft.AspNetCore.HttpsPolicy.HttpsRedirectionMiddleware[3]&#xD;
+      Failed to determine the https port for redirect.&#xD;
+</Text>
+      </RunInfo>
+      <RunInfo computerName="DG" outcome="Warning" timestamp="2025-08-01T14:41:46.3845040+02:00">
+        <Text>info: Microsoft.EntityFrameworkCore.Update[30100]&#xD;
+      Saved 0 entities to in-memory store.&#xD;
+info: Microsoft.EntityFrameworkCore.Update[30100]&#xD;
+      Saved 3 entities to in-memory store.&#xD;
+warn: Microsoft.AspNetCore.HttpsPolicy.HttpsRedirectionMiddleware[3]&#xD;
+      Failed to determine the https port for redirect.&#xD;
+</Text>
+      </RunInfo>
+    </RunInfos>
+  </ResultSummary>
+</TestRun>

@@ -1,0 +1,347 @@
+<!doctype html>
+<html class="no-js" lang="es">
+<head>
+	<!-- Meta Tags -->
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="keywords" content="Escaneo de QR, login">
+	<meta name="description" content="Página para registrar el escaneo de un código QR de un producto.">
+	<meta name='copyright' content='UOC'>
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+	<title>Login</title>
+
+	<link rel="icon" href="img/favicon.png">
+
+	<!-- Google Fonts -->
+	<link href="https://fonts.googleapis.com/css?family=Poppins:200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i&display=swap" rel="stylesheet">
+
+	<!-- Bootstrap CSS -->
+	<link rel="stylesheet" href="./css/bootstrap.min.css">
+	<!-- Nice Select CSS -->
+	<link rel="stylesheet" href="./css/nice-select.css">
+	<!-- Font Awesome CSS -->
+	<link rel="stylesheet" href="./css/font-awesome.min.css">
+	<!-- icofont CSS -->
+	<link rel="stylesheet" href="./css/icofont.css">
+	<!-- Slicknav -->
+	<link rel="stylesheet" href="./css/slicknav.min.css">
+	<!-- Owl Carousel CSS -->
+	<link rel="stylesheet" href="./css/owl-carousel.css">
+	<!-- Datepicker CSS -->
+	<link rel="stylesheet" href="./css/datepicker.css">
+	<!-- Animate CSS -->
+	<link rel="stylesheet" href="./css/animate.min.css">
+	
+	<!-- Site CSS -->
+	<link rel="stylesheet" href="./css/normalize.css">
+	<link rel="stylesheet" href="./css/style.css">
+	<link rel="stylesheet" href="./css/responsive.css">
+
+	<!-- Modal Panel CSS -->
+	<link rel="stylesheet" href="./css/modalPanel.css">
+
+	<!-- Js Sripts -->
+	<script src="./js/libraries/utilities.js"></script>
+	<script src="./js/libraries/modalPanel.js"></script>
+	<script src="./js/services/usuariosController.js"></script>
+	<script src="./js/services/qrsController.js"></script>
+	<script src="./js/services/productosController.js"></script>
+
+</head>
+<body>
+
+	<!-- Preloader -->
+	<div class="preloader">
+		<div class="loader">
+			<div class="loader-outter"></div>
+			<div class="loader-inner"></div>
+
+			<div class="indicator">
+				<svg width="16px" height="12px">
+					<polyline id="back" points="1 6 4 6 6 11 10 1 12 6 15 6"></polyline>
+					<polyline id="front" points="1 6 4 6 6 11 10 1 12 6 15 6"></polyline>
+				</svg>
+			</div>
+		</div>
+	</div>
+	<!-- End Preloader -->
+	<!-- Header Area -->
+	<header class="header">
+		<!-- Header Inner -->
+		<div class="header-inner">
+			<div class="container">
+				<div class="inner" style="padding: 18px;">
+					<div class="row" style="margin-left: 48%;">
+						<div>
+							<div class="logo">
+								<a href="home-publica.html"><img src="img/logo.jpg" alt="#"></a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!--/ End Header Inner -->
+	</header>
+	<!-- End Header Area -->
+	<!-- Start Section -->
+	<section class="contact-us section">
+		<div class="container">
+			<div class="inner">
+				<div class="row">
+					<div class="col-lg-12">
+						<div class="contact-us-form">
+							<h4 id="h4Subtitle">Has escaneado [productName].</h4>
+							<p style="margin-top: 25px;" id="pSubtitle">Estás a punto de conseguir [productPoints] puntos.</p>
+
+							<div class="row" style="margin-bottom:50px">
+								<div class="col-lg-6">
+									<img name="imgProductImage" src="" alt="Imagen del producto escaneado">
+								</div>
+							</div>
+
+							<!-- Form -->
+							<div class="row">
+								<div class="col-lg-6">
+									<div class="form-group">
+										<input style="width: 300px;" type="email" name="emailQR" placeholder="Email" required>
+									</div>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-lg-6">
+									<div class="form-group">
+										<input style="width: 300px;" type="password" name="passwordQR" placeholder="Contraseña" required>
+									</div>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-lg-6">
+									<div class="form-group">
+										<a name="linkCambiarContraseña" href="" id="linkChangePassword">Has olvidado tu contraseña?</a>
+									</div>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-12">
+									<div class="">
+										<label class="checkbox-inline" for="2"><input name="news" id="2" type="checkbox">  Quieres recibir ofertas y promociones?</label>
+									</div>
+									<div style=" margin-top: 25px;" class="form-group login-btn">
+										<button id="qrLoginButton" style="width:300px" class="btn" type="submit" name="btnContinuar">CONTINUAR</button>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<!--/ End Contact Us -->
+	<!-- Contenedor para el footer -->
+	<div id="footerContainer"></div>
+
+	<!-- Scripts -->
+	<script type="text/javascript">
+		// Cargar encabezado y pie de página
+		//cargarContenidoHtml('header.html', 'headerContainer');
+		cargarContenidoHtml('footer.html', 'footerContainer');
+	</script>
+
+	<script type="text/javascript">
+
+		var url = new URL(window.location.href);// Obtener la URL actual
+		var params = new URLSearchParams(url.search);// Crear un objeto URLSearchParams
+		var parametro = params.get('qrCode');// Obtener el valor de un parámetro específico por su nombre
+
+		// la landing QR nos envia el parametro qrCode
+		// si existe y está activo y no está expirado
+		// obtenemos los datos del producto relacionado
+		// después del login del usuario o de chequear que la cuenta está iniciada
+		// creamos la transaccion de puntos del usuario
+
+		//alert("Parámetro [qrCode]: " + parametro);
+
+		let parameters = new Filtros();
+		parameters.agregarElemento('qrCode', parametro);
+
+		GetQRByFilters('ObtenerQRByCode', parameters)
+			.then(data => {
+
+				//Validaciones sobre las propiedades del QR
+				if (!data.activo) {
+					alert("El QR no está activado.");
+					deshabilitarBoton();
+				}
+				if (data.consumido) {
+					alert("El QR ya se ha consumido.");
+					deshabilitarBoton();
+				}
+
+				if (data.fechaExpiracion !== null) {
+					//alert("El QR tiene fecha de expiración: " + data.fechaExpiracion.toString())
+					let fechaExpirada = isExpiredDate(data.fechaExpiracion.toString());
+					if (fechaExpirada) {
+						alert("El QR está expirado");
+						deshabilitarBoton();
+					}
+				}
+
+				// llamada a productosController para obtener información del producto del QR
+				// para mostrar el nombre en [productName] y los puntos en [productPoints]
+				// mostrar imagen de producto según url de [data.imagen] -> "img/productos/..."
+
+				GetProducto(data.idProducto)
+					.then(product => {
+
+						replaceTextByTagId('h4Subtitle', '[productName]', product.nombre);
+						replaceTextByTagId('pSubtitle', '[productPoints]', product.puntos);
+
+						const imagen = document.getElementsByName('imgProductImage')[0];
+						if (imagen !== null) {
+							imagen.src = product.imagen;
+							imagen.style.maxWidth = "50%";
+							//alert("imagen: " + imagen.src);
+						}
+					})
+					.catch(error => {
+						console.error('Error en GetProducto:', error);
+						//alert('Error en PatchByFilters: ', error);
+					});
+			})
+			.catch(error => {
+				console.error('Error en GetQRByFilters:', error);
+				//alert('Error en PatchByFilters: ', error);
+			});
+
+		function deshabilitarBoton() {
+            var qrLoginButton = document.getElementById("qrLoginButton");
+			qrLoginButton.disabled = true;
+            qrLoginButton.style.cursor = "not-allowed";
+		}
+
+	</script>
+
+	<script type="text/javascript">
+
+		var linkPassword = document.getElementById('linkChangePassword');
+
+		linkPassword.addEventListener('click', function (event) {
+			event.preventDefault();
+			url = 'changePassword.html?email=' + encodeURIComponent(getInputValueByName('emailQR'));
+			window.location.href = url;
+		});
+
+	</script>
+
+	<script type="text/javascript">
+
+        var emailValue = getInputValueByName('emailQR');
+        var passwordValue = getInputValueByName('passwordQR');
+
+		//setInputValueByName('email', 'david@correo.com');
+		//setInputValueByName('password', 'nuevaPassword!');
+
+	</script>
+
+	<script type="text/javascript">
+
+		function onClickBtnContinuar() {
+
+			//redirecToPage('index.html');
+			//window.location.assign('index.html');
+
+			//refreshPage();
+			//window.location.href = window.location.pathname.substring(window.location.pathname.lastIndexOf('/') + 1);
+
+			//const loginParams = new Filtros();
+            loginParams.agregarElemento('email', getInputValueByName('emailQR'));
+
+			//var password = 'a43eb9231a63e870a6c359495762cc2fb2b788d4b0d6948436e0d113fa3fdcd2';
+            loginParams.agregarElemento('contraseña', getInputValueByName('passwordQR'));
+
+			/*PatchByFilters('Login', loginParams)
+				.then(data => {
+					alert("Hola " + data.nombre + " " + data.correo + "!");
+
+					// Nueva cookie con el token del usuario
+					const token = `Bearer ${data.token}`;
+					const tokenCodificao = btoa(token);
+					const expiracionEnDias = 30;
+					setCookie("token", tokenCodificao, expiracionEnDias);
+
+					//
+					enviarCorreo(data.correo, 0);
+				})
+				.catch(error => {
+					console.error('Error fuera de la función:', error);
+				});*/
+
+			/*calcularHash(password)
+				.then(hash => {
+					loginParams.agregarElemento('contraseña', hash);
+					PatchByFilters('Login', loginParams);
+				})
+				.catch(error => {
+					console.error('Error al calcular el hash:', error);
+					//alert("Error al calcular el hash: " + error);
+				});*/
+
+		}
+
+		const btnContinuar = document.querySelector('button[name="btnContinuar"]');
+		btnContinuar.addEventListener('click', onClickBtnContinuar);
+
+	</script>
+
+	<!-- Load Scripts -->
+	<!-- jquery Min JS -->
+	<script src="./js/jquery.min.js"></script>
+	<!-- jquery Migrate JS -->
+	<script src="./js/jquery-migrate-3.0.0.js"></script>
+	<!-- jquery Ui JS -->
+	<script src="./js/jquery-ui.min.js"></script>
+	<!-- Easing JS -->
+	<script src="./js/easing.js"></script>
+	<!-- Color JS -->
+	<script src="./js/colors.js"></script>
+	<!-- Popper JS -->
+	<script src="./js/popper.min.js"></script>
+	<!-- Bootstrap Datepicker JS -->
+	<script src="./js/bootstrap-datepicker.js"></script>
+	<!-- Jquery Nav JS -->
+	<script src="./js/jquery.nav.js"></script>
+	<!-- Slicknav JS -->
+	<script src="./js/slicknav.min.js"></script>
+	<!-- ScrollUp JS -->
+	<script src="./js/jquery.scrollUp.min.js"></script>
+	<!-- Niceselect JS -->
+	<script src="./js/niceselect.js"></script>
+	<!-- Tilt Jquery JS -->
+	<script src="./js/tilt.jquery.min.js"></script>
+	<!-- Owl Carousel JS -->
+	<script src="./js/owl-carousel.js"></script>
+	<!-- counterup JS -->
+	<script src="./js/jquery.counterup.min.js"></script>
+	<!-- Steller JS -->
+	<script src="./js/steller.js"></script>
+	<!-- Wow JS -->
+	<script src="./js/wow.min.js"></script>
+	<!-- Magnific Popup JS -->
+	<!--<script src="./js/jquery.magnific-popup.min.js"></script>-->
+	<!-- Counter Up CDN JS -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/waypoints/2.0.3/waypoints.min.js"></script>
+	<!-- Google Map API Key JS -->
+	<script src="https://maps.google.com/maps/api/js?key=AIzaSyDGqTyqoPIvYxhn_Sa7ZrK5bENUWhpCo0w"></script>
+	<!-- Gmaps JS -->
+	<script src="./js/gmaps.min.js"></script>
+	<!-- Map Active JS -->
+	<script src="./js/map-active.js"></script>
+	<!-- Bootstrap JS -->
+	<script src="./js/bootstrap.min.js"></script>
+	<!-- Main JS -->
+	<script src="./js/main.js"></script>
+</body>
+</html>

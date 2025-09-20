@@ -1,0 +1,21 @@
+[
+  {
+    "Name": "Nuevo perfil",
+    "Projects": [
+      {
+        "Path": "WebApi\\API.csproj",
+        "Action": "Start",
+        "DebugTarget": "IIS Express"
+      },
+      {
+        "Path": "Web\\Web.csproj",
+        "Action": "StartWithoutDebugging",
+        "DebugTarget": "web"
+      },
+      {
+        "Path": "IntegrationTest\\Test.Integration.csproj",
+        "Action": "Start"
+      }
+    ]
+  }
+]

@@ -1,0 +1,315 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TestRun id="3ce3dc89-2122-4b98-82a0-fc0dcf6d9e31" name="David@DG 2025-09-06 02:47:01" runUser="DG\David" xmlns="http://microsoft.com/schemas/VisualStudio/TeamTest/2010">
+  <Times creation="2025-09-06T02:47:01.2712733+02:00" queuing="2025-09-06T02:47:01.2712736+02:00" start="2025-09-06T02:46:48.3753113+02:00" finish="2025-09-06T02:47:01.8224853+02:00" />
+  <TestSettings name="default" id="6bdc86e0-2895-4dfd-a6c9-738a066ce83e">
+    <Deployment runDeploymentRoot="David_DG_2025-09-06_02_47_01" />
+  </TestSettings>
+  <Results>
+    <UnitTestResult executionId="f0a8f973-a4c2-4e5e-aa31-424eaf00167b" testId="f3c8965e-c224-6509-5ee6-f8561cd54a0a" testName="AppSettingsJson_ShouldExist" computerName="DG" duration="00:00:00.0163899" startTime="2025-09-06T02:47:00.2269177+02:00" endTime="2025-09-06T02:47:00.2433081+02:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Failed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="f0a8f973-a4c2-4e5e-aa31-424eaf00167b">
+      <Output>
+        <ErrorInfo>
+          <Message>OneTimeSetUp: System.IO.DirectoryNotFoundException : Could not find a part of the path 'C:\Users\David\Desktop\Test.Configuration\API\appsettings.json'.</Message>
+          <StackTrace>   at Microsoft.Win32.SafeHandles.SafeFileHandle.CreateFile(String fullPath, FileMode mode, FileAccess access, FileShare share, FileOptions options)&#xD;
+   at Microsoft.Win32.SafeHandles.SafeFileHandle.Open(String fullPath, FileMode mode, FileAccess access, FileShare share, FileOptions options, Int64 preallocationSize, Nullable`1 unixCreateMode)&#xD;
+   at System.IO.Strategies.OSFileStreamStrategy..ctor(String path, FileMode mode, FileAccess access, FileShare share, FileOptions options, Int64 preallocationSize, Nullable`1 unixCreateMode)&#xD;
+   at System.IO.Strategies.FileStreamHelpers.ChooseStrategyCore(String path, FileMode mode, FileAccess access, FileShare share, FileOptions options, Int64 preallocationSize, Nullable`1 unixCreateMode)&#xD;
+   at System.IO.StreamReader.ValidateArgsAndOpenPath(String path, Encoding encoding, Int32 bufferSize)&#xD;
+   at System.IO.File.ReadAllText(String path, Encoding encoding)&#xD;
+   at Test.Configuration.AppSettingsJsonTests.Setup() in C:\Users\David\Desktop\Test.Configuration\AppSettingsJsonTests.cs:line 19&#xD;
+   at System.RuntimeMethodHandle.InvokeMethod(Object target, Void** arguments, Signature sig, Boolean isConstructor)&#xD;
+   at System.Reflection.MethodBaseInvoker.InvokeWithNoArgs(Object obj, BindingFlags invokeAttr)
+</StackTrace>
+        </ErrorInfo>
+      </Output>
+    </UnitTestResult>
+    <UnitTestResult executionId="c47b92df-d09f-46ec-95f0-5e8b1533e1fe" testId="c22775fd-54bb-0530-5ec9-54706654d88f" testName="AllActions_ShouldHaveSuccessAndErrorKeys" computerName="DG" duration="00:00:00.0059480" startTime="2025-09-06T02:47:00.2473633+02:00" endTime="2025-09-06T02:47:00.2533106+02:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Failed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="c47b92df-d09f-46ec-95f0-5e8b1533e1fe">
+      <Output>
+        <ErrorInfo>
+          <Message>System.IO.DirectoryNotFoundException : Could not find a part of the path 'C:\Users\David\Desktop\Test.Configuration\API\Resources\messages.json'.</Message>
+          <StackTrace>   at Microsoft.Win32.SafeHandles.SafeFileHandle.CreateFile(String fullPath, FileMode mode, FileAccess access, FileShare share, FileOptions options)&#xD;
+   at Microsoft.Win32.SafeHandles.SafeFileHandle.Open(String fullPath, FileMode mode, FileAccess access, FileShare share, FileOptions options, Int64 preallocationSize, Nullable`1 unixCreateMode)&#xD;
+   at System.IO.Strategies.OSFileStreamStrategy..ctor(String path, FileMode mode, FileAccess access, FileShare share, FileOptions options, Int64 preallocationSize, Nullable`1 unixCreateMode)&#xD;
+   at System.IO.Strategies.FileStreamHelpers.ChooseStrategyCore(String path, FileMode mode, FileAccess access, FileShare share, FileOptions options, Int64 preallocationSize, Nullable`1 unixCreateMode)&#xD;
+   at System.IO.StreamReader.ValidateArgsAndOpenPath(String path, Encoding encoding, Int32 bufferSize)&#xD;
+   at System.IO.File.ReadAllText(String path, Encoding encoding)&#xD;
+   at Test.Configuration.MessagesJsonTests.AllActions_ShouldHaveSuccessAndErrorKeys() in C:\Users\David\Desktop\Test.Configuration\MessagesJsonTests.cs:line 43&#xD;
+   at System.RuntimeMethodHandle.InvokeMethod(Object target, Void** arguments, Signature sig, Boolean isConstructor)&#xD;
+   at System.Reflection.MethodBaseInvoker.InvokeWithNoArgs(Object obj, BindingFlags invokeAttr)
+</StackTrace>
+        </ErrorInfo>
+      </Output>
+    </UnitTestResult>
+    <UnitTestResult executionId="402e6834-f4cd-460f-90ac-2aa3da43aafe" testId="b09319da-0c46-986c-a53e-2304d1441382" testName="ConnectionStrings_ShouldBeValid" computerName="DG" duration="00:00:00.0163930" startTime="2025-09-06T02:47:00.2269177+02:00" endTime="2025-09-06T02:47:00.2433105+02:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Failed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="402e6834-f4cd-460f-90ac-2aa3da43aafe">
+      <Output>
+        <ErrorInfo>
+          <Message>OneTimeSetUp: System.IO.DirectoryNotFoundException : Could not find a part of the path 'C:\Users\David\Desktop\Test.Configuration\API\appsettings.json'.</Message>
+          <StackTrace>   at Microsoft.Win32.SafeHandles.SafeFileHandle.CreateFile(String fullPath, FileMode mode, FileAccess access, FileShare share, FileOptions options)&#xD;
+   at Microsoft.Win32.SafeHandles.SafeFileHandle.Open(String fullPath, FileMode mode, FileAccess access, FileShare share, FileOptions options, Int64 preallocationSize, Nullable`1 unixCreateMode)&#xD;
+   at System.IO.Strategies.OSFileStreamStrategy..ctor(String path, FileMode mode, FileAccess access, FileShare share, FileOptions options, Int64 preallocationSize, Nullable`1 unixCreateMode)&#xD;
+   at System.IO.Strategies.FileStreamHelpers.ChooseStrategyCore(String path, FileMode mode, FileAccess access, FileShare share, FileOptions options, Int64 preallocationSize, Nullable`1 unixCreateMode)&#xD;
+   at System.IO.StreamReader.ValidateArgsAndOpenPath(String path, Encoding encoding, Int32 bufferSize)&#xD;
+   at System.IO.File.ReadAllText(String path, Encoding encoding)&#xD;
+   at Test.Configuration.AppSettingsJsonTests.Setup() in C:\Users\David\Desktop\Test.Configuration\AppSettingsJsonTests.cs:line 19&#xD;
+   at System.RuntimeMethodHandle.InvokeMethod(Object target, Void** arguments, Signature sig, Boolean isConstructor)&#xD;
+   at System.Reflection.MethodBaseInvoker.InvokeWithNoArgs(Object obj, BindingFlags invokeAttr)
+</StackTrace>
+        </ErrorInfo>
+      </Output>
+    </UnitTestResult>
+    <UnitTestResult executionId="3101812e-8de6-42e5-98c9-1652b648d5f6" testId="0534fa6d-ae6f-0755-0340-318193d05fa1" testName="AllowedHosts_ShouldBeValid" computerName="DG" duration="00:00:00.0146030" startTime="2025-09-06T02:47:00.2269177+02:00" endTime="2025-09-06T02:47:00.2413749+02:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Failed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="3101812e-8de6-42e5-98c9-1652b648d5f6">
+      <Output>
+        <ErrorInfo>
+          <Message>OneTimeSetUp: System.IO.DirectoryNotFoundException : Could not find a part of the path 'C:\Users\David\Desktop\Test.Configuration\API\appsettings.json'.</Message>
+          <StackTrace>   at Microsoft.Win32.SafeHandles.SafeFileHandle.CreateFile(String fullPath, FileMode mode, FileAccess access, FileShare share, FileOptions options)&#xD;
+   at Microsoft.Win32.SafeHandles.SafeFileHandle.Open(String fullPath, FileMode mode, FileAccess access, FileShare share, FileOptions options, Int64 preallocationSize, Nullable`1 unixCreateMode)&#xD;
+   at System.IO.Strategies.OSFileStreamStrategy..ctor(String path, FileMode mode, FileAccess access, FileShare share, FileOptions options, Int64 preallocationSize, Nullable`1 unixCreateMode)&#xD;
+   at System.IO.Strategies.FileStreamHelpers.ChooseStrategyCore(String path, FileMode mode, FileAccess access, FileShare share, FileOptions options, Int64 preallocationSize, Nullable`1 unixCreateMode)&#xD;
+   at System.IO.StreamReader.ValidateArgsAndOpenPath(String path, Encoding encoding, Int32 bufferSize)&#xD;
+   at System.IO.File.ReadAllText(String path, Encoding encoding)&#xD;
+   at Test.Configuration.AppSettingsJsonTests.Setup() in C:\Users\David\Desktop\Test.Configuration\AppSettingsJsonTests.cs:line 19&#xD;
+   at System.RuntimeMethodHandle.InvokeMethod(Object target, Void** arguments, Signature sig, Boolean isConstructor)&#xD;
+   at System.Reflection.MethodBaseInvoker.InvokeWithNoArgs(Object obj, BindingFlags invokeAttr)
+</StackTrace>
+        </ErrorInfo>
+      </Output>
+    </UnitTestResult>
+    <UnitTestResult executionId="7d999880-defc-4347-bc60-e993a540a171" testId="d7672c46-5307-fcd3-9d69-db853c38d728" testName="AppConfiguration_ShouldBeValid" computerName="DG" duration="00:00:00.0163519" startTime="2025-09-06T02:47:00.2269177+02:00" endTime="2025-09-06T02:47:00.2432698+02:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Failed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="7d999880-defc-4347-bc60-e993a540a171">
+      <Output>
+        <ErrorInfo>
+          <Message>OneTimeSetUp: System.IO.DirectoryNotFoundException : Could not find a part of the path 'C:\Users\David\Desktop\Test.Configuration\API\appsettings.json'.</Message>
+          <StackTrace>   at Microsoft.Win32.SafeHandles.SafeFileHandle.CreateFile(String fullPath, FileMode mode, FileAccess access, FileShare share, FileOptions options)&#xD;
+   at Microsoft.Win32.SafeHandles.SafeFileHandle.Open(String fullPath, FileMode mode, FileAccess access, FileShare share, FileOptions options, Int64 preallocationSize, Nullable`1 unixCreateMode)&#xD;
+   at System.IO.Strategies.OSFileStreamStrategy..ctor(String path, FileMode mode, FileAccess access, FileShare share, FileOptions options, Int64 preallocationSize, Nullable`1 unixCreateMode)&#xD;
+   at System.IO.Strategies.FileStreamHelpers.ChooseStrategyCore(String path, FileMode mode, FileAccess access, FileShare share, FileOptions options, Int64 preallocationSize, Nullable`1 unixCreateMode)&#xD;
+   at System.IO.StreamReader.ValidateArgsAndOpenPath(String path, Encoding encoding, Int32 bufferSize)&#xD;
+   at System.IO.File.ReadAllText(String path, Encoding encoding)&#xD;
+   at Test.Configuration.AppSettingsJsonTests.Setup() in C:\Users\David\Desktop\Test.Configuration\AppSettingsJsonTests.cs:line 19&#xD;
+   at System.RuntimeMethodHandle.InvokeMethod(Object target, Void** arguments, Signature sig, Boolean isConstructor)&#xD;
+   at System.Reflection.MethodBaseInvoker.InvokeWithNoArgs(Object obj, BindingFlags invokeAttr)
+</StackTrace>
+        </ErrorInfo>
+      </Output>
+    </UnitTestResult>
+    <UnitTestResult executionId="89e7682a-f745-49f0-9189-38adfc65585e" testId="4e54a955-0318-0796-8514-62d39fd23e2f" testName="MessagesJson_ShouldContainExpectedRoot" computerName="DG" duration="00:00:00.0005870" startTime="2025-09-06T02:47:00.2542497+02:00" endTime="2025-09-06T02:47:00.2548361+02:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Failed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="89e7682a-f745-49f0-9189-38adfc65585e">
+      <Output>
+        <ErrorInfo>
+          <Message>System.IO.DirectoryNotFoundException : Could not find a part of the path 'C:\Users\David\Desktop\Test.Configuration\API\Resources\messages.json'.</Message>
+          <StackTrace>   at Microsoft.Win32.SafeHandles.SafeFileHandle.CreateFile(String fullPath, FileMode mode, FileAccess access, FileShare share, FileOptions options)&#xD;
+   at Microsoft.Win32.SafeHandles.SafeFileHandle.Open(String fullPath, FileMode mode, FileAccess access, FileShare share, FileOptions options, Int64 preallocationSize, Nullable`1 unixCreateMode)&#xD;
+   at System.IO.Strategies.OSFileStreamStrategy..ctor(String path, FileMode mode, FileAccess access, FileShare share, FileOptions options, Int64 preallocationSize, Nullable`1 unixCreateMode)&#xD;
+   at System.IO.Strategies.FileStreamHelpers.ChooseStrategyCore(String path, FileMode mode, FileAccess access, FileShare share, FileOptions options, Int64 preallocationSize, Nullable`1 unixCreateMode)&#xD;
+   at System.IO.StreamReader.ValidateArgsAndOpenPath(String path, Encoding encoding, Int32 bufferSize)&#xD;
+   at System.IO.File.ReadAllText(String path, Encoding encoding)&#xD;
+   at Test.Configuration.MessagesJsonTests.MessagesJson_ShouldContainExpectedRoot() in C:\Users\David\Desktop\Test.Configuration\MessagesJsonTests.cs:line 35&#xD;
+   at System.RuntimeMethodHandle.InvokeMethod(Object target, Void** arguments, Signature sig, Boolean isConstructor)&#xD;
+   at System.Reflection.MethodBaseInvoker.InvokeWithNoArgs(Object obj, BindingFlags invokeAttr)
+</StackTrace>
+        </ErrorInfo>
+      </Output>
+    </UnitTestResult>
+    <UnitTestResult executionId="b8936301-c366-49da-adac-130d3e825a91" testId="7fffe975-cd46-f32f-9f4c-39741622b1b8" testName="MessagesJson_ShouldBeValidJson" computerName="DG" duration="00:00:00.0008850" startTime="2025-09-06T02:47:00.2533462+02:00" endTime="2025-09-06T02:47:00.2542305+02:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Failed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="b8936301-c366-49da-adac-130d3e825a91">
+      <Output>
+        <ErrorInfo>
+          <Message>System.IO.DirectoryNotFoundException : Could not find a part of the path 'C:\Users\David\Desktop\Test.Configuration\API\Resources\messages.json'.</Message>
+          <StackTrace>   at Microsoft.Win32.SafeHandles.SafeFileHandle.CreateFile(String fullPath, FileMode mode, FileAccess access, FileShare share, FileOptions options)&#xD;
+   at Microsoft.Win32.SafeHandles.SafeFileHandle.Open(String fullPath, FileMode mode, FileAccess access, FileShare share, FileOptions options, Int64 preallocationSize, Nullable`1 unixCreateMode)&#xD;
+   at System.IO.Strategies.OSFileStreamStrategy..ctor(String path, FileMode mode, FileAccess access, FileShare share, FileOptions options, Int64 preallocationSize, Nullable`1 unixCreateMode)&#xD;
+   at System.IO.Strategies.FileStreamHelpers.ChooseStrategyCore(String path, FileMode mode, FileAccess access, FileShare share, FileOptions options, Int64 preallocationSize, Nullable`1 unixCreateMode)&#xD;
+   at System.IO.StreamReader.ValidateArgsAndOpenPath(String path, Encoding encoding, Int32 bufferSize)&#xD;
+   at System.IO.File.ReadAllText(String path, Encoding encoding)&#xD;
+   at Test.Configuration.MessagesJsonTests.MessagesJson_ShouldBeValidJson() in C:\Users\David\Desktop\Test.Configuration\MessagesJsonTests.cs:line 28&#xD;
+   at System.RuntimeMethodHandle.InvokeMethod(Object target, Void** arguments, Signature sig, Boolean isConstructor)&#xD;
+   at System.Reflection.MethodBaseInvoker.InvokeWithNoArgs(Object obj, BindingFlags invokeAttr)
+</StackTrace>
+        </ErrorInfo>
+      </Output>
+    </UnitTestResult>
+    <UnitTestResult executionId="a3f8d0f4-f9a5-4cc6-aed7-3f35f79bf1e3" testId="9014aecc-0c26-20a3-f718-8a5932f6450a" testName="MessagesJson_ShouldExist" computerName="DG" duration="00:00:00.0415429" startTime="2025-09-06T02:47:00.2548529+02:00" endTime="2025-09-06T02:47:00.2963950+02:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Failed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="a3f8d0f4-f9a5-4cc6-aed7-3f35f79bf1e3">
+      <Output>
+        <ErrorInfo>
+          <Message>  El fichero C:\Users\David\Desktop\Test.Configuration\API\Resources\messages.json no existe.&#xD;
+  Expected: True&#xD;
+  But was:  False&#xD;
+</Message>
+          <StackTrace>   at Test.Configuration.MessagesJsonTests.MessagesJson_ShouldExist() in C:\Users\David\Desktop\Test.Configuration\MessagesJsonTests.cs:line 22&#xD;
+
+1)    at Test.Configuration.MessagesJsonTests.MessagesJson_ShouldExist() in C:\Users\David\Desktop\Test.Configuration\MessagesJsonTests.cs:line 22&#xD;
+
+</StackTrace>
+        </ErrorInfo>
+      </Output>
+    </UnitTestResult>
+    <UnitTestResult executionId="0ca795ae-a58a-4299-9fa7-4107f7849092" testId="3d5df2f7-62f4-a12b-32ec-ac168c5efa51" testName="Jwt_ShouldBeValid" computerName="DG" duration="00:00:00.0163950" startTime="2025-09-06T02:47:00.2269177+02:00" endTime="2025-09-06T02:47:00.2433126+02:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Failed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="0ca795ae-a58a-4299-9fa7-4107f7849092">
+      <Output>
+        <ErrorInfo>
+          <Message>OneTimeSetUp: System.IO.DirectoryNotFoundException : Could not find a part of the path 'C:\Users\David\Desktop\Test.Configuration\API\appsettings.json'.</Message>
+          <StackTrace>   at Microsoft.Win32.SafeHandles.SafeFileHandle.CreateFile(String fullPath, FileMode mode, FileAccess access, FileShare share, FileOptions options)&#xD;
+   at Microsoft.Win32.SafeHandles.SafeFileHandle.Open(String fullPath, FileMode mode, FileAccess access, FileShare share, FileOptions options, Int64 preallocationSize, Nullable`1 unixCreateMode)&#xD;
+   at System.IO.Strategies.OSFileStreamStrategy..ctor(String path, FileMode mode, FileAccess access, FileShare share, FileOptions options, Int64 preallocationSize, Nullable`1 unixCreateMode)&#xD;
+   at System.IO.Strategies.FileStreamHelpers.ChooseStrategyCore(String path, FileMode mode, FileAccess access, FileShare share, FileOptions options, Int64 preallocationSize, Nullable`1 unixCreateMode)&#xD;
+   at System.IO.StreamReader.ValidateArgsAndOpenPath(String path, Encoding encoding, Int32 bufferSize)&#xD;
+   at System.IO.File.ReadAllText(String path, Encoding encoding)&#xD;
+   at Test.Configuration.AppSettingsJsonTests.Setup() in C:\Users\David\Desktop\Test.Configuration\AppSettingsJsonTests.cs:line 19&#xD;
+   at System.RuntimeMethodHandle.InvokeMethod(Object target, Void** arguments, Signature sig, Boolean isConstructor)&#xD;
+   at System.Reflection.MethodBaseInvoker.InvokeWithNoArgs(Object obj, BindingFlags invokeAttr)
+</StackTrace>
+        </ErrorInfo>
+      </Output>
+    </UnitTestResult>
+    <UnitTestResult executionId="138ebc46-a932-46ab-86bc-0f78a1f82f1d" testId="15237601-f6d3-cd1e-b710-aa47f9b56633" testName="Paths_ShouldBeValid" computerName="DG" duration="00:00:00.0163990" startTime="2025-09-06T02:47:00.2269177+02:00" endTime="2025-09-06T02:47:00.2433164+02:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Failed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="138ebc46-a932-46ab-86bc-0f78a1f82f1d">
+      <Output>
+        <ErrorInfo>
+          <Message>OneTimeSetUp: System.IO.DirectoryNotFoundException : Could not find a part of the path 'C:\Users\David\Desktop\Test.Configuration\API\appsettings.json'.</Message>
+          <StackTrace>   at Microsoft.Win32.SafeHandles.SafeFileHandle.CreateFile(String fullPath, FileMode mode, FileAccess access, FileShare share, FileOptions options)&#xD;
+   at Microsoft.Win32.SafeHandles.SafeFileHandle.Open(String fullPath, FileMode mode, FileAccess access, FileShare share, FileOptions options, Int64 preallocationSize, Nullable`1 unixCreateMode)&#xD;
+   at System.IO.Strategies.OSFileStreamStrategy..ctor(String path, FileMode mode, FileAccess access, FileShare share, FileOptions options, Int64 preallocationSize, Nullable`1 unixCreateMode)&#xD;
+   at System.IO.Strategies.FileStreamHelpers.ChooseStrategyCore(String path, FileMode mode, FileAccess access, FileShare share, FileOptions options, Int64 preallocationSize, Nullable`1 unixCreateMode)&#xD;
+   at System.IO.StreamReader.ValidateArgsAndOpenPath(String path, Encoding encoding, Int32 bufferSize)&#xD;
+   at System.IO.File.ReadAllText(String path, Encoding encoding)&#xD;
+   at Test.Configuration.AppSettingsJsonTests.Setup() in C:\Users\David\Desktop\Test.Configuration\AppSettingsJsonTests.cs:line 19&#xD;
+   at System.RuntimeMethodHandle.InvokeMethod(Object target, Void** arguments, Signature sig, Boolean isConstructor)&#xD;
+   at System.Reflection.MethodBaseInvoker.InvokeWithNoArgs(Object obj, BindingFlags invokeAttr)
+</StackTrace>
+        </ErrorInfo>
+      </Output>
+    </UnitTestResult>
+    <UnitTestResult executionId="405657f9-cfca-4ef0-8422-57216451d1b2" testId="02b45b94-889b-7829-522c-9ee5a331f7d9" testName="AppSettingsJson_ShouldBeValidJson" computerName="DG" duration="00:00:00.0163880" startTime="2025-09-06T02:47:00.2269177+02:00" endTime="2025-09-06T02:47:00.2433053+02:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Failed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="405657f9-cfca-4ef0-8422-57216451d1b2">
+      <Output>
+        <ErrorInfo>
+          <Message>OneTimeSetUp: System.IO.DirectoryNotFoundException : Could not find a part of the path 'C:\Users\David\Desktop\Test.Configuration\API\appsettings.json'.</Message>
+          <StackTrace>   at Microsoft.Win32.SafeHandles.SafeFileHandle.CreateFile(String fullPath, FileMode mode, FileAccess access, FileShare share, FileOptions options)&#xD;
+   at Microsoft.Win32.SafeHandles.SafeFileHandle.Open(String fullPath, FileMode mode, FileAccess access, FileShare share, FileOptions options, Int64 preallocationSize, Nullable`1 unixCreateMode)&#xD;
+   at System.IO.Strategies.OSFileStreamStrategy..ctor(String path, FileMode mode, FileAccess access, FileShare share, FileOptions options, Int64 preallocationSize, Nullable`1 unixCreateMode)&#xD;
+   at System.IO.Strategies.FileStreamHelpers.ChooseStrategyCore(String path, FileMode mode, FileAccess access, FileShare share, FileOptions options, Int64 preallocationSize, Nullable`1 unixCreateMode)&#xD;
+   at System.IO.StreamReader.ValidateArgsAndOpenPath(String path, Encoding encoding, Int32 bufferSize)&#xD;
+   at System.IO.File.ReadAllText(String path, Encoding encoding)&#xD;
+   at Test.Configuration.AppSettingsJsonTests.Setup() in C:\Users\David\Desktop\Test.Configuration\AppSettingsJsonTests.cs:line 19&#xD;
+   at System.RuntimeMethodHandle.InvokeMethod(Object target, Void** arguments, Signature sig, Boolean isConstructor)&#xD;
+   at System.Reflection.MethodBaseInvoker.InvokeWithNoArgs(Object obj, BindingFlags invokeAttr)
+</StackTrace>
+        </ErrorInfo>
+      </Output>
+    </UnitTestResult>
+    <UnitTestResult executionId="7bba33ae-14cd-4fe3-8e99-383cc4b9c5bf" testId="924dc9b7-7f50-065d-77cb-3090f8ac8f41" testName="Logging_ShouldBeValid" computerName="DG" duration="00:00:00.0163969" startTime="2025-09-06T02:47:00.2269177+02:00" endTime="2025-09-06T02:47:00.2433146+02:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Failed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="7bba33ae-14cd-4fe3-8e99-383cc4b9c5bf">
+      <Output>
+        <ErrorInfo>
+          <Message>OneTimeSetUp: System.IO.DirectoryNotFoundException : Could not find a part of the path 'C:\Users\David\Desktop\Test.Configuration\API\appsettings.json'.</Message>
+          <StackTrace>   at Microsoft.Win32.SafeHandles.SafeFileHandle.CreateFile(String fullPath, FileMode mode, FileAccess access, FileShare share, FileOptions options)&#xD;
+   at Microsoft.Win32.SafeHandles.SafeFileHandle.Open(String fullPath, FileMode mode, FileAccess access, FileShare share, FileOptions options, Int64 preallocationSize, Nullable`1 unixCreateMode)&#xD;
+   at System.IO.Strategies.OSFileStreamStrategy..ctor(String path, FileMode mode, FileAccess access, FileShare share, FileOptions options, Int64 preallocationSize, Nullable`1 unixCreateMode)&#xD;
+   at System.IO.Strategies.FileStreamHelpers.ChooseStrategyCore(String path, FileMode mode, FileAccess access, FileShare share, FileOptions options, Int64 preallocationSize, Nullable`1 unixCreateMode)&#xD;
+   at System.IO.StreamReader.ValidateArgsAndOpenPath(String path, Encoding encoding, Int32 bufferSize)&#xD;
+   at System.IO.File.ReadAllText(String path, Encoding encoding)&#xD;
+   at Test.Configuration.AppSettingsJsonTests.Setup() in C:\Users\David\Desktop\Test.Configuration\AppSettingsJsonTests.cs:line 19&#xD;
+   at System.RuntimeMethodHandle.InvokeMethod(Object target, Void** arguments, Signature sig, Boolean isConstructor)&#xD;
+   at System.Reflection.MethodBaseInvoker.InvokeWithNoArgs(Object obj, BindingFlags invokeAttr)
+</StackTrace>
+        </ErrorInfo>
+      </Output>
+    </UnitTestResult>
+  </Results>
+  <TestDefinitions>
+    <UnitTest name="AppConfiguration_ShouldBeValid" storage="c:\users\david\desktop\test.configuration\bin\mcd\debug\net8.0\test.configuration.dll" id="d7672c46-5307-fcd3-9d69-db853c38d728">
+      <Execution id="7d999880-defc-4347-bc60-e993a540a171" />
+      <TestMethod codeBase="C:\Users\David\Desktop\Test.Configuration\bin\MCD\Debug\net8.0\Test.Configuration.dll" adapterTypeName="executor://nunit3testexecutor/" className="Test.Configuration.AppSettingsJsonTests" name="AppConfiguration_ShouldBeValid" />
+    </UnitTest>
+    <UnitTest name="ConnectionStrings_ShouldBeValid" storage="c:\users\david\desktop\test.configuration\bin\mcd\debug\net8.0\test.configuration.dll" id="b09319da-0c46-986c-a53e-2304d1441382">
+      <Execution id="402e6834-f4cd-460f-90ac-2aa3da43aafe" />
+      <TestMethod codeBase="C:\Users\David\Desktop\Test.Configuration\bin\MCD\Debug\net8.0\Test.Configuration.dll" adapterTypeName="executor://nunit3testexecutor/" className="Test.Configuration.AppSettingsJsonTests" name="ConnectionStrings_ShouldBeValid" />
+    </UnitTest>
+    <UnitTest name="AppSettingsJson_ShouldBeValidJson" storage="c:\users\david\desktop\test.configuration\bin\mcd\debug\net8.0\test.configuration.dll" id="02b45b94-889b-7829-522c-9ee5a331f7d9">
+      <Execution id="405657f9-cfca-4ef0-8422-57216451d1b2" />
+      <TestMethod codeBase="C:\Users\David\Desktop\Test.Configuration\bin\MCD\Debug\net8.0\Test.Configuration.dll" adapterTypeName="executor://nunit3testexecutor/" className="Test.Configuration.AppSettingsJsonTests" name="AppSettingsJson_ShouldBeValidJson" />
+    </UnitTest>
+    <UnitTest name="Jwt_ShouldBeValid" storage="c:\users\david\desktop\test.configuration\bin\mcd\debug\net8.0\test.configuration.dll" id="3d5df2f7-62f4-a12b-32ec-ac168c5efa51">
+      <Execution id="0ca795ae-a58a-4299-9fa7-4107f7849092" />
+      <TestMethod codeBase="C:\Users\David\Desktop\Test.Configuration\bin\MCD\Debug\net8.0\Test.Configuration.dll" adapterTypeName="executor://nunit3testexecutor/" className="Test.Configuration.AppSettingsJsonTests" name="Jwt_ShouldBeValid" />
+    </UnitTest>
+    <UnitTest name="AppSettingsJson_ShouldExist" storage="c:\users\david\desktop\test.configuration\bin\mcd\debug\net8.0\test.configuration.dll" id="f3c8965e-c224-6509-5ee6-f8561cd54a0a">
+      <Execution id="f0a8f973-a4c2-4e5e-aa31-424eaf00167b" />
+      <TestMethod codeBase="C:\Users\David\Desktop\Test.Configuration\bin\MCD\Debug\net8.0\Test.Configuration.dll" adapterTypeName="executor://nunit3testexecutor/" className="Test.Configuration.AppSettingsJsonTests" name="AppSettingsJson_ShouldExist" />
+    </UnitTest>
+    <UnitTest name="AllowedHosts_ShouldBeValid" storage="c:\users\david\desktop\test.configuration\bin\mcd\debug\net8.0\test.configuration.dll" id="0534fa6d-ae6f-0755-0340-318193d05fa1">
+      <Execution id="3101812e-8de6-42e5-98c9-1652b648d5f6" />
+      <TestMethod codeBase="C:\Users\David\Desktop\Test.Configuration\bin\MCD\Debug\net8.0\Test.Configuration.dll" adapterTypeName="executor://nunit3testexecutor/" className="Test.Configuration.AppSettingsJsonTests" name="AllowedHosts_ShouldBeValid" />
+    </UnitTest>
+    <UnitTest name="Logging_ShouldBeValid" storage="c:\users\david\desktop\test.configuration\bin\mcd\debug\net8.0\test.configuration.dll" id="924dc9b7-7f50-065d-77cb-3090f8ac8f41">
+      <Execution id="7bba33ae-14cd-4fe3-8e99-383cc4b9c5bf" />
+      <TestMethod codeBase="C:\Users\David\Desktop\Test.Configuration\bin\MCD\Debug\net8.0\Test.Configuration.dll" adapterTypeName="executor://nunit3testexecutor/" className="Test.Configuration.AppSettingsJsonTests" name="Logging_ShouldBeValid" />
+    </UnitTest>
+    <UnitTest name="AllActions_ShouldHaveSuccessAndErrorKeys" storage="c:\users\david\desktop\test.configuration\bin\mcd\debug\net8.0\test.configuration.dll" id="c22775fd-54bb-0530-5ec9-54706654d88f">
+      <Execution id="c47b92df-d09f-46ec-95f0-5e8b1533e1fe" />
+      <TestMethod codeBase="C:\Users\David\Desktop\Test.Configuration\bin\MCD\Debug\net8.0\Test.Configuration.dll" adapterTypeName="executor://nunit3testexecutor/" className="Test.Configuration.MessagesJsonTests" name="AllActions_ShouldHaveSuccessAndErrorKeys" />
+    </UnitTest>
+    <UnitTest name="MessagesJson_ShouldBeValidJson" storage="c:\users\david\desktop\test.configuration\bin\mcd\debug\net8.0\test.configuration.dll" id="7fffe975-cd46-f32f-9f4c-39741622b1b8">
+      <Execution id="b8936301-c366-49da-adac-130d3e825a91" />
+      <TestMethod codeBase="C:\Users\David\Desktop\Test.Configuration\bin\MCD\Debug\net8.0\Test.Configuration.dll" adapterTypeName="executor://nunit3testexecutor/" className="Test.Configuration.MessagesJsonTests" name="MessagesJson_ShouldBeValidJson" />
+    </UnitTest>
+    <UnitTest name="MessagesJson_ShouldExist" storage="c:\users\david\desktop\test.configuration\bin\mcd\debug\net8.0\test.configuration.dll" id="9014aecc-0c26-20a3-f718-8a5932f6450a">
+      <Execution id="a3f8d0f4-f9a5-4cc6-aed7-3f35f79bf1e3" />
+      <TestMethod codeBase="C:\Users\David\Desktop\Test.Configuration\bin\MCD\Debug\net8.0\Test.Configuration.dll" adapterTypeName="executor://nunit3testexecutor/" className="Test.Configuration.MessagesJsonTests" name="MessagesJson_ShouldExist" />
+    </UnitTest>
+    <UnitTest name="Paths_ShouldBeValid" storage="c:\users\david\desktop\test.configuration\bin\mcd\debug\net8.0\test.configuration.dll" id="15237601-f6d3-cd1e-b710-aa47f9b56633">
+      <Execution id="138ebc46-a932-46ab-86bc-0f78a1f82f1d" />
+      <TestMethod codeBase="C:\Users\David\Desktop\Test.Configuration\bin\MCD\Debug\net8.0\Test.Configuration.dll" adapterTypeName="executor://nunit3testexecutor/" className="Test.Configuration.AppSettingsJsonTests" name="Paths_ShouldBeValid" />
+    </UnitTest>
+    <UnitTest name="MessagesJson_ShouldContainExpectedRoot" storage="c:\users\david\desktop\test.configuration\bin\mcd\debug\net8.0\test.configuration.dll" id="4e54a955-0318-0796-8514-62d39fd23e2f">
+      <Execution id="89e7682a-f745-49f0-9189-38adfc65585e" />
+      <TestMethod codeBase="C:\Users\David\Desktop\Test.Configuration\bin\MCD\Debug\net8.0\Test.Configuration.dll" adapterTypeName="executor://nunit3testexecutor/" className="Test.Configuration.MessagesJsonTests" name="MessagesJson_ShouldContainExpectedRoot" />
+    </UnitTest>
+  </TestDefinitions>
+  <TestEntries>
+    <TestEntry testId="f3c8965e-c224-6509-5ee6-f8561cd54a0a" executionId="f0a8f973-a4c2-4e5e-aa31-424eaf00167b" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="c22775fd-54bb-0530-5ec9-54706654d88f" executionId="c47b92df-d09f-46ec-95f0-5e8b1533e1fe" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="b09319da-0c46-986c-a53e-2304d1441382" executionId="402e6834-f4cd-460f-90ac-2aa3da43aafe" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="0534fa6d-ae6f-0755-0340-318193d05fa1" executionId="3101812e-8de6-42e5-98c9-1652b648d5f6" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="d7672c46-5307-fcd3-9d69-db853c38d728" executionId="7d999880-defc-4347-bc60-e993a540a171" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="4e54a955-0318-0796-8514-62d39fd23e2f" executionId="89e7682a-f745-49f0-9189-38adfc65585e" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="7fffe975-cd46-f32f-9f4c-39741622b1b8" executionId="b8936301-c366-49da-adac-130d3e825a91" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="9014aecc-0c26-20a3-f718-8a5932f6450a" executionId="a3f8d0f4-f9a5-4cc6-aed7-3f35f79bf1e3" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="3d5df2f7-62f4-a12b-32ec-ac168c5efa51" executionId="0ca795ae-a58a-4299-9fa7-4107f7849092" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="15237601-f6d3-cd1e-b710-aa47f9b56633" executionId="138ebc46-a932-46ab-86bc-0f78a1f82f1d" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="02b45b94-889b-7829-522c-9ee5a331f7d9" executionId="405657f9-cfca-4ef0-8422-57216451d1b2" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="924dc9b7-7f50-065d-77cb-3090f8ac8f41" executionId="7bba33ae-14cd-4fe3-8e99-383cc4b9c5bf" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+  </TestEntries>
+  <TestLists>
+    <TestList name="Resultados sin formato de lista" id="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestList name="Todos los resultados cargados" id="19431567-8539-422a-85d7-44ee4e166bda" />
+  </TestLists>
+  <ResultSummary outcome="Failed">
+    <Counters total="12" executed="12" passed="0" failed="12" error="0" timeout="0" aborted="0" inconclusive="0" passedButRunAborted="0" notRunnable="0" notExecuted="0" disconnected="0" warning="0" completed="0" inProgress="0" pending="0" />
+    <Output>
+      <StdOut>NUnit Adapter 4.5.0.0: Test execution started&#xD;
+Running all tests in C:\Users\David\Desktop\Test.Configuration\bin\MCD\Debug\net8.0\Test.Configuration.dll&#xD;
+   NUnit3TestExecutor discovered 12 of 12 NUnit test cases using Current Discovery mode, Non-Explicit run&#xD;
+NUnit Adapter 4.5.0.0: Test execution complete&#xD;
+</StdOut>
+    </Output>
+    <RunInfos>
+      <RunInfo computerName="DG" outcome="Warning" timestamp="2025-09-06T02:47:00.2966289+02:00">
+        <Text>Setup failed for test fixture Test.Configuration.AppSettingsJsonTests</Text>
+      </RunInfo>
+      <RunInfo computerName="DG" outcome="Warning" timestamp="2025-09-06T02:47:00.2967946+02:00">
+        <Text>System.IO.DirectoryNotFoundException : Could not find a part of the path 'C:\Users\David\Desktop\Test.Configuration\API\appsettings.json'.
+StackTrace:    at Microsoft.Win32.SafeHandles.SafeFileHandle.CreateFile(String fullPath, FileMode mode, FileAccess access, FileShare share, FileOptions options)&#xD;
+   at Microsoft.Win32.SafeHandles.SafeFileHandle.Open(String fullPath, FileMode mode, FileAccess access, FileShare share, FileOptions options, Int64 preallocationSize, Nullable`1 unixCreateMode)&#xD;
+   at System.IO.Strategies.OSFileStreamStrategy..ctor(String path, FileMode mode, FileAccess access, FileShare share, FileOptions options, Int64 preallocationSize, Nullable`1 unixCreateMode)&#xD;
+   at System.IO.Strategies.FileStreamHelpers.ChooseStrategyCore(String path, FileMode mode, FileAccess access, FileShare share, FileOptions options, Int64 preallocationSize, Nullable`1 unixCreateMode)&#xD;
+   at System.IO.StreamReader.ValidateArgsAndOpenPath(String path, Encoding encoding, Int32 bufferSize)&#xD;
+   at System.IO.File.ReadAllText(String path, Encoding encoding)&#xD;
+   at Test.Configuration.AppSettingsJsonTests.Setup() in C:\Users\David\Desktop\Test.Configuration\AppSettingsJsonTests.cs:line 19&#xD;
+   at System.RuntimeMethodHandle.InvokeMethod(Object target, Void** arguments, Signature sig, Boolean isConstructor)&#xD;
+   at System.Reflection.MethodBaseInvoker.InvokeWithNoArgs(Object obj, BindingFlags invokeAttr)</Text>
+      </RunInfo>
+    </RunInfos>
+    <CollectorDataEntries>
+      <Collector agentName="DG" uri="datacollector://microsoft/CoverletCodeCoverage/1.0" collectorDisplayName="XPlat code coverage">
+        <UriAttachments>
+          <UriAttachment>
+            <A href="DG\coverage.cobertura.xml"></A>
+          </UriAttachment>
+        </UriAttachments>
+      </Collector>
+    </CollectorDataEntries>
+  </ResultSummary>
+</TestRun>

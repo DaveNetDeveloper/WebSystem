@@ -1,0 +1,297 @@
+<!doctype html>
+<html class="no-js" lang="es">
+<head>
+	<!-- Meta Tags -->
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="keywords" content="login">
+	<meta name="description" content="Página para iniciar sesión con una cuenta de usuario existente.">
+	<meta name='copyright' content='UOC'>
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+	<title>Login</title>
+
+	<link rel="icon" href="img/favicon.png">
+
+	<!-- Google Fonts -->
+	<link href="https://fonts.googleapis.com/css?family=Poppins:200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i&display=swap" rel="stylesheet">
+
+	<!-- Bootstrap CSS -->
+	<link rel="stylesheet" href="./css/bootstrap.min.css">
+	<!-- Nice Select CSS -->
+	<link rel="stylesheet" href="./css/nice-select.css">
+	<!-- Font Awesome CSS -->
+	<link rel="stylesheet" href="./css/font-awesome.min.css">
+	<!-- icofont CSS -->
+	<link rel="stylesheet" href="./css/icofont.css">
+	<!-- Slicknav -->
+	<link rel="stylesheet" href="./css/slicknav.min.css">
+	<!-- Owl Carousel CSS -->
+	<link rel="stylesheet" href="./css/owl-carousel.css">
+	<!-- Datepicker CSS -->
+	<link rel="stylesheet" href="./css/datepicker.css">
+	<!-- Animate CSS -->
+	<link rel="stylesheet" href="./css/animate.min.css">
+	<!-- Magnific Popup CSS -->
+	<!--<link rel="stylesheet" href="./css/magnific-popup.css">-->
+
+	<!-- Site CSS -->
+	<link rel="stylesheet" href="./css/normalize.css">
+	<link rel="stylesheet" href="./css/style.css">
+	<link rel="stylesheet" href="./css/responsive.css">
+
+	<!-- Modal Panel CSS -->
+	<link rel="stylesheet" href="./css/modalPanel.css">
+
+	<!-- Js Sripts -->
+	<script src="./js/libraries/modalPanel.js"></script>
+	<script src="./js/services/usuariosController.js"></script>
+	<script src="./js/libraries/utilities.js"></script>
+	<script src="./js/services/correoController.js"></script>
+
+</head>
+<body>
+
+	<!-- Preloader -->
+	<div class="preloader">
+		<div class="loader">
+			<div class="loader-outter"></div>
+			<div class="loader-inner"></div>
+
+			<div class="indicator">
+				<svg width="16px" height="12px">
+					<polyline id="back" points="1 6 4 6 6 11 10 1 12 6 15 6"></polyline>
+					<polyline id="front" points="1 6 4 6 6 11 10 1 12 6 15 6"></polyline>
+				</svg>
+			</div>
+		</div>
+	</div>
+	<!-- End Preloader -->
+	<!-- Contenedor para el encabezado -->
+	<!--<div id="headerContainer"></div>-->
+	<!-- Header Area -->
+	<header class="header">
+		<!-- Header Inner -->
+		<div class="header-inner">
+			<div class="container">
+				<div class="inner" style="padding: 18px;">
+					<div class="row" style="margin-left: 48%;">
+						<div>
+							<div class="logo">
+								<a href="home-publica.html"><img src="img/logo.jpg" alt="#"></a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div> 
+		</div>
+		<!--/ End Header Inner -->
+	</header>
+	<!-- End Header Area -->
+	<!-- Start Section -->
+	<section class="contact-us section">
+		<div class="container">
+			<div class="inner">
+				<div class="row">
+					<div class="col-lg-12">
+						<div class="contact-us-form">
+							<h2>Inicia sesión</h2>
+							<p>¿Aún no formas parte de la plataforma? Regístrate y consigue 300 puntos de bienvenida.</p>
+							<div class="row">
+								<div class="col-lg-6">
+									<div class="form-group">
+										<input style="width: 300px" type="email" name="email" placeholder="Email" required>
+									</div>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-lg-6">
+									<div class="form-group">
+										<input style="width: 300px" type="password" name="password" placeholder="Contraseña" value="password" required>
+									</div>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-lg-6">
+									<div class="form-group">
+										<a name="linkCambiarContraseña" href="" id="linkChangePassword">Has olvidado tu contraseña?</a>
+									</div>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-12">
+									<div class="">
+										<label class="checkbox-inline" for="2"><input name="news" id="2" type="checkbox">  Quieres recibir ofertas y promociones?</label>
+									</div>
+									<div style="margin-top: 20px;" class="form-group login-btn">
+										<button style="width: 300px" class="btn" type="submit" name="btnLogin">CONTINUAR</button>
+									</div>
+								</div>
+							</div>
+						</div>
+						<!--/ End Form -->
+					</div>
+				</div>
+			</div>
+			<br /><br />
+			<!-- Start Modal Panel -->
+			<span id="modalPanelContainer"></span>
+
+			<!--<button id="abrirModal">Abrir Modal</button>-->
+			<div id="miModal" class="modal">
+				<div class="modal-contenido">
+					<span class="cerrar" id="cerrarModal">&times;</span>
+					<h3 id="h3Modal" style="text-align: center; margin-top: 3%"></h3>
+					<p id="pModal" style="margin-top: 5%"></p>
+				</div>
+			</div>
+			<!--End Modal Panel-->
+
+		</div>
+	</section>
+	<!--/ End Contact Us -->
+	<!-- Contenedor para el footer -->
+	<div id="footerContainer"></div>
+
+	<!-- Scripts -->
+	<script type="text/javascript">
+		// Cargar encabezado y pie de página
+		//cargarContenidoHtml('header.html', 'headerContainer');
+		cargarContenidoHtml('footer.html', 'footerContainer');
+		//cargarContenidoHtml('modal-panel.html', 'modalPanelContainer');
+	</script>
+
+	<script type="text/javascript">
+		cargarContenidoModal('Título', 'Contenido del modal...');
+	</script>
+
+	<script type="text/javascript">
+		var url = new URL(window.location.href);// Obtener la URL actual
+		var params = new URLSearchParams(url.search);// Crear un objeto URLSearchParams
+		var parametro = params.get('qrCode');// Obtener el valor de un parámetro específico por su nombre
+
+		// en la Landing QR: check code in qr table
+		// la landing QR nos envia el parametro qrCode
+		// si existe y está activo y no está expirado
+		// obtenemos los datos del producto relacionado
+		// después del login del usuario o de chequear que la cuenta está iniciada
+		// creamos la transaccion de puntos del usuario
+
+		//alert("Parámetro [qrCode]: " + parametro);
+		console.log("Parámetro [qrCode]: " + parametro);
+
+	</script>
+
+	<script type="text/javascript">
+
+		var linkPassword = document.getElementById('linkChangePassword');
+		linkPassword.addEventListener('click', function (event) {
+
+			event.preventDefault();
+			url = 'changePassword.html?email=' + encodeURIComponent(getInputValueByName('email'));
+			window.location.href = url;
+		});
+	</script>
+
+
+	<script type="text/javascript">
+
+		var emailValue = getInputValueByName('email');
+		var passwordValue = getInputValueByName('password');
+
+		//setInputValueByName('email', 'david@correo.com');
+		//setInputValueByName('password', 'nuevaPassword!');
+
+	</script>
+
+	<script type="text/javascript">
+
+		function onClickBtnLogin() {
+
+			const loginParams = new Filtros();
+			let email = getInputValueByName('email');
+			loginParams.agregarElemento('email', email);
+
+			var password = getInputValueByName('password');
+
+			calcularHash(password)
+				.then(hash => {
+					loginParams.agregarElemento('contraseña', hash);
+
+					PatchByFilters('Login', loginParams)
+						.then(data => {
+
+							alert("Hola " + data.nombre + " " + data.correo + "!"); 
+
+							// Nueva cookie con el token del usuario
+							//const tokenCodificao = btoa(data.token);
+							const expiracionEnDias = 30;
+                            setCookie("token", data.token, expiracionEnDias);
+
+							redirectToPage('home-privada.html');
+						})
+						.catch(error => {
+							console.error('Error fuera de la función:', error);
+							alert("Error fuera de la función: " + error);
+						});
+				})
+				.catch(error => {
+					console.error('Error al calcular el hash:', error);
+					alert("Error al calcular el hash: " + error);
+				});
+		}
+
+		const btnLogin = document.querySelector('button[name="btnLogin"]'); //Establecer el comportamiento del click del boton 'btnLogin'
+		btnLogin.addEventListener('click', onClickBtnLogin);
+
+	</script>
+
+	<!-- Load Scripts -->
+	<!-- jquery Min JS -->
+	<script src="./js/jquery.min.js"></script>
+	<!-- jquery Migrate JS -->
+	<script src="./js/jquery-migrate-3.0.0.js"></script>
+	<!-- jquery Ui JS -->
+	<script src="./js/jquery-ui.min.js"></script>
+	<!-- Easing JS -->
+	<script src="./js/easing.js"></script>
+	<!-- Color JS -->
+	<script src="./js/colors.js"></script>
+	<!-- Popper JS -->
+	<script src="./js/popper.min.js"></script>
+	<!-- Bootstrap Datepicker JS -->
+	<script src="./js/bootstrap-datepicker.js"></script>
+	<!-- Jquery Nav JS -->
+	<script src="./js/jquery.nav.js"></script>
+	<!-- Slicknav JS -->
+	<script src="./js/slicknav.min.js"></script>
+	<!-- ScrollUp JS -->
+	<script src="./js/jquery.scrollUp.min.js"></script>
+	<!-- Niceselect JS -->
+	<script src="./js/niceselect.js"></script>
+	<!-- Tilt Jquery JS -->
+	<script src="./js/tilt.jquery.min.js"></script>
+	<!-- Owl Carousel JS -->
+	<script src="./js/owl-carousel.js"></script>
+	<!-- counterup JS -->
+	<script src="./js/jquery.counterup.min.js"></script>
+	<!-- Steller JS -->
+	<script src="./js/steller.js"></script>
+	<!-- Wow JS -->
+	<script src="./js/wow.min.js"></script>
+	<!-- Magnific Popup JS -->
+	<!--<script src="./js/jquery.magnific-popup.min.js"></script>-->
+	<!-- Counter Up CDN JS -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/waypoints/2.0.3/waypoints.min.js"></script>
+	<!-- Google Map API Key JS -->
+	<script src="https://maps.google.com/maps/api/js?key=AIzaSyDGqTyqoPIvYxhn_Sa7ZrK5bENUWhpCo0w"></script>
+	<!-- Gmaps JS -->
+	<script src="./js/gmaps.min.js"></script>
+	<!-- Map Active JS -->
+	<script src="./js/map-active.js"></script>
+	<!-- Bootstrap JS -->
+	<script src="./js/bootstrap.min.js"></script>
+	<!-- Main JS -->
+	<script src="./js/main.js"></script>
+</body>
+</html>
