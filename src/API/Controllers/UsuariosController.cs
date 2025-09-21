@@ -1,14 +1,14 @@
-using Domain.Entities;
-using Application.DTOs.Filters;
-using Application.Interfaces.DTOs.Filters;
-using Application.Services;
 using Application.Common;
-using Application.Interfaces.Services;
+using Application.DTOs.Filters;
 using Application.Interfaces.Controllers;
-
+using Application.Interfaces.DTOs.Filters;
+using Application.Interfaces.Services;
+using Application.Services;
+using Domain.Entities;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.RateLimiting; 
+using Microsoft.Extensions.Options;
 using System.Text.Json;
 using Utilities;
 
@@ -20,14 +20,20 @@ namespace API.Controllers
     {
         private readonly IUsuarioService _usuarioService;
         private readonly IEmailTokenService _emailTokenService;
-
+        private readonly ICorreoService _correoService;
+        private readonly AppConfiguration _appConfiguration;
         public UsuariosController(ILogger<UsuariosController> logger, 
                                   IUsuarioService usuarioService,
                                   IEmailTokenService emailTokenService,
-                                  ITokenService tokenService) {
+                                  ITokenService tokenService,
+                                  ICorreoService correoService,
+                                  IOptions<AppConfiguration> options) 
+        {
             base._logger = logger;  
             base._tokenService = tokenService;
+            _appConfiguration = options.Value ?? throw new ArgumentNullException(nameof(options));
             _usuarioService = usuarioService ?? throw new ArgumentNullException(nameof(usuarioService));
+            _correoService = correoService ?? throw new ArgumentNullException(nameof(correoService));
             _emailTokenService = emailTokenService ?? throw new ArgumentNullException(nameof(emailTokenService));
         }
 
@@ -212,7 +218,28 @@ namespace API.Controllers
                     if (activationResult == false) return NotFound(new { message = "El usuario no ha sido encontrado." });
                     else {
                        var consumeResult = _emailTokenService.ConsumeEmailToken(validToken.ToString(), ip, userAgent);
-                        if(consumeResult) { 
+                        if(consumeResult) {
+
+                            //
+                            // TODO enviar corrreo: Bienvenido a nuestra newsletter
+                            //
+
+                            var tiposEnvioCorreo = _correoService.ObtenerTiposEnvioCorreo();
+
+                            //var usuario = _usuarioService.GetAllAsync().Result.Where(u => u.correo == email).SingleOrDefault();
+
+                            var correo = new Correo { Destinatario = email, 
+                                                      Asunto = "Bienvenido a nuestra Newsletter", 
+                                                      TipoEnvio = TipoEnvioCorreos.SuscripciónActivada, 
+                                                      Cuerpo = "Gracias por unirte a la mejor comunidad cerca de ti." };
+
+                            _correoService.EnviarCorreo(correo,
+                                                        "userName", //usuario?.nombre ?? email,
+                                                        EncodeDecodeHelper.GetDecodeValue(_appConfiguration.ServidorSmtp),
+                                                        EncodeDecodeHelper.GetDecodeValue(_appConfiguration.PuertoSmtp),
+                                                        EncodeDecodeHelper.GetDecodeValue(_appConfiguration.UsuarioSmtp),
+                                                        EncodeDecodeHelper.GetDecodeValue(_appConfiguration.ContraseñaSmtp));
+                             
                             _logger.LogInformation(MessageProvider.GetMessage("Usuario:ActivacionSuscripcion", "Success"));
                             return Ok(consumeResult);
                         }

@@ -14,7 +14,9 @@ namespace API.Controllers
         private readonly ICorreoService _correoService;
         private readonly AppConfiguration _appConfiguration;
 
-        public CorreoController(ILogger<CorreoController> logger, ICorreoService correoService, IOptions<AppConfiguration> options) 
+        public CorreoController(ILogger<CorreoController> logger, 
+                                ICorreoService correoService, 
+                                IOptions<AppConfiguration> options) 
         { 
             _logger = logger;
             _correoService = correoService ?? throw new ArgumentNullException(nameof(correoService));

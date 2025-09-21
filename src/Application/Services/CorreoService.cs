@@ -27,6 +27,13 @@ namespace Application.Services
 
             var contenido = ConstruirCuerpoHTML(correo.TipoEnvio, nombreUsuario, correo.Destinatario, emailToken.ToString());
             
+            if(null == contenido) {
+                contenido =  new Correo {
+                    Asunto = correo.Asunto,
+                    Cuerpo = correo.Cuerpo
+                }; 
+            }
+
             using (var mensaje = new MailMessage()) {
                 mensaje.From = new MailAddress(usuarioSmtp);
                 mensaje.To.Add(correo.Destinatario);
@@ -69,10 +76,16 @@ namespace Application.Services
                     body = BuildBodyRememberSubscribe(logoUrl, nombreUsuario, email, emailToken);
                     break;
                 case TipoEnvioCorreos.ResetContraseña:
-
+                    return null;
                     break; 
                 case TipoEnvioCorreos.SuscripciónActivada:
-
+                        return null;
+                    break;
+                case TipoEnvioCorreos.ReservaProducto:
+                    return null;
+                    break;
+                case TipoEnvioCorreos.InscripcionActividad:
+                    return null;
                     break;
             } 
             return new Correo { Asunto = asunto, 
