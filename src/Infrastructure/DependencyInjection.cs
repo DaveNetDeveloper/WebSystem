@@ -44,6 +44,7 @@ namespace Infrastructure.DependencyInjection
             services.AddScoped<IFAQRepository, FAQRepository>();
             services.AddScoped<IRecompensaRepository, RecompensaRepository>();
             services.AddScoped<IMotivoConsultaRepository, MotivoConsultaRepository>();
+            services.AddScoped<IConsultaRepository, ConsultaRepository>();
             services.AddScoped<IWorkerServiceExecutionRepository, WorkerServiceExecutionRepository>();
             services.AddScoped<IEmailTokenRepository, EmailTokenRepository>();
             services.AddScoped<ITipoSegmentoRepository, TipoSegmentoRepository>();
