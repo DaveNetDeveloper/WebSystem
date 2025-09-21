@@ -1,7 +1,6 @@
 ﻿using Application.DTOs.DataQuery;
 using Application.Interfaces.Repositories; 
-using Application.Interfaces.Services;
-using Domain.Entities.DataQuery;
+using Application.Interfaces.Services; 
 
 namespace Application.Services
 {

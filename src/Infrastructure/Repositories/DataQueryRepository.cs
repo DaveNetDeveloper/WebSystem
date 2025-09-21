@@ -1,6 +1,6 @@
 ﻿using Application.DTOs.DataQuery;
 using Application.Interfaces.Repositories; 
-using Domain.Entities.DataQuery;
+using Domain.DataQuery;
 using Infrastructure.Persistence;
 
 using LinqKit;

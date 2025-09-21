@@ -1,6 +1,7 @@
 ﻿using Domain;
+using Domain.DataQuery;
 using Domain.Entities;
-using Domain.Entities.DataQuery;
+using Domain.DataQuery;
 using Microsoft.EntityFrameworkCore;
 using static Domain.Entities.Transaccion;
 

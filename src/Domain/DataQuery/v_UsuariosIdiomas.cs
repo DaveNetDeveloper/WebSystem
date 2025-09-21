@@ -1,4 +1,8 @@
-﻿namespace Domain.Entities.DataQuery
+﻿using Domain;
+using Domain.DataQuery;
+using Domain.Entities;
+
+namespace Domain.DataQuery
 {
     public class v_UsuariosIdiomas
     {
