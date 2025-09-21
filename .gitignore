@@ -11,3 +11,4 @@ obj.*
 /obj
 /obj.*
 /.config
+src/API/Logs/
