@@ -20,6 +20,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include=".github\workflows\" />
     <Folder Include="WebPages\img\actividades\" />
     <Folder Include="WebPages\img\entidades\" />
   </ItemGroup>
