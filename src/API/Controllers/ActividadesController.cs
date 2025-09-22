@@ -49,13 +49,13 @@ namespace API.Controllers
             return Ok(filtered);
         }
 
-        //[Authorize]
-        //[HttpGet("ObtenerActividad/{id}")]
-        //public async Task<IActionResult> GetByIdAsync(int id)
-        //{
-        //    var actividad = await _actividadService.GetByIdAsync(id);
-        //    return actividad != null ? Ok(actividad) : NoContent(); 
-        //}
+        [Authorize]
+        [HttpGet("ObtenerActividad/{id}")]
+        public async Task<IActionResult> GetByIdAsync(int id)
+        {
+            var actividad = await _actividadService.GetByIdAsync(id);
+            return actividad != null ? Ok(actividad) : NoContent(); 
+        }
 
         [Authorize]
         [HttpPost("CrearActividad")]
@@ -118,6 +118,14 @@ namespace API.Controllers
                 return StatusCode(StatusCodes.Status500InternalServerError,
                                  new { message = MessageProvider.GetMessage("Actividad:Eliminar", "Error"), id });
             }  
+        }
+        
+        //[Authorize]
+        [HttpGet("ObtenerActividadesByTipoActividad/{id}")]
+        public async Task<IActionResult> GetActividadesByTipoActividad(Guid id)
+        {
+            var actividades = await _actividadService.GetActividadesByTipoActividad(id);
+            return actividades != null ? Ok(actividades) : NoContent();
         }
 
         //

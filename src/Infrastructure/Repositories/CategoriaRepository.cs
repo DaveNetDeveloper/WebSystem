@@ -56,7 +56,10 @@ namespace Infrastructure.Repositories
                 idTipoEntidad = categoria.idTipoEntidad,
                 nombre = categoria.nombre,
                 descripcion = categoria.descripcion
-            }; 
+            };
+
+            if (categoria.id != null)
+                nuevaCategoria.id = categoria.id;
 
             await _context.Categorias.AddAsync(nuevaCategoria);
             await _context.SaveChangesAsync();

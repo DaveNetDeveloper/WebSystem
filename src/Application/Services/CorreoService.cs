@@ -17,7 +17,7 @@ namespace Application.Services
             _repoTipoEnvioCorreo = repo;
         }
 
-        public Task<List<TipoEnvioCorreo>> ObtenerTiposEnvioCorreo() { 
+        public Task<IEnumerable<TipoEnvioCorreo>> ObtenerTiposEnvioCorreo() { 
             return _repoTipoEnvioCorreo.GetAllAsync(); 
         }
 

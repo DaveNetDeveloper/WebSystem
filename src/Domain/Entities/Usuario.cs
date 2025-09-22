@@ -136,6 +136,12 @@ namespace Domain.Entities
                     throw new ArgumentException("El genero no puede estar vacío.");
                 _genero = value;
             }
+        } 
+        public enum Genero
+        {
+            Hombre,
+            Mujer,
+            Otro
         }
 
         [JsonIgnore]

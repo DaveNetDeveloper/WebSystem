@@ -28,13 +28,14 @@ namespace Infrastructure.DependencyInjection
                 options.UseNpgsql(_configuration.GetConnectionString("DefaultConnection")));
 
             //register Repository Interfaces
-            services.AddScoped<ITipoEnvioCorreoRepository, TipoEnvioCorreoRepository>(); // Solo repositorio, sin service
+            services.AddScoped<ITipoEnvioCorreoRepository, TipoEnvioCorreoRepository>();
             services.AddScoped<IUnitOfWork, UnitOfWork>();  // Solo repositorio, sin service 
             services.AddScoped<ITokenRepository, TokenRepository>();
             services.AddScoped<IUsuarioRepository, UsuarioRepository>();
             services.AddScoped<IRolRepository, RolRepository>();
             services.AddScoped<ICategoriaRepository, CategoriaRepository>();
             services.AddScoped<IActividadRepository, ActividadRepository>();
+            services.AddScoped<ITipoActividadRepository, TipoActividadRepository>();
             services.AddScoped<IProductoRepository, ProductoRepository>();
             services.AddScoped<ITipoEntidadRepository, TipoEntidadRepository>();
             services.AddScoped<IEntidadRepository, EntidadRepository>();

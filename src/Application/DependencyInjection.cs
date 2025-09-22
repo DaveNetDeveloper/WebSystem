@@ -22,6 +22,7 @@ namespace Application.DependencyInjection
             services.AddScoped<IRolService, RolService>();
             services.AddScoped<ICategoriaService, CategoriaService>();
             services.AddScoped<IActividadService, ActividadService>();
+            services.AddScoped<ITipoActividadService, TipoActividadService>();
             services.AddScoped<IProductoService, ProductoService>();
             services.AddScoped<ITipoEntidadService, TipoEntidadService>();
             services.AddScoped<IEntidadService, EntidadService>();
@@ -32,6 +33,7 @@ namespace Application.DependencyInjection
             services.AddScoped<IRecompensaService, RecompensaService>();
             services.AddScoped<IConsultaService, ConsultaService>();
             services.AddScoped<IMotivoConsultaService, MotivoConsultaService>();
+            services.AddScoped<ITipoEnvioCorreoService, TipoEnvioCorreoService>();
             services.AddScoped<IWorkerServiceExecutionService, WorkerServiceExecutionService>();
             services.AddScoped<IEmailTokenService, EmailTokenService>();
             services.AddScoped<ITipoSegmentoService, TipoSegmentoService>();

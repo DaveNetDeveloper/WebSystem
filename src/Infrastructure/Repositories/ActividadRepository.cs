@@ -76,7 +76,7 @@ namespace Infrastructure.Repositories
 
         public async Task<bool> AddAsync(Actividad actividad)
         {
-            var nuevaCategoria = new Actividad {
+            var nuevaActividad = new Actividad {
                 id = (_context.Actividades.Count() + 1),
                 descripcion = actividad.descripcion,
                 nombre = actividad.nombre,
@@ -95,6 +95,9 @@ namespace Infrastructure.Repositories
                 linkFacebook = actividad.linkFacebook,
                 linkYoutube = actividad.linkYoutube
             };
+
+            if (actividad.id != null)
+                nuevaActividad.id = actividad.id;
 
             await _context.Actividades.AddAsync(actividad);
             await _context.SaveChangesAsync();
@@ -148,17 +151,17 @@ namespace Infrastructure.Repositories
             var entidadActividades = await _context.Actividades.Where(a => a.idEntidad == idEntidad).ToListAsync();
 
             if (entidadActividades != null && entidadActividades.Any())  { 
-                return entidadActividades.OrderBy(c => c.nombre);
+                return entidadActividades.OrderBy(c => c.id);
             }
             return null;
         }
 
-        public async Task<IEnumerable<Actividad>> GetActividadesByTipoEntidad(Guid idTipoEntidad)
+        public async Task<IEnumerable<Actividad>> GetActividadesByTipoActividad(Guid idTipoActividad)
         {
-            var tipoEntidadActividades = await _context.Actividades.Where(a => a.idTipoActividad == idTipoEntidad).ToListAsync();
+            var tipoActividades = await _context.Actividades.Where(a => a.idTipoActividad == idTipoActividad).ToListAsync();
 
-            if (tipoEntidadActividades != null && tipoEntidadActividades.Any()) {
-                return tipoEntidadActividades.OrderBy(c => c.nombre);
+            if (tipoActividades != null && tipoActividades.Any()) {
+                return tipoActividades.OrderBy(c => c.id);
             }
             return null;
         }
