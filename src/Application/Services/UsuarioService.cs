@@ -29,16 +29,16 @@ namespace Application.Services
         public Task<bool> ActivarSuscripcion(string email)
            => _repo.ActivarSuscripcion(email);
         
-        public Task<bool> CambiarContraseña(string email, string nuevaContraseña) {
-            nuevaContraseña = PasswordHelper.HashPassword(nuevaContraseña);
-            return _repo.CambiarContraseña(email, nuevaContraseña); 
+        public Task<bool> CambiarContrasena(string email, string nuevaContrasena) {
+            nuevaContrasena = PasswordHelper.HashPassword(nuevaContrasena);
+            return _repo.CambiarContrasena(email, nuevaContrasena); 
         }   
 
         public Task<bool> ValidarCuenta(string email)
               => _repo.ValidarCuenta(email);
 
         public Task<bool> AddAsync(Usuario usuario) {
-            usuario.contraseña = PasswordHelper.HashPassword(usuario.contraseña);
+            usuario.contrasena = PasswordHelper.HashPassword(usuario.contrasena);
             return _repo.AddAsync(usuario);
         } 
 

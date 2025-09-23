@@ -54,7 +54,7 @@ namespace Infrastructure.Repositories
         {
             var toCreate = new TipoTransaccion
             {
-                id = new Guid(),
+                id = Guid.NewGuid(),
                 nombre = tipoTransaccion.nombre,
                 descripcion = tipoTransaccion.descripcion
             };

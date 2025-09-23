@@ -47,6 +47,9 @@ namespace Infrastructure.Repositories
             if (!string.IsNullOrEmpty(userFilters.Token))
                 predicate = predicate.And(u => u.token.ToLower() == userFilters.Token.ToLower());
 
+            if (!string.IsNullOrEmpty(userFilters.Genero))
+                predicate = predicate.And(u => u.genero.ToLower() == userFilters.Genero.ToLower());
+
             var query = _context.Usuarios
                             .AsExpandable()
                             .Where(predicate); 
@@ -78,7 +81,7 @@ namespace Infrastructure.Repositories
             if (user == null || user.activo == false)
                 return null;
 
-            if (PasswordHelper.VerifyPassword(password, user.contraseña)) {
+            if (PasswordHelper.VerifyPassword(password, user.contrasena)) {
                 return new AuthUser {
                     Id = user.id.Value,
                     UserName = user.nombre,
@@ -103,12 +106,12 @@ namespace Infrastructure.Repositories
             }
         }
 
-        public async Task<bool> CambiarContraseña(string email, string nuevaContraseña)
+        public async Task<bool> CambiarContrasena(string email, string nuevaContrasena)
         {
             var user = await _context.Usuarios.FirstOrDefaultAsync(u => u.correo.ToLower() == email.ToLower());
             if (user == null) return false;
             else {
-                user.contraseña = nuevaContraseña; 
+                user.contrasena = nuevaContrasena; 
                 await _context.SaveChangesAsync();
                 return true;
             }
@@ -140,7 +143,8 @@ namespace Infrastructure.Repositories
             usuarioDB.puntos = usuario.puntos;
             usuarioDB.token = usuario.token;
             usuarioDB.expiracionToken = usuario.expiracionToken;
-             
+            usuarioDB.genero = usuario.genero;
+
             await _context.SaveChangesAsync(); 
             return true;  
         }

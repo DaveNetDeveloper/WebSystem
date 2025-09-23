@@ -59,7 +59,7 @@ namespace API.Controllers
         public async Task<IActionResult> AddAsync([FromBody] Rol rol)
         { 
             var nuevoRol = new Rol {
-                id = new Guid(),
+                id = Guid.NewGuid(),
                 nombre = rol.nombre,
                 descripcion = rol.descripcion
             };

@@ -51,7 +51,7 @@ namespace Infrastructure.Repositories
         public async Task<bool> AddAsync(Login login) {
              
             var nuevoLogin = new Login {
-                id = new Guid(),
+                id = Guid.NewGuid(),
                 idUsuario = login.idUsuario,
                 fecha = login.fecha,
                 plataforma = login.plataforma,

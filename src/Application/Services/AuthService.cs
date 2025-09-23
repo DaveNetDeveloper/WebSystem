@@ -51,14 +51,18 @@ namespace Application.Services
         }
 
         public async Task<Guid> RequestResetPassword(string email)
-        { 
-            var correo = new Correo() {
-                Destinatario = email,
-                Asunto = "Solicitud de recuperación de contraseaña",
-                Cuerpo = string.Empty,
-                TipoEnvio = TipoEnvioCorreos.ResetContraseña
-            }; 
-            return _correoService.EnviarCorreo(correo, "", "", "", "", "");  
+        {
+            //var correo = new Correo() {
+            //    Destinatario = email,
+            //    Asunto = "Solicitud de recuperación de contraseaña",
+            //    Cuerpo = string.Empty,
+            //    TipoEnvio = TipoEnvioCorreos.ResetContrasena
+            //};
+
+            var tipoEnvioCorreo = _correoService.ObtenerTiposEnvioCorreo().Result.Where(u => u.nombre == "ResetContrasena").SingleOrDefault();
+
+            var correo = new Correo(tipoEnvioCorreo, email, ""); 
+            return _correoService.EnviarCorreo(correo, "", "", "","");  // TODO
         }
 
         public async Task<bool> ResetPassword(string email, string newPassword)
@@ -71,7 +75,7 @@ namespace Application.Services
 
             var user = usersByEmail.First();
 
-            user.contraseña = PasswordHelper.HashPassword(newPassword);
+            user.contrasena = PasswordHelper.HashPassword(newPassword);
             var passwordResult = await _usuarioRepo.UpdateAsync(user);
 
             var tokenResult = DeleteUserToken(user.id.Value); 

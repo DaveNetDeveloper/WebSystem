@@ -47,14 +47,14 @@ namespace Test.Integration
                     services.Remove(descriptor);
 
                 //TODO revisar porque hace que pete el test unitario de security.RateLimiter
-                services.AddRateLimiter(options => {
-                    options.AddFixedWindowLimiter("UsuariosLimiter", opt => {
-                        opt.PermitLimit = 5; // muy bajo para test
-                        opt.Window = TimeSpan.FromSeconds(30);
-                        opt.QueueProcessingOrder = QueueProcessingOrder.OldestFirst;
-                        opt.QueueLimit = 1;
-                    });  
-                });
+                //services.AddRateLimiter(options => {
+                //    options.AddFixedWindowLimiter("UsuariosLimiter", opt => {
+                //        opt.PermitLimit = 5; // muy bajo para test
+                //        opt.Window = TimeSpan.FromSeconds(30);
+                //        opt.QueueProcessingOrder = QueueProcessingOrder.OldestFirst;
+                //        opt.QueueLimit = 1;
+                //    });  
+                //});
 
                 services.AddDbContext<ApplicationDbContext>(options => {
                     options.UseInMemoryDatabase(_dbName);

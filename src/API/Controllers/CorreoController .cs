@@ -14,7 +14,9 @@ namespace API.Controllers
         private readonly ICorreoService _correoService;
         private readonly AppConfiguration _appConfiguration;
 
-        public CorreoController(ILogger<CorreoController> logger, ICorreoService correoService, IOptions<AppConfiguration> options) 
+        public CorreoController(ILogger<CorreoController> logger, 
+                                ICorreoService correoService, 
+                                IOptions<AppConfiguration> options) 
         { 
             _logger = logger;
             _correoService = correoService ?? throw new ArgumentNullException(nameof(correoService));
@@ -25,7 +27,7 @@ namespace API.Controllers
         [HttpPost("Enviar")]
         public IActionResult EnviarCorreo([FromBody] Correo correo) {
             try {
-                var result = _correoService.EnviarCorreo(correo, "userName", _appConfiguration.ServidorSmtp, _appConfiguration.PuertoSmtp, _appConfiguration.UsuarioSmtp, _appConfiguration.ContraseñaSmtp);
+                var result = _correoService.EnviarCorreo(correo, _appConfiguration.ServidorSmtp, _appConfiguration.PuertoSmtp, _appConfiguration.UsuarioSmtp, _appConfiguration.ContrasenaSmtp);
                 return Ok("Correo enviado correctamente");
             }
             catch (Exception ex) {

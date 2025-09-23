@@ -60,7 +60,7 @@ namespace Infrastructure.Repositories
         {
             var nuevoQR = new QR
             {
-                id = new Guid(),
+                id =Guid.NewGuid(),
                 idProducto = qr.idProducto,
                 activo = qr.activo,
                 multicliente = qr.multicliente,

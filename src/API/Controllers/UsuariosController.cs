@@ -1,16 +1,17 @@
-using Domain.Entities;
-using Application.DTOs.Filters;
-using Application.Interfaces.DTOs.Filters;
-using Application.Services;
 using Application.Common;
-using Application.Interfaces.Services;
+using Application.DTOs.Filters;
 using Application.Interfaces.Controllers;
+using Application.Interfaces.DTOs.Filters;
+using Application.Interfaces.Services;
+using Application.Services;
+using Domain.Entities;
+using Utilities;
 
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.RateLimiting; 
+using Microsoft.Extensions.Options;
 using System.Text.Json;
-using Utilities;
 
 namespace API.Controllers
 {
@@ -20,14 +21,20 @@ namespace API.Controllers
     {
         private readonly IUsuarioService _usuarioService;
         private readonly IEmailTokenService _emailTokenService;
-
+        private readonly ICorreoService _correoService;
+        private readonly AppConfiguration _appConfiguration;
         public UsuariosController(ILogger<UsuariosController> logger, 
                                   IUsuarioService usuarioService,
                                   IEmailTokenService emailTokenService,
-                                  ITokenService tokenService) {
+                                  ITokenService tokenService,
+                                  ICorreoService correoService,
+                                  IOptions<AppConfiguration> options) 
+        {
             base._logger = logger;  
             base._tokenService = tokenService;
+            _appConfiguration = options.Value ?? throw new ArgumentNullException(nameof(options));
             _usuarioService = usuarioService ?? throw new ArgumentNullException(nameof(usuarioService));
+            _correoService = correoService ?? throw new ArgumentNullException(nameof(correoService));
             _emailTokenService = emailTokenService ?? throw new ArgumentNullException(nameof(emailTokenService));
         }
 
@@ -102,19 +109,20 @@ namespace API.Controllers
         {
             try {
                 var nuevoUsuario = new Usuario {
-                    id = -1,
+                    id = 10,
                     nombre = usuario.nombre,
                     correo = usuario.correo,
                     apellidos = usuario.apellidos,
-                    activo = false, 
-                    contraseña = usuario.contraseña,
+                    activo = false,
+                    contrasena = usuario.contrasena,
                     fechaNacimiento = usuario.fechaNacimiento.ToUniversalTime(),
                     suscrito = usuario.suscrito,
-                    fechaCreación = DateTime.UtcNow,
+                    fechaCreacion = DateTime.UtcNow,
                     ultimaConexion = null,
                     puntos = 0,//defaultPuntos,
                     token= null,
-                    expiracionToken = null
+                    expiracionToken = null,
+                    genero = usuario.genero
                 };
 
                 var result = await _usuarioService.AddAsync(nuevoUsuario); 
@@ -152,11 +160,11 @@ namespace API.Controllers
         }
 
         [Authorize]
-        [HttpPatch("CambiarContraseña")]
-        public async Task<IActionResult> CambiarContraseña([FromQuery] string email, string nuevaContraseña) 
+        [HttpPatch("CambiarContrasena")]
+        public async Task<IActionResult> CambiarContrasena([FromQuery] string email, string nuevaContrasena) 
         {
             try {
-                var result = await _usuarioService.CambiarContraseña(email, nuevaContraseña);
+                var result = await _usuarioService.CambiarContrasena(email, nuevaContrasena);
                 if (result == false) return NotFound();
                 else {
                     _logger.LogInformation(MessageProvider.GetMessage("Usuario:CambiarContraseña", "Success"));
@@ -170,7 +178,7 @@ namespace API.Controllers
             }
         }
 
-        //[AllowAnonymous]
+        [AllowAnonymous]
         [HttpPatch("ValidarCuenta")]
         public async Task<IActionResult> ValidarCuenta([FromQuery] string email) 
         {
@@ -189,7 +197,7 @@ namespace API.Controllers
             }
         }
 
-        //[Authorize]
+        [AllowAnonymous]
         [HttpPatch("ActivacionSuscripcion")]
         public async Task<IActionResult> ActivacionSuscripcion([FromQuery] string token, string email) 
         {
@@ -212,7 +220,21 @@ namespace API.Controllers
                     if (activationResult == false) return NotFound(new { message = "El usuario no ha sido encontrado." });
                     else {
                        var consumeResult = _emailTokenService.ConsumeEmailToken(validToken.ToString(), ip, userAgent);
-                        if(consumeResult) { 
+                        if(consumeResult) {
+
+                            // Enviar corrreo: Bienvenido a nuestra newsletter
+                            var tipoEnvioCorreo = _correoService.ObtenerTiposEnvioCorreo().Result.Where(u => u.nombre == "SuscripciónActivada").Single();
+
+                            var usuario = _usuarioService.GetAllAsync().Result.Where(u => u.correo == email).SingleOrDefault();
+
+                            var correo = new Correo(tipoEnvioCorreo, email, usuario.nombre);
+
+                            _correoService.EnviarCorreo(correo,
+                                                        EncodeDecodeHelper.GetDecodeValue(_appConfiguration.ServidorSmtp),
+                                                        EncodeDecodeHelper.GetDecodeValue(_appConfiguration.PuertoSmtp),
+                                                        EncodeDecodeHelper.GetDecodeValue(_appConfiguration.UsuarioSmtp),
+                                                        EncodeDecodeHelper.GetDecodeValue(_appConfiguration.ContrasenaSmtp));
+                             
                             _logger.LogInformation(MessageProvider.GetMessage("Usuario:ActivacionSuscripcion", "Success"));
                             return Ok(consumeResult);
                         }

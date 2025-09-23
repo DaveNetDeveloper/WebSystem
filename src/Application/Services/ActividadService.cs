@@ -35,8 +35,8 @@ namespace Application.Services
         public Task<bool> Remove(int id)
               => _repo.Remove(id);
 
-        public Task<IEnumerable<Actividad>> GetActividadesByTipoEntidad(Guid idTipoEntidad)
-             => _repo.GetActividadesByTipoEntidad(idTipoEntidad); 
+        public Task<IEnumerable<Actividad>> GetActividadesByTipoActividad(Guid idTipoActividad)
+             => _repo.GetActividadesByTipoActividad(idTipoActividad); 
 
         public Task<IEnumerable<Actividad>> GetActividadesByEntidad(int idEntidad)
              => _repo.GetActividadesByEntidad(idEntidad);  

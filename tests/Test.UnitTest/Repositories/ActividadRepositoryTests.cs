@@ -1,17 +1,18 @@
 ﻿using Application.DTOs.Filters;
 using Application.Interfaces.Repositories;
-using Bogus;
 using Domain.Entities;
 using Infrastructure.Persistence;
 using Infrastructure.Repositories;
+using Test.UnitTest.DataSeeder;
+using Test.UnitTest.Repositories.Interfaces;
+
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Test.UnitTest.DataSeeder;
-using Test.UnitTest.Repositories.Interfaces;
+using Bogus;
 
 namespace Test.UnitTest.Repositories
 {
@@ -20,7 +21,7 @@ namespace Test.UnitTest.Repositories
     internal class ActividadRepositoryTests : BaseRepositoryTest<Actividad>, IRepositoryTests
     { 
         private IActividadRepository _repo;
-        private ITipoEntidadRepository _repoTipoEntidad;
+        private ITipoActividadRepository _repoTipoActividad;
 
         [SetUp]
         public override void Setup()
@@ -30,7 +31,7 @@ namespace Test.UnitTest.Repositories
             _seeder.Count = 5;
             _seeder.Seed(_entitiesToSeed, count: 5, seed: 111);
             _repo = new ActividadRepository(_context);
-            _repoTipoEntidad = new TipoEntidadRepository(_context);
+            _repoTipoActividad = new TipoActividadRepository(_context);
         }
 
         [Test]
@@ -260,12 +261,13 @@ namespace Test.UnitTest.Repositories
         }
 
         [Test]
-        public async Task GetActividadesByTipoEntidad_ReturnsActivities_WhenIdExist()
+        public async Task GetActividadesByTipoActividad_ReturnsActivities_WhenIdExist()
         { 
-            var tipoEntidadId = _repoTipoEntidad.GetAllAsync()?.Result?.First()?.id; 
-            var activitiesByEntityType = await _repo.GetActividadesByTipoEntidad(tipoEntidadId.Value);
-            Assert.IsNotNull(activitiesByEntityType);
-            Assert.Greater(activitiesByEntityType.Count(), 0);
+            var idTipoActividad = _repoTipoActividad.GetAllAsync()?.Result?.First()?.id; 
+
+            var activitiesByTipoActividad = await _repo.GetActividadesByTipoActividad(idTipoActividad.Value);
+            Assert.IsNotNull(activitiesByTipoActividad);
+            Assert.Greater(activitiesByTipoActividad.Count(), 0);
 
             Assert.Pass();
 

@@ -3,9 +3,7 @@ using Application.DTOs.DataQuery;
 using Application.Interfaces;
 using Application.Interfaces.Common;
 using Application.Interfaces.DTOs.Filters;
-using Application.Interfaces.Repositories; 
-using Domain.Entities;
-using Domain.Entities.DataQuery;
+using Application.Interfaces.Repositories;  
 
 namespace Application.Interfaces.Repositories
 {

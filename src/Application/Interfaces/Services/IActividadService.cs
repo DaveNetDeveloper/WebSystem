@@ -10,6 +10,7 @@ namespace Application.Interfaces.Services
     {
         Task<PagedResult<Actividad>> GetByFiltersAsync(ActividadFilters filters,
                                                         IQueryOptions<Actividad>? queryOptions = null);
+        Task<IEnumerable<Actividad>> GetActividadesByTipoActividad(Guid idTipoActividad);
         Task<IEnumerable<ImagenesActividadDTO>> GetImagenesByActividad(int idActividad);
     }
 }

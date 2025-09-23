@@ -38,7 +38,7 @@ namespace Test.UnitTest.BackgroundServices
 
 
             //testWorkerServiceExecution = new WorkerServiceExecution {
-            //    id = new Guid(),
+            //    id =Guid.NewGuid(),
             //    workerService = WorkerService.Common.WorkerService.CheckUsers,
             //    result = WorkerServiceResult.Passed,
             //    resultDetailed = "Test WorkerService has been executed correctly",
@@ -78,7 +78,7 @@ namespace Test.UnitTest.BackgroundServices
 
             var mailOptionsMock = Options.Create(new MailConfiguration { 
                     UsuarioSmtp = "",
-                    ContraseñaSmtp = "",
+                    ContrasenaSmtp = "",
                     ServidorSmtp = "",
                     PuertoSmtp = "" }); 
              

@@ -9,7 +9,7 @@ namespace Application.Interfaces.Services
         Task<IEnumerable<Usuario>> GetByFiltersAsync(UsuarioFilters filters,
                                                      IQueryOptions<Usuario>? queryOptions = null);
         Task<bool> ActivarSuscripcion(string email);
-        Task<bool> CambiarContraseña(string email, string nuevaContraseña);
+        Task<bool> CambiarContrasena(string email, string nuevaContrasena);
         Task<bool> ValidarCuenta(string emai); 
         Task<List<Rol>> GetRolesByUsuarioId(int idUsuario);
         Task<List<Direccion>> GetDireccionesByUsuario(int idUsuario);

@@ -13,7 +13,7 @@ namespace Application.Interfaces.Repositories
                                                        CancellationToken cancellationToken = default);
 
         Task<IEnumerable<Actividad>> GetActividadesByEntidad(int idEntidad);
-        Task<IEnumerable<Actividad>> GetActividadesByTipoEntidad(Guid idTipoEntidad);
+        Task<IEnumerable<Actividad>> GetActividadesByTipoActividad(Guid idTipoActividad);
         Task<IEnumerable<ActividadImagen>> GetImagenesByActividad(int id);
     }
 }

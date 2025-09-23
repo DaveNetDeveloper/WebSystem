@@ -42,7 +42,7 @@ namespace API.Controllers
         public async Task<IActionResult> AddAsync([FromBody] WorkerServiceExecution workerServiceExecution)
         { 
             var nuevoWorkerServiceExecution = new WorkerServiceExecution {
-                id = new Guid(),
+                id = Guid.NewGuid(),
                 workerService = workerServiceExecution.workerService,
                 result = workerServiceExecution.result,
                 resultDetailed = workerServiceExecution.resultDetailed,

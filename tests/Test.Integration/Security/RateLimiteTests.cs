@@ -45,9 +45,9 @@ namespace Test.Integration.Security
             _client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", _factory.TestToken);
 
             context.Usuarios.AddRange(
-                 new Usuario { id = 1, nombre = "Juan", apellidos = "apellidos", correo = "juan@test.com", contraseña="abc", token = "VBx7U8rYIFKEhx/A8k6uDFpK9mjNpe9MhU7+lY1URKE=" },
-                 new Usuario { id = 2, nombre = "Ana",  apellidos = "apellidos", correo = "ana@test.com",  contraseña = "abc", token = "Zly7U8rYIFKEhx/A8k6uDFpK9mjNpe9MhU7+lY1URCA=" },
-                 new Usuario { id = 999, nombre = "testAdmin", apellidos = "apellidos", correo = "mail@test.com", contraseña = "abc", token= "XYx7U8rYIFKEhx/A8k6uDFpK9mjNpe9MhU7+lY1URKE=" }
+                 new Usuario { id = 1, nombre = "Juan", apellidos = "apellidos", correo = "juan@test.com", contrasena = "abc", token = "VBx7U8rYIFKEhx/A8k6uDFpK9mjNpe9MhU7+lY1URKE=", genero = "Hombre" },
+                 new Usuario { id = 2, nombre = "Ana",  apellidos = "apellidos", correo = "ana@test.com", contrasena = "abc", token = "Zly7U8rYIFKEhx/A8k6uDFpK9mjNpe9MhU7+lY1URCA=", genero = "Otro" },
+                 new Usuario { id = 999, nombre = "testAdmin", apellidos = "apellidos", correo = "mail@test.com", contrasena = "abc", token= "XYx7U8rYIFKEhx/A8k6uDFpK9mjNpe9MhU7+lY1URKE=", genero = "Mujer" }
             );
             context.SaveChanges();  
         }
