@@ -60,7 +60,7 @@ namespace WorkerService.Jobs
                                                                             EncodeDecodeHelper.GetDecodeValue(_mailSettings.ServidorSmtp),
                                                                             EncodeDecodeHelper.GetDecodeValue(_mailSettings.PuertoSmtp),
                                                                             EncodeDecodeHelper.GetDecodeValue(_mailSettings.UsuarioSmtp),
-                                                                            EncodeDecodeHelper.GetDecodeValue(_mailSettings.ContraseñaSmtp));
+                                                                            EncodeDecodeHelper.GetDecodeValue(_mailSettings.ContrasenaSmtp));
 
                                 sb.AppendLine($"Se ha enviado un correo de tipo [RememberSubscribe] al usuario [{usuario.correo}]");
 

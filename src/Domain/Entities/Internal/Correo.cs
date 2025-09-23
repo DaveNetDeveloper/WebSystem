@@ -58,14 +58,14 @@ namespace Domain.Entities
                     tipoEnvio = TipoEnvioCorreos.Bienvenida;
                     break;
 
-                case "ContraseñaCambiada":
-                    tipoEnvio = TipoEnvioCorreos.ContraseñaCambiada;
+                case "ContrasenaCambiada":
+                    tipoEnvio = TipoEnvioCorreos.ContrasenaCambiada;
                     break;
                 case "RememberSubscribe":
                     tipoEnvio = TipoEnvioCorreos.RememberSubscribe;
                     break;
-                case "ResetContraseña":
-                    tipoEnvio = TipoEnvioCorreos.ResetContraseña;
+                case "ResetContrasena":
+                    tipoEnvio = TipoEnvioCorreos.ResetContrasena;
                     break;
                 case "SuscripciónActivada":
                     tipoEnvio = TipoEnvioCorreos.SuscripciónActivada;

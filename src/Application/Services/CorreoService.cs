@@ -21,7 +21,7 @@ namespace Application.Services
             return _repoTipoEnvioCorreo.GetAllAsync(); 
         }
 
-        public Guid EnviarCorreo(Correo correo, string servidorSmtp, string puertoSmtp, string usuarioSmtp, string contraseñaSmtp)
+        public Guid EnviarCorreo(Correo correo, string servidorSmtp, string puertoSmtp, string usuarioSmtp, string contrasenaSmtp)
         {
             //var emailToken = Guid.NewGuid().ToString();
             //correo.EmailToken = emailToken;
@@ -46,7 +46,7 @@ namespace Application.Services
                 mensaje.IsBodyHtml = true;
 
                 using (var clienteSmtp = new SmtpClient(servidorSmtp, Convert.ToInt32(puertoSmtp))) { 
-                    clienteSmtp.Credentials = new NetworkCredential(usuarioSmtp, contraseñaSmtp);
+                    clienteSmtp.Credentials = new NetworkCredential(usuarioSmtp, contrasenaSmtp);
                     clienteSmtp.EnableSsl = true;
                     clienteSmtp.Send(mensaje);
                 }
@@ -79,7 +79,7 @@ namespace Application.Services
         //            asunto = "Apuntate a nuestra Newsletter para estar a la última";
         //            body = BuildBodyRememberSubscribe(logoUrl, nombreUsuario, email, emailToken);
         //            break;
-        //        case TipoEnvioCorreos.ResetContraseña:
+        //        case TipoEnvioCorreos.ResetContrasena:
         //            return null;
         //            break; 
         //        case TipoEnvioCorreos.SuscripciónActivada:

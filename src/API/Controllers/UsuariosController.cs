@@ -160,11 +160,11 @@ namespace API.Controllers
         }
 
         [Authorize]
-        [HttpPatch("CambiarContraseña")]
-        public async Task<IActionResult> CambiarContraseña([FromQuery] string email, string nuevaContraseña) 
+        [HttpPatch("CambiarContrasena")]
+        public async Task<IActionResult> CambiarContrasena([FromQuery] string email, string nuevaContrasena) 
         {
             try {
-                var result = await _usuarioService.CambiarContraseña(email, nuevaContraseña);
+                var result = await _usuarioService.CambiarContrasena(email, nuevaContrasena);
                 if (result == false) return NotFound();
                 else {
                     _logger.LogInformation(MessageProvider.GetMessage("Usuario:CambiarContraseña", "Success"));
@@ -233,7 +233,7 @@ namespace API.Controllers
                                                         EncodeDecodeHelper.GetDecodeValue(_appConfiguration.ServidorSmtp),
                                                         EncodeDecodeHelper.GetDecodeValue(_appConfiguration.PuertoSmtp),
                                                         EncodeDecodeHelper.GetDecodeValue(_appConfiguration.UsuarioSmtp),
-                                                        EncodeDecodeHelper.GetDecodeValue(_appConfiguration.ContraseñaSmtp));
+                                                        EncodeDecodeHelper.GetDecodeValue(_appConfiguration.ContrasenaSmtp));
                              
                             _logger.LogInformation(MessageProvider.GetMessage("Usuario:ActivacionSuscripcion", "Success"));
                             return Ok(consumeResult);

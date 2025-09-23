@@ -106,12 +106,12 @@ namespace Infrastructure.Repositories
             }
         }
 
-        public async Task<bool> CambiarContraseña(string email, string nuevaContraseña)
+        public async Task<bool> CambiarContrasena(string email, string nuevaContrasena)
         {
             var user = await _context.Usuarios.FirstOrDefaultAsync(u => u.correo.ToLower() == email.ToLower());
             if (user == null) return false;
             else {
-                user.contrasena = nuevaContraseña; 
+                user.contrasena = nuevaContrasena; 
                 await _context.SaveChangesAsync();
                 return true;
             }

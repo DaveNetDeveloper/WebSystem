@@ -64,11 +64,11 @@ namespace Test.Configuration
         public void AppConfiguration_ShouldBeValid()
         {
             Assert.IsTrue(_root.TryGetProperty("AppConfiguration", out var appConfig), "Falta 'AppConfiguration'");
-            var requiredKeys = new[] { "ServidorSmtp", "PuertoSmtp", "UsuarioSmtp", "ContraseñaSmtp", "apiServer", "apiPort", "LinkScanQR" };
+            var requiredKeys = new[] { "ServidorSmtp", "PuertoSmtp", "UsuarioSmtp", "ContrasenaSmtp", "apiServer", "apiPort", "LinkScanQR" };
             foreach (var key in requiredKeys)
             {
                 Assert.IsTrue(appConfig.TryGetProperty(key, out var prop), $"Falta '{key}' en AppConfiguration");
-                if (key != "ContraseñaSmtp") // Contraseña puede estar vacía
+                if (key != "ContrasenaSmtp") // Contraseña puede estar vacía
                     Assert.IsFalse(string.IsNullOrWhiteSpace(prop.GetString()), $"'{key}' en AppConfiguration está vacío");
             }
         }

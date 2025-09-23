@@ -88,7 +88,7 @@ namespace Test.UnitTest.Services
             
             _mockRepo.Setup(r => r.ValidarCuenta("mail@test.com")).ReturnsAsync(true);
             _mockRepo.Setup(r => r.Remove(1)).ReturnsAsync(true);
-            _mockRepo.Setup(r => r.CambiarContraseña("mail@test.com", It.IsAny<string>())).ReturnsAsync(true);
+            _mockRepo.Setup(r => r.CambiarContrasena("mail@test.com", It.IsAny<string>())).ReturnsAsync(true);
             _mockRepo.Setup(r => r.Login("mail@test.com", It.IsAny<string>())).ReturnsAsync(new AuthUser() { Id = 1, UserName = "name", Role = "Admin" });
             _mockRepo.Setup(r => r.ActivarSuscripcion("mail@test.com")).ReturnsAsync(true);
             _mockRepo.Setup(r => r.AddAsync(It.IsAny<Usuario>())).ReturnsAsync(true);
@@ -170,12 +170,12 @@ namespace Test.UnitTest.Services
             Assert.IsTrue(result.Result);
         }
         [Test]
-        public void CambiarContraseña_Test()
+        public void CambiarContrasena_Test()
         {
             var email = "mail@test.com"; 
-            var nuevaContraseña = "newPassword";
+            var nuevaContrasena = "newPassword";
             
-            var result = _userService.CambiarContraseña(email, nuevaContraseña);
+            var result = _userService.CambiarContrasena(email, nuevaContrasena);
             Assert.IsTrue(result.Result);
         }
         [Test]

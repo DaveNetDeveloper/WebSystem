@@ -16,7 +16,7 @@ const controllerActions = [
     'ObtenerUsuarios',
     'ActualizarUsuario',
     'Login',
-    'CambiarContraseña',
+    'CambiarContrasena',
     'ValidarCuenta',
     'ActivacionSuscripcion',
     'Eliminar'
@@ -33,7 +33,7 @@ class Usuario {
         this.apellidos = apellidos;
         this.correo = correo, 
         this.activo = activo,
-        this.contraseña = contraseña,
+        this.contrasena = contrasena,
         this.fechaNacimiento = fechaNacimiento,
         this.suscrito = suscrito,
         this.fechaCreacion = fechaCreacion,

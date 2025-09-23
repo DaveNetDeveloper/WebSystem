@@ -78,7 +78,7 @@ namespace Test.UnitTest.BackgroundServices
 
             var mailOptionsMock = Options.Create(new MailConfiguration { 
                     UsuarioSmtp = "",
-                    ContraseñaSmtp = "",
+                    ContrasenaSmtp = "",
                     ServidorSmtp = "",
                     PuertoSmtp = "" }); 
              

@@ -56,10 +56,10 @@ namespace Application.Services
             //    Destinatario = email,
             //    Asunto = "Solicitud de recuperación de contraseaña",
             //    Cuerpo = string.Empty,
-            //    TipoEnvio = TipoEnvioCorreos.ResetContraseña
+            //    TipoEnvio = TipoEnvioCorreos.ResetContrasena
             //};
 
-            var tipoEnvioCorreo = _correoService.ObtenerTiposEnvioCorreo().Result.Where(u => u.nombre == "ResetContraseña").SingleOrDefault();
+            var tipoEnvioCorreo = _correoService.ObtenerTiposEnvioCorreo().Result.Where(u => u.nombre == "ResetContrasena").SingleOrDefault();
 
             var correo = new Correo(tipoEnvioCorreo, email, ""); 
             return _correoService.EnviarCorreo(correo, "", "", "","");  // TODO

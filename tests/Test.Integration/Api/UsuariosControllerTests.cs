@@ -243,11 +243,11 @@ namespace Test.Integration.Api
         /// Verifica que se puede obtener un usuario ... desde el endpoint /Usuarios/CambiarContraseña.
         /// </summary>
         [Test]
-        public async Task CambiarContraseña_Test()
+        public async Task CambiarContrasena_Test()
         {
             string correo = "juan@test.com";
             string newPassword = "otraPassword";
-            var response = await _client.PatchAsync($"/Usuarios/CambiarContraseña?email={correo}&nuevaContraseña={newPassword}", null);
+            var response = await _client.PatchAsync($"/Usuarios/CambiarContrasena?email={correo}&nuevaContrasena={newPassword}", null);
             Assert.That(response.StatusCode, Is.EqualTo(HttpStatusCode.OK));
 
             var content = await response.Content.ReadAsStringAsync();

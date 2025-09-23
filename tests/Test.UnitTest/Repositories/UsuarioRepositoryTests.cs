@@ -182,14 +182,14 @@ namespace Test.UnitTest.Repositories
         }
 
         [Test]
-        public async Task CambiarContraseña_ReturnsEntity_WithValidData()
+        public async Task CambiarContrasena_ReturnsEntity_WithValidData()
         {
             int userIdToUpdate = 1;
             var userToUpdate = await _repo.GetByIdAsync(userIdToUpdate);
             Assert.IsNotNull(userToUpdate);
 
             var newPassword = "TestPassword";
-            var result = await _repo.CambiarContraseña(userToUpdate.correo, newPassword);
+            var result = await _repo.CambiarContrasena(userToUpdate.correo, newPassword);
             Assert.IsNotNull(result);
             Assert.IsTrue(result);
 
