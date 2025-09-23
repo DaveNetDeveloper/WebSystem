@@ -21,12 +21,9 @@ jobs:
 
     - name: Restore dependencies
       run: dotnet restore
-
-    - name: Install Playwright
-      run: pwsh tests/Test.UI/bin/Debug/net8.0/playwright.ps1 install
     
     - name: Build solution
-      run: dotnet build --no-restore --configuration Release
+      run: dotnet build --no-restore --configuration Release -p:ExcludeProjects="tests/Test.UI/Test.UI.csproj"
 
     - name: Run Unit Tests (Category=UnitTest)
       run: dotnet test --no-build --configuration Release --filter "TestCategory=UnitTest"
