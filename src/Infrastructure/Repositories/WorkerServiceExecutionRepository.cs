@@ -30,7 +30,7 @@ namespace Infrastructure.Repositories
         public async Task<bool> AddAsync(WorkerServiceExecution workerServiceExecution)
         {
             var _workerServiceExecution = new WorkerServiceExecution {
-                id = new Guid(),
+                id = Guid.NewGuid(),
                 workerService = workerServiceExecution.workerService,
                 result = workerServiceExecution.result,
                 resultDetailed = workerServiceExecution.resultDetailed,

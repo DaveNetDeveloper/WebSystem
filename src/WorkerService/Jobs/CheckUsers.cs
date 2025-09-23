@@ -1,12 +1,12 @@
 using Application.Interfaces.Services;
+using Application.Services;
 using Domain.Entities;
+using Microsoft.Extensions.Options;
+using System.Text;
 using Utilities;
 using WorkerService.Common;
 using WorkerService.Configuration;
 using WorkerService.Interfaces;
-
-using Microsoft.Extensions.Options;
-using System.Text;
 
 namespace WorkerService.Jobs
 {
@@ -53,9 +53,10 @@ namespace WorkerService.Jobs
                             var (scopeMail, correoService) = GetServiceProvider<ICorreoService>();
                             using (scopeMail)
                             {
-                                var correo = new Correo { Destinatario = usuario.correo, Asunto = "", TipoEnvio = TipoEnvioCorreos.RememberSubscribe, Cuerpo = "" };
+                                var tipoEnvioCorreo = correoService.ObtenerTiposEnvioCorreo().Result.Where(u => u.nombre == "SuscripciónActivada").Single();
+                                
+                                var correo = new Correo(tipoEnvioCorreo, usuario.correo, usuario.nombre);
                                 var emailToken = correoService.EnviarCorreo(correo,
-                                                                            usuario.nombre,
                                                                             EncodeDecodeHelper.GetDecodeValue(_mailSettings.ServidorSmtp),
                                                                             EncodeDecodeHelper.GetDecodeValue(_mailSettings.PuertoSmtp),
                                                                             EncodeDecodeHelper.GetDecodeValue(_mailSettings.UsuarioSmtp),
@@ -68,7 +69,7 @@ namespace WorkerService.Jobs
                                 {
                                     // creamos un objeto de la entidad EmailToken y lo guardamos en BD para el seguimiento del tolken enviado en el email
                                     var emailTokenEntity = new EmailToken {
-                                        id =Guid.NewGuid(),
+                                        id = Guid.NewGuid(),
                                         userId = usuario.id.Value,
                                         token = emailToken,
                                         fechaCreacion = DateTime.UtcNow,

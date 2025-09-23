@@ -56,7 +56,7 @@ namespace WorkerService.Jobs
                 catch (Exception ex) {
                     // Añadir ejecución "Failed"
                     var workerServiceExecution = new WorkerServiceExecution {
-                        //id = new Guid(),
+                        //id = Guid.NewGuid(),
                         workerService = Common.WorkerService.UpdateUserSegments,
                         result = WorkerServiceResult.Failed,
                         resultDetailed = $"WorkerService has failed with error: {ex.Message.Truncate(500)}",

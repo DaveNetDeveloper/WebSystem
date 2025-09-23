@@ -50,7 +50,7 @@ namespace Infrastructure.Repositories
         {
             var tipoEntidadToCreate = new TipoActividad
             {
-                id = new Guid(), 
+                id = Guid.NewGuid(), 
                 nombre = tipoEntidad.nombre,
                 descripcion = tipoEntidad.descripcion
             };

@@ -27,7 +27,7 @@ namespace API.Controllers
         [HttpPost("Enviar")]
         public IActionResult EnviarCorreo([FromBody] Correo correo) {
             try {
-                var result = _correoService.EnviarCorreo(correo, "userName", _appConfiguration.ServidorSmtp, _appConfiguration.PuertoSmtp, _appConfiguration.UsuarioSmtp, _appConfiguration.ContraseñaSmtp);
+                var result = _correoService.EnviarCorreo(correo, _appConfiguration.ServidorSmtp, _appConfiguration.PuertoSmtp, _appConfiguration.UsuarioSmtp, _appConfiguration.ContraseñaSmtp);
                 return Ok("Correo enviado correctamente");
             }
             catch (Exception ex) {

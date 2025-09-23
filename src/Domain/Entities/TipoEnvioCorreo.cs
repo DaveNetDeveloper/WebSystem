@@ -8,5 +8,18 @@
         public bool? activo { get; set; }
         public string? asunto { get; set; }
         public string? cuerpo { get; set; }
+
+        public enum TipoEnvioCorreos
+        {
+            ValidaciónCuenta,
+            Bienvenida,
+            SuscripciónActivada,
+            ResetContraseña,
+            ContraseñaCambiada,
+            ReservaProducto,
+            InscripcionActividad,
+            RememberSubscribe,
+            Undefined
+        }
     }
 }

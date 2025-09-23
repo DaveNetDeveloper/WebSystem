@@ -222,21 +222,14 @@ namespace API.Controllers
                        var consumeResult = _emailTokenService.ConsumeEmailToken(validToken.ToString(), ip, userAgent);
                         if(consumeResult) {
 
-                            //
-                            // TODO enviar corrreo: Bienvenido a nuestra newsletter
-                            //
+                            // Enviar corrreo: Bienvenido a nuestra newsletter
+                            var tipoEnvioCorreo = _correoService.ObtenerTiposEnvioCorreo().Result.Where(u => u.nombre == "SuscripciónActivada").Single();
 
-                            var tiposEnvioCorreo = _correoService.ObtenerTiposEnvioCorreo();
+                            var usuario = _usuarioService.GetAllAsync().Result.Where(u => u.correo == email).SingleOrDefault();
 
-                            //var usuario = _usuarioService.GetAllAsync().Result.Where(u => u.correo == email).SingleOrDefault();
-
-                            var correo = new Correo { Destinatario = email, 
-                                                      Asunto = "Bienvenido a nuestra Newsletter", 
-                                                      TipoEnvio = TipoEnvioCorreos.SuscripciónActivada, 
-                                                      Cuerpo = "Gracias por unirte a la mejor comunidad cerca de ti." };
+                            var correo = new Correo(tipoEnvioCorreo, email, usuario.nombre);
 
                             _correoService.EnviarCorreo(correo,
-                                                        "userName", //usuario?.nombre ?? email,
                                                         EncodeDecodeHelper.GetDecodeValue(_appConfiguration.ServidorSmtp),
                                                         EncodeDecodeHelper.GetDecodeValue(_appConfiguration.PuertoSmtp),
                                                         EncodeDecodeHelper.GetDecodeValue(_appConfiguration.UsuarioSmtp),
