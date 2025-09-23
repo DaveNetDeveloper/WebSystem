@@ -12,7 +12,7 @@ IHost host = Host.CreateDefaultBuilder(args)
         //services.Configure<SegmentsConfiguration>(configuration.GetSection("SegmentsConfiguration")); 
 
         services.AddApplication();
-        services.AddInfrastructure();
+        services.AddInfrastructure(string.Empty);
         services.AddHostedService<CheckUsers>();
         services.AddHostedService<UpdateUserSegments>();
 

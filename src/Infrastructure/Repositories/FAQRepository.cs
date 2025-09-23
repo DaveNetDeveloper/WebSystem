@@ -46,7 +46,7 @@ namespace Infrastructure.Repositories
         public async Task<bool> AddAsync(FAQ faq)
         {
             var nuevaFaq = new FAQ {
-                id = new Guid(),
+                id =Guid.NewGuid(),
                 orden = faq.orden,
                 pregunta = faq.pregunta,
                 respuesta = faq.respuesta

@@ -11,7 +11,8 @@ namespace Application.DTOs.Filters
         public string? Correo { get; set; }
         public bool? Activo { get; set; }
         public bool? Suscrito { get; set; } 
-        public string? Token { get; set; }  
+        public string? Token { get; set; }
+        public string? Genero { get; set; }
 
         //public ExpressionStarter<Usuario> BuildPredicate()
         //{

@@ -5,12 +5,13 @@ using Application.Interfaces.DTOs.Filters;
 using Application.Interfaces.Services;
 using Application.Services;
 using Domain.Entities;
+using Utilities;
+
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.RateLimiting; 
 using Microsoft.Extensions.Options;
 using System.Text.Json;
-using Utilities;
 
 namespace API.Controllers
 {
@@ -108,19 +109,20 @@ namespace API.Controllers
         {
             try {
                 var nuevoUsuario = new Usuario {
-                    id = -1,
+                    id = 10,
                     nombre = usuario.nombre,
                     correo = usuario.correo,
                     apellidos = usuario.apellidos,
-                    activo = false, 
-                    contraseña = usuario.contraseña,
+                    activo = false,
+                    contrasena = usuario.contrasena,
                     fechaNacimiento = usuario.fechaNacimiento.ToUniversalTime(),
                     suscrito = usuario.suscrito,
-                    fechaCreación = DateTime.UtcNow,
+                    fechaCreacion = DateTime.UtcNow,
                     ultimaConexion = null,
                     puntos = 0,//defaultPuntos,
                     token= null,
-                    expiracionToken = null
+                    expiracionToken = null,
+                    genero = usuario.genero
                 };
 
                 var result = await _usuarioService.AddAsync(nuevoUsuario); 
@@ -176,7 +178,7 @@ namespace API.Controllers
             }
         }
 
-        //[AllowAnonymous]
+        [AllowAnonymous]
         [HttpPatch("ValidarCuenta")]
         public async Task<IActionResult> ValidarCuenta([FromQuery] string email) 
         {
@@ -195,7 +197,7 @@ namespace API.Controllers
             }
         }
 
-        //[Authorize]
+        [AllowAnonymous]
         [HttpPatch("ActivacionSuscripcion")]
         public async Task<IActionResult> ActivacionSuscripcion([FromQuery] string token, string email) 
         {

@@ -54,7 +54,7 @@ namespace Infrastructure.Repositories
         public async Task<bool> AddAsync(MotivoConsulta motivoConsulta)
         { 
             var nuevoMotivoConsulta = new MotivoConsulta {
-                id = new Guid(),
+                id =Guid.NewGuid(),
                 nombre = motivoConsulta.nombre,
                 descripcion = motivoConsulta.descripcion,
                 idtipoentidad = motivoConsulta.idtipoentidad

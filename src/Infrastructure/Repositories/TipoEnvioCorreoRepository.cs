@@ -54,7 +54,7 @@ namespace Infrastructure.Repositories
         {
             var toCreate = new TipoEnvioCorreo
             {
-                id = new Guid(),
+                id = Guid.NewGuid(),
                 nombre = tipoEnvioCorreo.nombre,
                 descripcion = tipoEnvioCorreo.descripcion,
                 activo = tipoEnvioCorreo.activo,

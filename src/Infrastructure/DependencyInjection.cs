@@ -1,11 +1,11 @@
-﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
- 
+﻿ 
 using Application.Interfaces.Repositories;
+using Infrastructure.Persistence; 
 using Infrastructure.Repositories;
 using Infrastructure.Repositories.UnitOfWork;
-using Infrastructure.Persistence; 
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace Infrastructure.DependencyInjection
 {
@@ -13,19 +13,33 @@ namespace Infrastructure.DependencyInjection
     {
         private static IConfiguration _configuration;
 
-        public static IServiceCollection AddInfrastructure(this IServiceCollection services)  
-        {  
+        public static IServiceCollection AddInfrastructure(this IServiceCollection services, string environmentName)  
+        {
             //Get custom configuratiom file  
             string baseDirectory = Directory.GetParent(Environment.CurrentDirectory).FullName; // "C/Users/David/Desktop/"
             var configPath = Path.Combine(baseDirectory, "Infrastructure", "bin", "Debug", "net8.0", "Persistence"); // "C/Users/David/Desktop/Infrastructure/bin/Debug/net8.0/Persistence"
+
+            if (environmentName == "Test") {
+
+                //Environment.CurrentDirectory : "C:\\Users\\David\\Desktop\\WebSystem\\tests\\Test.Integration\\bin\\Debug\\net8.0"
+                //Directory.GetParent(Environment.CurrentDirectory).FullName : C: \Users\David\Desktop\WebSystem\tests\Test.Integration\bin\Debug
+
+                configPath = Path.Combine(Directory.GetParent(Environment.CurrentDirectory).Parent.Parent.Parent.Parent.FullName, "src", "Infrastructure", "bin", "Debug", "net8.0", "Persistence");
+            }
+            else {
+
+                // "C/Users/David/Desktop/"
+                // "C/Users/David/Desktop/Infrastructure/bin/Debug/net8.0/Persistence"
+                string elseVar = "";
+            }
+           
 
             _configuration = new ConfigurationBuilder()
                   .SetBasePath(configPath)
                   .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
                   .Build();
 
-            services.AddDbContext<ApplicationDbContext>(options =>
-                options.UseNpgsql(_configuration.GetConnectionString("DefaultConnection")));
+            services.AddDbContext<ApplicationDbContext>(op => op.UseNpgsql(_configuration.GetConnectionString("DefaultConnection")));
 
             //register Repository Interfaces
             services.AddScoped<ITipoEnvioCorreoRepository, TipoEnvioCorreoRepository>();

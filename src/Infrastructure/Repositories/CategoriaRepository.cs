@@ -52,7 +52,7 @@ namespace Infrastructure.Repositories
         public async Task<bool> AddAsync(Categoria categoria)
         { 
             var nuevaCategoria = new Categoria {
-                id = new Guid(),
+                id = Guid.NewGuid(),
                 idTipoEntidad = categoria.idTipoEntidad,
                 nombre = categoria.nombre,
                 descripcion = categoria.descripcion

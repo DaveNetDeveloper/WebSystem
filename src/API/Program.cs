@@ -78,7 +78,7 @@ builder.Services.AddSwaggerGen(c => {
 builder.Services.AddApplication();
  
 // Register Repositories & Filters 
-builder.Services.AddInfrastructure();
+builder.Services.AddInfrastructure(builder.Environment.EnvironmentName);
 
 //var key = Encoding.ASCII.GetBytes("mi__secreto_secreto");
 var key = builder.Configuration["Jwt:Key"]; // guarda en appsettings.json

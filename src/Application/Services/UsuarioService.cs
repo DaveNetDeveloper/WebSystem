@@ -38,7 +38,7 @@ namespace Application.Services
               => _repo.ValidarCuenta(email);
 
         public Task<bool> AddAsync(Usuario usuario) {
-            usuario.contraseña = PasswordHelper.HashPassword(usuario.contraseña);
+            usuario.contrasena = PasswordHelper.HashPassword(usuario.contrasena);
             return _repo.AddAsync(usuario);
         } 
 

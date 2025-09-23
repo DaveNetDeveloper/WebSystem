@@ -68,7 +68,7 @@ namespace WorkerService.Jobs
                                 {
                                     // creamos un objeto de la entidad EmailToken y lo guardamos en BD para el seguimiento del tolken enviado en el email
                                     var emailTokenEntity = new EmailToken {
-                                        id = new Guid(),
+                                        id =Guid.NewGuid(),
                                         userId = usuario.id.Value,
                                         token = emailToken,
                                         fechaCreacion = DateTime.UtcNow,
@@ -86,7 +86,7 @@ namespace WorkerService.Jobs
 
                         // Añadir ejecución "Passed"
                         var workerServiceExecution = new WorkerServiceExecution {
-                            //id = new Guid(),
+                            //id =Guid.NewGuid(),
                             workerService = Common.WorkerService.CheckUsers,
                             result = WorkerServiceResult.Passed,
                             resultDetailed = sb.ToString(),
@@ -106,7 +106,7 @@ namespace WorkerService.Jobs
                 }
                 catch (Exception ex) { 
                     var workerServiceExecution = new WorkerServiceExecution {
-                        //id = new Guid(),
+                        //id =Guid.NewGuid(),
                         workerService = Common.WorkerService.CheckUsers,
                         result = WorkerServiceResult.Failed,
                         resultDetailed = $"WorkerService has failed with error: {ex.Message.Truncate(500)}",

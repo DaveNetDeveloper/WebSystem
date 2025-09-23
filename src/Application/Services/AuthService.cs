@@ -71,7 +71,7 @@ namespace Application.Services
 
             var user = usersByEmail.First();
 
-            user.contraseña = PasswordHelper.HashPassword(newPassword);
+            user.contrasena = PasswordHelper.HashPassword(newPassword);
             var passwordResult = await _usuarioRepo.UpdateAsync(user);
 
             var tokenResult = DeleteUserToken(user.id.Value); 

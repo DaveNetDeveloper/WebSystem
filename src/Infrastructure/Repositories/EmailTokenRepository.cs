@@ -30,7 +30,7 @@ namespace Infrastructure.Repositories
         public async Task<bool> AddAsync(EmailToken emailToken)
         {
             var nuevoEmailToken = new EmailToken {
-                id = new Guid(),
+                id =Guid.NewGuid(),
                 token = emailToken.token,
                 userId = emailToken.userId,
                 consumido = emailToken.consumido,

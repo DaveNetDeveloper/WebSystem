@@ -50,7 +50,7 @@ namespace Infrastructure.Repositories
         public async Task<bool> AddAsync(Rol rol) {
 
             var nuevoRol = new Rol {
-                id = new Guid(),
+                id =Guid.NewGuid(),
                 nombre = rol.nombre,
                 descripcion = rol.descripcion
             };

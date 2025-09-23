@@ -5,12 +5,22 @@ namespace Domain.Entities
 {
     public class Usuario
     {
+
+        public Usuario()
+        {
+            UsuarioRoles = new List<UsuarioRol>();
+            UsuarioEntidades = new List<UsuarioEntidad>();
+            UsuarioSegmentos = new List<UsuarioSegmentos>();
+            UsuarioDirecciones = new List<UsuarioDireccion>();
+            UsuarioRecompensas = new List<UsuarioRecompensa>();
+        }
+
         private int? _id;
         public int? id {
             get => _id;
             set {
-                if (null == value)
-                    throw new ArgumentException("El campo 'id' tiene que estar informado.");
+                //if (null == value)
+                //    throw new ArgumentException("El campo 'id' tiene que estar informado.");
                 _id = value;
             }
         }
@@ -19,8 +29,8 @@ namespace Domain.Entities
         public string nombre {
             get => _nombre;
             set {
-                if (string.IsNullOrWhiteSpace(value))
-                    throw new ArgumentException("El nombre no puede estar vacío.");
+                //if (string.IsNullOrWhiteSpace(value))
+                //    throw new ArgumentException("El nombre no puede estar vacío.");
                 _nombre = value;
             }
         }
@@ -29,8 +39,8 @@ namespace Domain.Entities
         public string apellidos {
             get => _apellidos;
             set {
-                if (string.IsNullOrWhiteSpace(value))
-                    throw new ArgumentException("Los apellidos no pueden estar vacíos.");
+                //if (string.IsNullOrWhiteSpace(value))
+                //    throw new ArgumentException("Los apellidos no pueden estar vacíos.");
                 _apellidos = value;
             }
         }
@@ -39,8 +49,8 @@ namespace Domain.Entities
         public string correo {
             get => _correo;
             set {
-                if (string.IsNullOrWhiteSpace(value) || !value.Contains("@") || !value.Contains("."))
-                    throw new ArgumentException("El email no es válido.");
+                //if (string.IsNullOrWhiteSpace(value) || !value.Contains("@") || !value.Contains("."))
+                    //throw new ArgumentException("El email no es válido.");
                 _correo = value;
             }
         }
@@ -49,19 +59,19 @@ namespace Domain.Entities
         public bool activo {
             get => _activo;
             set {
-                if (null == value)
-                    throw new ArgumentException("El campo 'activo' tiene que estar informado.");
+                //if (null == value)
+                //    throw new ArgumentException("El campo 'activo' tiene que estar informado.");
                 _activo = value;
             }
         }
 
-        private string _contraseña;
-        public string contraseña {
-            get => _contraseña;
+        private string _contrasena;
+        public string contrasena {
+            get => _contrasena;
             set {
-                if (string.IsNullOrWhiteSpace(value))
-                    throw new ArgumentException("La contraseña no puede estar vacía.");
-                _contraseña = value;
+                //if (string.IsNullOrWhiteSpace(value))
+                //    throw new ArgumentException("La contraseña no puede estar vacía.");
+                _contrasena = value;
             }
         }
 
@@ -69,8 +79,8 @@ namespace Domain.Entities
         public DateTime fechaNacimiento {
             get => _fechaNacimiento;
             set {
-                if (null == value || value > DateTime.Now)
-                    throw new ArgumentException("La fecha de nacimiento no puede estar vacía o en el futuro.");
+                //if (null == value || value > DateTime.Now)
+                //    throw new ArgumentException("La fecha de nacimiento no puede estar vacía o en el futuro.");
                 _fechaNacimiento = value;
             }
         }
@@ -82,18 +92,19 @@ namespace Domain.Entities
         {
             get => _ultimaConexion;
             set {
-                if (null != value && value > DateTime.Now)
-                    throw new ArgumentException("La fecha de ultima conexion no puede estar en el futuro.");
+                //if (null != value && value > DateTime.Now)
+                //    throw new ArgumentException("La fecha de ultima conexion no puede estar en el futuro.");
                 _ultimaConexion = value;
             }
         }
 
         private DateTime _fechaCreacion;
-        public DateTime fechaCreación { 
+        public DateTime fechaCreacion
+        { 
             get => _fechaCreacion;
             set {
-                if (null != value && value > DateTime.Now)
-                    throw new ArgumentException("La fecha de creación no puede estar en el futuro.");
+                //if (null != value && value > DateTime.Now)
+                //    throw new ArgumentException("La fecha de creación no puede estar en el futuro.");
                 _fechaCreacion = value;
             }
 }
@@ -102,8 +113,8 @@ namespace Domain.Entities
         public int? puntos {
             get => _puntos;
             set {
-                if (null != value &&  int.IsNegative(value.Value))
-                    throw new ArgumentException("Los puntos no pueden estar en negativo (-).");
+                //if (null != value &&  int.IsNegative(value.Value))
+                //    throw new ArgumentException("Los puntos no pueden estar en negativo (-).");
                 _puntos = value;
             }
         }
@@ -132,8 +143,8 @@ namespace Domain.Entities
         {
             get => _genero;
             set {
-                if (string.IsNullOrWhiteSpace(value))
-                    throw new ArgumentException("El genero no puede estar vacío.");
+                //if (string.IsNullOrWhiteSpace(value))
+                //    throw new ArgumentException("El genero no puede estar vacío.");
                 _genero = value;
             }
         } 

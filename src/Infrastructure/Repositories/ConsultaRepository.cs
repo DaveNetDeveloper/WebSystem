@@ -62,7 +62,7 @@ namespace Infrastructure.Repositories
         public async Task<bool> AddAsync(Consulta consulta)
         { 
             var nuevoConsulta = new Consulta {
-                id = new Guid(),
+                id = Guid.NewGuid(),
                 nombreCompleto = consulta.nombreCompleto,
                 email = consulta.email,
                 telefono = consulta.telefono,
