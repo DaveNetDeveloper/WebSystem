@@ -23,7 +23,7 @@ jobs:
       run: dotnet restore
     
     - name: Build solution
-      run: dotnet build --no-restore --configuration Release -p:ExcludeProjects="tests/Test.UI/Test.UI.csproj"
+      run: dotnet build --no-restore --configuration Release
 
     - name: Run Unit Tests (Category=UnitTest)
       run: dotnet test --no-build --configuration Release --filter "TestCategory=UnitTest"
