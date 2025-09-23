@@ -12,8 +12,8 @@ namespace Test.Configuration
         public void Setup()
         {
             var baseDir = AppContext.BaseDirectory;  
-            var solutionDir = Path.GetFullPath(Path.Combine(baseDir, "..", "..", "..", "..")); 
-            _messagesFilePath = Path.Combine(solutionDir, "API", "Resources", "messages.json"); 
+            var solutionDir = Path.GetFullPath(Path.Combine(baseDir, "..", "..", "..", "..", "..")); 
+            _messagesFilePath = Path.Combine(solutionDir, "src", "API", "Resources", "messages.json"); 
         }
 
         [Test]

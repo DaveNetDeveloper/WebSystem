@@ -38,7 +38,7 @@ namespace Test.UnitTest.BackgroundServices
 
 
             //testWorkerServiceExecution = new WorkerServiceExecution {
-            //    id = new Guid(),
+            //    id =Guid.NewGuid(),
             //    workerService = WorkerService.Common.WorkerService.CheckUsers,
             //    result = WorkerServiceResult.Passed,
             //    resultDetailed = "Test WorkerService has been executed correctly",

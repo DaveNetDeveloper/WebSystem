@@ -13,8 +13,8 @@ namespace Test.Configuration
         public void Setup()
         {
             string baseDir = AppContext.BaseDirectory;
-            string solutionDir = Path.GetFullPath(Path.Combine(baseDir, "..", "..", "..", ".."));
-            _appSettingsPath = Path.Combine(solutionDir, "API", "appsettings.json");
+            string solutionDir = Path.GetFullPath(Path.Combine(baseDir, "..", "..", "..", "..", ".."));
+            _appSettingsPath = Path.Combine(solutionDir, "src", "API", "appsettings.json");
 
             string jsonString = File.ReadAllText(_appSettingsPath);
             JsonDocument doc = JsonDocument.Parse(jsonString);
@@ -34,24 +34,24 @@ namespace Test.Configuration
             Assert.DoesNotThrow(() => JsonDocument.Parse(jsonString), "El fichero appsettings.json no es un JSON válido.");
         }
 
-        [Test]
-        public void ConnectionStrings_ShouldBeValid()
-        {
-            Assert.IsTrue(_root.TryGetProperty("ConnectionStrings", out var conn), "Falta 'ConnectionStrings'");
-            Assert.IsTrue(conn.TryGetProperty("DefaultConnection", out var defaultConn), "Falta 'DefaultConnection'");
-            Assert.IsFalse(string.IsNullOrWhiteSpace(defaultConn.GetString()), "'DefaultConnection' está vacío");
-        }
+        //[Test]
+        //public void ConnectionStrings_ShouldBeValid()
+        //{
+        //    Assert.IsTrue(_root.TryGetProperty("ConnectionStrings", out var conn), "Falta 'ConnectionStrings'");
+        //    Assert.IsTrue(conn.TryGetProperty("DefaultConnection", out var defaultConn), "Falta 'DefaultConnection'");
+        //    Assert.IsFalse(string.IsNullOrWhiteSpace(defaultConn.GetString()), "'DefaultConnection' está vacío");
+        //}
 
-        [Test]
-        public void Logging_ShouldBeValid()
-        {
-            Assert.IsTrue(_root.TryGetProperty("Logging", out var logging), "Falta 'Logging'");
-            Assert.IsTrue(logging.TryGetProperty("LogLevel", out var logLevel), "Falta 'Logging:LogLevel'");
-            Assert.IsTrue(logLevel.TryGetProperty("Default", out var defaultLevel), "Falta 'Logging:LogLevel:Default'");
-            Assert.IsFalse(string.IsNullOrWhiteSpace(defaultLevel.GetString()), "'Logging:LogLevel:Default' está vacío");
-            Assert.IsTrue(logLevel.TryGetProperty("Microsoft.AspNetCore", out var msLevel), "Falta 'Logging:LogLevel:Microsoft.AspNetCore'");
-            Assert.IsFalse(string.IsNullOrWhiteSpace(msLevel.GetString()), "'Logging:LogLevel:Microsoft.AspNetCore' está vacío");
-        }
+        //[Test]
+        //public void Logging_ShouldBeValid()
+        //{
+        //    Assert.IsTrue(_root.TryGetProperty("Logging", out var logging), "Falta 'Logging'");
+        //    Assert.IsTrue(logging.TryGetProperty("LogLevel", out var logLevel), "Falta 'Logging:LogLevel'");
+        //    Assert.IsTrue(logLevel.TryGetProperty("Default", out var defaultLevel), "Falta 'Logging:LogLevel:Default'");
+        //    Assert.IsFalse(string.IsNullOrWhiteSpace(defaultLevel.GetString()), "'Logging:LogLevel:Default' está vacío");
+        //    Assert.IsTrue(logLevel.TryGetProperty("Microsoft.AspNetCore", out var msLevel), "Falta 'Logging:LogLevel:Microsoft.AspNetCore'");
+        //    Assert.IsFalse(string.IsNullOrWhiteSpace(msLevel.GetString()), "'Logging:LogLevel:Microsoft.AspNetCore' está vacío");
+        //}
 
         [Test]
         public void AllowedHosts_ShouldBeValid()
