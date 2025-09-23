@@ -22,6 +22,9 @@ jobs:
     - name: Restore dependencies
       run: dotnet restore
 
+    - name: Install Playwright
+      run: pwsh tests/Test.UI/bin/Debug/net8.0/playwright.ps1 install
+    
     - name: Build solution
       run: dotnet build --no-restore --configuration Release
 
