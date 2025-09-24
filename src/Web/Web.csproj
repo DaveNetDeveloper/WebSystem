@@ -9,6 +9,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove=".github\**" />
+    <Content Remove=".github\**" />
+    <EmbeddedResource Remove=".github\**" />
+    <None Remove=".github\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Remove="WebPages\blog-single.html" />
     <None Remove="WebPages\contact.html" />
     <None Remove="WebPages\test.html" />
@@ -20,7 +27,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include=".github\workflows\" />
     <Folder Include="WebPages\img\actividades\" />
     <Folder Include="WebPages\img\entidades\" />
   </ItemGroup>
