@@ -12,3 +12,4 @@ obj.*
 /obj.*
 /.config
 src/API/Logs/
+tests/Test.UnitTest/Report/
