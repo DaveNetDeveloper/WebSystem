@@ -52,16 +52,12 @@ namespace Application.Services
 
         public async Task<Guid> RequestResetPassword(string email)
         {
-            //var correo = new Correo() {
-            //    Destinatario = email,
-            //    Asunto = "Solicitud de recuperación de contraseaña",
-            //    Cuerpo = string.Empty,
-            //    TipoEnvio = TipoEnvioCorreos.ResetContrasena
-            //};
-
             var tipoEnvioCorreo = _correoService.ObtenerTiposEnvioCorreo().Result.Where(u => u.nombre == "ResetContrasena").SingleOrDefault();
 
-            var correo = new Correo(tipoEnvioCorreo, email, ""); 
+            // TODO: Recibir config en constructor por DI y obtener logoUrl de ahí
+            var logoUrl = "https://www.getautismactive.com/wp-content/uploads/2021/01/Test-Logo-Circle-black-transparent.png";
+
+            var correo = new Correo(tipoEnvioCorreo, email, "", logoUrl); 
             return _correoService.EnviarCorreo(correo, "", "", "","");  // TODO
         }
 

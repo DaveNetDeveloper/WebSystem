@@ -227,7 +227,7 @@ namespace API.Controllers
 
                             var usuario = _usuarioService.GetAllAsync().Result.Where(u => u.correo == email).SingleOrDefault();
 
-                            var correo = new Correo(tipoEnvioCorreo, email, usuario.nombre);
+                            var correo = new Correo(tipoEnvioCorreo, email, usuario.nombre, _appConfiguration.LogoURL);
 
                             _correoService.EnviarCorreo(correo,
                                                         EncodeDecodeHelper.GetDecodeValue(_appConfiguration.ServidorSmtp),

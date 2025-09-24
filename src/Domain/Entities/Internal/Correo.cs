@@ -13,13 +13,13 @@ namespace Domain.Entities
         public TipoEnvioCorreo.TipoEnvioCorreos TipoEnvio { get; set; }
         public string? LogoUrl { get; set; }
         
-        public Correo(TipoEnvioCorreo tipoEnvio, string destinatario, string nombreUsuario)
+        public Correo(TipoEnvioCorreo tipoEnvio, string destinatario, string nombreUsuario, string logoUrl)
         {
             this.TipoEnvio = GetTipoEnvioCorreo(tipoEnvio.nombre);
             this.NombreUsuario = nombreUsuario;
             this.Destinatario = destinatario;
             this.EmailToken = Guid.NewGuid();
-            this.LogoUrl = "https://www.getautismactive.com/wp-content/uploads/2021/01/Test-Logo-Circle-black-transparent.png"; 
+            this.LogoUrl = logoUrl; // "https://www.getautismactive.com/wp-content/uploads/2021/01/Test-Logo-Circle-black-transparent.png"; 
             this.Asunto = tipoEnvio.asunto;
             this.Cuerpo = this.ApplyTagsForBody(tipoEnvio.cuerpo);
         }

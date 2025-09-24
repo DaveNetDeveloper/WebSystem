@@ -55,7 +55,7 @@ namespace WorkerService.Jobs
                             {
                                 var tipoEnvioCorreo = correoService.ObtenerTiposEnvioCorreo().Result.Where(u => u.nombre == "SuscripciónActivada").Single();
                                 
-                                var correo = new Correo(tipoEnvioCorreo, usuario.correo, usuario.nombre);
+                                var correo = new Correo(tipoEnvioCorreo, usuario.correo, usuario.nombre, _mailSettings.LogoURL);
                                 var emailToken = correoService.EnviarCorreo(correo,
                                                                             EncodeDecodeHelper.GetDecodeValue(_mailSettings.ServidorSmtp),
                                                                             EncodeDecodeHelper.GetDecodeValue(_mailSettings.PuertoSmtp),

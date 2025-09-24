@@ -6,5 +6,7 @@
         public string PuertoSmtp { get; set; }
         public string UsuarioSmtp { get; set; }
         public string ContrasenaSmtp { get; set; }
+        public string LogoURL { get; set; }
+        
     }
 }
