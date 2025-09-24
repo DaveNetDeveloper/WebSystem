@@ -14,3 +14,4 @@ obj.*
 src/API/Logs/
 tests/Test.UnitTest/Report/
 tests/Test.Integration/Report/
+tests/Test.Configuration/Report/
