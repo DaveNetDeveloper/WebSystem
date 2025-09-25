@@ -10,7 +10,7 @@ using System.Text;
 
 namespace WorkerService.Jobs
 {
-    public class UpdateUserSegments : BaseBackgroundService<UpdateUserSegments>, IUpdateUserSegments
+    public class UpdateUserSegments : BaseBackgroundService<UpdateUserSegments>, IBackgroundService
     {
         public UpdateUserSegments(ILogger<UpdateUserSegments> logger, 
                           IOptions<JobsConfiguration> options,
@@ -23,10 +23,10 @@ namespace WorkerService.Jobs
 
         protected override async Task ExecuteAsync(CancellationToken stoppingToken)
         {
-            await RunUpdateUserSegmentsAsync(stoppingToken);
+            await RunAsync(stoppingToken);
         }
 
-        public async Task RunUpdateUserSegmentsAsync(CancellationToken stoppingToken)
+        public async Task RunAsync(CancellationToken stoppingToken)
         {
             if (!_jobSettings.Enabled) {
                 _logger.LogInformation($"Job {_jobSettings.JobName} deshabilitado.");

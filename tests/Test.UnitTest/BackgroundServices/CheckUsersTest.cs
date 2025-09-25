@@ -91,7 +91,7 @@ namespace Test.UnitTest.BackgroundServices
             cts.CancelAfter(100); // Cancela rápido para no bloquear
              
             try {
-                await checkUsers.RunCheckUsersAsync(cts.Token);
+                await checkUsers.RunAsync(cts.Token);
             }
             catch (TaskCanceledException) { 
                 var aux = "";
