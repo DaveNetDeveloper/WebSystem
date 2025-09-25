@@ -18,7 +18,8 @@ namespace API.Controllers
     { 
         private readonly ITipoSegmentoService _tipoSegmentoService;
 
-        public TipoSegmentosController(ILogger<TipoSegmentosController> logger, ITipoSegmentoService tipoSegmentoService)
+        public TipoSegmentosController(ILogger<TipoSegmentosController> logger, 
+                                       ITipoSegmentoService tipoSegmentoService)
         {
             _logger = logger;
             _tipoSegmentoService = tipoSegmentoService ?? throw new ArgumentNullException(nameof(tipoSegmentoService));
@@ -28,8 +29,8 @@ namespace API.Controllers
         [HttpGet("ObtenerTipoSegmentos")]
         public async Task<IActionResult> GetAllAsync()
         {
-            var usuarioSegmentos = await _tipoSegmentoService.GetAllAsync();
-            return (usuarioSegmentos != null && usuarioSegmentos.Any()) ? Ok(usuarioSegmentos) : NoContent();
+            var tipoSegmentos = await _tipoSegmentoService.GetAllAsync();
+            return (tipoSegmentos != null && tipoSegmentos.Any()) ? Ok(tipoSegmentos) : NoContent();
         }
 
         [Authorize]
@@ -60,9 +61,9 @@ namespace API.Controllers
 
         [Authorize]
         [HttpPost("CrearTipoSegmento")]
-        public async Task<IActionResult> AddAsync([FromBody] TipoSegmento usuarioSegmento)
+        public async Task<IActionResult> AddAsync([FromBody] TipoSegmento tipoSegmento)
         {
-            var result = await _tipoSegmentoService.AddAsync(usuarioSegmento);
+            var result = await _tipoSegmentoService.AddAsync(tipoSegmento);
             if (result == false) return NotFound();
             else {
                 _logger.LogInformation(MessageProvider.GetMessage("TipoSegmento:Crear", "Success"));
@@ -72,9 +73,9 @@ namespace API.Controllers
 
         [Authorize]
         [HttpPut("ActualizarTipoSegmento")]
-        public async Task<IActionResult> UpdateAsync([FromBody] TipoSegmento usuarioSegmento)
+        public async Task<IActionResult> UpdateAsync([FromBody] TipoSegmento tipoSegmento)
         {
-            var result = await _tipoSegmentoService.UpdateAsync(usuarioSegmento);
+            var result = await _tipoSegmentoService.UpdateAsync(tipoSegmento);
             if (result == false) return NotFound();
             else {
                 _logger.LogInformation(MessageProvider.GetMessage("TipoSegmento:Actualizar", "Success"));

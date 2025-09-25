@@ -43,6 +43,9 @@ namespace Infrastructure.Persistence
         public DbSet<UsuarioEntidad> UsuarioEntidades { get; set; }
         public DbSet<UsuarioRecompensa> UsuarioRecompensas { get; set; }
         public DbSet<UsuarioSegmentos> UsuarioSegmentos { get; set; }
+        public DbSet<Campana> Campanas { get; set; }
+        public DbSet<TipoCampana> TipoCampanas { get; set; }
+        public DbSet<CampanaExecution> CampanaExecutions { get; set; }
         public DbSet<TipoSegmento> TipoSegmentos { get; set; }
         public DbSet<Segmento> Segmentos { get; set; }
         public DbSet<Login> Logins { get; set; } 

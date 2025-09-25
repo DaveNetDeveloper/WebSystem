@@ -20,20 +20,12 @@ namespace Infrastructure.DependencyInjection
             var configPath = Path.Combine(baseDirectory, "Infrastructure", "bin", "Debug", "net8.0", "Persistence"); // "C/Users/David/Desktop/Infrastructure/bin/Debug/net8.0/Persistence"
 
             if (environmentName == "Test") {
-
-                //Environment.CurrentDirectory : "C:\\Users\\David\\Desktop\\WebSystem\\tests\\Test.Integration\\bin\\Debug\\net8.0"
-                //Directory.GetParent(Environment.CurrentDirectory).FullName : C: \Users\David\Desktop\WebSystem\tests\Test.Integration\bin\Debug
-
                 configPath = Path.Combine(Directory.GetParent(Environment.CurrentDirectory).Parent.Parent.Parent.Parent.FullName, "src", "Infrastructure", "bin", "Debug", "net8.0", "Persistence");
             }
             else {
-
-                // "C/Users/David/Desktop/"
-                // "C/Users/David/Desktop/Infrastructure/bin/Debug/net8.0/Persistence"
                 string elseVar = "";
             }
-           
-
+            
             _configuration = new ConfigurationBuilder()
                   .SetBasePath(configPath)
                   .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
@@ -63,6 +55,9 @@ namespace Infrastructure.DependencyInjection
             services.AddScoped<IWorkerServiceExecutionRepository, WorkerServiceExecutionRepository>();
             services.AddScoped<IEmailTokenRepository, EmailTokenRepository>();
             services.AddScoped<ITipoSegmentoRepository, TipoSegmentoRepository>();
+            services.AddScoped<ICampanaRepository, CampanaRepository>(); 
+            services.AddScoped<ITipoCampanaRepository, TipoCampanaRepository>();
+            services.AddScoped<ICampanaExecutionRepository, CampanaExecutionRepository>();
             services.AddScoped<ISegmentoRepository, SegmentoRepository>();
             services.AddScoped<IUsuarioSegmentosRepository, UsuarioSegmentosRepository>();
             services.AddScoped<ILoginRepository, LoginRepository>();
