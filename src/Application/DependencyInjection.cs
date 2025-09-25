@@ -36,6 +36,7 @@ namespace Application.DependencyInjection
             services.AddScoped<ITipoEnvioCorreoService, TipoEnvioCorreoService>();
             services.AddScoped<IWorkerServiceExecutionService, WorkerServiceExecutionService>();
             services.AddScoped<IEmailTokenService, EmailTokenService>();
+            services.AddScoped<IAccionService, AccionService>();
             services.AddScoped<ICampanaService, CampanaService>();
             services.AddScoped<ITipoCampanaService, TipoCampanaService>();
             services.AddScoped<ICampanaExecutionService, CampanaExecutionService>();
@@ -65,6 +66,7 @@ namespace Application.DependencyInjection
             services.AddScoped<IFilters<TipoEnvioCorreo>, TipoEnvioCorreoFilters>();
             services.AddScoped<IFilters<Transaccion>, TransaccionFilters>();
             services.AddScoped<IFilters<Usuario>, UsuarioFilters>();
+            services.AddScoped<IFilters<Accion>, AccionFilters>();
             services.AddScoped<IFilters<Campana>, CampanaFilters>();
             services.AddScoped<IFilters<TipoCampana>, TipoCampanaFilters>();
             services.AddScoped<IFilters<CampanaExecution>, CampanaExecutionFilters>();

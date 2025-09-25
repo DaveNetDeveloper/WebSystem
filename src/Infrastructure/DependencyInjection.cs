@@ -55,6 +55,7 @@ namespace Infrastructure.DependencyInjection
             services.AddScoped<IWorkerServiceExecutionRepository, WorkerServiceExecutionRepository>();
             services.AddScoped<IEmailTokenRepository, EmailTokenRepository>();
             services.AddScoped<ITipoSegmentoRepository, TipoSegmentoRepository>();
+            services.AddScoped<IAccionRepository, AccionRepository>();
             services.AddScoped<ICampanaRepository, CampanaRepository>(); 
             services.AddScoped<ITipoCampanaRepository, TipoCampanaRepository>();
             services.AddScoped<ICampanaExecutionRepository, CampanaExecutionRepository>();
