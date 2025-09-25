@@ -1,4 +1,5 @@
 ﻿using Domain.Entities;
+using Application.Common;
 
 using Infrastructure.Persistence; 
 using Microsoft.AspNetCore.Mvc.Testing;
@@ -27,7 +28,7 @@ namespace Test.Integration.Security
         [OneTimeSetUp]
         public void OneTimeSetUp()
         {
-            Environment.SetEnvironmentVariable("ASPNETCORE_ENVIRONMENT", "Test"); 
+            Environment.SetEnvironmentVariable("ASPNETCORE_ENVIRONMENT", Environments.Test); 
         }
 
         /// <summary>

@@ -1,8 +1,10 @@
-﻿ 
+﻿using Application.Common;
 using Application.Interfaces.Repositories;
 using Infrastructure.Persistence; 
 using Infrastructure.Repositories;
 using Infrastructure.Repositories.UnitOfWork;
+using Infrastructure.Extensions;
+
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -13,13 +15,13 @@ namespace Infrastructure.DependencyInjection
     {
         private static IConfiguration _configuration;
 
-        public static IServiceCollection AddInfrastructure(this IServiceCollection services, string environmentName)  
+        public static IServiceCollection AddInfrastructure(this IServiceCollection services, 
+                                                           string environmentName)  
         {
-            //Get custom configuratiom file  
-            string baseDirectory = Directory.GetParent(Environment.CurrentDirectory).FullName; // "C/Users/David/Desktop/"
-            var configPath = Path.Combine(baseDirectory, "Infrastructure", "bin", "Debug", "net8.0", "Persistence"); // "C/Users/David/Desktop/Infrastructure/bin/Debug/net8.0/Persistence"
+            string baseDirectory = Directory.GetParent(Environment.CurrentDirectory).FullName;
+            var configPath = Path.Combine(baseDirectory, "Infrastructure", "bin", "Debug", "net8.0", "Persistence");
 
-            if (environmentName == "Test") {
+            if (environmentName == Environments.Test) {
                 configPath = Path.Combine(Directory.GetParent(Environment.CurrentDirectory).Parent.Parent.Parent.Parent.FullName, "src", "Infrastructure", "bin", "Debug", "net8.0", "Persistence");
             }
             else {
@@ -31,9 +33,15 @@ namespace Infrastructure.DependencyInjection
                   .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
                   .Build();
 
+            //
+            // Sets ConnectionString
+            //
+            services.AddDatabaseMigrations(_configuration.GetConnectionString("DefaultConnection"));
             services.AddDbContext<ApplicationDbContext>(op => op.UseNpgsql(_configuration.GetConnectionString("DefaultConnection")));
 
+            //
             //register Repository Interfaces
+            //
             services.AddScoped<ITipoEnvioCorreoRepository, TipoEnvioCorreoRepository>();
             services.AddScoped<IUnitOfWork, UnitOfWork>();  // Solo repositorio, sin service 
             services.AddScoped<ITokenRepository, TokenRepository>();
@@ -64,6 +72,7 @@ namespace Infrastructure.DependencyInjection
             services.AddScoped<ILoginRepository, LoginRepository>();
             services.AddScoped<IDataQueryRepository, DataQueryRepository>();
             services.AddScoped<ITipoTransaccionRepository, TipoTransaccionRepository>();
+
             return services;
         }
     }
