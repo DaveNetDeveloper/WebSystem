@@ -4,6 +4,7 @@ using Application.Interfaces.Repositories;
 using Application.Interfaces.Services;
 using Application.Services;
 using Domain.Entities;
+
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Application.DependencyInjection

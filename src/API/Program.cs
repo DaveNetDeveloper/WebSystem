@@ -13,8 +13,9 @@ using Microsoft.OpenApi.Models;
 using Microsoft.VisualBasic; 
 using System.Text;
 using System.Threading.RateLimiting;
+using FluentMigrator.Runner;
 
-var builder = WebApplication.CreateBuilder(args);   // Add services to the container.
+var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddRateLimiter(options =>
 {
@@ -27,11 +28,11 @@ builder.Services.AddRateLimiter(options =>
     });
 });
 
-builder.Logging.ClearProviders();   // Limpiar providers por defecto (opcional)
-builder.Logging.AddConsole();   // Logs en consola
-builder.Logging.AddDebug(); // Logs en Debug
-builder.Logging.AddEventSourceLogger(); // Logs en EventSource
-builder.Logging.AddFile(builder.Configuration.GetSection("Paths")["LogFilePath"]); //"Logs/api-{Date}.txt");
+builder.Logging.ClearProviders();
+builder.Logging.AddConsole();
+builder.Logging.AddDebug();
+builder.Logging.AddEventSourceLogger();
+builder.Logging.AddFile(builder.Configuration.GetSection("Paths")["LogFilePath"]);
  
 builder.Services.AddHealthChecks();
 
@@ -86,7 +87,7 @@ var issuer = builder.Configuration["Jwt:Issuer"];
 
 //if (System.Diagnostics.Debugger.IsAttached == false)  System.Diagnostics.Debugger.Launch(); 
 
-if (!builder.Environment.IsEnvironment("Test"))
+if (!builder.Environment.IsEnvironment(Application.Common.Environments.Test))
 {
     builder.Services.AddAuthentication(options =>
     {
@@ -115,7 +116,7 @@ if (!builder.Environment.IsEnvironment("Test"))
     //builder.Services.AddAuthorization();
 } 
 
-if (builder.Environment.EnvironmentName == "Test") {
+if (builder.Environment.EnvironmentName == Application.Common.Environments.Test) {
 
     builder.Services.RemoveAll<IAuthenticationSchemeProvider>();
      
@@ -152,6 +153,14 @@ var app = builder.Build();
 
 app.UseMiddleware<ExceptionMiddleware>();
 
+if (!builder.Environment.IsEnvironment(Application.Common.Environments.Test) && 
+    !builder.Environment.IsEnvironment(Application.Common.Environments.Production)) 
+{
+    using var scope = app.Services.CreateScope();
+    var runner = scope.ServiceProvider.GetRequiredService<IMigrationRunner>();
+    runner.MigrateUp();
+}
+
 // Health endpoint en JSON
 app.MapHealthChecks("/health", new Microsoft.AspNetCore.Diagnostics.HealthChecks.HealthCheckOptions  {
     ResponseWriter = async (context, report) =>
@@ -177,7 +186,7 @@ app.UseCors(builder => {
            .AllowAnyMethod();
 });
 
-if (app.Environment.IsDevelopment())
+if (app.Environment.IsEnvironment(Application.Common.Environments.Development))
 { 
     app.UseSwagger();
     app.UseSwaggerUI();
