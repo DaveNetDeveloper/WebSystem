@@ -33,5 +33,8 @@ namespace Application.Services
         public async Task<IReadOnlyList<vTotalUltimasTransaccionesDTO>> ObtenerTotalUltimasTransacciones(int page = 1, int pageSize = 100)
           => await _repo.ObtenerTotalUltimasTransacciones(page, pageSize);
 
+        public async Task<IReadOnlyList<vCampanasUsuariosDTO>> ObtenerCampanasUsuarios(int page = 1, int pageSize = 100)
+          => await _repo.ObtenerCampanasUsuarios(page, pageSize);
+
     }
 }
