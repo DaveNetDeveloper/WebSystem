@@ -43,6 +43,10 @@ namespace Infrastructure.Persistence
         public DbSet<UsuarioEntidad> UsuarioEntidades { get; set; }
         public DbSet<UsuarioRecompensa> UsuarioRecompensas { get; set; }
         public DbSet<UsuarioSegmentos> UsuarioSegmentos { get; set; }
+        public DbSet<Campana> Campanas { get; set; }
+        public DbSet<TipoCampana> TipoCampanas { get; set; }
+        public DbSet<CampanaExecution> CampanaExecutions { get; set; }
+        public DbSet<Accion> Acciones { get; set; }
         public DbSet<TipoSegmento> TipoSegmentos { get; set; }
         public DbSet<Segmento> Segmentos { get; set; }
         public DbSet<Login> Logins { get; set; } 
@@ -57,6 +61,7 @@ namespace Infrastructure.Persistence
         public DbSet<v_RolesUsuarios> v_RolesUsuarios { get; set; }
         public DbSet<v_VisitasTipoDispositivo> v_VisitasTipoDispositivo { get; set; }
         public DbSet<v_TotalUltimasTransacciones> v_TotalUltimasTransacciones { get; set; }
+        public DbSet<v_CampanasUsuarios> v_CampanasUsuarios { get; set; }
 
         //
         // Jobs
@@ -217,6 +222,11 @@ namespace Infrastructure.Persistence
             modelBuilder.Entity<v_TotalUltimasTransacciones>(eb => {
                 eb.HasNoKey();
                 eb.ToView("v_TotalUltimasTransacciones");
+            });
+
+            modelBuilder.Entity<v_CampanasUsuarios>(eb => {
+                eb.HasNoKey();
+                eb.ToView("v_CampanasUsuarios");
             });
 
             //

@@ -73,5 +73,12 @@ namespace API.Controllers
             return (queryResult != null && queryResult.Any()) ? Ok(queryResult) : NoContent();
         }
 
+        //[Authorize(Policy = "RequireAdmin")]
+        [HttpGet("ObtenerObtenerCampanasUsuarios")]
+        public async Task<IActionResult> ObtenerCampanasUsuarios()
+        {
+            IReadOnlyList<vCampanasUsuariosDTO> queryResult = await _dataQueryService.ObtenerCampanasUsuarios();
+            return (queryResult != null && queryResult.Any()) ? Ok(queryResult) : NoContent();
+        }
     }
 }

@@ -10,7 +10,7 @@ using WorkerService.Interfaces;
 
 namespace WorkerService.Jobs
 {
-    public class CheckUsers : BaseBackgroundService<CheckUsers>, ICheckUsers
+    public class CheckUsers : BaseBackgroundService<CheckUsers>, IBackgroundService
     {
         private readonly MailConfiguration _mailSettings;
 
@@ -27,10 +27,10 @@ namespace WorkerService.Jobs
         
         protected override async Task ExecuteAsync(CancellationToken stoppingToken)
         {
-            await RunCheckUsersAsync(stoppingToken);
+            await RunAsync(stoppingToken);
         }
          
-        public async Task RunCheckUsersAsync(CancellationToken stoppingToken)
+        public async Task RunAsync(CancellationToken stoppingToken)
         {
             if (!_jobSettings.Enabled) {
                 _logger.LogInformation($"Job {_jobSettings.JobName} deshabilitado.");

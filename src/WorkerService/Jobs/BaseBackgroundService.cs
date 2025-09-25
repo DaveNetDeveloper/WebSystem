@@ -29,9 +29,6 @@ namespace WorkerService.Jobs
 
         protected async Task<bool> AddWorkerServiceExecution(WorkerServiceExecution workerServiceExecution)
         {
-            //using var scope = _scopeFactory.CreateScope();
-            //var workerService = scope.ServiceProvider.GetRequiredService<IWorkerServiceExecutionService>();
-
             var (scopeWS, workerService) = GetServiceProvider<IWorkerServiceExecutionService>();
             using (scopeWS) {
                 return await workerService.AddAsync(workerServiceExecution);

@@ -148,5 +148,28 @@ namespace Infrastructure.Repositories
                     x.totalTransacciones
                 )).ToListAsync();
         }
+
+        public async Task<IReadOnlyList<vCampanasUsuariosDTO>> ObtenerCampanasUsuarios(int page = 1, int pageSize = 100)
+        {
+            if (page < 1) page = 1;
+            var skip = (page - 1) * pageSize;
+
+            return await _context.v_CampanasUsuarios
+                .AsNoTracking()
+                .Skip(skip)
+                .Take(pageSize)
+                .Select(x => new vCampanasUsuariosDTO(
+                    x.idCampana,
+                    x.nombreCampana,
+                    x.frecuenciaCampana,
+                    x.fechaEjecucion,
+                    x.estadoEjecucion,
+                    x.tipoCampana,
+                    x.nombreSegmento,
+                    x.tipoSegmento,
+                    x.nombreUsuario,
+                    x.correoUsuario
+                )).ToListAsync();
+        }
     }
 }
