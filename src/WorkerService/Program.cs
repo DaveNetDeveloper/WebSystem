@@ -13,7 +13,7 @@ IHost host = Host.CreateDefaultBuilder(args)
 
         services.AddApplication();
         services.AddInfrastructure(string.Empty);
-        services.AddHostedService<CheckUsers>();
+        services.AddHostedService<ReminderForUnsubscribers>();
         services.AddHostedService<UpdateUserSegments>();
 
     }).Build();

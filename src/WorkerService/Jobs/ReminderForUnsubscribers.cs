@@ -1,20 +1,20 @@
 using Application.Interfaces.Services;
-using Application.Services;
 using Domain.Entities;
-using Microsoft.Extensions.Options;
 using System.Text;
 using Utilities;
 using WorkerService.Common;
 using WorkerService.Configuration;
 using WorkerService.Interfaces;
 
+using Microsoft.Extensions.Options;
+
 namespace WorkerService.Jobs
 {
-    public class CheckUsers : BaseBackgroundService<CheckUsers>, IBackgroundService
+    public class ReminderForUnsubscribers : BaseBackgroundService<ReminderForUnsubscribers>, IBackgroundService
     {
         private readonly MailConfiguration _mailSettings;
 
-        public CheckUsers(ILogger<CheckUsers> logger, 
+        public ReminderForUnsubscribers(ILogger<ReminderForUnsubscribers> logger, 
                           IOptions<JobsConfiguration> options,
                           IOptions<MailConfiguration> mailOptions,
                           IServiceScopeFactory scopeFactory) {
@@ -22,7 +22,7 @@ namespace WorkerService.Jobs
             _jobsConfiguration = options.Value;
             _mailSettings = mailOptions.Value;
             _scopeFactory = scopeFactory;
-            _jobSettings = GetCurrentJobSettings(Common.WorkerService.CheckUsers); 
+            _jobSettings = GetCurrentJobSettings(Common.WorkerService.ReminderForUnsubscribers); 
         }
         
         protected override async Task ExecuteAsync(CancellationToken stoppingToken)
@@ -53,7 +53,7 @@ namespace WorkerService.Jobs
                             var (scopeMail, correoService) = GetServiceProvider<ICorreoService>();
                             using (scopeMail)
                             {
-                                var tipoEnvioCorreo = correoService.ObtenerTiposEnvioCorreo().Result.Where(u => u.nombre == "SuscripciónActivada").Single();
+                                var tipoEnvioCorreo = correoService.ObtenerTiposEnvioCorreo().Result.Where(u => u.nombre == "RecordatorioSuscripcion").Single();
                                 
                                 var correo = new Correo(tipoEnvioCorreo, usuario.correo, usuario.nombre, _mailSettings.LogoURL);
                                 var emailToken = correoService.EnviarCorreo(correo,
@@ -88,7 +88,7 @@ namespace WorkerService.Jobs
                         // Añadir ejecución "Passed"
                         var workerServiceExecution = new WorkerServiceExecution {
                             //id =Guid.NewGuid(),
-                            workerService = Common.WorkerService.CheckUsers,
+                            workerService = Common.WorkerService.ReminderForUnsubscribers,
                             result = WorkerServiceResult.Passed,
                             resultDetailed = sb.ToString(),
                             executionTime = DateTime.UtcNow
@@ -97,7 +97,7 @@ namespace WorkerService.Jobs
                         var result = await AddWorkerServiceExecution(workerServiceExecution);
                         //if (result == false) 
 
-                        _logger.LogInformation($"Check done at {DateTime.Now}");
+                        _logger.LogInformation($"Job done at {DateTime.Now}");
                     }
 
                 }
@@ -108,7 +108,7 @@ namespace WorkerService.Jobs
                 catch (Exception ex) { 
                     var workerServiceExecution = new WorkerServiceExecution {
                         //id =Guid.NewGuid(),
-                        workerService = Common.WorkerService.CheckUsers,
+                        workerService = Common.WorkerService.ReminderForUnsubscribers,
                         result = WorkerServiceResult.Failed,
                         resultDetailed = $"WorkerService has failed with error: {ex.Message.Truncate(500)}",
                         executionTime = DateTime.UtcNow

@@ -18,14 +18,14 @@ namespace Test.UnitTest.BackgroundServices
 {
     [Category("UnitTest")]
     [TestFixture]
-    internal class CheckUsersTest
+    internal class ReminderForUnsubscribersTest
     {  
         Mock<IUsuarioService> userServiceMock;
         //Mock<IWorkerServiceExecutionService> workerServiceExecutionService;
         Mock<IServiceScope> scopeMock;
         Mock<IServiceProvider> serviceProviderMock;
         Mock<IServiceScopeFactory> scopeFactoryMock;
-        Mock<ILogger<CheckUsers>> loggerMock;
+        Mock<ILogger<ReminderForUnsubscribers>> loggerMock;
 
         //WorkerServiceExecution testWorkerServiceExecution;
 
@@ -60,16 +60,16 @@ namespace Test.UnitTest.BackgroundServices
             scopeFactoryMock = new Mock<IServiceScopeFactory>();
             scopeFactoryMock.Setup(f => f.CreateScope()).Returns(scopeMock.Object);
 
-            loggerMock = new Mock<ILogger<CheckUsers>>();
+            loggerMock = new Mock<ILogger<ReminderForUnsubscribers>>();
         }
 
         [Test]
-        public async Task CheckUsersJob_RunCheckAsyn_WriteLogsInformation()
+        public async Task ReminderForUnsubscribersJob_RunCheckAsyn_WriteLogsInformation()
         {
             var optionsMock = Options.Create(new JobsConfiguration {
                 Jobs = new List<JobSettings> {
                     new JobSettings {
-                        JobName = WorkerService.Common.WorkerService.CheckUsers,
+                        JobName = WorkerService.Common.WorkerService.ReminderForUnsubscribers,
                         IntervalMinutes = 1
                         // si en el futuro añado otro modo de ejecución, aquí lo configuro
                     }
@@ -82,16 +82,16 @@ namespace Test.UnitTest.BackgroundServices
                     ServidorSmtp = "",
                     PuertoSmtp = "" }); 
              
-          var checkUsers = new CheckUsers(loggerMock.Object, 
-                                          optionsMock,
-                                          mailOptionsMock,
-                                          scopeFactoryMock.Object);
+          var reminderForUnsubscribers = new ReminderForUnsubscribers(loggerMock.Object, 
+                                                        optionsMock,
+                                                        mailOptionsMock,
+                                                        scopeFactoryMock.Object);
            
             using var cts = new CancellationTokenSource();
             cts.CancelAfter(100); // Cancela rápido para no bloquear
              
             try {
-                await checkUsers.RunAsync(cts.Token);
+                await reminderForUnsubscribers.RunAsync(cts.Token);
             }
             catch (TaskCanceledException) { 
                 var aux = "";

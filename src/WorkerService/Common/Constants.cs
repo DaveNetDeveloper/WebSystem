@@ -2,7 +2,7 @@
 { 
     public static class WorkerService
     {
-        public const string CheckUsers = "CheckUsers";
+        public const string ReminderForUnsubscribers = "ReminderForUnsubscribers";
         public const string UpdateUserSegments = "UpdateUserSegments";
         public const string Other = "Other";
     }

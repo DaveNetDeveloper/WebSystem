@@ -2,7 +2,7 @@ using Application.Interfaces.Services;
 using Domain.Entities;
 using WorkerService.Configuration;
 
-namespace WorkerService.Jobs
+namespace WorkerService.Common
 {
     public class BaseBackgroundService<Job> : BackgroundService
     {
