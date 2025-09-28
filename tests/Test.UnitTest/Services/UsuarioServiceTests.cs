@@ -34,6 +34,7 @@ namespace Test.UnitTest.Services
         private string? orderBy = "id";
         private bool descending = false;
         private IQueryOptions<Usuario> queryOptions;
+        private IQueryOptions<MailConfiguration> configOptions;
 
         [SetUp]
         public void SetUp() {
@@ -97,7 +98,10 @@ namespace Test.UnitTest.Services
             _userService = new UsuarioService(_mockRepo.Object);
 
             _loginService = new LoginService(_mockRepoLogin.Object);
+
+            //configOptions = new IQueryOptions<MailConfiguration>();
             _correoService = new CorreoService(_mockRepoTipoEnvio.Object);
+
             _authService = new AuthService(_mockRepo.Object, _correoService, _loginService);
         } 
         [Test]

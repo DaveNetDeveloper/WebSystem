@@ -11,7 +11,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.RateLimiting; 
 using Microsoft.Extensions.Options;
-using System.Text.Json;
+using System.ComponentModel.DataAnnotations;
 
 namespace API.Controllers
 {
@@ -197,9 +197,13 @@ namespace API.Controllers
             }
         }
 
+        /// <summary> Activa la suscripcion de un usuario </summary>
+        /// <param name="email">Email del destinatario a buscar</param>
+        /// <param name="token">Token asociado si la petición viene de enlace de correo</param>
+        /// [FromQuery]
         [AllowAnonymous]
         [HttpPatch("ActivacionSuscripcion")]
-        public async Task<IActionResult> ActivacionSuscripcion([FromQuery] string token, string email) 
+        public async Task<IActionResult> ActivacionSuscripcion([FromQuery] string token, [FromQuery][Required] string email) 
         {
             try {
                 var validToken = FormatValidationHelper.GetValidGuidFronString(token);
@@ -228,12 +232,13 @@ namespace API.Controllers
                             var usuario = _usuarioService.GetAllAsync().Result.Where(u => u.correo == email).SingleOrDefault();
 
                             var correo = new Correo(tipoEnvioCorreo, email, usuario.nombre, _appConfiguration.LogoURL);
+                            _correoService.EnviarCorreo(correo);
 
-                            _correoService.EnviarCorreo(correo,
-                                                        EncodeDecodeHelper.GetDecodeValue(_appConfiguration.ServidorSmtp),
-                                                        EncodeDecodeHelper.GetDecodeValue(_appConfiguration.PuertoSmtp),
-                                                        EncodeDecodeHelper.GetDecodeValue(_appConfiguration.UsuarioSmtp),
-                                                        EncodeDecodeHelper.GetDecodeValue(_appConfiguration.ContrasenaSmtp));
+                            //_correoService.EnviarCorreo(correo,
+                            //                            EncodeDecodeHelper.GetDecodeValue(_appConfiguration.ServidorSmtp),
+                            //                            EncodeDecodeHelper.GetDecodeValue(_appConfiguration.PuertoSmtp),
+                            //                            EncodeDecodeHelper.GetDecodeValue(_appConfiguration.UsuarioSmtp),
+                            //                            EncodeDecodeHelper.GetDecodeValue(_appConfiguration.ContrasenaSmtp));
                              
                             _logger.LogInformation(MessageProvider.GetMessage("Usuario:ActivacionSuscripcion", "Success"));
                             return Ok(consumeResult);

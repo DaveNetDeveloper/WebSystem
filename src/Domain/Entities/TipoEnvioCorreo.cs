@@ -11,15 +11,15 @@
 
         public enum TipoEnvioCorreos
         {
-            ValidaciónCuenta,
-            Bienvenida,
-            SuscripciónActivada,
-            ResetContrasena,
-            ContrasenaCambiada,
-            ReservaProducto,
-            InscripcionActividad,
-            RememberSubscribe,
-            Undefined
+            ValidacionCuenta = 1,
+            Bienvenida = 2,
+            SuscripcionActivada = 3,
+            ResetContrasena = 4,
+            ContrasenaCambiada = 5,
+            ReservaProducto = 6,
+            InscripcionActividad = 7,
+            RememberSubscribe = 8,
+            Undefined = 9
         }
     }
 }

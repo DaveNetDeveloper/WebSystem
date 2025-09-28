@@ -41,6 +41,7 @@ namespace Infrastructure.Repositories
             await _context.SaveChangesAsync();
             return true;
         }
+
         public async Task<bool> UpdateAsync(WorkerServiceExecution workerServiceExecution)
         {
             var _workerServiceExecution = await _context.WorkerServiceExecutions.Where(a => a.id == workerServiceExecution.id).SingleOrDefaultAsync();

@@ -57,8 +57,9 @@ namespace Application.Services
             // TODO: Recibir config en constructor por DI y obtener logoUrl de ahí
             var logoUrl = "https://www.getautismactive.com/wp-content/uploads/2021/01/Test-Logo-Circle-black-transparent.png";
 
-            var correo = new Correo(tipoEnvioCorreo, email, "", logoUrl); 
-            return _correoService.EnviarCorreo(correo, "", "", "","");  // TODO
+            var correo = new Correo(tipoEnvioCorreo, email, "", logoUrl);
+            // TODO por probar sin parametros 
+            return _correoService.EnviarCorreo(correo);  // TODO
         }
 
         public async Task<bool> ResetPassword(string email, string newPassword)

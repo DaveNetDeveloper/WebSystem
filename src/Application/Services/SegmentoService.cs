@@ -38,6 +38,9 @@ namespace Application.Services
         public Task<bool> Remove(int id)
               => _repo.Remove(id);
 
+        public Task<IEnumerable<Usuario>> GetUsuariosBySegmento(int idSegmento) 
+            => _repoUsuarioSegmentos.GetUsuariosBySegmento(idSegmento);
+
         //
         // Lógica de negocio para aplicar las segmentaciones a un usuario
         //

@@ -45,6 +45,8 @@ namespace Infrastructure.Persistence
         public DbSet<UsuarioSegmentos> UsuarioSegmentos { get; set; }
         public DbSet<Campana> Campanas { get; set; }
         public DbSet<TipoCampana> TipoCampanas { get; set; }
+        public DbSet<CampanaSegmentos> CampanaSegmentos { get; set; }
+        public DbSet<CampanaAcciones> CampanaAcciones  { get; set; }
         public DbSet<CampanaExecution> CampanaExecutions { get; set; }
         public DbSet<Accion> Acciones { get; set; }
         public DbSet<TipoSegmento> TipoSegmentos { get; set; }
@@ -179,12 +181,50 @@ namespace Infrastructure.Persistence
 
             //UsuarioSegmentos
             modelBuilder.Entity<UsuarioSegmentos>().HasKey(ud => new { ud.idUsuario, ud.idSegmento });
-
+            
             modelBuilder.Entity<UsuarioSegmentos>()
                 .HasOne(d => d.Usuario)
                 .WithMany(ud => ud.UsuarioSegmentos)
                 // .WithMany()
                 .HasForeignKey(ud => ud.idUsuario);
+
+            modelBuilder.Entity<UsuarioSegmentos>()
+               .HasOne(d => d.Segmento)
+               .WithMany(ud => ud.UsuarioSegmentos)
+               // .WithMany()
+               .HasForeignKey(ud => ud.idSegmento);
+
+            // CampanaSegmentos
+            modelBuilder.Entity<CampanaSegmentos>().HasKey(ud => new { ud.idCampana, ud.idSegmento });
+
+            modelBuilder.Entity<CampanaSegmentos>()
+                .HasOne(d => d.Segmento)
+                .WithMany(ud => ud.CampanaSegmentos)
+                // .WithMany()
+                .HasForeignKey(ud => ud.idSegmento);
+
+            modelBuilder.Entity<CampanaSegmentos>()
+                .HasOne(d => d.Campana)
+                .WithMany(ud => ud.CampanaSegmentos)
+                // .WithMany()
+                .HasForeignKey(ud => ud.idCampana);
+
+            // CampanaAcciones
+            modelBuilder.Entity<CampanaAcciones>().HasKey(ud => new { ud.idCampana, ud.idAccion });
+
+            modelBuilder.Entity<CampanaAcciones>()
+                .HasOne(d => d.Campana)
+                .WithMany(ud => ud.CampanaAcciones)
+                // .WithMany()
+                .HasForeignKey(ud => ud.idCampana);
+
+            modelBuilder.Entity<CampanaAcciones>()
+                .HasOne(d => d.Accion)
+                .WithMany(ud => ud.CampanaAcciones)
+                // .WithMany()
+                .HasForeignKey(ud => ud.idAccion);
+
+
 
             //
             // VIEWS

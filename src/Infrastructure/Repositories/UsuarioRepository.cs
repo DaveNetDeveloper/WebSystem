@@ -60,7 +60,7 @@ namespace Infrastructure.Repositories
         }
         public async Task<Usuario?> GetByIdAsync(int id) =>
             await _context.Usuarios.FindAsync(id);
-
+        
         public async Task<IEnumerable<Usuario>> GetAllAsync() =>
             await _context.Usuarios.ToListAsync();
 

@@ -3,7 +3,7 @@
 namespace Infrastructure.Migrations
 {
     [Migration(202509252030)]
-    public class Migration_20250925_AddTestTable : Migration
+    public class Migration_202509252030_AddTestTable : Migration
     {
         public override void Up()
         {

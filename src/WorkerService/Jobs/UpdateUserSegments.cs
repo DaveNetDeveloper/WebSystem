@@ -39,15 +39,27 @@ namespace WorkerService.Jobs
                     using (scopeUser)
                     {
                         var sb = new StringBuilder();
-                        var allActiveUsers = userService.GetAllAsync().Result.Where(u => u.activo == true);
+                        var activeUsers = userService.GetAllAsync().Result.Where(u => u.activo == true);
 
-                        foreach (var usuario in allActiveUsers)  {
+                        foreach (var usuario in activeUsers)  {
                             var (scopeSeg, segmentService) = GetServiceProvider<ISegmentoService>();
                             using (scopeSeg)
                             {
                                 segmentService.ApplySegmentsForUser(usuario);
                             }
                         }
+
+                        // Añadir ejecución "Passed"
+                        var workerServiceExecution = new WorkerServiceExecution
+                        {
+                            workerService = _jobSettings.JobName,
+                            result = WorkerServiceResult.Passed,
+                            resultDetailed = sb.ToString(),
+                            executionTime = DateTime.UtcNow
+                        };
+
+                        var result = await AddWorkerServiceExecution(workerServiceExecution);
+                        _logger.LogInformation($"Job {_jobSettings.JobName} done at {DateTime.Now}");
                     }
                 }
                 catch (TaskCanceledException) {
@@ -55,9 +67,8 @@ namespace WorkerService.Jobs
                 }
                 catch (Exception ex) {
                     // Añadir ejecución "Failed"
-                    var workerServiceExecution = new WorkerServiceExecution {
-                        //id = Guid.NewGuid(),
-                        workerService = Common.WorkerService.UpdateUserSegments,
+                    var workerServiceExecution = new WorkerServiceExecution { 
+                        workerService = _jobSettings.JobName,
                         result = WorkerServiceResult.Failed,
                         resultDetailed = $"WorkerService has failed with error: {ex.Message.Truncate(500)}",
                         executionTime = DateTime.UtcNow

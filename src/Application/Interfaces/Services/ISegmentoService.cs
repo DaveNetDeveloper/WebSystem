@@ -9,6 +9,6 @@ namespace Application.Interfaces.Services
         Task<IEnumerable<Segmento>> GetByFiltersAsync(SegmentoFilters filters,
                                                       IQueryOptions<Segmento>? queryOptions = null);
         void ApplySegmentsForUser(Usuario usuario);
-
+        Task<IEnumerable<Usuario>> GetUsuariosBySegmento(int idSegmento);
     }
 }

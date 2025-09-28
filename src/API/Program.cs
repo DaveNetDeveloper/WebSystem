@@ -12,8 +12,10 @@ using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using Microsoft.VisualBasic; 
 using System.Text;
+using System.Text.Json.Serialization;
 using System.Threading.RateLimiting;
 using FluentMigrator.Runner;
+using System.Reflection;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -36,17 +38,22 @@ builder.Logging.AddFile(builder.Configuration.GetSection("Paths")["LogFilePath"]
  
 builder.Services.AddHealthChecks();
 
-builder.Services.AddControllers();
+builder.Services.AddControllers().AddJsonOptions(options =>
+{
+    // Para que los enums se serialicen/deserialicen como texto en vez de como int
+    options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
+});
 
 builder.Services.AddEndpointsApiExplorer(); 
 
 builder.Services.Configure<AppConfiguration>(builder.Configuration.GetSection("AppConfiguration"));
+builder.Services.Configure<MailConfiguration>(builder.Configuration.GetSection("MailConfiguration"));
 
 builder.Configuration.AddJsonFile("Resources/messages.json", optional: false, reloadOnChange: true);
 
 builder.Services.AddSwaggerGen(c => {
     c.SwaggerDoc("v1", new() { Title = "API", Version = "v1" });
- 
+    c.UseInlineDefinitionsForEnums();
     c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme {
         Name = "Authorization",
         Type = SecuritySchemeType.ApiKey,
@@ -55,8 +62,6 @@ builder.Services.AddSwaggerGen(c => {
         In = ParameterLocation.Header,
         Description = "Introduce el token JWT así: Bearer {tu token}"
     });
-
-    // Requisito de seguridad global
     c.AddSecurityRequirement(new OpenApiSecurityRequirement {
         { 
             new OpenApiSecurityScheme {
@@ -68,11 +73,15 @@ builder.Services.AddSwaggerGen(c => {
             new string[] {}
         }
     });
-
     c.ResolveConflictingActions(apiDescriptions => apiDescriptions.First());
     c.IgnoreObsoleteActions();
     c.IgnoreObsoleteProperties();
     c.CustomSchemaIds(type => type.FullName);
+
+    var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+    var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
+    c.IncludeXmlComments(xmlPath);
+
 }); 
  
 // Register Services & Filters 
@@ -119,7 +128,6 @@ if (!builder.Environment.IsEnvironment(Application.Common.Environments.Test))
 if (builder.Environment.EnvironmentName == Application.Common.Environments.Test) {
 
     builder.Services.RemoveAll<IAuthenticationSchemeProvider>();
-     
     builder.Services.AddAuthentication(options => {
         options.DefaultAuthenticateScheme = "Test";
         options.DefaultChallengeScheme = "Test";

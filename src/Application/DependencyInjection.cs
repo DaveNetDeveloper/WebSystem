@@ -46,6 +46,7 @@ namespace Application.DependencyInjection
             services.AddScoped<ILoginService, LoginService>();
             services.AddScoped<IDataQueryService, DataQueryService>();
             services.AddScoped<ITipoTransaccionService, TipoTransaccionService>();
+             
 
             //
             // Register Filters

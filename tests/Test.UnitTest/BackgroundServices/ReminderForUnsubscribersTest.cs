@@ -14,7 +14,7 @@ using WorkerService.Jobs;
 
 using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
 
-namespace Test.UnitTest.BackgroundServices
+namespace Test.UnitTest.WorkerServices
 {
     [Category("UnitTest")]
     [TestFixture]

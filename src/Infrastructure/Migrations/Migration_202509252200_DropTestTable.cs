@@ -3,7 +3,7 @@
 namespace Infrastructure.Migrations
 {
     [Migration(202509252200)]
-    public class Migration_20250925_DropTestTable : Migration
+    public class Migration_202509252200_DropTestTable : Migration
     {
         public override void Up()
         {

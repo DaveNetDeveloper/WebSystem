@@ -1,4 +1,5 @@
 ﻿using System.Text.Json;
+using System.Text.Json.Serialization;
 
 namespace Domain.Entities
 {
@@ -10,7 +11,11 @@ namespace Domain.Entities
         public Guid idTipoSegmento { get; set; }
         public string campoRegla { get; set; }
         public string operadorRegla { get; set; }
-        public string valorRegla { get; set; } 
-       
+        public string valorRegla { get; set; }
+
+        [JsonIgnore]
+        public ICollection<CampanaSegmentos> CampanaSegmentos { get; set; }
+        [JsonIgnore]
+        public ICollection<UsuarioSegmentos> UsuarioSegmentos { get; set; }
     }
 }

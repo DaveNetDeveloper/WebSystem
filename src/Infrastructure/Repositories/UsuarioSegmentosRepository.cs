@@ -59,5 +59,24 @@ namespace Infrastructure.Repositories
 
             return true;
         }
+
+        //
+        //
+        //
+        public async Task<IEnumerable<Usuario>> GetUsuariosBySegmento(int idSegmento)
+        {
+            var usuarioSegmentos = _context.UsuarioSegmentos.Include(u => u.Usuario)
+                                                            .Include(s => s.Segmento)
+                                                            .Where(us => us.idSegmento == idSegmento);
+            
+            if (usuarioSegmentos != null && usuarioSegmentos.Any()) {
+                var usuariosResult = new List<Usuario>();
+                foreach (var usuarioSegmento in usuarioSegmentos) {
+                    usuariosResult.Add(usuarioSegmento.Usuario);
+                }
+                return usuariosResult.OrderBy(ip => ip.id);
+            }
+            return null;
+        }
     }
 }

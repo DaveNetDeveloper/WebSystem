@@ -66,9 +66,11 @@ namespace Infrastructure.DependencyInjection
             services.AddScoped<IAccionRepository, AccionRepository>();
             services.AddScoped<ICampanaRepository, CampanaRepository>(); 
             services.AddScoped<ITipoCampanaRepository, TipoCampanaRepository>();
+            services.AddScoped<ICampanaSegmentosRepository, CampanaSegmentosRepository>(); // Solo repositorio, sin service 
+            services.AddScoped<ICampanaAccionesRepository, CampanaAccionesRepository>(); // Solo repositorio, sin service 
             services.AddScoped<ICampanaExecutionRepository, CampanaExecutionRepository>();
             services.AddScoped<ISegmentoRepository, SegmentoRepository>();
-            services.AddScoped<IUsuarioSegmentosRepository, UsuarioSegmentosRepository>();
+            services.AddScoped<IUsuarioSegmentosRepository, UsuarioSegmentosRepository>();  // Solo repositorio, sin service 
             services.AddScoped<ILoginRepository, LoginRepository>();
             services.AddScoped<IDataQueryRepository, DataQueryRepository>();
             services.AddScoped<ITipoTransaccionRepository, TipoTransaccionRepository>();

@@ -11,10 +11,18 @@ namespace Application.Services
     public class CampanaService : ICampanaService
     {
         private readonly ICampanaRepository _repo;
+        private readonly ICampanaSegmentosRepository _repoCampanaSegmentos;
+        private readonly ICampanaAccionesRepository _repoCampanaAcciones;
+        private readonly IAccionService _accionService;
 
-        public CampanaService(ICampanaRepository repo)
-        {
+        public CampanaService(ICampanaRepository repo,
+                              ICampanaSegmentosRepository repoCampanaSegmentos,
+                              ICampanaAccionesRepository repoCampanaAcciones,
+                              IAccionService accionService) {
             _repo = repo;
+            _repoCampanaSegmentos = repoCampanaSegmentos;
+            _repoCampanaAcciones = repoCampanaAcciones;
+            _accionService = accionService;
         }
 
         public Task<IEnumerable<Campana>> GetAllAsync()
@@ -36,22 +44,53 @@ namespace Application.Services
         public Task<bool> Remove(int id)
               => _repo.Remove(id);
 
-        //public async Task<IEnumerable<ImagenesProductoDTO>> GetImagenesByProducto(int id)
-        //{
-        //    var dtos = new List<ImagenesProductoDTO>(); 
-        //    ImagenesProductoDTO dto = null; 
+        //
+        // Obtener tablas relacionadas Segmentos y Acciones by Campaña
+        //
+        public async Task<IEnumerable<Segmento>> GetSegmentoByCampana(int idCampana)
+        {
+            return await _repoCampanaSegmentos.GetSegmentosByCampana(idCampana); 
+        }
 
-        //    var imagenesProducto = _repo.GetImagenesByProducto(id); 
+        public async Task<IEnumerable<Accion>> GetAccionesByCampana(int idCampana)
+        {
+            return await _repoCampanaAcciones.GetAccionesByCampana(idCampana); 
+        }
 
-        //    foreach (var imagenProducto in imagenesProducto.Result) { 
-        //        dto = new ImagenesProductoDTO {
-        //            IdProducto = id, // imagenProducto.idproducto
-        //            Imagen = imagenProducto.imagen,
-        //            Id = imagenProducto.id
-        //        };  
-        //        dtos.Add(dto);
-        //    }
-        //    return dtos;
-        //}
+        //
+        // CRUD para la tabla [CampanaSegmentos]
+        //
+        public Task<IEnumerable<CampanaSegmentos>> GetCampanaSegmentosAllAsync()
+            => _repoCampanaSegmentos.GetCampanaSegmentosAllAsync();
+
+        public CampanaSegmentos GetSegmentosByIdCampanaAsync(CampanaSegmentos campanaSegmentos)
+            => _repoCampanaSegmentos.GetSegmentosByIdCampanaAsync(campanaSegmentos);
+
+        public bool AddCampanaSegmentosAsync(CampanaSegmentos campanaSegmentos)
+            => _repoCampanaSegmentos.AddCampanaSegmentosAsync(campanaSegmentos);
+
+        public bool UpdateCampanaSegmentosAsync(CampanaSegmentos campanaSegmentos)
+             => _repoCampanaSegmentos.UpdateCampanaSegmentosAsync(campanaSegmentos);
+
+        public bool RemoveCampanaSegmentos(CampanaSegmentos campanaSegmentos)
+              => _repoCampanaSegmentos.RemoveCampanaSegmentos(campanaSegmentos);
+
+        //
+        // CRUD para la tabla [CampanaAcciones]
+        //
+        public Task<IEnumerable<CampanaAcciones>> GetCampanaAccionesAllAsync()
+           => _repoCampanaAcciones.GetCampanaAccionesAllAsync();
+
+        public CampanaAcciones GetAccionesByIdCampanaAsync(CampanaAcciones campanaSegmentos)
+            => _repoCampanaAcciones.GetAccionesByIdCampanaAsync(campanaSegmentos);
+
+        public bool AddCampanaAccionAsync(CampanaAcciones campanaSegmentos)
+            => _repoCampanaAcciones.AddCampanaAccionAsync(campanaSegmentos);
+
+        public bool UpdateCampanaAccionAsync(CampanaAcciones campanaSegmentos)
+             => _repoCampanaAcciones.UpdateCampanaAccionAsync(campanaSegmentos);
+
+        public bool RemoveCampanaAccion(CampanaAcciones campanaSegmentos)
+              => _repoCampanaAcciones.RemoveCampanaAccion(campanaSegmentos);
     }
 }

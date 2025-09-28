@@ -18,6 +18,7 @@ namespace WorkerService.Jobs
                           IOptions<JobsConfiguration> options,
                           IOptions<MailConfiguration> mailOptions,
                           IServiceScopeFactory scopeFactory) {
+
             _logger = logger; 
             _jobsConfiguration = options.Value;
             _mailSettings = mailOptions.Value;
@@ -43,7 +44,7 @@ namespace WorkerService.Jobs
                     using (scopeUser) {
 
                         // todos los usuarios que no esten suscritos y que ademas esten activos y tengan el campo 'correo' informado
-                        var unsubscribedUsers = userService.CheckUnsubscribedUsers().Result.Where(u => u.activo == true && string.IsNullOrEmpty(u.correo));
+                        var unsubscribedUsers = userService.CheckUnsubscribedUsers().Result.Where(u => u.activo == true && !string.IsNullOrEmpty(u.correo));
 
                         // Enviar un correo recordatorio a los usuario en [unsubscribedUsers] 
                         var sb = new StringBuilder();
@@ -56,12 +57,8 @@ namespace WorkerService.Jobs
                                 var tipoEnvioCorreo = correoService.ObtenerTiposEnvioCorreo().Result.Where(u => u.nombre == "RecordatorioSuscripcion").Single();
                                 
                                 var correo = new Correo(tipoEnvioCorreo, usuario.correo, usuario.nombre, _mailSettings.LogoURL);
-                                var emailToken = correoService.EnviarCorreo(correo,
-                                                                            EncodeDecodeHelper.GetDecodeValue(_mailSettings.ServidorSmtp),
-                                                                            EncodeDecodeHelper.GetDecodeValue(_mailSettings.PuertoSmtp),
-                                                                            EncodeDecodeHelper.GetDecodeValue(_mailSettings.UsuarioSmtp),
-                                                                            EncodeDecodeHelper.GetDecodeValue(_mailSettings.ContrasenaSmtp));
-
+                                var emailToken = correoService.EnviarCorreo(correo);
+                               
                                 sb.AppendLine($"Se ha enviado un correo de tipo [RememberSubscribe] al usuario [{usuario.correo}]");
 
                                 var (scopeEmailToken, emailTokenService) = GetServiceProvider<IEmailTokenService>();
@@ -86,18 +83,16 @@ namespace WorkerService.Jobs
                         }
 
                         // Añadir ejecución "Passed"
-                        var workerServiceExecution = new WorkerServiceExecution {
-                            //id =Guid.NewGuid(),
-                            workerService = Common.WorkerService.ReminderForUnsubscribers,
+                        var workerServiceExecution = new WorkerServiceExecution { 
+                            workerService = _jobSettings.JobName,
                             result = WorkerServiceResult.Passed,
                             resultDetailed = sb.ToString(),
                             executionTime = DateTime.UtcNow
                         };
 
-                        var result = await AddWorkerServiceExecution(workerServiceExecution);
-                        //if (result == false) 
+                        var result = await AddWorkerServiceExecution(workerServiceExecution); 
 
-                        _logger.LogInformation($"Job done at {DateTime.Now}");
+                        _logger.LogInformation($"Job {_jobSettings.JobName} done at {DateTime.Now}");
                     }
 
                 }

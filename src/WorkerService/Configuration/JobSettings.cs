@@ -6,6 +6,7 @@
         public int? IntervalMinutes { get; set; }
         public int? IntervalDays { get; set; }
         public DateTime? ScheduledTime { get; set; }
+        public int? IntervalHours { get; set; }
         public bool Enabled { get; set; } = true;
     }
 }

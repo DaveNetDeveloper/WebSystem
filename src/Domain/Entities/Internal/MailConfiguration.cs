@@ -1,5 +1,5 @@
 ﻿
-namespace WorkerService.Configuration
+namespace Domain.Entities
 {
     public class MailConfiguration
     { 
