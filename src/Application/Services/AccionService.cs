@@ -13,12 +13,21 @@ using System.Text.Json;
 
 namespace Application.Services
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public class AccionService : IAccionService
     {
         private readonly IAccionRepository _repo;
         private readonly ICorreoService _correoService;
         private readonly IUsuarioService _usuarioService;
-        private readonly MailConfiguration _appConfig;
+        private readonly MailConfiguration _appConfig; 
+        private int _idUsuario;
+        private int _idCampana;
+
+        /// <summary>
+        /// Contructor
+        /// </summary>
         public AccionService(IAccionRepository repo,
                              ICorreoService correoService,
                              IUsuarioService usuarioService,
@@ -48,18 +57,20 @@ namespace Application.Services
         public Task<bool> Remove(Guid id)
               => _repo.Remove(id);
 
-        private int _idUsuario;
-        private int _idCampana;
 
         /// <summary> 
         /// Clase estática que define las constantes para el tipo de frecuencia de una una campaña <summary>
-        /// </summary>
-        /// <returns> Se devuelve "true" si la acción se ha ejecutado correctamente, si no, devuelve "false" </returns>
-        public async Task<bool> EjecutarAccionesForUser(IEnumerable<Accion> acciones, int idUsuario, int idCampana) 
-        {
+        /// </summary> 
+        /// <param name="acciones"></param>
+        /// <param name="idUsuario"></param>
+        /// <param name="idCampana"></param>
+        /// <returns> bool  </returns>
+        public async Task<bool> EjecutarAccionesForUser(IEnumerable<Accion> acciones, 
+                                                        int idUsuario, 
+                                                        int idCampana)  {
             _idUsuario = idUsuario;
             _idCampana = idCampana;
-            var result= false;
+            var result = false;
 
             foreach (var accion in acciones) {
 
@@ -88,6 +99,10 @@ namespace Application.Services
             return result;
         } 
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="accion"></param>
         private bool EjecutarEnvioComunicacion(Accion accion)
         {
             Accion.AccionDetalle detallesAccion = null; 
@@ -140,6 +155,11 @@ namespace Application.Services
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="accion"></param> 
+        /// <returns> bool  </returns>
         private bool EjecutarManipulacionDatos(Accion accion)
         {
             // _idUsuario 
@@ -160,6 +180,11 @@ namespace Application.Services
             return true;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="accion"></param>
+        /// <returns> bool  </returns>
         private bool EjecutarCrearContenidoDinamico(Accion accion)
         {
             // _idUsuario 

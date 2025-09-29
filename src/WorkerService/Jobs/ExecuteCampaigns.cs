@@ -10,10 +10,16 @@ using System.Text;
 
 namespace WorkerService.Jobs
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public class ExecuteCampaigns : BaseBackgroundService<ExecuteCampaigns>, IBackgroundService
     {
         private readonly MailConfiguration _mailSettings;
 
+        /// <summary>
+        /// 
+        /// </summary> 
         public ExecuteCampaigns(ILogger<ExecuteCampaigns> logger, 
                                IOptions<JobsConfiguration> options,
                                IServiceScopeFactory scopeFactory,
@@ -21,21 +27,27 @@ namespace WorkerService.Jobs
             _logger = logger; 
             _jobsConfiguration = options.Value; 
             _scopeFactory = scopeFactory; 
-            _jobSettings = GetCurrentJobSettings(Common.WorkerService.ExecuteCampaigns);
+            _jobSettings = GetCurrentJobSettings(WorkerService.ExecuteCampaigns);
             _mailSettings = mailOptions.Value;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="stoppingToken"></param> 
         protected override async Task ExecuteAsync(CancellationToken stoppingToken)
         {
             await RunAsync(stoppingToken);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="stoppingToken"></param> 
         public async Task RunAsync(CancellationToken stoppingToken)
         {
-            if (!_jobSettings.Enabled) {
-                _logger.LogInformation($"Job {_jobSettings.JobName} deshabilitado.");
-                return;
-            }
+            if (!IsJobEnabled()) return;
+            if (!IsJobScheduled()) return;
 
             while (!stoppingToken.IsCancellationRequested) {
                 try { 
@@ -47,22 +59,22 @@ namespace WorkerService.Jobs
                                                             .Result
                                                             .Where(u => u.activo == true);
                         var sb = new StringBuilder();
-
                         foreach (var campaign in activeCampaigns)
                         {
                             // Obtenemos la ultima ejecucion de la campaña
                             CampanaExecution? lastCampaignExecution; 
                             var (scopeExecution, executionService) = GetServiceProvider<ICampanaExecutionService>();
-                            using (scopeUser) {
+                            using (scopeUser)
+                            {
                                 lastCampaignExecution = executionService.GetAllAsync()
                                                                         .Result
                                                                         .Where(e => e.idCampana == campaign.id)
                                                                         .OrderByDescending(e => e.fechaEjecucion)
                                                                         .FirstOrDefault();
-                                
-                                // Comprobamos si hay que ejecutar la campaña
-                                if (campaign.IsTimeToRun(lastCampaignExecution))  {
 
+                                // Comprobamos si hay que ejecutar la campaña
+                                if (campaign.IsTimeToRun(lastCampaignExecution))
+                                {
                                     // Obtener acciones de cada campaña 
                                     var acciones = campanaService.GetAccionesByCampana(campaign.id);
                                     if (!acciones.Result.Any()) continue;
@@ -73,37 +85,44 @@ namespace WorkerService.Jobs
                                     var segmentos = campanaService.GetSegmentoByCampana(campaign.id);
                                     if (!segmentos.Result.Any()) continue;
 
-                                    foreach (var segmento in segmentos.Result) {
-
+                                    bool resultActionsExec = false;
+                                    foreach (var segmento in segmentos.Result)
+                                    {
                                         // Obtener usuarios de cada segmento
                                         var (scopeSeg, segmentService) = GetServiceProvider<ISegmentoService>();
-                                        using (scopeSeg) {
-
+                                        using (scopeSeg)
+                                        {
                                             var usuarios = segmentService.GetUsuariosBySegmento(segmento.id);
                                             if (!usuarios.Result.Any()) continue;
 
-                                            foreach (var usuario in usuarios.Result) {
-
+                                            foreach (var usuario in usuarios.Result)
+                                            {
                                                 if (usuario?.id == null) continue;
 
                                                 var (scopeAction, actionService) = GetServiceProvider<IAccionService>();
-                                                using (scopeSeg) 
+                                                using (scopeAction)
                                                 {
-                                                    var resultActionsExec = await actionService.EjecutarAccionesForUser(listaAcciones,
-                                                                                                                        usuario.id.Value,
-                                                                                                                        campaign.id);
+                                                    resultActionsExec = await actionService.EjecutarAccionesForUser(listaAcciones,
+                                                                                                                    usuario.id.Value,
+                                                                                                                    campaign.id);
                                                 }
                                             }
                                         }
                                     }
+                                    // Regista la ejecucion de la campaña
+                                    var currentExecution = new CampanaExecution { 
+                                        idCampana = campaign.id, 
+                                        fechaEjecucion = DateTime.UtcNow,
+                                        estado = resultActionsExec ? CampanaExecution.EstadoEjecucion.Passed : CampanaExecution.EstadoEjecucion.Error
+                                    };
+                                    await executionService.AddAsync(currentExecution);
                                 }
-
                             }
                         }
                         // Añadir ejecución "Passed"
                         var workerServiceExecution = new WorkerServiceExecution { 
                             workerService = _jobSettings.JobName,
-                            result = WorkerServiceResult.Passed,
+                            result = WorkerServiceExecution.WorkerServiceResult.Passed,
                             resultDetailed = sb.ToString(),
                             executionTime = DateTime.UtcNow
                         }; 
@@ -118,7 +137,7 @@ namespace WorkerService.Jobs
                 {
                     var workerServiceExecution = new WorkerServiceExecution {
                         workerService = _jobSettings.JobName,
-                        result = WorkerServiceResult.Failed,
+                        result = WorkerServiceExecution.WorkerServiceResult.Failed,
                         resultDetailed = $"WorkerService has failed with error: {ex.Message.Truncate(500)}",
                         executionTime = DateTime.UtcNow
                     };

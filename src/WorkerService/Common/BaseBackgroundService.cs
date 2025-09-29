@@ -11,7 +11,27 @@ namespace WorkerService.Common
 
         protected JobSettings _jobSettings;
         protected JobsConfiguration _jobsConfiguration;
-        
+
+        protected bool IsJobEnabled()
+        {
+            if (!_jobSettings.Enabled)
+            {
+                _logger.LogInformation($"Job {_jobSettings.JobName} deshabilitado.");
+                return false;
+            }
+            return true;
+        }
+
+        protected bool IsJobScheduled()
+        {
+            if (_jobSettings.ScheduledTime.HasValue && _jobSettings.ScheduledTime.Value > DateTime.UtcNow)
+            {
+                _logger.LogInformation($"El job {_jobSettings.JobName} no se iniciará hasta {_jobSettings.ScheduledTime}.");
+                return false;
+            }
+            return true;
+        }
+
         protected JobSettings GetCurrentJobSettings(string jobName)
         {
             return _jobsConfiguration.Jobs.FirstOrDefault(j => j.JobName == jobName)
@@ -38,6 +58,13 @@ namespace WorkerService.Common
         protected override async Task ExecuteAsync(CancellationToken stoppingToken)
         {
             
+        } 
+
+        public static class WorkerService
+        {
+            public const string ReminderForUnsubscribers = "ReminderForUnsubscribers";
+            public const string UpdateUserSegments = "UpdateUserSegments";
+            public const string ExecuteCampaigns = "ExecuteCampaigns";
         }
     }
 }

@@ -7,19 +7,9 @@ using System.Threading.Tasks;
 
 namespace Application.Common
 {
-    public static class Roles // TODO
-    {
-        public const string Admin = "Admin";
-        public const string User = "User";
-        public const string Manager = "Manager";
-    }
-
-    public static class AuthenticationSchemes // TODO
-    {
-        public const string Admin = "Admin";
-        public const string Test = "Test";
-        public const string Default = "Bearer";
-    }
+    /// <summary>
+    /// 
+    /// </summary>
     public static class Environments
     {
         public static string Development { get => "Development"; }

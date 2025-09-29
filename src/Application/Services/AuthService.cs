@@ -9,21 +9,35 @@ using System.Collections.Generic;
 
 namespace Application.Services
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public class AuthService : IAuthService
     {
         private readonly IUsuarioRepository _usuarioRepo;
-        private readonly ICorreoService _correoService;
-
+        private readonly ICorreoService _correoService; 
         private readonly ILoginService _loginService;
 
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        /// <param name="usuarioRepo"></param>
+        /// <param name="correoService"></param>
+        /// <param name="loginService"></param>
         public AuthService(IUsuarioRepository usuarioRepo, 
                            ICorreoService correoService,
                            ILoginService loginService) {
             _usuarioRepo = usuarioRepo;
             _correoService = correoService;
             _loginService = loginService;
-        } 
+        }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="userName"></param>
+        /// <param name="password"></param>
+        /// <returns> AuthUser </returns>
         public async Task<AuthUser?> Login(string userName, string password)
         {
             //var hashed = PasswordService.HashPassword(password); 
@@ -41,6 +55,13 @@ namespace Application.Services
             return authUser.Result;
         } 
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="idUser"></param>
+        /// <param name="token"></param>
+        /// <param name="expires"></param>
+        /// <returns> bool </returns>
         public async Task<bool> RefreshToken(int idUser, string token, DateTime expires)
         {
             var updatedUSer = await _usuarioRepo.GetByIdAsync(idUser); 
@@ -50,6 +71,11 @@ namespace Application.Services
             return result;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="email"></param>
+        /// <returns> Guid del Token asocuado al correo enviado</returns>
         public async Task<Guid> RequestResetPassword(string email)
         {
             var tipoEnvioCorreo = _correoService.ObtenerTiposEnvioCorreo().Result.Where(u => u.nombre == "ResetContrasena").SingleOrDefault();
@@ -62,6 +88,12 @@ namespace Application.Services
             return _correoService.EnviarCorreo(correo);  // TODO
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="email"></param>
+        /// <param name="newPassword"></param>
+        /// <returns> bool </returns>
         public async Task<bool> ResetPassword(string email, string newPassword)
         {
             var filters = new UsuarioFilters();
@@ -80,6 +112,11 @@ namespace Application.Services
             return true;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="idser"></param>
+        /// <returns> bool </returns>
         public async Task<bool> DeleteUserToken(int idser)
         {
             var userById = await _usuarioRepo.GetByIdAsync(idser);
@@ -88,6 +125,16 @@ namespace Application.Services
 
             var result = await _usuarioRepo.UpdateAsync(userById);
             return result;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public static class AuthenticationSchemes
+        {
+            public const string Admin = "Admin";
+            public const string Test = "Test";
+            public const string Default = "Bearer";
         }
     }
 }

@@ -69,7 +69,7 @@ namespace Test.UnitTest.WorkerServices
             var optionsMock = Options.Create(new JobsConfiguration {
                 Jobs = new List<JobSettings> {
                     new JobSettings {
-                        JobName = WorkerService.Common.WorkerService.ReminderForUnsubscribers,
+                        JobName = BaseBackgroundService<ReminderForUnsubscribers>.WorkerService.ReminderForUnsubscribers,
                         IntervalMinutes = 1
                         // si en el futuro añado otro modo de ejecución, aquí lo configuro
                     }

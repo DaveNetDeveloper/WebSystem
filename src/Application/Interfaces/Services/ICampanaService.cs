@@ -12,6 +12,5 @@ namespace Application.Interfaces.Services
 
         Task<IEnumerable<Segmento>> GetSegmentoByCampana(int idCampana);
         Task<IEnumerable<Accion>> GetAccionesByCampana(int idCampana);
-        //Task<bool> EjecutarAccionesForUser(IEnumerable<Accion> acciones, int idUsuario);
     }
 }

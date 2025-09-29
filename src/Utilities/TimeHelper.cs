@@ -1,16 +1,23 @@
-﻿ using System.Text;
+﻿using System.Text;
 
 namespace Utilities
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public static class TimeHelper
     {
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="ultimaEjecucion"></param>
+        /// <param name="intervalo"></param>
         public static int GetTimeFromDate(DateTime ultimaEjecucion, TipoIntervalo intervalo)
         {
             var ahora = DateTime.UtcNow;
             var diferencia = ahora - ultimaEjecucion;
 
-            return intervalo switch
-            {
+            return intervalo switch {
                 TipoIntervalo.Horas => (int)diferencia.TotalHours,
                 TipoIntervalo.Dias => (int)diferencia.TotalDays,
                 TipoIntervalo.Meses => GetFullMonthsDifference(ultimaEjecucion, ahora),
@@ -18,6 +25,11 @@ namespace Utilities
             };
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="desde"></param>
+        /// <param name="hasta"></param>
         public static int GetFullMonthsDifference(DateTime desde, DateTime hasta)
         {
             int months = (hasta.Year - desde.Year) * 12 + hasta.Month - desde.Month;
@@ -26,6 +38,9 @@ namespace Utilities
             return Math.Max(0, months);
         }
 
+        /// <summary>
+        /// 
+        /// </summary> 
         public enum TipoIntervalo
         {
             Horas,

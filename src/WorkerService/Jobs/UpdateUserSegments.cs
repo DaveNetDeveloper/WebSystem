@@ -1,45 +1,63 @@
+using Application.DTOs.DataQuery;
 using Application.Interfaces.Services;
 using Domain.Entities;
+using Microsoft.Extensions.Options;
+using System.Text;
 using Utilities;
 using WorkerService.Common;
 using WorkerService.Configuration;
 using WorkerService.Interfaces;
 
-using Microsoft.Extensions.Options;
-using System.Text;
-
 namespace WorkerService.Jobs
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public class UpdateUserSegments : BaseBackgroundService<UpdateUserSegments>, IBackgroundService
     {
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="logger"></param>
+        /// <param name="options"></param>
+        /// <param name="scopeFactory"></param>
         public UpdateUserSegments(ILogger<UpdateUserSegments> logger, 
                           IOptions<JobsConfiguration> options,
                           IServiceScopeFactory scopeFactory) { 
             _logger = logger; 
             _jobsConfiguration = options.Value; 
             _scopeFactory = scopeFactory; 
-            _jobSettings = GetCurrentJobSettings(Common.WorkerService.UpdateUserSegments);
+            _jobSettings = GetCurrentJobSettings(WorkerService.UpdateUserSegments);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="stoppingToken"></param>
+        /// <returns></returns>
         protected override async Task ExecuteAsync(CancellationToken stoppingToken)
         {
             await RunAsync(stoppingToken);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="stoppingToken"></param>
+        /// <returns></returns>
+        /// <exception cref="InvalidOperationException"></exception>
         public async Task RunAsync(CancellationToken stoppingToken)
         {
-            if (!_jobSettings.Enabled) {
-                _logger.LogInformation($"Job {_jobSettings.JobName} deshabilitado.");
-                return;
-            }
+            if (!IsJobEnabled()) return;
+            if (!IsJobScheduled()) return; 
 
             while (!stoppingToken.IsCancellationRequested) {
                 try { 
-                    var (scopeUser, userService) = GetServiceProvider<IUsuarioService>();
+                    var (scopeUser, userService) = GetServiceProvider<IDataQueryService>();
                     using (scopeUser)
                     {
                         var sb = new StringBuilder();
-                        var activeUsers = userService.GetAllAsync().Result.Where(u => u.activo == true);
+                        var activeUsers = userService.ObtenerAllUserData().Result.Where(u => u.Activo == true);
 
                         foreach (var usuario in activeUsers)  {
                             var (scopeSeg, segmentService) = GetServiceProvider<ISegmentoService>();
@@ -53,7 +71,7 @@ namespace WorkerService.Jobs
                         var workerServiceExecution = new WorkerServiceExecution
                         {
                             workerService = _jobSettings.JobName,
-                            result = WorkerServiceResult.Passed,
+                            result = WorkerServiceExecution.WorkerServiceResult.Passed,
                             resultDetailed = sb.ToString(),
                             executionTime = DateTime.UtcNow
                         };
@@ -69,7 +87,7 @@ namespace WorkerService.Jobs
                     // Añadir ejecución "Failed"
                     var workerServiceExecution = new WorkerServiceExecution { 
                         workerService = _jobSettings.JobName,
-                        result = WorkerServiceResult.Failed,
+                        result = WorkerServiceExecution.WorkerServiceResult.Failed,
                         resultDetailed = $"WorkerService has failed with error: {ex.Message.Truncate(500)}",
                         executionTime = DateTime.UtcNow
                     };

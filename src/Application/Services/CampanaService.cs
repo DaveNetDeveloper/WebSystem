@@ -8,6 +8,9 @@ using Domain.Entities;
 
 namespace Application.Services
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public class CampanaService : ICampanaService
     {
         private readonly ICampanaRepository _repo;
@@ -15,6 +18,7 @@ namespace Application.Services
         private readonly ICampanaAccionesRepository _repoCampanaAcciones;
         private readonly IAccionService _accionService;
 
+        /// <summary> Constructor </summary> 
         public CampanaService(ICampanaRepository repo,
                               ICampanaSegmentosRepository repoCampanaSegmentos,
                               ICampanaAccionesRepository repoCampanaAcciones,
@@ -44,14 +48,21 @@ namespace Application.Services
         public Task<bool> Remove(int id)
               => _repo.Remove(id);
 
-        //
-        // Obtener tablas relacionadas Segmentos y Acciones by Campaña
-        //
+        /// <summary>
+        /// Obtener los segmentos relacionadas con la campaña
+        /// </summary>
+        /// <param name="idCampana">Id de la campaña</param>
+        /// <returns>Devuelve la lista de segmentos para la campaña</returns>
         public async Task<IEnumerable<Segmento>> GetSegmentoByCampana(int idCampana)
         {
             return await _repoCampanaSegmentos.GetSegmentosByCampana(idCampana); 
         }
 
+        /// <summary>
+        /// Obtener las acciones relacionadas con la campaña
+        /// </summary>
+        /// <param name="idCampana">Id de la campaña</param>
+        /// <returns>Devuelve la lista de acciones para la campaña</returns>
         public async Task<IEnumerable<Accion>> GetAccionesByCampana(int idCampana)
         {
             return await _repoCampanaAcciones.GetAccionesByCampana(idCampana); 

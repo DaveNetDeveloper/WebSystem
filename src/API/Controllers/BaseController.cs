@@ -16,7 +16,6 @@ namespace API.Controllers
         protected ITokenService _tokenService;
         protected ILogger<BaseController<TEntity>> _logger;
         protected string _headerToken => HttpContext.Request.Headers["Authorization"].ToString();
-
         protected string ip => HttpContext.Connection.RemoteIpAddress?.ToString();
         protected string userAgent => HttpContext.Request.Headers["User-Agent"].ToString();
         protected Parser uaParser => Parser.GetDefault();

@@ -15,6 +15,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace API.Controllers
 {
+
     [ApiController]
     [Route("[controller]")]
     public class UsuariosController : BaseController<Usuario>, IController<IActionResult, Usuario, int>
@@ -23,13 +24,14 @@ namespace API.Controllers
         private readonly IEmailTokenService _emailTokenService;
         private readonly ICorreoService _correoService;
         private readonly AppConfiguration _appConfiguration;
+        
+        /// <summary> Constructor </summary>  
         public UsuariosController(ILogger<UsuariosController> logger, 
                                   IUsuarioService usuarioService,
                                   IEmailTokenService emailTokenService,
                                   ITokenService tokenService,
                                   ICorreoService correoService,
-                                  IOptions<AppConfiguration> options) 
-        {
+                                  IOptions<AppConfiguration> options) {
             base._logger = logger;  
             base._tokenService = tokenService;
             _appConfiguration = options.Value ?? throw new ArgumentNullException(nameof(options));
@@ -38,6 +40,10 @@ namespace API.Controllers
             _emailTokenService = emailTokenService ?? throw new ArgumentNullException(nameof(emailTokenService));
         }
 
+        /// <summary>
+        /// 
+        /// </summary>  
+        /// <returns> IEnumerable<Usuario> </returns>
         [Authorize(Policy = "RequireAdmin")] 
         [EnableRateLimiting("UsuariosLimiter")]
         [HttpGet("ObtenerUsuarios")]
@@ -59,6 +65,15 @@ namespace API.Controllers
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="filters"></param>
+        /// <param name="page"></param>
+        /// <param name="pageSize"></param>
+        /// <param name="orderBy"></param>
+        /// <param name="descending"></param>
+        /// <returns> IEnumerable<Usuario> </returns>
         //[AllowAnonymous]
         [Authorize(Policy = "RequireAdmin")]
         [HttpGet("FiltrarUsuarios")]
@@ -83,7 +98,7 @@ namespace API.Controllers
             }
         }
 
-        //// TODO To Delete
+        // TODO To Delete
         //[Authorize(Policy = "RequireAdmin")]
         //[HttpGet("ObtenerUsuario/{id}")]
         //public async Task<IActionResult> GetByIdAsync(int id) 
@@ -103,6 +118,11 @@ namespace API.Controllers
         //    } 
         //}
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param  name="usuario"></param> 
+        /// <returns> bool </returns>
         [Authorize(Policy = "RequireAdmin")]
         [HttpPost("CrearUsuario")]
         public async Task<IActionResult> AddAsync([FromBody] Usuario usuario)
@@ -139,6 +159,11 @@ namespace API.Controllers
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="usuario"></param>
+        /// <returns> bool </returns>
         [Authorize(Policy = "RequireAdmin")]
         [HttpPut("ActualizarUsuario")]
         public async Task<IActionResult> UpdateAsync([FromBody] Usuario usuario) 
@@ -159,9 +184,16 @@ namespace API.Controllers
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="email"></param>
+        /// <param name="nuevaContrasena"></param>
+        /// <returns> bool </returns>
         [Authorize]
         [HttpPatch("CambiarContrasena")]
-        public async Task<IActionResult> CambiarContrasena([FromQuery] string email, string nuevaContrasena) 
+        public async Task<IActionResult> CambiarContrasena([FromQuery] string email,
+                                                           [FromQuery] string nuevaContrasena) 
         {
             try {
                 var result = await _usuarioService.CambiarContrasena(email, nuevaContrasena);
@@ -178,6 +210,11 @@ namespace API.Controllers
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="email"></param> 
+        /// <returns> bool </returns>
         [AllowAnonymous]
         [HttpPatch("ValidarCuenta")]
         public async Task<IActionResult> ValidarCuenta([FromQuery] string email) 
@@ -198,13 +235,13 @@ namespace API.Controllers
         }
 
         /// <summary> Activa la suscripcion de un usuario </summary>
-        /// <param name="email">Email del destinatario a buscar</param>
         /// <param name="token">Token asociado si la petición viene de enlace de correo</param>
-        /// [FromQuery]
+        /// <param name="email">Email del destinatario a buscar</param>
+        /// <returns> bool </returns>
         [AllowAnonymous]
         [HttpPatch("ActivacionSuscripcion")]
-        public async Task<IActionResult> ActivacionSuscripcion([FromQuery] string token, [FromQuery][Required] string email) 
-        {
+        public async Task<IActionResult> ActivacionSuscripcion([FromQuery] string token, 
+                                                               [FromQuery][Required] string email)  {
             try {
                 var validToken = FormatValidationHelper.GetValidGuidFronString(token);
                 var validEmail = FormatValidationHelper.IsValidEmail(email);
@@ -234,12 +271,6 @@ namespace API.Controllers
                             var correo = new Correo(tipoEnvioCorreo, email, usuario.nombre, _appConfiguration.LogoURL);
                             _correoService.EnviarCorreo(correo);
 
-                            //_correoService.EnviarCorreo(correo,
-                            //                            EncodeDecodeHelper.GetDecodeValue(_appConfiguration.ServidorSmtp),
-                            //                            EncodeDecodeHelper.GetDecodeValue(_appConfiguration.PuertoSmtp),
-                            //                            EncodeDecodeHelper.GetDecodeValue(_appConfiguration.UsuarioSmtp),
-                            //                            EncodeDecodeHelper.GetDecodeValue(_appConfiguration.ContrasenaSmtp));
-                             
                             _logger.LogInformation(MessageProvider.GetMessage("Usuario:ActivacionSuscripcion", "Success"));
                             return Ok(consumeResult);
                         }
@@ -255,6 +286,9 @@ namespace API.Controllers
             }
         }
 
+        /// <summary>  </summary>
+        /// <param name="id">  </param> 
+        /// <returns> bool </returns>
         [Authorize(Policy = "RequireAdmin")]
         [HttpDelete("Eliminar/{id}")]
         public async Task<IActionResult> Remove(int id)
@@ -274,6 +308,9 @@ namespace API.Controllers
             }  
         }
 
+        /// <summary>  </summary>
+        /// <param name="idUsuario">  </param> 
+        /// <returns> List<Direccion> </returns>
         [Authorize]
         [HttpGet("GetDireccionesByUsuario/{idUsuario}")]
         public async Task<IActionResult> GetDireccionesByUsuario(int idUsuario)
@@ -293,6 +330,9 @@ namespace API.Controllers
             }
         }
 
+        /// <summary>  </summary>
+        /// <param name="idUsuario">  </param> 
+        /// <returns> List<Rol> </returns>
         [Authorize]
         [HttpGet("GetRolesByUsuario/{idUsuario}")]
         public async Task<IActionResult> GetRolesByUsuarioId(int idUsuario)

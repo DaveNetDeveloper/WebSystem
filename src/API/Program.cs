@@ -1,6 +1,5 @@
 using API.Middlewares;
-using Domain.Entities;
-using Application.Common; 
+using Domain.Entities; 
 using Application.DependencyInjection;
 using Infrastructure.DependencyInjection; 
 
@@ -11,11 +10,11 @@ using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using Microsoft.VisualBasic; 
-using System.Text;
 using System.Text.Json.Serialization;
 using System.Threading.RateLimiting;
-using FluentMigrator.Runner;
 using System.Reflection;
+using System.Text;
+using FluentMigrator.Runner;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -37,15 +36,12 @@ builder.Logging.AddEventSourceLogger();
 builder.Logging.AddFile(builder.Configuration.GetSection("Paths")["LogFilePath"]);
  
 builder.Services.AddHealthChecks();
-
 builder.Services.AddControllers().AddJsonOptions(options =>
 {
     // Para que los enums se serialicen/deserialicen como texto en vez de como int
     options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
 });
-
 builder.Services.AddEndpointsApiExplorer(); 
-
 builder.Services.Configure<AppConfiguration>(builder.Configuration.GetSection("AppConfiguration"));
 builder.Services.Configure<MailConfiguration>(builder.Configuration.GetSection("MailConfiguration"));
 
@@ -81,7 +77,6 @@ builder.Services.AddSwaggerGen(c => {
     var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
     var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
     c.IncludeXmlComments(xmlPath);
-
 }); 
  
 // Register Services & Filters 
@@ -137,7 +132,7 @@ if (builder.Environment.EnvironmentName == Application.Common.Environments.Test)
 
 //builder.Services.AddAuthorization();
 builder.Services.AddAuthorization(options => {
-    options.AddPolicy("RequireAdmin", policy => policy.RequireRole(Roles.Admin));
+    options.AddPolicy("RequireAdmin", policy => policy.RequireRole(Rol.Roles.Admin));
 });
 
 builder.Services.AddCors(options => {

@@ -23,7 +23,7 @@ namespace WorkerService.Jobs
             _jobsConfiguration = options.Value;
             _mailSettings = mailOptions.Value;
             _scopeFactory = scopeFactory;
-            _jobSettings = GetCurrentJobSettings(Common.WorkerService.ReminderForUnsubscribers); 
+            _jobSettings = GetCurrentJobSettings(WorkerService.ReminderForUnsubscribers); 
         }
         
         protected override async Task ExecuteAsync(CancellationToken stoppingToken)
@@ -33,10 +33,8 @@ namespace WorkerService.Jobs
          
         public async Task RunAsync(CancellationToken stoppingToken)
         {
-            if (!_jobSettings.Enabled) {
-                _logger.LogInformation($"Job {_jobSettings.JobName} deshabilitado.");
-                return;
-            }
+            if (!IsJobEnabled()) return;
+            if (!IsJobScheduled()) return;
 
             while (!stoppingToken.IsCancellationRequested) { 
                 try {
@@ -85,7 +83,7 @@ namespace WorkerService.Jobs
                         // Añadir ejecución "Passed"
                         var workerServiceExecution = new WorkerServiceExecution { 
                             workerService = _jobSettings.JobName,
-                            result = WorkerServiceResult.Passed,
+                            result = WorkerServiceExecution.WorkerServiceResult.Passed,
                             resultDetailed = sb.ToString(),
                             executionTime = DateTime.UtcNow
                         };
@@ -103,8 +101,8 @@ namespace WorkerService.Jobs
                 catch (Exception ex) { 
                     var workerServiceExecution = new WorkerServiceExecution {
                         //id =Guid.NewGuid(),
-                        workerService = Common.WorkerService.ReminderForUnsubscribers,
-                        result = WorkerServiceResult.Failed,
+                        workerService = WorkerService.ReminderForUnsubscribers,
+                        result = WorkerServiceExecution.WorkerServiceResult.Failed,
                         resultDetailed = $"WorkerService has failed with error: {ex.Message.Truncate(500)}",
                         executionTime = DateTime.UtcNow
                     }; 
