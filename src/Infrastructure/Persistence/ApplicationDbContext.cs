@@ -64,6 +64,8 @@ namespace Infrastructure.Persistence
         public DbSet<v_VisitasTipoDispositivo> v_VisitasTipoDispositivo { get; set; }
         public DbSet<v_TotalUltimasTransacciones> v_TotalUltimasTransacciones { get; set; }
         public DbSet<v_CampanasUsuarios> v_CampanasUsuarios { get; set; }
+        public DbSet<v_AllUserData> v_AllUserData { get; set; }
+        public DbSet<v_AllCampanasData> v_AllCampanasData { get; set; }
 
         //
         // Jobs
@@ -267,6 +269,16 @@ namespace Infrastructure.Persistence
             modelBuilder.Entity<v_CampanasUsuarios>(eb => {
                 eb.HasNoKey();
                 eb.ToView("v_CampanasUsuarios");
+            });
+
+            modelBuilder.Entity<v_AllUserData>(eb => {
+                eb.HasNoKey();
+                eb.ToView("v_AllUserData");
+            });
+
+            modelBuilder.Entity<v_AllCampanasData>(eb => {
+                eb.HasNoKey();
+                eb.ToView("v_AllCampanasData");
             });
 
             //

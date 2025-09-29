@@ -17,6 +17,10 @@ namespace API.Controllers
             _dataQueryService = dataQueryService ?? throw new ArgumentNullException(nameof(dataQueryService));  
         }
 
+        /// <summary>
+        /// Vista que obtiene ...
+        /// </summary>
+        /// <returns> vUsuariosInactivosDTO view entity </returns>
         //[Authorize(Policy = "RequireAdmin")]
         [HttpGet("ObtenerUsuariosInactivos")]
         public async Task<IActionResult> ObtenerUsuariosInactivos()
@@ -25,6 +29,10 @@ namespace API.Controllers
             return (queryResult != null && queryResult.Any()) ? Ok(queryResult) : NoContent();
         }
 
+        /// <summary>
+        /// Vista que obtiene ...
+        /// </summary>
+        /// <returns> vActividadUsuariosDTO view entity </returns>
         //[Authorize(Policy = "RequireAdmin")]
         [HttpGet("ObtenerActividadUsuarios")]
         public async Task<IActionResult> ObtenerActividadUsuarios()
@@ -33,6 +41,10 @@ namespace API.Controllers
             return (queryResult != null && queryResult.Any()) ? Ok(queryResult) : NoContent();
         }
 
+        /// <summary>
+        /// Vista que obtiene ...
+        /// </summary>
+        /// <returns> vUsuariosDispositivosDTO view entity </returns>
         //[Authorize(Policy = "RequireAdmin")]
         [HttpGet("ObtenerUsuariosDispositivos")]
         public async Task<IActionResult> ObtenerUsuariosDispositivos()
@@ -41,6 +53,10 @@ namespace API.Controllers
             return (queryResult != null && queryResult.Any()) ? Ok(queryResult) : NoContent();
         }
 
+        /// <summary>
+        /// Vista que obtiene ...
+        /// </summary>
+        /// <returns> vUsuariosIdiomasDTO view entity </returns>
         //[Authorize(Policy = "RequireAdmin")]
         [HttpGet("ObtenerUsuariosIdiomas")]
         public async Task<IActionResult> ObtenerUsuariosIdiomas()
@@ -49,6 +65,10 @@ namespace API.Controllers
             return (queryResult != null && queryResult.Any()) ? Ok(queryResult) : NoContent();
         }
 
+        /// <summary>
+        /// Vista que obtiene ...
+        /// </summary>
+        /// <returns> vRolesUsuariosDTO view entity </returns>
         //[Authorize(Policy = "RequireAdmin")]
         [HttpGet("ObtenerRolesUsuarios")]
         public async Task<IActionResult> ObtenerRolesUsuarios()
@@ -57,6 +77,10 @@ namespace API.Controllers
             return (queryResult != null && queryResult.Any()) ? Ok(queryResult) : NoContent();
         }
 
+        /// <summary>
+        /// Vista que obtiene ...
+        /// </summary>
+        /// <returns> vVisitasTipoDispositivoDTO view entity </returns>
         //[Authorize(Policy = "RequireAdmin")]
         [HttpGet("ObtenerVisitasTipoDispositivo")]
         public async Task<IActionResult> ObtenerVisitasTipoDispositivo()
@@ -65,6 +89,10 @@ namespace API.Controllers
             return (queryResult != null && queryResult.Any()) ? Ok(queryResult) : NoContent();
         }
 
+        /// <summary>
+        /// Vista que obtiene ...
+        /// </summary>
+        /// <returns> vTotalUltimasTransaccionesDTO view entity </returns>
         //[Authorize(Policy = "RequireAdmin")]
         [HttpGet("ObtenerTotalUltimasTransacciones")]
         public async Task<IActionResult> ObtenerTotalUltimasTransacciones()
@@ -73,11 +101,39 @@ namespace API.Controllers
             return (queryResult != null && queryResult.Any()) ? Ok(queryResult) : NoContent();
         }
 
+        /// <summary>
+        /// Vista que obtiene ...
+        /// </summary>
+        /// <returns> vCampanasUsuariosDTO view entity </returns>
         //[Authorize(Policy = "RequireAdmin")]
         [HttpGet("ObtenerObtenerCampanasUsuarios")]
         public async Task<IActionResult> ObtenerCampanasUsuarios()
         {
             IReadOnlyList<vCampanasUsuariosDTO> queryResult = await _dataQueryService.ObtenerCampanasUsuarios();
+            return (queryResult != null && queryResult.Any()) ? Ok(queryResult) : NoContent();
+        }
+
+        /// <summary>
+        /// Vista que obtiene toda la informacion relacionada con los usuarios
+        /// </summary>
+        /// <returns> vAllUserDataDTO view entity </returns>
+        //[Authorize(Policy = "RequireAdmin")]
+        [HttpGet("ObtenerAllUserData")]
+        public async Task<IActionResult> ObtenerAllUserData()
+        {
+            IReadOnlyList<vAllUserDataDTO> queryResult = await _dataQueryService.ObtenerAllUserData();
+            return (queryResult != null && queryResult.Any()) ? Ok(queryResult) : NoContent();
+        }
+
+        /// <summary>
+        /// Vista que obtiene toda la informacion relacionada con los detalles de las campañas
+        /// </summary>
+        /// <returns> vAllUserDataDTO view entity </returns>
+        //[Authorize(Policy = "RequireAdmin")]
+        [HttpGet("ObtenerAllCampanasData")]
+        public async Task<IActionResult> ObtenerAllCampanasData()
+        {
+            IReadOnlyList<vAllCampanasDataDTO> queryResult = await _dataQueryService.ObtenerAllCampanasData();
             return (queryResult != null && queryResult.Any()) ? Ok(queryResult) : NoContent();
         }
     }

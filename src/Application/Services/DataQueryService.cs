@@ -36,5 +36,10 @@ namespace Application.Services
         public async Task<IReadOnlyList<vCampanasUsuariosDTO>> ObtenerCampanasUsuarios(int page = 1, int pageSize = 100)
           => await _repo.ObtenerCampanasUsuarios(page, pageSize);
 
+        public async Task<IReadOnlyList<vAllUserDataDTO>> ObtenerAllUserData(int page = 1, int pageSize = 100)
+          => await _repo.ObtenerAllUserData(page, pageSize);
+
+        public async Task<IReadOnlyList<vAllCampanasDataDTO>> ObtenerAllCampanasData(int page = 1, int pageSize = 100)
+          => await _repo.ObtenerAllCampanasData(page, pageSize);
     }
 }
