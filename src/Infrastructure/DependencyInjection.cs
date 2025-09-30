@@ -74,6 +74,7 @@ namespace Infrastructure.DependencyInjection
             services.AddScoped<ILoginRepository, LoginRepository>();
             services.AddScoped<IDataQueryRepository, DataQueryRepository>();
             services.AddScoped<ITipoTransaccionRepository, TipoTransaccionRepository>();
+            services.AddScoped<IInAppNotificationRepository, InAppNotificationRepository>();
 
             return services;
         }
