@@ -140,8 +140,8 @@ namespace Domain.Entities
         /// <summary>
         /// Código de recomendación para compartir con amigos
         /// </summary>
-        private string _codigoRecomendacion;
-        public string codigoRecomendacion
+        private string? _codigoRecomendacion;
+        public string? codigoRecomendacion
         {
             get => _codigoRecomendacion;
             set => _codigoRecomendacion = value;
@@ -150,8 +150,8 @@ namespace Domain.Entities
         /// <summary>
         /// Código de recomendación de referencia que un amigo ha compartido con el usuario
         /// </summary>
-        private string _codigoRecomendacionRef;
-        public string codigoRecomendacionRef
+        private string? _codigoRecomendacionRef;
+        public string? codigoRecomendacionRef
         {
             get => _codigoRecomendacionRef;
             set => _codigoRecomendacionRef = value;

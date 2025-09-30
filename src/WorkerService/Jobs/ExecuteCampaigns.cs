@@ -5,7 +5,7 @@ using WorkerService.Configuration;
 using WorkerService.Interfaces;
 using Utilities;
 
-using Microsoft.Extensions.Options;
+using Microsoft.Extensions.Options; 
 using System.Text;
 
 namespace WorkerService.Jobs
@@ -51,8 +51,8 @@ namespace WorkerService.Jobs
 
             while (!stoppingToken.IsCancellationRequested) {
                 try { 
-                    var (scopeUser, campanaService) = GetServiceProvider<ICampanaService>();
-                    using (scopeUser)
+                    var (scopeCampana, campanaService) = GetServiceProvider<ICampanaService>();
+                    using (scopeCampana)
                     {
                         // Obetenmos y recorremos todas las campañas activas
                         var activeCampaigns = campanaService.GetAllAsync()
@@ -64,7 +64,7 @@ namespace WorkerService.Jobs
                             // Obtenemos la ultima ejecucion de la campaña
                             CampanaExecution? lastCampaignExecution; 
                             var (scopeExecution, executionService) = GetServiceProvider<ICampanaExecutionService>();
-                            using (scopeUser)
+                            using (scopeExecution)
                             {
                                 lastCampaignExecution = executionService.GetAllAsync()
                                                                         .Result
@@ -72,48 +72,56 @@ namespace WorkerService.Jobs
                                                                         .OrderByDescending(e => e.fechaEjecucion)
                                                                         .FirstOrDefault();
 
+                                string jsonEmpty = @"{ ""idUsuario"": [ ] }";
+                                string jsonResult = "";
+                                if (lastCampaignExecution == null)
+                                    jsonResult = jsonEmpty;
+                                else
+                                    jsonResult = lastCampaignExecution.idsUsuarios;
+
                                 // Comprobamos si hay que ejecutar la campaña
                                 if (campaign.IsTimeToRun(lastCampaignExecution))
                                 {
                                     // Obtener acciones de cada campaña 
-                                    var acciones = campanaService.GetAccionesByCampana(campaign.id);
-                                    if (!acciones.Result.Any()) continue;
-
-                                    var listaAcciones = acciones.Result;
+                                    var acciones = campanaService.GetAccionesByCampana(campaign.id).Result;
+                                    if (acciones == null || !acciones.Any()) continue; 
 
                                     // Obtener segmentos de cada campaña
-                                    var segmentos = campanaService.GetSegmentoByCampana(campaign.id);
-                                    if (!segmentos.Result.Any()) continue;
+                                    var segmentos = campanaService.GetSegmentoByCampana(campaign.id).Result;
+                                    if (segmentos == null || !segmentos.Any()) continue;
 
                                     bool resultActionsExec = false;
-                                    foreach (var segmento in segmentos.Result)
+                                    foreach (var segmento in segmentos)
                                     {
                                         // Obtener usuarios de cada segmento
-                                        var (scopeSeg, segmentService) = GetServiceProvider<ISegmentoService>();
-                                        using (scopeSeg)
+                                        var (scopeSegment, segmentService) = GetServiceProvider<ISegmentoService>();
+                                        using (scopeSegment) 
                                         {
-                                            var usuarios = segmentService.GetUsuariosBySegmento(segmento.id);
-                                            if (!usuarios.Result.Any()) continue;
+                                            // Obtener usuarios de cada segmento
+                                            var usuarios = segmentService.GetUsuariosBySegmento(segmento.id).Result; 
+                                            if (usuarios == null || !usuarios.Any()) continue;
 
-                                            foreach (var usuario in usuarios.Result)
-                                            {
-                                                if (usuario?.id == null) continue;
+                                            foreach (var usuario in usuarios)  {
 
+                                                if (usuario?.id == null) continue; 
                                                 var (scopeAction, actionService) = GetServiceProvider<IAccionService>();
-                                                using (scopeAction)
-                                                {
-                                                    resultActionsExec = await actionService.EjecutarAccionesForUser(listaAcciones,
+                                                using (scopeAction) {
+                                                    resultActionsExec = await actionService.EjecutarAccionesForUser(acciones,
                                                                                                                     usuario.id.Value,
                                                                                                                     campaign.id);
+                                                    if (resultActionsExec)
+                                                        jsonResult = JsonHelper.AddValue(jsonResult, "idUsuario", usuario.id.ToString());
                                                 }
                                             }
                                         }
                                     }
                                     // Regista la ejecucion de la campaña
-                                    var currentExecution = new CampanaExecution { 
-                                        idCampana = campaign.id, 
+                                    var currentExecution = new CampanaExecution
+                                    {
+                                        idCampana = campaign.id,
                                         fechaEjecucion = DateTime.UtcNow,
-                                        estado = resultActionsExec ? CampanaExecution.EstadoEjecucion.Passed : CampanaExecution.EstadoEjecucion.Error
+                                        estado = resultActionsExec ? CampanaExecution.EstadoEjecucion.Passed : CampanaExecution.EstadoEjecucion.Error,
+                                        idsUsuarios = jsonResult
                                     };
                                     await executionService.AddAsync(currentExecution);
                                 }

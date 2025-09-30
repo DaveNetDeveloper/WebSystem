@@ -57,7 +57,8 @@ namespace Infrastructure.Repositories
                 id = Guid.NewGuid(),
                 idCampana = campanaExecution.idCampana,
                 estado = campanaExecution.estado,
-                fechaEjecucion = campanaExecution.fechaEjecucion
+                fechaEjecucion = campanaExecution.fechaEjecucion,
+                idsUsuarios = campanaExecution.idsUsuarios
             };
 
             await _context.CampanaExecutions.AddAsync(nuevaCampanaExecution);
@@ -73,7 +74,8 @@ namespace Infrastructure.Repositories
 
             toUpdate.idCampana = campanaExecution.idCampana;
             toUpdate.fechaEjecucion = campanaExecution.fechaEjecucion;
-            toUpdate.estado = campanaExecution.estado; 
+            toUpdate.estado = campanaExecution.estado;
+            toUpdate.idsUsuarios = campanaExecution.idsUsuarios;
 
             await _context.SaveChangesAsync();
             return true;

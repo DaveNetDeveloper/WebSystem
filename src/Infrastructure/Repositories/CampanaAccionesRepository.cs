@@ -64,9 +64,11 @@ namespace Infrastructure.Repositories
             return true;
         }
 
-        //
-        //
-        //
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="idCampana"></param>
+        /// <returns> IEnumerable<Accion> </returns>
         public async Task<IEnumerable<Accion>> GetAccionesByCampana(int idCampana)
         {
             var campanaAccion = _context.CampanaAcciones.Include(a => a.Accion).Where(ca => ca.idCampana == idCampana);
