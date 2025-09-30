@@ -22,6 +22,9 @@ namespace Application.Services
         public Task<InAppNotification?> GetByIdAsync(Guid id)
             => _repo.GetByIdAsync(id);
 
+        public Task<IEnumerable<string>> ObtenerTiposEnvioInApp()
+            => _repo.ObtenerTiposEnvioInApp();
+       
         public Task<PagedResult<InAppNotification>> GetByFiltersAsync(InAppNotificationFilters filters,
                                                                       IQueryOptions<InAppNotification>? queryOptions = null)
             => _repo.GetByFiltersAsync(filters, queryOptions);

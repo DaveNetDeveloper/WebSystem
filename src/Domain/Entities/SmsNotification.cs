@@ -53,7 +53,7 @@
         /// <summary>
         /// Enumeración para los tipos de notificación SMS
         /// </summary>
-        public static class SmsNotificationType
+        public static class TipoEnvioSms
         {
             public const string Type1 = "Type1";
             public const string Type2 = "Type2";

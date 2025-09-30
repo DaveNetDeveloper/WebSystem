@@ -13,7 +13,8 @@ using LinqKit;
 
 namespace Infrastructure.Repositories
 {
-    public class InAppNotificationRepository : BaseRepository<InAppNotification>, IInAppNotificationRepository
+    public class InAppNotificationRepository : BaseRepository<InAppNotification>, 
+                                               IInAppNotificationRepository
     {
         private readonly ApplicationDbContext _context;
 
@@ -32,8 +33,8 @@ namespace Infrastructure.Repositories
             if (_filters.Id.HasValue)
                 predicate = predicate.And(u => u.id == _filters.Id.Value);
 
-            if (!string.IsNullOrEmpty(_filters.InAppNotificationType))
-                predicate = predicate.And(u => u.inAppNotificationType.ToLower() == _filters.InAppNotificationType.ToLower());
+            if (!string.IsNullOrEmpty(_filters.TipoEnvioInApp))
+                predicate = predicate.And(u => u.tipoEnvioInApp.ToLower() == _filters.TipoEnvioInApp.ToLower());
             
             if (_filters.IdUsuario.HasValue)
 
@@ -69,12 +70,18 @@ namespace Infrastructure.Repositories
         public async Task<IEnumerable<InAppNotification>> GetAllAsync() =>
             await _context.InAppNotifications.ToListAsync();
 
+        public async Task<IEnumerable<string>> ObtenerTiposEnvioInApp() =>
+           await _context.InAppNotifications
+                         .Select(s => s.tipoEnvioInApp)
+                         .Distinct()
+                         .ToListAsync();
+
         public async Task<bool> AddAsync(InAppNotification inAppNotification)
         {
             var nuevaInAppNotificationDb = new InAppNotification {
                 id = Guid.NewGuid(),
                 idUsuario = inAppNotification.idUsuario,
-                inAppNotificationType = inAppNotification.inAppNotificationType,
+                tipoEnvioInApp = inAppNotification.tipoEnvioInApp,
                 titulo = inAppNotification.titulo,
                 mensaje = inAppNotification.mensaje,
                 activo = inAppNotification.activo,
@@ -95,7 +102,7 @@ namespace Infrastructure.Repositories
                 return false;
 
             inAppNotificationDb.idUsuario = inAppNotification.idUsuario;
-            inAppNotificationDb.inAppNotificationType = inAppNotification.inAppNotificationType;
+            inAppNotificationDb.tipoEnvioInApp = inAppNotification.tipoEnvioInApp;
             inAppNotificationDb.titulo = inAppNotification.titulo;
             inAppNotificationDb.mensaje = inAppNotification.mensaje;
             inAppNotificationDb.activo = inAppNotification.activo;

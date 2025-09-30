@@ -10,6 +10,7 @@ namespace Application.Interfaces.Repositories
     { 
         Task<PagedResult<InAppNotification>> GetByFiltersAsync(InAppNotificationFilters filters, 
                                                                IQueryOptions<InAppNotification>? options = null,
-                                                               CancellationToken cancellationToken = default); 
+                                                               CancellationToken cancellationToken = default);
+        Task<IEnumerable<string>> ObtenerTiposEnvioInApp();
     }
 }

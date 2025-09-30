@@ -18,7 +18,7 @@
         /// <summary>
         /// 
         /// </summary>
-        public string inAppNotificationType { get; set; }
+        public string tipoEnvioInApp { get; set; }
 
         /// <summary>
         /// 
@@ -43,12 +43,15 @@
         /// <summary>
         /// Enumeración para los tipos de notificación InApp
         /// </summary>
-        public static class InAppNotificationType
-        {
-            public const string Type1 = "Type1";
-            public const string Type2 = "Type2";
-            public const string Type3 = "Type3";
-            public const string Type4 = "Type4";
+        public static class TipoEnvioInApp
+        { 
+            public const string Novedades = "Novedades";
+            public const string Bienvenida = "Bienvenida";
+            public const string NuevaRecompensa = "NuevaRecompensa";
+            public const string Recomendacion = "Recomendacion";
+            public const string PrimeraCompra = "PrimeraCompra";
+            public const string VolverAVerte = "VolverAVerte";
+            public const string TerminosyCondiciones = "TerminosyCondiciones"; 
         }
     }
 }

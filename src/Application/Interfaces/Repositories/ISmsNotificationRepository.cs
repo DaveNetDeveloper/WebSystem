@@ -10,6 +10,7 @@ namespace Application.Interfaces.Repositories
     { 
         Task<PagedResult<SmsNotification>> GetByFiltersAsync(SmsNotificationFilters filters, 
                                                              IQueryOptions<SmsNotification>? options = null,
-                                                             CancellationToken cancellationToken = default); 
+                                                             CancellationToken cancellationToken = default);
+        Task<IEnumerable<string>> ObtenerTiposEnvioSms();
     }
 }

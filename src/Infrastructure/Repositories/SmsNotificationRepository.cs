@@ -13,7 +13,8 @@ using LinqKit;
 
 namespace Infrastructure.Repositories
 {
-    public class SmsNotificationRepository : BaseRepository<SmsNotification>, ISmsNotificationRepository
+    public class SmsNotificationRepository : BaseRepository<SmsNotification>, 
+                                             ISmsNotificationRepository
     {
         private readonly ApplicationDbContext _context;
 
@@ -70,6 +71,12 @@ namespace Infrastructure.Repositories
          
         public async Task<IEnumerable<SmsNotification>> GetAllAsync() =>
             await _context.SmsNotifications.ToListAsync();
+
+        public async Task<IEnumerable<string>> ObtenerTiposEnvioSms() =>
+            await _context.SmsNotifications
+                          .Select(s => s.tipoEnvioSms)
+                          .Distinct()
+                          .ToListAsync();
 
         public async Task<bool> AddAsync(SmsNotification smsNotification)
         {

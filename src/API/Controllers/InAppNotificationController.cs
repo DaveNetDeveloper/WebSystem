@@ -3,6 +3,7 @@ using Application.DTOs.Filters;
 using Application.Interfaces.Controllers; 
 using Application.Interfaces.DTOs.Filters;
 using Application.Interfaces.Services;
+using Application.Services;
 using Domain.Entities;
 
 using Microsoft.AspNetCore.Authorization;
@@ -48,6 +49,18 @@ namespace API.Controllers
         /// <summary>
         /// 
         /// </summary>
+        /// <returns></returns>
+        [Authorize]
+        [HttpGet("ObtenerTiposEnvioInApp")]
+        public async Task<IActionResult> ObtenerTiposEnvioInApp()
+        {
+            var tiposEnvioInApp = await _inAppNotificationService.ObtenerTiposEnvioInApp();
+            return (tiposEnvioInApp != null && tiposEnvioInApp.Any()) ? Ok(tiposEnvioInApp) : NoContent();
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
         /// <param name="filters"></param>
         /// <param name="page"></param>
         /// <param name="pageSize"></param>
@@ -88,7 +101,7 @@ namespace API.Controllers
             {
                 id = inAppNotification.id,
                 idUsuario = inAppNotification.idUsuario,
-                inAppNotificationType = inAppNotification.inAppNotificationType,
+                tipoEnvioInApp = inAppNotification.tipoEnvioInApp,
                 fechaCreacion = DateTime.UtcNow,
                 activo = inAppNotification.activo,
                 titulo = inAppNotification.titulo,

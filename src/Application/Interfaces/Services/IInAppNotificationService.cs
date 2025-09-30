@@ -10,5 +10,6 @@ namespace Application.Interfaces.Services
     {
         Task<PagedResult<InAppNotification>> GetByFiltersAsync(InAppNotificationFilters filters,
                                                                IQueryOptions<InAppNotification>? queryOptions = null);
+        Task<IEnumerable<string>> ObtenerTiposEnvioInApp();
     }
 }

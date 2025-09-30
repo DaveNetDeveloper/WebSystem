@@ -7,6 +7,7 @@ using Domain.Entities;
 
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System.ComponentModel.DataAnnotations;
 
 namespace API.Controllers
 {
@@ -33,6 +34,21 @@ namespace API.Controllers
             _smsNotificationService = smsNotificationService ?? throw new ArgumentNullException(nameof(smsNotificationService));
         }
 
+        /// <summary> Envia un SMS </summary>
+        /// <param name="sms"> SMS con los datos del envio </param> 
+        [Authorize]
+        [HttpPost("Enviar")]
+        public IActionResult EnviarSms([FromBody][Required] Sms sms)
+        {
+            try {
+                var result = _smsNotificationService.EnviarSms(sms);
+                return Ok("SMS enviado correctamente");
+            }
+            catch (Exception ex) {
+                return BadRequest($"Error al enviar el SMS: {ex.Message}");
+            }
+        }
+
         /// <summary>
         /// 
         /// </summary>
@@ -44,6 +60,18 @@ namespace API.Controllers
             var smsNotification = await _smsNotificationService.GetAllAsync();
             return (smsNotification != null && smsNotification.Any()) ? Ok(smsNotification) : NoContent();
         }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        [Authorize]
+        [HttpGet("ObtenerTiposEnvioSms")]
+        public async Task<IActionResult> ObtenerTiposEnvioSms()
+        {
+            var tiposEnvioSms = await _smsNotificationService.ObtenerTiposEnvioSms();
+            return (tiposEnvioSms != null && tiposEnvioSms.Any()) ? Ok(tiposEnvioSms) : NoContent();
+        } 
 
         /// <summary>
         /// 

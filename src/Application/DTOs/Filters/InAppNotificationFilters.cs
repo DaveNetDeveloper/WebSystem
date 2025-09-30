@@ -7,7 +7,7 @@ namespace Application.DTOs.Filters
     {
         public Guid? Id { get; set; }
         public int? IdUsuario { get; set; }
-        public string? InAppNotificationType { get; set; }
+        public string? TipoEnvioInApp { get; set; }
         public bool? Activo { get; set; }  
     }
 }
