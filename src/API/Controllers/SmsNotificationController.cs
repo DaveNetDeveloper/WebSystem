@@ -1,0 +1,148 @@
+﻿using Application.Common;
+using Application.DTOs.Filters;
+using Application.Interfaces.Controllers; 
+using Application.Interfaces.DTOs.Filters;
+using Application.Interfaces.Services;
+using Domain.Entities;
+
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+
+namespace API.Controllers
+{
+    /// <summary>
+    /// 
+    /// </summary>
+    [ApiController]
+    [Route("[controller]")]
+    public class SmsNotificationController : BaseController<SmsNotification>, 
+                                             IController<IActionResult, SmsNotification, Guid>
+    { 
+        private readonly ISmsNotificationService _smsNotificationService;
+
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        /// <param name="logger"></param>
+        /// <param name="smsNotificationService"></param>
+        /// <exception cref="ArgumentNullException"></exception>
+        public SmsNotificationController(ILogger<SmsNotificationController> logger,
+                                         ISmsNotificationService smsNotificationService)
+        {
+            _logger = logger;
+            _smsNotificationService = smsNotificationService ?? throw new ArgumentNullException(nameof(smsNotificationService));
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        [Authorize]
+        [HttpGet("ObtenerSmsNotifications")]
+        public async Task<IActionResult> GetAllAsync()
+        {
+            var smsNotification = await _smsNotificationService.GetAllAsync();
+            return (smsNotification != null && smsNotification.Any()) ? Ok(smsNotification) : NoContent();
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="filters"></param>
+        /// <param name="page"></param>
+        /// <param name="pageSize"></param>
+        /// <param name="orderBy"></param>
+        /// <param name="descending"></param>
+        /// <returns></returns>
+        /// <exception cref="InvalidOperationException"></exception>
+        [Authorize]
+        [HttpGet("FiltrarSmsNotifications")]
+        public async Task<IActionResult> GetByFiltersAsync([FromQuery] IFilters<SmsNotification> filters,
+                                                           [FromQuery] int? page,
+                                                           [FromQuery] int? pageSize,
+                                                           [FromQuery] string? orderBy,
+                                                           [FromQuery] bool descending = false) {
+            var _filters = filters as SmsNotificationFilters;
+
+            if (_filters is null)
+                throw new InvalidOperationException("El filtro recibido no es 'SmsNotificationFilters'.");
+            //else
+            //_filters = ((SmsNotificationFilters)(IFilters<SmsNotification>)filters);
+
+            var queryOptions = GetQueryOptions(page, pageSize, orderBy, descending);
+
+            var filtered = await _smsNotificationService.GetByFiltersAsync(_filters, queryOptions);
+            return Ok(filtered);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="smsNotification"></param>
+        /// <returns></returns>
+        [Authorize]
+        [HttpPost("CrearSmsNotification")]
+        public async Task<IActionResult> AddAsync([FromBody] SmsNotification smsNotification)
+        {
+            var nuevaSmsNotification = new SmsNotification
+            {
+                id = smsNotification.id,
+                idUsuario = smsNotification.idUsuario,
+                tipoEnvioSms = smsNotification.tipoEnvioSms,
+                fechaCreacion = DateTime.UtcNow,
+                fechaEnvio = smsNotification.fechaEnvio,
+                titulo = smsNotification.titulo,
+                mensaje = smsNotification.mensaje,
+                activo = smsNotification.activo,
+                telefono = smsNotification.telefono
+            }; 
+
+            var result = await _smsNotificationService.AddAsync(nuevaSmsNotification);
+            if (result == false) return NotFound();
+            else {
+                _logger.LogInformation(MessageProvider.GetMessage("SmsNotification:Crear", "Success"));
+                return Ok(result);
+            } 
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="smsNotification"></param>
+        /// <returns></returns>
+        [Authorize]
+        [HttpPut("ActualizarSmsNotification")]
+        public async Task<IActionResult> UpdateAsync([FromBody] SmsNotification smsNotification)
+        {
+            var result = await _smsNotificationService.UpdateAsync(smsNotification); 
+            if (result == false) return NotFound();
+            else {
+                _logger.LogInformation(MessageProvider.GetMessage("SmsNotification:Actualizar", "Success"));
+                return Ok(result);
+            }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        [Authorize]
+        [HttpDelete("Eliminar/{id}")]
+        public async Task<IActionResult> Remove(Guid id)
+        { 
+            try {
+                var result = await _smsNotificationService.Remove(id);
+                if (result == false) return NotFound();
+                else {
+                    _logger.LogInformation(MessageProvider.GetMessage("SmsNotification:Eliminar", "Success"));
+                    return Ok(result);
+                }
+            }
+            catch (Exception ex) {
+                _logger.LogError(ex, "Error eliminando la SmsNotification, {id}.", id);
+                return StatusCode(StatusCodes.Status500InternalServerError,
+                                 new { message = MessageProvider.GetMessage("SmsNotification:Eliminar", "Error"), id });
+            }  
+        }
+    }
+}

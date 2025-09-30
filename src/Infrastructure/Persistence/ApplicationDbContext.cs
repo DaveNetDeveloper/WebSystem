@@ -36,6 +36,8 @@ namespace Infrastructure.Persistence
         public DbSet<Direccion> Direcciones { get; set; }
         public DbSet<TipoEnvioCorreo> TipoEnvioCorreos { get; set; }
         public DbSet<InAppNotification> InAppNotifications { get; set; }
+        public DbSet<SmsNotification> SmsNotifications { get; set; }
+
         //public DbSet<EmailNotification> EmailNotifications { get; set; }
         public DbSet<EmailToken> EmailTokens { get; set; }
         public DbSet<Consulta> Consultas { get; set; } 

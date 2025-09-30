@@ -75,6 +75,7 @@ namespace Infrastructure.DependencyInjection
             services.AddScoped<IDataQueryRepository, DataQueryRepository>();
             services.AddScoped<ITipoTransaccionRepository, TipoTransaccionRepository>();
             services.AddScoped<IInAppNotificationRepository, InAppNotificationRepository>();
+            services.AddScoped<ISmsNotificationRepository, SmsNotificationRepository>();
 
             return services;
         }

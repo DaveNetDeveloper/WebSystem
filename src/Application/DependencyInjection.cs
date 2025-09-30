@@ -47,7 +47,8 @@ namespace Application.DependencyInjection
             services.AddScoped<IDataQueryService, DataQueryService>();
             services.AddScoped<ITipoTransaccionService, TipoTransaccionService>();
             services.AddScoped<IInAppNotificationService, InAppNotificationService>();
-            
+            services.AddScoped<ISmsNotificationService, SmsNotificationService>();
+
 
             //
             // Register Filters
@@ -78,6 +79,7 @@ namespace Application.DependencyInjection
             services.AddScoped<IFilters<Login>, LoginFilters>();
             services.AddScoped<IFilters<TipoTransaccion>, TipoTransaccionFilters>();
             services.AddScoped<IFilters<InAppNotification>, InAppNotificationFilters>();
+            services.AddScoped<IFilters<SmsNotification>, SmsNotificationFilters>();
 
             return services;
         }
