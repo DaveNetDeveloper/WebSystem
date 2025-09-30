@@ -15,7 +15,7 @@ namespace Application.Services
     public class AuthService : IAuthService
     {
         private readonly IUsuarioRepository _usuarioRepo;
-        private readonly ICorreoService _correoService; 
+        private readonly ICorreoService _correoService;
         private readonly ILoginService _loginService;
 
         /// <summary>
@@ -24,7 +24,7 @@ namespace Application.Services
         /// <param name="usuarioRepo"></param>
         /// <param name="correoService"></param>
         /// <param name="loginService"></param>
-        public AuthService(IUsuarioRepository usuarioRepo, 
+        public AuthService(IUsuarioRepository usuarioRepo,
                            ICorreoService correoService,
                            ILoginService loginService) {
             _usuarioRepo = usuarioRepo;
@@ -41,19 +41,19 @@ namespace Application.Services
         public async Task<AuthUser?> Login(string userName, string password)
         {
             //var hashed = PasswordService.HashPassword(password); 
-            var authUser = _usuarioRepo.Login(userName, password); 
-            
-            if(authUser != null && authUser.Result != null) { 
+            var authUser = _usuarioRepo.Login(userName, password);
+
+            if (authUser != null && authUser.Result != null) {
                 var usuarioRoles = await _usuarioRepo.GetRolesByUsuarioId(authUser.Result.Id);
-                if (usuarioRoles != null && usuarioRoles.Any()) { 
-                
+                if (usuarioRoles != null && usuarioRoles.Any()) {
+
                     var maxRole = usuarioRoles.OrderByDescending(r => r.level).FirstOrDefault();
                     authUser.Result.Role = maxRole.nombre;
                 }
                 else authUser.Result.Role = null;
             }
             return authUser.Result;
-        } 
+        }
 
         /// <summary>
         /// 
@@ -64,10 +64,10 @@ namespace Application.Services
         /// <returns> bool </returns>
         public async Task<bool> RefreshToken(int idUser, string token, DateTime expires)
         {
-            var updatedUSer = await _usuarioRepo.GetByIdAsync(idUser); 
+            var updatedUSer = await _usuarioRepo.GetByIdAsync(idUser);
             updatedUSer.token = token;
-            updatedUSer.expiracionToken = expires; 
-            var result = await _usuarioRepo.UpdateAsync(updatedUSer); 
+            updatedUSer.expiracionToken = expires;
+            var result = await _usuarioRepo.UpdateAsync(updatedUSer);
             return result;
         }
 
@@ -107,7 +107,7 @@ namespace Application.Services
             user.contrasena = PasswordHelper.HashPassword(newPassword);
             var passwordResult = await _usuarioRepo.UpdateAsync(user);
 
-            var tokenResult = DeleteUserToken(user.id.Value); 
+            var tokenResult = DeleteUserToken(user.id.Value);
 
             return true;
         }
@@ -126,6 +126,31 @@ namespace Application.Services
             var result = await _usuarioRepo.UpdateAsync(userById);
             return result;
         }
+
+        public async Task<bool> Register(Usuario user)
+        {
+
+            // Proceso de login
+
+            var result = _usuarioRepo.Register(user);
+
+
+            // Si el usuario viene recomendado
+            if (user.codigoRecomendacionRef != null && !string.IsNullOrEmpty(user.codigoRecomendacionRef))  {
+
+                // Crear recompensa de recomendacion para el usuario recomendador
+                // El usuario es el que tiene .codigoRecomendacion == .codigoRecomendacionRef
+                // Actualizar balance de puntos de usuario(+ puntos)
+                // Enviar mail notificando la recompensa por recomendacion
+                // Crear InAppNotificacion para que el usuario recomendador lo vea en el el proximo login 
+
+                // ¿Crear tambien puntos para el usuario recomendado?
+
+            }
+
+
+            return true;
+        } 
 
         /// <summary>
         /// 

@@ -122,7 +122,54 @@ namespace Domain.Entities
 
         public DateTime? expiracionToken { get; set; }
 
-        // read only properties
+        /// <summary>
+        /// Género del usuario
+        /// </summary>
+        private string _genero;
+        public string genero
+        {
+            get => _genero;
+            set
+            {
+                //if (string.IsNullOrWhiteSpace(value))
+                //    throw new ArgumentException("El genero no puede estar vacío.");
+                _genero = value;
+            }
+        }
+
+        /// <summary>
+        /// Código de recomendación para compartir con amigos
+        /// </summary>
+        private string _codigoRecomendacion;
+        public string codigoRecomendacion
+        {
+            get => _codigoRecomendacion;
+            set => _codigoRecomendacion = value;
+        }
+
+        /// <summary>
+        /// Código de recomendación de referencia que un amigo ha compartido con el usuario
+        /// </summary>
+        private string _codigoRecomendacionRef;
+        public string codigoRecomendacionRef
+        {
+            get => _codigoRecomendacionRef;
+            set => _codigoRecomendacionRef = value;
+        }
+
+        /// <summary>
+        /// Código de recomendación de referencia que un amigo ha compartido con el usuario
+        /// </summary>
+        private string? _telefono;
+        public string? telefono
+        {
+            get => _telefono;
+            set => _telefono = value;
+        }
+
+        //
+        // Rread only properties
+        //
         private int _edad;
         public int edad  {
              get {
@@ -136,18 +183,11 @@ namespace Domain.Entities
                 } 
                 return _edad;
             }
-        }
+        }     
 
-        private string _genero;
-        public string genero
-        {
-            get => _genero;
-            set {
-                //if (string.IsNullOrWhiteSpace(value))
-                //    throw new ArgumentException("El genero no puede estar vacío.");
-                _genero = value;
-            }
-        } 
+        /// <summary>
+        /// Enumeración con la lista de géneros 
+        /// </summary>
         public enum Genero
         {
             Hombre,

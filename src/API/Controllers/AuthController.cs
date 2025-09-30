@@ -1,4 +1,5 @@
-﻿using Application.Interfaces.Services;
+﻿using Application.DTOs.Responses;
+using Application.Interfaces.Services;
 using Application.Services;
 using Domain.Entities;
 
@@ -74,6 +75,20 @@ namespace API.Controllers
                                                region = null });
 
             return Ok(new { access_token = jwt, token_type = "Bearer", expires_at_utc = expires });
+        }
+
+        [HttpPost("register")]
+        [AllowAnonymous]
+        public IActionResult Register([FromBody] Usuario usuarioDTO)
+        {
+            // TODO
+            // Adaptar el Registro al caso que venga en [UsuarioDTO] el [codigoRecomendacion] informado para
+            // activar la recompensa al usuario de referencia
+
+            var result = _authService.Register(usuarioDTO);
+            if (result is null) return NoContent();
+
+            return Ok();
         }
 
         [HttpPost("RequestResetPassword")]

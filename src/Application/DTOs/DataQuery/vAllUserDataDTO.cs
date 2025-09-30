@@ -11,7 +11,10 @@
         public bool? Suscrito { get; }
         public int? Puntos { get; }
         public string? Genero { get; }
+        public string? Telefono { get; }
         public int? Edad { get; }
+        public string? CodigoRecomendacion { get; }
+        public string? CodigoRecomendacionRef { get; }
         public int? TotalRoles { get; }
         public string? Roles { get; }
         public int? TotalLogins { get; }
@@ -39,7 +42,10 @@
                                  bool? suscrito,
                                  int? puntos,
                                  string? genero,
+                                 string? telefono,
                                  int? edad,
+                                 string? codigoRecomendacion,
+                                 string? codigoRecomendacionRef,
                                  int? totalRoles,
                                  string? roles,
                                  int? totalLogins,
@@ -67,7 +73,10 @@
             Suscrito = suscrito;
             Puntos = puntos;
             Genero = genero;
+            Telefono = telefono;
             Edad = edad;
+            CodigoRecomendacion = codigoRecomendacion;
+            CodigoRecomendacionRef = codigoRecomendacionRef;
             TotalRoles = totalRoles;
             Roles = roles;
             TotalLogins = totalLogins;
@@ -86,6 +95,5 @@
             TotalTransaccionesProducto = totalTransaccionesProducto;
             TotalTransaccionesEvento = totalTransaccionesEvento;
         }
-
     }
 }

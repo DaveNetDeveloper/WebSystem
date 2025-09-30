@@ -12,5 +12,8 @@
         public DateTime? UltimaConexion { get; set; }
         public DateTime FechaCreacion { get; set; }
         public int? Puntos { get; set; }
+        public string? CodigoRecomendacion { get; set; }
+        public string? CodigoRecomendacionRef { get; set; }
+        public string? Telefono { get; set; }
     }
 }

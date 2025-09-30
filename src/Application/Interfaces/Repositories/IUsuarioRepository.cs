@@ -9,6 +9,7 @@ namespace Application.Interfaces.Repositories
     {
         Task<IEnumerable<Usuario>> GetByFiltersAsync(IFilters<Usuario> filters, IQueryOptions<Usuario>? options = null);
         Task<AuthUser?> Login(string email, string contrasena);
+        Task<AuthUser?> Register(Usuario user);
         Task<bool> CambiarContrasena(string email, string nuevaContrasena); 
         Task<bool> ActivarSuscripcion(string email);
         Task<bool> ValidarCuenta(string emai);

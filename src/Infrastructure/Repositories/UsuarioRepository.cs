@@ -15,6 +15,10 @@ namespace Infrastructure.Repositories
     {
         private readonly ApplicationDbContext _context;
 
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        /// <param name="context"></param>
         public UsuarioRepository(ApplicationDbContext context) {
             _context = context;
         }
@@ -58,6 +62,7 @@ namespace Infrastructure.Repositories
             query = ApplyPagination(query, options);  
             return await query.ToListAsync();  
         }
+        
         public async Task<Usuario?> GetByIdAsync(int id) =>
             await _context.Usuarios.FindAsync(id);
         
@@ -74,6 +79,7 @@ namespace Infrastructure.Repositories
                 return true;
             }
         }
+        
         public async Task<AuthUser?> Login(string userName, string password)
         {
             var user = _context.Usuarios.SingleOrDefault(x => x.nombre.Trim().ToLower() == userName.Trim().ToLower());
@@ -90,7 +96,29 @@ namespace Infrastructure.Repositories
             }
             else
                 return null;
-        } 
+        }
+
+        public async Task<AuthUser?> Register(Usuario user)
+        {
+            //var user = _context.Usuarios.SingleOrDefault(x => x.nombre.Trim().ToLower() == userName.Trim().ToLower());
+
+            //if (user == null || user.activo == false)
+            //    return null;
+
+            //if (PasswordHelper.VerifyPassword(password, user.contrasena))
+            //{
+            //    return new AuthUser
+            //    {
+            //        Id = user.id.Value,
+            //        UserName = user.nombre,
+            //        Role = string.Empty
+            //    };
+            //}
+            //else
+            //    return null;
+
+            return null;
+        }
 
         public async Task<bool> ValidarCuenta(string email)
         {
@@ -144,6 +172,9 @@ namespace Infrastructure.Repositories
             usuarioDB.token = usuario.token;
             usuarioDB.expiracionToken = usuario.expiracionToken;
             usuarioDB.genero = usuario.genero;
+            usuarioDB.telefono = usuario.telefono;
+            usuarioDB.codigoRecomendacion = usuario.codigoRecomendacion;
+            usuarioDB.codigoRecomendacionRef = usuario.codigoRecomendacionRef;
 
             await _context.SaveChangesAsync(); 
             return true;  
@@ -171,11 +202,13 @@ namespace Infrastructure.Repositories
             _context.Usuarios.Remove(usuario);
             await _context.SaveChangesAsync();
             return true;
-        } 
-        
-        //
-        // Bindings
-        //
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="idUsuario"></param>
+        /// <returns> List<Rol></Rol> </returns>
         public async Task<List<Rol>> GetRolesByUsuarioId(int idUsuario)
         {  
             var usuarioRoles = await _context.Usuarios
@@ -193,6 +226,11 @@ namespace Infrastructure.Repositories
             return roles;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="idUsuario"></param>
+        /// <returns> List<Direccion> </returns>
         public async Task<List<Direccion>> GetDireccionesByUsuario(int idUsuario)
         {
             try { 
@@ -213,6 +251,10 @@ namespace Infrastructure.Repositories
         // JOBS
         //
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns> IEnumerable<Usuario> </returns>
         public async Task<IEnumerable<Usuario>> CheckUnsubscribedUsers()
         {
             try {

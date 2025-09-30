@@ -16,7 +16,10 @@ namespace Domain.DataQuery
         public bool? suscrito { get; set; }
         public int? puntos { get; set; }
         public string? genero { get; set; }
+        public string? telefono { get; set; }
         public int? edad { get; set; }
+        public string? codigoRecomendacion { get; }
+        public string? codigoRecomendacionRef { get; }
         public int? totalRoles { get; set; }
         public string? roles { get; set; }
         public int? totalLogins { get; set; }
