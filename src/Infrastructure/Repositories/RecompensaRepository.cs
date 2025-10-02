@@ -11,7 +11,8 @@ using System.Linq;
 
 namespace Infrastructure.Repositories
 {
-    public class RecompensaRepository : BaseRepository<Recompensa>, IRecompensaRepository
+    public class RecompensaRepository : BaseRepository<Recompensa>,
+                                        IRecompensaRepository
     {
         private readonly ApplicationDbContext _context;
 

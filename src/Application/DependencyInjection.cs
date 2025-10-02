@@ -51,6 +51,7 @@ namespace Application.DependencyInjection
             services.AddScoped<ISmsNotificationService, SmsNotificationService>();
             //services.AddScoped<ITipoRecompensaService, TipoRecompensaService>();
             //services.AddScoped<IUsuarioRecompensaService, UsuarioRecompensaService>();
+            services.AddScoped<IActividadReservaService, ActividadReservaService>();
 
 
             //
@@ -83,7 +84,8 @@ namespace Application.DependencyInjection
             services.AddScoped<IFilters<TipoTransaccion>, TipoTransaccionFilters>();
             services.AddScoped<IFilters<InAppNotification>, InAppNotificationFilters>();
             services.AddScoped<IFilters<SmsNotification>, SmsNotificationFilters>();
-            services.AddScoped<IFilters<TipoRecompensa>, TipoRecompensaFilters>(); 
+            services.AddScoped<IFilters<TipoRecompensa>, TipoRecompensaFilters>();
+            services.AddScoped<IFilters<ActividadReserva>, ActividadReservaFilters>();
 
             return services;
         }

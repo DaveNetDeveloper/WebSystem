@@ -78,6 +78,7 @@ namespace Infrastructure.DependencyInjection
             services.AddScoped<ISmsNotificationRepository, SmsNotificationRepository>();
             services.AddScoped<ITipoRecompensasRepository, TipoRecompensasRepository>(); // Solo repositorio, sin service 
             services.AddScoped<IUsuarioRecompensasRepository, UsuarioRecompensasRepository>(); // Solo repositorio, sin service 
+            services.AddScoped<IActividadReservaRepository, ActividadReservaRepository>();
 
             return services;
         }

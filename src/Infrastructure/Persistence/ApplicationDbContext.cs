@@ -27,6 +27,7 @@ namespace Infrastructure.Persistence
         public DbSet<Producto> Productos { get; set; }
         public DbSet<ProductoImagen> ProductoImagenes { get; set; } 
         public DbSet<Actividad> Actividades { get; set; }
+        public DbSet<ActividadReserva> ActividadReservas { get; set; }
         public DbSet<ActividadImagen> ActividadImagenes { get; set; }
         public DbSet<Categoria> Categorias { get; set; }
         public DbSet<FAQ> FAQS { get; set; }
@@ -84,6 +85,10 @@ namespace Infrastructure.Persistence
             //
             // TABLES
             //
+
+
+            //ActividadReserva
+            modelBuilder.Entity<ActividadReserva>().HasKey(ur => new { ur.idReserva });
 
             //UsuarioRol
             modelBuilder.Entity<UsuarioRol>().HasKey(ur => new { ur.idrol, ur.idusuario, ur.identidad }); 

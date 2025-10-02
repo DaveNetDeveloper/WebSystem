@@ -5,6 +5,7 @@ using Application.Interfaces.DTOs.Filters;
 using Application.Interfaces.Services;
 using Application.Services;
 using Domain.Entities;
+
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
  
@@ -12,11 +13,12 @@ namespace API.Controllers
 {
     [Route("[controller]")]
     [ApiController]
-    public class RecompensasController : BaseController<Recompensa>, IController<IActionResult, Recompensa, int>
+    public class RecompensasController : BaseController<Recompensa>, 
+                                         IController<IActionResult, Recompensa, int>
     {
         private readonly IRecompensaService _recompensaService;
-        public RecompensasController(ILogger<RecompensasController> logger, IRecompensaService recompensaService)
-        {
+        public RecompensasController(ILogger<RecompensasController> logger, 
+                                     IRecompensaService recompensaService) {
             _logger = logger;
             _recompensaService = recompensaService ?? throw new ArgumentNullException(nameof(recompensaService));
         }
