@@ -136,5 +136,17 @@ namespace API.Controllers
             IReadOnlyList<vAllCampanasDataDTO> queryResult = await _dataQueryService.ObtenerAllCampanasData();
             return (queryResult != null && queryResult.Any()) ? Ok(queryResult) : NoContent();
         }
+
+        /// <summary>
+        /// Vista que obtiene toda la informacion relacionada con las asistencias a las actividades
+        /// </summary>
+        /// <returns> vAsistenciaActividadesDTO view entity </returns>
+        //[Authorize(Policy = "RequireAdmin")]
+        [HttpGet("ObtenerAsistenciaActividades")]
+        public async Task<IActionResult> ObtenerAsistenciaActividades()
+        {
+            IReadOnlyList<vAsistenciaActividadesDTO> queryResult = await _dataQueryService.ObtenerAsistenciaActividades();
+            return (queryResult != null && queryResult.Any()) ? Ok(queryResult) : NoContent();
+        }
     }
 }

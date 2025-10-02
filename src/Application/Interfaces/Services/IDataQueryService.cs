@@ -16,7 +16,9 @@ namespace Application.Interfaces.Services
         Task<IReadOnlyList<vTotalUltimasTransaccionesDTO>> ObtenerTotalUltimasTransacciones(int page = 1, int pageSize = 100);
         Task<IReadOnlyList<vCampanasUsuariosDTO>> ObtenerCampanasUsuarios(int page = 1, int pageSize = 100);
         Task<IReadOnlyList<vAllUserDataDTO>> ObtenerAllUserData(int page = 1, int pageSize = 100);
-        Task<IReadOnlyList<vAllCampanasDataDTO>> ObtenerAllCampanasData(int page = 1, int pageSize = 100); 
+        Task<IReadOnlyList<vAllCampanasDataDTO>> ObtenerAllCampanasData(int page = 1, int pageSize = 100);
+        Task<IReadOnlyList<vAsistenciaActividadesDTO>> ObtenerAsistenciaActividades(int page = 1, int pageSize = 100);
+        
 
     }
 }

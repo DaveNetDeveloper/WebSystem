@@ -242,5 +242,29 @@ namespace Infrastructure.Repositories
                         x.tipoSegmento
                 )).ToListAsync();
         }
+
+        public async Task<IReadOnlyList<vAsistenciaActividadesDTO>> ObtenerAsistenciaActividades(int page = 1, int pageSize = 100)
+        {
+            if (page < 1) page = 1;
+            var skip = (page - 1) * pageSize;
+
+            return await _context.v_AsistenciaActividades
+                .AsNoTracking()
+                .Skip(skip)
+                .Take(pageSize)
+                .Select(x => new vAsistenciaActividadesDTO(
+                        x.idReserva,
+                        x.codigoReserva,
+                        x.idActividad,
+                        x.idUsuario,
+                        x.nombreUsuario,
+                        x.nombreActividad,
+                        x.tipoActividad,
+                        x.fechaReserva,
+                        x.fechaActividad,
+                        x.estado,
+                        x.fechaValidacion
+                )).ToListAsync();
+        }  
     }
 }

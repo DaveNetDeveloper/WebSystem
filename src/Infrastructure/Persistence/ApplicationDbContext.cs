@@ -72,7 +72,7 @@ namespace Infrastructure.Persistence
         public DbSet<v_CampanasUsuarios> v_CampanasUsuarios { get; set; }
         public DbSet<v_AllUserData> v_AllUserData { get; set; }
         public DbSet<v_AllCampanasData> v_AllCampanasData { get; set; }
-
+        public DbSet<v_AsistenciaActividades> v_AsistenciaActividades { get; set; }
         //
         // Jobs
         //
@@ -289,6 +289,11 @@ namespace Infrastructure.Persistence
             modelBuilder.Entity<v_AllCampanasData>(eb => {
                 eb.HasNoKey();
                 eb.ToView("v_AllCampanasData");
+            });
+
+            modelBuilder.Entity<v_AsistenciaActividades>(eb => {
+                eb.HasNoKey();
+                eb.ToView("v_AsistenciaActividades");
             });
 
             //
