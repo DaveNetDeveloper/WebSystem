@@ -4,8 +4,7 @@ using System.Text.Json.Serialization;
 namespace Domain.Entities
 {
     public class Usuario
-    {
-
+    { 
         public Usuario()
         {
             UsuarioRoles = new List<UsuarioRol>();
@@ -205,5 +204,18 @@ namespace Domain.Entities
         public ICollection<UsuarioDireccion> UsuarioDirecciones { get; set; }
         [JsonIgnore]
         public ICollection<UsuarioSegmentos> UsuarioSegmentos { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public void SetInitValuesForNewUser()
+        {
+            this.fechaCreacion = DateTime.UtcNow;
+            this.activo = false;
+            this.token = null;
+            this.expiracionToken = null;
+            this.puntos = 0;
+            this.ultimaConexion = null;
+        }
     }
 }

@@ -70,12 +70,6 @@ namespace Infrastructure.Repositories
         public async Task<IEnumerable<InAppNotification>> GetAllAsync() =>
             await _context.InAppNotifications.ToListAsync();
 
-        public async Task<IEnumerable<string>> ObtenerTiposEnvioInApp() =>
-           await _context.InAppNotifications
-                         .Select(s => s.tipoEnvioInApp)
-                         .Distinct()
-                         .ToListAsync();
-
         public async Task<bool> AddAsync(InAppNotification inAppNotification)
         {
             var nuevaInAppNotificationDb = new InAppNotification {
@@ -121,6 +115,15 @@ namespace Infrastructure.Repositories
             _context.InAppNotifications.Remove(inAppNotification);
             await _context.SaveChangesAsync();
             return true;
-        } 
+        }
+
+        //
+        //
+        //
+        public async Task<IEnumerable<string>> ObtenerTiposEnvioInApp() =>
+          await _context.InAppNotifications
+                        .Select(s => s.tipoEnvioInApp)
+                        .Distinct()
+                        .ToListAsync();
     }
 } 

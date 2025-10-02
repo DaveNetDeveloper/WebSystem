@@ -9,6 +9,20 @@
         public string? asunto { get; set; }
         public string? cuerpo { get; set; }
 
+        public static class TipoEnvio
+        {
+            public const string ContrasenaCambiada = "ContrasenaCambiada";
+            public const string RecordatorioSuscripcion = "RecordatorioSuscripcion";
+            public const string SuscripcionActivada = "SuscripcionActivada";
+            public const string ReservaProducto = "ReservaProducto";
+            public const string Bienvenida = "Bienvenida";
+            public const string InscripcionActividad = "InscripcionActividad";
+            public const string EnvioComunicacion = "EnvioComunicacion";
+            public const string ValidacionCuenta = "ValidacionCuenta";
+            public const string CambiarContrasena = "CambiarContrasena";
+            public const string Recompensa = "Recompensa";
+        }
+
         public enum TipoEnvioCorreos
         {
             ValidacionCuenta = 1,
@@ -19,7 +33,8 @@
             ReservaProducto = 6,
             InscripcionActividad = 7,
             RememberSubscribe = 8,
-            Undefined = 9
+            Recompensa = 9,
+            Undefined = 10
         }
     }
 }

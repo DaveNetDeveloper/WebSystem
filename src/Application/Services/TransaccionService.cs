@@ -15,7 +15,9 @@ namespace Application.Services
         private readonly IUsuarioRepository _repoUsuario;
         private readonly IUnitOfWork _unitOfWork;
 
-        public TransaccionService(ITransaccionRepository repo, IUsuarioRepository repoUsuario, IUnitOfWork unitOfWork) {
+        public TransaccionService(ITransaccionRepository repo, 
+                                  IUsuarioRepository repoUsuario, 
+                                  IUnitOfWork unitOfWork) {
             _repo = repo;
 
             _repoUsuario = repoUsuario;
@@ -36,14 +38,11 @@ namespace Application.Services
         {
             await _unitOfWork.BeginTransactionAsync();
             try {
+
                 await _unitOfWork.TransaccionesRepository.AddAsync(transaccion);
                 var transactionUser = await _unitOfWork.UsuariosRepository.GetByIdAsync(transaccion.idUsuario);
 
                 await _unitOfWork.UsuariosRepository.ActualizarBalance(transaccion.idUsuario, transaccion.puntos);
-
-                //transactionUser.puntos += transaccion.puntos; 
-                //await _unitOfWork.UsuariosRepository.UpdateAsync(transactionUser); 
-
                 await _unitOfWork.CommitTransactionAsync();
                 return true;
             }
@@ -58,9 +57,9 @@ namespace Application.Services
             //
             // TODO Pendiente aplicar UnitOfWork
             // 
-
             var result = _repo.UpdateAsync(transaccion);
             if (result.Result) {
+
                 // TODO : solo si se ha actualizado el campo puntos
                 //_repoUsuario.ActualizarBalance(transaccion.idUsuario, transaccion.puntos); 
             }
@@ -73,23 +72,10 @@ namespace Application.Services
             if (transaccion == null) return false;
 
             var transactionUser = await _unitOfWork.UsuariosRepository.GetByIdAsync(transaccion.idUsuario);
-
             await _unitOfWork.TransaccionesRepository.Remove(id);
-
             await _unitOfWork.UsuariosRepository.ActualizarBalance(transactionUser.id.Value, -transaccion.puntos);
-
-            //transactionUser.puntos -= transaccion.puntos; // restamos los puntos al balance del usuario
-            //await _unitOfWork.UsuariosRepository.UpdateAsync(transactionUser);
-
             var result = await _unitOfWork.SaveChangesAsync();
             return result > 0;
         }
-
-        //public Task<IEnumerable<Transaccion>> ObtenerPorUsuarioAsync(int idUsuario)
-        // => _repo.ObtenerPorUsuarioAsync(idUsuario);
-
-        //public Task<IEnumerable<Transaccion>>  ObtenerPorProductoAsync(int idProducto)
-        //   => _repo.ObtenerPorProductoAsync(idProducto);
-
     }
 }

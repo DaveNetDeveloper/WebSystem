@@ -21,9 +21,6 @@ namespace Application.Services
             => _repo.GetAllAsync();
         public Task<InAppNotification?> GetByIdAsync(Guid id)
             => _repo.GetByIdAsync(id);
-
-        public Task<IEnumerable<string>> ObtenerTiposEnvioInApp()
-            => _repo.ObtenerTiposEnvioInApp();
        
         public Task<PagedResult<InAppNotification>> GetByFiltersAsync(InAppNotificationFilters filters,
                                                                       IQueryOptions<InAppNotification>? queryOptions = null)
@@ -36,7 +33,13 @@ namespace Application.Services
             => _repo.UpdateAsync(inAppNotification);
 
         public Task<bool> Remove(Guid id)
-              => _repo.Remove(id); 
-       
+              => _repo.Remove(id);
+
+        //
+        //
+        //
+        public Task<IEnumerable<string>> ObtenerTiposEnvioInApp()
+            => _repo.ObtenerTiposEnvioInApp();
+
     }
 }

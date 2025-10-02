@@ -40,6 +40,11 @@
         /// </summary>
         public DateTime fechaCreacion { get; set; }
 
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        //public string Link { get; set; }
+
         /// <summary>
         /// Enumeración para los tipos de notificación InApp
         /// </summary>

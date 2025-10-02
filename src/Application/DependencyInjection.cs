@@ -6,6 +6,7 @@ using Application.Services;
 using Domain.Entities;
 
 using Microsoft.Extensions.DependencyInjection;
+using static Domain.Entities.TipoRecompensa;
 
 namespace Application.DependencyInjection
 {
@@ -48,6 +49,8 @@ namespace Application.DependencyInjection
             services.AddScoped<ITipoTransaccionService, TipoTransaccionService>();
             services.AddScoped<IInAppNotificationService, InAppNotificationService>();
             services.AddScoped<ISmsNotificationService, SmsNotificationService>();
+            //services.AddScoped<ITipoRecompensaService, TipoRecompensaService>();
+            //services.AddScoped<IUsuarioRecompensaService, UsuarioRecompensaService>();
 
 
             //
@@ -80,6 +83,7 @@ namespace Application.DependencyInjection
             services.AddScoped<IFilters<TipoTransaccion>, TipoTransaccionFilters>();
             services.AddScoped<IFilters<InAppNotification>, InAppNotificationFilters>();
             services.AddScoped<IFilters<SmsNotification>, SmsNotificationFilters>();
+            services.AddScoped<IFilters<TipoRecompensa>, TipoRecompensaFilters>(); 
 
             return services;
         }

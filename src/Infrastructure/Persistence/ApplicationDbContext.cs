@@ -33,6 +33,7 @@ namespace Infrastructure.Persistence
         public DbSet<TipoActividad> TipoActividades { get; set; } 
         public DbSet<Testimonio> Testimonios { get; set; }
         public DbSet<Recompensa> Recompensas { get; set; }
+        public DbSet<TipoRecompensa> TipoRecompensas { get; set; } 
         public DbSet<Direccion> Direcciones { get; set; }
         public DbSet<TipoEnvioCorreo> TipoEnvioCorreos { get; set; }
         public DbSet<InAppNotification> InAppNotifications { get; set; }

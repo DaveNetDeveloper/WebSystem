@@ -13,6 +13,8 @@ namespace Application.DTOs.Filters
         public bool? Suscrito { get; set; } 
         public string? Token { get; set; }
         public string? Genero { get; set; }
+        public string? CodigoRecomendacion { get; set; }
+        public string? CodigoRecomendacionRef { get; set; }
 
         //public ExpressionStarter<Usuario> BuildPredicate()
         //{

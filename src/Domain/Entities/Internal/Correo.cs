@@ -67,7 +67,7 @@ namespace Domain.Entities
             public const string EMAIL_KEY_NAME =  "[_NAME_]";
             public const string EMAIL_KEY_LOGO =  "[_LOGO_]";
             public const string EMAIL_KEY_TOKEN = "[_TOKEN_]";
-            public const string EMAIL_KEY_EMAIL = "[_EMAIL_]"; 
+            public const string EMAIL_KEY_EMAIL = "[_EMAIL_]";
         }
 
         private TipoEnvioCorreos GetTipoEnvioCorreo(string nombreTipoEnvio)

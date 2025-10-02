@@ -31,6 +31,11 @@ namespace Application.Services
             return _repoTipoEnvioCorreo.GetAllAsync(); 
         }
 
+        /// <summary>
+        /// Envia un correo electronico con los datos especificados por parámetro
+        /// </summary>
+        /// <param name="correo"> Objeto con los detalles del correo a enviar </param>
+        /// <returns> Devuelve el EmailToken asociado al correo enviado </returns>
         public Guid EnviarCorreo(Correo correo)
         {
             using (var mensaje = new MailMessage())

@@ -23,7 +23,7 @@ namespace Infrastructure.Repositories
             await _context.Recompensas.ToListAsync();
 
         public async Task<IEnumerable<Recompensa>> GetByFiltersAsync(IFilters<Recompensa> filters,
-                                                                  IQueryOptions<Recompensa>? options = null)
+                                                                     IQueryOptions<Recompensa>? options = null)
         {
             RecompensaFilters _filters = ((RecompensaFilters)filters);
 
@@ -37,6 +37,9 @@ namespace Infrastructure.Repositories
 
             if (_filters.IdEntidad.HasValue)
                 predicate = predicate.And(u => u.identidad == _filters.IdEntidad.Value);
+
+            if (_filters.IdTipoRecompensa.HasValue)
+                predicate = predicate.And(u => u.idtiporecompensa == _filters.IdTipoRecompensa.Value);
 
             var query = _context.Recompensas
                             .AsExpandable()
@@ -56,7 +59,8 @@ namespace Infrastructure.Repositories
                 id = _context.Recompensas.Count() +1,
                 nombre = recompensa.nombre,
                 descripcion = recompensa.descripcion,
-                identidad = recompensa.identidad
+                identidad = recompensa.identidad,
+                idtiporecompensa = recompensa.idtiporecompensa
             }; 
             await _context.Recompensas.AddAsync(nuevaRecompensa);
             await _context.SaveChangesAsync();
@@ -72,8 +76,8 @@ namespace Infrastructure.Repositories
             updatedRecompensa.nombre = recompensa.nombre;
             updatedRecompensa.descripcion = recompensa.descripcion;
             updatedRecompensa.identidad = recompensa.identidad;
+            updatedRecompensa.idtiporecompensa = recompensa.idtiporecompensa;
             await _context.SaveChangesAsync();
-
             return true;
         } 
 

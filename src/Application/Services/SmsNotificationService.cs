@@ -6,10 +6,11 @@ using Application.Interfaces.Common;
 using Application.Interfaces.Repositories;
 using Application.Interfaces.Services;
 using Domain.Entities;
+using Utilities;
+
 using Microsoft.Extensions.Options;
 using System.Net;
 using System.Net.Mail;
-using Utilities;
 
 namespace Application.Services
 {

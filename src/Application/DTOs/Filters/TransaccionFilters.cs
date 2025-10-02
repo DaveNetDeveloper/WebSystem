@@ -9,6 +9,7 @@ namespace Application.DTOs.Filters
         public string? Nombre { get; set; }
         public int? IdUsuario { get; set; }
         public int? IdProducto { get; set; }
+        public int? IdActividad { get; set; } 
         public Guid? IdTipoTransaccion { get; set; }
     }
 }

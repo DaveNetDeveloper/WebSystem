@@ -25,7 +25,7 @@ namespace API.Controllers
             _tipoTransaccionService = tipoTransaccionService ?? throw new ArgumentNullException(nameof(tipoTransaccionService));
         }
 
-        //[Authorize]
+        [Authorize]
         [HttpGet("ObtenerTipoTransacciones")]
         public async Task<IActionResult> GetAllAsync()
         {
@@ -33,7 +33,7 @@ namespace API.Controllers
             return (tipoTransacciones != null && tipoTransacciones.Any()) ? Ok(tipoTransacciones) : NoContent();
         }
 
-       // [Authorize]
+        [Authorize]
         [HttpGet("FiltrarTipoTransacciones")]
         public async Task<IActionResult> GetByFiltersAsync([FromQuery] IFilters<TipoTransaccion> filters,
                                                            [FromQuery] int? page,
@@ -51,7 +51,7 @@ namespace API.Controllers
             return Ok(filtered);
         }
 
-        //[Authorize]
+        [Authorize]
         [HttpGet("ObtenerTipoTransaccion/{id}")]
         public async Task<IActionResult> GetByIdAsync(Guid id)
         {
@@ -59,7 +59,7 @@ namespace API.Controllers
             return tipoTransaccion != null ? Ok(tipoTransaccion) : NoContent();
         }
 
-        //[Authorize]
+        [Authorize]
         [HttpPost("CrearTipoTransaccion")]
         public async Task<IActionResult> AddAsync([FromBody] TipoTransaccion tipoTransaccion)
         {
@@ -71,7 +71,7 @@ namespace API.Controllers
             }   
         }
 
-        //[Authorize]
+        [Authorize]
         [HttpPut("ActualizarTipoTransaccion")]
         public async Task<IActionResult> UpdateAsync([FromBody] TipoTransaccion tipoTransaccion)
         {
@@ -83,7 +83,7 @@ namespace API.Controllers
             }  
         }
 
-        //[Authorize]
+        [Authorize]
         [HttpDelete("Eliminar/{id}")]
         public async Task<IActionResult> Remove(Guid id)
         {

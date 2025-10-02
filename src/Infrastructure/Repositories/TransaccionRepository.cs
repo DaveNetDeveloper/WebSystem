@@ -18,7 +18,7 @@ namespace Infrastructure.Repositories
         } 
 
         public async Task<IEnumerable<Transaccion>> GetByFiltersAsync(IFilters<Transaccion> filters,
-                                                                  IQueryOptions<Transaccion>? options = null)
+                                                                      IQueryOptions<Transaccion>? options = null)
         { 
             TransaccionFilters transaccionfilters = ((TransaccionFilters)filters); 
 
@@ -32,6 +32,9 @@ namespace Infrastructure.Repositories
             
             if (transaccionfilters.IdProducto.HasValue)
                 predicate = predicate.And(u => u.idProducto == transaccionfilters.IdProducto);
+
+            if (transaccionfilters.IdActividad.HasValue)
+                predicate = predicate.And(u => u.idActividad == transaccionfilters.IdActividad);
 
             if (transaccionfilters.IdUsuario.HasValue)
                 predicate = predicate.And(u => u.idUsuario == transaccionfilters.IdUsuario);
@@ -64,6 +67,7 @@ namespace Infrastructure.Repositories
             transaccionDb.nombre = transaccion.nombre;
             transaccionDb.idUsuario = transaccion.idUsuario;
             transaccionDb.idProducto = transaccion.idProducto;
+            transaccionDb.idActividad = transaccion.idActividad;
             transaccionDb.puntos = transaccion.puntos;
             transaccionDb.fecha = transaccion.fecha;
             transaccionDb.idTipoTransaccion = transaccion.idTipoTransaccion;
@@ -75,10 +79,11 @@ namespace Infrastructure.Repositories
         public async Task<bool> AddAsync(Transaccion transaccion)
         {  
             var nuevaTransaccion = new Transaccion {
-                id = _context.Transacciones.Count() + 1,
+                id = (_context.Transacciones.Select(t => t.id).Max()) + 1,
                 nombre = transaccion.nombre,
                 idUsuario = transaccion.idUsuario,
                 idProducto = transaccion.idProducto,
+                idActividad = transaccion.idActividad,
                 puntos = transaccion.puntos,
                 fecha = DateTime.UtcNow,
                 idTipoTransaccion = transaccion.idTipoTransaccion

@@ -23,6 +23,12 @@ namespace Infrastructure.Repositories
             _context = context;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="filters"></param>
+        /// <param name="options"></param>
+        /// <returns></returns>
         public async Task<IEnumerable<Usuario>> GetByFiltersAsync(IFilters<Usuario> filters,
                                                                   IQueryOptions<Usuario>? options = null) 
         {
@@ -54,6 +60,12 @@ namespace Infrastructure.Repositories
             if (!string.IsNullOrEmpty(userFilters.Genero))
                 predicate = predicate.And(u => u.genero.ToLower() == userFilters.Genero.ToLower());
 
+            if (!string.IsNullOrEmpty(userFilters.CodigoRecomendacion))
+                predicate = predicate.And(u => u.codigoRecomendacion.ToLower() == userFilters.CodigoRecomendacion.ToLower());
+
+            if (!string.IsNullOrEmpty(userFilters.CodigoRecomendacionRef))
+                predicate = predicate.And(u => u.codigoRecomendacionRef.ToLower() == userFilters.CodigoRecomendacionRef.ToLower());
+
             var query = _context.Usuarios
                             .AsExpandable()
                             .Where(predicate); 
@@ -63,12 +75,72 @@ namespace Infrastructure.Repositories
             return await query.ToListAsync();  
         }
         
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public async Task<Usuario?> GetByIdAsync(int id) =>
             await _context.Usuarios.FindAsync(id);
         
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         public async Task<IEnumerable<Usuario>> GetAllAsync() =>
             await _context.Usuarios.ToListAsync();
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="usuario"></param>
+        /// <returns></returns>
+        public async Task<bool> AddAsync(Usuario usuario)
+        {
+            usuario.id = _context.Usuarios.Count() + 1;
+            await _context.Usuarios.AddAsync(usuario);
+            await _context.SaveChangesAsync();
+            return true;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="usuario"></param>
+        /// <returns></returns>
+        public async Task<bool> UpdateAsync(Usuario usuario)
+        {
+            var usuarioDB = await _context.Usuarios.FindAsync(usuario.id);
+            if (usuarioDB == null)
+            {
+                return false;
+            }
+
+            usuarioDB.nombre = usuario.nombre;
+            usuarioDB.apellidos = usuario.apellidos;
+            usuarioDB.correo = usuario.correo;
+            usuarioDB.activo = usuario.activo;
+            //usuarioDB.contraseña = usuario.contraseña;
+            usuarioDB.fechaNacimiento = usuario.fechaNacimiento;
+            usuarioDB.suscrito = usuario.suscrito;
+            usuarioDB.ultimaConexion = usuario.ultimaConexion;
+            usuarioDB.puntos = usuario.puntos;
+            usuarioDB.token = usuario.token;
+            usuarioDB.expiracionToken = usuario.expiracionToken;
+            usuarioDB.genero = usuario.genero;
+            usuarioDB.telefono = usuario.telefono;
+            usuarioDB.codigoRecomendacion = usuario.codigoRecomendacion;
+            usuarioDB.codigoRecomendacionRef = usuario.codigoRecomendacionRef;
+
+            await _context.SaveChangesAsync();
+            return true;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="email"></param>
+        /// <returns></returns>
         public async Task<bool> ActivarSuscripcion(string email)
         {
             var user = await _context.Usuarios.FirstOrDefaultAsync(u => u.correo.ToLower() == email.ToLower());
@@ -80,6 +152,12 @@ namespace Infrastructure.Repositories
             }
         }
         
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="userName"></param>
+        /// <param name="password"></param>
+        /// <returns></returns>
         public async Task<AuthUser?> Login(string userName, string password)
         {
             var user = _context.Usuarios.SingleOrDefault(x => x.nombre.Trim().ToLower() == userName.Trim().ToLower());
@@ -98,28 +176,33 @@ namespace Infrastructure.Repositories
                 return null;
         }
 
-        public async Task<AuthUser?> Register(Usuario user)
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="user"></param>
+        /// <returns> Devuelve el Id del nuevo usuario</returns>
+        public async Task<int?> Register(Usuario user)
         {
-            //var user = _context.Usuarios.SingleOrDefault(x => x.nombre.Trim().ToLower() == userName.Trim().ToLower());
+            var correoEnUso = _context.Usuarios.SingleOrDefault(x => x.correo.Trim().ToLower() == user.correo.Trim().ToLower());
 
-            //if (user == null || user.activo == false)
-            //    return null;
+            if (correoEnUso != null)
+                return null;
 
-            //if (PasswordHelper.VerifyPassword(password, user.contrasena))
-            //{
-            //    return new AuthUser
-            //    {
-            //        Id = user.id.Value,
-            //        UserName = user.nombre,
-            //        Role = string.Empty
-            //    };
-            //}
-            //else
-            //    return null;
+            user.fechaCreacion = DateTime.UtcNow;
+            user.activo = false;
+            user.token = null;
+            user.expiracionToken = null; 
+            user.puntos = 0;
+            bool result = await AddAsync(user); 
 
-            return null;
+            return user.id;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="email"></param>
+        /// <returns></returns>
         public async Task<bool> ValidarCuenta(string email)
         {
             var user = await _context.Usuarios.FirstOrDefaultAsync(u => u.correo.ToLower() == email.ToLower());
@@ -134,6 +217,12 @@ namespace Infrastructure.Repositories
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="email"></param>
+        /// <param name="nuevaContrasena"></param>
+        /// <returns></returns>
         public async Task<bool> CambiarContrasena(string email, string nuevaContrasena)
         {
             var user = await _context.Usuarios.FirstOrDefaultAsync(u => u.correo.ToLower() == email.ToLower());
@@ -144,42 +233,13 @@ namespace Infrastructure.Repositories
                 return true;
             }
         }
-       
-        public async Task<bool> AddAsync(Usuario usuario) 
-        { 
-            usuario.id = _context.Usuarios.Count() + 1; 
-            await _context.Usuarios.AddAsync(usuario); 
-            await _context.SaveChangesAsync();
-            return true;
-        }
-          
-        public async Task<bool> UpdateAsync(Usuario usuario)
-        {
-            var usuarioDB = await _context.Usuarios.FindAsync(usuario.id);
-            if (usuarioDB == null)  {
-                return false; 
-            }
-             
-            usuarioDB.nombre = usuario.nombre;
-            usuarioDB.apellidos = usuario.apellidos;
-            usuarioDB.correo = usuario.correo;
-            usuarioDB.activo = usuario.activo;
-            //usuarioDB.contraseña = usuario.contraseña;
-            usuarioDB.fechaNacimiento = usuario.fechaNacimiento;
-            usuarioDB.suscrito = usuario.suscrito;
-            usuarioDB.ultimaConexion = usuario.ultimaConexion;
-            usuarioDB.puntos = usuario.puntos;
-            usuarioDB.token = usuario.token;
-            usuarioDB.expiracionToken = usuario.expiracionToken;
-            usuarioDB.genero = usuario.genero;
-            usuarioDB.telefono = usuario.telefono;
-            usuarioDB.codigoRecomendacion = usuario.codigoRecomendacion;
-            usuarioDB.codigoRecomendacionRef = usuario.codigoRecomendacionRef;
-
-            await _context.SaveChangesAsync(); 
-            return true;  
-        }
-
+     
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="idUsuario"></param>
+        /// <param name="puntosTransaccion"></param>
+        /// <returns></returns>
         public async Task<bool> ActualizarBalance(int idUsuario, int puntosTransaccion)
         {
             var usuario = await _context.Usuarios.Where(u => u.id == idUsuario).SingleOrDefaultAsync();
@@ -192,6 +252,11 @@ namespace Infrastructure.Repositories
             return true;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public async Task<bool> Remove(int id)
         {
             var usuario = await _context.Usuarios.FindAsync(id);

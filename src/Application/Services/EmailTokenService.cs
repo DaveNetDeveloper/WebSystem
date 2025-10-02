@@ -33,6 +33,9 @@ namespace Application.Services
             return fechaCreacion.AddDays(3);
         }
 
+        public Task<string> GenerateEmailToken(int idUsuario, string emailAction)
+            => _repo.GenerateEmailToken(idUsuario, emailAction);
+
         public bool CheckEmailToken(string emailToken, string email)
             => _repo.CheckEmailToken(emailToken, email);
 

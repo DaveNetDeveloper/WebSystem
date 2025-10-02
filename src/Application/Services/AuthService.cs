@@ -6,6 +6,7 @@ using Application.Interfaces.Services;
 using Utilities;
 
 using System.Collections.Generic;
+using Microsoft.Extensions.Options;
 
 namespace Application.Services
 {
@@ -17,6 +18,7 @@ namespace Application.Services
         private readonly IUsuarioRepository _usuarioRepo;
         private readonly ICorreoService _correoService;
         private readonly ILoginService _loginService;
+        private readonly MailConfiguration _appConfig;
 
         /// <summary>
         /// Constructor
@@ -26,10 +28,13 @@ namespace Application.Services
         /// <param name="loginService"></param>
         public AuthService(IUsuarioRepository usuarioRepo,
                            ICorreoService correoService,
-                           ILoginService loginService) {
+                           ILoginService loginService,
+                           IOptions<MailConfiguration> configOptions)
+        {
             _usuarioRepo = usuarioRepo;
             _correoService = correoService;
             _loginService = loginService;
+            _appConfig = configOptions.Value;
         }
 
         /// <summary>
@@ -58,6 +63,37 @@ namespace Application.Services
         /// <summary>
         /// 
         /// </summary>
+        /// <param name="usuario"></param>
+        /// <returns> int? </returns>
+        public async Task<int?> Register(Usuario usuario)
+        {
+            // comprobamos si ya existe un usuario con el mismo correo electrónico
+            var filter = new UsuarioFilters { Correo = usuario.correo };
+            var existingUser = await _usuarioRepo.GetByFiltersAsync(filter); 
+
+            if (existingUser != null && existingUser.Any()) return null;
+
+            // sobrescribimos con valores por defecto para nuevos usuarios
+            usuario.SetInitValuesForNewUser();
+
+            // encriptamos la contraseña introducida por el usuario
+            usuario.contrasena = PasswordHelper.HashPassword(usuario.contrasena);
+
+            // Creamos el usuario
+            var result = await _usuarioRepo.AddAsync(usuario);
+            if (result) {
+                var nuevoUsuario = _usuarioRepo.GetByFiltersAsync(filter)
+                                               .Result
+                                               .SingleOrDefault();
+                if(nuevoUsuario != null) 
+                    return nuevoUsuario.id;
+            }
+            return null;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
         /// <param name="idUser"></param>
         /// <param name="token"></param>
         /// <param name="expires"></param>
@@ -78,14 +114,17 @@ namespace Application.Services
         /// <returns> Guid del Token asocuado al correo enviado</returns>
         public async Task<Guid> RequestResetPassword(string email)
         {
-            var tipoEnvioCorreo = _correoService.ObtenerTiposEnvioCorreo().Result.Where(u => u.nombre == "ResetContrasena").SingleOrDefault();
+            var tipoEnvioCorreo = _correoService.ObtenerTiposEnvioCorreo()
+                                                .Result.Where(u => u.nombre == TipoEnvioCorreo.TipoEnvio.CambiarContrasena)
+                                                .SingleOrDefault();
+            var filters = new UsuarioFilters() { 
+                Correo = email 
+            };
+            var usersByEmail = await _usuarioRepo.GetByFiltersAsync(filters);
+            var nombre = usersByEmail.SingleOrDefault().nombre;
 
-            // TODO: Recibir config en constructor por DI y obtener logoUrl de ahí
-            var logoUrl = "https://www.getautismactive.com/wp-content/uploads/2021/01/Test-Logo-Circle-black-transparent.png";
-
-            var correo = new Correo(tipoEnvioCorreo, email, "", logoUrl);
-            // TODO por probar sin parametros 
-            return _correoService.EnviarCorreo(correo);  // TODO
+            var correo = new Correo(tipoEnvioCorreo, email, nombre, _appConfig.LogoURL);
+            return _correoService.EnviarCorreo(correo);
         }
 
         /// <summary>
@@ -107,7 +146,7 @@ namespace Application.Services
             user.contrasena = PasswordHelper.HashPassword(newPassword);
             var passwordResult = await _usuarioRepo.UpdateAsync(user);
 
-            var tokenResult = DeleteUserToken(user.id.Value);
+            var tokenResult = this.DeleteUserToken(user.id.Value);
 
             return true;
         }
@@ -126,31 +165,6 @@ namespace Application.Services
             var result = await _usuarioRepo.UpdateAsync(userById);
             return result;
         }
-
-        public async Task<bool> Register(Usuario user)
-        {
-
-            // Proceso de login
-
-            var result = _usuarioRepo.Register(user);
-
-
-            // Si el usuario viene recomendado
-            if (user.codigoRecomendacionRef != null && !string.IsNullOrEmpty(user.codigoRecomendacionRef))  {
-
-                // Crear recompensa de recomendacion para el usuario recomendador
-                // El usuario es el que tiene .codigoRecomendacion == .codigoRecomendacionRef
-                // Actualizar balance de puntos de usuario(+ puntos)
-                // Enviar mail notificando la recompensa por recomendacion
-                // Crear InAppNotificacion para que el usuario recomendador lo vea en el el proximo login 
-
-                // ¿Crear tambien puntos para el usuario recomendado?
-
-            }
-
-
-            return true;
-        } 
 
         /// <summary>
         /// 

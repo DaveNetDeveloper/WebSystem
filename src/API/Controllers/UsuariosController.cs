@@ -184,6 +184,31 @@ namespace API.Controllers
             }
         }
 
+        /// <summary>  </summary>
+        /// <param name="id">  </param> 
+        /// <returns> bool </returns>
+        [Authorize(Policy = "RequireAdmin")]
+        [HttpDelete("Eliminar/{id}")]
+        public async Task<IActionResult> Remove(int id)
+        {
+            try
+            {
+                var result = await _usuarioService.Remove(id);
+                if (result == false) return NotFound();
+                else
+                {
+                    _logger.LogInformation(MessageProvider.GetMessage("Usuario:Eliminar", "Success"));
+                    return Ok(result);
+                }
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Error eliminando el usuario, {id}.", id);
+                return StatusCode(StatusCodes.Status500InternalServerError,
+                                 new { message = MessageProvider.GetMessage("Usuario:Eliminar", "Error"), id });
+            }
+        }
+
         /// <summary>
         /// 
         /// </summary>
@@ -264,7 +289,7 @@ namespace API.Controllers
                         if(consumeResult) {
 
                             // Enviar corrreo: Bienvenido a nuestra newsletter
-                            var tipoEnvioCorreo = _correoService.ObtenerTiposEnvioCorreo().Result.Where(u => u.nombre == "SuscripciónActivada").Single();
+                            var tipoEnvioCorreo = _correoService.ObtenerTiposEnvioCorreo().Result.Where(u => u.nombre == "SuscripcionActivada").Single();
 
                             var usuario = _usuarioService.GetAllAsync().Result.Where(u => u.correo == email).SingleOrDefault();
 
@@ -284,28 +309,6 @@ namespace API.Controllers
                 return StatusCode(StatusCodes.Status500InternalServerError,
                                  new { message = MessageProvider.GetMessage("Usuario:ActivacionSuscripcion", "Error"), email });
             }
-        }
-
-        /// <summary>  </summary>
-        /// <param name="id">  </param> 
-        /// <returns> bool </returns>
-        [Authorize(Policy = "RequireAdmin")]
-        [HttpDelete("Eliminar/{id}")]
-        public async Task<IActionResult> Remove(int id)
-        {
-            try {
-                var result = await _usuarioService.Remove(id); 
-                if (result == false) return NotFound();
-                else { 
-                    _logger.LogInformation(MessageProvider.GetMessage("Usuario:Eliminar", "Success"));
-                    return Ok(result);
-                } 
-            }
-            catch (Exception ex) {
-                _logger.LogError(ex, "Error eliminando el usuario, {id}.", id);
-                return StatusCode(StatusCodes.Status500InternalServerError,
-                                 new { message = MessageProvider.GetMessage("Usuario:Eliminar", "Error"), id });
-            }  
         }
 
         /// <summary>  </summary>

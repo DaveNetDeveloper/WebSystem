@@ -46,13 +46,13 @@ namespace API.Controllers
             return Ok(filtered);
         }
 
-        //[Authorize]
-        //[HttpGet("ObtenerRecompensa/{id}")]
-        //public async Task<IActionResult> GetByIdAsync(int id)
-        //{
-        //    var recompensa = await _recompensaService.GetByIdAsync(id);
-        //    return recompensa != null ? Ok(recompensa) : NoContent();
-        //}
+        [Authorize]
+        [HttpGet("ObtenerRecompensa/{id}")]
+        public async Task<IActionResult> GetByIdAsync(int id)
+        {
+            var recompensa = await _recompensaService.GetByIdAsync(id);
+            return recompensa != null ? Ok(recompensa) : NoContent();
+        }
 
 
         [Authorize]
@@ -105,7 +105,7 @@ namespace API.Controllers
             }
         }
 
-        [Authorize]
+        //[Authorize]
         [HttpGet("GetRecompensasByUsuario/{idUsuario}")]
         public async Task<IActionResult> GetRecompensasByUsuario(int idUsuario)
         {

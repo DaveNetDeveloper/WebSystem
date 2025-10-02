@@ -57,22 +57,6 @@ namespace API.Controllers
                 return NoContent();
             }  
         }
-
-        //[Authorize]
-        //[HttpGet("ObtenerTransaccion/{id}")]
-        //public async Task<IActionResult> GetByIdAsync(int id)
-        //{
-        //    try {
-        //        _logger.LogInformation("Obteniendo una transacción por Id.");
-
-        //        var transaccion = await _transaccionService.GetByIdAsync(id);
-        //        return transaccion != null ? Ok(transaccion) : NoContent();
-        //    }
-        //    catch (Exception ex) {
-        //        _logger.LogError(ex, "Error obteniendo una transacción por Id.");
-        //        return NoContent();
-        //    }
-        //} 
          
         [Authorize]
         [HttpPost("CrearTransaccion")]
