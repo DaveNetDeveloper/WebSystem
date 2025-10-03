@@ -12,15 +12,29 @@ namespace Utilities
         /// <summary>
         /// 
         /// </summary>
-        /// <returns> string </returns>
-        public static string GenerarCodigo()
+        /// <returns> codigo de texto en formato [REC_####] </returns>
+        public static string GenerarCodigoRecomendacion()
         {
             string numeros = "";
-            for (int i = 0; i < 4; i++)
-            {
-                numeros += random.Next(0, 10); // genera un dígito entre 0 y 9
+            for (int i = 0; i < 4; i++) {
+                numeros += random.Next(0, 10);
             } 
             return $"REC_{numeros}";
-        } 
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns> codigo de texto en formato [RSV_###_####] </returns>
+        public static string GenerarCodigoReservaActividad(int id)
+        {
+            string formatedId = id.ToString("D3");
+
+            var numeros = string.Empty;
+            for (int i = 0; i < 4; i++) {
+                numeros += random.Next(0, 10);
+            }
+            return $"RSV_{formatedId}_{numeros}";
+        }
     }
 }

@@ -32,19 +32,19 @@ namespace Infrastructure.Repositories
             var predicate = PredicateBuilder.New<ActividadReserva>(true);
 
             if (_filters.IdReserva.HasValue)
-                predicate = predicate.And(u => u.idReserva == _filters.IdReserva.Value);
+                predicate = predicate.And(ar => ar.idReserva == _filters.IdReserva.Value);
 
             if (!string.IsNullOrEmpty(_filters.CodigoReserva))
-                predicate = predicate.And(u => u.codigoReserva.ToLower() == _filters.CodigoReserva.ToLower());
+                predicate = predicate.And(ar => ar.codigoReserva.ToLower() == _filters.CodigoReserva.ToLower());
 
             if (!string.IsNullOrEmpty(_filters.Estado))
-                predicate = predicate.And(u => u.estado.ToLower() == _filters.Estado.ToLower());
+                predicate = predicate.And(ar => ar.estado.ToLower() == _filters.Estado.ToLower());
 
             if (_filters.IdUsuario.HasValue)
-                predicate = predicate.And(u => u.idUsuario == _filters.IdUsuario.Value);
+                predicate = predicate.And(ar => ar.idUsuario == _filters.IdUsuario.Value);
 
             if (_filters.IdActividad.HasValue)
-                predicate = predicate.And(u => u.idActividad == _filters.IdActividad.Value);
+                predicate = predicate.And(ar => ar.idActividad == _filters.IdActividad.Value);
 
             var query = _context.ActividadReservas
                             .AsExpandable()
@@ -62,7 +62,7 @@ namespace Infrastructure.Repositories
         {
             var nuevaReserva = new ActividadReserva
             {
-                idReserva = Guid.NewGuid(),
+                idReserva = actividadReserva != null ? actividadReserva.idReserva : Guid.NewGuid(),
                 codigoReserva = actividadReserva.codigoReserva,
                 idActividad = actividadReserva.idActividad,
                 idUsuario = actividadReserva.idUsuario,

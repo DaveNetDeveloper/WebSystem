@@ -20,12 +20,12 @@ namespace Domain.Entities
         /// <summary>
         /// 
         /// </summary>
-        public int idActividad { get; set; }
+        public int idActividad { get; set; } // FK
 
         /// <summary>
         /// 
         /// </summary>
-        public int idUsuario { get; set; }
+        public int idUsuario { get; set; } // FK
 
         /// <summary>
         /// 
@@ -51,20 +51,23 @@ namespace Domain.Entities
         /// 
         /// </summary>
         [JsonIgnore]
-        public ICollection<Usuario> Usuario { get; set; }
+        public Usuario Usuario { get; set; }
 
         /// <summary>
         /// 
         /// </summary>
         [JsonIgnore]
-        public ICollection<Usuario> Actividad { get; set; }
+        public Actividad Actividad { get; set; }
 
-        public static class EstadoReeserva
+        /// <summary>
+        /// 
+        /// </summary>
+        public static class EstadoReserva
         {
             public const string Reservada = "Reservada";
             public const string Validada = "Validada";
+            public const string Cancelada = "Cancelada";
             public const string Pendiente = "Pendiente";
-            public const string Error = "Error";
         }
 
     }

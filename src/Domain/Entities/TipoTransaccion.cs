@@ -12,7 +12,7 @@
             public const string PuntosBienvenida = "Puntos de bienvenida";
             public const string CompletarPerfil = "Puntos por completar el perfil";
             public const string QrProduto = "Puntos por escanear un QR";
-            public const string ReservarEvento = "Puntos por asistencia a evento";
+            public const string ReservarActividad = "Puntos por asistencia a evento";
             public const string PuntosRecomendacion= "Puntos por recomendacion";
         }
     }

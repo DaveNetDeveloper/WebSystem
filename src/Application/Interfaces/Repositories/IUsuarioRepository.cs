@@ -13,7 +13,7 @@ namespace Application.Interfaces.Repositories
         Task<bool> CambiarContrasena(string email, string nuevaContrasena); 
         Task<bool> ActivarSuscripcion(string email);
         Task<bool> ValidarCuenta(string emai);
-        Task<bool> ActualizarBalance(int idUsuario, int puntosTransaccion);
+        Task<bool> ActualizarBalance(int idUsuario, int? puntosTransaccion);
         Task<List<Rol>> GetRolesByUsuarioId(int id);
         Task<List<Direccion>> GetDireccionesByUsuario(int idUsuario);
 

@@ -16,7 +16,7 @@
             public const string SuscripcionActivada = "SuscripcionActivada";
             public const string ReservaProducto = "ReservaProducto";
             public const string Bienvenida = "Bienvenida";
-            public const string InscripcionActividad = "InscripcionActividad";
+            public const string ReservaActividad = "ReservaActividad";
             public const string EnvioComunicacion = "EnvioComunicacion";
             public const string ValidacionCuenta = "ValidacionCuenta";
             public const string CambiarContrasena = "CambiarContrasena";
@@ -31,7 +31,7 @@
             ResetContrasena = 4,
             ContrasenaCambiada = 5,
             ReservaProducto = 6,
-            InscripcionActividad = 7,
+            ReservaActividad = 7,
             RememberSubscribe = 8,
             Recompensa = 9,
             Undefined = 10

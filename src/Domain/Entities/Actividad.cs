@@ -1,4 +1,6 @@
-﻿namespace Domain.Entities
+﻿using System.Text.Json.Serialization;
+
+namespace Domain.Entities
 {
     public class Actividad
     {
@@ -19,6 +21,9 @@
         public string? informacioExtra { get; set; }
         public string? linkInstagram { get; set; }
         public string? linkFacebook { get; set; }
-        public string? linkYoutube { get; set; } 
+        public string? linkYoutube { get; set; }
+
+        [JsonIgnore]
+        public ICollection<ActividadReserva> ActividadReservas { get; set; }
     }
 }

@@ -40,7 +40,7 @@ namespace Application.Services
             try {
 
                 await _unitOfWork.TransaccionesRepository.AddAsync(transaccion);
-                var transactionUser = await _unitOfWork.UsuariosRepository.GetByIdAsync(transaccion.idUsuario);
+                //var transactionUser = await _unitOfWork.UsuariosRepository.GetByIdAsync(transaccion.idUsuario);
 
                 await _unitOfWork.UsuariosRepository.ActualizarBalance(transaccion.idUsuario, transaccion.puntos);
                 await _unitOfWork.CommitTransactionAsync();

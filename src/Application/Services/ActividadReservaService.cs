@@ -38,12 +38,13 @@ namespace Application.Services
         public bool ValidarReserva(int idUsuario, string codigoReserva)
         {
 
+             
+
             return true;
         }
 
-        public string ReservarActividad(int idUsuario, int idActividad)
-        {
-
+        public ReservaActividadDTO ReservarActividad(int idUsuario, int idActividad)
+        { 
             //var returneId = -1;
             //var recompensaFilter = new RecompensaFilters {
             //    IdTipoRecompensa = tipoRecompensa.id,
@@ -60,11 +61,8 @@ namespace Application.Services
 
             //if (usuarioRecompensaResult.Result)
             //    return recompensa.id;
-            
-            
-            return string.Empty;
-        }
-         
-   
+             
+            return new ReservaActividadDTO();
+        } 
     }
 }

@@ -3,7 +3,7 @@ using Application.DTOs.Filters;
 using Application.Interfaces.Common;
 using Application.Interfaces.DTOs.Filters;
 
-//using Application.Interfaces.Common;
+using Application.Interfaces.Common;
 using Application.Interfaces.Repositories;
 using Application.Interfaces.Services;
 using Application.Services;
@@ -12,6 +12,8 @@ using Moq;
 using Test; 
 using Test.UnitTest.Services;
 using Test.UnitTest.Services.Interfaces;
+
+using Microsoft.Extensions.Options;
 
 namespace Test.UnitTest.Services
 {
@@ -34,7 +36,7 @@ namespace Test.UnitTest.Services
         private string? orderBy = "id";
         private bool descending = false;
         private IQueryOptions<Usuario> queryOptions;
-        private IQueryOptions<MailConfiguration> configOptions;
+        private IOptions<MailConfiguration> configOptions;
 
         [SetUp]
         public void SetUp() {
@@ -99,10 +101,9 @@ namespace Test.UnitTest.Services
 
             _loginService = new LoginService(_mockRepoLogin.Object);
 
-            //configOptions = new IQueryOptions<MailConfiguration>();
             _correoService = new CorreoService(_mockRepoTipoEnvio.Object);
 
-            _authService = new AuthService(_mockRepo.Object, _correoService, _loginService);
+            _authService = new AuthService(_mockRepo.Object, _correoService, _loginService , configOptions);
         } 
         [Test]
         public void GetById_Test()

@@ -97,8 +97,8 @@ namespace Domain.Entities
                 case "ReservaProducto":
                     tipoEnvio = TipoEnvioCorreos.ReservaProducto;
                     break;
-                case "InscripcionActividad":
-                    tipoEnvio = TipoEnvioCorreos.InscripcionActividad;
+                case "ReservaActividad":
+                    tipoEnvio = TipoEnvioCorreos.ReservaActividad;
                     break;
             }
             return tipoEnvio;

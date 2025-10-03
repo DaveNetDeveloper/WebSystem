@@ -240,11 +240,11 @@ namespace Infrastructure.Repositories
         /// <param name="idUsuario"></param>
         /// <param name="puntosTransaccion"></param>
         /// <returns></returns>
-        public async Task<bool> ActualizarBalance(int idUsuario, int puntosTransaccion)
+        public async Task<bool> ActualizarBalance(int idUsuario, int? puntosTransaccion)
         {
             var usuario = await _context.Usuarios.Where(u => u.id == idUsuario).SingleOrDefaultAsync();
 
-            if (usuario != null)
+            if (usuario != null && puntosTransaccion != null)
             {
                 usuario.puntos += puntosTransaccion;
                 await _context.SaveChangesAsync();

@@ -1,6 +1,7 @@
 ﻿using Application.DTOs.Filters; 
 using Domain.Entities;
 using Application.Interfaces.Common;
+using Application.DTOs.Responses;
 
 namespace Application.Interfaces.Services
 {
@@ -8,8 +9,7 @@ namespace Application.Interfaces.Services
     {
         Task<IEnumerable<ActividadReserva>> GetByFiltersAsync(ActividadReservaFilters filters,
                                                               IQueryOptions<ActividadReserva>? queryOptions = null);
-        string ReservarActividad(int idUsuario, int idActividad);
-
+        ReservaActividadDTO ReservarActividad(int idUsuario, int idActividad);
         bool ValidarReserva(int idUsuario, string codigoReserva);
     }
 }

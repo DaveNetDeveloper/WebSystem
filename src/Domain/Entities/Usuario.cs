@@ -198,12 +198,18 @@ namespace Domain.Entities
         public ICollection<UsuarioRol> UsuarioRoles { get; set; }
         [JsonIgnore]
         public ICollection<UsuarioEntidad> UsuarioEntidades { get; set; }
+        
         [JsonIgnore]
         public ICollection<UsuarioRecompensa> UsuarioRecompensas { get; set; }
+        
         [JsonIgnore]
         public ICollection<UsuarioDireccion> UsuarioDirecciones { get; set; }
+        
         [JsonIgnore]
         public ICollection<UsuarioSegmentos> UsuarioSegmentos { get; set; }
+
+        [JsonIgnore]
+        public ICollection<ActividadReserva> ActividadReservas { get; set; }
 
         /// <summary>
         /// 

@@ -237,6 +237,20 @@ namespace Infrastructure.Persistence
                 .HasForeignKey(ud => ud.idAccion);
 
 
+            //ActividadReserva
+            modelBuilder.Entity<ActividadReserva>().HasKey(ar => new { ar.idReserva });
+
+            modelBuilder.Entity<ActividadReserva>()
+                .HasOne(u => u.Usuario)
+                .WithMany(u => u.ActividadReservas)
+                //.WithMany()
+                .HasForeignKey(ar => ar.idUsuario);
+
+            modelBuilder.Entity<ActividadReserva>()
+               .HasOne(a => a.Actividad)
+               .WithMany(a => a.ActividadReservas)
+               //.WithMany()
+               .HasForeignKey(ar => ar.idActividad);
 
             //
             // VIEWS
