@@ -2,6 +2,8 @@ using API.Middlewares;
 using Application.DependencyInjection;
 using Infrastructure.DependencyInjection;
 using Domain.Entities;
+using Application.Interfaces.Services;
+using Application.Services;
 
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -28,6 +30,13 @@ builder.Services.AddRateLimiter(options =>
         opt.QueueLimit = 0;
     });
 });
+
+//builder.Services.AddSingleton<ISmsService>(sp =>
+//    new TwilioSmsService(
+//        builder.Configuration.GetSection("Twilio")["AccountSid"],
+//        builder.Configuration.GetSection("Twilio")["AuthToken"],
+//        builder.Configuration.GetSection("Twilio")["FromNumber"]
+//    ));
 
 builder.Logging.ClearProviders();
 builder.Logging.AddConsole();

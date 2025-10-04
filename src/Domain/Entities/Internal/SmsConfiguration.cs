@@ -2,8 +2,8 @@
 {
     public class SmsConfiguration
     { 
-        public string ServicioSms { get; set; } 
-        public string UsuarioSms { get; set; }
-        public string ContrasenaSmms { get; set; } 
+        public string AccountSid { get; set; } 
+        public string AuthToken { get; set; }
+        public string FromNumber { get; set; } 
     }
 }

@@ -55,6 +55,7 @@ namespace Application.DependencyInjection
 
             services.AddScoped<IExcelExporter, ExcelExporter>();
             services.AddScoped<IExportService, DataQueryService>();
+            services.AddScoped<ISmsService, TwilioSmsService>();
 
             //
             // Register Filters
