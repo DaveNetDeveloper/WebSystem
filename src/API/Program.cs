@@ -1,7 +1,7 @@
 using API.Middlewares;
-using Domain.Entities; 
 using Application.DependencyInjection;
-using Infrastructure.DependencyInjection; 
+using Infrastructure.DependencyInjection;
+using Domain.Entities;
 
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -10,10 +10,10 @@ using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using Microsoft.VisualBasic; 
-using System.Text.Json.Serialization;
-using System.Threading.RateLimiting;
 using System.Reflection;
 using System.Text;
+using System.Text.Json.Serialization;
+using System.Threading.RateLimiting;
 using FluentMigrator.Runner;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -44,6 +44,8 @@ builder.Services.AddControllers().AddJsonOptions(options =>
 builder.Services.AddEndpointsApiExplorer(); 
 builder.Services.Configure<AppConfiguration>(builder.Configuration.GetSection("AppConfiguration"));
 builder.Services.Configure<MailConfiguration>(builder.Configuration.GetSection("MailConfiguration"));
+builder.Services.Configure<ExportConfiguration>(builder.Configuration.GetSection("ExportConfiguration"));
+builder.Services.Configure<SmsConfiguration>(builder.Configuration.GetSection("SmsConfiguration"));
 
 builder.Configuration.AddJsonFile("Resources/messages.json", optional: false, reloadOnChange: true);
 
@@ -73,6 +75,7 @@ builder.Services.AddSwaggerGen(c => {
     c.IgnoreObsoleteActions();
     c.IgnoreObsoleteProperties();
     c.CustomSchemaIds(type => type.FullName);
+    //c.SchemaFilter<EnumDisplaySchemaFilter>();
 
     var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
     var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);

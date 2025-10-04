@@ -1,6 +1,8 @@
-﻿namespace Application.DTOs.DataQuery
+﻿using Application.Interfaces.DTOs.DataQuery;
+
+namespace Application.DTOs.DataQuery
 {
-    public class vVisitasTipoDispositivoDTO
+    public class vVisitasTipoDispositivoDTO : IView
     {
         public DateTime? Semana { get; }
         public string? TipoDispositivo { get; }

@@ -1,6 +1,8 @@
-﻿namespace Application.DTOs.DataQuery
+﻿using Application.Interfaces.DTOs.DataQuery;
+
+namespace Application.DTOs.DataQuery
 {
-    public class vAllCampanasDataDTO
+    public class vAllCampanasDataDTO : IView
     {
         public int? IdCampana { get; }
         public string? NombreCampana { get; }

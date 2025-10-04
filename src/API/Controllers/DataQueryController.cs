@@ -1,8 +1,14 @@
 using Application.DTOs.DataQuery;
-using Application.Interfaces.Services; 
+using Application.Interfaces.Services;
+using Domain.Entities;
 
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;  
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Options;
+using System.ComponentModel.DataAnnotations;
+using System.Text.Json.Serialization;
+
+using static Application.Services.DataQueryService;
 
 namespace API.Controllers
 {
@@ -10,11 +16,31 @@ namespace API.Controllers
     [Route("[controller]")]
     public class DataQueryController : ControllerBase
     { 
-        private readonly IDataQueryService _dataQueryService; 
+        private readonly IDataQueryService _dataQueryService;
+        private readonly IExportService _exportService;
+        private readonly ExportConfiguration _exportConfig;
 
-        public DataQueryController(IDataQueryService dataQueryService) {
-             
-            _dataQueryService = dataQueryService ?? throw new ArgumentNullException(nameof(dataQueryService));  
+        public DataQueryController(IDataQueryService dataQueryService,
+                                   IExportService exportService,
+                                   IOptions<ExportConfiguration> options) {
+           
+            _dataQueryService = dataQueryService ?? throw new ArgumentNullException(nameof(dataQueryService));
+            _exportService = exportService ?? throw new ArgumentNullException(nameof(exportService));
+            _exportConfig = options.Value ?? throw new ArgumentNullException(nameof(options));
+        }
+
+        /// <summary>
+        /// Exportar vista a Excel
+        /// </summary>
+        /// <param name="viewName"></param>
+        /// <returns> File to download </returns>
+        [HttpGet("Exportar")]
+        //[Authorize(Policy = "RequireAdmin")]
+        public async Task<IActionResult> Exportar([FromQuery] DataQueryType dataQueryType)
+        {
+            var file = await _exportService.ExportarAsync(dataQueryType);
+            var fileName = $"DataQuery_{dataQueryType.ToString()}_{DateTime.UtcNow:yyyyMMddHHmmss}.xlsx"; 
+            return File(file, _exportConfig.ExcelContentType, fileName);
         }
 
         /// <summary>

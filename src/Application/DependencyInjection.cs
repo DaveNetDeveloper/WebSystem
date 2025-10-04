@@ -53,6 +53,8 @@ namespace Application.DependencyInjection
             //services.AddScoped<IUsuarioRecompensaService, UsuarioRecompensaService>();
             services.AddScoped<IActividadReservaService, ActividadReservaService>();
 
+            services.AddScoped<IExcelExporter, ExcelExporter>();
+            services.AddScoped<IExportService, DataQueryService>();
 
             //
             // Register Filters
