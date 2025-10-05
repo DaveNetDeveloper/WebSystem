@@ -1,5 +1,6 @@
 using Application.DTOs.DataQuery;
 using Application.Interfaces.Services;
+using Application.Services;
 using Domain.Entities;
 
 using Microsoft.AspNetCore.Authorization;
@@ -19,14 +20,16 @@ namespace API.Controllers
         private readonly IDataQueryService _dataQueryService;
         private readonly IExportService _exportService;
         private readonly ExportConfiguration _exportConfig;
-
+        private readonly ICorreoService _correoService;
         public DataQueryController(IDataQueryService dataQueryService,
                                    IExportService exportService,
+                                   ICorreoService correoService,
                                    IOptions<ExportConfiguration> options) {
            
             _dataQueryService = dataQueryService ?? throw new ArgumentNullException(nameof(dataQueryService));
             _exportService = exportService ?? throw new ArgumentNullException(nameof(exportService));
             _exportConfig = options.Value ?? throw new ArgumentNullException(nameof(options));
+            _correoService = correoService ?? throw new ArgumentNullException(nameof(correoService));
         }
 
         /// <summary>
@@ -35,12 +38,48 @@ namespace API.Controllers
         /// <param name="viewName"></param>
         /// <returns> File to download </returns>
         [HttpGet("Exportar")]
-        //[Authorize(Policy = "RequireAdmin")]
-        public async Task<IActionResult> Exportar([FromQuery] DataQueryType dataQueryType)
+        [Authorize(Policy = "RequireAdmin")]
+        public async Task<IActionResult> Exportar([FromQuery] DataQueryType dataQueryType, 
+                                                  [FromQuery] ExportFormat formato,
+                                                  [FromQuery] bool envioEmail)
         {
-            var file = await _exportService.ExportarAsync(dataQueryType);
-            var fileName = $"DataQuery_{dataQueryType.ToString()}_{DateTime.UtcNow:yyyyMMddHHmmss}.xlsx"; 
-            return File(file, _exportConfig.ExcelContentType, fileName);
+            var file = await _exportService.ExportarAsync(dataQueryType, formato);
+
+            string fileExtension = string.Empty;
+            string contentType = string.Empty;
+             
+            switch (formato) {
+                case ExportFormat.Excel:
+                    contentType = _exportConfig.ExcelContentType;
+                    fileExtension = _exportConfig.ExcelExtension;
+                    break;
+                case ExportFormat.Pdf:
+                    contentType = _exportConfig.PdfContentType;
+                    fileExtension = _exportConfig.PdfExtension;
+                    break;
+            }
+
+            var fileName = $"DataQuery_{dataQueryType.ToString()}_{DateTime.UtcNow:yyyyMMddHHmmss}{fileExtension}";
+
+            if(envioEmail)
+            {
+                var tipoEnvioCorreo = _correoService.ObtenerTiposEnvioCorreo()
+                                                    .Result.Where(u => u.nombre == TipoEnvioCorreo.TipoEnvio.EnvioReport)
+                                                    .SingleOrDefault();
+
+                tipoEnvioCorreo.asunto = $"Report {dataQueryType.ToString()} ({fileExtension})";
+                tipoEnvioCorreo.cuerpo = $"Se adjunta el informe para la vista de datos {dataQueryType.ToString()}";
+
+                var correo = new Correo(tipoEnvioCorreo, _exportConfig.CorreoAdmin, "Admin", "");
+                correo.FicheroAdjunto = new FicheroAdjunto()
+                { 
+                    Archivo = file,
+                    ContentType = contentType,
+                    NombreArchivo = fileName
+                };
+                _correoService.EnviarCorreo(correo);
+            }
+            return File(file, contentType, fileName);
         }
 
         /// <summary>

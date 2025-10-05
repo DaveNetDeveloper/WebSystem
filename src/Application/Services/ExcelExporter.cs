@@ -1,5 +1,4 @@
-﻿using Application.Interfaces;
-using Application.Interfaces.Repositories;
+﻿using Application.Interfaces.Repositories;
 using Application.Interfaces.Services;
 using Domain.Entities;
 
@@ -83,7 +82,6 @@ namespace Application.Services
                 }
                 row++;
             }
-
             using var stream = new MemoryStream();
             workbook.SaveAs(stream);
             return stream.ToArray();

@@ -21,20 +21,22 @@
             public const string ValidacionCuenta = "ValidacionCuenta";
             public const string CambiarContrasena = "CambiarContrasena";
             public const string Recompensa = "Recompensa";
+            public const string EnvioReport = "EnvioReport";
         }
 
         public enum TipoEnvioCorreos
         {
-            ValidacionCuenta = 1,
-            Bienvenida = 2,
-            SuscripcionActivada = 3,
-            ResetContrasena = 4,
-            ContrasenaCambiada = 5,
-            ReservaProducto = 6,
-            ReservaActividad = 7,
-            RememberSubscribe = 8,
-            Recompensa = 9,
-            Undefined = 10
+            ValidacionCuenta,
+            Bienvenida,
+            SuscripcionActivada,
+            ResetContrasena ,
+            ContrasenaCambiada,
+            ReservaProducto,
+            ReservaActividad ,
+            RememberSubscribe,
+            Recompensa,
+            EnvioReport,
+            Undefined
         }
     }
 }

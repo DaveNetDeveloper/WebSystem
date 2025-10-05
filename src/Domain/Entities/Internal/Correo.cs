@@ -28,6 +28,8 @@ namespace Domain.Entities
         /// <summary> Url de la imagen del logo mostrado en el correo </summary>
         public string? LogoUrl { get; set; }
 
+        public FicheroAdjunto? FicheroAdjunto { get; set; }
+
         /// <summary> Constructor sin parámetros </summary>
         [JsonConstructor]
         public Correo() { }
@@ -62,6 +64,7 @@ namespace Domain.Entities
 
             return customizedBody;
         }
+
         private static class EmailKeys
         {
             public const string EMAIL_KEY_NAME =  "[_NAME_]";
@@ -81,7 +84,6 @@ namespace Domain.Entities
                 case "Bienvenida":
                     tipoEnvio = TipoEnvioCorreos.Bienvenida;
                     break;
-
                 case "ContrasenaCambiada":
                     tipoEnvio = TipoEnvioCorreos.ContrasenaCambiada;
                     break;
@@ -99,6 +101,9 @@ namespace Domain.Entities
                     break;
                 case "ReservaActividad":
                     tipoEnvio = TipoEnvioCorreos.ReservaActividad;
+                    break;
+                case "EnvioReport":
+                    tipoEnvio = TipoEnvioCorreos.EnvioReport;
                     break;
             }
             return tipoEnvio;

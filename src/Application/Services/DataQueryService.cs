@@ -4,7 +4,6 @@ using Application.Interfaces.Repositories;
 using Application.Interfaces.Services;
 
 using System.Collections; 
-//using System.ComponentModel.DataAnnotations;
 using System.Text.Json.Serialization;
 
 namespace Application.Services
@@ -12,10 +11,10 @@ namespace Application.Services
     /// <summary>
     /// 
     /// </summary>
-    public class DataQueryService : IDataQueryService, 
-                                    IExportService
+    public class DataQueryService : IDataQueryService, IExportService, IExporter
     {
-        private readonly IExcelExporter _excelExporter; 
+        private readonly IExcelExporter _excelExporter;
+        private readonly IExporter _pdfExporter;
         private readonly IDataQueryRepository _repo;
 
         /// <summary>
@@ -24,35 +23,38 @@ namespace Application.Services
         /// <param name="repo"></param>
         /// <param name="excelExporter"></param>
         public DataQueryService(IDataQueryRepository repo,
-                                IExcelExporter excelExporter)  {
+                                IExcelExporter excelExporter,
+                                IExporter pdfExporter)  {
             _repo = repo; 
             _excelExporter = excelExporter;
+            _pdfExporter = pdfExporter;
         }
 
-        // [JsonConverter(typeof(JsonStringEnumConverter))]
+         
+        public enum ExportFormat { Excel, Pdf }
+
+        public byte[] ExportDynamic(IEnumerable data, Type entityType) 
+        {
+            return null;
+        }
+
+        public byte[] Export<T>(IEnumerable<T> data, string sheetName) 
+        {
+            return null;
+        }
+
         public enum DataQueryType
         { 
-            //[Display(Name = "Usuarios Inactivos")]
             UsuariosInactivos,
-            //[Display(Name = "Actividad Usuarios")]
             ActividadUsuarios,
-            //[Display(Name = "Usuarios Idiomas")]
             UsuariosIdiomas,
-            //[Display(Name = "Usuarios Dispositivos")]
             UsuariosDispositivos,
-            //[Display(Name = "Roles Usuarios")]
             RolesUsuarios,
-            //[Display(Name = "Visitas Tipo Dispositivo")]
             VisitasTipoDispositivo,
-            //[Display(Name = "Total Ultimas Transacciones")]
             TotalUltimasTransacciones,
-            //[Display(Name = "Campanas Usuarios")]
             CampanasUsuarios,
-            //[Display(Name = "All User Data")]
             AllUserData,
-            //[Display(Name = "All Campanas Data")]
             AllCampanasData,
-            //[Display(Name = "Asistencia Actividades")]
             AsistenciaActividades
         }
 
@@ -61,8 +63,8 @@ namespace Application.Services
         /// </summary>
         /// <param name="dataQueryType"></param>
         /// <returns></returns>
-        public async Task<byte[]> ExportarAsync(DataQueryType dataQueryType)
-        {
+        public async Task<byte[]> ExportarAsync(DataQueryType dataQueryType, ExportFormat formato)
+        { 
             Type entityType = null;
             IEnumerable queryResult = null; 
 
@@ -126,7 +128,17 @@ namespace Application.Services
                 default:
                     throw new InvalidOperationException("Vista no reconocida");
             }
-            byte[] excelBytes = _excelExporter.ExportToExcelDynamic(queryResult, entityType);
+
+            byte[] excelBytes = null;
+            switch (formato)
+            {
+                case ExportFormat.Excel:
+                    excelBytes = _excelExporter.ExportToExcelDynamic(queryResult, entityType);
+                    break;
+                case ExportFormat.Pdf:
+                    excelBytes = _pdfExporter.ExportDynamic(queryResult, entityType);
+                    break; 
+            }
             return excelBytes;
         }
 

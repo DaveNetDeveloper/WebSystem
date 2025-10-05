@@ -28,9 +28,9 @@ namespace Application.Services
         }
 
         public Task<IEnumerable<TipoEnvioCorreo>> ObtenerTiposEnvioCorreo() { 
-            return _repoTipoEnvioCorreo.GetAllAsync(); 
+            return _repoTipoEnvioCorreo.GetAllAsync();
         }
-
+       
         /// <summary>
         /// Envia un correo electronico con los datos especificados por parámetro
         /// </summary>
@@ -46,11 +46,27 @@ namespace Application.Services
                 mensaje.Body = correo.Cuerpo;
                 mensaje.IsBodyHtml = true;
 
-                using (var clienteSmtp = new SmtpClient(EncodeDecodeHelper.GetDecodeValue(_mailConfig.ServidorSmtp), Convert.ToInt32(EncodeDecodeHelper.GetDecodeValue(_mailConfig.PuertoSmtp))))
+                bool hasAttachment = correo.FicheroAdjunto != null && correo.FicheroAdjunto.Archivo.Length > 0;
+
+                if (hasAttachment)
                 {
-                    clienteSmtp.Credentials = new NetworkCredential(EncodeDecodeHelper.GetDecodeValue(_mailConfig.UsuarioSmtp), EncodeDecodeHelper.GetDecodeValue(_mailConfig.ContrasenaSmtp));
-                    clienteSmtp.EnableSsl = true;
-                    clienteSmtp.Send(mensaje);
+                    var stream = new MemoryStream(correo.FicheroAdjunto.Archivo);
+                    var attachment = new Attachment(stream, correo.FicheroAdjunto.NombreArchivo, correo.FicheroAdjunto.ContentType);
+                    mensaje.Attachments.Add(attachment);
+                }
+
+                using var clienteSmtp = new SmtpClient(EncodeDecodeHelper.GetDecodeValue(_mailConfig.ServidorSmtp)) 
+                {
+                    Port = Convert.ToInt32(EncodeDecodeHelper.GetDecodeValue(_mailConfig.PuertoSmtp)),
+                    Credentials = new NetworkCredential(EncodeDecodeHelper.GetDecodeValue(_mailConfig.UsuarioSmtp),
+                                                        EncodeDecodeHelper.GetDecodeValue(_mailConfig.ContrasenaSmtp)),
+                    EnableSsl = true
+                };
+                clienteSmtp.Send(mensaje);
+
+                if (hasAttachment) {
+                    foreach (var adjunto in mensaje.Attachments)
+                        adjunto.ContentStream.Dispose();
                 }
             }
             return correo.EmailToken.Value;

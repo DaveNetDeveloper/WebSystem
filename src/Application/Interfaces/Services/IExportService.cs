@@ -8,6 +8,6 @@ namespace Application.Interfaces.Services
 {
     public interface IExportService
     {
-        Task<byte[]> ExportarAsync(DataQueryType staQuery);
+        Task<byte[]> ExportarAsync(DataQueryType staQuery, ExportFormat formato);
     }
 }

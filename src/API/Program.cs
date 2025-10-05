@@ -18,6 +18,9 @@ using System.Text.Json.Serialization;
 using System.Threading.RateLimiting;
 using FluentMigrator.Runner;
 
+using QuestPDF.Infrastructure;
+QuestPDF.Settings.License = LicenseType.Community;
+
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddRateLimiter(options =>
@@ -30,13 +33,6 @@ builder.Services.AddRateLimiter(options =>
         opt.QueueLimit = 0;
     });
 });
-
-//builder.Services.AddSingleton<ISmsService>(sp =>
-//    new TwilioSmsService(
-//        builder.Configuration.GetSection("Twilio")["AccountSid"],
-//        builder.Configuration.GetSection("Twilio")["AuthToken"],
-//        builder.Configuration.GetSection("Twilio")["FromNumber"]
-//    ));
 
 builder.Logging.ClearProviders();
 builder.Logging.AddConsole();

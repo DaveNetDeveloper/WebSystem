@@ -54,6 +54,7 @@ namespace Application.DependencyInjection
             services.AddScoped<IActividadReservaService, ActividadReservaService>();
 
             services.AddScoped<IExcelExporter, ExcelExporter>();
+            services.AddScoped<IExporter, PdfExporter>();
             services.AddScoped<IExportService, DataQueryService>();
             services.AddScoped<ISmsService, TwilioSmsService>();
 
