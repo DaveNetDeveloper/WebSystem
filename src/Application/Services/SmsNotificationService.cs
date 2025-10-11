@@ -49,7 +49,7 @@ namespace Application.Services
             return _repo.ObtenerTiposEnvioSms();
         }
 
-        public Guid EnviarSms(Sms sms)
+        public Guid EnviarSms(SmsDTO sms)
         {
             // TODO: Implementar envio de SMS contra envio de mensajeria
             // usando la configuracion desde: [SmsConfiguration]

@@ -1,10 +1,12 @@
 ﻿using Application.Common;
+using Application.Interfaces.Messaging;
 using Application.Interfaces.Repositories;
+using FirebirdSql.Data.Services;
+using Infrastructure.Extensions;
+using Infrastructure.Messaging;
 using Infrastructure.Persistence; 
 using Infrastructure.Repositories;
 using Infrastructure.Repositories.UnitOfWork;
-using Infrastructure.Extensions;
-
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -79,6 +81,9 @@ namespace Infrastructure.DependencyInjection
             services.AddScoped<ITipoRecompensasRepository, TipoRecompensasRepository>(); // Solo repositorio, sin service 
             services.AddScoped<IUsuarioRecompensasRepository, UsuarioRecompensasRepository>(); // Solo repositorio, sin service 
             services.AddScoped<IActividadReservaRepository, ActividadReservaRepository>();
+
+            services.AddSingleton<IMessageBusService, RabbitMqService>();
+            services.AddSingleton<IMessageConsumer, RabbitMqConsumer>();
 
             return services;
         }

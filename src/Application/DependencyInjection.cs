@@ -1,8 +1,12 @@
 ﻿using Application.DTOs.Filters;
+using Application.DTOs.Requests;
 using Application.Interfaces.DTOs.Filters;
+using Application.Messaging.Handler;
+using Application.Interfaces.Messaging;
 using Application.Interfaces.Repositories;
 using Application.Interfaces.Services;
 using Application.Services;
+using Application.Messaging;
 using Domain.Entities;
 
 using Microsoft.Extensions.DependencyInjection;
@@ -57,6 +61,11 @@ namespace Application.DependencyInjection
             services.AddScoped<IExporter, PdfExporter>();
             services.AddScoped<IExportService, DataQueryService>();
             services.AddScoped<ISmsService, TwilioSmsService>();
+
+            services.AddScoped<NotificationRequestHandler>();
+
+            //services.AddSingleton<INotificationProcessor, NotificationProcessor>();
+            services.AddScoped<INotificationProcessor, NotificationProcessor>();
 
             //
             // Register Filters

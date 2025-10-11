@@ -22,6 +22,8 @@
             public const string CambiarContrasena = "CambiarContrasena";
             public const string Recompensa = "Recompensa";
             public const string EnvioReport = "EnvioReport";
+            public const string Undefined = "Undefined";
+            
         }
 
         public enum TipoEnvioCorreos

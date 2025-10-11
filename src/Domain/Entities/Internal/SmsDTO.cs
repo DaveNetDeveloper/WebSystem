@@ -1,11 +1,11 @@
 ﻿using System.Text;
 using System.Text.Json.Serialization;
-using static Domain.Entities.Sms;
+//using static Domain.Entities.Sms;
 
 namespace Domain.Entities
 {
     /// <summary> Entidad interna para un envio de SMS </summary>
-    public class Sms
+    public class SmsDTO
     {
         /// <summary> Telefono del destinatario <summary>
         public string? Destinatario { get; set; }
@@ -27,7 +27,7 @@ namespace Domain.Entities
 
         /// <summary> Constructor sin parámetros </summary>
         [JsonConstructor]
-        public Sms() { }
+        public SmsDTO() { }
 
         /// <summary> Constructor con parámetros </summary>
         /// <param name="tipoEnvio"> Tipo de envio del sms </param>
@@ -36,7 +36,7 @@ namespace Domain.Entities
         /// <param name="emisor"> </param>
         /// <param name="asunto"> </param>
         /// <param name="mensaje"> </param>
-        public Sms(string tipoEnvio, 
+        public SmsDTO(string tipoEnvio, 
                    string destinatario, 
                    string nombreUsuario, 
                    string emisor, 

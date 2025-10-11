@@ -11,7 +11,7 @@ namespace Application.Interfaces.Services
         Task<PagedResult<SmsNotification>> GetByFiltersAsync(SmsNotificationFilters filters,
                                                              IQueryOptions<SmsNotification>? queryOptions = null);
 
-        Guid EnviarSms(Sms sms);
+        Guid EnviarSms(SmsDTO sms);
         Task<IEnumerable<string>> ObtenerTiposEnvioSms();
     }
 }

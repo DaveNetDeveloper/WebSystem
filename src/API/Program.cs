@@ -3,6 +3,7 @@ using Application.DependencyInjection;
 using Infrastructure.DependencyInjection;
 using Domain.Entities;
 using Application.Interfaces.Services;
+using Application.Interfaces.Messaging;
 using Application.Services;
 
 using Microsoft.AspNetCore.Authentication;
@@ -51,6 +52,7 @@ builder.Services.Configure<AppConfiguration>(builder.Configuration.GetSection("A
 builder.Services.Configure<MailConfiguration>(builder.Configuration.GetSection("MailConfiguration"));
 builder.Services.Configure<ExportConfiguration>(builder.Configuration.GetSection("ExportConfiguration"));
 builder.Services.Configure<SmsConfiguration>(builder.Configuration.GetSection("SmsConfiguration"));
+builder.Services.Configure<MQServiceConfiguration>(builder.Configuration.GetSection("MQServiceConfiguration"));
 
 builder.Configuration.AddJsonFile("Resources/messages.json", optional: false, reloadOnChange: true);
 
@@ -170,6 +172,13 @@ if (!builder.Environment.IsEnvironment(Application.Common.Environments.Test) &&
     using var scope = app.Services.CreateScope();
     var runner = scope.ServiceProvider.GetRequiredService<IMigrationRunner>();
     runner.MigrateUp();
+}
+
+// Lanzar el consumidor de la cola de notificaciones
+using (var scope = app.Services.CreateScope())
+{
+    var consumer = scope.ServiceProvider.GetRequiredService<IMessageConsumer>();
+    consumer.StartConsuming("notificaciones");
 }
 
 // Health endpoint en JSON

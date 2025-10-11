@@ -35,10 +35,10 @@ namespace API.Controllers
         }
 
         /// <summary> Envia un SMS </summary>
-        /// <param name="sms"> SMS con los datos del envio </param> 
+        /// <param name="SmsDTO"> SMS con los datos del envio </param> 
         [Authorize]
         [HttpPost("Enviar")]
-        public IActionResult EnviarSms([FromBody][Required] Sms sms)
+        public IActionResult EnviarSms([FromBody][Required] SmsDTO sms)
         {
             try {
                 var result = _smsNotificationService.EnviarSms(sms);
