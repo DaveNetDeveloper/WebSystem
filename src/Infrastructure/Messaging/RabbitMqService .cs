@@ -1,12 +1,11 @@
 ﻿using Application.Interfaces.Messaging;
 using Domain.Entities;
-
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Options;
+using RabbitMQ.Client;
 using System.Text;
 using System.Text.Json;
-
-using RabbitMQ.Client;
+using Utilities;
 
 namespace Infrastructure.Messaging
 {
@@ -22,9 +21,9 @@ namespace Infrastructure.Messaging
             var factory = new ConnectionFactory()
                 {
                     HostName = config.HostName,
-                    Port = Convert.ToInt32(config.Port),
-                    UserName = config.UserName,
-                    Password = config.Password
+                    Port = Convert.ToInt32(EncodeDecodeHelper.GetDecodeValue(config.Port)),
+                    UserName = EncodeDecodeHelper.GetDecodeValue(config.UserName),
+                    Password = EncodeDecodeHelper.GetDecodeValue(config.Password)
                 };
 
             _connection = factory.CreateConnection();
