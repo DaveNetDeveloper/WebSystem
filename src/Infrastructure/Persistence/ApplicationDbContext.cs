@@ -57,7 +57,8 @@ namespace Infrastructure.Persistence
         public DbSet<Accion> Acciones { get; set; }
         public DbSet<TipoSegmento> TipoSegmentos { get; set; }
         public DbSet<Segmento> Segmentos { get; set; }
-        public DbSet<Login> Logins { get; set; } 
+        public DbSet<Login> Logins { get; set; }
+        public DbSet<Log> Logs { get; set; }
 
         //
         // Views

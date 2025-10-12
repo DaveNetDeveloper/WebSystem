@@ -81,6 +81,7 @@ namespace Infrastructure.DependencyInjection
             services.AddScoped<ITipoRecompensasRepository, TipoRecompensasRepository>(); // Solo repositorio, sin service 
             services.AddScoped<IUsuarioRecompensasRepository, UsuarioRecompensasRepository>(); // Solo repositorio, sin service 
             services.AddScoped<IActividadReservaRepository, ActividadReservaRepository>();
+            services.AddTransient<ILogRepository, LogRepository>();
 
             services.AddSingleton<IMessageBusService, RabbitMqService>();
             services.AddSingleton<IMessageConsumer, RabbitMqConsumer>();

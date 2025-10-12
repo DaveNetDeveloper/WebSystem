@@ -56,6 +56,7 @@ namespace Application.DependencyInjection
             //services.AddScoped<ITipoRecompensaService, TipoRecompensaService>();
             //services.AddScoped<IUsuarioRecompensaService, UsuarioRecompensaService>();
             services.AddScoped<IActividadReservaService, ActividadReservaService>();
+            services.AddTransient<ILogService, LogService>();
 
             services.AddScoped<IExcelExporter, ExcelExporter>();
             services.AddScoped<IExporter, PdfExporter>();
@@ -99,6 +100,7 @@ namespace Application.DependencyInjection
             services.AddScoped<IFilters<SmsNotification>, SmsNotificationFilters>();
             services.AddScoped<IFilters<TipoRecompensa>, TipoRecompensaFilters>();
             services.AddScoped<IFilters<ActividadReserva>, ActividadReservaFilters>();
+            services.AddScoped<IFilters<Log>, LogFilters>();
 
             return services;
         }
