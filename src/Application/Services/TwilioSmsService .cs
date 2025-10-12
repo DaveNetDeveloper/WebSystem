@@ -6,6 +6,7 @@ using Microsoft.Extensions.Options;
 
 using Twilio;
 using Twilio.Rest.Api.V2010.Account;
+using Utilities;
 
 namespace Application.Services
 {
@@ -16,14 +17,15 @@ namespace Application.Services
         public TwilioSmsService(IOptions<SmsConfiguration> smsConfig)
         {
             _smsConfig = smsConfig.Value;
-            TwilioClient.Init(_smsConfig.AccountSid, _smsConfig.AuthToken);
+            TwilioClient.Init(EncodeDecodeHelper.GetDecodeValue(_smsConfig.AccountSid), 
+                              EncodeDecodeHelper.GetDecodeValue(_smsConfig.AuthToken));
         }
 
         public async Task SendAsync(string to, string message)
         {
             await MessageResource.CreateAsync(
                 body: message,
-                from: new Twilio.Types.PhoneNumber(_smsConfig.FromNumber),
+                from: new Twilio.Types.PhoneNumber(EncodeDecodeHelper.GetDecodeValue(_smsConfig.FromNumber)),
                 to: new Twilio.Types.PhoneNumber(to)
             );
         }
