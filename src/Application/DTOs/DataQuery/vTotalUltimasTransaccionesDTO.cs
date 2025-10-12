@@ -1,6 +1,8 @@
-﻿namespace Application.DTOs.DataQuery
+﻿using Application.Interfaces.DTOs.DataQuery;
+
+namespace Application.DTOs.DataQuery
 {
-    public class vTotalUltimasTransaccionesDTO
+    public class vTotalUltimasTransaccionesDTO : IView
     {
         public DateTime? Dia { get; }
         public int? TotalBienvenida { get; }

@@ -5,6 +5,7 @@ using Application.Interfaces.DTOs.Filters;
 using Application.Interfaces.Services;
 using Application.Services;
 using Domain.Entities;
+
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
  
@@ -12,11 +13,12 @@ namespace API.Controllers
 {
     [Route("[controller]")]
     [ApiController]
-    public class RecompensasController : BaseController<Recompensa>, IController<IActionResult, Recompensa, int>
+    public class RecompensasController : BaseController<Recompensa>, 
+                                         IController<IActionResult, Recompensa, int>
     {
         private readonly IRecompensaService _recompensaService;
-        public RecompensasController(ILogger<RecompensasController> logger, IRecompensaService recompensaService)
-        {
+        public RecompensasController(ILogger<RecompensasController> logger, 
+                                     IRecompensaService recompensaService) {
             _logger = logger;
             _recompensaService = recompensaService ?? throw new ArgumentNullException(nameof(recompensaService));
         }
@@ -46,13 +48,13 @@ namespace API.Controllers
             return Ok(filtered);
         }
 
-        //[Authorize]
-        //[HttpGet("ObtenerRecompensa/{id}")]
-        //public async Task<IActionResult> GetByIdAsync(int id)
-        //{
-        //    var recompensa = await _recompensaService.GetByIdAsync(id);
-        //    return recompensa != null ? Ok(recompensa) : NoContent();
-        //}
+        [Authorize]
+        [HttpGet("ObtenerRecompensa/{id}")]
+        public async Task<IActionResult> GetByIdAsync(int id)
+        {
+            var recompensa = await _recompensaService.GetByIdAsync(id);
+            return recompensa != null ? Ok(recompensa) : NoContent();
+        }
 
 
         [Authorize]
@@ -105,7 +107,7 @@ namespace API.Controllers
             }
         }
 
-        [Authorize]
+        //[Authorize]
         [HttpGet("GetRecompensasByUsuario/{idUsuario}")]
         public async Task<IActionResult> GetRecompensasByUsuario(int idUsuario)
         {

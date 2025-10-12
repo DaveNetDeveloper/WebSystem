@@ -1,10 +1,12 @@
 ﻿using Application.DTOs.DataQuery;
 using Application.Interfaces.Repositories; 
 using Domain.DataQuery;
+using Domain.Entities;
 using Infrastructure.Persistence;
 
 using LinqKit;
 using Microsoft.EntityFrameworkCore;
+using System;
 using System.Linq; 
 
 namespace Infrastructure.Repositories
@@ -171,5 +173,98 @@ namespace Infrastructure.Repositories
                     x.correoUsuario
                 )).ToListAsync();
         }
+
+        public async Task<IReadOnlyList<vAllUserDataDTO>> ObtenerAllUserData(int page = 1, int pageSize = 100)
+        {
+            if (page < 1) page = 1;
+            var skip = (page - 1) * pageSize;
+
+            return await _context.v_AllUserData
+                .AsNoTracking()
+                .Skip(skip)
+                .Take(pageSize)
+                .Select(x => new vAllUserDataDTO(
+                    x.idUsuario,
+                    x.nombreUsuario,
+                    x.correo,
+                    x.activo,
+                    x.fechaCreacion,
+                    x.fechaNacimiento,
+                    x.suscrito,
+                    x.puntos,
+                    x.genero,
+                    x.telefono,
+                    x.edad,
+                    x.codigoRecomendacion,
+                    x.codigoRecomendacionRef,
+                    x.totalRoles,
+                    x.roles,
+                    x.totalLogins,
+                    x .ultimaConexion,
+                    x.ultimoDispositivo,
+                    x.ciudad,
+                    x.provincia,
+                    x.comunidadAutonoma,
+                    x.pais,
+                    x.totalRecompensas,
+                    x.totalEntidades,
+                    x.entidades,
+                    x.totalSegmentos,
+                    x.segmentos,
+                    x.totalTransacciones,
+                    x.totalTransaccionesProducto,
+                    x.totalTransaccionesEvento
+                )).ToListAsync();
+        }
+
+        public async Task<IReadOnlyList<vAllCampanasDataDTO>> ObtenerAllCampanasData(int page = 1, int pageSize = 100)
+        {
+            if (page < 1) page = 1;
+            var skip = (page - 1) * pageSize;
+
+            return await _context.v_AllCampanasData
+                .AsNoTracking()
+                .Skip(skip)
+                .Take(pageSize)
+                .Select(x => new vAllCampanasDataDTO(
+                        x.idCampana,
+                        x.nombreCampana,
+                        x.estadoCampana,
+                        x.frecuenciaCampana,
+                        x.fechaInicioCampana,
+                        x.fechaFinCampana,
+                        x.tipoCampana,
+                        x.tipoAccion,
+                        x.accion,
+                        x.accionDetalle,
+                        x.idSegmento,
+                        x.segmento,
+                        x.tipoSegmento
+                )).ToListAsync();
+        }
+
+        public async Task<IReadOnlyList<vAsistenciaActividadesDTO>> ObtenerAsistenciaActividades(int page = 1, int pageSize = 100)
+        {
+            if (page < 1) page = 1;
+            var skip = (page - 1) * pageSize;
+
+            return await _context.v_AsistenciaActividades
+                .AsNoTracking()
+                .Skip(skip)
+                .Take(pageSize)
+                .Select(x => new vAsistenciaActividadesDTO(
+                        x.idReserva,
+                        x.codigoReserva,
+                        x.idActividad,
+                        x.idUsuario,
+                        x.nombreUsuario,
+                        x.nombreActividad,
+                        x.tipoActividad,
+                        x.fechaReserva,
+                        x.fechaActividad,
+                        x.estado,
+                        x.fechaValidacion
+                )).ToListAsync();
+        }  
     }
 }

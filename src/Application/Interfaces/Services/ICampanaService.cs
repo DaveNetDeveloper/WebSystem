@@ -9,6 +9,8 @@ namespace Application.Interfaces.Services
     {
         Task<IEnumerable<Campana>> GetByFiltersAsync(CampanaFilters filters,
                                                      IQueryOptions<Campana>? queryOptions = null);
-        //Task<IEnumerable<ImagenesProductoDTO>> GetImagenesByProducto(int id);
+
+        Task<IEnumerable<Segmento>> GetSegmentoByCampana(int idCampana);
+        Task<IEnumerable<Accion>> GetAccionesByCampana(int idCampana);
     }
 }

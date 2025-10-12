@@ -7,8 +7,9 @@ namespace Application.Interfaces.Services
 {
     public interface IEmailTokenService : IService<EmailToken, Guid>
     { 
-        public DateTime GetExpirationDate(DateTime fechaCreacion);
-        public bool CheckEmailToken(string emailToken, string email);
-        public bool ConsumeEmailToken(string emailToken, string ip, string userAgent);
+        DateTime GetExpirationDate(DateTime fechaCreacion);
+        Task<string> GenerateEmailToken(int idUsuario, string emailAction);
+        bool CheckEmailToken(string emailToken, string email);
+        bool ConsumeEmailToken(string emailToken, string ip, string userAgent);
     }
 }

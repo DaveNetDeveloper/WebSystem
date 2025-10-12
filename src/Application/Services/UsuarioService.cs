@@ -56,8 +56,12 @@ namespace Application.Services
 
         //
         // JOBS
-        // 
+        //  
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns> IEnumerable<Usuario> </returns>
         public Task<IEnumerable<Usuario>> CheckUnsubscribedUsers()
            => _repo.CheckUnsubscribedUsers();
     }

@@ -1,11 +1,16 @@
 ﻿using Application.DTOs.Filters;
+using Application.DTOs.Requests;
 using Application.Interfaces.DTOs.Filters;
+using Application.Messaging.Handler;
+using Application.Interfaces.Messaging;
 using Application.Interfaces.Repositories;
 using Application.Interfaces.Services;
 using Application.Services;
+using Application.Messaging;
 using Domain.Entities;
 
 using Microsoft.Extensions.DependencyInjection;
+using static Domain.Entities.TipoRecompensa;
 
 namespace Application.DependencyInjection
 {
@@ -46,6 +51,21 @@ namespace Application.DependencyInjection
             services.AddScoped<ILoginService, LoginService>();
             services.AddScoped<IDataQueryService, DataQueryService>();
             services.AddScoped<ITipoTransaccionService, TipoTransaccionService>();
+            services.AddScoped<IInAppNotificationService, InAppNotificationService>();
+            services.AddScoped<ISmsNotificationService, SmsNotificationService>();
+            //services.AddScoped<ITipoRecompensaService, TipoRecompensaService>();
+            //services.AddScoped<IUsuarioRecompensaService, UsuarioRecompensaService>();
+            services.AddScoped<IActividadReservaService, ActividadReservaService>();
+
+            services.AddScoped<IExcelExporter, ExcelExporter>();
+            services.AddScoped<IExporter, PdfExporter>();
+            services.AddScoped<IExportService, DataQueryService>();
+            services.AddScoped<ISmsService, TwilioSmsService>();
+
+            services.AddScoped<NotificationRequestHandler>();
+
+            //services.AddSingleton<INotificationProcessor, NotificationProcessor>();
+            services.AddScoped<INotificationProcessor, NotificationProcessor>();
 
             //
             // Register Filters
@@ -75,6 +95,10 @@ namespace Application.DependencyInjection
             services.AddScoped<IFilters<Segmento>, SegmentoFilters>();
             services.AddScoped<IFilters<Login>, LoginFilters>();
             services.AddScoped<IFilters<TipoTransaccion>, TipoTransaccionFilters>();
+            services.AddScoped<IFilters<InAppNotification>, InAppNotificationFilters>();
+            services.AddScoped<IFilters<SmsNotification>, SmsNotificationFilters>();
+            services.AddScoped<IFilters<TipoRecompensa>, TipoRecompensaFilters>();
+            services.AddScoped<IFilters<ActividadReserva>, ActividadReservaFilters>();
 
             return services;
         }

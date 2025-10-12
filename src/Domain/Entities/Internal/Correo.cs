@@ -1,25 +1,51 @@
 ﻿using System.Text;
+using System.Text.Json.Serialization;
 using static Domain.Entities.TipoEnvioCorreo;
 
 namespace Domain.Entities
 {
+    /// <summary> Entidad interna con datos del correo electrónico </summary>
     public class Correo
     {
+        /// <summary> Email del destinatario <summary>
         public string? Destinatario { get; set; }
+
+        /// <summary> Asunto del correo  </summary>
         public string? Asunto { get; set; }
-        public string? Cuerpo { get; set; } 
+
+        /// <summary> Cuerpo del correo </summary>
+        public string? Cuerpo { get; set; }
+
+        /// <summary> Nombre del usuario </summary>
         public string? NombreUsuario { get; set; }
+
+        /// <summary> EmailToken asocadio al correo </summary>
         public Guid? EmailToken { get; set; }
-        public TipoEnvioCorreo.TipoEnvioCorreos TipoEnvio { get; set; }
+
+        /// <summary> Tipo de envío del correo </summary>
+        public TipoEnvioCorreos TipoEnvio { get; set; }
+
+        /// <summary> Url de la imagen del logo mostrado en el correo </summary>
         public string? LogoUrl { get; set; }
-        
+
+        public FicheroAdjunto? FicheroAdjunto { get; set; }
+
+        /// <summary> Constructor sin parámetros </summary>
+        [JsonConstructor]
+        public Correo() { }
+
+        /// <summary> Constructor con parámetros </summary>
+        /// <param name="tipoEnvio"> Tipo de envio del correo </param>
+        /// <param name="destinatario"> Email del destinatario del correo </param>
+        /// <param name="nombreUsuario"> Nombre del usuario del destinatario del correo </param>
+        /// <param name="logoUrl"> Url del logo del correo </param>
         public Correo(TipoEnvioCorreo tipoEnvio, string destinatario, string nombreUsuario, string logoUrl)
         {
             this.TipoEnvio = GetTipoEnvioCorreo(tipoEnvio.nombre);
             this.NombreUsuario = nombreUsuario;
             this.Destinatario = destinatario;
             this.EmailToken = Guid.NewGuid();
-            this.LogoUrl = logoUrl; // "https://www.getautismactive.com/wp-content/uploads/2021/01/Test-Logo-Circle-black-transparent.png"; 
+            this.LogoUrl = logoUrl;
             this.Asunto = tipoEnvio.asunto;
             this.Cuerpo = this.ApplyTagsForBody(tipoEnvio.cuerpo);
         }
@@ -38,26 +64,26 @@ namespace Domain.Entities
 
             return customizedBody;
         }
+
         private static class EmailKeys
         {
             public const string EMAIL_KEY_NAME =  "[_NAME_]";
             public const string EMAIL_KEY_LOGO =  "[_LOGO_]";
             public const string EMAIL_KEY_TOKEN = "[_TOKEN_]";
-            public const string EMAIL_KEY_EMAIL = "[_EMAIL_]"; 
+            public const string EMAIL_KEY_EMAIL = "[_EMAIL_]";
         }
 
-        private TipoEnvioCorreo.TipoEnvioCorreos GetTipoEnvioCorreo(string nombreTipoEnvio)
+        private TipoEnvioCorreos GetTipoEnvioCorreo(string nombreTipoEnvio)
         {
-            TipoEnvioCorreo.TipoEnvioCorreos tipoEnvio = TipoEnvioCorreos.Undefined;
+            TipoEnvioCorreos tipoEnvio = TipoEnvioCorreos.Undefined;
             switch (nombreTipoEnvio)
             {
-                case "ValidaciónCuenta":
-                    tipoEnvio = TipoEnvioCorreos.ValidaciónCuenta;
+                case "ValidacionCuenta":
+                    tipoEnvio = TipoEnvioCorreos.ValidacionCuenta;
                     break;
                 case "Bienvenida":
                     tipoEnvio = TipoEnvioCorreos.Bienvenida;
                     break;
-
                 case "ContrasenaCambiada":
                     tipoEnvio = TipoEnvioCorreos.ContrasenaCambiada;
                     break;
@@ -67,18 +93,20 @@ namespace Domain.Entities
                 case "ResetContrasena":
                     tipoEnvio = TipoEnvioCorreos.ResetContrasena;
                     break;
-                case "SuscripciónActivada":
-                    tipoEnvio = TipoEnvioCorreos.SuscripciónActivada;
+                case "SuscripcionActivada":
+                    tipoEnvio = TipoEnvioCorreos.SuscripcionActivada;
                     break;
                 case "ReservaProducto":
                     tipoEnvio = TipoEnvioCorreos.ReservaProducto;
                     break;
-                case "InscripcionActividad":
-                    tipoEnvio = TipoEnvioCorreos.InscripcionActividad;
+                case "ReservaActividad":
+                    tipoEnvio = TipoEnvioCorreos.ReservaActividad;
+                    break;
+                case "EnvioReport":
+                    tipoEnvio = TipoEnvioCorreos.EnvioReport;
                     break;
             }
             return tipoEnvio;
         }
-
     }
 }

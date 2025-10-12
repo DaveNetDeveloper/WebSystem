@@ -78,7 +78,7 @@ namespace Infrastructure.Repositories
             toUpdate.nombre = accion.nombre;
             toUpdate.descripcion = accion.descripcion;
             toUpdate.tipoAccion = accion.tipoAccion;
-            toUpdate.activo = accion.activo; 
+            toUpdate.activo = accion.activo;
 
             await _context.SaveChangesAsync();
             return true;

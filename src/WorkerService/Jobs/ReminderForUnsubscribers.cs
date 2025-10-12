@@ -1,28 +1,29 @@
 using Application.Interfaces.Services;
-using Application.Services;
 using Domain.Entities;
-using Microsoft.Extensions.Options;
 using System.Text;
 using Utilities;
 using WorkerService.Common;
 using WorkerService.Configuration;
 using WorkerService.Interfaces;
 
+using Microsoft.Extensions.Options;
+
 namespace WorkerService.Jobs
 {
-    public class CheckUsers : BaseBackgroundService<CheckUsers>, IBackgroundService
+    public class ReminderForUnsubscribers : BaseBackgroundService<ReminderForUnsubscribers>, IBackgroundService
     {
         private readonly MailConfiguration _mailSettings;
 
-        public CheckUsers(ILogger<CheckUsers> logger, 
+        public ReminderForUnsubscribers(ILogger<ReminderForUnsubscribers> logger, 
                           IOptions<JobsConfiguration> options,
                           IOptions<MailConfiguration> mailOptions,
                           IServiceScopeFactory scopeFactory) {
+
             _logger = logger; 
             _jobsConfiguration = options.Value;
             _mailSettings = mailOptions.Value;
             _scopeFactory = scopeFactory;
-            _jobSettings = GetCurrentJobSettings(Common.WorkerService.CheckUsers); 
+            _jobSettings = GetCurrentJobSettings(WorkerService.ReminderForUnsubscribers); 
         }
         
         protected override async Task ExecuteAsync(CancellationToken stoppingToken)
@@ -32,10 +33,8 @@ namespace WorkerService.Jobs
          
         public async Task RunAsync(CancellationToken stoppingToken)
         {
-            if (!_jobSettings.Enabled) {
-                _logger.LogInformation($"Job {_jobSettings.JobName} deshabilitado.");
-                return;
-            }
+            if (!IsJobEnabled()) return;
+            if (!IsJobScheduled()) return;
 
             while (!stoppingToken.IsCancellationRequested) { 
                 try {
@@ -43,7 +42,7 @@ namespace WorkerService.Jobs
                     using (scopeUser) {
 
                         // todos los usuarios que no esten suscritos y que ademas esten activos y tengan el campo 'correo' informado
-                        var unsubscribedUsers = userService.CheckUnsubscribedUsers().Result.Where(u => u.activo == true && string.IsNullOrEmpty(u.correo));
+                        var unsubscribedUsers = userService.CheckUnsubscribedUsers().Result.Where(u => u.activo == true && !string.IsNullOrEmpty(u.correo));
 
                         // Enviar un correo recordatorio a los usuario en [unsubscribedUsers] 
                         var sb = new StringBuilder();
@@ -53,15 +52,11 @@ namespace WorkerService.Jobs
                             var (scopeMail, correoService) = GetServiceProvider<ICorreoService>();
                             using (scopeMail)
                             {
-                                var tipoEnvioCorreo = correoService.ObtenerTiposEnvioCorreo().Result.Where(u => u.nombre == "SuscripciónActivada").Single();
+                                var tipoEnvioCorreo = correoService.ObtenerTiposEnvioCorreo().Result.Where(u => u.nombre == "RecordatorioSuscripcion").Single();
                                 
                                 var correo = new Correo(tipoEnvioCorreo, usuario.correo, usuario.nombre, _mailSettings.LogoURL);
-                                var emailToken = correoService.EnviarCorreo(correo,
-                                                                            EncodeDecodeHelper.GetDecodeValue(_mailSettings.ServidorSmtp),
-                                                                            EncodeDecodeHelper.GetDecodeValue(_mailSettings.PuertoSmtp),
-                                                                            EncodeDecodeHelper.GetDecodeValue(_mailSettings.UsuarioSmtp),
-                                                                            EncodeDecodeHelper.GetDecodeValue(_mailSettings.ContrasenaSmtp));
-
+                                var emailToken = correoService.EnviarCorreo(correo);
+                               
                                 sb.AppendLine($"Se ha enviado un correo de tipo [RememberSubscribe] al usuario [{usuario.correo}]");
 
                                 var (scopeEmailToken, emailTokenService) = GetServiceProvider<IEmailTokenService>();
@@ -86,18 +81,16 @@ namespace WorkerService.Jobs
                         }
 
                         // Añadir ejecución "Passed"
-                        var workerServiceExecution = new WorkerServiceExecution {
-                            //id =Guid.NewGuid(),
-                            workerService = Common.WorkerService.CheckUsers,
-                            result = WorkerServiceResult.Passed,
+                        var workerServiceExecution = new WorkerServiceExecution { 
+                            workerService = _jobSettings.JobName,
+                            result = WorkerServiceExecution.WorkerServiceResult.Passed,
                             resultDetailed = sb.ToString(),
                             executionTime = DateTime.UtcNow
                         };
 
-                        var result = await AddWorkerServiceExecution(workerServiceExecution);
-                        //if (result == false) 
+                        var result = await AddWorkerServiceExecution(workerServiceExecution); 
 
-                        _logger.LogInformation($"Check done at {DateTime.Now}");
+                        _logger.LogInformation($"Job {_jobSettings.JobName} done at {DateTime.Now}");
                     }
 
                 }
@@ -108,8 +101,8 @@ namespace WorkerService.Jobs
                 catch (Exception ex) { 
                     var workerServiceExecution = new WorkerServiceExecution {
                         //id =Guid.NewGuid(),
-                        workerService = Common.WorkerService.CheckUsers,
-                        result = WorkerServiceResult.Failed,
+                        workerService = WorkerService.ReminderForUnsubscribers,
+                        result = WorkerServiceExecution.WorkerServiceResult.Failed,
                         resultDetailed = $"WorkerService has failed with error: {ex.Message.Truncate(500)}",
                         executionTime = DateTime.UtcNow
                     }; 

@@ -99,7 +99,7 @@ namespace Infrastructure.Repositories
             if (actividad.id != null)
                 nuevaActividad.id = actividad.id;
 
-            await _context.Actividades.AddAsync(actividad);
+            await _context.Actividades.AddAsync(nuevaActividad);
             await _context.SaveChangesAsync();
             return true;
         }

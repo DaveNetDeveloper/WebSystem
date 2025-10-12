@@ -1,9 +1,10 @@
-﻿using Application.DTOs.Filters;
+﻿using Application.DTOs.DataQuery;
+using Application.DTOs.Filters;
 using Application.Interfaces.Common;
 using Application.Interfaces.Repositories;
 using Application.Interfaces.Services;
 using Domain.Entities;
-
+using System.Data.SqlTypes;
 using System.Text.Json;
 
 namespace Application.Services
@@ -12,11 +13,14 @@ namespace Application.Services
     {
         private readonly ISegmentoRepository _repo;
         private readonly IUsuarioSegmentosRepository _repoUsuarioSegmentos;
+        private readonly IDataQueryService _dataQueryService;
 
         public SegmentoService(ISegmentoRepository repo, 
-                               IUsuarioSegmentosRepository repoUsuarioSegmentos) {
+                               IUsuarioSegmentosRepository repoUsuarioSegmentos,
+                               IDataQueryService dataQueryService) { // TODO: recibir servicio por DI IDataQueryService
             _repo = repo;
             _repoUsuarioSegmentos = repoUsuarioSegmentos;
+            _dataQueryService = dataQueryService;
         }
 
         public Task<IEnumerable<Segmento>> GetAllAsync()
@@ -38,11 +42,16 @@ namespace Application.Services
         public Task<bool> Remove(int id)
               => _repo.Remove(id);
 
+        public Task<IEnumerable<Usuario>> GetUsuariosBySegmento(int idSegmento) 
+            => _repoUsuarioSegmentos.GetUsuariosBySegmento(idSegmento);
+
         //
         // Lógica de negocio para aplicar las segmentaciones a un usuario
         //
-        public void ApplySegmentsForUser(Usuario usuario)
+        public void ApplySegmentsForUser(vAllUserDataDTO usuario)
         {
+            if (null== usuario.IdUsuario) return;
+
             var allSegments = _repo.GetAllAsync().Result; 
             foreach (var segment in allSegments) {
                 try {
@@ -52,14 +61,14 @@ namespace Application.Services
                                                     Valor = segment.valorRegla };
 
                     // Comprobamos si la relacion ya existe
-                    var userSegment = _repoUsuarioSegmentos.GetSegmentoByIdUsuario(usuario.id.Value, segment.id);
+                    var userSegment = _repoUsuarioSegmentos.GetSegmentoByIdUsuario(usuario.IdUsuario.Value, segment.id);
 
                     // Comparar datos de usuario segun los datos de la regla
-                    if (regla.AplicaReglaAUsuario(usuario, regla)) {
+                    if (AplicaReglaAUsuario(usuario, regla)) {
                          
                         // creamos objeto para la nueva relacion [UsuarioSegmentos]
                         var usuarioSegmento = new UsuarioSegmentos {
-                            idUsuario = usuario.id.Value,
+                            idUsuario = usuario.IdUsuario.Value,
                             idSegmento = segment.id,
                             fecha = DateTime.UtcNow
                         };
@@ -74,7 +83,7 @@ namespace Application.Services
                     else { // si no aplia y existia, eliminamos la relacion
 
                         if (null != userSegment) { 
-                            var deleteResult = _repoUsuarioSegmentos.RemoveUsuarioSegmento(usuario.id.Value, segment.id);
+                            var deleteResult = _repoUsuarioSegmentos.RemoveUsuarioSegmento(usuario.IdUsuario.Value, segment.id);
                         }
                     }
                 }
@@ -82,7 +91,23 @@ namespace Application.Services
                     throw;
                 }
             }
-        } 
+        }
+
+        /// <summary>
+        /// Método para evaluar si una regla se aplica a un usuario concreto
+        /// </summary>
+        /// <param name="usuario"> Usuario representado a través del DTO [vAllUserDataDTO] </param>
+        /// <param name="regla"> Regla del segmento con logica a evaluar </param>
+        /// <returns> bool </returns>
+        public bool AplicaReglaAUsuario(vAllUserDataDTO usuario, ReglaSegmento regla)
+        {
+            // Obtener el valor del usuario según el campo de la regla
+            var prop = typeof(vAllUserDataDTO).GetProperty(regla.Campo);
+            if (prop == null) return false;
+
+            var valorUsuario = prop.GetValue(usuario); 
+            return regla.EvaluarRegla(valorUsuario);
+        }
 
         //
         // CRUD para la tabla [UsuarioSegmentos]

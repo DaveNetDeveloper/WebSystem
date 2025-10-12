@@ -1,8 +1,10 @@
 using API.Middlewares;
-using Domain.Entities;
-using Application.Common; 
 using Application.DependencyInjection;
-using Infrastructure.DependencyInjection; 
+using Infrastructure.DependencyInjection;
+using Domain.Entities;
+using Application.Interfaces.Services;
+using Application.Interfaces.Messaging;
+using Application.Services;
 
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -11,9 +13,14 @@ using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using Microsoft.VisualBasic; 
+using System.Reflection;
 using System.Text;
+using System.Text.Json.Serialization;
 using System.Threading.RateLimiting;
 using FluentMigrator.Runner;
+
+using QuestPDF.Infrastructure;
+QuestPDF.Settings.License = LicenseType.Community;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -35,18 +42,23 @@ builder.Logging.AddEventSourceLogger();
 builder.Logging.AddFile(builder.Configuration.GetSection("Paths")["LogFilePath"]);
  
 builder.Services.AddHealthChecks();
-
-builder.Services.AddControllers();
-
+builder.Services.AddControllers().AddJsonOptions(options =>
+{
+    // Para que los enums se serialicen/deserialicen como texto en vez de como int
+    options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
+});
 builder.Services.AddEndpointsApiExplorer(); 
-
 builder.Services.Configure<AppConfiguration>(builder.Configuration.GetSection("AppConfiguration"));
+builder.Services.Configure<MailConfiguration>(builder.Configuration.GetSection("MailConfiguration"));
+builder.Services.Configure<ExportConfiguration>(builder.Configuration.GetSection("ExportConfiguration"));
+builder.Services.Configure<SmsConfiguration>(builder.Configuration.GetSection("SmsConfiguration"));
+builder.Services.Configure<MQServiceConfiguration>(builder.Configuration.GetSection("MQServiceConfiguration"));
 
 builder.Configuration.AddJsonFile("Resources/messages.json", optional: false, reloadOnChange: true);
 
 builder.Services.AddSwaggerGen(c => {
     c.SwaggerDoc("v1", new() { Title = "API", Version = "v1" });
- 
+    c.UseInlineDefinitionsForEnums();
     c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme {
         Name = "Authorization",
         Type = SecuritySchemeType.ApiKey,
@@ -55,8 +67,6 @@ builder.Services.AddSwaggerGen(c => {
         In = ParameterLocation.Header,
         Description = "Introduce el token JWT así: Bearer {tu token}"
     });
-
-    // Requisito de seguridad global
     c.AddSecurityRequirement(new OpenApiSecurityRequirement {
         { 
             new OpenApiSecurityScheme {
@@ -68,11 +78,15 @@ builder.Services.AddSwaggerGen(c => {
             new string[] {}
         }
     });
-
     c.ResolveConflictingActions(apiDescriptions => apiDescriptions.First());
     c.IgnoreObsoleteActions();
     c.IgnoreObsoleteProperties();
     c.CustomSchemaIds(type => type.FullName);
+    //c.SchemaFilter<EnumDisplaySchemaFilter>();
+
+    var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+    var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
+    c.IncludeXmlComments(xmlPath);
 }); 
  
 // Register Services & Filters 
@@ -119,7 +133,6 @@ if (!builder.Environment.IsEnvironment(Application.Common.Environments.Test))
 if (builder.Environment.EnvironmentName == Application.Common.Environments.Test) {
 
     builder.Services.RemoveAll<IAuthenticationSchemeProvider>();
-     
     builder.Services.AddAuthentication(options => {
         options.DefaultAuthenticateScheme = "Test";
         options.DefaultChallengeScheme = "Test";
@@ -129,7 +142,7 @@ if (builder.Environment.EnvironmentName == Application.Common.Environments.Test)
 
 //builder.Services.AddAuthorization();
 builder.Services.AddAuthorization(options => {
-    options.AddPolicy("RequireAdmin", policy => policy.RequireRole(Roles.Admin));
+    options.AddPolicy("RequireAdmin", policy => policy.RequireRole(Rol.Roles.Admin));
 });
 
 builder.Services.AddCors(options => {
@@ -159,6 +172,13 @@ if (!builder.Environment.IsEnvironment(Application.Common.Environments.Test) &&
     using var scope = app.Services.CreateScope();
     var runner = scope.ServiceProvider.GetRequiredService<IMigrationRunner>();
     runner.MigrateUp();
+}
+
+// Lanzar el consumidor de la cola de notificaciones
+using (var scope = app.Services.CreateScope())
+{
+    var consumer = scope.ServiceProvider.GetRequiredService<IMessageConsumer>();
+    consumer.StartConsuming("notificaciones");
 }
 
 // Health endpoint en JSON

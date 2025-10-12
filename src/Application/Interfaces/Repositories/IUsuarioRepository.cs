@@ -9,10 +9,11 @@ namespace Application.Interfaces.Repositories
     {
         Task<IEnumerable<Usuario>> GetByFiltersAsync(IFilters<Usuario> filters, IQueryOptions<Usuario>? options = null);
         Task<AuthUser?> Login(string email, string contrasena);
+        Task<int?> Register(Usuario user);
         Task<bool> CambiarContrasena(string email, string nuevaContrasena); 
         Task<bool> ActivarSuscripcion(string email);
         Task<bool> ValidarCuenta(string emai);
-        Task<bool> ActualizarBalance(int idUsuario, int puntosTransaccion);
+        Task<bool> ActualizarBalance(int idUsuario, int? puntosTransaccion);
         Task<List<Rol>> GetRolesByUsuarioId(int id);
         Task<List<Direccion>> GetDireccionesByUsuario(int idUsuario);
 

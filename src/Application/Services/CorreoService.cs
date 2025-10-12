@@ -1,39 +1,72 @@
-﻿using System.Net;
-using System.Net.Mail;
-using System.Text;
-
-using Application.Interfaces;
-using Domain.Entities;
+﻿using Application.Interfaces;
 using Application.Interfaces.Repositories;
 using Application.Interfaces.Services;
+using Domain.Entities;
+
+using Microsoft.Extensions.Options;
+using System.Net;
+using System.Net.Mail;
+using System.Text;
+using Utilities;
 
 namespace Application.Services
 {
     public class CorreoService : ICorreoService
     {
         private readonly ITipoEnvioCorreoRepository _repoTipoEnvioCorreo;
+        private readonly MailConfiguration _mailConfig;
 
-        public CorreoService(ITipoEnvioCorreoRepository repo) {
+        public CorreoService(ITipoEnvioCorreoRepository repo,
+                             IOptions<MailConfiguration> mailConfig) {
+            _repoTipoEnvioCorreo = repo;
+            _mailConfig = mailConfig.Value;
+        }
+
+        public CorreoService(ITipoEnvioCorreoRepository repo)
+        {
             _repoTipoEnvioCorreo = repo;
         }
 
         public Task<IEnumerable<TipoEnvioCorreo>> ObtenerTiposEnvioCorreo() { 
-            return _repoTipoEnvioCorreo.GetAllAsync(); 
+            return _repoTipoEnvioCorreo.GetAllAsync();
         }
-
-        public Guid EnviarCorreo(Correo correo, string servidorSmtp, string puertoSmtp, string usuarioSmtp, string contrasenaSmtp)
+       
+        /// <summary>
+        /// Envia un correo electronico con los datos especificados por parámetro
+        /// </summary>
+        /// <param name="correo"> Objeto con los detalles del correo a enviar </param>
+        /// <returns> Devuelve el EmailToken asociado al correo enviado </returns>
+        public Guid EnviarCorreo(Correo correo)
         {
-            using (var mensaje = new MailMessage()) {
-                mensaje.From = new MailAddress(usuarioSmtp);
+            using (var mensaje = new MailMessage())
+            {
+                mensaje.From = new MailAddress(EncodeDecodeHelper.GetDecodeValue(_mailConfig.UsuarioSmtp));
                 mensaje.To.Add(correo.Destinatario);
                 mensaje.Subject = correo.Asunto;
                 mensaje.Body = correo.Cuerpo;
                 mensaje.IsBodyHtml = true;
 
-                using (var clienteSmtp = new SmtpClient(servidorSmtp, Convert.ToInt32(puertoSmtp))) { 
-                    clienteSmtp.Credentials = new NetworkCredential(usuarioSmtp, contrasenaSmtp);
-                    clienteSmtp.EnableSsl = true;
-                    clienteSmtp.Send(mensaje);
+                bool hasAttachment = correo.FicheroAdjunto != null && correo.FicheroAdjunto.Archivo.Length > 0;
+
+                if (hasAttachment)
+                {
+                    var stream = new MemoryStream(correo.FicheroAdjunto.Archivo);
+                    var attachment = new Attachment(stream, correo.FicheroAdjunto.NombreArchivo, correo.FicheroAdjunto.ContentType);
+                    mensaje.Attachments.Add(attachment);
+                }
+
+                using var clienteSmtp = new SmtpClient(EncodeDecodeHelper.GetDecodeValue(_mailConfig.ServidorSmtp)) 
+                {
+                    Port = Convert.ToInt32(EncodeDecodeHelper.GetDecodeValue(_mailConfig.PuertoSmtp)),
+                    Credentials = new NetworkCredential(EncodeDecodeHelper.GetDecodeValue(_mailConfig.UsuarioSmtp),
+                                                        EncodeDecodeHelper.GetDecodeValue(_mailConfig.ContrasenaSmtp)),
+                    EnableSsl = true
+                };
+                clienteSmtp.Send(mensaje);
+
+                if (hasAttachment) {
+                    foreach (var adjunto in mensaje.Attachments)
+                        adjunto.ContentStream.Dispose();
                 }
             }
             return correo.EmailToken.Value;

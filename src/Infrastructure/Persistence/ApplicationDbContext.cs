@@ -27,14 +27,20 @@ namespace Infrastructure.Persistence
         public DbSet<Producto> Productos { get; set; }
         public DbSet<ProductoImagen> ProductoImagenes { get; set; } 
         public DbSet<Actividad> Actividades { get; set; }
+        public DbSet<ActividadReserva> ActividadReservas { get; set; }
         public DbSet<ActividadImagen> ActividadImagenes { get; set; }
         public DbSet<Categoria> Categorias { get; set; }
         public DbSet<FAQ> FAQS { get; set; }
         public DbSet<TipoActividad> TipoActividades { get; set; } 
         public DbSet<Testimonio> Testimonios { get; set; }
         public DbSet<Recompensa> Recompensas { get; set; }
+        public DbSet<TipoRecompensa> TipoRecompensas { get; set; } 
         public DbSet<Direccion> Direcciones { get; set; }
         public DbSet<TipoEnvioCorreo> TipoEnvioCorreos { get; set; }
+        public DbSet<InAppNotification> InAppNotifications { get; set; }
+        public DbSet<SmsNotification> SmsNotifications { get; set; }
+
+        //public DbSet<EmailNotification> EmailNotifications { get; set; }
         public DbSet<EmailToken> EmailTokens { get; set; }
         public DbSet<Consulta> Consultas { get; set; } 
         public DbSet<MotivoConsulta> MotivosConsultas { get; set; } 
@@ -45,6 +51,8 @@ namespace Infrastructure.Persistence
         public DbSet<UsuarioSegmentos> UsuarioSegmentos { get; set; }
         public DbSet<Campana> Campanas { get; set; }
         public DbSet<TipoCampana> TipoCampanas { get; set; }
+        public DbSet<CampanaSegmentos> CampanaSegmentos { get; set; }
+        public DbSet<CampanaAcciones> CampanaAcciones  { get; set; }
         public DbSet<CampanaExecution> CampanaExecutions { get; set; }
         public DbSet<Accion> Acciones { get; set; }
         public DbSet<TipoSegmento> TipoSegmentos { get; set; }
@@ -62,7 +70,9 @@ namespace Infrastructure.Persistence
         public DbSet<v_VisitasTipoDispositivo> v_VisitasTipoDispositivo { get; set; }
         public DbSet<v_TotalUltimasTransacciones> v_TotalUltimasTransacciones { get; set; }
         public DbSet<v_CampanasUsuarios> v_CampanasUsuarios { get; set; }
-
+        public DbSet<v_AllUserData> v_AllUserData { get; set; }
+        public DbSet<v_AllCampanasData> v_AllCampanasData { get; set; }
+        public DbSet<v_AsistenciaActividades> v_AsistenciaActividades { get; set; }
         //
         // Jobs
         //
@@ -75,6 +85,10 @@ namespace Infrastructure.Persistence
             //
             // TABLES
             //
+
+
+            //ActividadReserva
+            modelBuilder.Entity<ActividadReserva>().HasKey(ur => new { ur.idReserva });
 
             //UsuarioRol
             modelBuilder.Entity<UsuarioRol>().HasKey(ur => new { ur.idrol, ur.idusuario, ur.identidad }); 
@@ -179,12 +193,64 @@ namespace Infrastructure.Persistence
 
             //UsuarioSegmentos
             modelBuilder.Entity<UsuarioSegmentos>().HasKey(ud => new { ud.idUsuario, ud.idSegmento });
-
+            
             modelBuilder.Entity<UsuarioSegmentos>()
                 .HasOne(d => d.Usuario)
                 .WithMany(ud => ud.UsuarioSegmentos)
                 // .WithMany()
                 .HasForeignKey(ud => ud.idUsuario);
+
+            modelBuilder.Entity<UsuarioSegmentos>()
+               .HasOne(d => d.Segmento)
+               .WithMany(ud => ud.UsuarioSegmentos)
+               // .WithMany()
+               .HasForeignKey(ud => ud.idSegmento);
+
+            // CampanaSegmentos
+            modelBuilder.Entity<CampanaSegmentos>().HasKey(ud => new { ud.idCampana, ud.idSegmento });
+
+            modelBuilder.Entity<CampanaSegmentos>()
+                .HasOne(d => d.Segmento)
+                .WithMany(ud => ud.CampanaSegmentos)
+                // .WithMany()
+                .HasForeignKey(ud => ud.idSegmento);
+
+            modelBuilder.Entity<CampanaSegmentos>()
+                .HasOne(d => d.Campana)
+                .WithMany(ud => ud.CampanaSegmentos)
+                // .WithMany()
+                .HasForeignKey(ud => ud.idCampana);
+
+            // CampanaAcciones
+            modelBuilder.Entity<CampanaAcciones>().HasKey(ud => new { ud.idCampana, ud.idAccion });
+
+            modelBuilder.Entity<CampanaAcciones>()
+                .HasOne(d => d.Campana)
+                .WithMany(ud => ud.CampanaAcciones)
+                // .WithMany()
+                .HasForeignKey(ud => ud.idCampana);
+
+            modelBuilder.Entity<CampanaAcciones>()
+                .HasOne(d => d.Accion)
+                .WithMany(ud => ud.CampanaAcciones)
+                // .WithMany()
+                .HasForeignKey(ud => ud.idAccion);
+
+
+            //ActividadReserva
+            modelBuilder.Entity<ActividadReserva>().HasKey(ar => new { ar.idReserva });
+
+            modelBuilder.Entity<ActividadReserva>()
+                .HasOne(u => u.Usuario)
+                .WithMany(u => u.ActividadReservas)
+                //.WithMany()
+                .HasForeignKey(ar => ar.idUsuario);
+
+            modelBuilder.Entity<ActividadReserva>()
+               .HasOne(a => a.Actividad)
+               .WithMany(a => a.ActividadReservas)
+               //.WithMany()
+               .HasForeignKey(ar => ar.idActividad);
 
             //
             // VIEWS
@@ -227,6 +293,21 @@ namespace Infrastructure.Persistence
             modelBuilder.Entity<v_CampanasUsuarios>(eb => {
                 eb.HasNoKey();
                 eb.ToView("v_CampanasUsuarios");
+            });
+
+            modelBuilder.Entity<v_AllUserData>(eb => {
+                eb.HasNoKey();
+                eb.ToView("v_AllUserData");
+            });
+
+            modelBuilder.Entity<v_AllCampanasData>(eb => {
+                eb.HasNoKey();
+                eb.ToView("v_AllCampanasData");
+            });
+
+            modelBuilder.Entity<v_AsistenciaActividades>(eb => {
+                eb.HasNoKey();
+                eb.ToView("v_AsistenciaActividades");
             });
 
             //

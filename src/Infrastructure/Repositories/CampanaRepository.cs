@@ -105,18 +105,9 @@ namespace Infrastructure.Repositories
             return true;
         }
          
-        //public async Task<IEnumerable<ProductoImagen>> GetImagenesByProducto(int id)
-        //{ 
-        //    var imagenesProductoDB = await _context.ProductoImagenes
-        //                                .Include(p => p.Producto)
-        //                                  //.ThenInclude(ec => ec.Categoria)
-        //                                .Where(pi => pi.idproducto == id).ToListAsync();
+        
 
-        //    if (imagenesProductoDB != null && imagenesProductoDB.Any()) {
 
-        //        return imagenesProductoDB.OrderBy(ip => ip.id);
-        //    } 
-        //    return null;
-        //}
+
     }
 }

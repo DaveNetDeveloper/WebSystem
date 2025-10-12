@@ -22,6 +22,9 @@ namespace API.Middlewares
             }
             catch (Exception ex)
             {
+                // TODO: Guardar error en tabla [Logs]
+
+
                 _logger.LogError(ex, "Ocurrió un error en la petición {Path}", context.Request.Path);
                 context.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
                 context.Response.ContentType = "application/json";

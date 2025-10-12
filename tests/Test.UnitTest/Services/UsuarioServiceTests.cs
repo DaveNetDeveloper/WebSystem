@@ -3,7 +3,7 @@ using Application.DTOs.Filters;
 using Application.Interfaces.Common;
 using Application.Interfaces.DTOs.Filters;
 
-//using Application.Interfaces.Common;
+using Application.Interfaces.Common;
 using Application.Interfaces.Repositories;
 using Application.Interfaces.Services;
 using Application.Services;
@@ -12,6 +12,8 @@ using Moq;
 using Test; 
 using Test.UnitTest.Services;
 using Test.UnitTest.Services.Interfaces;
+
+using Microsoft.Extensions.Options;
 
 namespace Test.UnitTest.Services
 {
@@ -33,7 +35,8 @@ namespace Test.UnitTest.Services
         private int? pageSize = null;
         private string? orderBy = "id";
         private bool descending = false;
-        private IQueryOptions<Usuario> queryOptions;
+        private IQueryOptions<Usuario> _queryOptions;
+        private IOptions<MailConfiguration> _configOptions;
 
         [SetUp]
         public void SetUp() {
@@ -41,7 +44,7 @@ namespace Test.UnitTest.Services
             //email = "mail@test.com";
             //newPassword = "newPassword";
 
-            queryOptions = GetQueryOptions(page, pageSize, orderBy, descending);
+            _queryOptions = GetQueryOptions(page, pageSize, orderBy, descending);
 
             _mockRepoLogin = new Mock<ILoginRepository>(); 
             _mockRepoTipoEnvio = new Mock<ITipoEnvioCorreoRepository>();
@@ -97,8 +100,20 @@ namespace Test.UnitTest.Services
             _userService = new UsuarioService(_mockRepo.Object);
 
             _loginService = new LoginService(_mockRepoLogin.Object);
+
             _correoService = new CorreoService(_mockRepoTipoEnvio.Object);
-            _authService = new AuthService(_mockRepo.Object, _correoService, _loginService);
+
+
+            var mailConfig = new MailConfiguration() {
+                ServidorSmtp = "",
+                UsuarioSmtp = "",
+                ContrasenaSmtp = "",
+                PuertoSmtp = "",
+                LogoURL = ""
+            }; 
+            _configOptions = Options.Create(mailConfig);
+
+            _authService = new AuthService(_mockRepo.Object, _correoService, _loginService , _configOptions);
         } 
         [Test]
         public void GetById_Test()
@@ -127,7 +142,7 @@ namespace Test.UnitTest.Services
             //bool descending = false; 
             //var queryOptions = GetQueryOptions(page, pageSize, orderBy, descending);  
 
-            var results =  _userService.GetByFiltersAsync(filters, queryOptions);
+            var results =  _userService.GetByFiltersAsync(filters, _queryOptions);
 
             Assert.IsNotNull(results);
 

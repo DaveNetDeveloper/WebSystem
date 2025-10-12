@@ -9,5 +9,6 @@ namespace Application.Interfaces.Services
     {
         Task<IEnumerable<Accion>> GetByFiltersAsync(AccionFilters filters,
                                                     IQueryOptions<Accion>? queryOptions = null);
+        Task<bool> EjecutarAccionesForUser(IEnumerable<Accion> acciones, int idUsuario, int idCampana);
     }
 }

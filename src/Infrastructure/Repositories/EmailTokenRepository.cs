@@ -77,6 +77,28 @@ namespace Infrastructure.Repositories
             await _context.SaveChangesAsync();
             return true;
         }
+        public async Task<string> GenerateEmailToken(int idUsuario, string emailAction)
+        {
+            var token = Guid.NewGuid();
+            var nuevoEmailToken = new EmailToken
+            {
+                id = Guid.NewGuid(),
+                token = token,
+                userId = idUsuario,
+                consumido = false,
+                emailAction = emailAction,
+                fechaCreacion = DateTime.UtcNow,
+                fechaExpiracion = DateTime.UtcNow.AddMonths(6),
+                fechaConsumido = null,
+                ip = null,
+                userAgent = null
+            };
+
+            await _context.EmailTokens.AddAsync(nuevoEmailToken);
+            await _context.SaveChangesAsync();
+            
+            return nuevoEmailToken.token.ToString();
+        }
 
         public bool CheckEmailToken(string emailToken, string email)
         {
