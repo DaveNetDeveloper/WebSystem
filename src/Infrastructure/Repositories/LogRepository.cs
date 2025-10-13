@@ -20,8 +20,7 @@ namespace Infrastructure.Repositories
         }
 
         public async Task<IEnumerable<Log>> GetByFiltersAsync(IFilters<Log> filters,
-                                                              IQueryOptions<Log>? options = null)
-        {
+                                                              IQueryOptions<Log>? options = null) {
             LogFilters _filters = ((LogFilters)filters);
 
             var predicate = PredicateBuilder.New<Log>(true);
@@ -37,6 +36,12 @@ namespace Infrastructure.Repositories
 
             if (!string.IsNullOrEmpty(_filters.Proceso))
                 predicate = predicate.And(u => u.proceso.ToLower() == _filters.Proceso.ToLower());
+
+            if (_filters.Fecha_Ini.HasValue)
+                predicate = predicate.And(u => u.fecha >= _filters.Fecha_Ini.Value);
+
+            if (_filters.Fecha_Fin.HasValue)
+                predicate = predicate.And(u => u.fecha <= _filters.Fecha_Fin.Value);
 
             var query = _context.Logs
                             .AsExpandable()
@@ -62,7 +67,8 @@ namespace Infrastructure.Repositories
                 tipoLog = log.tipoLog,
                 detalle = log.detalle,
                 proceso = log.proceso,
-                titulo = log.titulo
+                titulo = log.titulo,
+                fecha = log.fecha
             };
 
             await _context.Logs.AddAsync(nuevoLog);
@@ -81,6 +87,8 @@ namespace Infrastructure.Repositories
             updatedLog.proceso = log.proceso;
             updatedLog.titulo = log.titulo;
             updatedLog.detalle = log.detalle;
+            updatedLog.fecha = log.fecha;
+
             await _context.SaveChangesAsync();
             return true;
         }

@@ -9,5 +9,7 @@ namespace Application.DTOs.Filters
         public string? TipoLog { get; set; }
         public string? Proceso { get; set; }    
         public int? IdUsuario { get; set; }
+        public DateTime? Fecha_Ini { get; set; }
+        public DateTime? Fecha_Fin { get; set; }
     }
 }

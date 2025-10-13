@@ -22,7 +22,7 @@ namespace Application.Services
 
         public Task<IEnumerable<Log>> GetByFiltersAsync(LogFilters filters,
                                                         IQueryOptions<Log>? queryOptions = null)
-         => _repo.GetByFiltersAsync(filters, queryOptions);
+            => _repo.GetByFiltersAsync(filters, queryOptions);
 
         public async Task<bool> AddAsync(Log log)
             => await _repo.AddAsync(log);

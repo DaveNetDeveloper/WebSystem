@@ -54,6 +54,7 @@ namespace Infrastructure.Persistence
         public DbSet<CampanaSegmentos> CampanaSegmentos { get; set; }
         public DbSet<CampanaAcciones> CampanaAcciones  { get; set; }
         public DbSet<CampanaExecution> CampanaExecutions { get; set; }
+        public DbSet<WorkerServiceExecution> WorkerServiceExecutions { get; set; }
         public DbSet<Accion> Acciones { get; set; }
         public DbSet<TipoSegmento> TipoSegmentos { get; set; }
         public DbSet<Segmento> Segmentos { get; set; }
@@ -74,10 +75,7 @@ namespace Infrastructure.Persistence
         public DbSet<v_AllUserData> v_AllUserData { get; set; }
         public DbSet<v_AllCampanasData> v_AllCampanasData { get; set; }
         public DbSet<v_AsistenciaActividades> v_AsistenciaActividades { get; set; }
-        //
-        // Jobs
-        //
-        public DbSet<WorkerServiceExecution> WorkerServiceExecutions { get; set; }
+        public DbSet<v_TotalErrores> v_TotalErrores { get; set; }
         
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -309,6 +307,11 @@ namespace Infrastructure.Persistence
             modelBuilder.Entity<v_AsistenciaActividades>(eb => {
                 eb.HasNoKey();
                 eb.ToView("v_AsistenciaActividades");
+            });
+
+            modelBuilder.Entity<v_TotalErrores>(eb => {
+                eb.HasNoKey();
+                eb.ToView("v_TotalErrores");
             });
 
             //

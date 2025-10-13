@@ -30,7 +30,6 @@ namespace Application.Services
             _pdfExporter = pdfExporter;
         }
 
-         
         public enum ExportFormat { Excel, Pdf }
 
         public byte[] ExportDynamic(IEnumerable data, Type entityType) 
@@ -55,7 +54,8 @@ namespace Application.Services
             CampanasUsuarios,
             AllUserData,
             AllCampanasData,
-            AsistenciaActividades
+            AsistenciaActividades,
+            TotalErrores
         }
 
         /// <summary>
@@ -124,6 +124,11 @@ namespace Application.Services
 
                     entityType = typeof(vAsistenciaActividadesDTO);
                     queryResult = ObtenerAsistenciaActividades().Result;
+                    break;
+                case DataQueryType.TotalErrores:
+
+                    entityType = typeof(vTotalErroresDTO);
+                    queryResult = ObtenerTotalErrores().Result;
                     break;
                 default:
                     throw new InvalidOperationException("Vista no reconocida");
@@ -218,5 +223,8 @@ namespace Application.Services
         /// <returns></returns>
         public async Task<IReadOnlyList<vAsistenciaActividadesDTO>> ObtenerAsistenciaActividades(int page = 1, int pageSize = 100)
             => await _repo.ObtenerAsistenciaActividades(page, pageSize);
+
+        public async Task<IReadOnlyList<vTotalErroresDTO>> ObtenerTotalErrores(int page = 1, int pageSize = 100)
+           => await _repo.ObtenerTotalErrores(page, pageSize);
     }
 }
