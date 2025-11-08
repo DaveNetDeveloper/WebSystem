@@ -17,6 +17,8 @@ namespace Application.Interfaces.Repositories
         Task<List<Rol>> GetRolesByUsuarioId(int id);
         Task<List<Direccion>> GetDireccionesByUsuario(int idUsuario);
 
+        Task BajaLogicaAsync(int idUsuario);
+
         // JOBS
         Task<IEnumerable<Usuario>> CheckUnsubscribedUsers();
     }

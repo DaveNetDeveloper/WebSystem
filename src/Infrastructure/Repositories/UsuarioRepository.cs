@@ -8,6 +8,7 @@ using Utilities;
 
 using LinqKit;
 using Microsoft.EntityFrameworkCore;
+using Npgsql;
 
 namespace Infrastructure.Repositories
 {
@@ -334,6 +335,20 @@ namespace Infrastructure.Repositories
             catch (Exception ex) {
                 throw ex;
             }
-        }       
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public async Task BajaLogicaAsync(int idUsuario)
+        {
+            var command = "CALL";
+            var sp = "sp_baja_logica_usuario(@id)";
+            var sql = $"{command} {sp}";
+            await _context.Database.ExecuteSqlRawAsync(sql, new NpgsqlParameter("@id", idUsuario));
+        }
+
     }
 }

@@ -13,6 +13,7 @@ namespace Application.Interfaces.Services
         Task<bool> ValidarCuenta(string emai); 
         Task<List<Rol>> GetRolesByUsuarioId(int idUsuario);
         Task<List<Direccion>> GetDireccionesByUsuario(int idUsuario);
+        Task BajaLogicaAsync(int idUsuario);
 
         // JOBS
         Task<IEnumerable<Usuario>> CheckUnsubscribedUsers();

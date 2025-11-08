@@ -54,6 +54,11 @@ namespace Application.Services
         public Task<List<Direccion>> GetDireccionesByUsuario(int idUsuario)
             => _repo.GetDireccionesByUsuario(idUsuario);
 
+        public async Task BajaLogicaAsync(int idUsuario)
+        {
+            await _repo.BajaLogicaAsync(idUsuario);
+        }
+
         //
         // JOBS
         //  

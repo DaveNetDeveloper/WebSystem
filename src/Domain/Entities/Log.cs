@@ -97,6 +97,7 @@
             public const string API_FakeJwtBearerHandler = "API_FakeJwtBearerHandler";
             public const string API_Program = "API_Program";
             public const string API_Authorization = "API_Authorization";
+            public const string API_BajaLogica = "API_BajaLogica";
 
             // Internal - WorkerService
 

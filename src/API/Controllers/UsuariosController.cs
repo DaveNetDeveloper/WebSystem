@@ -15,7 +15,6 @@ using System.ComponentModel.DataAnnotations;
 
 namespace API.Controllers
 {
-
     [ApiController]
     [Route("[controller]")]
     public class UsuariosController : BaseController<Usuario>, IController<IActionResult, Usuario, int>
@@ -24,20 +23,23 @@ namespace API.Controllers
         private readonly IEmailTokenService _emailTokenService;
         private readonly ICorreoService _correoService;
         private readonly AppConfiguration _appConfiguration;
-        
+        private readonly ILogService _logService;
+
         /// <summary> Constructor </summary>  
         public UsuariosController(ILogger<UsuariosController> logger, 
                                   IUsuarioService usuarioService,
                                   IEmailTokenService emailTokenService,
                                   ITokenService tokenService,
                                   ICorreoService correoService,
-                                  IOptions<AppConfiguration> options) {
+                                  IOptions<AppConfiguration> options,
+                                  ILogService logService) {
             base._logger = logger;  
             base._tokenService = tokenService;
             _appConfiguration = options.Value ?? throw new ArgumentNullException(nameof(options));
             _usuarioService = usuarioService ?? throw new ArgumentNullException(nameof(usuarioService));
             _correoService = correoService ?? throw new ArgumentNullException(nameof(correoService));
             _emailTokenService = emailTokenService ?? throw new ArgumentNullException(nameof(emailTokenService));
+            _logService = logService ?? throw new ArgumentNullException(nameof(logService));
         }
 
         /// <summary>
@@ -309,6 +311,23 @@ namespace API.Controllers
                 return StatusCode(StatusCodes.Status500InternalServerError,
                                  new { message = MessageProvider.GetMessage("Usuario:ActivacionSuscripcion", "Error"), email });
             }
+        }
+
+        [Authorize(Roles = "SAdmin")]
+        [HttpPatch("BajaLogica/{idUsuario}")]
+        public async Task<IActionResult> BajaLogica(int idUsuario)
+        {
+            await _usuarioService.BajaLogicaAsync(idUsuario);
+
+            _logService.AddAsync(new Log {
+                tipoLog = Log.TipoLog.Info,
+                proceso = Log.Proceso.API_BajaLogica,
+                titulo = "Proceso de baja lógica completado.",
+                detalle = null,
+                idUsuario = idUsuario,
+                fecha = DateTime.UtcNow
+            });
+            return Ok(true);
         }
 
         /// <summary>  </summary>

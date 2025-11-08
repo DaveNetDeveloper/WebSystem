@@ -1,0 +1,45 @@
+{
+  "metadata": [
+    {
+      "src": [
+        { "files": [ "src/API/API.csproj" ] },
+        { "files": [ "src/Application/Application.csproj" ] },
+        { "files": [ "src/Domain/Domain.csproj" ] },
+        { "files": [ "src/Infrastructure/Infrastructure.csproj" ] },
+		{ "files": [ "src/Web/Web.csproj" ] },
+		{ "files": [ "src/Utilities/Utilities.csproj" ] }
+      ],
+      "dest": "project documentation"
+    }
+  ],
+  "build": {
+    "content": [
+      {
+        "files": [
+          "**/*.{md,yml}"
+        ],
+        "exclude": [
+          "_site/**"
+        ]
+      }
+    ],
+    "resource": [
+      {
+        "files": [
+          "images/**"
+        ]
+      }
+    ],
+    "output": "_site",
+    "template": [
+      "default",
+      "modern"
+    ],
+    "globalMetadata": {
+      "_appName": "Documentation",
+      "_appTitle": "Documentation",
+      "_enableSearch": true,
+      "pdf": true
+    }
+  }
+}
