@@ -1,5 +1,5 @@
 ﻿namespace Domain.Entities
-{
+{ 
     public class QR
     {
         public Guid id { get; set; }

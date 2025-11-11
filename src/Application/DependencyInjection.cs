@@ -68,6 +68,9 @@ namespace Application.DependencyInjection
             //services.AddSingleton<INotificationProcessor, NotificationProcessor>();
             services.AddScoped<INotificationProcessor, NotificationProcessor>();
 
+            services.AddScoped<IQRCodeImageService, QRCodeImageService>();
+            services.AddScoped<QRCodeService>();
+
             //
             // Register Filters
             //

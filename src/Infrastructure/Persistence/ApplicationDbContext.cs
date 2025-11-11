@@ -1,8 +1,9 @@
 ﻿using Domain;
 using Domain.DataQuery;
-using Domain.Entities;
 using Domain.DataQuery;
+using Domain.Entities;
 using Microsoft.EntityFrameworkCore;
+using QRCoder;
 using static Domain.Entities.Transaccion;
 
 namespace Infrastructure.Persistence
@@ -60,6 +61,7 @@ namespace Infrastructure.Persistence
         public DbSet<Segmento> Segmentos { get; set; }
         public DbSet<Login> Logins { get; set; }
         public DbSet<Log> Logs { get; set; }
+        public DbSet<Domain.Entities.QRCode> QRCodes { get; set; }
 
         //
         // Views
@@ -84,7 +86,13 @@ namespace Infrastructure.Persistence
             //
             // TABLES
             //
-
+            modelBuilder.Entity<Domain.Entities.QRCode>(b =>
+            {
+                b.HasKey(q => q.id);
+                //b.Property(q => q.token).IsRequired();
+                //b.Property(q => q.payload).IsRequired();
+                //b.Property(q => q.imagen).HasColumnType("varbinary(max)");
+            });
 
             //ActividadReserva
             modelBuilder.Entity<ActividadReserva>().HasKey(ur => new { ur.idReserva });

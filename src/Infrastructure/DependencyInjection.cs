@@ -83,6 +83,9 @@ namespace Infrastructure.DependencyInjection
             services.AddScoped<IActividadReservaRepository, ActividadReservaRepository>();
             services.AddScoped<ILogRepository, LogRepository>();
 
+            services.AddScoped<IQRCodeRepository, QRCodeRepository>();
+            services.AddScoped<IQRCodeImageRepository, QRCodeImageRepository>();
+
             services.AddSingleton<IMessageBusService, RabbitMqService>();
             services.AddSingleton<IMessageConsumer, RabbitMqConsumer>();
 

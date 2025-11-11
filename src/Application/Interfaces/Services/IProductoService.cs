@@ -8,7 +8,7 @@ namespace Application.Interfaces.Services
     public interface IProductoService : IService<Producto, int>
     {
         Task<IEnumerable<Producto>> GetByFiltersAsync(ProductoFilters filters,
-                                                        IQueryOptions<Producto>? queryOptions = null);
+                                                      IQueryOptions<Producto>? queryOptions = null);
         Task<IEnumerable<ImagenesProductoDTO>> GetImagenesByProducto(int id);
     }
 }
