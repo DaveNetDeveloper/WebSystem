@@ -57,7 +57,6 @@ namespace Infrastructure.DependencyInjection
             services.AddScoped<IEntidadRepository, EntidadRepository>();
             services.AddScoped<ITestimonioRepository, TestimonioRepository>();
             services.AddScoped<ITransaccionRepository, TransaccionRepository>();
-            services.AddScoped<IQRRepository, QRRepository>();
             services.AddScoped<IFAQRepository, FAQRepository>();
             services.AddScoped<IRecompensaRepository, RecompensaRepository>();
             services.AddScoped<IMotivoConsultaRepository, MotivoConsultaRepository>();

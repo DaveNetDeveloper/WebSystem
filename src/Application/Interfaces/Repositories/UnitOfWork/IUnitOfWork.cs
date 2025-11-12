@@ -12,7 +12,7 @@ namespace Application.Interfaces.Repositories
         IEntidadRepository EntidadRepository { get; }
         IFAQRepository FAQRepository { get; }
         IProductoRepository ProductoRepository { get; }
-        IQRRepository QRRepository { get; }
+        IQRCodeRepository QRRepository { get; }
         IRolRepository RolRepository { get; }
         ITestimonioRepository TestimonioRepository { get; }
         ITipoEntidadRepository TipoEntidadRepository { get; } 

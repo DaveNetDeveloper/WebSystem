@@ -34,7 +34,6 @@ namespace Application.DependencyInjection
             services.AddScoped<IEntidadService, EntidadService>();
             services.AddScoped<ITestimonioService, TestimonioService>();
             services.AddScoped<ITransaccionService, TransaccionService>();
-            services.AddScoped<IQRService, QRService>();
             services.AddScoped<IFAQService, FAQService>();
             services.AddScoped<IRecompensaService, RecompensaService>();
             services.AddScoped<IConsultaService, ConsultaService>();
@@ -82,7 +81,6 @@ namespace Application.DependencyInjection
             services.AddScoped<IFilters<Consulta>, ConsultaFilters>();
             services.AddScoped<IFilters<MotivoConsulta>, MotivoConsultaFilters>();
             services.AddScoped<IFilters<Producto>, ProductoFilters>();
-            services.AddScoped<IFilters<QR>, QRFilters>();
             services.AddScoped<IFilters<Recompensa>, RecompensaFilters>();
             services.AddScoped<IFilters<Rol>, RolFilters>();
             services.AddScoped<IFilters<Testimonio>, TestimonioFilters>();

@@ -22,8 +22,7 @@ namespace Infrastructure.Persistence
         public DbSet<Rol> Roles { get; set; }
         public DbSet<TipoEntidad> TipoEntidades { get; set; }
         public DbSet<TipoTransaccion> TipoTransacciones { get; set; }
-        public DbSet<Transaccion> Transacciones { get; set; }
-        public DbSet<QR> QRs { get; set; }
+        public DbSet<Transaccion> Transacciones { get; set; } 
         public DbSet<Entidad> Entidades { get; set; }
         public DbSet<Producto> Productos { get; set; }
         public DbSet<ProductoImagen> ProductoImagenes { get; set; } 

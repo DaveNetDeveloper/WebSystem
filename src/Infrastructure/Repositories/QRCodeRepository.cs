@@ -21,13 +21,17 @@ namespace Infrastructure.Repositories
             _context = context;
         }
 
+        public async Task<IEnumerable<QRCode>> GetAllAsync() =>
+            await _context.QRCodes.ToListAsync();
+
         public async Task<QRCode?> GetByIdAsync(Guid id) =>
             await _context.QRCodes.FirstOrDefaultAsync(q => q.id == id);
 
-        public async Task AddAsync(QRCode qr)
+        public async Task<bool> AddAsync(QRCode qr)
         {
             _context.QRCodes.Add(qr);
             await _context.SaveChangesAsync();
+            return true;
         }
 
         public async Task<bool> UpdateAsync(QRCode qr)
@@ -44,6 +48,18 @@ namespace Infrastructure.Repositories
             qrToUpdate.payload = qr.payload;
             qrToUpdate.status = qr.status;
              
+            await _context.SaveChangesAsync();
+            return true;
+        }
+
+        public async Task<bool> Remove(Guid id)
+        {
+            var qrToDelete = await _context.QRCodes.FindAsync(id);
+
+            if (qrToDelete == null)
+                return false;
+
+            _context.QRCodes.Remove(qrToDelete);
             await _context.SaveChangesAsync();
             return true;
         }

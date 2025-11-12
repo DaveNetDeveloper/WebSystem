@@ -5,8 +5,8 @@ using Application.Services;
 
 namespace Application.Services
 {
-   public class QRCodeService
-   {
+   public class QRCodeService : IQRCodeService
+    {
         private readonly IQRCodeRepository _repo;
         private readonly IQRCodeImageService _imageService;
 
@@ -15,6 +15,9 @@ namespace Application.Services
             _repo = repo;
             _imageService = imageService;
         }
+
+        public Task<IEnumerable<QRCode>> GetAllAsync()
+            => _repo.GetAllAsync();
 
         public async Task<QRCode> CreateAsync(string payload, TimeSpan? ttl)
         {
@@ -46,5 +49,8 @@ namespace Application.Services
             qr.Consume();
             await _repo.UpdateAsync(qr);
         }
-   }
+
+        public Task<bool> Remove(Guid id)
+              => _repo.Remove(id);
+    }
 }

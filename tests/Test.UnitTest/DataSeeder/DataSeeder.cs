@@ -477,17 +477,17 @@ namespace Test.UnitTest.DataSeeder
         // QR 
         private Guid SeedQRs(int count, int idProducto)
         {
-            var faker = new Faker<QR>()
-                .RuleFor(r => r.id, f => f.Random.Guid())
-                .RuleFor(r => r.idProducto, idProducto)
-                .RuleFor(r => r.activo, true)
-                .RuleFor(r => r.multicliente, false)
-                .RuleFor(r => r.consumido, false)
-                .RuleFor(r => r.qrCode, f => f.Random.AlphaNumeric(12))
-                .RuleFor(r => r.fechaExpiracion, DateTime.Now); 
+            var faker = new Faker<QRCode>();
+                //.RuleFor(r => r.id, f => f.Random.Guid())
+                //.RuleFor(r => r.idProducto, idProducto)
+                //.RuleFor(r => r.activo, true)
+                //.RuleFor(r => r.multicliente, false)
+                //.RuleFor(r => r.consumido, false)
+                //.RuleFor(r => r.qrCode, f => f.Random.AlphaNumeric(12))
+                //.RuleFor(r => r.fechaExpiracion, DateTime.Now); 
              
             var qrs = faker.Generate(count);
-            _context.QRs.AddRange(qrs);
+            _context.QRCodes.AddRange(qrs);
             return qrs.FirstOrDefault().id;
         }
 
