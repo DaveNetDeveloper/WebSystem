@@ -1,6 +1,7 @@
 ﻿
 // Encriptar
-async function calcularHash(cadena) {
+export async function calcularHash(cadena) {
+     
     // Convierte la cadena en un array de bytes (codificación UTF-8)
     const buffer = new TextEncoder().encode(cadena);
 
@@ -19,16 +20,19 @@ async function calcularHash(cadena) {
 //
 
 // Función para establecer una cookie
-function setCookie(nombre, valor, expiracionEnDias) {
+export function setCookie(nombre, valor, expiracionEnDias) {
+
+    alert("setCookie");
+
     const fechaExpiracion = new Date();
     fechaExpiracion.setDate(fechaExpiracion.getDate() + expiracionEnDias);
-
     const cookieValor = encodeURIComponent(valor) + "; expires=" + fechaExpiracion.toUTCString() + "; path=/";
+
     document.cookie = nombre + "=" + cookieValor;
 }
 
 // Función para obtener el valor de una cookie
-function getCookie(nombre) {
+export function getCookie(nombre) {
     const nombreEQ = nombre + "=";
     const cookies = document.cookie.split(';');
     for (let i = 0; i < cookies.length; i++) {
@@ -44,57 +48,57 @@ function getCookie(nombre) {
 }
 
 // Función para cargar contenido desde un archivo
-async function cargarContenidoHtml(url, contenedorId) {
+export async function cargarContenidoHtml(url, contenedorId) {
     const response = await fetch(url);
     const contenido = await response.text();
     document.getElementById(contenedorId).innerHTML = contenido;
 }
 
 //
-function getInputValueByName(name) {
+export function getInputValueByName(name) {
     const input = document.querySelector('input[name="' + name + '"]');
     return input.value;
 }
 
-function getCheckboxValueByName(name) {
+export function getCheckboxValueByName(name) {
     const input = document.querySelector('input[name="' + name + '"]');
     return input.checked;
 }
 
 //
-function setInputValueByName(name, value) {
+export function setInputValueByName(name, value) {
     const input = document.querySelector('input[name="' + name + '"]');
     input.value = value;
 }
 
-function setInputHtmlByName(name, value) {
+export function setInputHtmlByName(name, value) {
     const input = document.getElementsByName(name);
     input[0].innerHTML = value;
 }
 
-function setBackgroundImageByName(name, value) {
+export function setBackgroundImageByName(name, value) {
     const input = document.getElementsByName(name);
     input[0].style.backgroundImage = "url(img/entidades/" + value + ")";
 }
 
 // para navegación a una página
-function redirectToPage(page) {
+export function redirectToPage(page) {
     window.location.assign(page);
 }
 
 // para recargar una página
-function refreshPage() {
+export function refreshPage() {
     window.location.href = getCurrentPage();
 }
 
 //
-function getCurrentPage() {
+export function getCurrentPage() {
     var rutaActual = window.location.pathname;
     return rutaActual.substring(rutaActual.lastIndexOf('/') + 1);
 }
 
 //
-function getCurrentDateTime() {
+export function getCurrentDateTime() {
     var fechaHoraActual = new Date();
 
     var año = fechaHoraActual.getFullYear();
@@ -114,7 +118,7 @@ function getCurrentDateTime() {
 }
 
 //
-class Filtros {
+export class Filtros {
     constructor() {
         this.elementos = [];  
     }
@@ -133,14 +137,14 @@ class Filtros {
 };
 
 //
-function isExpiredDate(date) {
+export function isExpiredDate(date) {
     const fecha = new Date(date);
     const fechaActual = new Date();
     return fecha < fechaActual;
 }
 
 //
-function replaceTextByTagId(tagId, tagText, newText) {
+export function replaceTextByTagId(tagId, tagText, newText) {
     var element = document.getElementById(tagId);
     element.textContent = element.textContent.replace(tagText, newText);
 } 

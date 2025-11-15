@@ -88,7 +88,7 @@ namespace API.Controllers
         public IActionResult Login([FromBody] LoginDto dto)
         {
             var user = _authService.Login(dto.UserName, dto.Password);
-            if (user is null) return Unauthorized();
+            if (user is null || user.Result is null) return Unauthorized();
 
             var claims = new List<Claim> {
                 new(ClaimTypes.NameIdentifier, user.Result.Id.ToString()),
@@ -125,7 +125,7 @@ namespace API.Controllers
                                                pais = null,
                                                region = null });
 
-            return Ok(new { access_token = jwt, token_type = "Bearer", expires_at_utc = expires });
+            return Ok(new { access_token = jwt, token_type = "Bearer", expires_at_utc = expires, role = user.Result.Role });
         }
 
         /// <summary>

@@ -2,14 +2,14 @@
 // Constantes
 //
 const baseUrl = `https://localhost`;
-const controllerName = `Usuarios`;
 const port = `7161`;
+const controllerName = `Usuarios`;
 const apiUrl = `${baseUrl}:${port}/${controllerName}/`;
 
 var userToken = "qAGlDm9o9oS1Ir+xNlWk3XXHkJy/+nJmBy3KUPoms2w=";
 
 
-const controllerActions = [
+export const controllerActions = [
     'ObtenerUsuarioById',
     'CrearUsuario',
     'ObtenerUsuarioByEmail',
@@ -25,7 +25,7 @@ const controllerActions = [
 //
 // Clases
 //
-class Usuario {
+export class Usuario {
 
     constructor(id, nombre, apellidos, correo, activo, contraseña, fechaNacimiento, suscrito, fechaCreacion, puntos) {
         this.id = id;
@@ -50,7 +50,7 @@ class Usuario {
 //
 // Proxis con los web services del controlador 
 //
-function Get(id) {
+export function Get(id) {
 
     var nameMethod = "ObtenerUsuario";
  
@@ -84,7 +84,7 @@ function Get(id) {
         }); 
 }
 
-function GetAll() {
+export function GetAll() {
     const requestOptions = {
         method: 'GET',
         headers: {
@@ -109,7 +109,7 @@ function GetAll() {
         });
 }
 
-function GetByFilters(nameMethod, pFiltros) {
+export function GetByFilters(nameMethod, pFiltros) {
 
     const requestOptions = {
         method: 'GET',
@@ -143,7 +143,7 @@ function GetByFilters(nameMethod, pFiltros) {
         });
 }
 
-function PatchByFilters(nameMethod, pFiltros) {
+export function PatchByFilters(nameMethod, pFiltros) {
 
     const requestOptions = {
         method: 'PATCH',
@@ -178,7 +178,7 @@ function PatchByFilters(nameMethod, pFiltros) {
             }); 
 }
 
-function Delete(id) {
+export function Delete(id) {
 
     var urlConParametro = `${apiUrl}Eliminar/${id}`;
     return fetch(urlConParametro, {
@@ -199,7 +199,7 @@ function Delete(id) {
     });
 }
  
-function Post(nameMethod, entidad) {
+export function Post(nameMethod, entidad) {
   
     var url = `${apiUrl}${nameMethod}`;
     return fetch(url, {
@@ -223,7 +223,7 @@ function Post(nameMethod, entidad) {
         });
 }
 
-function Put(nameMethod, entidad) {
+export export function Put(nameMethod, entidad) {
 
     var url = `${apiUrl}${nameMethod}`;
     return fetch(url, {
@@ -248,7 +248,7 @@ function Put(nameMethod, entidad) {
         });
 }
 
-function CloseSession() {
+export function CloseSession() {
 
     // borrar la cookie de sesión de usuario
 

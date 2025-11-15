@@ -167,6 +167,10 @@ namespace Infrastructure.Repositories
                 return null;
 
             if (PasswordHelper.VerifyPassword(password, user.contrasena)) {
+
+                user.ultimaConexion = DateTime.UtcNow;
+                await _context.SaveChangesAsync();
+
                 return new AuthUser {
                     Id = user.id.Value,
                     UserName = user.nombre,

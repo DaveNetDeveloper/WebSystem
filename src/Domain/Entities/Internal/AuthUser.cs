@@ -7,5 +7,7 @@
         public string Role { get; set; } = string.Empty; 
     }
 
-    public sealed record LoginDto(string UserName, string Password); 
+    public sealed record LoginDto(
+        string UserName,
+        string Password); 
 }
