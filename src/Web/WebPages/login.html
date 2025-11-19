@@ -2,75 +2,130 @@
 <html class="no-js" lang="es">
 <head>
 
-	<!-- Meta Tags -->
-	<meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="keywords" content="login">
-	<meta name="description" content="Página para iniciar sesión con una cuenta de usuario existente.">
-	<meta name='copyright' content='UOC'>
-	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Meta Tags -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="keywords" content="login">
+    <meta name="description" content="Página para iniciar sesión con una cuenta de usuario existente.">
+    <meta name='copyright' content='UOC'>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-	<title>Login</title>
+    <title>Login</title>
 
-	<link rel="icon" href="img/favicon.png">
+    <link rel="icon" href="img/favicon.png">
 
-	<script src="../WebPages/js/jquery.min.js"></script>
-	<script src="../WebPages/js/jquery-migrate-3.0.0.js"></script>
-	<script src="../WebPages/js/jquery-ui.min.js"></script>
-	<script src="../WebPages/js/easing.js"></script>
-	<script src="../WebPages/js/colors.js"></script>
-	<!--<script src="../WebPages/js/popper.min.js"></script>
-	<script src="../WebPages/js/bootstrap-datepicker.js"></script>-->
-	<script src="../WebPages/js/jquery.nav.js"></script>
-	<!--<script src="../WebPages/js/slicknav.min.js"></script>
-	<script src="../WebPages/js/jquery.scrollUp.min.js"></script>-->
-	<script src="../WebPages/js/niceselect.js"></script>
-	<script src="../WebPages/js/tilt.jquery.min.js"></script>
-	<!--<script src="../WebPages/js/owl-carousel.js"></script>-->
-	<script src="../WebPages/js/jquery.counterup.min.js"></script>
-	<script src="../WebPages/js/steller.js"></script>
-	<script src="../WebPages/js/wow.min.js"></script>
-	<!--<script src="https://cdnjs.cloudflare.com/ajax/libs/waypoints/2.0.3/waypoints.min.js"></script>
-	<script src="https://maps.google.com/maps/api/js?key=AIzaSyDGqTyqoPIvYxhn_Sa7ZrK5bENUWhpCo0w"></script>
-	<script src="../WebPages/js/gmaps.min.js"></script>
-	<script src="../WebPages/js/map-active.js"></script>-->
-	<script src="../WebPages/js/bootstrap.min.js"></script>
+    <script src="../WebPages/js/jquery.min.js"></script>
+    <script src="../WebPages/js/jquery-migrate-3.0.0.js"></script>
+    <script src="../WebPages/js/jquery-ui.min.js"></script>
+    <script src="../WebPages/js/easing.js"></script>
+    <script src="../WebPages/js/colors.js"></script>
+    <!--<script src="../WebPages/js/popper.min.js"></script>
+    <script src="../WebPages/js/bootstrap-datepicker.js"></script>-->
+    <script src="../WebPages/js/jquery.nav.js"></script>
+    <!--<script src="../WebPages/js/slicknav.min.js"></script>
+    <script src="../WebPages/js/jquery.scrollUp.min.js"></script>-->
+    <script src="../WebPages/js/niceselect.js"></script>
+    <script src="../WebPages/js/tilt.jquery.min.js"></script>
+    <!--<script src="../WebPages/js/owl-carousel.js"></script>-->
+    <script src="../WebPages/js/jquery.counterup.min.js"></script>
+    <script src="../WebPages/js/steller.js"></script>
+    <script src="../WebPages/js/wow.min.js"></script>
+    <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/waypoints/2.0.3/waypoints.min.js"></script>
+    <script src="https://maps.google.com/maps/api/js?key=AIzaSyDGqTyqoPIvYxhn_Sa7ZrK5bENUWhpCo0w"></script>
+    <script src="../WebPages/js/gmaps.min.js"></script>
+    <script src="../WebPages/js/map-active.js"></script>-->
+    <script src="../WebPages/js/bootstrap.min.js"></script>
+
+    <script src="../WebPages/js/libraries/globalAuth.js"></script>
 
 </head>
 <body>
 
-	<app-login redirect-url="/dashboard.html"></app-login>
-	
+    <button id="btnPrueba">Probar Endpoint Seguro</button>
+    
+    <app-login login-type="Web"></app-login>
 	<script type="module" src="../Components/login/login.js"></script>
-	
 	<script>
-		 
+         
+        function getCookie(nombre) {
+            const nombreEQ = nombre + "=";
+            const cookies = document.cookie.split(';');
+            for (let i = 0; i < cookies.length; i++) {
+                let cookie = cookies[i];
+                while (cookie.charAt(0) === ' ') {
+                    cookie = cookie.substring(1, cookie.length);
+                }
+                if (cookie.indexOf(nombreEQ) === 0) {
+                    return decodeURIComponent(cookie.substring(nombreEQ.length, cookie.length));
+                }
+            }
+            return null;
+        }
+
+        async function llamarEndpointSeguro() {
+            try {
+                const token = getCookie('app-access-token');
+                if (!token) throw new Error('No se encontró el token. Inicia sesión primero.');
+
+                const baseUrl = `https://localhost`;
+                const port = `44311`;
+                const apiUrl = `${baseUrl}:${port}/Usuarios/ObtenerUsuarios`;
+
+                const res = await fetchWithAuth(apiUrl, {
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${token}`
+                    }
+                    //, body: JSON.stringify({ foo: 'bar' })
+                });
+                if (!res.ok) {
+                    //alert("Error en WebPages/Login.html");
+                    throw new Error('Error al llamar al endpoint seguro');
+                }
+
+                return await res.json();
+            }
+            catch (err) {
+                console.error(err);
+                throw err;
+            }
+        }
+
+        document.getElementById('btnPrueba').addEventListener('click', async () =>
+        {
+            try {
+                const usuarios = await llamarEndpointSeguro();
+                console.log('Usuarios desde botón:', usuarios);
+                alert('Revisa la consola para ver los usuarios');
+
+            }
+            catch (error) {
+                console.error('Error al llamar al endpoint:', error);
+                alert('Error al llamar al endpoint seguro. Revisa la consola para ver los errores');
+            }
+        });
+
         document.querySelector('app-login') // Escucha el evento emitido por el componente
 			.addEventListener('login-success', (e) => {
 
-                alert("access_token: " + e.detail.access_token);
-                alert("token_type: " + e.detail.token_type);
-				alert("expires_at_utc: " + e.detail.expires_at_utc);
-                alert("role: " + e.detail.role);
+                // Component result
+				// alert("access_token: " + e.detail.access_token);
+                // alert("refresh_token: " + e.detail.refresh_token);
+                // alert("token_type: " + e.detail.token_type);
+                // alert("expires_at: " + e.detail.expires_at);
+                // alert("role: " + e.detail.role);
 
-                switch (e.detail.role) {
-					case "Admin":
-						console.log("Usuario Administrador");
-                        alert("Usuario Administrador");
-						break;
-                    case "SAdmin":
-						console.log("Usuario Super Administrador");
-						alert("Usuario Super Administrador");
-						break;
-					default:
-						console.log("Usuario Web");
-						alert("Usuario Web");
-                        break;
-				}
+                // Cokkie data
+                alert("Cokkie " + getCookie('app-access-token'));
+                alert("Cokkie " + getCookie('app-refresh-token')); 
+                alert("Cokkie " + getCookie('app-role'));
 
-				window.location.href = '../WebPages/home-privada.html'; 
-				//window.location.href = '../Backoffice/home.html';
+                //const usuarios =  llamarEndpointSeguro();
+                //console.log('Usuarios:', usuarios);
+                //alert('Revisa la consola para ver los usuarios');
 
+				window.location.href = '../WebPages/home-privada.html';  
 			});
 
 	</script>

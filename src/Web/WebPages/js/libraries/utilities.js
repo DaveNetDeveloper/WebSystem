@@ -20,14 +20,26 @@ export async function calcularHash(cadena) {
 //
 
 // Función para establecer una cookie
-export function setCookie(nombre, valor, expiracionEnDias) {
+export function setCookie(nombre, valor, expiracion) {
 
-    alert("setCookie");
+    //const fechaExpiracion = new Date();
 
-    const fechaExpiracion = new Date();
-    fechaExpiracion.setDate(fechaExpiracion.getDate() + expiracionEnDias);
-    const cookieValor = encodeURIComponent(valor) + "; expires=" + fechaExpiracion.toUTCString() + "; path=/";
+    //if (expiracion == 0) {
+    //    fechaExpiracion.setMinutes(fechaExpiracion.getMinutes() + 5);
+    //}
+    //else {
+    //    fechaExpiracion.setDate(fechaExpiracion.getDate() + expiracion);
+    //}
 
+    // Convertir a objeto Date de JavaScript
+    const date = new Date(expiracion);
+
+    // Convertir a formato GMT para cookies
+    const expires = date;// date.toUTCString();
+    
+    //const cookieValor = encodeURIComponent(valor) + "; expires=" + fechaExpiracion.toUTCString() + "; path=/";
+    const cookieValor = encodeURIComponent(valor) + "; expires=" + expires; + "; path=/";
+     
     document.cookie = nombre + "=" + cookieValor;
 }
 

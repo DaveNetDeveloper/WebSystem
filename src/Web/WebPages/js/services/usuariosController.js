@@ -27,7 +27,7 @@ export const controllerActions = [
 //
 export class Usuario {
 
-    constructor(id, nombre, apellidos, correo, activo, contraseña, fechaNacimiento, suscrito, fechaCreacion, puntos) {
+    constructor(id, nombre, apellidos, correo, activo, contrasena, fechaNacimiento, suscrito, fechaCreacion, genero, puntos) {
         this.id = id;
         this.nombre = nombre;
         this.apellidos = apellidos;
@@ -37,10 +37,9 @@ export class Usuario {
         this.fechaNacimiento = fechaNacimiento,
         this.suscrito = suscrito,
         this.fechaCreacion = fechaCreacion,
+        this.genero = genero,
         this.ultimaConexion = null,
-        this.puntos = puntos,
-        this.token = null,
-        this.expiracionToken = null
+        this.puntos = puntos
     }
     metodo() {
         //console.log(`Hola, soy ${this.nombre} y tengo ${this.puntos} puntos.`);
@@ -223,7 +222,7 @@ export function Post(nameMethod, entidad) {
         });
 }
 
-export export function Put(nameMethod, entidad) {
+export function Put(nameMethod, entidad) {
 
     var url = `${apiUrl}${nameMethod}`;
     return fetch(url, {
