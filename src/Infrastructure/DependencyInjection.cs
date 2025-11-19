@@ -45,8 +45,7 @@ namespace Infrastructure.DependencyInjection
             //register Repository Interfaces
             //
             services.AddScoped<ITipoEnvioCorreoRepository, TipoEnvioCorreoRepository>();
-            services.AddScoped<IUnitOfWork, UnitOfWork>();  // Solo repositorio, sin service 
-            services.AddScoped<ITokenRepository, TokenRepository>();
+            services.AddScoped<IUnitOfWork, UnitOfWork>();  // Solo repositorio, sin service  
             services.AddScoped<IUsuarioRepository, UsuarioRepository>();
             services.AddScoped<IRolRepository, RolRepository>();
             services.AddScoped<ICategoriaRepository, CategoriaRepository>();
@@ -81,6 +80,8 @@ namespace Infrastructure.DependencyInjection
             services.AddScoped<IUsuarioRecompensasRepository, UsuarioRecompensasRepository>(); // Solo repositorio, sin service 
             services.AddScoped<IActividadReservaRepository, ActividadReservaRepository>();
             services.AddScoped<ILogRepository, LogRepository>();
+
+            services.AddScoped<IRefreshTokenRepository, RefreshTokenRepository>();
 
             services.AddScoped<IQRCodeRepository, QRCodeRepository>();
             services.AddScoped<IQRCodeImageRepository, QRCodeImageRepository>();

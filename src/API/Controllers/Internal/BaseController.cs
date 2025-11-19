@@ -13,7 +13,6 @@ namespace API.Controllers
     public class BaseController<TEntity> : ControllerBase
     {
         protected IConfiguration _config;
-        protected ITokenService _tokenService;
         protected ILogger<BaseController<TEntity>> _logger;
         protected string _headerToken => HttpContext.Request.Headers["Authorization"].ToString();
         protected string ip => HttpContext.Connection.RemoteIpAddress?.ToString();
@@ -47,8 +46,6 @@ namespace API.Controllers
                 return firstLang;
             }
         }
-
-        protected bool IsValidToken() => _tokenService.ValidarToken(_headerToken);
 
         protected IQueryOptions<TEntity> GetQueryOptions(int? page, int? pageSize, string? orderBy, bool descending = false)
             => new QueryOptions<TEntity> {

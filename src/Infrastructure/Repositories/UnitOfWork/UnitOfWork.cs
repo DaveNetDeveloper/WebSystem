@@ -28,8 +28,6 @@ namespace Infrastructure.Repositories.UnitOfWork
         public IRolRepository RolRepository { get; }
         public ITestimonioRepository TestimonioRepository { get; }
         public ITipoEntidadRepository TipoEntidadRepository { get; } 
-        public ITokenRepository TokenRepository { get; }
-
         public UnitOfWork(  ApplicationDbContext context,
                             IUsuarioRepository usuariosRepository,
                             ITransaccionRepository transaccionesRepository,
@@ -41,8 +39,7 @@ namespace Infrastructure.Repositories.UnitOfWork
                             IQRCodeRepository qrRepository,
                             IRolRepository rolRepository,
                             ITestimonioRepository testimonioRepository,
-                            ITipoEntidadRepository tipoEntidadRepository, 
-                            ITokenRepository tokenRepository) {
+                            ITipoEntidadRepository tipoEntidadRepository) {
 
             _context = context;
 
@@ -57,7 +54,6 @@ namespace Infrastructure.Repositories.UnitOfWork
             RolRepository = rolRepository;
             TestimonioRepository = testimonioRepository;
             TipoEntidadRepository = tipoEntidadRepository; 
-            TokenRepository = tokenRepository;
         }
 
         public async Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)

@@ -21,8 +21,7 @@ namespace Application.DependencyInjection
             //
             // Register Services
             //
-            services.AddScoped<ICorreoService, CorreoService>();
-            services.AddScoped<ITokenService, TokenService>();
+            services.AddScoped<ICorreoService, CorreoService>(); 
             services.AddScoped<IAuthService, AuthService>();
             services.AddScoped<IUsuarioService, UsuarioService>();
             services.AddScoped<IRolService, RolService>();

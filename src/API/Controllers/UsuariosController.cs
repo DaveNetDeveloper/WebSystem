@@ -5,13 +5,17 @@ using Application.Interfaces.DTOs.Filters;
 using Application.Interfaces.Services;
 using Application.Services;
 using Domain.Entities;
-using Utilities;
-
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.RateLimiting; 
 using Microsoft.Extensions.Options;
+using Microsoft.IdentityModel.Tokens;
 using System.ComponentModel.DataAnnotations;
+using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
+using System.Text;
+using Twilio.TwiML.Voice;
+using Utilities;
 
 namespace API.Controllers
 {
@@ -23,30 +27,32 @@ namespace API.Controllers
         private readonly IEmailTokenService _emailTokenService;
         private readonly ICorreoService _correoService;
         private readonly AppConfiguration _appConfiguration;
-        private readonly ILogService _logService;
+        private readonly ILogService _logService; 
+        private readonly ILoginService _loginService;
 
         /// <summary> Constructor </summary>  
         public UsuariosController(ILogger<UsuariosController> logger, 
                                   IUsuarioService usuarioService,
                                   IEmailTokenService emailTokenService,
-                                  ITokenService tokenService,
                                   ICorreoService correoService,
                                   IOptions<AppConfiguration> options,
-                                  ILogService logService) {
-            base._logger = logger;  
-            base._tokenService = tokenService;
+                                  ILogService logService, 
+                                  ILoginService loginService) {
+            base._logger = logger;
+            //base._config = config ?? throw new ArgumentNullException(nameof(config));
             _appConfiguration = options.Value ?? throw new ArgumentNullException(nameof(options));
             _usuarioService = usuarioService ?? throw new ArgumentNullException(nameof(usuarioService));
             _correoService = correoService ?? throw new ArgumentNullException(nameof(correoService));
             _emailTokenService = emailTokenService ?? throw new ArgumentNullException(nameof(emailTokenService));
-            _logService = logService ?? throw new ArgumentNullException(nameof(logService));
+            _logService = logService ?? throw new ArgumentNullException(nameof(logService)); 
+            _loginService = loginService ?? throw new ArgumentNullException(nameof(loginService));
         }
 
         /// <summary>
         /// 
         /// </summary>  
         /// <returns> IEnumerable<Usuario> </returns>
-        [Authorize(Policy = "RequireAdmin")] 
+        [Authorize(Roles = "Admin,WebUser")]
         [EnableRateLimiting("UsuariosLimiter")]
         [HttpGet("ObtenerUsuarios")]
         public async Task<IActionResult> GetAllAsync()
@@ -142,8 +148,8 @@ namespace API.Controllers
                     fechaCreacion = DateTime.UtcNow,
                     ultimaConexion = null,
                     puntos = 0,//defaultPuntos,
-                    token= null,
-                    expiracionToken = null,
+                    //token= null,
+                    //expiracionToken = null,
                     genero = usuario.genero
                 };
 
@@ -234,30 +240,6 @@ namespace API.Controllers
                 _logger.LogError(ex, "Error cambiando la contraseña del usuario, {email}.", email);
                 return StatusCode(StatusCodes.Status500InternalServerError,
                                  new { message = MessageProvider.GetMessage("Usuario:CambiarContraseña", "Error"), email });
-            }
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="email"></param> 
-        /// <returns> bool </returns>
-        [AllowAnonymous]
-        [HttpPatch("ValidarCuenta")]
-        public async Task<IActionResult> ValidarCuenta([FromQuery] string email) 
-        {
-            try { 
-                var result = await _usuarioService.ValidarCuenta(email);
-                if (result == false) return NotFound();
-                else {
-                    _logger.LogInformation(MessageProvider.GetMessage("Usuario:ValidarCuenta", "Success"));
-                    return Ok(result);
-                }
-            }
-            catch (Exception ex) {
-                _logger.LogError(ex, "Error validando la cuenta del usuario, {email}.", email);
-                return StatusCode(StatusCodes.Status500InternalServerError,
-                                 new { message = MessageProvider.GetMessage("Usuario:ValidarCuenta", "Error"), email });
             }
         }
 

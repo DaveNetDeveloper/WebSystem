@@ -55,9 +55,6 @@ namespace Infrastructure.Repositories
             if (userFilters.Suscrito.HasValue)
                 predicate = predicate.And(u => u.suscrito == userFilters.Suscrito.Value);
 
-            if (!string.IsNullOrEmpty(userFilters.Token))
-                predicate = predicate.And(u => u.token.ToLower() == userFilters.Token.ToLower());
-
             if (!string.IsNullOrEmpty(userFilters.Genero))
                 predicate = predicate.And(u => u.genero.ToLower() == userFilters.Genero.ToLower());
 
@@ -126,8 +123,6 @@ namespace Infrastructure.Repositories
             usuarioDB.suscrito = usuario.suscrito;
             usuarioDB.ultimaConexion = usuario.ultimaConexion;
             usuarioDB.puntos = usuario.puntos;
-            usuarioDB.token = usuario.token;
-            usuarioDB.expiracionToken = usuario.expiracionToken;
             usuarioDB.genero = usuario.genero;
             usuarioDB.telefono = usuario.telefono;
             usuarioDB.codigoRecomendacion = usuario.codigoRecomendacion;
@@ -159,21 +154,21 @@ namespace Infrastructure.Repositories
         /// <param name="userName"></param>
         /// <param name="password"></param>
         /// <returns></returns>
-        public async Task<AuthUser?> Login(string userName, string password)
+        public async Task<AuthUser?> Login(string email, string password, bool force = false)
         {
-            var user = _context.Usuarios.SingleOrDefault(x => x.nombre.Trim().ToLower() == userName.Trim().ToLower());
+            Usuario user = _context.Usuarios.SingleOrDefault(x => x.correo.Trim().ToLower() == email.Trim().ToLower());   
 
             if (user == null || user.activo == false)
                 return null;
 
-            if (PasswordHelper.VerifyPassword(password, user.contrasena)) {
+            if (force || PasswordHelper.VerifyPassword(password, user.contrasena)) {
 
                 user.ultimaConexion = DateTime.UtcNow;
                 await _context.SaveChangesAsync();
 
                 return new AuthUser {
                     Id = user.id.Value,
-                    UserName = user.nombre,
+                    Email = user.correo,
                     Role = string.Empty
                 };
             }
@@ -195,8 +190,6 @@ namespace Infrastructure.Repositories
 
             user.fechaCreacion = DateTime.UtcNow;
             user.activo = false;
-            user.token = null;
-            user.expiracionToken = null; 
             user.puntos = 0;
             bool result = await AddAsync(user); 
 
@@ -215,8 +208,6 @@ namespace Infrastructure.Repositories
             else {
                 user.activo = true;
                 user.ultimaConexion = DateTime.UtcNow;
-                user.token = null;
-                user.expiracionToken = null;
                 await _context.SaveChangesAsync();
                 return true;
             }

@@ -3,11 +3,12 @@
     public sealed class AuthUser
     {
         public int Id { get; set; }
-        public string UserName { get; set; } = string.Empty;
+        public string Email { get; set; } = string.Empty;
         public string Role { get; set; } = string.Empty; 
     }
 
     public sealed record LoginDto(
-        string UserName,
-        string Password); 
+        string Email,
+        string Password,
+        string LoginType); 
 }

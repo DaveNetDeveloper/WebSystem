@@ -143,6 +143,7 @@ if (builder.Environment.EnvironmentName == Application.Common.Environments.Test)
 //builder.Services.AddAuthorization();
 builder.Services.AddAuthorization(options => {
     options.AddPolicy("RequireAdmin", policy => policy.RequireRole(Rol.Roles.Admin));
+    options.AddPolicy("RequireWebUser", policy => policy.RequireRole(Rol.Roles.WebUser));
 });
 
 builder.Services.AddCors(options => {

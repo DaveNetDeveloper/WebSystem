@@ -10,7 +10,6 @@ namespace Application.Interfaces.Services
                                                      IQueryOptions<Usuario>? queryOptions = null);
         Task<bool> ActivarSuscripcion(string email);
         Task<bool> CambiarContrasena(string email, string nuevaContrasena);
-        Task<bool> ValidarCuenta(string emai); 
         Task<List<Rol>> GetRolesByUsuarioId(int idUsuario);
         Task<List<Direccion>> GetDireccionesByUsuario(int idUsuario);
         Task BajaLogicaAsync(int idUsuario);

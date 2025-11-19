@@ -36,8 +36,8 @@ namespace Domain.Entities
         public static class Roles
         {
             public const string Admin = "Admin";
-            public const string User = "User";
-            public const string Manager = "Manager";
+            public const string WebUser = "WebUser";
+            public const string SAdmin = "SAdmin";
         }
     }
 }

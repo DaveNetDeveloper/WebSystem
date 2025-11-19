@@ -34,9 +34,6 @@ namespace Application.Services
             return _repo.CambiarContrasena(email, nuevaContrasena); 
         }   
 
-        public Task<bool> ValidarCuenta(string email)
-              => _repo.ValidarCuenta(email);
-
         public Task<bool> AddAsync(Usuario usuario) {
             usuario.contrasena = PasswordHelper.HashPassword(usuario.contrasena);
             return _repo.AddAsync(usuario);

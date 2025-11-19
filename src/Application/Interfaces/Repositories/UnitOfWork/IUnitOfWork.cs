@@ -16,7 +16,6 @@ namespace Application.Interfaces.Repositories
         IRolRepository RolRepository { get; }
         ITestimonioRepository TestimonioRepository { get; }
         ITipoEntidadRepository TipoEntidadRepository { get; } 
-        ITokenRepository TokenRepository { get; }
 
         Task<int> SaveChangesAsync(CancellationToken cancellationToken = default);
         Task BeginTransactionAsync(CancellationToken cancellationToken = default);

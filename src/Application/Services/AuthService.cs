@@ -1,13 +1,16 @@
-﻿using Application.Interfaces;
-using Application.DTOs.Filters;
-using Domain.Entities;
+﻿using Application.DTOs.Filters;
+using Application.DTOs.Requests;
+using Application.Interfaces;
 using Application.Interfaces.Repositories;
 using Application.Interfaces.Services;
-using Utilities;
-//using Application.Interfaces.Common;
+using DocumentFormat.OpenXml.Spreadsheet;
+using Domain.Entities;
+using Microsoft.Extensions.Options;
 
 using System.Collections.Generic;
-using Microsoft.Extensions.Options;
+using System.Security.Cryptography;
+using System.Text;
+using Utilities;
 
 namespace Application.Services
 {
@@ -17,6 +20,8 @@ namespace Application.Services
     public class AuthService : IAuthService
     {
         private readonly IUsuarioRepository _usuarioRepo;
+        private readonly IRefreshTokenRepository _refreshTokenRepo;
+        
         private readonly ICorreoService _correoService;
         private readonly ILoginService _loginService;
         private readonly MailConfiguration _appConfig;
@@ -30,12 +35,14 @@ namespace Application.Services
         public AuthService(IUsuarioRepository usuarioRepo,
                            ICorreoService correoService,
                            ILoginService loginService,
-                           IOptions<MailConfiguration> configOptions)
+                           IOptions<MailConfiguration> configOptions,
+                           IRefreshTokenRepository refreshTokenRepo)
         {
             _usuarioRepo = usuarioRepo;
             _correoService = correoService;
             _loginService = loginService;
             _appConfig = configOptions.Value;
+            _refreshTokenRepo = refreshTokenRepo;
         }
 
         /// <summary>
@@ -44,10 +51,10 @@ namespace Application.Services
         /// <param name="userName"></param>
         /// <param name="password"></param>
         /// <returns> AuthUser </returns>
-        public async Task<AuthUser?> Login(string userName, string password)
+        public async Task<AuthUser?> Login(string email, string password, bool force = false)
         {
             //var hashed = PasswordService.HashPassword(password); 
-            var authUser = _usuarioRepo.Login(userName, password);
+            var authUser = _usuarioRepo.Login(email, password, force);
 
             if (authUser != null && authUser.Result != null) {
                 var usuarioRoles = await _usuarioRepo.GetRolesByUsuarioId(authUser.Result.Id);
@@ -91,23 +98,7 @@ namespace Application.Services
             }
             return null;
         }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="idUser"></param>
-        /// <param name="token"></param>
-        /// <param name="expires"></param>
-        /// <returns> bool </returns>
-        public async Task<bool> RefreshToken(int idUser, string token, DateTime expires)
-        {
-            var updatedUSer = await _usuarioRepo.GetByIdAsync(idUser);
-            updatedUSer.token = token;
-            updatedUSer.expiracionToken = expires;
-            var result = await _usuarioRepo.UpdateAsync(updatedUSer);
-            return result;
-        }
-
+         
         /// <summary>
         /// 
         /// </summary>
@@ -147,25 +138,58 @@ namespace Application.Services
             user.contrasena = PasswordHelper.HashPassword(newPassword);
             var passwordResult = await _usuarioRepo.UpdateAsync(user);
 
-            var tokenResult = this.DeleteUserToken(user.id.Value);
+            //var tokenResult = this.DeleteUserToken(user.id.Value);
 
             return true;
         }
+
+        public async Task<string> GenerateRefreshToken(int usuarioId)
+        {
+            var random = RandomNumberGenerator.GetBytes(64);// Generar raw token seguro (base64)
+            var refreshTokenRaw = Convert.ToBase64String(random);
+
+            var refreshHash = EncryptHelper.ComputeSha256Base64(refreshTokenRaw);// Hashear (SHA256 -> base64)
+
+            var entity = new RefreshToken
+            {
+                idUsuario = usuarioId,
+                refreshToken = refreshHash,
+                //expiresAt = DateTime.Now.AddDays(7),
+                expiresAt  = DateTime.UtcNow.AddDays(7),
+                isRevoked = false
+            };
+
+            var resutl = await _refreshTokenRepo.AddAsync(entity);
+
+            // Devolver el valor RAW al cliente (NO el hash)
+            return refreshTokenRaw;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="email"></param> 
+        /// <returns> bool </returns>
+        public Task<bool> ValidarCuenta(string email)
+              => _usuarioRepo.ValidarCuenta(email);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="idUser"></param>
+        /// <param name="token"></param>
+        /// <param name="expires"></param>
+        /// <returns> bool </returns>
+        public async Task<RefreshToken> GetRefreshToken(string refreshToken) 
+            => await _refreshTokenRepo.GetByTokenHashAsync(EncryptHelper.ComputeSha256Base64(refreshToken)); 
 
         /// <summary>
         /// 
         /// </summary>
         /// <param name="idser"></param>
         /// <returns> bool </returns>
-        public async Task<bool> DeleteUserToken(int idser)
-        {
-            var userById = await _usuarioRepo.GetByIdAsync(idser);
-            userById.token = null;
-            userById.expiracionToken = null;
-
-            var result = await _usuarioRepo.UpdateAsync(userById);
-            return result;
-        }
+        public async Task<bool> RevokeRefreshTokenAsync(string refreshToken)
+            => await _refreshTokenRepo.RevokeRefreshTokenAsync(EncryptHelper.ComputeSha256Base64(refreshToken)); 
 
         /// <summary>
         /// 
