@@ -62,7 +62,8 @@ namespace Infrastructure.Persistence
         public DbSet<Log> Logs { get; set; }
         public DbSet<Domain.Entities.QRCode> QRCodes { get; set; }
         public DbSet<RefreshToken> RefreshTokens { get; set; }
-        
+        public DbSet<Perfil> Perfiles { get; set; }
+
         //
         // Views
         //

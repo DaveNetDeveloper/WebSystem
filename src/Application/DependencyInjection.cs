@@ -55,6 +55,7 @@ namespace Application.DependencyInjection
             //services.AddScoped<IUsuarioRecompensaService, UsuarioRecompensaService>();
             services.AddScoped<IActividadReservaService, ActividadReservaService>();
             services.AddScoped<ILogService, LogService>();
+            services.AddScoped<IPerfilService, PerfilService>();
 
             services.AddScoped<IExcelExporter, ExcelExporter>();
             services.AddScoped<IExporter, PdfExporter>();
@@ -101,6 +102,7 @@ namespace Application.DependencyInjection
             services.AddScoped<IFilters<TipoRecompensa>, TipoRecompensaFilters>();
             services.AddScoped<IFilters<ActividadReserva>, ActividadReservaFilters>();
             services.AddScoped<IFilters<Log>, LogFilters>();
+            services.AddScoped<IFilters<Perfil>, PerfilFilters>();
 
             return services;
         }

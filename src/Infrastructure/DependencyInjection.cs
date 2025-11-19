@@ -80,7 +80,7 @@ namespace Infrastructure.DependencyInjection
             services.AddScoped<IUsuarioRecompensasRepository, UsuarioRecompensasRepository>(); // Solo repositorio, sin service 
             services.AddScoped<IActividadReservaRepository, ActividadReservaRepository>();
             services.AddScoped<ILogRepository, LogRepository>();
-
+            services.AddScoped<IPerfilRepository, PerfilRepository>();
             services.AddScoped<IRefreshTokenRepository, RefreshTokenRepository>();
 
             services.AddScoped<IQRCodeRepository, QRCodeRepository>();
