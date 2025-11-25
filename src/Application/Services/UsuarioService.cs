@@ -1,9 +1,10 @@
-﻿using Domain.Entities;
-using Application.Interfaces.Common;
-using Application.DTOs.Filters;
+﻿using Application.DTOs.Filters;
+using Application.DTOs.Requests;
 using Application.Interfaces;
+using Application.Interfaces.Common;
 using Application.Interfaces.Repositories;
 using Application.Interfaces.Services;
+using Domain.Entities;
 using Utilities;
 
 namespace Application.Services
@@ -29,14 +30,14 @@ namespace Application.Services
         public Task<bool> ActivarSuscripcion(string email)
            => _repo.ActivarSuscripcion(email);
         
-        public Task<bool> CambiarContrasena(string email, string nuevaContrasena) {
+        public async Task<bool> CambiarContrasena(string email, string nuevaContrasena) {
             nuevaContrasena = PasswordHelper.HashPassword(nuevaContrasena);
-            return _repo.CambiarContrasena(email, nuevaContrasena); 
+            return await _repo.CambiarContrasena(email, nuevaContrasena); 
         }   
 
-        public Task<bool> AddAsync(Usuario usuario) {
+        public async Task<bool> AddAsync(Usuario usuario) {
             usuario.contrasena = PasswordHelper.HashPassword(usuario.contrasena);
-            return _repo.AddAsync(usuario);
+            return await _repo.AddAsync(usuario);
         } 
 
         public Task<bool> UpdateAsync(Usuario usuario)
@@ -51,10 +52,14 @@ namespace Application.Services
         public Task<List<Direccion>> GetDireccionesByUsuario(int idUsuario)
             => _repo.GetDireccionesByUsuario(idUsuario);
 
+        public Task<bool> AddRoleAsync(int idUsuario, Guid idRol)
+            => _repo.AddRoleAsync(idUsuario, idRol);
+
         public async Task BajaLogicaAsync(int idUsuario)
-        {
-            await _repo.BajaLogicaAsync(idUsuario);
-        }
+            => _repo.BajaLogicaAsync(idUsuario);
+
+        public Task<bool> CompletarPerfil(CompleteProfleRequest completeProfileDTO)
+            => _repo.CompletarPerfil(completeProfileDTO);
 
         //
         // JOBS

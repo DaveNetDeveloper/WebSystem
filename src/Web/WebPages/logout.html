@@ -80,9 +80,9 @@
         Logout();
 
         async function Logout() {
-            var result = await RevokeRefreshToken();
+            await RevokeRefreshToken();
             await DeleteCookies();
-            window.location.href = '../WebPages/home-publica.html';
+            //window.location.href = '../WebPages/home-publica.html';
         }
 
         async function DeleteCookies() {
@@ -94,7 +94,8 @@
             const cookieNames = [
                 "app-access-token",
                 "app-refresh-token",
-                "app-role"
+                "app-role",
+                "app-profile"
             ];
 
             cookieNames.forEach(name => {
@@ -115,9 +116,11 @@
                 const apiMethod = `logout`;
 
                 const token = getCookie('app-access-token');
+                //alert(token);
                 var refreshToken = getCookie("app-refresh-token");
                 //alert(refreshToken);
-                //alert(`${apiUrl}/${apiMethod}`);
+
+                if (refreshToken == null || token == null) return false
 
                 const res = await fetch(`${apiUrl}/${apiMethod}`,
                     {

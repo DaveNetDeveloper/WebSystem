@@ -12,11 +12,11 @@ namespace API.Controllers
 {
     [ApiController]
     [Route("[controller]")]
-    public class PerfilController : BaseController<Perfil>, IController<IActionResult, Perfil, Guid>
+    public class PerfilesController : BaseController<Perfil>, IController<IActionResult, Perfil, Guid>
     { 
         private readonly IPerfilService _perfilService; 
 
-        public PerfilController(ILogger<PerfilController> logger,
+        public PerfilesController(ILogger<PerfilesController> logger,
                                 IPerfilService perfilService) {
             _logger = logger;
             _perfilService = perfilService ?? throw new ArgumentNullException(nameof(perfilService));  

@@ -41,7 +41,7 @@ namespace Application.Services
         public Task<bool> Remove(int id)
             => _repo.Remove(id);
 
-        public int GenerarRecompensa(int idUsuario, TipoRecompensa tipoRecompensa)
+        public async Task<int> GenerarRecompensa(int idUsuario, TipoRecompensa tipoRecompensa)
         {
             var returneId = -1;
             var recompensaFilter = new RecompensaFilters {

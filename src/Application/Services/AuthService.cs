@@ -35,8 +35,7 @@ namespace Application.Services
                            ICorreoService correoService,
                            ILoginService loginService,
                            IOptions<MailConfiguration> configOptions,
-                           IRefreshTokenRepository refreshTokenRepo)
-        {
+                           IRefreshTokenRepository refreshTokenRepo) {
             _usuarioRepo = usuarioRepo;
             _correoService = correoService;
             _loginService = loginService;
@@ -103,10 +102,10 @@ namespace Application.Services
         /// </summary>
         /// <param name="email"></param>
         /// <returns> Guid del Token asocuado al correo enviado</returns>
-        public async Task<Guid> RequestResetPassword(string email)
+        public async Task<Guid?> RequestResetPassword(string email)
         {
             var tipoEnvioCorreo = _correoService.ObtenerTiposEnvioCorreo()
-                                                .Result.Where(u => u.nombre == TipoEnvioCorreo.TipoEnvio.CambiarContrasena)
+                                                .Result.Where(u => u.nombre.Trim() == TipoEnvioCorreo.TipoEnvio.CambiarContrasena.Trim())
                                                 .SingleOrDefault();
             var filters = new UsuarioFilters() { 
                 Correo = email 
@@ -127,17 +126,17 @@ namespace Application.Services
         public async Task<bool> ResetPassword(string email, string newPassword)
         {
             var filters = new UsuarioFilters();
-            filters.Correo = email;
+            filters.Correo = email.Trim().ToLower();
 
             var usersByEmail = await _usuarioRepo.GetByFiltersAsync(filters);
             if (usersByEmail == null || !usersByEmail.Any()) return false;
 
-            var user = usersByEmail.First();
+            var user = usersByEmail.FirstOrDefault();
 
             user.contrasena = PasswordHelper.HashPassword(newPassword);
             var passwordResult = await _usuarioRepo.UpdateAsync(user);
 
-            //var tokenResult = this.DeleteUserToken(user.id.Value);
+            //TODO: Delete User Token?
 
             return true;
         }
@@ -169,8 +168,8 @@ namespace Application.Services
         /// </summary>
         /// <param name="email"></param> 
         /// <returns> bool </returns>
-        public Task<bool> ValidarCuenta(string email)
-              => _usuarioRepo.ValidarCuenta(email);
+        public async Task<bool> ValidarCuenta(string email) 
+            => await _usuarioRepo.ValidarCuenta(email);
 
         /// <summary>
         /// 

@@ -8,7 +8,7 @@ namespace Application.Interfaces.Services
         Task<AuthUser?> Login(string email, string password, bool force = false);
         Task<bool> ValidarCuenta(string emai);
         Task<int?> Register(Usuario user);
-        Task<Guid> RequestResetPassword(string email);
+        Task<Guid?> RequestResetPassword(string email);
         Task<bool> ResetPassword(string email, string newPassword);
 
 

@@ -1,7 +1,8 @@
-﻿using Domain.Entities; 
-using static System.Net.Mime.MediaTypeNames;
-using Application.Interfaces.DTOs.Filters;
+﻿using Application.DTOs.Requests;
 using Application.Interfaces.Common;
+using Application.Interfaces.DTOs.Filters;
+using Domain.Entities; 
+using static System.Net.Mime.MediaTypeNames;
 
 namespace Application.Interfaces.Repositories
 {
@@ -16,6 +17,10 @@ namespace Application.Interfaces.Repositories
         Task<bool> ActualizarBalance(int idUsuario, int? puntosTransaccion);
         Task<List<Rol>> GetRolesByUsuarioId(int id);
         Task<List<Direccion>> GetDireccionesByUsuario(int idUsuario);
+
+        Task<bool> CompletarPerfil(CompleteProfleRequest completeProfileDTO);
+
+        Task<bool> AddRoleAsync(int idUsuario, Guid idRol);
 
         Task BajaLogicaAsync(int idUsuario);
 

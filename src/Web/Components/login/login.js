@@ -102,10 +102,11 @@ class AppLogin extends HTMLElement {
 
                 const data = await res.json();
 
-                //alert("access_token: " + data.access_token);
-                //alert("token_type: " + data.token_type);
-                //alert("expires_at: " + data.expires_at);
-                //alert("role: " + data.role);
+                alert("access_token: " + data.access_token);
+                alert("token_type: " + data.token_type);
+                alert("expires_at: " + data.expires_at);
+                alert("role: " + data.role);
+                alert("profile: " + data.profile);
 
                 const expiracionEnDias = 7;
                 const fechaExpiracionRT = new Date();
@@ -114,7 +115,8 @@ class AppLogin extends HTMLElement {
                 Utilities.setCookie("app-access-token", data.access_token, data.expires_at);
                 Utilities.setCookie("app-refresh-token", data.refresh_token, fechaExpiracionRT);
                 Utilities.setCookie("app-role", data.role, data.expires_at);
-                 
+                Utilities.setCookie("app-profile", data.profile, data.expires_at);
+
                 // Se emite evento personalizado para que el resto de la app reaccione
                 this.dispatchEvent(new CustomEvent('login-success', { detail: data }));
 

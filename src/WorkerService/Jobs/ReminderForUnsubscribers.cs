@@ -66,7 +66,7 @@ namespace WorkerService.Jobs
                                     var emailTokenEntity = new EmailToken {
                                         id = Guid.NewGuid(),
                                         userId = usuario.id.Value,
-                                        token = emailToken,
+                                        token = emailToken.Value, // TODO proteger campo Guid y mover 4este codifo antes del envio del email
                                         fechaCreacion = DateTime.UtcNow,
                                         fechaExpiracion = emailTokenService.GetExpirationDate(DateTime.UtcNow),
                                         emailAction = EmailToken.EmailTokenActions.SubscribeNewsletter.ToString(),

@@ -118,6 +118,7 @@ namespace Infrastructure.Persistence
                .WithMany(ur => ur.UsuarioRoles)
                //.WithMany()
                .HasForeignKey(ur => ur.identidad);
+               //.IsRequired(false);
 
             //UsuarioEntidad
             modelBuilder.Entity<UsuarioEntidad>().HasKey(ue => new { ue.idusuario, ue.identidad }); 

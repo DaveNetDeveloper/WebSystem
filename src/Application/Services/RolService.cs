@@ -17,7 +17,7 @@ namespace Application.Services
         }
 
         public Task<IEnumerable<Rol>> GetByFiltersAsync(RolFilters filters,
-                                                            IQueryOptions<Rol>? queryOptions = null)
+                                                        IQueryOptions<Rol>? queryOptions = null)
          => _repo.GetByFiltersAsync(filters, queryOptions);
 
         public Task<Rol?> GetByIdAsync(Guid id)
@@ -33,6 +33,8 @@ namespace Application.Services
             => _repo.UpdateAsync(rol);
 
         public Task<bool> Remove(Guid id)
-              => _repo.Remove(id); 
+              => _repo.Remove(id);
+
+
     }
 }

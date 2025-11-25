@@ -144,7 +144,8 @@ namespace API.Controllers
                 token_type = "Bearer",
                 expires_at = expires,
                 refresh_token = refreshTokenDTO.RefreshToken,
-                role = userRole
+                role = userRole,
+                profile = user.idPerfil // TODO Obtener y devolver el "nombre" del perfil en vez del "id"
             }); 
 
         }
@@ -174,7 +175,7 @@ namespace API.Controllers
                     break;
 
                 case LoginType.Admin:
-                    isValidRole = user.Role == Rol.Roles.Admin || user.Role == Rol.Roles.SAdmin;
+                    isValidRole = user.Role == Rol.Roles.Manager || user.Role == Rol.Roles.Admin;
                     break;
                 default:
                     isValidRole = false;
@@ -226,7 +227,8 @@ namespace API.Controllers
                 refresh_token = refreshToken,
                 token_type = "Bearer",
                 expires_at = expires,
-                role = user.Role
+                role = user.Role,
+                profile = user.Profile
             });
         }
 
@@ -237,13 +239,15 @@ namespace API.Controllers
         /// <returns> json </returns>
         [AllowAnonymous]
         [HttpPatch("ValidarCuenta")]
-        public async Task<IActionResult> ValidarCuenta([FromQuery] string email)
+        public async Task<IActionResult> ValidarCuenta([FromQuery] string email, string emailToken)
         {
-            try  {
-                var result = await _authService.ValidarCuenta(email);
-                if (!result) { 
-                    return NotFound(); 
-                }
+            try  
+            {
+                var emailTokenResut = await _emailTokenService.CheckEmailToken(emailToken, email);
+                if (!emailTokenResut) return NotFound();
+
+                var validateResult = await _authService.ValidarCuenta(email);
+                if (!validateResult) return NotFound(); 
 
                 var authUser = await _authService.Login(email, string.Empty, true);
                 if (authUser is null) {
@@ -291,7 +295,7 @@ namespace API.Controllers
 
                 // Enviar corrreo: 'Cuenta validada correctamente'
                 var tiposEnvioCorreo = await _correoService.ObtenerTiposEnvioCorreo();
-                var tipoCorreo = tiposEnvioCorreo.Where(u => u.nombre == "Bienvenida")
+                var tipoCorreo = tiposEnvioCorreo.Where(u => u.nombre.Trim() == TipoEnvioCorreo.TipoEnvio.Bienvenida.Trim())
                                                  .Single();
 
                 var usuarios = await _usuarioService.GetAllAsync();
@@ -310,7 +314,8 @@ namespace API.Controllers
                     refresh_token = refreshToken,
                     token_type = "Bearer", 
                     expires_at = expires, 
-                    role = authUser.Role 
+                    role = authUser.Role,
+                    profile = authUser.Profile
                 });
                 
             }
@@ -335,17 +340,29 @@ namespace API.Controllers
         public async Task<IActionResult> Register([FromBody] Usuario usuarioDTO)
         {
             var idUsuario = await  _authService.Register(usuarioDTO);
-            if (idUsuario is null) return NoContent();
+            if (idUsuario is null || !idUsuario.HasValue) return NoContent();
             else {
+
+                // Obtener Rol por?
+
+                // Asociamos el rol por defeto al usuario (WeUser)
+                var rolAdded = await _usuarioService.AddRoleAsync(idUsuario.Value, Rol.RolesIDs.WebUser);
+                
                 // Creamos nuevo EmailToken
                 string? emailToken = await _emailTokenService.GenerateEmailToken(idUsuario.Value, TipoEnvio.ValidacionCuenta);
 
                 // Enviar corrreo para validacion de la nueva cuenta de usuario
                 var tiposEnvio = await _correoService.ObtenerTiposEnvioCorreo();
-                var tipoEnvio = tiposEnvio.Where(u => u.nombre == TipoEnvio.ValidacionCuenta).FirstOrDefault();
+                var tipoEnvio = tiposEnvio.Where(u => u.nombre == TipoEnvio.ValidacionCuenta)
+                                          .FirstOrDefault();
 
-                var correo = new Correo(tipoEnvio, usuarioDTO.correo, usuarioDTO.nombre, _config["AppConfiguration:LogoURL"]);
-                Guid mismoEmailToken = _correoService.EnviarCorreo(correo);
+                var correo = new Correo(tipoEnvio, 
+                                        usuarioDTO.correo, 
+                                        usuarioDTO.nombre, 
+                                        _config["AppConfiguration:LogoURL"], 
+                                        Guid.Parse(emailToken));
+
+                Guid? resultEmailToken = _correoService.EnviarCorreo(correo);
 
                 // Añadimos la notificación InApp de 'Bienvenida' para el nuevo usuario
                 var inApp = new InAppNotification { 
@@ -376,7 +393,7 @@ namespace API.Controllers
                                                         .FirstOrDefault();
 
                     // Crear recompensa para el usuario recomendador
-                    var idRecompensa = _recompensaService.GenerarRecompensa(usuarioRef.id.Value, tipoRecompensa);
+                    var idRecompensa = await _recompensaService.GenerarRecompensa(usuarioRef.id.Value, tipoRecompensa);
 
                     if (idRecompensa > -1)
                     {
@@ -412,7 +429,7 @@ namespace API.Controllers
                                                         .SingleOrDefault();
 
                         var correoRef = new Correo(tipoEnvioRef, usuarioRef.correo, usuarioRef.nombre, _config["AppConfiguration:LogoURL"]);
-                        Guid emailTokenRef = _correoService.EnviarCorreo(correoRef);
+                        Guid? emailTokenRef = _correoService.EnviarCorreo(correoRef);
                     }
                 }
                 else 
@@ -425,15 +442,15 @@ namespace API.Controllers
         /// 
         /// </summary>
         /// <param name="email"></param>
-        /// <returns></returns>
+        /// <returns>Guid?</returns>
         [HttpPost("RequestResetPassword")]
         [AllowAnonymous]
-        public IActionResult RequestResetPassword(string email)
+        public async Task<IActionResult> RequestResetPassword([FromQuery] string email)
         {
-            var result = _authService.RequestResetPassword(email);
+            var result = await _authService.RequestResetPassword(email);
             if (result is null) return NoContent();
 
-            return Ok();
+            return Ok(result);
         }
 
         /// <summary>
@@ -441,15 +458,32 @@ namespace API.Controllers
         /// </summary>
         /// <param name="email"></param>
         /// <param name="newPassword"></param>
-        /// <returns></returns>
+        /// <returns>bool</returns>
         [HttpPost("ResetPassword")]
         [AllowAnonymous]
-        public IActionResult ResetPassword(string email, string newPassword)
+        public async Task<IActionResult> ResetPassword([FromQuery] string email, string newPassword)
         {
-            var result = _authService.ResetPassword(email, newPassword);
-            if (result is null) return NoContent();
+            var result = await _authService.ResetPassword(email, newPassword);
+            if (!result) return NoContent();
 
-            return Ok(); 
+
+            // Enviar corrreo: 'Contraseña cambiada correctamente'
+            var tiposEnvioCorreo = await _correoService.ObtenerTiposEnvioCorreo();
+            var tipoCorreo = tiposEnvioCorreo.Where(u => u.nombre.Trim() == TipoEnvioCorreo.TipoEnvio.ContrasenaCambiada.Trim())
+                                             .Single();
+
+            var usuarios = await _usuarioService.GetAllAsync();
+            var usuario = usuarios.Where(u => u.correo.ToLower() == email.ToLower())
+                                  .SingleOrDefault();
+
+            var correo = new Correo(tipoCorreo,
+                                    email,
+                                    usuario.nombre,
+                                    _config["AppConfiguration:LogoURL"]);
+
+            var res = _correoService.EnviarCorreo(correo);
+
+            return Ok(result); 
         } 
     }
 }

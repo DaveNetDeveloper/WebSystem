@@ -36,11 +36,14 @@ namespace Domain.Entities
         /// <summary>
         /// 
         /// </summary>
-        public static class Roles
+        public static class Perfiles
         {
-            public const string x = "xxx";
-            public const string xx = "xxx";
-            public const string xxx = "xxx";
+            public const string Basic = "Basic";
+            public const string Lover = "Lover";
+            public const string Friend = "Friend";
+            public const string Editor = "Editor";
+            public const string Viewer = "Viewer";
+            public const string SAdmin = "SAdmin";
         }
     }
 }

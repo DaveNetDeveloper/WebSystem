@@ -180,7 +180,14 @@ namespace Domain.Entities
                 } 
                 return _edad;
             }
-        }     
+        }
+
+        private Guid? _idPerfil;
+        public Guid? idPerfil
+        {
+            get => _idPerfil;
+            set => _idPerfil = value;
+        }
 
         /// <summary>
         /// Enumeración con la lista de géneros 

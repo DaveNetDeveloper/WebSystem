@@ -1,11 +1,11 @@
 ﻿using Application.Common;
-using Application.Interfaces.Services;
 using Application.Interfaces.Common;
+using Application.Interfaces.Services;
  
 using Microsoft.AspNetCore.Mvc;
 using System.Globalization;
+using System.Security.Claims;
 using System.Text;
-
 using UAParser;
 
 namespace API.Controllers
@@ -23,6 +23,7 @@ namespace API.Controllers
         protected string os => clientInfo.OS.Family;
         protected string device => clientInfo.Device.Family;
         protected string primaryLanguage => GetPrimaryLanguage(HttpContext);
+        protected string? IdUsuario => User.FindFirstValue(ClaimTypes.NameIdentifier);
 
         private string GetPrimaryLanguage(HttpContext context)
         {

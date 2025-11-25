@@ -120,12 +120,13 @@
                 alert("Cokkie " + getCookie('app-access-token'));
                 alert("Cokkie " + getCookie('app-refresh-token')); 
                 alert("Cokkie " + getCookie('app-role'));
+                alert("Cokkie " + getCookie('app-profile'));
 
-                //const usuarios =  llamarEndpointSeguro();
-                //console.log('Usuarios:', usuarios);
-                //alert('Revisa la consola para ver los usuarios');
+                const usuarios =  llamarEndpointSeguro();
+                console.log('Usuarios:', usuarios);
+                alert('Revisa la consola para ver los usuarios');
 
-				window.location.href = '../WebPages/home-privada.html';  
+				//window.location.href = '../WebPages/home-privada.html';  
 			});
 
 	</script>

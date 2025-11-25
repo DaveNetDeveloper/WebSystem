@@ -114,7 +114,8 @@ class AppRegister extends HTMLElement {
             e.preventDefault();
 
             const _terminos = this.shadowRoot.querySelector("#terminos").checked; 
-            if (validateTermsAndConditions(_terminos)) {
+
+            if (!validateTermsAndConditions(_terminos)) { alert("Es obligatorio aceptar los Términos y Condiciones."); }
 
                 const _nombre = this.shadowRoot.querySelector('#name').value.trim();
                 const _apellidos = this.shadowRoot.querySelector('#surname').value.trim();
@@ -143,63 +144,58 @@ class AppRegister extends HTMLElement {
                     _genero,
                     null);
 
+                const _idPerfil = 'c930d0e1-143d-4cd1-9881-f8355a505158';
+
                 //newUser.codigoRecomendacionRef = _codigoRecomendacion;
 
-                if (validateUser(newUser)) { 
+                if (!validateUser(newUser)) { alert("Errores de validación en los datos introducidos."); }
 
-                    try { // Proceso de registro
-                        const usuarioDTO = {
-                            nombre: _nombre,
-                            apellidos: _apellidos,
-                            correo: _correo,
-                            contrasena: _contrasena,
-                            activo: false,
-                            fechaNacimiento: new Date(_fechaNacimiento).toISOString(),
-                            suscrito: _suscrito, 
-                            fechaCreacion: new Date().toISOString(),
-                            genero: _genero,
-                            puntos: 0,
-                            codigoRecomendacionRef : _codigoRecomendacion
-                        };
+                // Proceso de registro
+                try { 
+                    const usuarioDTO = {
+                        nombre: _nombre,
+                        apellidos: _apellidos,
+                        correo: _correo,
+                        contrasena: _contrasena,
+                        activo: false,
+                        fechaNacimiento: new Date(_fechaNacimiento).toISOString(),
+                        suscrito: _suscrito, 
+                        fechaCreacion: new Date().toISOString(),
+                        genero: _genero,
+                        puntos: 0,
+                        codigoRecomendacionRef: _codigoRecomendacion,
+                        idPerfil: _idPerfil
+                    };
 
-                        const baseUrl = `https://localhost`;
-                        const port = `44311`;
-                        const controllerName = `auth`;
-                        const apiUrl = `${baseUrl}:${port}/${controllerName}`;
+                    const baseUrl = `https://localhost`;
+                    const port = `44311`;
+                    const controllerName = `auth`;
+                    const apiUrl = `${baseUrl}:${port}/${controllerName}`;
 
-                        const apiMethod = `register`;
+                    const apiMethod = `register`;
 
-                        const res = await fetch(`${apiUrl}/${apiMethod}`,
-                        {
-                            method: 'POST',
-                            headers: {
-                                'Content-Type': 'application/json'
-                            },
-                            body: JSON.stringify(usuarioDTO)
-                        });
+                    const res = await fetch(`${apiUrl}/${apiMethod}`,
+                    {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify(usuarioDTO)
+                    });
 
-                        if (!res.ok) throw new Error('Datos incorrectos');
+                    if (!res.ok) throw new Error('Datos incorrectos');
 
-                        const data = await res.json();
-                        alert("result: " + data);
+                    const data = await res.json();
+                    alert("result: " + data);
 
-                        if (data == true) {
-
-                            this.dispatchEvent(new CustomEvent('register-success', { detail: _correo }));
-                            errorMsg.textContent = '';
-                        }
-                    }
-                    catch (err) {
-                        errorMsg.textContent = err.message || 'Error durante el proceso de registro';
+                    if (data == true) {
+                        this.dispatchEvent(new CustomEvent('register-success', { detail: _correo }));
+                        errorMsg.textContent = '';
                     }
                 }
-                else {
-                    alert("Errores de validación en los datos introducidos.");
+                catch (err) {
+                    errorMsg.textContent = err.message || 'Error durante el proceso de registro';
                 }
-            }
-            else {
-                alert("Es obligatorio aceptar los Términos y Condiciones.");
-            }
         });
 
         const checkbox = this.shadowRoot.querySelector("#subscribe"); 

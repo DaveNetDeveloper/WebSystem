@@ -15,6 +15,7 @@ namespace Application.DTOs.Filters
         public string? Genero { get; set; }
         public string? CodigoRecomendacion { get; set; }
         public string? CodigoRecomendacionRef { get; set; }
+        public Guid? IdPerfil { get; set; }
 
         //public ExpressionStarter<Usuario> BuildPredicate()
         //{

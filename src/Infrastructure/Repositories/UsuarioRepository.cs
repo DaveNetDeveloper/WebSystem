@@ -1,14 +1,15 @@
-﻿using Domain.Entities; 
-using Application.Interfaces.Repositories;
+﻿using Application.DTOs.Filters;
+using Application.DTOs.Requests;
 using Application.Interfaces.Common;
-using Application.DTOs.Filters;
 using Application.Interfaces.DTOs.Filters;
+using Application.Interfaces.Repositories;
+using DocumentFormat.OpenXml.InkML;
+using Domain.Entities; 
 using Infrastructure.Persistence;
-using Utilities;
-
 using LinqKit;
 using Microsoft.EntityFrameworkCore;
 using Npgsql;
+using Utilities;
 
 namespace Infrastructure.Repositories
 {
@@ -64,6 +65,9 @@ namespace Infrastructure.Repositories
             if (!string.IsNullOrEmpty(userFilters.CodigoRecomendacionRef))
                 predicate = predicate.And(u => u.codigoRecomendacionRef.ToLower() == userFilters.CodigoRecomendacionRef.ToLower());
 
+            if (userFilters.IdPerfil.HasValue)
+                predicate = predicate.And(u => u.idPerfil == userFilters.IdPerfil.Value);
+
             var query = _context.Usuarios
                             .AsExpandable()
                             .Where(predicate); 
@@ -109,10 +113,7 @@ namespace Infrastructure.Repositories
         public async Task<bool> UpdateAsync(Usuario usuario)
         {
             var usuarioDB = await _context.Usuarios.FindAsync(usuario.id);
-            if (usuarioDB == null)
-            {
-                return false;
-            }
+            if (usuarioDB == null) return false;
 
             usuarioDB.nombre = usuario.nombre;
             usuarioDB.apellidos = usuario.apellidos;
@@ -127,6 +128,7 @@ namespace Infrastructure.Repositories
             usuarioDB.telefono = usuario.telefono;
             usuarioDB.codigoRecomendacion = usuario.codigoRecomendacion;
             usuarioDB.codigoRecomendacionRef = usuario.codigoRecomendacionRef;
+            usuarioDB.idPerfil = usuario.idPerfil;
 
             await _context.SaveChangesAsync();
             return true;
@@ -169,7 +171,8 @@ namespace Infrastructure.Repositories
                 return new AuthUser {
                     Id = user.id.Value,
                     Email = user.correo,
-                    Role = string.Empty
+                    Role = string.Empty,
+                    Profile = user.idPerfil.HasValue ? user.idPerfil.ToString() : string.Empty,
                 };
             }
             else
@@ -183,7 +186,7 @@ namespace Infrastructure.Repositories
         /// <returns> Devuelve el Id del nuevo usuario</returns>
         public async Task<int?> Register(Usuario user)
         {
-            var correoEnUso = _context.Usuarios.SingleOrDefault(x => x.correo.Trim().ToLower() == user.correo.Trim().ToLower());
+            var correoEnUso = await _context.Usuarios.SingleOrDefaultAsync(x => x.correo.Trim().ToLower() == user.correo.Trim().ToLower());
 
             if (correoEnUso != null)
                 return null;
@@ -229,7 +232,20 @@ namespace Infrastructure.Repositories
                 return true;
             }
         }
-     
+
+        public async Task<bool> CompletarPerfil(CompleteProfleRequest completeProfileDTO)
+        {
+            var user = await _context.Usuarios.FirstOrDefaultAsync(u => u.id == completeProfileDTO.IdUsuario);
+            if (user == null) return false;
+            else
+            {
+                user.telefono = completeProfileDTO.Telefono;
+                //user.cp = completeProfileDTO.CodigoPostal;
+                await _context.SaveChangesAsync();
+                return true;
+            }
+        }
+
         /// <summary>
         /// 
         /// </summary>
@@ -306,6 +322,28 @@ namespace Infrastructure.Repositories
             catch(Exception ex) {
                 throw ex; 
             }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="idUsuario"></param>
+        /// <param name="idRol"></param>
+        /// <returns> bool<Direccion> </returns>
+        public async Task<bool> AddRoleAsync(int idUsuario, Guid idRol)
+        {
+            var entidad = await _context.Entidades.SingleAsync(e => e.id == 0);
+
+            var nuevoRol = new UsuarioRol {
+                identidad = entidad.id,
+                Entidad = entidad,
+                idusuario = idUsuario,
+                idrol = idRol
+            };
+
+            await _context.UsuarioRoles.AddAsync(nuevoRol);
+            await _context.SaveChangesAsync();
+            return true;
         }
 
         //

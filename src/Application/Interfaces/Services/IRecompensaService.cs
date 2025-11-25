@@ -11,7 +11,7 @@ namespace Application.Interfaces.Services
 
 
         Task<IEnumerable<Recompensa>> GetRecompensasByUsuario(int idUsuario);
-        int GenerarRecompensa(int idUsuario, TipoRecompensa tipoRecompensa);
+        Task<int> GenerarRecompensa(int idUsuario, TipoRecompensa tipoRecompensa);
 
 
 

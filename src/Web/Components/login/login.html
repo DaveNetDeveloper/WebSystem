@@ -1,46 +1,48 @@
-﻿<section class="contact-us section">
-    <div class="container">
-        <div class="inner">
-            <div class="row">
-                <div id="divx"  class="col-lg-12">
-                    <form id="loginForm" class="contact-us-form">
-                        <h2 id="loginTitle">Inicia sesión</h2>
-                        <p id="loginSubTitle">Introduce tus datos para acceder a la plataforma.</p>
-                        <div class="row">
-                            <div class="col-lg-6">
-                                <div class="form-group">
-                                    <input style="width: 300px" id="email" placeholder="Email" required>
+﻿<body>
+    <section class="contact-us section">
+        <div class="container">
+            <div class="inner">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <form id="loginForm" class="contact-us-form">
+                            <h2>Inicia sesión</h2>
+                            <p>Introduce tus datos para acceder a la plataforma.</p>
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <input style="width: 300px" id="email" placeholder="Email" required value="dgomezma@gmail.com">
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-lg-6">
-                                <div class="form-group">
-                                    <input style="width: 300px" type="password" id="password" placeholder="Contraseña" required>
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <input style="width: 300px" type="password" id="password" placeholder="Contraseña" required value="MyPassword-123">
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-lg-6">
-                                <div class="form-group">
-                                    <a href="" id="linkChangePassword">Has olvidado tu contraseña?</a>
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <a href="" id="linkChangePassword">Has olvidado tu contraseña?</a>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-12">
-                                <div class="">
-                                    <label class="checkbox-inline" for="session"><input id="session" type="checkbox" /> Mantener sesión activa</label>
-                                </div>
-                                <div style="margin-top: 20px;" class="form-group login-btn">
-                                    <button style="width: 300px" id="btnLogin" class="btn" type="submit">ENTRAR</button>
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="">
+                                        <label class="checkbox-inline" for="session"><input id="session" type="checkbox" /> Mantener sesión activa</label>
+                                    </div>
+                                    <div style="margin-top: 20px;" class="form-group login-btn">
+                                        <button id="btnLogin" class="btn" type="submit">ENTRAR</button>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <input type="text" id="errorMsg" value="" readonly style="display:none; color: red; border: 1px solid red; width: 100%; padding: 6px;">
-                    </form> 
+                            <input type="text" id="errorMsg" value="" readonly style="display:none; color: red; border: 1px solid red; width: 100%; padding: 6px;">
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-</section>
+    </section>
+</body>

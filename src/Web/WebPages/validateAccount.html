@@ -134,8 +134,12 @@
 
             var url = new URL(window.location.href);
             var urlParams = new URLSearchParams(url.search);
-            var parametro = urlParams.get('email');
-            parametro = parametro.replace(/"/g, '');
+
+            var email = urlParams.get('email');
+            email = email.replace(/"/g, '');
+
+            var emailToken = urlParams.get('emailToken');
+            emailToken = emailToken.replace(/"/g, '');
 
             const errorMsg = this.document.getElementById('errorMsg');
             // Proceso de validación de la cuenta
@@ -147,7 +151,7 @@
                 const apiUrl = `${baseUrl}:${port}/${controllerName}`;
                 const apiMethod = `ValidarCuenta`;
 
-                const res = await fetch(`${apiUrl}/${apiMethod}?email=${parametro}`,
+                const res = await fetch(`${apiUrl}/${apiMethod}?email=${email}&emailToken=${emailToken}`,
                     {
                         method: 'PATCH',
                         headers: {
@@ -183,10 +187,13 @@
                 const cookieValor_role = encodeURIComponent(data.role) + "; expires=" + gmtExpirationString + "; path=/";
                 document.cookie = 'app-role' + "=" + cookieValor_role;
 
+                const cookieValor_profile = encodeURIComponent(data.profile) + "; expires=" + gmtExpirationString + "; path=/";
+                document.cookie = 'app-profile' + "=" + cookieValor_profile;
+
                 window.location.href = 'home-privada.html';
             }
             catch (err) {
-                alert("Error en proceso de validación de la cuenta " + parametro);
+                alert("Error en proceso de validación de la cuenta " + email);
                 errorMsg.textContent = err.message || 'Error durante el proceso de Validación';
             }
         })();

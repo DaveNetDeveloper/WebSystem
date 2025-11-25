@@ -1,5 +1,6 @@
 using Application.Common;
 using Application.DTOs.Filters;
+using Application.DTOs.Requests;
 using Application.Interfaces.Controllers;
 using Application.Interfaces.DTOs.Filters;
 using Application.Interfaces.Services;
@@ -52,7 +53,7 @@ namespace API.Controllers
         /// 
         /// </summary>  
         /// <returns> IEnumerable<Usuario> </returns>
-        [Authorize(Roles = "Admin,WebUser")]
+        [Authorize(Roles = "Admin,Manager")]
         [EnableRateLimiting("UsuariosLimiter")]
         [HttpGet("ObtenerUsuarios")]
         public async Task<IActionResult> GetAllAsync()
@@ -131,7 +132,8 @@ namespace API.Controllers
         /// </summary>
         /// <param  name="usuario"></param> 
         /// <returns> bool </returns>
-        [Authorize(Policy = "RequireAdmin")]
+        //[Authorize(Policy = "RequireAdmin")]
+        [Authorize(Roles = "Admin,Manager")]
         [HttpPost("CrearUsuario")]
         public async Task<IActionResult> AddAsync([FromBody] Usuario usuario)
         {
@@ -150,7 +152,8 @@ namespace API.Controllers
                     puntos = 0,//defaultPuntos,
                     //token= null,
                     //expiracionToken = null,
-                    genero = usuario.genero
+                    genero = usuario.genero,
+                    idPerfil = usuario.idPerfil
                 };
 
                 var result = await _usuarioService.AddAsync(nuevoUsuario); 
@@ -172,7 +175,8 @@ namespace API.Controllers
         /// </summary>
         /// <param name="usuario"></param>
         /// <returns> bool </returns>
-        [Authorize(Policy = "RequireAdmin")]
+        //[Authorize(Policy = "RequireAdmin")]
+        [Authorize]
         [HttpPut("ActualizarUsuario")]
         public async Task<IActionResult> UpdateAsync([FromBody] Usuario usuario) 
         {
@@ -186,16 +190,49 @@ namespace API.Controllers
                 }
             }
             catch (Exception ex) {
-                _logger.LogError(ex, "Error actualizandousuario, {id}.", usuario.id);
+                _logger.LogError(ex, "Error actualizando el usuario, {id}.", usuario.id);
                 return StatusCode(StatusCodes.Status500InternalServerError,
                                  new { message = MessageProvider.GetMessage("Usuario:Actualizar", "Error"), usuario.id });
+            }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="usuario"></param>
+        /// <returns> bool </returns>
+        //[Authorize(Policy = "RequireAdmin")]
+        [Authorize(Roles = "WebUser")]
+        [HttpPut("CompletarPerfil")]
+        public async Task<IActionResult> CompletarPerfil([FromBody] CompleteProfleRequest completeProfileDTO)
+        {
+            try
+            {
+                // Obtener el claim principal (NameIdentifier) para el id del usuario logeado
+                //var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+                if (base.IdUsuario == null) { return Unauthorized("No se pudo obtener el Id del usuario desde el token."); }
+
+                completeProfileDTO.IdUsuario = Int32.Parse(base.IdUsuario);
+                var result = await _usuarioService.CompletarPerfil(completeProfileDTO);
+
+                if (result == false) return NotFound();
+                else {
+                    //_logger.LogInformation(MessageProvider.GetMessage("Usuario:CompletarPerfil", "Success"));
+                    return Ok(result);
+                }
+            }
+            catch (Exception ex) {
+                _logger.LogError(ex, "Error actualizando el usuario, {id}.");
+                return StatusCode(StatusCodes.Status500InternalServerError,
+                                 new { message = MessageProvider.GetMessage("Usuario:CompletarPerfil", "Error") });
             }
         }
 
         /// <summary>  </summary>
         /// <param name="id">  </param> 
         /// <returns> bool </returns>
-        [Authorize(Policy = "RequireAdmin")]
+        //[Authorize(Policy = "RequireAdmin")]
+        [Authorize(Roles = "Admin,Manager")]
         [HttpDelete("Eliminar/{id}")]
         public async Task<IActionResult> Remove(int id)
         {
@@ -224,6 +261,7 @@ namespace API.Controllers
         /// <param name="nuevaContrasena"></param>
         /// <returns> bool </returns>
         [Authorize]
+        //[AllowAnonymous]
         [HttpPatch("CambiarContrasena")]
         public async Task<IActionResult> CambiarContrasena([FromQuery] string email,
                                                            [FromQuery] string nuevaContrasena) 
@@ -247,7 +285,8 @@ namespace API.Controllers
         /// <param name="token">Token asociado si la petición viene de enlace de correo</param>
         /// <param name="email">Email del destinatario a buscar</param>
         /// <returns> bool </returns>
-        [AllowAnonymous]
+        //[AllowAnonymous]
+        [Authorize]
         [HttpPatch("ActivacionSuscripcion")]
         public async Task<IActionResult> ActivacionSuscripcion([FromQuery] string token, 
                                                                [FromQuery][Required] string email)  {
@@ -257,7 +296,7 @@ namespace API.Controllers
                  
                 bool isValidToken = false;
                 if (validToken.HasValue && validEmail) {
-                    isValidToken =  _emailTokenService.CheckEmailToken(validToken.ToString(), email);
+                    isValidToken =  await _emailTokenService.CheckEmailToken(validToken.ToString(), email);
                 }
 
                 if (!isValidToken)
@@ -269,13 +308,17 @@ namespace API.Controllers
                     var activationResult = await _usuarioService.ActivarSuscripcion(email);
                     if (activationResult == false) return NotFound(new { message = "El usuario no ha sido encontrado." });
                     else {
-                       var consumeResult = _emailTokenService.ConsumeEmailToken(validToken.ToString(), ip, userAgent);
+                       var consumeResult = await _emailTokenService.ConsumeEmailToken(validToken.ToString(), ip, userAgent);
                         if(consumeResult) {
 
                             // Enviar corrreo: Bienvenido a nuestra newsletter
-                            var tipoEnvioCorreo = _correoService.ObtenerTiposEnvioCorreo().Result.Where(u => u.nombre == "SuscripcionActivada").Single();
+                            var tiposEnvioCorreo = await _correoService.ObtenerTiposEnvioCorreo();
+                            var tipoEnvioCorreo = tiposEnvioCorreo.Where(u => u.nombre.Trim() == TipoEnvioCorreo.TipoEnvio.SuscripcionActivada)
+                                                                  .SingleOrDefault();
 
-                            var usuario = _usuarioService.GetAllAsync().Result.Where(u => u.correo == email).SingleOrDefault();
+                            var usuarios = await _usuarioService.GetAllAsync();
+                            var usuario = usuarios.Where(u => u.correo.ToLower() == email.ToLower())
+                                                  .SingleOrDefault();
 
                             var correo = new Correo(tipoEnvioCorreo, email, usuario.nombre, _appConfiguration.LogoURL);
                             _correoService.EnviarCorreo(correo);

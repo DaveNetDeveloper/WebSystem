@@ -2,6 +2,7 @@
 using Application.Interfaces.Common;
 using Application.Interfaces.DTOs.Filters;
 using Application.Interfaces.Repositories;
+using DocumentFormat.OpenXml.ExtendedProperties;
 using Domain.Entities;
 using Infrastructure.Persistence;
 using LinqKit;
@@ -63,7 +64,8 @@ namespace Infrastructure.Repositories
                 fechaAlta = DateTime.Now,
                 popularidad = entidad.popularidad,
                 activo = entidad.activo,
-                imagen = entidad.imagen
+                imagen = entidad.imagen,
+                manager = entidad.manager
             };  
 
             await _context.Entidades.AddAsync(nuevaEntidad);
@@ -85,7 +87,9 @@ namespace Infrastructure.Repositories
             updatedEntity.popularidad = entidad.popularidad;
             updatedEntity.activo = entidad.activo;
             updatedEntity.imagen = entidad.imagen;
-             
+            updatedEntity.manager = entidad.manager;
+
+
             await _context.SaveChangesAsync();
             return true;
         }
