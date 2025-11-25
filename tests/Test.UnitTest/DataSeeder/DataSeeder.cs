@@ -357,9 +357,10 @@ namespace Test.UnitTest.DataSeeder
                 .RuleFor(e => e.fechaAlta, DateTime.Now.AddDays(-7))
                 .RuleFor(e => e.popularidad, f => f.Random.Number(1, 5))
                 .RuleFor(e => e.descripcion, f => "Descripción de la entidad " + f.IndexFaker + 1)
-                .RuleFor(e => e.activo, f => f.Random.Bool()) 
-                .RuleFor(e => e.imagen, f => "image_" + (f.IndexFaker + 1).ToString() + ".png");
-             
+                .RuleFor(e => e.activo, f => f.Random.Bool())
+                .RuleFor(e => e.imagen, f => "image_" + (f.IndexFaker + 1).ToString() + ".png")
+                .RuleFor(e => e.manager, f => "dgomezma+" + (f.IndexFaker + 1).ToString() + "@gmail.com");
+
             var entidades = faker.Generate(count);
             _context.Entidades.AddRange(entidades);
             return entidades.FirstOrDefault().id;
