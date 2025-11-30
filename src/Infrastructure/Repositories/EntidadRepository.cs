@@ -41,6 +41,9 @@ namespace Infrastructure.Repositories
             if (_filters.IdTipoEntidad.HasValue)
                 predicate = predicate.And(u => u.idTipoEntidad == _filters.IdTipoEntidad.Value);
 
+            if (!string.IsNullOrEmpty(_filters.Manager))
+                 predicate = predicate.And(u => u.manager.ToLower() == _filters.Manager.ToLower());
+
             var query = _context.Entidades
                             .AsExpandable()
                             .Where(predicate);

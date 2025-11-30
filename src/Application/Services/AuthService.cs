@@ -20,7 +20,8 @@ namespace Application.Services
     {
         private readonly IUsuarioRepository _usuarioRepo;
         private readonly IRefreshTokenRepository _refreshTokenRepo;
-        
+        private readonly IEntidadService _entidadService;
+
         private readonly ICorreoService _correoService;
         private readonly ILoginService _loginService;
         private readonly MailConfiguration _appConfig;
@@ -35,12 +36,14 @@ namespace Application.Services
                            ICorreoService correoService,
                            ILoginService loginService,
                            IOptions<MailConfiguration> configOptions,
-                           IRefreshTokenRepository refreshTokenRepo) {
+                           IRefreshTokenRepository refreshTokenRepo,
+                           IEntidadService entidadService) {
             _usuarioRepo = usuarioRepo;
             _correoService = correoService;
             _loginService = loginService;
             _appConfig = configOptions.Value;
             _refreshTokenRepo = refreshTokenRepo;
+            _entidadService = entidadService;
         }
 
         /// <summary>
@@ -49,21 +52,40 @@ namespace Application.Services
         /// <param name="userName"></param>
         /// <param name="password"></param>
         /// <returns> AuthUser </returns>
-        public async Task<AuthUser?> Login(string email, string password, bool force = false)
-        {
-            //var hashed = PasswordService.HashPassword(password); 
-            var authUser = _usuarioRepo.Login(email, password, force);
+        public async Task<AuthUser?> Login(string email, 
+                                           string password, 
+                                           bool force = false) {
 
-            if (authUser != null && authUser.Result != null) {
-                var usuarioRoles = await _usuarioRepo.GetRolesByUsuarioId(authUser.Result.Id);
+            //var hashed = PasswordService.HashPassword(password); 
+            var authUser = await _usuarioRepo.Login(email, password, force);
+
+            if (authUser != null) {
+                var usuarioRoles = await _usuarioRepo.GetRolesByUsuarioId(authUser.Id);
                 if (usuarioRoles != null && usuarioRoles.Any()) {
 
                     var maxRole = usuarioRoles.OrderByDescending(r => r.level).FirstOrDefault();
-                    authUser.Result.Role = maxRole.nombre;
+                    authUser.Role = maxRole.nombre;
+
+                    switch (authUser.Role) { 
+
+                        case Rol.Roles.Admin:
+
+                            var entitiesByAdmin = await _entidadService.GetAllAsync();
+                            authUser.Entidades = entitiesByAdmin.Select(e => e.id.ToString()).ToArray();
+                            break;
+                        case Rol.Roles.Manager:
+                            
+                            var entitiesByManager = await _entidadService.GetByFiltersAsync(new EntidadFilters { Manager = email });
+                            authUser.Entidades = entitiesByManager.Select(e => e.id.ToString()).ToArray();
+                            break;
+                        default:
+                            authUser.Entidades = null;
+                            break;
+                    }  
                 }
-                else authUser.Result.Role = null;
+                else authUser.Role = null;
             }
-            return authUser.Result;
+            return authUser;
         }
 
         /// <summary>

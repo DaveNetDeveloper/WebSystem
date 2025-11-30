@@ -19,6 +19,9 @@ export let emailTokensControllerName = null;
 export let inAppNotificationControllerName = null;
 export let loginsControllerName = null;
 export let productosControllerName = null;
+
+export let loginType_Web = 'Web';
+export let loginType_Admin = 'Admin';
  
 function getCookie(name) {
     const value = `; ${document.cookie}`;

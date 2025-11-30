@@ -24,7 +24,7 @@ namespace API.Controllers
             _entidadService = entidadService ?? throw new ArgumentNullException(nameof(entidadService));
         }
 
-        [Authorize]
+        //[Authorize]
         [HttpGet("ObtenerEntidades")]
         public async Task<IActionResult> GetAllAsync()
         {

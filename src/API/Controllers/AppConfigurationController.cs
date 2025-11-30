@@ -26,7 +26,7 @@ namespace API.Controllers
         }
 
         /// <summary> Obtiene las variables de configuracion </summary>
-        //[Authorize]
+        [Authorize]
         [HttpGet("GetConfiguration")]
         public IActionResult GetConfiguration() {
             try {

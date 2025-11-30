@@ -16,6 +16,12 @@ namespace Application.Services
             _repo = repo;
         }
 
+        public static class LoginType
+        {
+            public const string Web = "Web";
+            public const string Admin = "Admin";
+        }
+
         public Task<IEnumerable<Login>> GetByFiltersAsync(LoginFilters filters,
                                                           IQueryOptions<Login>? queryOptions = null)
          => _repo.GetByFiltersAsync(filters, queryOptions);

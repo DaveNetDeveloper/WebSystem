@@ -16,5 +16,9 @@ namespace Domain.Entities
         public string? pais { get; set; }
         public string? region { get; set; }
         public string? idiomaNavegador { get; set; }
+        public string? loginType { get; set; }
+
+        
+
     }
 }

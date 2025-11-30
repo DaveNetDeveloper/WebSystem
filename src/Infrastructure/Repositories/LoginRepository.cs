@@ -33,6 +33,10 @@ namespace Infrastructure.Repositories
             if (_filters.IdUsuario.HasValue)
                 predicate = predicate.And(u => u.idUsuario == _filters.IdUsuario);
 
+            if (!string.IsNullOrEmpty(_filters.LoginType))
+                predicate = predicate.And(u => u.loginType.ToLower() == _filters.LoginType.ToLower());
+            
+
             var query = _context.Logins
                             .AsExpandable()
                             .Where(predicate);
@@ -62,7 +66,8 @@ namespace Infrastructure.Repositories
                 ip = login.ip,
                 pais = login.pais,
                 region = login.region,
-                idiomaNavegador = login.idiomaNavegador
+                idiomaNavegador = login.idiomaNavegador,
+                loginType = login.loginType
             };
              
             await _context.Logins.AddAsync(nuevoLogin);

@@ -38,15 +38,28 @@
 
     <script src="../WebPages/js/libraries/globalAuth.js"></script>
 
+    <!--<link rel="stylesheet" href="../WebPages/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../WebPages/css/nice-select.css">
+    <link rel="stylesheet" href="../WebPages/css/font-awesome.min.css">
+    <link rel="stylesheet" href="../WebPages/css/icofont.css">
+    <link rel="stylesheet" href="../WebPages/css/slicknav.min.css">
+    <link rel="stylesheet" href="../WebPages/css/owl-carousel.css">
+    <link rel="stylesheet" href="../WebPages/css/datepicker.css">
+    <link rel="stylesheet" href="../WebPages/css/animate.min.css">
+    <link rel="stylesheet" href="../WebPages/css/normalize.css">
+    <link rel="stylesheet" href="../WebPages/css/style.css">
+    <link rel="stylesheet" href="../WebPages/css/responsive.css">-->
+
 </head>
 <body>
 
-    <button id="btnPrueba">Probar Endpoint Seguro</button>
-    
     <app-login login-type="Web"></app-login>
-	<script type="module" src="../Components/login/login.js"></script>
-	<script>
-         
+    <script type="module" src="../Components/login/login.js"></script>
+
+    <button id="btnPrueba">Probar Endpoint Seguro</button>
+
+    <script>
+
         function getCookie(nombre) {
             const nombreEQ = nombre + "=";
             const cookies = document.cookie.split(';');
@@ -92,8 +105,7 @@
             }
         }
 
-        document.getElementById('btnPrueba').addEventListener('click', async () =>
-        {
+        document.getElementById('btnPrueba').addEventListener('click', async () => {
             try {
                 const usuarios = await llamarEndpointSeguro();
                 console.log('Usuarios desde botón:', usuarios);
@@ -107,10 +119,10 @@
         });
 
         document.querySelector('app-login') // Escucha el evento emitido por el componente
-			.addEventListener('login-success', (e) => {
+            .addEventListener('login-success', (e) => {
 
                 // Component result
-				// alert("access_token: " + e.detail.access_token);
+                // alert("access_token: " + e.detail.access_token);
                 // alert("refresh_token: " + e.detail.refresh_token);
                 // alert("token_type: " + e.detail.token_type);
                 // alert("expires_at: " + e.detail.expires_at);
@@ -118,17 +130,17 @@
 
                 // Cokkie data
                 alert("Cokkie " + getCookie('app-access-token'));
-                alert("Cokkie " + getCookie('app-refresh-token')); 
+                alert("Cokkie " + getCookie('app-refresh-token'));
                 alert("Cokkie " + getCookie('app-role'));
                 alert("Cokkie " + getCookie('app-profile'));
 
-                const usuarios =  llamarEndpointSeguro();
+                const usuarios = llamarEndpointSeguro();
                 console.log('Usuarios:', usuarios);
                 alert('Revisa la consola para ver los usuarios');
 
-				//window.location.href = '../WebPages/home-privada.html';  
-			});
+                //window.location.href = '../WebPages/home-privada.html';
+            });
 
-	</script>
+    </script>
 </body>
 </html>

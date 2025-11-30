@@ -13,22 +13,21 @@
 
     <link rel="icon" href="img/favicon.png">
 
-    <link href="https://fonts.googleapis.com/css?family=Poppins:200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i&display=swap" rel="stylesheet">
-
-    <link rel="stylesheet" href="./css/bootstrap.min.css">
-    <link rel="stylesheet" href="./css/nice-select.css">
+    <!--<link rel="stylesheet" href="./css/nice-select.css">
     <link rel="stylesheet" href="./css/font-awesome.min.css">
     <link rel="stylesheet" href="./css/icofont.css">
     <link rel="stylesheet" href="./css/slicknav.min.css">
     <link rel="stylesheet" href="./css/owl-carousel.css">
     <link rel="stylesheet" href="./css/datepicker.css">
     <link rel="stylesheet" href="./css/animate.min.css">
-    <link rel="stylesheet" href="./css/magnific-popup.css">
-
+    <link rel="stylesheet" href="./css/magnific-popup.css">-->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i&display=swap">
+    <link rel="stylesheet" href="./css/bootstrap.min.css">
     <link rel="stylesheet" href="./css/normalize.css">
     <link rel="stylesheet" href="./css/style.css">
     <link rel="stylesheet" href="./css/responsive.css">
 
+    <script type="module" src="../Components/modalPanel/modalPanel.js"></script>
 </head>
 <body>
     <div class="preloader">
@@ -72,29 +71,45 @@
             </div>
         </div>
     </section>
-    <!--/ End Section -->
 
-    <script type="text/javascript">
+    <modal-panel id="modalPanel-test"></modal-panel>
+    <button class="btn" onclick="MostrarModal()">Abrir Panel Modal</button>
+    <script>
 
-        var url = new URL(window.location.href);// Obtener la URL actual
-        var params = new URLSearchParams(url.search);// Crear un objeto URLSearchParams
-        var parametro = params.get('email');// Obtener el valor de un parámetro específico por su nombre
-
-        var message = document.getElementsByName('h5Message')[0];
-        if (message) {
-
-            var contenidoOriginal = message.textContent;// Obtener el contenido actual
-            var nuevoContenido = contenidoOriginal.replace('[emailParam]', '[' + parametro + ']'); // Reemplazamos la clave por el valor del parámetro
-            message.textContent = nuevoContenido;
+        async function MostrarModal() {
+            const modal = document.getElementById("modalPanel-test");
+            modal.setContent("Título de prueba", "Contenido de prueba para el componente web");
+            modal.mostrar();
         }
-        else {
-            console.error('La etiqueta con el nombre "h5Message" no se ha encontrado.');
-        }
+
     </script>
 
-    <!-- Load Scripts -->
-    <script src="./js/jquery.min.js"></script>
-    <script src="./js/jquery-migrate-3.0.0.js"></script>
+    <script>
+
+        (async () => {
+            await AdaptarTexto();
+        })();
+
+        async function AdaptarTexto() {
+
+            var url = new URL(window.location.href);
+            var params = new URLSearchParams(url.search);
+            var parametro = params.get('email');
+
+            var message = document.getElementsByName('h5Message')[0];
+            if (message) {
+                var contenidoOriginal = message.textContent;
+                var nuevoContenido = contenidoOriginal.replace('[emailParam]', '[' + parametro + ']');
+                message.textContent = nuevoContenido;
+            }
+            else {
+                console.error('La etiqueta con el nombre "h5Message" no se ha encontrado.');
+            }
+        }
+
+    </script>
+
+    <!--<script src="./js/jquery-migrate-3.0.0.js"></script>
     <script src="./js/jquery-ui.min.js"></script>
     <script src="./js/easing.js"></script>
     <script src="./js/colors.js"></script>
@@ -114,7 +129,8 @@
     <script src="https://maps.google.com/maps/api/js?key=AIzaSyDGqTyqoPIvYxhn_Sa7ZrK5bENUWhpCo0w"></script>
     <script src="./js/gmaps.min.js"></script>
     <script src="./js/map-active.js"></script>
-    <script src="./js/bootstrap.min.js"></script>
+    <script src="./js/bootstrap.min.js"></script>-->
+    <script src="./js/jquery.min.js"></script>
     <script src="./js/main.js"></script>
 </body>
 </html>

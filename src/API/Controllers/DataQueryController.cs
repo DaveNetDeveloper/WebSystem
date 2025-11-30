@@ -38,7 +38,7 @@ namespace API.Controllers
         /// <param name="viewName"></param>
         /// <returns> File to download </returns>
         [HttpGet("Exportar")]
-        [Authorize(Policy = "RequireAdmin")]
+        //[Authorize(Policy = "RequireAdmin")]
         public async Task<IActionResult> Exportar([FromQuery] DataQueryType dataQueryType, 
                                                   [FromQuery] ExportFormat formato,
                                                   [FromQuery] bool envioEmail)

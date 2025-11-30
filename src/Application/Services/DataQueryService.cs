@@ -56,6 +56,7 @@ namespace Application.Services
             AllCampanasData,
             AsistenciaActividades,
             TotalErrores
+
         }
 
         /// <summary>

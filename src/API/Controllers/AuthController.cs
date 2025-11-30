@@ -150,12 +150,6 @@ namespace API.Controllers
 
         }
 
-        public static class LoginType
-        {
-            public const string Web = "Web";
-            public const string Admin = "Admin";
-        }
-
         /// <summary>
         /// 
         /// </summary>
@@ -170,11 +164,11 @@ namespace API.Controllers
 
             bool isValidRole;
             switch (dto.LoginType) { 
-                case LoginType.Web:
+                case ILoginService.LoginType.Web:
                     isValidRole = user.Role == Rol.Roles.WebUser;
                     break;
 
-                case LoginType.Admin:
+                case ILoginService.LoginType.Admin:
                     isValidRole = user.Role == Rol.Roles.Manager || user.Role == Rol.Roles.Admin;
                     break;
                 default:
@@ -218,7 +212,9 @@ namespace API.Controllers
                                                plataforma = device,
                                                idiomaNavegador = primaryLanguage,
                                                pais = null,
-                                               region = null });
+                                               region = null,
+                                               loginType = dto.LoginType
+            });
 
             var refreshToken = await _authService.GenerateRefreshToken(user.Id);
 
@@ -228,7 +224,8 @@ namespace API.Controllers
                 token_type = "Bearer",
                 expires_at = expires,
                 role = user.Role,
-                profile = user.Profile
+                profile = user.Profile,
+                entidades = user.Entidades
             });
         }
 
@@ -288,7 +285,8 @@ namespace API.Controllers
                     plataforma = device,
                     idiomaNavegador = primaryLanguage,
                     pais = null,
-                    region = null
+                    region = null,
+                    loginType = ILoginService.LoginType.Web.ToString()
                 });
 
                 var refreshToken = await _authService.GenerateRefreshToken(authUser.Id);
@@ -309,13 +307,14 @@ namespace API.Controllers
                 
                 var res = _correoService.EnviarCorreo(correo);
 
-                return Ok(new  { 
+                 return Ok(new  { 
                     access_token = jwt,
                     refresh_token = refreshToken,
                     token_type = "Bearer", 
                     expires_at = expires, 
                     role = authUser.Role,
-                    profile = authUser.Profile
+                    profile = authUser.Profile,
+                    entidades = string.Empty
                 });
                 
             }

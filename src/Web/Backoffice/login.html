@@ -7,7 +7,7 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="keywords" content="login">
 	<meta name="description" content="Página para iniciar sesión con una cuenta de administrador.">
-	<meta name='copyright' content='UOC'>
+	<meta name='copyright' content='David Martinez'>
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
 	<title>Login</title>
@@ -35,14 +35,24 @@
 	<script src="../WebPages/js/gmaps.min.js"></script>
 	<script src="../WebPages/js/map-active.js"></script>-->
 	<script src="../WebPages/js/bootstrap.min.js"></script>
+	 
+
+
 </head>
 <body>
 	<app-login login-type="Admin"></app-login>
 
 	<script type="module" src="../Components/login/login.js"></script>
 	<script>
-		document.querySelector('app-login') // Escucha el evento emitido por el componente
-		.addEventListener('login-success', (e) => {
+		document.querySelector('app-login')
+			.addEventListener('login-success', (e) => {
+
+                alert("Cokkie " + getCookie('app-access-token'));
+                alert("Cokkie " + getCookie('app-refresh-token'));
+                alert("Cokkie " + getCookie('app-role'));
+				alert("Cokkie " + getCookie('app-profile'));
+                alert("Cokkie " + getCookie('app-entities'));
+
 				window.location.href = 'home.html';
 			});
 	</script>

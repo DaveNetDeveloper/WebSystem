@@ -70,6 +70,9 @@ namespace Application.DependencyInjection
             services.AddScoped<IQRCodeImageService, QRCodeImageService>();
             services.AddScoped<QRCodeService>();
 
+            services.AddScoped<PermisosService>();
+            
+
             //
             // Register Filters
             //
