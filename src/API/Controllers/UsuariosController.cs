@@ -53,8 +53,8 @@ namespace API.Controllers
         /// 
         /// </summary>  
         /// <returns> IEnumerable<Usuario> </returns>
-        [Authorize(Roles = "Admin,Manager")]
-        [EnableRateLimiting("UsuariosLimiter")]
+        //[Authorize(Roles = "Admin,Manager")]
+        //[EnableRateLimiting("UsuariosLimiter")]
         [HttpGet("ObtenerUsuarios")]
         public async Task<IActionResult> GetAllAsync()
         { 
@@ -232,7 +232,8 @@ namespace API.Controllers
         /// <param name="id">  </param> 
         /// <returns> bool </returns>
         //[Authorize(Policy = "RequireAdmin")]
-        [Authorize(Roles = "Admin,Manager")]
+        
+        //[Authorize(Roles = "Admin,Manager")]
         [HttpDelete("Eliminar/{id}")]
         public async Task<IActionResult> Remove(int id)
         {

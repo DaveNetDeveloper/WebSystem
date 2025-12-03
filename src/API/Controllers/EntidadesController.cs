@@ -29,6 +29,16 @@ namespace API.Controllers
         public async Task<IActionResult> GetAllAsync()
         {
             var entidades = await _entidadService.GetAllAsync();
+
+
+            // si existe la cookkie [entitiesIds] aplicar filtro
+            var valor = Request.Cookies["Entidades-Cookie"];
+
+            if(!string.IsNullOrEmpty(valor))
+            {
+                entidades = entidades.Where(e => valor.Split(',').Contains(e.id.ToString())).ToList();
+            }
+
             return (entidades != null && entidades.Any()) ? Ok(entidades) : NoContent();
         }
 
@@ -51,12 +61,12 @@ namespace API.Controllers
         }
 
         //[Authorize]
-        //[HttpGet("ObtenerEntidad/{id}")]
-        //public async Task<IActionResult> GetByIdAsync(int id)
-        //{ 
-        //    var entidad = await _entidadService.GetByIdAsync(id); 
-        //    return entidad != null ? Ok(entidad) : NoContent();  
-        //}
+        [HttpGet("ObtenerEntidad/{id}")]
+        public async Task<IActionResult> GetByIdAsync(int id)
+        {
+            var entidad = await _entidadService.GetByIdAsync(id);
+            return entidad != null ? Ok(entidad) : NoContent();
+        }
 
         [Authorize]
         [HttpPost("CrearEntidad")]

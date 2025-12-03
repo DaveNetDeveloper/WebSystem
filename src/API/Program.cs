@@ -24,16 +24,16 @@ QuestPDF.Settings.License = LicenseType.Community;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddRateLimiter(options =>
-{
-    options.AddFixedWindowLimiter("UsuariosLimiter", opt =>
-    {
-        opt.PermitLimit = 5; // máximo x requests
-        opt.Window = TimeSpan.FromSeconds(30); // cada x segundos
-        opt.QueueProcessingOrder = QueueProcessingOrder.OldestFirst;
-        opt.QueueLimit = 0;
-    });
-});
+//builder.Services.AddRateLimiter(options =>
+//{
+//    options.AddFixedWindowLimiter("UsuariosLimiter", opt =>
+//    {
+//        opt.PermitLimit = 5; // máximo x requests
+//        opt.Window = TimeSpan.FromSeconds(30); // cada x segundos
+//        opt.QueueProcessingOrder = QueueProcessingOrder.OldestFirst;
+//        opt.QueueLimit = 0;
+//    });
+//});
 
 builder.Logging.ClearProviders();
 builder.Logging.AddConsole();
@@ -147,23 +147,34 @@ builder.Services.AddAuthorization(options => {
     options.AddPolicy("RequireWebUser", policy => policy.RequireRole(Rol.Roles.WebUser));
 });
 
-builder.Services.AddCors(options => {
-    options.AddPolicy("AllowAll",
-        builder => {
-            builder
-            .AllowAnyOrigin()
-            .AllowAnyMethod()
-            .AllowAnyHeader()
-            .Build();
+//builder.Services.AddCors(options => {
+//    options.AddPolicy("AllowAll",
+//        builder => {
+//            builder
+//            .AllowAnyOrigin()
+//            .AllowAnyMethod()
+//            .AllowAnyHeader() 
+//            .Build();
+//        }); 
+//});
 
-        });
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowFrontend", policy =>
+    {
+        policy
+            .WithOrigins("https://localhost:7175")   
+            .AllowAnyHeader()
+            .AllowAnyMethod()
+            .AllowCredentials();// NECESARIO para cookies
+    });
 });
 
 //var sp = builder.Services.BuildServiceProvider();
 //var authOptions = sp.GetRequiredService<Microsoft.Extensions.Options.IOptions<Microsoft.AspNetCore.Authentication.AuthenticationOptions>>().Value;
 //Console.Out.WriteLine("DefaultAuthenticateScheme: " + authOptions.DefaultAuthenticateScheme);
 //Console.Out.WriteLine("DefaultChallengeScheme: " + authOptions.DefaultChallengeScheme);
- 
+
 var app = builder.Build();
 
 app.UseMiddleware<ExceptionMiddleware>();
@@ -201,12 +212,8 @@ app.MapHealthChecks("/health", new Microsoft.AspNetCore.Diagnostics.HealthChecks
         await context.Response.WriteAsync(result);
     }
 }); 
-
-app.UseCors(builder => {
-    builder.AllowAnyOrigin()
-           .AllowAnyHeader()
-           .AllowAnyMethod();
-});
+ 
+//app.UseCors("AllowFrontend");
 
 if (app.Environment.IsEnvironment(Application.Common.Environments.Development))
 { 
@@ -215,10 +222,19 @@ if (app.Environment.IsEnvironment(Application.Common.Environments.Development))
 }
 
 app.UseHttpsRedirection();
+app.UseCors("AllowFrontend");
+
+//app.UseCors(builder => {
+//    builder.AllowAnyOrigin()
+//           .AllowAnyHeader()
+//           .AllowAnyMethod();
+
+//});
+
 app.UseAuthorization();
-app.UseRateLimiter(); 
+//app.UseRateLimiter(); 
 app.MapControllers();
-app.MapControllers().RequireRateLimiting("UsuariosLimiter");
+//app.MapControllers().RequireRateLimiting("UsuariosLimiter");
 app.Run();
 
 public partial class Program { }

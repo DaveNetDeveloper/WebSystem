@@ -25,7 +25,7 @@ namespace API.Controllers
 
         //[AllowAnonymous]
         [Authorize]
-        [EnableRateLimiting("UsuariosLimiter")]
+        //[EnableRateLimiting("UsuariosLimiter")]
         [HttpGet("FiltrarTransacciones")]
         public async Task<IActionResult> GetByFiltersAsync([FromQuery] IFilters<Transaccion> filters,
                                                            [FromQuery] int? page,

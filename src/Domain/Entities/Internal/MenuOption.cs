@@ -8,5 +8,6 @@ namespace Domain.Entities
         public string Nombre { get; set; }
         public int Nivel { get; set; }
         public string Path { get; set; }
+        public string Parent { get; set; }
     }
 }

@@ -15,6 +15,7 @@ using System.Runtime.ConstrainedExecution;
 using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
+using Twilio.TwiML.Voice;
 using UAParser;
 
 using static Domain.Entities.InAppNotification;
@@ -51,7 +52,8 @@ namespace API.Controllers
                               IUsuarioService usuarioService,
                               ITransaccionService transaccionService,
                               ITipoTransaccionService tipoTransaccionService,
-                              IRecompensaService recompensaService) {
+                              IRecompensaService recompensaServices
+                             ) {
 
             base._config = config ?? throw new ArgumentNullException(nameof(config));
             base._logger = logger;
@@ -63,7 +65,6 @@ namespace API.Controllers
             _usuarioService = usuarioService ?? throw new ArgumentNullException(nameof(usuarioService));
             _transaccionService = transaccionService ?? throw new ArgumentNullException(nameof(transaccionService));
             _tipoTransaccionService = tipoTransaccionService ?? throw new ArgumentNullException(nameof(tipoTransaccionService));
-            _recompensaService = recompensaService ?? throw new ArgumentNullException(nameof(recompensaService));
         }
 
         /// <summary>
@@ -156,27 +157,50 @@ namespace API.Controllers
         /// <param name="LoginDto"></param>
         /// <returns> json </returns>
         [HttpPost("login")]
-        [AllowAnonymous]
+        //[AllowAnonymous]
         public async Task<IActionResult> Login([FromBody] LoginDto dto)
         {
             var user = await _authService.Login(dto.Email, dto.Password);
             if (user is null) return NotFound();
 
             bool isValidRole;
-            switch (dto.LoginType) { 
+            switch (dto.LoginType) {
                 case ILoginService.LoginType.Web:
                     isValidRole = user.Role == Rol.Roles.WebUser;
                     break;
 
                 case ILoginService.LoginType.Admin:
+                    
                     isValidRole = user.Role == Rol.Roles.Manager || user.Role == Rol.Roles.Admin;
+
+                    //IEnumerable<Entidad> entidades = await _entidadService.GetAllAsync();
+                    //List<int> idsEntidad = new List<int>();
+
+                    //switch (user.Role) {
+                    //    case Rol.Roles.Manager:
+
+                    //        var entidad = entidades.Where(e => e.manager.ToLower() == dto.Email.ToLower()).FirstOrDefault();
+                    //        if (entidad == null) {
+                    //            break; 
+                    //        } 
+                    //        idsEntidad.Add(entidad.id);
+                    //        break;
+
+                    //    case Rol.Roles.Admin:
+                    //        idsEntidad.AddRange(entidades.Select(e => e.id));
+                    //        break;
+                    //}
+
+                    
+
+
                     break;
                 default:
                     isValidRole = false;
                     break;
             }
             
-            if(!isValidRole) return Unauthorized();
+            if(!isValidRole) return Forbid();
 
             var claims = new List<Claim> {
                 new(ClaimTypes.NameIdentifier, user.Id.ToString()),
@@ -201,6 +225,23 @@ namespace API.Controllers
             );
 
             var jwt = new JwtSecurityTokenHandler().WriteToken(token);
+
+
+            if(dto.LoginType == ILoginService.LoginType.Admin)
+            {
+                // Crear la cookie segura para guardar la entidad/entidades
+                var options = new CookieOptions
+                {
+                    HttpOnly = true,
+                    Secure = true,
+                    SameSite = SameSiteMode.None,
+                    Expires = DateTime.UtcNow.AddHours(2),
+                    Path = "/",
+                };
+
+                Response.Cookies.Append("Entidades-Cookie", user.Entidades.Count().ToString(), options);
+                 
+            }
 
             await _loginService.AddAsync(new Login { idUsuario = user.Id,
                                                fecha = DateTime.UtcNow, 
