@@ -1,0 +1,75 @@
+﻿<!doctype html>
+<html class="no-js" lang="es">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>  Administración / Usuarios</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!--<link rel="manifest" href="site.webmanifest">-->
+    <link rel="shortcut icon" type="image/x-icon" href="img/favicon.png">
+
+    <!-- <link rel="stylesheet" href="css/fontawesome-all.min.css">
+    <link rel="stylesheet" href="../css/et-line-fonts.css">
+    <link rel="stylesheet" href="../css/themify-icons.css">-->
+    <!--<link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css">-->
+
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <link rel="stylesheet" href="../css/default.css">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/responsive.css">
+</head>
+<body>
+     
+    <div class="body-wrapper body-bg">
+        <header>
+        </header>
+
+        <div class="dashboard-area pt-30">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="pannel-wrapper white-bg mb-30">
+
+                            <div class="panel-heading heading-border">
+                                <h4>Listado de Usuarios</h4>
+                            </div>
+
+                            <div class="panel-body">
+
+                                <bo-readonlylist show-export="true" controller="Usuarios" data-source="ObtenerUsuarios"></bo-readonlylist>
+                                <script type="module" src="../Components/readOnlyList/readOnlyList.js"></script>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <footer>
+            </footer>
+        </div>
+    </div>
+
+    <script> 
+        document.querySelector('bo-readOnlyList') // Escucha el evento emitido por el componente
+            .addEventListener('readOnlyList-success', (e) => {
+
+                //alert('readOnlyList-success: ' + e.detail); 
+            }); 
+    </script>
+
+    <!-- JS here -->
+    <!--<script src="js/vendor/modernizr-3.5.0.min.js"></script>-->
+    <!--<script src="js/popper.min.js"></script>-->
+    <!-- active code -->
+    <!--<script src="js/main.js"></script>-->
+
+    <script src="../js/vendor/jquery-1.12.4.min.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
+    <!--<script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>-->
+    <script src="../js/plugins.js"></script>
+    <!--<script src="js/DataTable.js"></script>-->
+</body>
+</html>

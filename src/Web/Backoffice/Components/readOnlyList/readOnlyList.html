@@ -19,26 +19,15 @@
             </div>
 
             <div class="col-sm-12 col-md-2">
-                <!--<div id="table_exporter" class="dataTables_filter">
-                    <button type="button" id="btnExport" class="btn btn-warning" hidden style="width: 125px;">Exportar</button>
-                </div>-->
-
-                <div class="btn-group mb-1 ">
-                    <button class="btn dropdown-toggle btn-warning" type="button" data-toggle="dropdown" aria-expanded="false">Exportar</button>
-                    <div class="dropdown-menu " role="menu" x-placement="bottom-start" style="position: absolute; transform: translate3d(0px, 33px, 0px); top: 0px; left: 0px; will-change: transform;">
-                        <a class="dropdown-item" href="#">Excel</a>
-                        <a class="dropdown-item" href="#">Pdf</a>
+                <div class="btn-group mb-1">
+                    <button class="btn dropdown-toggle btn-warning export-btn" id="btnExport" style="width: 100px; height: 45px;" type="button">
+                        Exportar
+                    </button>
+                    <div class="dropdown-menu">
+                        <a id="exportExcel" class="dropdown-item" href="#">Excel</a>
+                        <a id="exportPdf" class="dropdown-item" href="#">Pdf</a>
                     </div>
                 </div>
-
-                <div class="btn-group mb-1 show">
-                    <button class="btn dropdown-toggle btn-warning" type="button" data-toggle="dropdown" aria-expanded="true">Exportar</button>
-                    <div class="dropdown-menu show" role="menu" x-placement="bottom-start" style="position: absolute; transform: translate3d(0px, 33px, 0px); top: 0px; left: 0px; will-change: transform;">
-                        <a class="dropdown-item" href="#">Excel</a>
-                        <a class="dropdown-item" href="#">Pdf</a>
-                    </div>
-                </div>
-
             </div>
 
             <div class="col-sm-12 col-md-6">
@@ -49,12 +38,13 @@
                     </label>
                 </div>
             </div>
+
         </div>
 
         <br />
-          
+
         <table id="table_name" class="table table-striped table-bordered dataTable no-footer" role="grid" aria-describedby="table_name_info" style="width: 100%">
-            <thead id="thead" style="background-color: #ecab0f;">
+            <thead id="thead" style="background-color: white;">
                 <tr>
                     <!-- Headers dinamico > -->
                 </tr>
@@ -66,7 +56,7 @@
 
         <br />
 
-        <div class="row" id="paginationTable"> 
+        <div class="row" id="paginationTable">
             <div class="col-sm-12 col-md-5">
                 <div class="dataTables_info" id="table_name_info" role="status" aria-live="polite">
                     Mostrando x a y de n registros
@@ -85,7 +75,9 @@
                     </ul>
                 </div>
             </div>
-        </div> 
+        </div>
+
+        <br />
 
     </div>
 </div>

@@ -39,13 +39,69 @@
             cursor: pointer;
             font-size: 25px;
         }
+        .btn-default {
+            border-color: rgba(24, 28, 33, 0.1);
+            background: transparent;
+            color: #4E5155;
+        }
+
+        .btn:not(:disabled):not(.disabled) {
+            cursor: pointer;
+        }
+
+        .btn {
+            border-radius: 3px;
+            /* font-size: 13px; */
+            /* -webkit-appearance: none; */
+            /* outline: none !important; */
+            /* transition: all 0.1s; */
+        }
+
+        .btn-group-lg > .btn, .btn-lg {
+            padding: .5rem 1rem;
+            font-size: 14px;
+            line-height: 1.5;
+            border-radius: .3rem;
+        }
+
+        .btn-danger {
+            color: #fff;
+            background-color: #dc3545;
+            border-color: #dc3545;
+        }
+
+        .sweet-alert .sa-confirm-button-container {
+            position: relative;
+            /*display: inline-block;*/
+            float: inline-end;
+        }
+
+        .sweet-alert h2, .sweet-alert .sa-button-container {
+            margin-top: 1.875rem;
+        }
+         
+            
     </style>
 
-    <div class="modal">
+    <div class=" modal sweet-alert  showSweetAlert visible" tabindex="-1" data-custom-class="" data-has-cancel-button="" data-has-confirm-button="" data-allow-outside-click="false" data-has-done-function="true" data-animation="pop" data-timer="null" style="display: block;">
         <div class="modal-contenido">
             <span class="cerrar">&times;</span>
             <h3></h3>
             <p></p>
-        </div>
+
+            <div class="sa-button-container">
+                <button class="cancel btn btn-lg btn-default" tabindex="2" style="display: inline-block;">Cancelar</button>
+                <div class="sa-confirm-button-container">
+                    <button class="confirm btn btn-lg btn-danger" tabindex="1" style="display: inline-block;">Sí, eliminar</button>
+                    <div class="la-ball-fall">
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                    </div>
+                </div>
+            </div>
+
+
+        </div> 
     </div>
 </template>

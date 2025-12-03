@@ -8,7 +8,7 @@
                 const parser = new DOMParser();
                 const doc = parser.parseFromString(html, 'text/html');
                 const template = doc.getElementById('modal-template');
-                 
+
                 if (template == null) {
                     console.error("Template no encontrado en modalPanel.html");
                     return;
@@ -19,23 +19,40 @@
     }
 
     initEvents() {
+        const closeBtn = this.shadowRoot.querySelector('.cerrar');
+        const btnCancel = this.shadowRoot.querySelector('.cancel');
+        const btnConfirm = this.shadowRoot.querySelector('.confirm');
 
-        const closeBtn = this.shadowRoot.querySelector('.cerrar'); 
-
+        // Cerrar modal con "x"
         if (closeBtn) {
-            closeBtn.addEventListener('click', () => { this.ocultar(); });
+            closeBtn.addEventListener('click', () => this.ocultar());
         }
 
-        this.shadowRoot.addEventListener('click', (e) => {
-            if (e.target.classList.contains("modal")) { this.ocultar();}
-        });
-
-        document.addEventListener('keydown', (e) => {
-            if (e.key === "Escape") {
+        // Botón Cancelar
+        if (btnCancel) {
+            btnCancel.addEventListener('click', () => {
+                this.dispatchEvent(new CustomEvent('cancel', { bubbles: true, composed: true }));
                 this.ocultar();
-            }
+            });
+        }
+
+        // Botón Confirmar
+        if (btnConfirm) {
+            btnConfirm.addEventListener('click', () => {
+                this.dispatchEvent(new CustomEvent('confirm', { bubbles: true, composed: true }));
+                this.ocultar();
+            });
+        }
+
+        // Clic fuera de la ventana modal
+        this.shadowRoot.addEventListener('click', (e) => {
+            if (e.target.classList.contains("modal")) { this.ocultar(); }
         });
 
+        // Escape para cerrar modal
+        document.addEventListener('keydown', (e) => {
+            if (e.key === "Escape") { this.ocultar(); }
+        });
     }
 
     setContent(title, message) {
@@ -54,4 +71,4 @@
     }
 }
 
-customElements.define('modal-panel', ModalPanel); 
+customElements.define('modal-panel', ModalPanel);

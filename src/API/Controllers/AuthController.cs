@@ -157,7 +157,7 @@ namespace API.Controllers
         /// <param name="LoginDto"></param>
         /// <returns> json </returns>
         [HttpPost("login")]
-        //[AllowAnonymous]
+        [AllowAnonymous]
         public async Task<IActionResult> Login([FromBody] LoginDto dto)
         {
             var user = await _authService.Login(dto.Email, dto.Password);

@@ -1,1 +1,39 @@
-﻿
+﻿[class^="ti-"], [class*=" ti-"] {
+    font-family: "themify" !important;
+} 
+
+@font-face {
+    font-family: 'themify';
+    src: url('../fonts/themify.woff') format('woff');
+}
+
+.btn-group {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-menu {
+    display: none;
+    position: absolute;
+    left: 0;
+    top: 100%;
+    background: white;
+    border: 1px solid #ddd;
+    padding: 0.5rem 0;
+    min-width: 120px;
+    z-index: 10;
+}
+
+    .dropdown-menu.show {
+        display: block;
+    }
+
+.dropdown-item {
+    padding: 6px 15px;
+    cursor: pointer;
+    white-space: nowrap;
+}
+
+    .dropdown-item:hover {
+        background: #eee;
+    }

@@ -34,27 +34,48 @@
 	<script src="https://maps.google.com/maps/api/js?key=AIzaSyDGqTyqoPIvYxhn_Sa7ZrK5bENUWhpCo0w"></script>
 	<script src="../WebPages/js/gmaps.min.js"></script>
 	<script src="../WebPages/js/map-active.js"></script>-->
-	<script src="../WebPages/js/bootstrap.min.js"></script>
-	 
-
-
+	<!--<script src="../WebPages/js/bootstrap.min.js"></script>-->
+	  
 </head>
 <body>
 	<app-login login-type="Admin"></app-login>
 
 	<script type="module" src="../Components/login/login.js"></script>
-	<script>
-		document.querySelector('app-login')
-			.addEventListener('login-success', (e) => {
+    <script>
 
-                alert("Cokkie " + getCookie('app-access-token'));
-                alert("Cokkie " + getCookie('app-refresh-token'));
-                alert("Cokkie " + getCookie('app-role'));
-				alert("Cokkie " + getCookie('app-profile'));
-                alert("Cokkie " + getCookie('app-entities'));
+        function getCookie(nombre) {
+            const nombreEQ = nombre + "=";
+            const cookies = document.cookie.split(';');
+            for (let i = 0; i < cookies.length; i++) {
+                let cookie = cookies[i];
+                while (cookie.charAt(0) === ' ') {
+                    cookie = cookie.substring(1, cookie.length);
+                }
+                if (cookie.indexOf(nombreEQ) === 0) {
+                    return decodeURIComponent(cookie.substring(nombreEQ.length, cookie.length));
+                }
+            }
+            return null;
+        }
 
-				window.location.href = 'home.html';
-			});
-	</script>
+
+        document.querySelector('app-login')
+            .addEventListener('login-success', (e) => {
+
+                alert("Cokkie: " + getCookie('app-access-token'));
+                alert("Cokkie: " + getCookie('app-refresh-token'));
+                alert("Cokkie: " + getCookie('app-role'));
+                alert("Cokkie: " + getCookie('app-profile'));
+                alert("Cokkie: " + getCookie('app-entities'));
+
+                var user_role = getCookie('app-role').toLowerCase(); 
+                if (user_role == 'admin') {
+                    window.location.href = 'home-admin.html';
+                }
+                else if (user_role == 'manager') {
+                    window.location.href = 'home-manager.html';
+                }
+            });
+    </script>
 </body>
 </html>

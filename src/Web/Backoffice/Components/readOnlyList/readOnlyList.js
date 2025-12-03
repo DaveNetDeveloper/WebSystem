@@ -2,13 +2,15 @@
 
 const dataSource_PropName = "data-source";
 const showExport_PropName = "show-export";
+const showActions_PropName = "show-actions";
+const controllerName_PropName = "controller";
+
 
 class BOReadOnlyList extends HTMLElement {
     constructor() {
         super();
         this.attachShadow({ mode: "open" });
 
-        // Estado interno
         this.fullData = [];         // Datos completos
         this.filteredData = [];     // Datos filtrados por búsqueda
         this.pageSize = 10;         // Tamaño de página
@@ -17,7 +19,7 @@ class BOReadOnlyList extends HTMLElement {
     }
 
     static get observedAttributes() {
-        return [dataSource_PropName, showExport_PropName];
+        return [dataSource_PropName, showExport_PropName, showActions_PropName, controllerName_PropName];
     }
 
     attributeChangedCallback(name, oldValue, newValue) {
@@ -25,29 +27,57 @@ class BOReadOnlyList extends HTMLElement {
             this.dataSource = newValue;
         }
         if (name === showExport_PropName) {
-            //this.showExport = newValue;
             this.showExport = newValue === "true" || newValue === "";
         }
+        if (name === showActions_PropName) {
+            this.showActions = newValue === "true" || newValue === "";
+        }
+        if (name == controllerName_PropName) {
+            this.controller = newValue;
+        } 
     }
 
     async connectedCallback() {
-        const css = await fetch('Components/readOnlyList/readOnlyList.css').then(r => r.text());
-        const html = await fetch('Components/readOnlyList/readOnlyList.html').then(r => r.text());
+
+        const basePath = '/Backoffice/Components/readOnlyList/';
+
+        const css = await fetch(basePath + 'readOnlyList.css').then(r => r.text());
+        const html = await fetch(basePath + 'readOnlyList.html').then(r => r.text());
+
+        //const css = await fetch('/Backoffice/Components/readOnlyList/readOnlyList.css').then(r => r.text());
+        //const html = await fetch('/Backoffice/Components/readOnlyList/readOnlyList.html').then(r => r.text());
+
 
         this.shadowRoot.innerHTML = `
-            <link rel="stylesheet" href="css/bootstrap.min.css">
-            <link rel="stylesheet" href="css/et-line-fonts.css">
-            <link rel="stylesheet" href="css/fontawesome-all.min.css">
-            <link rel="stylesheet" href="css/themify-icons.css">
-            <link rel="stylesheet" href="css/default.css">
-            <link rel="stylesheet" href="css/style.css">
-            <link rel="stylesheet" href="css/responsive.css">
+
+            <link rel="stylesheet" href="/Backoffice/css/bootstrap.min.css">
+            <link rel="stylesheet" href="/Backoffice/css/et-line-fonts.css">
+            <link rel="stylesheet" href="/Backoffice/css/fontawesome-all.min.css">
+            <link rel="stylesheet" href="/Backoffice/css/themify-icons.css">
+            <link rel="stylesheet" href="/Backoffice/css/default.css">
+            <link rel="stylesheet" href="/Backoffice/css/style.css">
+            <link rel="stylesheet" href="/Backoffice/css/responsive.css">
             <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css">
-
-            <style>
-
+             
+            <style> 
                 ${css} 
-            
+                
+                [class^="ti-"], [class*=" ti-"] {
+	                font-family: "themify";
+                    src: url('../fonts/themify.woff') format('woff');
+                }
+
+                @font-face {
+                    font-family: 'themify';
+                    src: url('../fonts/themify.woff') format('woff');
+                    
+                }
+
+                .ti-close::before {
+                    content: "\\e646" !important;
+                    font-family: 'themify' !important;
+                }
+                 
                 :host table.dataTable thead th.sorting::before {
                     content: "↑";
                     position: absolute;
@@ -77,9 +107,9 @@ class BOReadOnlyList extends HTMLElement {
                 :host table#table_name tbody tr:hover {
                     background-color: #ffffde;
                     /*cursor: pointer;  */
-                }
-
+                } 
             </style>
+
             ${html}
         `;
 
@@ -87,67 +117,100 @@ class BOReadOnlyList extends HTMLElement {
         this.setupEventHandlers();
         this.applyFilters();
 
-        var btnExport = this.shadowRoot.querySelector('#btnExport'); 
-
+        var btnExport = this.shadowRoot.querySelector('#btnExport');  
         btnExport.hidden = !this.showExport; 
 
-        btnExport.addEventListener('click', (event) => {
-            event.preventDefault(); 
-            this.exportData(); 
+        this.initExportDropdowns();  
+    }
+
+    initExportDropdowns() {
+        this.shadowRoot.addEventListener('click', (e) => {
+            const target = e.target;
+
+            if (target.id === 'exportExcel') {
+                e.preventDefault();
+                this.exportData("Excel");
+            }
+            else if (target.id === 'exportPdf') {
+                e.preventDefault();
+                this.exportData("Pdf");
+            }
+
+            // dropdown toggle
+            const group = target.closest(".btn-group");
+            if (group && target.classList.contains("export-btn")) {
+                e.stopPropagation();
+                const menu = group.querySelector(".dropdown-menu");
+                const isOpen = group.classList.contains("show");
+                this.closeAllDropdowns();
+                if (!isOpen) {
+                    group.classList.add("show");
+                    menu.classList.add("show");
+                }
+            }
+        });
+
+        // click fuera del shadow para cerrar dropdowns
+        this.addEventListener("click", (e) => {
+            if (!this.shadowRoot.contains(e.target)) {
+                this.closeAllDropdowns();
+            }
         });
     }
 
-    // Cargar datos de la API
-    async exportData() {
+    closeAllDropdowns() {
+        const openGroups = this.shadowRoot.querySelectorAll(".btn-group.show");
+        const openMenus = this.shadowRoot.querySelectorAll(".dropdown-menu.show");
+
+        openGroups.forEach(g => g.classList.remove("show"));
+        openMenus.forEach(m => m.classList.remove("show"));
+    } 
+
+    // TODO
+    async exportData(exportType) {
 
         const baseUrl = 'https://localhost';
-        const controllerName = 'DataQuery'; // exponer desde atributo de componente
+        const controllerName = 'DataQuery';
         const port = '44311';
         const apiMethod = 'Exportar';
 
-        //params
-        var dataQueryType = 'UsuariosIdiomas';
-        var exportType = 'Excel';
-        var envioEmail = false;
+        // params
+        const dataQueryType = 'UsuariosIdiomas'; // TODO!
+        const envioEmail = false;
 
-        const apiUrl = `${baseUrl}:${port}/${controllerName}/${apiMethod}?dataQueryType=${dataQueryType}&formato=${exportType}&envioEmail=${envioEmail}`;
+        const apiUrl =
+            `${baseUrl}:${port}/${controllerName}/${apiMethod}` +
+            `?dataQueryType=${dataQueryType}&formato=${exportType}&envioEmail=${envioEmail}`;
 
-        const response = await fetch(apiUrl); // TODO: Añadir token auth
+        const response = await fetch(apiUrl);
         if (!response.ok) throw new Error("Error al exportar los datos");
 
-
-        // Convertir a BLOB
         const blob = await response.blob();
-
-        // Crear URL temporal
         const url = window.URL.createObjectURL(blob);
 
-        // Crear <a> oculto
         const a = document.createElement("a");
         a.href = url;
-
-        // Nombre del archivo (puedes personalizarlo)
         a.download = `export_${dataQueryType}.${exportType === "Excel" ? "xlsx" : "pdf"}`;
-
-        // Simular click
         a.click();
 
-        // Limpiar
         window.URL.revokeObjectURL(url);
-
     }
-
+     
     // Cargar datos de la API
     async loadData() {
         try {
             const baseUrl = 'https://localhost';
-            //onst controllerName = 'DataQuery'; // exponer desde atributo de componente
+            //const controllerName = 'DataQuery'; // exponer desde atributo de componente
             const port = '44311';
-            const apiMethod = this.dataSource;
-            //const apiUrl = `${baseUrl}:${port}/${controllerName}/${apiMethod}`;
+            const apiMethod = `${this.controller}/${this.dataSource}`;
+            //const apiUrl = `${baseUrl}:${port}/${this.controllerName}/${this.dataSource}`;
             const apiUrl = `${baseUrl}:${port}/${apiMethod}`;
 
-            const response = await fetch(apiUrl); // TODO: Añadir token auth
+            const response = await fetch(apiUrl, {
+                method: "GET",         
+                credentials: "include"  
+            });
+
             if (!response.ok) throw new Error("Error al obtener los datos");
 
             const data = await response.json();
@@ -172,25 +235,31 @@ class BOReadOnlyList extends HTMLElement {
 
         theadRow.innerHTML = headers
             .map(h => `
-            <th style="text-align:center; color: #fff;"
-                class="sorting"
-                aria-controls="table_name"
-                aria-label="${h}: activate to sort column descending"
-                aria-sort="none"
-                data-column="${h}">
-                ${h}
-            </th>`
+        <th style="text-align:center; color: black;"
+            class="sorting"
+            aria-controls="table_name"
+            aria-label="${h}: activate to sort column descending"
+            aria-sort="none"
+            data-column="${h}">
+            ${h}
+        </th>`
             )
             .join('');
 
-        const thElements = theadRow.querySelectorAll("th"); 
-        thElements.forEach((th, index) => {
+        // Agregamos columna de acciones
+        if (this.showActions) {
+            theadRow.innerHTML += `
+            <th style="width:130px; text-align:center;"></th>
+        `;
+        }
 
+        const thElements = theadRow.querySelectorAll("th");
+        thElements.forEach((th, index) => {
             th.dataset.index = index;
 
-            let thLimpio = th.textContent.replace(/[\r\n]+/g, '').replace(/\s/g, ''); 
+            let thLimpio = th.textContent.replace(/[\r\n]+/g, '').replace(/\s/g, '');
             th.textContent = this.capitalizarPrimeraLetra(thLimpio);
-            
+
             th.addEventListener("click", () => {
                 this.sortByColumn(index, th);
             });
@@ -208,6 +277,7 @@ class BOReadOnlyList extends HTMLElement {
         return primeraLetra + restoDeLaCadena;
     }
 
+    // Odenación por desde header columnas
     sortByColumn(columnIndex, thElement) {
 
         const theadRow = this.shadowRoot.querySelector("#thead tr");
@@ -312,13 +382,11 @@ class BOReadOnlyList extends HTMLElement {
         const total = this.filteredData.length;
         const totalPages = Math.ceil(total / this.pageSize);
 
-        // Calcular inicio y fin
         const start = (this.currentPage - 1) * this.pageSize;
         const end = Math.min(start + this.pageSize, total);
 
         const pageData = this.filteredData.slice(start, end);
 
-        // Render filas
         pageData.forEach(row => {
             const tr = document.createElement("tr");
 
@@ -330,17 +398,56 @@ class BOReadOnlyList extends HTMLElement {
                 })
                 .join('');
 
+            // Agregar columna de acciones
+            if (this.showActions) {
+                tr.innerHTML += `
+                <td style="text-align:center;">
+
+                    <button type="button" class="btn btn-sm btn-default md-btn-flat btn-edit" >
+                        View
+                    </button>
+
+                    <button type="button" class="btn icon-btn btn-sm btn-default md-btn-flat btn-delete">
+                        <span>X</span>
+                    </button>
+
+                </td>
+            `;
+            }
             tbody.appendChild(tr);
+
+            // --- Asignar listeners de acciones por fila ---
+            const _id = Object.values(row)[0];
+            const _nombre = Object.values(row)[1];
+
+            if (this.showActions) {
+                const btnEdit = tr.querySelector(".btn-edit");
+                const btnDelete = tr.querySelector(".btn-delete");
+
+                // EDITAR → redirección
+                btnEdit.addEventListener("click", () => {
+                    window.location.href = `editForm.html?id=${_id}`;
+                });
+
+                // ELIMINAR → disparar evento custom
+                btnDelete.addEventListener("click", () => {
+                    this.dispatchEvent(new CustomEvent("delete-request", {
+                        detail: { id: _id, nombre: _nombre, controller: this.controllerName },
+                        bubbles: true,
+                        composed: true
+                    }));
+                });
+            }
+             
         });
 
-        // Actualizar texto de info
+        // Actualizar info y paginación (sin cambios)
         const info = this.shadowRoot.querySelector("#table_name_info");
         if (total === 0)
             info.textContent = "Mostrando 0 a 0 de 0 registros";
         else
             info.textContent = `Mostrando ${start + 1} a ${end} de ${total} registros`;
 
-        // Actualizar botones prev/next
         const prevLi = this.shadowRoot.querySelector("#table_name_previous");
         const nextLi = this.shadowRoot.querySelector("#table_name_next");
 
@@ -350,10 +457,9 @@ class BOReadOnlyList extends HTMLElement {
         if (this.currentPage === totalPages || totalPages === 0) nextLi.classList.add("disabled");
         else nextLi.classList.remove("disabled");
 
-        // Actualizar lista de páginas
         this.renderPageNumbers(totalPages);
     }
-
+    
     // Crear <li> dinámicos con números de página
     renderPageNumbers(totalPages) {
         const ul = this.shadowRoot.querySelector("#table_name_paginate ul");
@@ -378,8 +484,6 @@ class BOReadOnlyList extends HTMLElement {
             nextBtn.before(li);
         }
     }
-     
-
-}
-
+      
+} 
 customElements.define('bo-readonlylist', BOReadOnlyList);

@@ -162,14 +162,24 @@ class AppLogin extends HTMLElement {
         script.src = '../WebPages/js/main.js';
         document.head.appendChild(script); 
 
+        // Cargar el script dinámicamente
+        //const script2 = document.createElement('script');
+        //script2.src = '../WebPages/js/bootstrap.min.js';
+        //document.head.appendChild(script2); 
+
         const form = this.shadowRoot.querySelector('#loginForm');
         const errorMsg = this.shadowRoot.querySelector('#errorMsg');
 
         form.addEventListener('submit', async (e) => {
             e.preventDefault();
-             
+
+           
+
             try { 
                 //var hashedPassword = Utilities.calcularHash(password);
+
+                const email = this.shadowRoot.querySelector('#email').value.trim();
+                const password = this.shadowRoot.querySelector('#password').value.trim();
 
                 const baseUrl = `https://localhost`;
                 const port = `44311`;
@@ -177,9 +187,11 @@ class AppLogin extends HTMLElement {
                 const apiUrl = `${baseUrl}:${port}/${controllerName}`;
 
                 const apiMethod = `login`;
+                 
                 const res = await fetch(`${apiUrl}/${apiMethod}`,
                 {
                     method: 'POST',
+                    credentials: "include", 
                     headers: {
                         'Content-Type': 'application/json' 
                     },
@@ -189,6 +201,8 @@ class AppLogin extends HTMLElement {
                         LoginType: this.loginType,
                     })
                 });
+
+               
 
                 if (!res.ok) throw new Error('Credenciales incorrectas');
 
@@ -221,6 +235,7 @@ class AppLogin extends HTMLElement {
                 errorMsg.textContent = '';
 
             } catch (err) {
+                alert(err.message);
                 errorMsg.textContent = err.message || 'Error durante el proceso de login';
             }
         });
