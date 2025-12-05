@@ -10,6 +10,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.RateLimiting; 
 using Microsoft.Extensions.Options;
+using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using System.ComponentModel.DataAnnotations;
 using System.IdentityModel.Tokens.Jwt;
@@ -17,7 +18,7 @@ using System.Security.Claims;
 using System.Text;
 using Twilio.TwiML.Voice;
 using Utilities;
-
+using static Utilities.ExporterHelper;
 namespace API.Controllers
 {
     [ApiController]
@@ -30,6 +31,7 @@ namespace API.Controllers
         private readonly AppConfiguration _appConfiguration;
         private readonly ILogService _logService; 
         private readonly ILoginService _loginService;
+        private readonly ExportConfiguration _exportConfig;
 
         /// <summary> Constructor </summary>  
         public UsuariosController(ILogger<UsuariosController> logger, 
@@ -38,7 +40,9 @@ namespace API.Controllers
                                   ICorreoService correoService,
                                   IOptions<AppConfiguration> options,
                                   ILogService logService, 
-                                  ILoginService loginService) {
+                                  ILoginService loginService,
+                                  IOptions<ExportConfiguration> optionsExport)
+        {
             base._logger = logger;
             //base._config = config ?? throw new ArgumentNullException(nameof(config));
             _appConfiguration = options.Value ?? throw new ArgumentNullException(nameof(options));
@@ -47,12 +51,14 @@ namespace API.Controllers
             _emailTokenService = emailTokenService ?? throw new ArgumentNullException(nameof(emailTokenService));
             _logService = logService ?? throw new ArgumentNullException(nameof(logService)); 
             _loginService = loginService ?? throw new ArgumentNullException(nameof(loginService));
+            _exportConfig = optionsExport.Value ?? throw new ArgumentNullException(nameof(optionsExport));
         }
 
         /// <summary>
         /// 
         /// </summary>  
         /// <returns> IEnumerable<Usuario> </returns>
+        [AllowAnonymous]
         //[Authorize(Roles = "Admin,Manager")]
         //[EnableRateLimiting("UsuariosLimiter")]
         [HttpGet("ObtenerUsuarios")]
@@ -397,6 +403,60 @@ namespace API.Controllers
                 return StatusCode(StatusCodes.Status500InternalServerError,
                                  new { message = MessageProvider.GetMessage("Usuario:GetRoles", "Error"), idUsuario });
             }
-        }  
+        }
+
+        /// <summary>
+        /// Exportar vista a Excel o pdf
+        /// </summary> 
+        /// <returns> File to download </returns>
+        [HttpGet("Exportar")]
+        //[Authorize(Policy = "RequireAdmin")]
+        //[Authorize]
+        [AllowAnonymous]
+        public async Task<IActionResult> Exportar([FromServices] ICorreoService correoService,
+                                                  [FromQuery] ExportFormat formato,
+                                                  [FromQuery] bool envioEmail)
+        {
+            var entityName = nameof(Usuario);
+
+            var file = await _usuarioService.ExportarAsync(formato);
+
+            string fileExtension = string.Empty;
+            string contentType = string.Empty;
+
+            switch (formato)
+            {
+                case ExportFormat.Excel:
+                    contentType = _exportConfig.ExcelContentType;
+                    fileExtension = _exportConfig.ExcelExtension;
+                    break;
+                case ExportFormat.Pdf:
+                    contentType = _exportConfig.PdfContentType;
+                    fileExtension = _exportConfig.PdfExtension;
+                    break;
+            }
+
+            var fileName = $"List_{entityName.ToString()}_{DateTime.UtcNow:yyyyMMddHHmmss}{fileExtension}";
+
+            if (envioEmail)
+            {
+                var tiposEnvioCorreo = await correoService.ObtenerTiposEnvioCorreo();
+                var tipoEnvioCorreo = tiposEnvioCorreo.Where(u => u.nombre == TipoEnvioCorreo.TipoEnvio.EnvioReport)
+                                                      .SingleOrDefault();
+
+                tipoEnvioCorreo.asunto = $"Report {entityName.ToString()} ({fileExtension})";
+                tipoEnvioCorreo.cuerpo = $"Se adjunta el informe para la vista de datos {entityName.ToString()}";
+
+                var correo = new Correo(tipoEnvioCorreo, _exportConfig.CorreoAdmin, "Admin", "");
+                correo.FicheroAdjunto = new FicheroAdjunto()
+                {
+                    Archivo = file,
+                    ContentType = contentType,
+                    NombreArchivo = fileName
+                };
+                correoService.EnviarCorreo(correo);
+            }
+            return File(file, contentType, fileName);
+        }
     }
 }

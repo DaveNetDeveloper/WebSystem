@@ -10,6 +10,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Text.Json.Serialization;
 
 using static Application.Services.DataQueryService;
+using static Utilities.ExporterHelper;
 
 namespace API.Controllers
 {

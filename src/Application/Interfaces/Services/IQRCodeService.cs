@@ -1,4 +1,5 @@
 ﻿using Domain.Entities;
+using static Utilities.ExporterHelper;
 
 namespace Application.Interfaces.Services
 { 
@@ -11,5 +12,6 @@ namespace Application.Interfaces.Services
         Task DeactivateAsync(Guid id);
         Task ConsumeAsync(Guid id);
         Task<bool> Remove(Guid id);
+        Task<byte[]> ExportarAsync(ExportFormat formato);
     }
 }

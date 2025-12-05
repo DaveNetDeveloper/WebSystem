@@ -1,4 +1,5 @@
 ﻿using Domain.Entities;
+using static Utilities.ExporterHelper;
 
 namespace Application.Interfaces.Services
 {
@@ -12,7 +13,7 @@ namespace Application.Interfaces.Services
         /// <summary>
         /// Devuelve todas las entidades
         /// </summary> 
-        Task<IEnumerable<TEntity>> GetAllAsync();
+        Task<IEnumerable<TEntity>> GetAllAsync(); 
 
         /// <summary>
         /// Devuelve la entidad con el Id especificado
@@ -33,5 +34,7 @@ namespace Application.Interfaces.Services
         /// Elimina la entidad con el Id especificado
         /// </summary> 
         Task<bool> Remove(TKey id);
+
+        
     }
 }

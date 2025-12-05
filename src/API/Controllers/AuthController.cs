@@ -173,27 +173,6 @@ namespace API.Controllers
                     
                     isValidRole = user.Role == Rol.Roles.Manager || user.Role == Rol.Roles.Admin;
 
-                    //IEnumerable<Entidad> entidades = await _entidadService.GetAllAsync();
-                    //List<int> idsEntidad = new List<int>();
-
-                    //switch (user.Role) {
-                    //    case Rol.Roles.Manager:
-
-                    //        var entidad = entidades.Where(e => e.manager.ToLower() == dto.Email.ToLower()).FirstOrDefault();
-                    //        if (entidad == null) {
-                    //            break; 
-                    //        } 
-                    //        idsEntidad.Add(entidad.id);
-                    //        break;
-
-                    //    case Rol.Roles.Admin:
-                    //        idsEntidad.AddRange(entidades.Select(e => e.id));
-                    //        break;
-                    //}
-
-                    
-
-
                     break;
                 default:
                     isValidRole = false;
@@ -239,7 +218,7 @@ namespace API.Controllers
                     Path = "/",
                 };
 
-                Response.Cookies.Append("Entidades-Cookie", user.Entidades.Count().ToString(), options);
+                Response.Cookies.Append("Entidades-Cookie", string.Join(",", user.Entidades), options);
                  
             }
 

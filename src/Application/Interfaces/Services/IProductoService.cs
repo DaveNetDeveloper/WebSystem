@@ -2,6 +2,7 @@
 using Application.DTOs.Responses;
 using Application.Interfaces.Common;
 using Domain.Entities;
+using static Utilities.ExporterHelper;
 
 namespace Application.Interfaces.Services
 {
@@ -10,5 +11,6 @@ namespace Application.Interfaces.Services
         Task<IEnumerable<Producto>> GetByFiltersAsync(ProductoFilters filters,
                                                       IQueryOptions<Producto>? queryOptions = null);
         Task<IEnumerable<ImagenesProductoDTO>> GetImagenesByProducto(int id);
+        Task<byte[]> ExportarAsync(ExportFormat formato);
     }
 }

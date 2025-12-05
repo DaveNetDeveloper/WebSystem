@@ -1,7 +1,8 @@
-﻿using Application.DTOs.Filters;
-using Application.DTOs.DataQuery;
+﻿using Application.DTOs.DataQuery;
+using Application.DTOs.Filters;
 using Application.Interfaces.Common;
 using Domain.Entities;
+using static Utilities.ExporterHelper;
 
 namespace Application.Interfaces.Services
 {
@@ -19,5 +20,7 @@ namespace Application.Interfaces.Services
         Task<IReadOnlyList<vAllCampanasDataDTO>> ObtenerAllCampanasData(int page = 1, int pageSize = 100);
         Task<IReadOnlyList<vAsistenciaActividadesDTO>> ObtenerAsistenciaActividades(int page = 1, int pageSize = 100);
         Task<IReadOnlyList<vTotalErroresDTO>> ObtenerTotalErrores(int page = 1, int pageSize = 100);
+
+        Task<byte[]> ExportarAsync(ExportFormat formato);
     }
 }

@@ -9,30 +9,39 @@ using Domain.Entities;
 
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Options;
+using static Utilities.ExporterHelper;
 
 namespace API.Controllers
 {
     [ApiController]
     [Route("api/qr")]
-    public class QRCodeController : BaseController<QRCode>
+    public class QRCodesController : BaseController<QRCode>
     {
-        private readonly QRCodeService _service;
+        private readonly IQRCodeService _service;
+        private readonly ExportConfiguration _exportConfig;
 
-        public QRCodeController(QRCodeService service, 
-                                ILogger<QRCodeController> logger) {
+        public QRCodesController(IQRCodeService service,
+                                ILogger<QRCodesController> logger,
+                                   IOptions<ExportConfiguration> options)
+        {
             _service = service;
             _logger = logger;
+            _exportConfig = options.Value ?? throw new ArgumentNullException(nameof(options));
         }
 
-        [Authorize]
+        [AllowAnonymous]
+        //[Authorize]
         [HttpGet("ObtenerQRs")]
         public async Task<IActionResult> GetAllAsync()
         {
-            try  { 
+            try
+            {
                 var productos = await _service.GetAllAsync();
                 return (productos != null && productos.Any()) ? Ok(productos) : NoContent();
             }
-            catch (Exception ex) { 
+            catch (Exception ex)
+            {
                 return NoContent();
             }
         }
@@ -89,16 +98,71 @@ namespace API.Controllers
         [HttpDelete("Eliminar/{id}")]
         public async Task<IActionResult> Remove(Guid id)
         {
-            try {
+            try
+            {
                 var result = await _service.Remove(id);
                 if (result == false) return NotFound();
                 return Ok("QR consumido correctamente");
             }
-            catch (Exception ex) {
+            catch (Exception ex)
+            {
                 return StatusCode(StatusCodes.Status500InternalServerError,
                                  new { message = MessageProvider.GetMessage("QR:Eliminar", "Error"), id });
             }
         }
 
+        /// <summary>
+        /// Exportar listado a Excel o pdf
+        /// </summary> 
+        /// <returns> File to download </returns>
+        [HttpGet("Exportar")]
+        //[Authorize(Policy = "RequireAdmin")]
+        //[Authorize]
+        [AllowAnonymous]
+        public async Task<IActionResult> Exportar([FromServices] ICorreoService correoService,
+                                                  [FromQuery] ExportFormat formato,
+                                                  [FromQuery] bool envioEmail)
+        {
+            var entityName = nameof(QRCode);
+
+            var file = await _service.ExportarAsync(formato);
+
+            string fileExtension = string.Empty;
+            string contentType = string.Empty;
+
+            switch (formato)
+            {
+                case ExportFormat.Excel:
+                    contentType = _exportConfig.ExcelContentType;
+                    fileExtension = _exportConfig.ExcelExtension;
+                    break;
+                case ExportFormat.Pdf:
+                    contentType = _exportConfig.PdfContentType;
+                    fileExtension = _exportConfig.PdfExtension;
+                    break;
+            }
+
+            var fileName = $"List_{entityName.ToString()}_{DateTime.UtcNow:yyyyMMddHHmmss}{fileExtension}";
+
+            if (envioEmail)
+            {
+                var tiposEnvioCorreo = await correoService.ObtenerTiposEnvioCorreo();
+                var tipoEnvioCorreo = tiposEnvioCorreo.Where(u => u.nombre == TipoEnvioCorreo.TipoEnvio.EnvioReport)
+                                                      .SingleOrDefault();
+
+                tipoEnvioCorreo.asunto = $"Report {entityName.ToString()} ({fileExtension})";
+                tipoEnvioCorreo.cuerpo = $"Se adjunta el informe para la vista de datos {entityName.ToString()}";
+
+                var correo = new Correo(tipoEnvioCorreo, _exportConfig.CorreoAdmin, "Admin", "");
+                correo.FicheroAdjunto = new FicheroAdjunto()
+                {
+                    Archivo = file,
+                    ContentType = contentType,
+                    NombreArchivo = fileName
+                };
+                correoService.EnviarCorreo(correo);
+            }
+            return File(file, contentType, fileName);
+        }
     }
 }

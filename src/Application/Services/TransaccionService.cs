@@ -3,9 +3,12 @@ using Application.Interfaces.Common;
 using Application.Interfaces.Repositories;
 using Application.Interfaces.Services;
 using Domain.Entities;
+using System.Collections;
 using System.Data.Common;
 using System.Reflection.Metadata.Ecma335;
 using System.Transactions;
+using static Application.Services.DataQueryService;
+using static Utilities.ExporterHelper;
 
 namespace Application.Services
 {
@@ -14,14 +17,31 @@ namespace Application.Services
         private readonly ITransaccionRepository _repo;
         private readonly IUsuarioRepository _repoUsuario;
         private readonly IUnitOfWork _unitOfWork;
+        private readonly IExcelExporter _excelExporter;
+        private readonly IExporter _pdfExporter;
 
         public TransaccionService(ITransaccionRepository repo, 
                                   IUsuarioRepository repoUsuario, 
-                                  IUnitOfWork unitOfWork) {
+                                  IUnitOfWork unitOfWork,
+                                  IExcelExporter excelExporter,
+                              IExporter pdfExporter)
+        {
             _repo = repo;
 
             _repoUsuario = repoUsuario;
             _unitOfWork = unitOfWork;
+            _excelExporter = excelExporter;
+            _pdfExporter = pdfExporter;
+        }
+
+        public byte[] ExportDynamic(IEnumerable data, Type entityType)
+        {
+            return null;
+        }
+
+        public byte[] Export<T>(IEnumerable<T> data, string sheetName)
+        {
+            return null;
         }
 
         public Task<IEnumerable<Transaccion>> GetAllAsync()
@@ -77,5 +97,33 @@ namespace Application.Services
             var result = await _unitOfWork.SaveChangesAsync();
             return result > 0;
         }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="dataQueryType"></param>
+        /// <returns></returns>
+        public async Task<byte[]> ExportarAsync(ExportFormat formato) // TODO por implementar en todas las entidades exportables
+        {
+            Type entityType = typeof(Transaccion);
+            IEnumerable queryResult = await GetAllAsync();
+
+            byte[] excelBytes = null;
+            switch (formato)
+            {
+                case ExportFormat.Excel:
+                    excelBytes = _excelExporter.ExportToExcelDynamic(queryResult, entityType);
+                    break;
+                case ExportFormat.Pdf:
+                    excelBytes = _pdfExporter.ExportDynamic(queryResult, entityType);
+                    break;
+            }
+            return excelBytes;
+        }
+
+        public async Task<byte[]> ExportarAsync(DataQueryType dataQueryType, ExportFormat formato)
+        {
+            return null;
+        }
+
     }
 }

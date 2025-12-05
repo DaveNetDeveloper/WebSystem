@@ -1,7 +1,8 @@
 ﻿using Application.DTOs.Filters;
 using Application.DTOs.Requests;
 using Application.Interfaces.Common;
-using Domain.Entities; 
+using Domain.Entities;
+using static Utilities.ExporterHelper;
 
 namespace Application.Interfaces.Services
 {
@@ -21,5 +22,6 @@ namespace Application.Interfaces.Services
 
         // JOBS
         Task<IEnumerable<Usuario>> CheckUnsubscribedUsers();
+        Task<byte[]> ExportarAsync(ExportFormat formato);
     } 
 }

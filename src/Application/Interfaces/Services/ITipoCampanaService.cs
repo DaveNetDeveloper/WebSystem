@@ -2,6 +2,7 @@
 using Application.DTOs.Filters;
 using Application.Interfaces.Common;
 using Domain.Entities;
+using static Utilities.ExporterHelper;
 
 namespace Application.Interfaces.Services
 {
@@ -9,5 +10,6 @@ namespace Application.Interfaces.Services
     {
         Task<IEnumerable<TipoCampana>> GetByFiltersAsync(TipoCampanaFilters filters,
                                                          IQueryOptions<TipoCampana>? queryOptions = null);
+        Task<byte[]> ExportarAsync(ExportFormat formato);
     }
 }

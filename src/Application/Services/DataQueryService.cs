@@ -2,6 +2,7 @@
 using Application.Interfaces.DTOs.DataQuery;
 using Application.Interfaces.Repositories; 
 using Application.Interfaces.Services;
+using static Utilities.ExporterHelper;
 
 using System.Collections; 
 using System.Text.Json.Serialization;
@@ -29,9 +30,6 @@ namespace Application.Services
             _excelExporter = excelExporter;
             _pdfExporter = pdfExporter;
         }
-
-        public enum ExportFormat { Excel, Pdf }
-
         public byte[] ExportDynamic(IEnumerable data, Type entityType) 
         {
             return null;
@@ -57,6 +55,11 @@ namespace Application.Services
             AsistenciaActividades,
             TotalErrores
 
+        }
+
+        public async Task<byte[]> ExportarAsync(ExportFormat formato)
+        { 
+            return null;
         }
 
         /// <summary>

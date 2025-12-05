@@ -2,6 +2,7 @@
 using Application.DTOs.Filters;
 using Application.Interfaces.Common;
 using Domain.Entities;
+using static Utilities.ExporterHelper;
 
 namespace Application.Interfaces.Services
 {
@@ -11,5 +12,6 @@ namespace Application.Interfaces.Services
                                                       IQueryOptions<Segmento>? queryOptions = null);
         void ApplySegmentsForUser(vAllUserDataDTO usuario);
         Task<IEnumerable<Usuario>> GetUsuariosBySegmento(int idSegmento);
+        Task<byte[]> ExportarAsync(ExportFormat formato);
     }
 }

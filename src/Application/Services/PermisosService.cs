@@ -101,6 +101,7 @@ namespace Application.Services
 
                 case MenuOpciones.Informes:
                     opciones.Add(new MenuOption { Nombre = "Informes", Nivel = 1, Path = "#" });
+                        opciones.Add(new MenuOption { Nombre = "Procesos automaticos", Parent = "Informes", Nivel = 2, Path = "./workService-dashboard.html" });
                         opciones.Add(new MenuOption { Nombre = "Logins", Parent = "Informes", Nivel = 2, Path = "./reports/logins-list.html" });
                         opciones.Add(new MenuOption { Nombre = "Logs", Parent = "Informes", Nivel = 2, Path = "./reports/logs-list.html" });
                         opciones.Add(new MenuOption { Nombre = "DataQuery1", Parent = "Informes", Nivel = 2, Path = "./reports/dataQuery1-list.html" });

@@ -4,6 +4,10 @@ using System.Text;
 namespace Utilities
 {
     public static class ExporterHelper {
+
+        public enum ExportFormat { Excel, Pdf }
+
+
         public static void ExportManager(DataTable sourceDataTable, object Response)
         {
             //GridView gridToExport = new GridView
