@@ -2,7 +2,7 @@
     constructor() {
         super();
         const shadow = this.attachShadow({ mode: 'open' });
-        fetch('../Components/modalPanel/modalPanel.html')
+        fetch('/Components/modalPanel/modalPanel.html')
             .then(response => response.text())
             .then(html => {
                 const parser = new DOMParser();

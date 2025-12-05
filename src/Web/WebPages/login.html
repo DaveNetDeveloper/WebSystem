@@ -121,13 +121,6 @@
         document.querySelector('app-login') // Escucha el evento emitido por el componente
             .addEventListener('login-success', (e) => {
 
-                // Component result
-                // alert("access_token: " + e.detail.access_token);
-                // alert("refresh_token: " + e.detail.refresh_token);
-                // alert("token_type: " + e.detail.token_type);
-                // alert("expires_at: " + e.detail.expires_at);
-                // alert("role: " + e.detail.role);
-
                 // Cokkie data
                 alert("Cokkie " + getCookie('app-access-token'));
                 alert("Cokkie " + getCookie('app-refresh-token'));

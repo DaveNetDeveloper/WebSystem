@@ -1,5 +1,7 @@
 ﻿//import * as Utilities from '/WebPages/js/libraries/utilities.js';
 
+import * as globalAuth from '/WebPages/js/libraries/globalAuth.js'; 
+
 const dataSource_PropName = "data-source";
 const showExport_PropName = "show-export";
 const showActions_PropName = "show-actions";
@@ -166,23 +168,31 @@ class BOReadOnlyList extends HTMLElement {
         openMenus.forEach(m => m.classList.remove("show"));
     } 
 
-    // TODO
     async exportData(exportType) {
 
         const baseUrl = 'https://localhost';
-        const controllerName = 'DataQuery';
+        //const controllerName = 'DataQuery';
         const port = '44311';
         const apiMethod = 'Exportar';
-
-        // params
-        const dataQueryType = 'UsuariosIdiomas'; // TODO!
         const envioEmail = false;
 
         const apiUrl =
-            `${baseUrl}:${port}/${controllerName}/${apiMethod}` +
-            `?dataQueryType=${dataQueryType}&formato=${exportType}&envioEmail=${envioEmail}`;
+            `${baseUrl}:${port}/${this.controller}/${apiMethod}` +
+            `?formato=${exportType}&envioEmail=${envioEmail}`;
+             
+        const token = this.getCookie('app-access-token');
 
-        const response = await fetch(apiUrl);
+        const response = await fetch(apiUrl, {
+            method: "GET",
+            credentials: "include",
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`
+            },
+        });
+
+        //const response = await fetch(apiUrl);
+
         if (!response.ok) throw new Error("Error al exportar los datos");
 
         const blob = await response.blob();
@@ -190,12 +200,57 @@ class BOReadOnlyList extends HTMLElement {
 
         const a = document.createElement("a");
         a.href = url;
-        a.download = `export_${dataQueryType}.${exportType === "Excel" ? "xlsx" : "pdf"}`;
+        a.download = `export_${this.controller}.${exportType === "Excel" ? "xlsx" : "pdf"}`;
         a.click();
 
         window.URL.revokeObjectURL(url);
     }
-     
+
+    // TODO
+    //async exportData(exportType) {
+
+    //    const baseUrl = 'https://localhost';
+    //    const controllerName = 'DataQuery';
+    //    const port = '44311';
+    //    const apiMethod = 'Exportar';
+
+    //    // params
+    //    const dataQueryType = 'UsuariosIdiomas'; // TODO!
+    //    const envioEmail = false;
+
+    //    const apiUrl =
+    //        `${baseUrl}:${port}/${controllerName}/${apiMethod}` +
+    //        `?dataQueryType=${dataQueryType}&formato=${exportType}&envioEmail=${envioEmail}`;
+
+    //    const response = await fetch(apiUrl);
+    //    if (!response.ok) throw new Error("Error al exportar los datos");
+
+    //    const blob = await response.blob();
+    //    const url = window.URL.createObjectURL(blob);
+
+    //    const a = document.createElement("a");
+    //    a.href = url;
+    //    a.download = `export_${dataQueryType}.${exportType === "Excel" ? "xlsx" : "pdf"}`;
+    //    a.click();
+
+    //    window.URL.revokeObjectURL(url);
+    //}
+
+    async getCookie(nombre) {
+        const nombreEQ = nombre + "=";
+        const cookies = document.cookie.split(';');
+        for (let i = 0; i < cookies.length; i++) {
+            let cookie = cookies[i];
+            while (cookie.charAt(0) === ' ') {
+                cookie = cookie.substring(1, cookie.length);
+            }
+            if (cookie.indexOf(nombreEQ) === 0) {
+                return decodeURIComponent(cookie.substring(nombreEQ.length, cookie.length));
+            }
+        }
+        return null;
+    }
+
     // Cargar datos de la API
     async loadData() {
         try {
@@ -206,9 +261,15 @@ class BOReadOnlyList extends HTMLElement {
             //const apiUrl = `${baseUrl}:${port}/${this.controllerName}/${this.dataSource}`;
             const apiUrl = `${baseUrl}:${port}/${apiMethod}`;
 
+            const token = this.getCookie('app-access-token');
+             
             const response = await fetch(apiUrl, {
                 method: "GET",         
-                credentials: "include"  
+                credentials: "include",
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${token}`
+                },
             });
 
             if (!response.ok) throw new Error("Error al obtener los datos");

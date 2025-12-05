@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>  Administración / Usuarios</title>
+    <title>  Administración / FAQS</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -33,12 +33,12 @@
                         <div class="pannel-wrapper white-bg mb-30">
 
                             <div class="panel-heading heading-border">
-                                <h4>Listado de Usuarios</h4>
+                                <h4>Listado de FAQS</h4>
                             </div>
 
                             <div class="panel-body">
 
-                                <bo-readonlylist show-export="true" controller="Usuarios" data-source="ObtenerUsuarios"></bo-readonlylist>
+                                <bo-readonlylist show-actions="true" show-export="true" controller="FAQS" data-source="ObtenerFAQS"></bo-readonlylist>
                                 <script type="module" src="../Components/readOnlyList/readOnlyList.js"></script>
 
                             </div>

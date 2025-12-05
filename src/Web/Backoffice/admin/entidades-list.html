@@ -19,12 +19,14 @@
     <link rel="stylesheet" href="../css/default.css">
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../css/responsive.css">
+
+    <link rel="stylesheet" href="../css/magnific-popup.css">
+    <link rel="stylesheet" href="../css/sweetalert.css">
 </head>
 <body>
-     
+
     <div class="body-wrapper body-bg">
         <header>
-
         </header>
 
         <div class="dashboard-area pt-30">
@@ -39,7 +41,7 @@
 
                             <div class="panel-body">
 
-                                <bo-readonlylist show-export="true" controller="Entidades" data-source="ObtenerEntidades"></bo-readonlylist>
+                                <bo-readonlylist show-actions="true" show-export="true" controller="Entidades" data-source="ObtenerEntidades"></bo-readonlylist>
                                 <script type="module" src="../Components/readOnlyList/readOnlyList.js"></script>
 
                             </div>
@@ -48,18 +50,68 @@
                 </div>
             </div>
             <footer>
-
             </footer>
         </div>
     </div>
 
-    <script> 
+    <script>
         document.querySelector('bo-readOnlyList') // Escucha el evento emitido por el componente
             .addEventListener('readOnlyList-success', (e) => {
 
-                //alert('readOnlyList-success: ' + e.detail); 
-            }); 
+                //alert('readOnlyList-success: ' + e.detail);
+            });
     </script>
+
+    <modal-panel id="modalPanel"></modal-panel> 
+    <script type="module" src="/Components/modalPanel/modalPanel.js"></script>
+
+    <script type="module">
+
+        const listado = document.querySelector("bo-readonlylist");
+        const modal = document.getElementById("modalPanel");
+
+        listado.addEventListener("delete-request", (e) => {
+
+            const id = e.detail.id;
+            const nombre = e.detail.nombre;
+            const controller = e.detail.controller;
+            //const dataSource = e.detail.dataSource;
+
+            modal.setContent("Confirmar eliminación", `¿Deseas eliminar: ${id} - ${nombre}?`);
+            modal.mostrar();
+
+            // Limpiar listeners previos
+            modal.removeEventListener("confirm", modal.confirmListener);
+            modal.removeEventListener("cancel", modal.cancelListener);
+
+            // Listener confirm
+            modal.confirmListener = async () => {
+                try {
+                    await fetch(`https://localhost:44311/${controller}/Eliminar/${id}`, {
+                        method: "DELETE"
+                    });
+                    modal.ocultar();
+                    listado.loadData();
+                    listado.setupEventHandlers();
+                    listado.applyFilters();
+
+                } catch (err) {
+                    console.error("Error al eliminar entidad:", err);
+                    modal.ocultar();
+                }
+            };
+
+            modal.cancelListener = () => {
+
+                //modal.hide();
+            };
+            modal.addEventListener("confirm", modal.confirmListener);
+            modal.addEventListener("cancel", modal.cancelListener);
+        });
+    </script>
+
+
+
 
     <!-- JS here -->
     <!--<script src="js/vendor/modernizr-3.5.0.min.js"></script>-->

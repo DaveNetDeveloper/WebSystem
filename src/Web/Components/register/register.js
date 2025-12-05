@@ -207,7 +207,7 @@ class AppRegister extends HTMLElement {
         linkTerminos.addEventListener('click', function (event) {
             event.preventDefault();
 
-            var urlPDF = '../Resources/Documents/Terminos y Condiciones.pdf';
+            var urlPDF = '../Resources/documents/Terminos y Condiciones.pdf';
             window.open(urlPDF, '_blank'); 
         });
         //linkTerminos.addEventListener('click', function (event) {
