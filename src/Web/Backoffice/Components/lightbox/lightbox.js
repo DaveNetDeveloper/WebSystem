@@ -119,24 +119,24 @@
         container.innerHTML = `
             <div class="col-lg-3 col-md-6 mb-30">
                 <a class="popup-image-gallery" href="${imgPath}/${entidad.imagen}">
-                    <img src="${imgPath}/${entidad.imagen}" alt="${entidad.nombre}">
+                    <img style="height: 165px;" src="${imgPath}/${entidad.imagen}" alt="${entidad.nombre}">
                 </a>
             </div>
              <div class="col-lg-3 col-md-6 mb-30">
-                <a class="popup-image-gallery" href="${imgPath}/${entidad.imagen}">
-                    <img src="${imgPath}/${entidad.imagen}" alt="${entidad.nombre}">
+                <a class="popup-image-gallery" href="${imgPath}/02-MercatSantAndreu.jpeg">
+                    <img  style="height: 165px;" src="${imgPath}/02-MercatSantAndreu.jpeg" alt="02-MercatSantAndreu.jpeg">
                 </a>
             </div>
              <div class="col-lg-3 col-md-6 mb-30">
-               <a class="popup-image-gallery" href="${imgPath}/${entidad.imagen}">
-                    <img src="${imgPath}/${entidad.imagen}" alt="${entidad.nombre}">
+               <a class="popup-image-gallery" href="${imgPath}/02-MercatSantAndreu.jpg">
+                    <img  style="height: 165px;" src="${imgPath}/02-MercatSantAndreu.jpg" alt="02-MercatSantAndreu.jpg">
                 </a>
             </div>
              <div class="col-lg-3 col-md-6 mb-30">
-               <a class="popup-image-gallery" href="${imgPath}/${entidad.imagen}">
-                    <img src="${imgPath}/${entidad.imagen}" alt="${entidad.nombre}">
+               <a class="popup-image-gallery" href="${imgPath}/03-PlataformaCarnica.jpg">
+                    <img  style="height: 165px;" src="${imgPath}/03-PlataformaCarnica.jpg" alt="03-PlataformaCarnica.jpg">
                 </a>
-            </div>
+            </div>  
         `;
     }
       

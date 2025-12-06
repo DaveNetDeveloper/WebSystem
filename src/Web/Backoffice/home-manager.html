@@ -24,6 +24,12 @@
         body { 
             background: #eff3f5;
         }
+
+        .table tbody tr:hover {
+            background-color: #fffacd; 
+            cursor: pointer; 
+        }
+
     </style>
 
 </head>
@@ -42,21 +48,19 @@
             return window.GlobalCssCache[path];
         }
     </script>
-
+     
     <br /><br />
-
     <app-lightbox entidad-id="1" titulo="Galeria de la entidad 1"></app-lightbox>
     <script type="module" src="../Backoffice/Components/lightbox/lightbox.js"></script>
-
-    <br /><br />
-
+     
     <div class="dashboard-area pt-30">
         <div class="container">
             <div class="row">
+
                 <div class="col-lg-6">
                     <div class="pannel-wrapper white-bg mb-30">
                         <div class="panel-heading heading-border">
-                            <h4>% Roles</h4>
+                            <h4>Roles de Usuarios (%)</h4>
                         </div>
                         <div class="panel-body mt-30 pt-0">
                             <div class="chart-js-warpper">
@@ -65,6 +69,67 @@
                         </div>
                     </div>
                 </div>
+
+                <div class="col-lg-6">
+                    <div class="pannel-wrapper white-bg mb-30">
+                        <div class="panel-heading">
+                            <h4 class="m-0">Últimas Transacciones</h4>
+                        </div>
+                        <div class="panel-body pl-0 pr-0 pt-0 pb-0">
+                            <div class="table-responsive">
+                                <table class="table">
+                                    <thead class="gray-bg">
+                                        <tr>
+                                            <th scope="col">Id</th>
+                                            <th scope="col">Usuario</th>
+                                            <th scope="col">Tipo</th>
+                                            <th scope="col">Puntos</th>
+                                            <th scope="col">Estado</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>#001</td>
+                                            <td>Alex García</td>
+                                            <td>Escaneo de QR</td>
+                                            <td>500</td>
+                                            <td  class="ddd"><button style="min-width: -webkit-fill-available;" type="button" class="btn btn-warning btn-sm d-block">Pending</button></td>
+                                        </tr>
+                                        <tr>
+                                            <td>#002</td>
+                                            <td>Jonathan Rubio</td>
+                                            <td>Registro</td>
+                                            <td>300</td>
+                                            <td><button style="min-width: -webkit-fill-available;" type="button" class="btn btn-success btn-success btn-sm d-block">Completada</button></td>
+                                        </tr>
+                                        <tr>
+                                            <td>#003</td>
+                                            <td>Sonia Gómez</td>
+                                            <td>Escaneo de QR</td>
+                                            <td>500</td>
+                                            <td><button style="min-width: -webkit-fill-available;" type="button" class="btn btn-success btn-danger btn-sm d-block">Error</button></td>
+                                        </tr>
+                                        <tr>
+                                            <td>#004</td>
+                                            <td>David Perez</td>
+                                            <td>Registro</td>
+                                            <td>300</td>
+                                            <td><button style="min-width: -webkit-fill-available;" type="button" class="btn btn-success btn-sm d-block">Completada</button></td>
+                                        </tr>
+                                        <tr>
+                                            <td>#005</td>
+                                            <td>Carlos Marín</td>
+                                            <td>Registro</td>
+                                            <td>300</td>
+                                            <td><button style="min-width: -webkit-fill-available;" type="button" class="btn btn-success btn-sm d-block">Completada</button></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
             </div>
         </div>
     </div>
