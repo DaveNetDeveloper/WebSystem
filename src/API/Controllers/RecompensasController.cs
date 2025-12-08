@@ -8,7 +8,9 @@ using Domain.Entities;
 
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
- 
+using Microsoft.Extensions.Options;
+using static Utilities.ExporterHelper;
+
 namespace API.Controllers
 {
     [Route("[controller]")]
@@ -17,13 +19,18 @@ namespace API.Controllers
                                          IController<IActionResult, Recompensa, int>
     {
         private readonly IRecompensaService _recompensaService;
+        private readonly ExportConfiguration _exportConfig;
         public RecompensasController(ILogger<RecompensasController> logger, 
-                                     IRecompensaService recompensaService) {
+                                     IRecompensaService recompensaService,
+                                   IOptions<ExportConfiguration> options)
+        {
             _logger = logger;
             _recompensaService = recompensaService ?? throw new ArgumentNullException(nameof(recompensaService));
+            _exportConfig = options.Value ?? throw new ArgumentNullException(nameof(options));
         }
 
-        [Authorize]
+        [AllowAnonymous]
+        //[Authorize]
         [HttpGet("ObtenerRecompensas")]
         public async Task<IActionResult> GetAllAsync()
         {
@@ -125,6 +132,59 @@ namespace API.Controllers
                 return StatusCode(StatusCodes.Status500InternalServerError,
                                  new { message = MessageProvider.GetMessage("Recompensa:GetByUser", "Error"), idUsuario });
             }
+        }
+        /// <summary>
+        /// Exportar listado a Excel o pdf
+        /// </summary> 
+        /// <returns> File to download </returns>
+        [HttpGet("Exportar")]
+        //[Authorize(Policy = "RequireAdmin")]
+        //[Authorize]
+        [AllowAnonymous]
+        public async Task<IActionResult> Exportar([FromServices] ICorreoService correoService,
+                                                  [FromQuery] ExportFormat formato,
+                                                  [FromQuery] bool envioEmail)
+        {
+            var entityName = nameof(Recompensa);
+
+            var file = await _recompensaService.ExportarAsync(formato);
+
+            string fileExtension = string.Empty;
+            string contentType = string.Empty;
+
+            switch (formato)
+            {
+                case ExportFormat.Excel:
+                    contentType = _exportConfig.ExcelContentType;
+                    fileExtension = _exportConfig.ExcelExtension;
+                    break;
+                case ExportFormat.Pdf:
+                    contentType = _exportConfig.PdfContentType;
+                    fileExtension = _exportConfig.PdfExtension;
+                    break;
+            }
+
+            var fileName = $"List_{entityName.ToString()}_{DateTime.UtcNow:yyyyMMddHHmmss}{fileExtension}";
+
+            if (envioEmail)
+            {
+                var tiposEnvioCorreo = await correoService.ObtenerTiposEnvioCorreo();
+                var tipoEnvioCorreo = tiposEnvioCorreo.Where(u => u.nombre == TipoEnvioCorreo.TipoEnvio.EnvioReport)
+                                                      .SingleOrDefault();
+
+                tipoEnvioCorreo.asunto = $"Report {entityName.ToString()} ({fileExtension})";
+                tipoEnvioCorreo.cuerpo = $"Se adjunta el informe para la vista de datos {entityName.ToString()}";
+
+                var correo = new Correo(tipoEnvioCorreo, _exportConfig.CorreoAdmin, "Admin", "");
+                correo.FicheroAdjunto = new FicheroAdjunto()
+                {
+                    Archivo = file,
+                    ContentType = contentType,
+                    NombreArchivo = fileName
+                };
+                correoService.EnviarCorreo(correo);
+            }
+            return File(file, contentType, fileName);
         }
     }
 }

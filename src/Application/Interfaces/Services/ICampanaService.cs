@@ -2,6 +2,7 @@
 using Application.DTOs.Responses;
 using Application.Interfaces.Common;
 using Domain.Entities;
+using static Utilities.ExporterHelper;
 
 namespace Application.Interfaces.Services
 {
@@ -12,5 +13,6 @@ namespace Application.Interfaces.Services
 
         Task<IEnumerable<Segmento>> GetSegmentoByCampana(int idCampana);
         Task<IEnumerable<Accion>> GetAccionesByCampana(int idCampana);
+        Task<byte[]> ExportarAsync(ExportFormat formato);
     }
 }

@@ -2,14 +2,14 @@
 // Constantes
 //
 const baseUrl = `https://localhost`;
+const port = `44311`;
 const controllerName = `Usuarios`;
-const port = `7161`;
 const apiUrl = `${baseUrl}:${port}/${controllerName}/`;
 
 var userToken = "qAGlDm9o9oS1Ir+xNlWk3XXHkJy/+nJmBy3KUPoms2w=";
 
 
-const controllerActions = [
+export const controllerActions = [
     'ObtenerUsuarioById',
     'CrearUsuario',
     'ObtenerUsuarioByEmail',
@@ -25,9 +25,9 @@ const controllerActions = [
 //
 // Clases
 //
-class Usuario {
+export class Usuario {
 
-    constructor(id, nombre, apellidos, correo, activo, contraseña, fechaNacimiento, suscrito, fechaCreacion, puntos) {
+    constructor(id, nombre, apellidos, correo, activo, contrasena, fechaNacimiento, suscrito, fechaCreacion, genero, puntos) {
         this.id = id;
         this.nombre = nombre;
         this.apellidos = apellidos;
@@ -37,10 +37,9 @@ class Usuario {
         this.fechaNacimiento = fechaNacimiento,
         this.suscrito = suscrito,
         this.fechaCreacion = fechaCreacion,
+        this.genero = genero,
         this.ultimaConexion = null,
-        this.puntos = puntos,
-        this.token = null,
-        this.expiracionToken = null
+        this.puntos = puntos
     }
     metodo() {
         //console.log(`Hola, soy ${this.nombre} y tengo ${this.puntos} puntos.`);
@@ -50,7 +49,7 @@ class Usuario {
 //
 // Proxis con los web services del controlador 
 //
-function Get(id) {
+export function Get(id) {
 
     var nameMethod = "ObtenerUsuario";
  
@@ -84,7 +83,7 @@ function Get(id) {
         }); 
 }
 
-function GetAll() {
+export function GetAll() {
     const requestOptions = {
         method: 'GET',
         headers: {
@@ -109,7 +108,7 @@ function GetAll() {
         });
 }
 
-function GetByFilters(nameMethod, pFiltros) {
+export function GetByFilters(nameMethod, pFiltros) {
 
     const requestOptions = {
         method: 'GET',
@@ -143,7 +142,7 @@ function GetByFilters(nameMethod, pFiltros) {
         });
 }
 
-function PatchByFilters(nameMethod, pFiltros) {
+export function PatchByFilters(nameMethod, pFiltros) {
 
     const requestOptions = {
         method: 'PATCH',
@@ -178,7 +177,7 @@ function PatchByFilters(nameMethod, pFiltros) {
             }); 
 }
 
-function Delete(id) {
+export function Delete(id) {
 
     var urlConParametro = `${apiUrl}Eliminar/${id}`;
     return fetch(urlConParametro, {
@@ -199,7 +198,7 @@ function Delete(id) {
     });
 }
  
-function Post(nameMethod, entidad) {
+export function Post(nameMethod, entidad) {
   
     var url = `${apiUrl}${nameMethod}`;
     return fetch(url, {
@@ -223,7 +222,7 @@ function Post(nameMethod, entidad) {
         });
 }
 
-function Put(nameMethod, entidad) {
+export function Put(nameMethod, entidad) {
 
     var url = `${apiUrl}${nameMethod}`;
     return fetch(url, {
@@ -248,7 +247,7 @@ function Put(nameMethod, entidad) {
         });
 }
 
-function CloseSession() {
+export function CloseSession() {
 
     // borrar la cookie de sesión de usuario
 

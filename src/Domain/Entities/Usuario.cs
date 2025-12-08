@@ -12,6 +12,7 @@ namespace Domain.Entities
             UsuarioSegmentos = new List<UsuarioSegmentos>();
             UsuarioDirecciones = new List<UsuarioDireccion>();
             UsuarioRecompensas = new List<UsuarioRecompensa>();
+            ActividadReservas = new List<ActividadReserva>();
         }
 
         private int? _id;
@@ -116,10 +117,7 @@ namespace Domain.Entities
                 //    throw new ArgumentException("Los puntos no pueden estar en negativo (-).");
                 _puntos = value;
             }
-        }
-        public string? token { get; set; }
-
-        public DateTime? expiracionToken { get; set; }
+        } 
 
         /// <summary>
         /// Género del usuario
@@ -182,7 +180,14 @@ namespace Domain.Entities
                 } 
                 return _edad;
             }
-        }     
+        }
+
+        private Guid? _idPerfil;
+        public Guid? idPerfil
+        {
+            get => _idPerfil;
+            set => _idPerfil = value;
+        }
 
         /// <summary>
         /// Enumeración con la lista de géneros 
@@ -209,7 +214,7 @@ namespace Domain.Entities
         public ICollection<UsuarioSegmentos> UsuarioSegmentos { get; set; }
 
         [JsonIgnore]
-        public ICollection<ActividadReserva> ActividadReservas { get; set; }
+        public ICollection<ActividadReserva>? ActividadReservas { get; set; }
 
         /// <summary>
         /// 
@@ -217,9 +222,7 @@ namespace Domain.Entities
         public void SetInitValuesForNewUser()
         {
             this.fechaCreacion = DateTime.UtcNow;
-            this.activo = false;
-            this.token = null;
-            this.expiracionToken = null;
+            this.activo = false; 
             this.puntos = 0;
             this.ultimaConexion = null;
         }

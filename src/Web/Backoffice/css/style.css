@@ -324,27 +324,35 @@ label {
 	position: relative;
 }
 .main-menu ul li:first-child a:after{display: none}
-.main-menu ul li:hover > a{color: #633E77}
-.main-menu ul li ul.submenu {
-	position: absolute;
-	top: 100%;
-	left: 0;
-	background: #fff;
-	width: 250px;
-	border-top: 4px solid #633E77;
-	transition: .3s;
-	opacity: 0;
-	visibility: hidden;
-	z-index: 9;
-	text-align: left;
-	box-shadow: 0px 0px 28px 0px rgba(82, 63, 105, 0.13);
-}
+	.main-menu ul li:hover > a {
+		color: #e0a800
+	}
+	.main-menu ul li ul.submenu {
+		position: absolute;
+		top: 100%;
+		left: 0;
+		background: #fff;
+		width: 250px;
+		border-top: 4px solid #e0a800;
+		transition: .3s;
+		opacity: 0;
+		visibility: hidden;
+		z-index: 9;
+		text-align: left;
+		box-shadow: 0px 0px 28px 0px rgba(82, 63, 105, 0.13);
+	}
 .main-menu ul li ul.submenu li {
 	margin: 0;
 	display: block;
 	border-bottom: 1px solid #8cadad4d;
 	padding: 0;
 }
+
+.main-menu ul li ul.submenu li a:hover {
+		color: #e0a800;
+}
+
+.main-menu ul li ul.submenu
 .main-menu ul li ul.submenu li:last-child{border: 0}
 .main-menu ul li ul.submenu li a {
 	padding: 15px 20px;
@@ -352,9 +360,7 @@ label {
 	font-size: 12px;
 	display: block;
 }
-.main-menu ul li ul.submenu li:hover > a {
-	color: #633E77;
-}
+
 .main-menu ul li:hover > ul.submenu{opacity: 1;visibility: visible}
 .main-menu ul li ul.submenu li ul.submenu {
 	left: 100%;

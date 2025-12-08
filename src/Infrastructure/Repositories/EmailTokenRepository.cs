@@ -100,11 +100,11 @@ namespace Infrastructure.Repositories
             return nuevoEmailToken.token.ToString();
         }
 
-        public bool CheckEmailToken(string emailToken, string email)
+        public async Task<bool> CheckEmailToken(string emailToken, string email)
         {
-            var userId = _context.Usuarios.Single(u => u.correo.ToLower() == email.ToLower())?.id;
+            var user = await _context.Usuarios.SingleOrDefaultAsync(u => u.correo.ToLower() == email.ToLower());
 
-            var emailTokenElement = _context.EmailTokens.Single(a => a.token.ToString() == emailToken && a.userId == userId);
+            var emailTokenElement = await _context.EmailTokens.SingleOrDefaultAsync(a => a.token.ToString() == emailToken && a.userId == user.id);
 
             if (null == emailTokenElement ||
                 emailTokenElement.consumido == true || 
@@ -115,9 +115,9 @@ namespace Infrastructure.Repositories
             return true;
         }
 
-        public bool ConsumeEmailToken(string emailToken, string ip, string userAgent)
+        public async Task<bool> ConsumeEmailToken(string emailToken, string ip, string userAgent)
         {
-            var emailTokenElement = _context.EmailTokens.Single(a => a.token.ToString() == emailToken);
+            var emailTokenElement = await _context.EmailTokens.SingleOrDefaultAsync(a => a.token.ToString() == emailToken);
 
             if (null != emailTokenElement && !emailTokenElement.consumido) {
 

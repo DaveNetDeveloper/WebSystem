@@ -1,8 +1,9 @@
 ﻿using Domain;
 using Domain.DataQuery;
-using Domain.Entities;
 using Domain.DataQuery;
+using Domain.Entities;
 using Microsoft.EntityFrameworkCore;
+using QRCoder;
 using static Domain.Entities.Transaccion;
 
 namespace Infrastructure.Persistence
@@ -21,8 +22,7 @@ namespace Infrastructure.Persistence
         public DbSet<Rol> Roles { get; set; }
         public DbSet<TipoEntidad> TipoEntidades { get; set; }
         public DbSet<TipoTransaccion> TipoTransacciones { get; set; }
-        public DbSet<Transaccion> Transacciones { get; set; }
-        public DbSet<QR> QRs { get; set; }
+        public DbSet<Transaccion> Transacciones { get; set; } 
         public DbSet<Entidad> Entidades { get; set; }
         public DbSet<Producto> Productos { get; set; }
         public DbSet<ProductoImagen> ProductoImagenes { get; set; } 
@@ -54,10 +54,15 @@ namespace Infrastructure.Persistence
         public DbSet<CampanaSegmentos> CampanaSegmentos { get; set; }
         public DbSet<CampanaAcciones> CampanaAcciones  { get; set; }
         public DbSet<CampanaExecution> CampanaExecutions { get; set; }
+        public DbSet<WorkerServiceExecution> WorkerServiceExecutions { get; set; }
         public DbSet<Accion> Acciones { get; set; }
         public DbSet<TipoSegmento> TipoSegmentos { get; set; }
         public DbSet<Segmento> Segmentos { get; set; }
-        public DbSet<Login> Logins { get; set; } 
+        public DbSet<Login> Logins { get; set; }
+        public DbSet<Log> Logs { get; set; }
+        public DbSet<Domain.Entities.QRCode> QRCodes { get; set; }
+        public DbSet<RefreshToken> RefreshTokens { get; set; }
+        public DbSet<Perfil> Perfiles { get; set; }
 
         //
         // Views
@@ -73,10 +78,7 @@ namespace Infrastructure.Persistence
         public DbSet<v_AllUserData> v_AllUserData { get; set; }
         public DbSet<v_AllCampanasData> v_AllCampanasData { get; set; }
         public DbSet<v_AsistenciaActividades> v_AsistenciaActividades { get; set; }
-        //
-        // Jobs
-        //
-        public DbSet<WorkerServiceExecution> WorkerServiceExecutions { get; set; }
+        public DbSet<v_TotalErrores> v_TotalErrores { get; set; }
         
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -85,7 +87,13 @@ namespace Infrastructure.Persistence
             //
             // TABLES
             //
-
+            modelBuilder.Entity<Domain.Entities.QRCode>(b =>
+            {
+                b.HasKey(q => q.id);
+                //b.Property(q => q.token).IsRequired();
+                //b.Property(q => q.payload).IsRequired();
+                //b.Property(q => q.imagen).HasColumnType("varbinary(max)");
+            });
 
             //ActividadReserva
             modelBuilder.Entity<ActividadReserva>().HasKey(ur => new { ur.idReserva });
@@ -110,6 +118,7 @@ namespace Infrastructure.Persistence
                .WithMany(ur => ur.UsuarioRoles)
                //.WithMany()
                .HasForeignKey(ur => ur.identidad);
+               //.IsRequired(false);
 
             //UsuarioEntidad
             modelBuilder.Entity<UsuarioEntidad>().HasKey(ue => new { ue.idusuario, ue.identidad }); 
@@ -308,6 +317,11 @@ namespace Infrastructure.Persistence
             modelBuilder.Entity<v_AsistenciaActividades>(eb => {
                 eb.HasNoKey();
                 eb.ToView("v_AsistenciaActividades");
+            });
+
+            modelBuilder.Entity<v_TotalErrores>(eb => {
+                eb.HasNoKey();
+                eb.ToView("v_TotalErrores");
             });
 
             //

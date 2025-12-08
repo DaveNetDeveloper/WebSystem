@@ -1,0 +1,300 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Admin Home</title>
+    <link rel="shortcut icon" type="image/x-icon" href="img/favicon.png">
+
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/animate.min.css">
+    <link rel="stylesheet" href="css/fontawesome-all.min.css">
+    <link rel="stylesheet" href="css/et-line-fonts.css">
+    <link rel="stylesheet" href="css/meanmenu.css">
+    <link rel="stylesheet" href="css/default.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/responsive.css">
+
+
+    <link rel="stylesheet" href="css/owl.carousel.min.css">
+    <link rel="stylesheet" href="css/magnific-popup.css">
+    <link rel="stylesheet" href="css/dragula.min.css">
+    <link rel="stylesheet" href="css/sweetalert.css">
+    <link rel="stylesheet" href="css/chart.css">
+
+    <style>
+        body {
+            background: #eff3f5;
+        }
+
+    </style>
+
+</head>
+<body>
+    <header>
+        <admin-menu rol="admin"></admin-menu> <!--el valor de "rol"  debeia venir de "getCookie("app-role")"-->
+        <script type="module" src="../Backoffice/Components/adminHeader/adminHeader.js"></script>
+    </header>
+
+    <!--<div class="body-wrapper body-bg">-->
+
+    
+    <div class="dashboard-area pt-30">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="panel-heading heading-border">
+                        <h4>Números destacados</h4>
+                    </div>
+                    <app-highlights></app-highlights>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script type="module" src="../Backoffice/Components/highlights/highlights.js"></script>
+    <script>
+        const element = document.querySelector("app-highlights");
+
+        element.data = [
+            { icon: "fas fa-user", value: "250", label: "Usuarios" },
+            { icon: "fas fa-clock", value: "500", label: "Transacciones" },
+            { icon: "fas fa-check", value: "###", label: "XXX" },
+            { icon: "fas fa-times", value: "###", label: "XXX" }
+        ];
+    </script>
+
+    <div class="dashboard-area pt-30">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="pannel-wrapper white-bg mb-30">
+                        <div class="panel-heading heading-border">
+                            <h4>Actividad de Usuarios</h4>
+                        </div>
+                        <div class="panel-body mt-30 pt-0">
+                            <div class="chart-js-warpper">
+                                <div class="flot-js-warpper">
+                                    <div id="flot-categories" style="height: 250px"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+
+        document.addEventListener("DOMContentLoaded", async () => {
+
+            var gridColor = "#aaaaaa";
+            var gridBorder = "#eeeeee";
+            var legendBg = "#f5f5f5";
+
+            if ($("#flot-categories").length) {
+
+                const baseUrl = `https://localhost`;
+                const controllerName = `DataQuery`;
+                const port = `44311`;
+                const apiUrl = `${baseUrl}:${port}/${controllerName}/ObtenerVisitasTipoDispositivo`;
+
+                fetch(apiUrl)
+                    .then(r => r.json())
+                    .then(data => {
+                        // Convertimos la fecha a "YYYY-Wxx"
+                        function formatWeek(dateStr) {
+                            let d = new Date(dateStr);
+                            // Calcular la semana ISO
+                            let dayNum = d.getUTCDay() || 7;
+                            d.setUTCDate(d.getUTCDate() + 4 - dayNum);
+                            let yearStart = new Date(Date.UTC(d.getUTCFullYear(), 0, 1));
+                            let weekNo = Math.ceil((((d - yearStart) / 86400000) + 1) / 7);
+                            return d.getUTCFullYear() + "-W" + weekNo;
+                        }
+
+                        // Transformar datos
+                        data.forEach(d => {
+                            d.semana = formatWeek(d.semana);
+                        });
+
+                        // Dispositivos únicos
+                        let dispositivos = [...new Set(data.map(d => d.tipoDispositivo))];
+
+                        // Construir series para Flot
+                        let series = dispositivos.map(disp => {
+                            return {
+                                label: disp,
+                                data: data
+                                    .filter(x => x.tipoDispositivo === disp)
+                                    .map(x => [x.semana, x.visitas])
+                            };
+                        });
+
+                        // Pintar gráfico
+                        $.plot($("#flot-categories"), series, {
+                            series: {
+                                shadowSize: 0,
+                                lines: { show: true, fill: 0.1, lineWidth: 1 }
+                            },
+                            grid: {
+                                color: gridColor,
+                                borderColor: gridBorder,
+                                borderWidth: 1,
+                                hoverable: true,
+                                clickable: true
+                            },
+                            xaxis: { mode: "categories", tickColor: gridBorder },
+                            yaxis: { tickColor: gridBorder },
+                            legend: { backgroundColor: legendBg },
+                            tooltip: { show: true, content: "%s: %y" },
+                            colors: ["#E040FB", "#E91E63", "#00BCD4"]
+                        });
+                    });
+            }
+
+        });
+
+    </script>
+
+    <div class="dashboard-area pt-30">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="pannel-wrapper white-bg mb-30">
+                        <div class="panel-heading heading-border">
+                            <h4>Total de Transacciones</h4>
+                        </div>
+                        <div class="panel-body mt-30 pt-0">
+                            <div class="chart-js-warpper">
+                                <div class="flot-js-warpper">
+                                    <div id="flot-graph" style="height: 250px">
+                                        <!--  Contenido dinamico -->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        document.addEventListener("DOMContentLoaded", async () => {
+            var gridColor = "#aaaaaa";
+            var gridBorder = "#eeeeee";
+            var legendBg = "#f5f5f5";
+
+            const baseUrl = `https://localhost`;
+            const controllerName = `DataQuery`;
+            const port = `44311`;
+            const apiUrl = `${baseUrl}:${port}/${controllerName}/ObtenerTotalUltimasTransacciones`;
+
+            const response = await fetch(apiUrl);
+            const data = await response.json();
+
+            // Función para obtener solo el día (dd) de la fecha
+            const formatDay = (isoDate) => {
+                const d = new Date(isoDate);
+                return d.getDate().toString(); // solo día (1-31)
+            };
+
+            // Procesamos los datos con etiquetas cortas (día del mes)
+            const qrData = data.map(item => [formatDay(item.dia), item.totalQR]);
+            const eventoData = data.map(item => [formatDay(item.dia), item.totalEvento]);
+
+            if ($("#flot-graph").length) {
+                $.plot(
+                    $("#flot-graph"),
+                    [
+                        {
+                            label: "QR",
+                            data: qrData
+                        },
+                        {
+                            label: "Evento",
+                            data: eventoData
+                        }
+                    ],
+                    {
+                        series: {
+                            shadowSize: 0,
+                            lines: { show: true },
+                            points: { show: true, radius: 4 }
+                        },
+
+                        grid: {
+                            color: gridColor,
+                            borderColor: gridBorder,
+                            borderWidth: 1,
+                            hoverable: true,
+                            clickable: true
+                        },
+
+
+                        xaxis: {
+                            mode: "categories",
+                            tickColor: gridBorder
+                        },
+                        yaxis: { tickColor: gridBorder },
+                        legend: { backgroundColor: legendBg },
+                        tooltip: {
+                            show: true,
+                            content: "%s (%x): %y"
+                        },
+                        colors: ["#E040FB", "#00BCD4"]
+                    }
+                );
+            }
+        });
+
+    </script>
+    <br /><br />
+
+    <app-lightbox entidad-id="1" titulo="Galeria de la entidad 1"></app-lightbox>
+    <script type="module" src="../Backoffice/Components/lightbox/lightbox.js"></script>
+
+    <script>
+        window.GlobalCssCache = {};
+        async function preloadCss(path) {
+            if (!window.GlobalCssCache[path]) {
+                const css = await fetch(path).then(r => r.text());
+                window.GlobalCssCache[path] = css;
+            }
+            return window.GlobalCssCache[path];
+        }
+    </script>
+
+    <br /><br />
+
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6">
+                <app-accordion titulo="Entidad 1" entidad-id="1"></app-accordion>
+                <script type="module" src="../Backoffice/Components/accordion/accordion.js"></script>
+            </div>
+            <div class="col-lg-6">
+                <app-accordion titulo="Entidad 2" entidad-id="2"></app-accordion>
+                <script type="module" src="../Backoffice/Components/accordion/accordion.js"></script>
+            </div>
+        </div>
+    </div>
+
+    <br /><br />
+
+    <!--<script src="js/jquery.min.js"></script>-->
+    <script src="js/vendor/modernizr-3.5.0.min.js"></script>
+    <script src="js/vendor/jquery-1.12.4.min.js"></script>
+    <script src="js/popper.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/jquery.meanmenu.min.js"></script>
+    <script src="js/plugins.js"></script>
+    <script src="js/main.js"></script>
+
+    <script src="js/Chart.bundle.js"></script>
+    <script src="js/flot.js"></script>
+
+    <!--<script src="js/vanillaCalendar-active.js"></script>
+    <script src="js/chartjs.js"></script>
+    <script src="js/flot-chart.js"></script>-->
+    <!--</div>-->
+
+</body>
+</html>

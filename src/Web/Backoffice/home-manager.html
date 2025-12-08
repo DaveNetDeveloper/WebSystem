@@ -1,0 +1,229 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Manager Home</title>
+    <link rel="shortcut icon" type="image/x-icon" href="img/favicon.png">
+
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/animate.min.css">
+    <link rel="stylesheet" href="css/fontawesome-all.min.css">
+    <link rel="stylesheet" href="css/et-line-fonts.css">
+    <link rel="stylesheet" href="css/meanmenu.css">
+    <link rel="stylesheet" href="css/default.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/responsive.css">
+
+    <link rel="stylesheet" href="css/owl.carousel.min.css">
+    <link rel="stylesheet" href="css/magnific-popup.css">
+    <link rel="stylesheet" href="css/dragula.min.css">
+    <link rel="stylesheet" href="css/sweetalert.css">
+    <link rel="stylesheet" href="css/chart.css">
+
+    <style>
+
+        body { 
+            background: #eff3f5;
+        }
+
+        .table tbody tr:hover {
+            background-color: #fffacd; 
+            cursor: pointer; 
+        }
+
+    </style>
+
+</head>
+<body>
+    <header>
+        <admin-menu rol="manager"></admin-menu> <!--el valor de "rol"  debeia venir de "getCookie("app-role")"-->
+        <script type="module" src="../Backoffice/Components/adminHeader/adminHeader.js"></script>
+    </header> 
+    <script>
+        window.GlobalCssCache = {};
+        async function preloadCss(path) {
+            if (!window.GlobalCssCache[path]) {
+                const css = await fetch(path).then(r => r.text());
+                window.GlobalCssCache[path] = css;
+            }
+            return window.GlobalCssCache[path];
+        }
+    </script>
+     
+    <br /><br />
+    <app-lightbox entidad-id="1" titulo="Galeria de la entidad 1"></app-lightbox>
+    <script type="module" src="../Backoffice/Components/lightbox/lightbox.js"></script>
+     
+    <div class="dashboard-area pt-30">
+        <div class="container">
+            <div class="row">
+
+                <div class="col-lg-6">
+                    <div class="pannel-wrapper white-bg mb-30">
+                        <div class="panel-heading heading-border">
+                            <h4>Roles de Usuarios (%)</h4>
+                        </div>
+                        <div class="panel-body mt-30 pt-0">
+                            <div class="chart-js-warpper">
+                                <canvas id="chart-pie" height="250" class="chartjs-demo"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-6">
+                    <div class="pannel-wrapper white-bg mb-30">
+                        <div class="panel-heading">
+                            <h4 class="m-0">Últimas Transacciones</h4>
+                        </div>
+                        <div class="panel-body pl-0 pr-0 pt-0 pb-0">
+                            <div class="table-responsive">
+                                <table class="table">
+                                    <thead class="gray-bg">
+                                        <tr>
+                                            <th scope="col">Id</th>
+                                            <th scope="col">Usuario</th>
+                                            <th scope="col">Tipo</th>
+                                            <th scope="col">Puntos</th>
+                                            <th scope="col">Estado</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>#001</td>
+                                            <td>Alex García</td>
+                                            <td>Escaneo de QR</td>
+                                            <td>500</td>
+                                            <td  class="ddd"><button style="min-width: -webkit-fill-available;" type="button" class="btn btn-warning btn-sm d-block">Pending</button></td>
+                                        </tr>
+                                        <tr>
+                                            <td>#002</td>
+                                            <td>Jonathan Rubio</td>
+                                            <td>Registro</td>
+                                            <td>300</td>
+                                            <td><button style="min-width: -webkit-fill-available;" type="button" class="btn btn-success btn-success btn-sm d-block">Completada</button></td>
+                                        </tr>
+                                        <tr>
+                                            <td>#003</td>
+                                            <td>Sonia Gómez</td>
+                                            <td>Escaneo de QR</td>
+                                            <td>500</td>
+                                            <td><button style="min-width: -webkit-fill-available;" type="button" class="btn btn-success btn-danger btn-sm d-block">Error</button></td>
+                                        </tr>
+                                        <tr>
+                                            <td>#004</td>
+                                            <td>David Perez</td>
+                                            <td>Registro</td>
+                                            <td>300</td>
+                                            <td><button style="min-width: -webkit-fill-available;" type="button" class="btn btn-success btn-sm d-block">Completada</button></td>
+                                        </tr>
+                                        <tr>
+                                            <td>#005</td>
+                                            <td>Carlos Marín</td>
+                                            <td>Registro</td>
+                                            <td>300</td>
+                                            <td><button style="min-width: -webkit-fill-available;" type="button" class="btn btn-success btn-sm d-block">Completada</button></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <script src="js/vendor/jquery-1.12.4.min.js"></script>
+    <script src="js/Chart.bundle.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            $(".chartjs-demo").each(function () {
+                $(this).wrap(
+                    $('<div style="height:' + this.getAttribute("height") + 'px"></div>')
+                );
+            });
+
+            if ($("#chart-pie").length) {
+
+                const baseUrl = `https://localhost`;
+                const controllerName = `DataQuery`;
+                const port = `44311`;
+                const apiUrl = `${baseUrl}:${port}/${controllerName}/ObtenerRolesUsuarios`;
+
+                fetch(apiUrl)
+                    .then(response => response.json())
+                    .then(data => {
+                        const labels = data.map(item => item.rol);
+                        const values = data.map(item => item.rolUsage);
+
+                        const backgroundColors = [
+                            "#FF6384", "#36A2EB", "#FFCE56", "#4BC0C0",
+                            "#9966FF", "#FF9F40", "#8DD17E", "#F06292"
+                        ];
+                        const hoverColors = backgroundColors.map(c => c);
+
+                        // Crear el gráfico
+                        var pieChart = new Chart(
+                            document.getElementById("chart-pie").getContext("2d"),
+                            {
+                                type: "pie",
+                                data: {
+                                    labels: labels,
+                                    datasets: [{
+                                        data: values,
+                                        backgroundColor: backgroundColors.slice(0, labels.length),
+                                        hoverBackgroundColor: hoverColors.slice(0, labels.length)
+                                    }]
+                                },
+                                options: {
+                                    responsive: true,
+                                    maintainAspectRatio: false,
+                                    plugins: {
+                                        legend: {
+                                            position: "bottom"
+                                        },
+                                        tooltip: {
+                                            callbacks: {
+                                                label: function (context) {
+                                                    return context.label + ": " + context.formattedValue;
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        );
+                    })
+                    .catch(error => console.error("Error cargando gráfico:", error));
+            }
+        });
+    </script>
+
+    <br /><br />
+
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6">
+                <app-accordion titulo="Entidad 1" entidad-id="1"></app-accordion>
+                <script type="module" src="../Backoffice/Components/accordion/accordion.js"></script>
+            </div>
+            <div class="col-lg-6">
+                <app-accordion titulo="Entidad 2" entidad-id="2"></app-accordion>
+                <script type="module" src="../Backoffice/Components/accordion/accordion.js"></script>
+            </div>
+        </div>
+    </div>
+
+    <br /><br />
+
+    <!--<script src="js/jquery.min.js"></script>-->
+    <script src="js/vendor/modernizr-3.5.0.min.js"></script>
+    <script src="js/vendor/jquery-1.12.4.min.js"></script>
+    <script src="js/popper.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/jquery.meanmenu.min.js"></script>
+    <script src="js/plugins.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>

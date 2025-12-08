@@ -16,3 +16,7 @@ tests/Test.UnitTest/Report/
 tests/Test.Integration/Report/
 tests/Test.Configuration/Report/
 tests/Test.Security/Report/
+_site
+docs
+project documentation
+/WebSystem.slnLaunch.user

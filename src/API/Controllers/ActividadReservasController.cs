@@ -232,7 +232,7 @@ namespace API.Controllers
             // Obtener Usuario
             var usuario = await _usuarioService.GetByIdAsync(idUsuario);
             var correo = new Correo(tipoEnvio, usuario.correo, usuario.nombre, ""); // _config["AppConfiguration:LogoURL"]
-            Guid emailToken = _correoService.EnviarCorreo(correo);
+            Guid? emailToken = _correoService.EnviarCorreo(correo);
 
             // Devolver los datos de la reserva desde el controller(en DTO Response)
             var reservaResponse = new ReservaActividadDTO() {

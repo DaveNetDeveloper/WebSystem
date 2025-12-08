@@ -1,5 +1,5 @@
 $(function() {
-  if ($("#example").length) {
-    $("#example").DataTable();
+    if ($("#table_name").length) {
+      $("#table_name").DataTable();
   }
 });

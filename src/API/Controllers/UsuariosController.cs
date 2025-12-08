@@ -1,21 +1,26 @@
 using Application.Common;
 using Application.DTOs.Filters;
+using Application.DTOs.Requests;
 using Application.Interfaces.Controllers;
 using Application.Interfaces.DTOs.Filters;
 using Application.Interfaces.Services;
 using Application.Services;
 using Domain.Entities;
-using Utilities;
-
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.RateLimiting; 
 using Microsoft.Extensions.Options;
+using Microsoft.Extensions.Options;
+using Microsoft.IdentityModel.Tokens;
 using System.ComponentModel.DataAnnotations;
-
+using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
+using System.Text;
+using Twilio.TwiML.Voice;
+using Utilities;
+using static Utilities.ExporterHelper;
 namespace API.Controllers
 {
-
     [ApiController]
     [Route("[controller]")]
     public class UsuariosController : BaseController<Usuario>, IController<IActionResult, Usuario, int>
@@ -24,28 +29,38 @@ namespace API.Controllers
         private readonly IEmailTokenService _emailTokenService;
         private readonly ICorreoService _correoService;
         private readonly AppConfiguration _appConfiguration;
-        
+        private readonly ILogService _logService; 
+        private readonly ILoginService _loginService;
+        private readonly ExportConfiguration _exportConfig;
+
         /// <summary> Constructor </summary>  
         public UsuariosController(ILogger<UsuariosController> logger, 
                                   IUsuarioService usuarioService,
                                   IEmailTokenService emailTokenService,
-                                  ITokenService tokenService,
                                   ICorreoService correoService,
-                                  IOptions<AppConfiguration> options) {
-            base._logger = logger;  
-            base._tokenService = tokenService;
+                                  IOptions<AppConfiguration> options,
+                                  ILogService logService, 
+                                  ILoginService loginService,
+                                  IOptions<ExportConfiguration> optionsExport)
+        {
+            base._logger = logger;
+            //base._config = config ?? throw new ArgumentNullException(nameof(config));
             _appConfiguration = options.Value ?? throw new ArgumentNullException(nameof(options));
             _usuarioService = usuarioService ?? throw new ArgumentNullException(nameof(usuarioService));
             _correoService = correoService ?? throw new ArgumentNullException(nameof(correoService));
             _emailTokenService = emailTokenService ?? throw new ArgumentNullException(nameof(emailTokenService));
+            _logService = logService ?? throw new ArgumentNullException(nameof(logService)); 
+            _loginService = loginService ?? throw new ArgumentNullException(nameof(loginService));
+            _exportConfig = optionsExport.Value ?? throw new ArgumentNullException(nameof(optionsExport));
         }
 
         /// <summary>
         /// 
         /// </summary>  
         /// <returns> IEnumerable<Usuario> </returns>
-        [Authorize(Policy = "RequireAdmin")] 
-        [EnableRateLimiting("UsuariosLimiter")]
+        [AllowAnonymous]
+        //[Authorize(Roles = "Admin,Manager")]
+        //[EnableRateLimiting("UsuariosLimiter")]
         [HttpGet("ObtenerUsuarios")]
         public async Task<IActionResult> GetAllAsync()
         { 
@@ -123,7 +138,8 @@ namespace API.Controllers
         /// </summary>
         /// <param  name="usuario"></param> 
         /// <returns> bool </returns>
-        [Authorize(Policy = "RequireAdmin")]
+        //[Authorize(Policy = "RequireAdmin")]
+        [Authorize(Roles = "Admin,Manager")]
         [HttpPost("CrearUsuario")]
         public async Task<IActionResult> AddAsync([FromBody] Usuario usuario)
         {
@@ -140,9 +156,10 @@ namespace API.Controllers
                     fechaCreacion = DateTime.UtcNow,
                     ultimaConexion = null,
                     puntos = 0,//defaultPuntos,
-                    token= null,
-                    expiracionToken = null,
-                    genero = usuario.genero
+                    //token= null,
+                    //expiracionToken = null,
+                    genero = usuario.genero,
+                    idPerfil = usuario.idPerfil
                 };
 
                 var result = await _usuarioService.AddAsync(nuevoUsuario); 
@@ -164,7 +181,8 @@ namespace API.Controllers
         /// </summary>
         /// <param name="usuario"></param>
         /// <returns> bool </returns>
-        [Authorize(Policy = "RequireAdmin")]
+        //[Authorize(Policy = "RequireAdmin")]
+        [Authorize]
         [HttpPut("ActualizarUsuario")]
         public async Task<IActionResult> UpdateAsync([FromBody] Usuario usuario) 
         {
@@ -178,16 +196,50 @@ namespace API.Controllers
                 }
             }
             catch (Exception ex) {
-                _logger.LogError(ex, "Error actualizandousuario, {id}.", usuario.id);
+                _logger.LogError(ex, "Error actualizando el usuario, {id}.", usuario.id);
                 return StatusCode(StatusCodes.Status500InternalServerError,
                                  new { message = MessageProvider.GetMessage("Usuario:Actualizar", "Error"), usuario.id });
+            }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="usuario"></param>
+        /// <returns> bool </returns>
+        //[Authorize(Policy = "RequireAdmin")]
+        [Authorize(Roles = "WebUser")]
+        [HttpPut("CompletarPerfil")]
+        public async Task<IActionResult> CompletarPerfil([FromBody] CompleteProfleRequest completeProfileDTO)
+        {
+            try
+            {
+                // Obtener el claim principal (NameIdentifier) para el id del usuario logeado
+                //var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+                if (base.IdUsuario == null) { return Unauthorized("No se pudo obtener el Id del usuario desde el token."); }
+
+                completeProfileDTO.IdUsuario = Int32.Parse(base.IdUsuario);
+                var result = await _usuarioService.CompletarPerfil(completeProfileDTO);
+
+                if (result == false) return NotFound();
+                else {
+                    //_logger.LogInformation(MessageProvider.GetMessage("Usuario:CompletarPerfil", "Success"));
+                    return Ok(result);
+                }
+            }
+            catch (Exception ex) {
+                _logger.LogError(ex, "Error actualizando el usuario, {id}.");
+                return StatusCode(StatusCodes.Status500InternalServerError,
+                                 new { message = MessageProvider.GetMessage("Usuario:CompletarPerfil", "Error") });
             }
         }
 
         /// <summary>  </summary>
         /// <param name="id">  </param> 
         /// <returns> bool </returns>
-        [Authorize(Policy = "RequireAdmin")]
+        //[Authorize(Policy = "RequireAdmin")]
+        
+        //[Authorize(Roles = "Admin,Manager")]
         [HttpDelete("Eliminar/{id}")]
         public async Task<IActionResult> Remove(int id)
         {
@@ -216,6 +268,7 @@ namespace API.Controllers
         /// <param name="nuevaContrasena"></param>
         /// <returns> bool </returns>
         [Authorize]
+        //[AllowAnonymous]
         [HttpPatch("CambiarContrasena")]
         public async Task<IActionResult> CambiarContrasena([FromQuery] string email,
                                                            [FromQuery] string nuevaContrasena) 
@@ -235,35 +288,12 @@ namespace API.Controllers
             }
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="email"></param> 
-        /// <returns> bool </returns>
-        [AllowAnonymous]
-        [HttpPatch("ValidarCuenta")]
-        public async Task<IActionResult> ValidarCuenta([FromQuery] string email) 
-        {
-            try { 
-                var result = await _usuarioService.ValidarCuenta(email);
-                if (result == false) return NotFound();
-                else {
-                    _logger.LogInformation(MessageProvider.GetMessage("Usuario:ValidarCuenta", "Success"));
-                    return Ok(result);
-                }
-            }
-            catch (Exception ex) {
-                _logger.LogError(ex, "Error validando la cuenta del usuario, {email}.", email);
-                return StatusCode(StatusCodes.Status500InternalServerError,
-                                 new { message = MessageProvider.GetMessage("Usuario:ValidarCuenta", "Error"), email });
-            }
-        }
-
         /// <summary> Activa la suscripcion de un usuario </summary>
         /// <param name="token">Token asociado si la petición viene de enlace de correo</param>
         /// <param name="email">Email del destinatario a buscar</param>
         /// <returns> bool </returns>
-        [AllowAnonymous]
+        //[AllowAnonymous]
+        [Authorize]
         [HttpPatch("ActivacionSuscripcion")]
         public async Task<IActionResult> ActivacionSuscripcion([FromQuery] string token, 
                                                                [FromQuery][Required] string email)  {
@@ -273,7 +303,7 @@ namespace API.Controllers
                  
                 bool isValidToken = false;
                 if (validToken.HasValue && validEmail) {
-                    isValidToken =  _emailTokenService.CheckEmailToken(validToken.ToString(), email);
+                    isValidToken =  await _emailTokenService.CheckEmailToken(validToken.ToString(), email);
                 }
 
                 if (!isValidToken)
@@ -285,13 +315,17 @@ namespace API.Controllers
                     var activationResult = await _usuarioService.ActivarSuscripcion(email);
                     if (activationResult == false) return NotFound(new { message = "El usuario no ha sido encontrado." });
                     else {
-                       var consumeResult = _emailTokenService.ConsumeEmailToken(validToken.ToString(), ip, userAgent);
+                       var consumeResult = await _emailTokenService.ConsumeEmailToken(validToken.ToString(), ip, userAgent);
                         if(consumeResult) {
 
                             // Enviar corrreo: Bienvenido a nuestra newsletter
-                            var tipoEnvioCorreo = _correoService.ObtenerTiposEnvioCorreo().Result.Where(u => u.nombre == "SuscripcionActivada").Single();
+                            var tiposEnvioCorreo = await _correoService.ObtenerTiposEnvioCorreo();
+                            var tipoEnvioCorreo = tiposEnvioCorreo.Where(u => u.nombre.Trim() == TipoEnvioCorreo.TipoEnvio.SuscripcionActivada)
+                                                                  .SingleOrDefault();
 
-                            var usuario = _usuarioService.GetAllAsync().Result.Where(u => u.correo == email).SingleOrDefault();
+                            var usuarios = await _usuarioService.GetAllAsync();
+                            var usuario = usuarios.Where(u => u.correo.ToLower() == email.ToLower())
+                                                  .SingleOrDefault();
 
                             var correo = new Correo(tipoEnvioCorreo, email, usuario.nombre, _appConfiguration.LogoURL);
                             _correoService.EnviarCorreo(correo);
@@ -309,6 +343,23 @@ namespace API.Controllers
                 return StatusCode(StatusCodes.Status500InternalServerError,
                                  new { message = MessageProvider.GetMessage("Usuario:ActivacionSuscripcion", "Error"), email });
             }
+        }
+
+        [Authorize(Roles = "SAdmin")]
+        [HttpPatch("BajaLogica/{idUsuario}")]
+        public async Task<IActionResult> BajaLogica(int idUsuario)
+        {
+            await _usuarioService.BajaLogicaAsync(idUsuario);
+
+            _logService.AddAsync(new Log {
+                tipoLog = Log.TipoLog.Info,
+                proceso = Log.Proceso.API_BajaLogica,
+                titulo = "Proceso de baja lógica completado.",
+                detalle = null,
+                idUsuario = idUsuario,
+                fecha = DateTime.UtcNow
+            });
+            return Ok(true);
         }
 
         /// <summary>  </summary>
@@ -352,6 +403,60 @@ namespace API.Controllers
                 return StatusCode(StatusCodes.Status500InternalServerError,
                                  new { message = MessageProvider.GetMessage("Usuario:GetRoles", "Error"), idUsuario });
             }
-        }  
+        }
+
+        /// <summary>
+        /// Exportar vista a Excel o pdf
+        /// </summary> 
+        /// <returns> File to download </returns>
+        [HttpGet("Exportar")]
+        //[Authorize(Policy = "RequireAdmin")]
+        //[Authorize]
+        [AllowAnonymous]
+        public async Task<IActionResult> Exportar([FromServices] ICorreoService correoService,
+                                                  [FromQuery] ExportFormat formato,
+                                                  [FromQuery] bool envioEmail)
+        {
+            var entityName = nameof(Usuario);
+
+            var file = await _usuarioService.ExportarAsync(formato);
+
+            string fileExtension = string.Empty;
+            string contentType = string.Empty;
+
+            switch (formato)
+            {
+                case ExportFormat.Excel:
+                    contentType = _exportConfig.ExcelContentType;
+                    fileExtension = _exportConfig.ExcelExtension;
+                    break;
+                case ExportFormat.Pdf:
+                    contentType = _exportConfig.PdfContentType;
+                    fileExtension = _exportConfig.PdfExtension;
+                    break;
+            }
+
+            var fileName = $"List_{entityName.ToString()}_{DateTime.UtcNow:yyyyMMddHHmmss}{fileExtension}";
+
+            if (envioEmail)
+            {
+                var tiposEnvioCorreo = await correoService.ObtenerTiposEnvioCorreo();
+                var tipoEnvioCorreo = tiposEnvioCorreo.Where(u => u.nombre == TipoEnvioCorreo.TipoEnvio.EnvioReport)
+                                                      .SingleOrDefault();
+
+                tipoEnvioCorreo.asunto = $"Report {entityName.ToString()} ({fileExtension})";
+                tipoEnvioCorreo.cuerpo = $"Se adjunta el informe para la vista de datos {entityName.ToString()}";
+
+                var correo = new Correo(tipoEnvioCorreo, _exportConfig.CorreoAdmin, "Admin", "");
+                correo.FicheroAdjunto = new FicheroAdjunto()
+                {
+                    Archivo = file,
+                    ContentType = contentType,
+                    NombreArchivo = fileName
+                };
+                correoService.EnviarCorreo(correo);
+            }
+            return File(file, contentType, fileName);
+        }
     }
 }

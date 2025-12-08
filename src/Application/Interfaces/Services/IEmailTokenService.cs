@@ -9,7 +9,7 @@ namespace Application.Interfaces.Services
     { 
         DateTime GetExpirationDate(DateTime fechaCreacion);
         Task<string> GenerateEmailToken(int idUsuario, string emailAction);
-        bool CheckEmailToken(string emailToken, string email);
-        bool ConsumeEmailToken(string emailToken, string ip, string userAgent);
+        Task<bool> CheckEmailToken(string emailToken, string email);
+        Task<bool> ConsumeEmailToken(string emailToken, string ip, string userAgent);
     }
 }

@@ -2,6 +2,7 @@
 using Application.Interfaces.DTOs.DataQuery;
 using Application.Interfaces.Repositories; 
 using Application.Interfaces.Services;
+using static Utilities.ExporterHelper;
 
 using System.Collections; 
 using System.Text.Json.Serialization;
@@ -29,10 +30,6 @@ namespace Application.Services
             _excelExporter = excelExporter;
             _pdfExporter = pdfExporter;
         }
-
-         
-        public enum ExportFormat { Excel, Pdf }
-
         public byte[] ExportDynamic(IEnumerable data, Type entityType) 
         {
             return null;
@@ -55,7 +52,14 @@ namespace Application.Services
             CampanasUsuarios,
             AllUserData,
             AllCampanasData,
-            AsistenciaActividades
+            AsistenciaActividades,
+            TotalErrores
+
+        }
+
+        public async Task<byte[]> ExportarAsync(ExportFormat formato)
+        { 
+            return null;
         }
 
         /// <summary>
@@ -124,6 +128,11 @@ namespace Application.Services
 
                     entityType = typeof(vAsistenciaActividadesDTO);
                     queryResult = ObtenerAsistenciaActividades().Result;
+                    break;
+                case DataQueryType.TotalErrores:
+
+                    entityType = typeof(vTotalErroresDTO);
+                    queryResult = ObtenerTotalErrores().Result;
                     break;
                 default:
                     throw new InvalidOperationException("Vista no reconocida");
@@ -218,5 +227,8 @@ namespace Application.Services
         /// <returns></returns>
         public async Task<IReadOnlyList<vAsistenciaActividadesDTO>> ObtenerAsistenciaActividades(int page = 1, int pageSize = 100)
             => await _repo.ObtenerAsistenciaActividades(page, pageSize);
+
+        public async Task<IReadOnlyList<vTotalErroresDTO>> ObtenerTotalErrores(int page = 1, int pageSize = 100)
+           => await _repo.ObtenerTotalErrores(page, pageSize);
     }
 }

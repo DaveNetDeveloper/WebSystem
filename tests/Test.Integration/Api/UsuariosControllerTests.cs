@@ -59,7 +59,7 @@ namespace Test.Integration.Api
 
             int idEntidad = 1;
             context.Entidades.AddRange(
-                 new Entidad{ id = idEntidad, idTipoEntidad = idTipoEntidad, activo= true, nombre = "Entidad 1" , descripcion= "", ubicacion = "", fechaAlta=DateTime.UtcNow, popularidad= 0, imagen=""}
+                 new Entidad{ id = idEntidad, idTipoEntidad = idTipoEntidad, activo= true, nombre = "Entidad 1" , descripcion= "", ubicacion = "", fechaAlta=DateTime.UtcNow, popularidad= 0, imagen="", manager=""}
             );
 
             Guid idRol = Guid.NewGuid();

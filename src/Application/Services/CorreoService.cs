@@ -36,7 +36,7 @@ namespace Application.Services
         /// </summary>
         /// <param name="correo"> Objeto con los detalles del correo a enviar </param>
         /// <returns> Devuelve el EmailToken asociado al correo enviado </returns>
-        public Guid EnviarCorreo(Correo correo)
+        public Guid? EnviarCorreo(Correo correo)
         {
             using (var mensaje = new MailMessage())
             {
@@ -69,7 +69,7 @@ namespace Application.Services
                         adjunto.ContentStream.Dispose();
                 }
             }
-            return correo.EmailToken.Value;
+            return correo.EmailToken;
         }
     }
 }

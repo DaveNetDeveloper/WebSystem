@@ -3261,22 +3261,25 @@ body{
 	padding-bottom: 20px;
 	text-align: left;
 }
-.contact-us .contact-us-form h2:before{
-	position:absolute;
-	content:"";
-	left:0;
-	bottom:0;
-	height:2px;
-	width:50px;
-	background:#1A76D1;
-}
-.contact-us .contact-us-form p {
-	font-size: 14px;
-	color: #333;
-	font-weight: 400;
-	text-align: left;
-	margin-bottom:50px;
-}
+	.contact-us .contact-us-form h2:before {
+		position: absolute;
+		content: "";
+		left: 0;
+		bottom: 0;
+		height: 2px;
+		width: 50px;
+		background: #1A76D1;
+
+		font-family: 'Poppins', sans-serif; 
+	}
+	.contact-us .contact-us-form p {
+		font-size: 14px;
+		color: #333;
+		font-weight: 400;
+		text-align: left;
+		margin-bottom: 50px;
+		font-family: 'Poppins', sans-serif;
+	}
 .contact-us .form {
 	margin-top: 30px;
 }

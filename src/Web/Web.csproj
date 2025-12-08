@@ -27,6 +27,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Backoffice\Components\editList\" />
     <Folder Include="WebPages\img\actividades\" />
     <Folder Include="WebPages\img\entidades\" />
   </ItemGroup>

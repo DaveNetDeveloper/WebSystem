@@ -1,0 +1,171 @@
+﻿<!DOCTYPE html>
+<html class="no-js" lang="es">
+<head>
+    <meta charset="utf-8" />
+    <title>Cerrar sesión</title>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="keywords" content="validación">
+    <meta name="description" content="Página para la activación de la cuenta">
+    <meta name='copyright' content='UOC'>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link rel="icon" href="img/favicon.png">
+
+    <link href="https://fonts.googleapis.com/css?family=Poppins:200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="./css/bootstrap.min.css">
+    <link rel="stylesheet" href="./css/nice-select.css">
+    <link rel="stylesheet" href="./css/font-awesome.min.css">
+    <link rel="stylesheet" href="./css/icofont.css">
+    <link rel="stylesheet" href="./css/slicknav.min.css">
+    <link rel="stylesheet" href="./css/owl-carousel.css">
+    <link rel="stylesheet" href="./css/datepicker.css">
+    <link rel="stylesheet" href="./css/animate.min.css">
+    <link rel="stylesheet" href="./css/magnific-popup.css">
+
+    <link rel="stylesheet" href="./css/normalize.css">
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="./css/responsive.css">
+
+</head>
+<body>
+
+    <div class="preloader">
+        <div class="loader">
+            <div class="loader-outter"></div>
+            <div class="loader-inner"></div>
+
+            <div class="indicator">
+                <svg width="16px" height="12px">
+                    <polyline id="back" points="1 6 4 6 6 11 10 1 12 6 15 6"></polyline>
+                    <polyline id="front" points="1 6 4 6 6 11 10 1 12 6 15 6"></polyline>
+                </svg>
+            </div>
+        </div>
+    </div>
+    <header class="header">
+        <div class="header-inner">
+            <div class="container">
+                <div class="inner" style="padding: 18px;">
+                    <div class="row" style="margin-left: 48%;">
+                        <div>
+                            <div class="logo">
+                                <a href="home-publica.html"><img src="img/logo.jpg" alt="#"></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <section class="contact-us section" style="padding: 10% 0;">
+        <div class="container">
+            <div class="inner">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="contact-us-form">
+                            <h5 style="text-align: center;">Un momento, estamos cerrando tu cuenta.</h5>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script src="./js/libraries/globalAuth.js"></script>
+    <script type="text/javascript">
+
+        Logout();
+
+        async function Logout() {
+            await RevokeRefreshToken();
+            await DeleteCookies();
+            //window.location.href = '../WebPages/home-publica.html';
+        }
+
+        async function DeleteCookies() {
+
+            const COOKIE_PATH = "/WebPages";
+            const COOKIE_DOMAIN = "localhost";
+            const EXPIRATION = "expires=Thu, 01 Jan 1970 00:00:00 UTC";
+
+            const cookieNames = [
+                "app-access-token",
+                "app-refresh-token",
+                "app-role",
+                "app-profile"
+            ];
+
+            cookieNames.forEach(name => {
+                document.cookie = `${name}=; ${EXPIRATION}; path=${COOKIE_PATH}; domain=${COOKIE_DOMAIN};`;
+            });
+
+            cookieNames.forEach(name => {
+                document.cookie = `${name}=; ${EXPIRATION}; path=${COOKIE_PATH};`;
+            });
+        }
+
+        async function RevokeRefreshToken() {
+            try {
+                const baseUrl = `https://localhost`;
+                const port = `44311`;
+                const controllerName = `auth`;
+                const apiUrl = `${baseUrl}:${port}/${controllerName}`;
+                const apiMethod = `logout`;
+
+                const token = getCookie('app-access-token');
+                //alert(token);
+                var refreshToken = getCookie("app-refresh-token");
+                //alert(refreshToken);
+
+                if (refreshToken == null || token == null) return false
+
+                const res = await fetch(`${apiUrl}/${apiMethod}`,
+                    {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'Authorization': `Bearer ${token}`
+                        },
+                        body: JSON.stringify({
+                            RefreshToken: refreshToken
+                        })
+                    });
+
+                if (!res.ok) throw new Error('Error cerrando la sesión');
+
+                const result = res.ok;
+                alert("result: " + result);
+                return result;
+            }
+            catch (err) {
+                return false;
+            }
+        }
+
+    </script>
+
+    <!-- Load Scripts -->
+    <script src="./js/jquery.min.js"></script>
+    <script src="./js/jquery-migrate-3.0.0.js"></script>
+    <script src="./js/jquery-ui.min.js"></script>
+    <script src="./js/easing.js"></script>
+    <script src="./js/colors.js"></script>
+    <script src="./js/popper.min.js"></script>
+    <script src="./js/jquery.nav.js"></script>
+    <script src="./js/slicknav.min.js"></script>
+    <script src="./js/jquery.scrollUp.min.js"></script>
+    <script src="./js/niceselect.js"></script>
+    <script src="./js/tilt.jquery.min.js"></script>
+    <script src="./js/jquery.counterup.min.js"></script>
+    <script src="./js/steller.js"></script>
+    <script src="./js/wow.min.js"></script>
+    <script src="./js/jquery.magnific-popup.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/waypoints/2.0.3/waypoints.min.js"></script>
+    <script src="https://maps.google.com/maps/api/js?key=AIzaSyDGqTyqoPIvYxhn_Sa7ZrK5bENUWhpCo0w"></script>
+    <script src="./js/bootstrap.min.js"></script>
+    <script src="./js/main.js"></script>
+</body>
+</html>

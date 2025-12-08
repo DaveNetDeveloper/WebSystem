@@ -21,8 +21,7 @@ namespace Application.DependencyInjection
             //
             // Register Services
             //
-            services.AddScoped<ICorreoService, CorreoService>();
-            services.AddScoped<ITokenService, TokenService>();
+            services.AddScoped<ICorreoService, CorreoService>(); 
             services.AddScoped<IAuthService, AuthService>();
             services.AddScoped<IUsuarioService, UsuarioService>();
             services.AddScoped<IRolService, RolService>();
@@ -34,7 +33,6 @@ namespace Application.DependencyInjection
             services.AddScoped<IEntidadService, EntidadService>();
             services.AddScoped<ITestimonioService, TestimonioService>();
             services.AddScoped<ITransaccionService, TransaccionService>();
-            services.AddScoped<IQRService, QRService>();
             services.AddScoped<IFAQService, FAQService>();
             services.AddScoped<IRecompensaService, RecompensaService>();
             services.AddScoped<IConsultaService, ConsultaService>();
@@ -56,6 +54,8 @@ namespace Application.DependencyInjection
             //services.AddScoped<ITipoRecompensaService, TipoRecompensaService>();
             //services.AddScoped<IUsuarioRecompensaService, UsuarioRecompensaService>();
             services.AddScoped<IActividadReservaService, ActividadReservaService>();
+            services.AddScoped<ILogService, LogService>();
+            services.AddScoped<IPerfilService, PerfilService>();
 
             services.AddScoped<IExcelExporter, ExcelExporter>();
             services.AddScoped<IExporter, PdfExporter>();
@@ -66,6 +66,12 @@ namespace Application.DependencyInjection
 
             //services.AddSingleton<INotificationProcessor, NotificationProcessor>();
             services.AddScoped<INotificationProcessor, NotificationProcessor>();
+
+            services.AddScoped<IQRCodeImageService, QRCodeImageService>();
+            services.AddScoped<QRCodeService>();
+
+            services.AddScoped<PermisosService>();
+            
 
             //
             // Register Filters
@@ -78,7 +84,6 @@ namespace Application.DependencyInjection
             services.AddScoped<IFilters<Consulta>, ConsultaFilters>();
             services.AddScoped<IFilters<MotivoConsulta>, MotivoConsultaFilters>();
             services.AddScoped<IFilters<Producto>, ProductoFilters>();
-            services.AddScoped<IFilters<QR>, QRFilters>();
             services.AddScoped<IFilters<Recompensa>, RecompensaFilters>();
             services.AddScoped<IFilters<Rol>, RolFilters>();
             services.AddScoped<IFilters<Testimonio>, TestimonioFilters>();
@@ -99,6 +104,8 @@ namespace Application.DependencyInjection
             services.AddScoped<IFilters<SmsNotification>, SmsNotificationFilters>();
             services.AddScoped<IFilters<TipoRecompensa>, TipoRecompensaFilters>();
             services.AddScoped<IFilters<ActividadReserva>, ActividadReservaFilters>();
+            services.AddScoped<IFilters<Log>, LogFilters>();
+            services.AddScoped<IFilters<Perfil>, PerfilFilters>();
 
             return services;
         }

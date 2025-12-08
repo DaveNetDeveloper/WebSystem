@@ -8,6 +8,8 @@ namespace Application.DTOs.Filters
         public int? Id { get; set; }
         public string? Nombre { get; set; }
         public bool? Activo { get; set; }
-        public Guid? IdTipoEntidad { get; set; } 
+        public Guid? IdTipoEntidad { get; set; }
+        public string? Manager { get; set; }
+        
     }
 }

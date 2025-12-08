@@ -42,10 +42,10 @@
 	<!-- Modal Panel CSS -->
 	<link rel="stylesheet" href="./css/modalPanel.css">
 
-	<script src="./js/libraries/utilities.js"></script>
+	<!--<script src="./js/libraries/utilities.js"></script>-->
 	<script src="./js/services/entidadesController.js"></script>
-	<script src="./js/services/usuariosController.js"></script>
-	<script src="./js/libraries/modalPanel.js"></script>
+	<!--<script src="./js/services/usuariosController.js"></script>-->
+	<!--<script src="./js/libraries/modalPanel.js"></script>-->
 
 	<style>
 		.filter-pills {
@@ -136,22 +136,24 @@
 
 	<script>
 
-		var infoUsuarioElement = document.getElementById("infoUsuario"); 
+		/*TODO - Movr a HEADER */
 
-        let cookieToken =  getCookie("token");
+		//var infoUsuarioElement = document.getElementById("infoUsuario"); 
+
+  //      let cookieToken =  getCookie("token");
 		 
-        let parameters = new Filtros();
-        parameters.agregarElemento('token', cookieToken);
+  //      let parameters = new Filtros();
+  //      parameters.agregarElemento('token', cookieToken);
 
-        GetByFilters('ObtenerUsuarioByToken', parameters)
-            .then(data => {
+  //      GetByFilters('ObtenerUsuarioByToken', parameters)
+  //          .then(data => {
 
-                infoUsuarioElement.innerHTML = infoUsuarioElement.innerHTML.replace("{nombreUsuario}", data.nombre).replace("{puntosUsuario}", data.puntos);
-            })
-            .catch(error => {
-                console.error('Error en GetByFilters:', error);
-                //alert('Error en PatchByFilters: ', error);
-            }); 
+  //              infoUsuarioElement.innerHTML = infoUsuarioElement.innerHTML.replace("{nombreUsuario}", data.nombre).replace("{puntosUsuario}", data.puntos);
+  //          })
+  //          .catch(error => {
+  //              console.error('Error en GetByFilters:', error);
+  //              //alert('Error en PatchByFilters: ', error);
+  //          }); 
 
 	</script>
 
@@ -232,15 +234,15 @@
 
 		var paramTipoEntidad = urlParams.get('typeSearch');
 
-        if (paramTipoEntidad != null && paramTipoEntidad.trim() != '') { 
-			buscarEntidadByFilters('', 0, paramTipoEntidad, 0);
-		}
+  //      if (paramTipoEntidad != null && paramTipoEntidad.trim() != '') { 
+		//	buscarEntidadByFilters('', 0, paramTipoEntidad, 0);
+		//}
 
-		if (paramNombreEntidad != null) {
-			busquedaInicial(paramNombreEntidad);
-		}
+		//if (paramNombreEntidad != null) {
+		//	busquedaInicial(paramNombreEntidad);
+		//}
 
-		cargarContenidoModal('Filtros de la búsqueda', '');
+		//cargarContenidoModal('Filtros de la búsqueda', '');
 
 		const FiltrosBusqueda = {};
      
@@ -255,6 +257,8 @@
 		crearBoton();
 		 
         function busquedaInicial(paramNombreEntidad) {
+
+            alert("busquedaInicial");
 
             document.getElementById('textEntidad').value = paramNombreEntidad;
 
@@ -344,7 +348,7 @@
             boton.addEventListener('click', function () {
 
                 //alert(FiltrosBusqueda.nombre + " - " + FiltrosBusqueda.distancia + " - " + document.getElementsByName("tipo")[0].value + " - " + document.getElementsByName("categoria")[0].value);
-                buscarEntidadByFilters(FiltrosBusqueda.nombre, FiltrosBusqueda.distancia, document.getElementsByName("tipo")[0].value, document.getElementsByName("categoria")[0].value);
+                //buscarEntidadByFilters(FiltrosBusqueda.nombre, FiltrosBusqueda.distancia, document.getElementsByName("tipo")[0].value, document.getElementsByName("categoria")[0].value);
             });
             document.getElementById('containerModal').appendChild(boton);
         }
@@ -465,20 +469,23 @@
 
 		function buscarEntidad(textEntidad) {
 
-			const searchParams = new Filtros();
-			let nombre = textEntidad;
-			searchParams.agregarElemento('nombre', nombre);
+			//const searchParams = new Filtros();
+			//let nombre = textEntidad;
+			//searchParams.agregarElemento('nombre', nombre);
 
 			let contenedor = document.getElementById('cardsPanel');
 			contenedor.innerHTML = '';
 
-			GetEntidadByFilters('ObtenerEntidadByName', searchParams)
+            GetEntidades()
 				.then(entidades => {
+
 					var i = 1;
 					entidades.forEach(function (entidad) {
 
-						let card = crearCard(entidad.id, entidad.nombre, entidad.tipo, entidad.categoria, entidad.descripcion, entidad.imagen, entidad.ubicacion);
-						contenedor.appendChild(card);
+						if (entidad.activo) {
+							let card = crearCard(entidad.id, entidad.nombre, entidad.tipo, entidad.categoria, entidad.descripcion, entidad.imagen, entidad.ubicacion);
+							contenedor.appendChild(card);
+                        }
 						i++;
 					})
 				})
@@ -600,9 +607,28 @@
 			}
 			filterPill.remove();
 
-			buscarEntidadByFilters(FiltrosBusqueda.nombre, FiltrosBusqueda.distancia, document.getElementsByName("tipo")[0].value, document.getElementsByName("categoria")[0].value);
+			//buscarEntidadByFilters(FiltrosBusqueda.nombre, FiltrosBusqueda.distancia, document.getElementsByName("tipo")[0].value, document.getElementsByName("categoria")[0].value);
 
 		}
+
+        class Filtros {
+            constructor() {
+                this.elementos = [];
+            }
+            agregarElemento(clave, valor) {
+                this.elementos.push([clave, valor]);
+            }
+            obtenerValor(clave) {
+                const elementoEncontrado = this.elementos.find(elemento => elemento[0] === clave);
+                return elementoEncontrado ? elementoEncontrado[1] : undefined;
+            }
+            imprimirElementos() {
+                this.elementos.forEach(elemento => {
+                    console.log(`Clave: ${elemento[0]}, Valor: ${elemento[1]}`);
+                });
+            }
+        };
+
 
 	</script>
 
@@ -788,7 +814,7 @@
 				<div class="row">
 					<div class="col-lg-12 col-md-12 col-12">
 						<div class="copyright-content">
-							<p>© Copyright 2023  |  Todos los derechos reservados.</p>
+							<p>©  Copyright 2025  |  Todos los derechos reservados.</p>
 						</div>
 					</div>
 				</div>

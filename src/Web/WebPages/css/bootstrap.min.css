@@ -4524,7 +4524,7 @@ tbody.collapse.show {
 .page-item.active .page-link {
     z-index: 2;
     color: #fff;
-    background-color: #007bff;
+    background-color: #ffc107;
     border-color: #007bff
 }
 

@@ -39,12 +39,12 @@ namespace Domain.Entities
         /// <param name="destinatario"> Email del destinatario del correo </param>
         /// <param name="nombreUsuario"> Nombre del usuario del destinatario del correo </param>
         /// <param name="logoUrl"> Url del logo del correo </param>
-        public Correo(TipoEnvioCorreo tipoEnvio, string destinatario, string nombreUsuario, string logoUrl)
+        public Correo(TipoEnvioCorreo tipoEnvio, string destinatario, string nombreUsuario, string logoUrl, Guid? emailToken = null)
         {
             this.TipoEnvio = GetTipoEnvioCorreo(tipoEnvio.nombre);
             this.NombreUsuario = nombreUsuario;
             this.Destinatario = destinatario;
-            this.EmailToken = Guid.NewGuid();
+            this.EmailToken = emailToken;
             this.LogoUrl = logoUrl;
             this.Asunto = tipoEnvio.asunto;
             this.Cuerpo = this.ApplyTagsForBody(tipoEnvio.cuerpo);
@@ -60,7 +60,8 @@ namespace Domain.Entities
             customizedBody = customizedBody.Replace(EmailKeys.EMAIL_KEY_LOGO, this.LogoUrl);
             customizedBody = customizedBody.Replace(EmailKeys.EMAIL_KEY_NAME, this.NombreUsuario);
             customizedBody = customizedBody.Replace(EmailKeys.EMAIL_KEY_EMAIL, this.Destinatario);
-            customizedBody = customizedBody.Replace(EmailKeys.EMAIL_KEY_TOKEN, this.EmailToken.ToString());
+
+            if(this.EmailToken.HasValue) customizedBody = customizedBody.Replace(EmailKeys.EMAIL_KEY_TOKEN, this.EmailToken.Value.ToString());
 
             return customizedBody;
         }

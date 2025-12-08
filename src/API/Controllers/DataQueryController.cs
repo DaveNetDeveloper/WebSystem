@@ -10,6 +10,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Text.Json.Serialization;
 
 using static Application.Services.DataQueryService;
+using static Utilities.ExporterHelper;
 
 namespace API.Controllers
 {
@@ -38,7 +39,7 @@ namespace API.Controllers
         /// <param name="viewName"></param>
         /// <returns> File to download </returns>
         [HttpGet("Exportar")]
-        [Authorize(Policy = "RequireAdmin")]
+        //[Authorize(Policy = "RequireAdmin")]
         public async Task<IActionResult> Exportar([FromQuery] DataQueryType dataQueryType, 
                                                   [FromQuery] ExportFormat formato,
                                                   [FromQuery] bool envioEmail)
@@ -211,6 +212,18 @@ namespace API.Controllers
         public async Task<IActionResult> ObtenerAsistenciaActividades()
         {
             IReadOnlyList<vAsistenciaActividadesDTO> queryResult = await _dataQueryService.ObtenerAsistenciaActividades();
+            return (queryResult != null && queryResult.Any()) ? Ok(queryResult) : NoContent();
+        }
+
+        /// <summary>
+        /// Vista que obtiene el total de errores por dia y proceso
+        /// </summary>
+        /// <returns> vTotalErroresDTO view entity </returns>
+        //[Authorize(Policy = "RequireAdmin")]
+        [HttpGet("ObtenerTotalErrores")]
+        public async Task<IActionResult> ObtenerTotalErrores()
+        {
+            IReadOnlyList<vTotalErroresDTO> queryResult = await _dataQueryService.ObtenerTotalErrores();
             return (queryResult != null && queryResult.Any()) ? Ok(queryResult) : NoContent();
         }
     }

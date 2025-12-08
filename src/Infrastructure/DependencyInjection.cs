@@ -45,8 +45,7 @@ namespace Infrastructure.DependencyInjection
             //register Repository Interfaces
             //
             services.AddScoped<ITipoEnvioCorreoRepository, TipoEnvioCorreoRepository>();
-            services.AddScoped<IUnitOfWork, UnitOfWork>();  // Solo repositorio, sin service 
-            services.AddScoped<ITokenRepository, TokenRepository>();
+            services.AddScoped<IUnitOfWork, UnitOfWork>();  // Solo repositorio, sin service  
             services.AddScoped<IUsuarioRepository, UsuarioRepository>();
             services.AddScoped<IRolRepository, RolRepository>();
             services.AddScoped<ICategoriaRepository, CategoriaRepository>();
@@ -57,7 +56,6 @@ namespace Infrastructure.DependencyInjection
             services.AddScoped<IEntidadRepository, EntidadRepository>();
             services.AddScoped<ITestimonioRepository, TestimonioRepository>();
             services.AddScoped<ITransaccionRepository, TransaccionRepository>();
-            services.AddScoped<IQRRepository, QRRepository>();
             services.AddScoped<IFAQRepository, FAQRepository>();
             services.AddScoped<IRecompensaRepository, RecompensaRepository>();
             services.AddScoped<IMotivoConsultaRepository, MotivoConsultaRepository>();
@@ -81,6 +79,12 @@ namespace Infrastructure.DependencyInjection
             services.AddScoped<ITipoRecompensasRepository, TipoRecompensasRepository>(); // Solo repositorio, sin service 
             services.AddScoped<IUsuarioRecompensasRepository, UsuarioRecompensasRepository>(); // Solo repositorio, sin service 
             services.AddScoped<IActividadReservaRepository, ActividadReservaRepository>();
+            services.AddScoped<ILogRepository, LogRepository>();
+            services.AddScoped<IPerfilRepository, PerfilRepository>();
+            services.AddScoped<IRefreshTokenRepository, RefreshTokenRepository>();
+
+            services.AddScoped<IQRCodeRepository, QRCodeRepository>();
+            services.AddScoped<IQRCodeImageRepository, QRCodeImageRepository>();
 
             services.AddSingleton<IMessageBusService, RabbitMqService>();
             services.AddSingleton<IMessageConsumer, RabbitMqConsumer>();

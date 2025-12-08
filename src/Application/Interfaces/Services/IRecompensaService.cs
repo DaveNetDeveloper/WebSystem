@@ -1,6 +1,7 @@
 ﻿using Application.DTOs.Filters; 
-using Domain.Entities;
 using Application.Interfaces.Common;
+using Domain.Entities;
+using static Utilities.ExporterHelper;
 
 namespace Application.Interfaces.Services
 {
@@ -11,7 +12,7 @@ namespace Application.Interfaces.Services
 
 
         Task<IEnumerable<Recompensa>> GetRecompensasByUsuario(int idUsuario);
-        int GenerarRecompensa(int idUsuario, TipoRecompensa tipoRecompensa);
+        Task<int> GenerarRecompensa(int idUsuario, TipoRecompensa tipoRecompensa);
 
 
 
@@ -26,5 +27,6 @@ namespace Application.Interfaces.Services
         Task<bool> AddTipoRecompensa(TipoRecompensa tipoRecompensa);
         Task<bool> UpdateTipoRecompensa(TipoRecompensa tipoRecompensa);
         Task<bool> RemoveTipoRecompensa(Guid idTipoRecompensa);
+        Task<byte[]> ExportarAsync(ExportFormat formato);
     }
 }

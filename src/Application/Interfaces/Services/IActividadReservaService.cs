@@ -1,7 +1,8 @@
 ﻿using Application.DTOs.Filters; 
-using Domain.Entities;
-using Application.Interfaces.Common;
 using Application.DTOs.Responses;
+using Application.Interfaces.Common;
+using Domain.Entities;
+using static Utilities.ExporterHelper;
 
 namespace Application.Interfaces.Services
 {
@@ -11,5 +12,7 @@ namespace Application.Interfaces.Services
                                                               IQueryOptions<ActividadReserva>? queryOptions = null);
         ReservaActividadDTO ReservarActividad(int idUsuario, int idActividad);
         bool ValidarReserva(int idUsuario, string codigoReserva);
+        Task<byte[]> ExportarAsync(ExportFormat formato);
+
     }
 }

@@ -11,15 +11,15 @@
 
         public static class TipoEnvio
         {
-            public const string ContrasenaCambiada = "ContrasenaCambiada";
+            public const string ValidacionCuenta = "ValidacionCuenta";
+            public const string Bienvenida = "Bienvenida";
             public const string RecordatorioSuscripcion = "RecordatorioSuscripcion";
             public const string SuscripcionActivada = "SuscripcionActivada";
             public const string ReservaProducto = "ReservaProducto";
-            public const string Bienvenida = "Bienvenida";
             public const string ReservaActividad = "ReservaActividad";
             public const string EnvioComunicacion = "EnvioComunicacion";
-            public const string ValidacionCuenta = "ValidacionCuenta";
             public const string CambiarContrasena = "CambiarContrasena";
+            public const string ContrasenaCambiada = "ContrasenaCambiada";
             public const string Recompensa = "Recompensa";
             public const string EnvioReport = "EnvioReport";
             public const string Undefined = "Undefined";

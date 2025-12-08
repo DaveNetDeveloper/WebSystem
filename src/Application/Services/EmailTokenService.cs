@@ -33,13 +33,13 @@ namespace Application.Services
             return fechaCreacion.AddDays(3);
         }
 
-        public Task<string> GenerateEmailToken(int idUsuario, string emailAction)
-            => _repo.GenerateEmailToken(idUsuario, emailAction);
+        public async Task<string> GenerateEmailToken(int idUsuario, string emailAction)
+            => await _repo.GenerateEmailToken(idUsuario, emailAction);
 
-        public bool CheckEmailToken(string emailToken, string email)
-            => _repo.CheckEmailToken(emailToken, email);
+        public async Task<bool> CheckEmailToken(string emailToken, string email)
+            => await _repo.CheckEmailToken(emailToken, email);
 
-        public bool ConsumeEmailToken(string emailToken, string ip, string userAgent)
-            => _repo.ConsumeEmailToken(emailToken, ip, userAgent); 
+        public async Task<bool> ConsumeEmailToken(string emailToken, string ip, string userAgent)
+            => await  _repo.ConsumeEmailToken(emailToken, ip, userAgent); 
     }
 }

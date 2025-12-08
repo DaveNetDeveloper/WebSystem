@@ -8,6 +8,8 @@ using Domain.Entities;
 
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Options;
+using static Utilities.ExporterHelper;
 
 namespace API.Controllers
 {
@@ -17,9 +19,11 @@ namespace API.Controllers
     [ApiController]
     [Route("[controller]")]
     public class InAppNotificationController : BaseController<InAppNotification>, 
-                                               IController<IActionResult, InAppNotification, Guid>
+                                               IController<IActionResult, 
+                                               InAppNotification, Guid>
     { 
         private readonly IInAppNotificationService _inAppNotificationService;
+        private readonly ExportConfiguration _exportConfig;
 
         /// <summary>
         /// Constructor
@@ -28,10 +32,12 @@ namespace API.Controllers
         /// <param name="inAppNotificationService"></param>
         /// <exception cref="ArgumentNullException"></exception>
         public InAppNotificationController(ILogger<InAppNotificationController> logger, 
-                                           IInAppNotificationService inAppNotificationService)
+                                           IInAppNotificationService inAppNotificationService,
+                                           IOptions<ExportConfiguration> options)
         {
             _logger = logger;
             _inAppNotificationService = inAppNotificationService ?? throw new ArgumentNullException(nameof(inAppNotificationService));
+            _exportConfig = options.Value ?? throw new ArgumentNullException(nameof(options));
         }
 
         /// <summary>
@@ -153,7 +159,60 @@ namespace API.Controllers
                 _logger.LogError(ex, "Error eliminando la InAppNotification, {id}.", id);
                 return StatusCode(StatusCodes.Status500InternalServerError,
                                  new { message = MessageProvider.GetMessage("InAppNotification:Eliminar", "Error"), id });
-            }  
+            }
+        }
+        /// <summary>
+        /// Exportar listado a Excel o pdf
+        /// </summary> 
+        /// <returns> File to download </returns>
+        [HttpGet("Exportar")]
+        //[Authorize(Policy = "RequireAdmin")]
+        //[Authorize]
+        [AllowAnonymous]
+        public async Task<IActionResult> Exportar([FromServices] ICorreoService correoService,
+                                                  [FromQuery] ExportFormat formato,
+                                                  [FromQuery] bool envioEmail)
+        {
+            var entityName = nameof(InAppNotification);
+
+            var file = await _inAppNotificationService.ExportarAsync(formato);
+
+            string fileExtension = string.Empty;
+            string contentType = string.Empty;
+
+            switch (formato)
+            {
+                case ExportFormat.Excel:
+                    contentType = _exportConfig.ExcelContentType;
+                    fileExtension = _exportConfig.ExcelExtension;
+                    break;
+                case ExportFormat.Pdf:
+                    contentType = _exportConfig.PdfContentType;
+                    fileExtension = _exportConfig.PdfExtension;
+                    break;
+            }
+
+            var fileName = $"List_{entityName.ToString()}_{DateTime.UtcNow:yyyyMMddHHmmss}{fileExtension}";
+
+            if (envioEmail)
+            {
+                var tiposEnvioCorreo = await correoService.ObtenerTiposEnvioCorreo();
+                var tipoEnvioCorreo = tiposEnvioCorreo.Where(u => u.nombre == TipoEnvioCorreo.TipoEnvio.EnvioReport)
+                                                      .SingleOrDefault();
+
+                tipoEnvioCorreo.asunto = $"Report {entityName.ToString()} ({fileExtension})";
+                tipoEnvioCorreo.cuerpo = $"Se adjunta el informe para la vista de datos {entityName.ToString()}";
+
+                var correo = new Correo(tipoEnvioCorreo, _exportConfig.CorreoAdmin, "Admin", "");
+                correo.FicheroAdjunto = new FicheroAdjunto()
+                {
+                    Archivo = file,
+                    ContentType = contentType,
+                    NombreArchivo = fileName
+                };
+                correoService.EnviarCorreo(correo);
+            }
+            return File(file, contentType, fileName);
         }
     }
 }

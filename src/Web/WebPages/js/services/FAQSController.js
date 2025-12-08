@@ -6,7 +6,7 @@
 
 let baseUrl6 = `https://localhost`;
 let controllerName6 = `FAQS`;
-let port6 = `7161`;
+let port6 = `44311`;
 let apiUrl6 = `${baseUrl6}:${port6}/${controllerName6}/`;
 
 //var userToken = "qAGlDm9o9oS1Ir+xNlWk3XXHkJy/+nJmBy3KUPoms2w="; // TODO: cambiar por valor de la cookie

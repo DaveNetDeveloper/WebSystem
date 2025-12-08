@@ -1,16 +1,21 @@
 ﻿using Application.DTOs.Filters;
+using Application.DTOs.Requests;
 using Application.DTOs.Responses;
 using Application.Interfaces.Services;
 using Application.Services;
+using DocumentFormat.OpenXml.Spreadsheet;
 using Domain.Entities;
 
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc; 
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
+using System.Runtime.ConstrainedExecution;
 using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
+using Twilio.TwiML.Voice;
 using UAParser;
 
 using static Domain.Entities.InAppNotification;
@@ -47,10 +52,11 @@ namespace API.Controllers
                               IUsuarioService usuarioService,
                               ITransaccionService transaccionService,
                               ITipoTransaccionService tipoTransaccionService,
-                              IRecompensaService recompensaService) {
+                              IRecompensaService recompensaServices
+                             ) {
 
-            _config = config ?? throw new ArgumentNullException(nameof(config));
-            _logger = logger;
+            base._config = config ?? throw new ArgumentNullException(nameof(config));
+            base._logger = logger;
             _authService = authService ?? throw new ArgumentNullException(nameof(authService));
             _loginService = loginService ?? throw new ArgumentNullException(nameof(loginService));
             _correoService = correoService ?? throw new ArgumentNullException(nameof(correoService));
@@ -59,61 +65,164 @@ namespace API.Controllers
             _usuarioService = usuarioService ?? throw new ArgumentNullException(nameof(usuarioService));
             _transaccionService = transaccionService ?? throw new ArgumentNullException(nameof(transaccionService));
             _tipoTransaccionService = tipoTransaccionService ?? throw new ArgumentNullException(nameof(tipoTransaccionService));
-            _recompensaService = recompensaService ?? throw new ArgumentNullException(nameof(recompensaService));
         }
 
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="idUsuario"></param>
-        /// <returns> bool </returns>
+        /// <param name="refreshTokenDTO"></param>
+        /// <returns> IActionResult </returns>
         [HttpPost("logout")]
-        [AllowAnonymous]
-        public IActionResult Logout([FromBody] int idUsuario)
+        [Authorize]
+        public async Task<IActionResult> Logout([FromBody] RefreshTokenRequest refreshTokenDTO)
         {
-            var result = _authService.DeleteUserToken(idUsuario);
-            if (result.Result)
-                return Ok(result);
-            else
-                return NoContent();
+            if (!string.IsNullOrWhiteSpace(refreshTokenDTO.RefreshToken))
+            {
+                await _authService.RevokeRefreshTokenAsync(refreshTokenDTO.RefreshToken);
+                return Ok();
+            }
+            else return BadRequest();
         }
 
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="dto"></param>
+        /// <param name="refreshTokenDTO"></param>
         /// <returns></returns>
-        [HttpPost("login")]
+        [HttpPost("refreshToken")]
         [AllowAnonymous]
-        public IActionResult Login([FromBody] LoginDto dto)
+        public async Task<IActionResult> RefreshToken([FromBody] RefreshTokenRequest refreshTokenDTO)
         {
-            var user = _authService.Login(dto.UserName, dto.Password);
-            if (user is null) return Unauthorized();
+            RefreshToken refreshToken = await _authService.GetRefreshToken(refreshTokenDTO.RefreshToken);
+            if (refreshToken == null || refreshToken.isRevoked == true || refreshToken.expiresAt < DateTime.UtcNow)
+                return Unauthorized();
+
+            int idUsuario = refreshToken.idUsuario;
+
+            var user = await _usuarioService.GetByIdAsync(idUsuario);
+            if (user == null)
+                return Unauthorized();
+
+            string userRole = "";
+            var roles = await _usuarioService.GetRolesByUsuarioId(idUsuario);
+            if (roles != null && roles.Any())
+            {
+                Rol role = roles.OrderByDescending(r => r.level).FirstOrDefault();
+                userRole = role.nombre;
+            }
+            else userRole = "";
+
+            //var newAccessToken = await _authService.GenerateAccessToken(stored.idUsuario);
 
             var claims = new List<Claim> {
-                new(ClaimTypes.NameIdentifier, user.Result.Id.ToString()),
-                new(ClaimTypes.Name, user.Result.UserName),
-                new(ClaimTypes.Role, user.Result.Role),
+                new(ClaimTypes.NameIdentifier, idUsuario.ToString()),
+                new(ClaimTypes.Name, user.correo),
+                new(ClaimTypes.Role, userRole),
                 new(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString())
             };
 
             var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_config["Jwt:Key"]!));
             var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
-            var expires = DateTime.UtcNow.AddMinutes(int.Parse(_config["Jwt:AccessTokenMinutes"]!));
 
-            var token = new JwtSecurityToken(
+            var expires = DateTime.Now.AddMinutes(int.Parse(_config["Jwt:AccessTokenMinutes"]!));
+            //var expires = DateTime.Now.AddMinutes(5);//TODO
+
+            var token = new JwtSecurityToken 
+            (
                 issuer: _config["Jwt:Issuer"],
                 audience: _config["Jwt:Audience"],
                 claims: claims,
-                notBefore: DateTime.UtcNow,
+                notBefore: DateTime.Now,
                 expires: expires,
                 signingCredentials: creds
             );
 
             var jwt = new JwtSecurityTokenHandler().WriteToken(token);
-            _authService.RefreshToken(user.Result.Id, jwt, expires); 
+              
+            return Ok(new
+            {
+                access_token = jwt,
+                token_type = "Bearer",
+                expires_at = expires,
+                refresh_token = refreshTokenDTO.RefreshToken,
+                role = userRole,
+                profile = user.idPerfil // TODO Obtener y devolver el "nombre" del perfil en vez del "id"
+            }); 
 
-            _loginService.AddAsync(new Login { idUsuario = user.Result.Id,
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="LoginDto"></param>
+        /// <returns> json </returns>
+        [HttpPost("login")]
+        [AllowAnonymous]
+        public async Task<IActionResult> Login([FromBody] LoginDto dto)
+        {
+            var user = await _authService.Login(dto.Email, dto.Password);
+            if (user is null) return NotFound();
+
+            bool isValidRole;
+            switch (dto.LoginType) {
+                case ILoginService.LoginType.Web:
+                    isValidRole = user.Role == Rol.Roles.WebUser;
+                    break;
+
+                case ILoginService.LoginType.Admin:
+                    
+                    isValidRole = user.Role == Rol.Roles.Manager || user.Role == Rol.Roles.Admin;
+
+                    break;
+                default:
+                    isValidRole = false;
+                    break;
+            }
+            
+            if(!isValidRole) return Forbid();
+
+            var claims = new List<Claim> {
+                new(ClaimTypes.NameIdentifier, user.Id.ToString()),
+                new(ClaimTypes.Name, user.Email),
+                new(ClaimTypes.Role, user.Role),
+                new(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString())
+            };
+
+            var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_config["Jwt:Key"]!));
+            var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
+            
+            var expires = DateTime.Now.AddMinutes(int.Parse(_config["Jwt:AccessTokenMinutes"]!));
+            //var expires = DateTime.Now.AddMinutes(5);
+
+            var token = new JwtSecurityToken(
+                issuer: _config["Jwt:Issuer"],
+                audience: _config["Jwt:Audience"],
+                claims: claims,
+                notBefore: DateTime.Now,
+                expires: expires,
+                signingCredentials: creds
+            );
+
+            var jwt = new JwtSecurityTokenHandler().WriteToken(token);
+
+
+            if(dto.LoginType == ILoginService.LoginType.Admin)
+            {
+                // Crear la cookie segura para guardar la entidad/entidades
+                var options = new CookieOptions
+                {
+                    HttpOnly = true,
+                    Secure = true,
+                    SameSite = SameSiteMode.None,
+                    Expires = DateTime.UtcNow.AddHours(2),
+                    Path = "/",
+                };
+
+                Response.Cookies.Append("Entidades-Cookie", string.Join(",", user.Entidades), options);
+                 
+            }
+
+            await _loginService.AddAsync(new Login { idUsuario = user.Id,
                                                fecha = DateTime.UtcNow, 
                                                ip = ip,
                                                browser = browser.ToString(),
@@ -123,9 +232,121 @@ namespace API.Controllers
                                                plataforma = device,
                                                idiomaNavegador = primaryLanguage,
                                                pais = null,
-                                               region = null });
+                                               region = null,
+                                               loginType = dto.LoginType
+            });
 
-            return Ok(new { access_token = jwt, token_type = "Bearer", expires_at_utc = expires });
+            var refreshToken = await _authService.GenerateRefreshToken(user.Id);
+
+            return Ok(new {
+                access_token = jwt,
+                refresh_token = refreshToken,
+                token_type = "Bearer",
+                expires_at = expires,
+                role = user.Role,
+                profile = user.Profile,
+                entidades = user.Entidades
+            });
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="email"></param> 
+        /// <returns> json </returns>
+        [AllowAnonymous]
+        [HttpPatch("ValidarCuenta")]
+        public async Task<IActionResult> ValidarCuenta([FromQuery] string email, string emailToken)
+        {
+            try  
+            {
+                var emailTokenResut = await _emailTokenService.CheckEmailToken(emailToken, email);
+                if (!emailTokenResut) return NotFound();
+
+                var validateResult = await _authService.ValidarCuenta(email);
+                if (!validateResult) return NotFound(); 
+
+                var authUser = await _authService.Login(email, string.Empty, true);
+                if (authUser is null) {
+                    return NotFound();
+                }
+
+                var claims = new List<Claim> {
+                    new(ClaimTypes.NameIdentifier, authUser.Id.ToString()),
+                    new(ClaimTypes.Name, authUser.Email),
+                    new(ClaimTypes.Role, authUser.Role),
+                    new(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString())
+                };
+
+                var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_config["Jwt:Key"]!));
+                var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
+                var expires = DateTime.Now.AddMinutes(int.Parse(_config["Jwt:AccessTokenMinutes"]!));
+                //var expires = DateTime.Now.AddMinutes(5);
+
+                var token = new JwtSecurityToken (
+                    issuer: _config["Jwt:Issuer"],
+                    audience: _config["Jwt:Audience"],
+                    claims: claims,
+                    notBefore: DateTime.Now,
+                    expires: expires,
+                    signingCredentials: creds
+                );
+                var jwt = new JwtSecurityTokenHandler().WriteToken(token);
+
+                await _loginService.AddAsync(new Login
+                {
+                    idUsuario = authUser.Id,
+                    fecha = DateTime.UtcNow,
+                    ip = ip,
+                    browser = browser.ToString(),
+                    sistemaOperativo = os,
+                    tipoDispositivo = device,
+                    modeloDispositivo = device,
+                    plataforma = device,
+                    idiomaNavegador = primaryLanguage,
+                    pais = null,
+                    region = null,
+                    loginType = ILoginService.LoginType.Web.ToString()
+                });
+
+                var refreshToken = await _authService.GenerateRefreshToken(authUser.Id);
+
+                // Enviar corrreo: 'Cuenta validada correctamente'
+                var tiposEnvioCorreo = await _correoService.ObtenerTiposEnvioCorreo();
+                var tipoCorreo = tiposEnvioCorreo.Where(u => u.nombre.Trim() == TipoEnvioCorreo.TipoEnvio.Bienvenida.Trim())
+                                                 .Single();
+
+                var usuarios = await _usuarioService.GetAllAsync();
+                var usuario = usuarios.Where(u => u.correo.ToLower() == email.ToLower())
+                                      .SingleOrDefault();
+
+                var correo = new Correo(tipoCorreo, 
+                                        email, 
+                                        usuario.nombre, 
+                                        _config["AppConfiguration:LogoURL"]);
+                
+                var res = _correoService.EnviarCorreo(correo);
+
+                 return Ok(new  { 
+                    access_token = jwt,
+                    refresh_token = refreshToken,
+                    token_type = "Bearer", 
+                    expires_at = expires, 
+                    role = authUser.Role,
+                    profile = authUser.Profile,
+                    entidades = string.Empty
+                });
+                
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Error validando la cuenta del usuario, {email}.", email);
+                
+                return StatusCode(StatusCodes.Status500InternalServerError,
+                    new { message = "Error validando la cuenta del usuario, {email}", email });
+                //return StatusCode(StatusCodes.Status500InternalServerError,
+                    // new { message = MessageProvider.GetMessage("Auth:ValidarCuenta", "Error"), email });
+            }
         }
 
         /// <summary>
@@ -137,17 +358,30 @@ namespace API.Controllers
         [AllowAnonymous]
         public async Task<IActionResult> Register([FromBody] Usuario usuarioDTO)
         {
-            var idUsuario = _authService.Register(usuarioDTO)?.Result;
+            var idUsuario = await  _authService.Register(usuarioDTO);
             if (idUsuario is null || !idUsuario.HasValue) return NoContent();
             else {
+
+                // Obtener Rol por?
+
+                // Asociamos el rol por defeto al usuario (WeUser)
+                var rolAdded = await _usuarioService.AddRoleAsync(idUsuario.Value, Rol.RolesIDs.WebUser);
+                
                 // Creamos nuevo EmailToken
-                string? emailToken = _emailTokenService.GenerateEmailToken(idUsuario.Value, TipoEnvio.ValidacionCuenta)?.Result;
+                string? emailToken = await _emailTokenService.GenerateEmailToken(idUsuario.Value, TipoEnvio.ValidacionCuenta);
 
                 // Enviar corrreo para validacion de la nueva cuenta de usuario
-                var tipoEnvio = _correoService.ObtenerTiposEnvioCorreo().Result.Where(u => u.nombre == TipoEnvio.ValidacionCuenta).FirstOrDefault();
+                var tiposEnvio = await _correoService.ObtenerTiposEnvioCorreo();
+                var tipoEnvio = tiposEnvio.Where(u => u.nombre == TipoEnvio.ValidacionCuenta)
+                                          .FirstOrDefault();
 
-                var correo = new Correo(tipoEnvio, usuarioDTO.correo, usuarioDTO.nombre, _config["AppConfiguration:LogoURL"]);
-                Guid mismoEmailToken = _correoService.EnviarCorreo(correo);
+                var correo = new Correo(tipoEnvio, 
+                                        usuarioDTO.correo, 
+                                        usuarioDTO.nombre, 
+                                        _config["AppConfiguration:LogoURL"], 
+                                        Guid.Parse(emailToken));
+
+                Guid? resultEmailToken = _correoService.EnviarCorreo(correo);
 
                 // Añadimos la notificación InApp de 'Bienvenida' para el nuevo usuario
                 var inApp = new InAppNotification { 
@@ -158,7 +392,7 @@ namespace API.Controllers
                     fechaCreacion = DateTime.UtcNow,
                     tipoEnvioInApp = TipoEnvioInApp.Bienvenida
                 };
-                var result = _inAppNotificationService.AddAsync(inApp);
+                var result = await _inAppNotificationService.AddAsync(inApp);
             }
 
             bool recomendacionResult = true;
@@ -168,26 +402,25 @@ namespace API.Controllers
                 // Buscamos el usuario de referencia por codigoRecomendacion
                 var filter = new UsuarioFilters();
                 filter.CodigoRecomendacion = usuarioDTO.codigoRecomendacionRef;
-                var usuarioRef = _usuarioService.GetByFiltersAsync(filter)?
-                                                .Result
-                                                .FirstOrDefault();
+                var usuarios = await _usuarioService.GetByFiltersAsync(filter);
+                var usuarioRef = usuarios.FirstOrDefault();
+
                 if (usuarioRef != null)
                 {
-                    var tipoRecompensa = _recompensaService.GetAllTiposRecompensas()
-                                                           .Result?
-                                                           .Where(tc => tc.nombre == TiposRecompensa.Recomendacion)
-                                                           .FirstOrDefault();
+                    var tiposRecompensa = await _recompensaService.GetAllTiposRecompensas();
+                    var tipoRecompensa = tiposRecompensa.Where(tc => tc.nombre == TiposRecompensa.Recomendacion)
+                                                        .FirstOrDefault();
 
                     // Crear recompensa para el usuario recomendador
-                    var idRecompensa = _recompensaService.GenerarRecompensa(usuarioRef.id.Value, tipoRecompensa);
+                    var idRecompensa = await _recompensaService.GenerarRecompensa(usuarioRef.id.Value, tipoRecompensa);
 
                     if (idRecompensa > -1)
                     {
-                        // Crear transaccion de puntos por recomendacion 
-                        var tipoTransaccion = _tipoTransaccionService.GetAllAsync()
-                                                                     .Result
-                                                                     .Where(u => u.nombre == TiposTransaccion.PuntosRecomendacion)
-                                                                     .SingleOrDefault();
+                        var tiposTransaccion = await _tipoTransaccionService.GetAllAsync();
+                        var tipoTransaccion = tiposTransaccion
+                                              .Where(u => u.nombre == TiposTransaccion.PuntosRecomendacion)
+                                              .SingleOrDefault();
+                         
                         var transaccion = new Transaccion {
                             idTipoTransaccion = tipoTransaccion.id,
                             fecha = DateTime.UtcNow,
@@ -207,16 +440,15 @@ namespace API.Controllers
                             fechaCreacion = DateTime.UtcNow,
                             tipoEnvioInApp = TipoEnvioInApp.NuevaRecompensa
                         };
-                        var result = _inAppNotificationService.AddAsync(inAppRef);
+                        var result = await _inAppNotificationService.AddAsync(inAppRef);
 
                         // Enviar mail notificando la recompensa al recomendador
-                        var tipoEnvioRef = _correoService.ObtenerTiposEnvioCorreo()
-                                                         .Result
-                                                         .Where(u => u.nombre == TipoEnvio.Recompensa)
-                                                         .SingleOrDefault();
+                        var tiposEnvioRef = await _correoService.ObtenerTiposEnvioCorreo();
+                        var tipoEnvioRef = tiposEnvioRef.Where(u => u.nombre == TipoEnvio.Recompensa)
+                                                        .SingleOrDefault();
 
                         var correoRef = new Correo(tipoEnvioRef, usuarioRef.correo, usuarioRef.nombre, _config["AppConfiguration:LogoURL"]);
-                        Guid emailTokenRef = _correoService.EnviarCorreo(correoRef);
+                        Guid? emailTokenRef = _correoService.EnviarCorreo(correoRef);
                     }
                 }
                 else 
@@ -229,15 +461,15 @@ namespace API.Controllers
         /// 
         /// </summary>
         /// <param name="email"></param>
-        /// <returns></returns>
+        /// <returns>Guid?</returns>
         [HttpPost("RequestResetPassword")]
         [AllowAnonymous]
-        public IActionResult RequestResetPassword(string email)
+        public async Task<IActionResult> RequestResetPassword([FromQuery] string email)
         {
-            var result = _authService.RequestResetPassword(email);
+            var result = await _authService.RequestResetPassword(email);
             if (result is null) return NoContent();
 
-            return Ok();
+            return Ok(result);
         }
 
         /// <summary>
@@ -245,15 +477,32 @@ namespace API.Controllers
         /// </summary>
         /// <param name="email"></param>
         /// <param name="newPassword"></param>
-        /// <returns></returns>
+        /// <returns>bool</returns>
         [HttpPost("ResetPassword")]
         [AllowAnonymous]
-        public IActionResult ResetPassword(string email, string newPassword)
+        public async Task<IActionResult> ResetPassword([FromQuery] string email, string newPassword)
         {
-            var result = _authService.ResetPassword(email, newPassword);
-            if (result is null) return NoContent();
+            var result = await _authService.ResetPassword(email, newPassword);
+            if (!result) return NoContent();
 
-            return Ok(); 
+
+            // Enviar corrreo: 'Contraseña cambiada correctamente'
+            var tiposEnvioCorreo = await _correoService.ObtenerTiposEnvioCorreo();
+            var tipoCorreo = tiposEnvioCorreo.Where(u => u.nombre.Trim() == TipoEnvioCorreo.TipoEnvio.ContrasenaCambiada.Trim())
+                                             .Single();
+
+            var usuarios = await _usuarioService.GetAllAsync();
+            var usuario = usuarios.Where(u => u.correo.ToLower() == email.ToLower())
+                                  .SingleOrDefault();
+
+            var correo = new Correo(tipoCorreo,
+                                    email,
+                                    usuario.nombre,
+                                    _config["AppConfiguration:LogoURL"]);
+
+            var res = _correoService.EnviarCorreo(correo);
+
+            return Ok(result); 
         } 
     }
 }

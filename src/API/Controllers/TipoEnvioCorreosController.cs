@@ -7,23 +7,30 @@ using Domain.Entities;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.RateLimiting;
+using Microsoft.Extensions.Options;
+using static Utilities.ExporterHelper;
 
 namespace API.Controllers
 {
     [ApiController]
     [Route("[controller]")]
-    public class TipoEnvioCorreosController : BaseController<TipoEnvioCorreo>, IController<IActionResult, TipoEnvioCorreo, Guid>
+    public class TipoEnvioCorreosController : BaseController<TipoEnvioCorreo>, 
+                                              IController<IActionResult, TipoEnvioCorreo, Guid>
     {  
         private readonly ITipoEnvioCorreoService _tipoEnvioCorreoService;
+        private readonly ExportConfiguration _exportConfig;
 
         public TipoEnvioCorreosController(ILogger<TipoEnvioCorreosController> logger,
-                                          ITipoEnvioCorreoService tipoEnvioCorreoService)
+                                          ITipoEnvioCorreoService tipoEnvioCorreoService,
+                                          IOptions<ExportConfiguration> options)
         {
             _logger = logger;
             _tipoEnvioCorreoService = tipoEnvioCorreoService ?? throw new ArgumentNullException(nameof(tipoEnvioCorreoService));
+            _exportConfig = options.Value ?? throw new ArgumentNullException(nameof(options));
         }
 
-        [Authorize]
+        [AllowAnonymous]
+        //[Authorize]
         [HttpGet("FiltrarTipoEnvioCorreos")]
         public async Task<IActionResult> GetByFiltersAsync([FromQuery] IFilters<TipoEnvioCorreo>  filters,
                                                            [FromQuery] int? page,
@@ -118,6 +125,60 @@ namespace API.Controllers
                 return StatusCode(StatusCodes.Status500InternalServerError,
                                  new { message = MessageProvider.GetMessage("TipoEnvioCorreo:Eliminar", "Error"), id });
             } 
+        }
+
+        /// <summary>
+        /// Exportar vista a Excel o pdf
+        /// </summary> 
+        /// <returns> File to download </returns>
+        [HttpGet("Exportar")]
+        //[Authorize(Policy = "RequireAdmin")]
+        //[Authorize]
+        [AllowAnonymous]
+        public async Task<IActionResult> Exportar([FromServices] ICorreoService correoService,
+                                                  [FromQuery] ExportFormat formato,
+                                                  [FromQuery] bool envioEmail)
+        {
+            var entityName = nameof(TipoEnvioCorreo);
+
+            var file = await _tipoEnvioCorreoService.ExportarAsync(formato);
+
+            string fileExtension = string.Empty;
+            string contentType = string.Empty;
+
+            switch (formato)
+            {
+                case ExportFormat.Excel:
+                    contentType = _exportConfig.ExcelContentType;
+                    fileExtension = _exportConfig.ExcelExtension;
+                    break;
+                case ExportFormat.Pdf:
+                    contentType = _exportConfig.PdfContentType;
+                    fileExtension = _exportConfig.PdfExtension;
+                    break;
+            }
+
+            var fileName = $"List_{entityName.ToString()}_{DateTime.UtcNow:yyyyMMddHHmmss}{fileExtension}";
+
+            if (envioEmail)
+            {
+                var tiposEnvioCorreo = await correoService.ObtenerTiposEnvioCorreo();
+                var tipoEnvioCorreo = tiposEnvioCorreo.Where(u => u.nombre == TipoEnvioCorreo.TipoEnvio.EnvioReport)
+                                                      .SingleOrDefault();
+
+                tipoEnvioCorreo.asunto = $"Report {entityName.ToString()} ({fileExtension})";
+                tipoEnvioCorreo.cuerpo = $"Se adjunta el informe para la vista de datos {entityName.ToString()}";
+
+                var correo = new Correo(tipoEnvioCorreo, _exportConfig.CorreoAdmin, "Admin", "");
+                correo.FicheroAdjunto = new FicheroAdjunto()
+                {
+                    Archivo = file,
+                    ContentType = contentType,
+                    NombreArchivo = fileName
+                };
+                correoService.EnviarCorreo(correo);
+            }
+            return File(file, contentType, fileName);
         }
     }
 }

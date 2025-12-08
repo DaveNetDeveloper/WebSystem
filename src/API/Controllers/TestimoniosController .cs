@@ -7,6 +7,8 @@ using Application.Services;
 using Domain.Entities;  
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Options;
+using static Utilities.ExporterHelper;
 
 namespace API.Controllers
 {
@@ -15,13 +17,19 @@ namespace API.Controllers
     public class TestimoniosController : BaseController<Testimonio>, IController<IActionResult, Testimonio, int>
     { 
         private readonly ITestimonioService _testimonioService;
-         
-        public TestimoniosController(ILogger<TestimoniosController> logger, ITestimonioService testimonioService) {
+        private readonly ExportConfiguration _exportConfig;
+
+        public TestimoniosController(ILogger<TestimoniosController> logger,
+                                     ITestimonioService testimonioService,
+                                     IOptions<ExportConfiguration> options)
+        {
             _logger = logger; 
             _testimonioService = testimonioService ?? throw new ArgumentNullException(nameof(testimonioService));
+            _exportConfig = options.Value ?? throw new ArgumentNullException(nameof(options));
         }
 
-        [Authorize]
+        //[Authorize]
+        [AllowAnonymous]
         [HttpGet("FiltrarTestimonios")]
         public async Task<IActionResult> GetByFiltersAsync([FromQuery] IFilters<Testimonio>  filters,
                                                            [FromQuery] int? page,
@@ -38,7 +46,8 @@ namespace API.Controllers
             return Ok(filtered);
         }
 
-        [Authorize]
+        //[Authorize]
+        [AllowAnonymous]
         [HttpGet("ObtenerTestimonios")]
         public async Task<IActionResult> GetAllAsync()
         {
@@ -110,7 +119,60 @@ namespace API.Controllers
                 _logger.LogError(ex, "Error eliminando el testimonio, {id}.", id);
                 return StatusCode(StatusCodes.Status500InternalServerError,
                                  new { message = MessageProvider.GetMessage("Testimonio:Eliminar", "Error"), id });
-            } 
+            }
+        }
+        /// <summary>
+        /// Exportar listado a Excel o pdf
+        /// </summary> 
+        /// <returns> File to download </returns>
+        [HttpGet("Exportar")]
+        //[Authorize(Policy = "RequireAdmin")]
+        //[Authorize]
+        [AllowAnonymous]
+        public async Task<IActionResult> Exportar([FromServices] ICorreoService correoService,
+                                                  [FromQuery] ExportFormat formato,
+                                                  [FromQuery] bool envioEmail)
+        {
+            var entityName = nameof(Testimonio);
+
+            var file = await _testimonioService.ExportarAsync(formato);
+
+            string fileExtension = string.Empty;
+            string contentType = string.Empty;
+
+            switch (formato)
+            {
+                case ExportFormat.Excel:
+                    contentType = _exportConfig.ExcelContentType;
+                    fileExtension = _exportConfig.ExcelExtension;
+                    break;
+                case ExportFormat.Pdf:
+                    contentType = _exportConfig.PdfContentType;
+                    fileExtension = _exportConfig.PdfExtension;
+                    break;
+            }
+
+            var fileName = $"List_{entityName.ToString()}_{DateTime.UtcNow:yyyyMMddHHmmss}{fileExtension}";
+
+            if (envioEmail)
+            {
+                var tiposEnvioCorreo = await correoService.ObtenerTiposEnvioCorreo();
+                var tipoEnvioCorreo = tiposEnvioCorreo.Where(u => u.nombre == TipoEnvioCorreo.TipoEnvio.EnvioReport)
+                                                      .SingleOrDefault();
+
+                tipoEnvioCorreo.asunto = $"Report {entityName.ToString()} ({fileExtension})";
+                tipoEnvioCorreo.cuerpo = $"Se adjunta el informe para la vista de datos {entityName.ToString()}";
+
+                var correo = new Correo(tipoEnvioCorreo, _exportConfig.CorreoAdmin, "Admin", "");
+                correo.FicheroAdjunto = new FicheroAdjunto()
+                {
+                    Archivo = file,
+                    ContentType = contentType,
+                    NombreArchivo = fileName
+                };
+                correoService.EnviarCorreo(correo);
+            }
+            return File(file, contentType, fileName);
         }
     }
 }

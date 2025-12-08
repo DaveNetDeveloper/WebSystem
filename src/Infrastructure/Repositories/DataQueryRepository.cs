@@ -265,6 +265,22 @@ namespace Infrastructure.Repositories
                         x.estado,
                         x.fechaValidacion
                 )).ToListAsync();
-        }  
+        }
+
+        public async Task<IReadOnlyList<vTotalErroresDTO>> ObtenerTotalErrores(int page = 1, int pageSize = 100)
+        {
+            if (page < 1) page = 1;
+            var skip = (page - 1) * pageSize;
+
+            return await _context.v_TotalErrores
+                .AsNoTracking()
+                .Skip(skip)
+                .Take(pageSize)
+                .Select(x => new vTotalErroresDTO(
+                        x.dia,
+                        x.totalErrores,
+                        x.proceso
+                )).ToListAsync();
+        }
     }
 }
