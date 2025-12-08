@@ -41,7 +41,7 @@ namespace API.Controllers
             // si existe la cookkie [entitiesIds] aplicar filtro
             var valor = Request.Cookies["Entidades-Cookie"];
 
-            if(!string.IsNullOrEmpty(valor.Trim()))
+            if(valor != null && !string.IsNullOrEmpty(valor.Trim()))
             {
                 entidades = entidades.Where(e => valor.Split(',').Contains(e.id.ToString())).ToList();
             }

@@ -74,9 +74,10 @@ namespace API.Controllers
         /// <param name="descending"></param>
         /// <returns></returns>
         /// <exception cref="InvalidOperationException"></exception>
-        [Authorize]
+        //[Authorize]
+        [AllowAnonymous]
         [HttpGet("FiltrarInAppNotifications")]
-        public async Task<IActionResult> GetByFiltersAsync([FromQuery] IFilters<InAppNotification> filters,
+        public async Task<IActionResult> GetByFiltersAsync([FromQuery] InAppNotificationFilters filters,
                                                            [FromQuery] int? page,
                                                            [FromQuery] int? pageSize,
                                                            [FromQuery] string? orderBy,
@@ -126,7 +127,8 @@ namespace API.Controllers
         /// </summary>
         /// <param name="inAppNotification"></param>
         /// <returns></returns>
-        [Authorize]
+        //[Authorize]
+        [AllowAnonymous]
         [HttpPut("ActualizarInAppNotification")]
         public async Task<IActionResult> UpdateAsync([FromBody] InAppNotification inAppNotification)
         {

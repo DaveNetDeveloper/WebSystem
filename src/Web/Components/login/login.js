@@ -173,8 +173,6 @@ class AppLogin extends HTMLElement {
         form.addEventListener('submit', async (e) => {
             e.preventDefault();
 
-           
-
             try { 
                 //var hashedPassword = Utilities.calcularHash(password);
 
@@ -201,19 +199,17 @@ class AppLogin extends HTMLElement {
                         LoginType: this.loginType,
                     })
                 });
-
-               
-
+                 
                 if (!res.ok) throw new Error('Credenciales incorrectas');
 
                 const data = await res.json();
 
-                alert("access_token: " + data.access_token);
-                alert("token_type: " + data.token_type);
-                alert("expires_at: " + data.expires_at);
-                alert("role: " + data.role);
-                alert("profile: " + data.profile);
-                alert("entidades: " + data.entidades);
+                //alert("access_token: " + data.access_token);
+                //alert("token_type: " + data.token_type);
+                //alert("expires_at: " + data.expires_at);
+                //alert("role: " + data.role);
+                //alert("profile: " + data.profile);
+                //alert("entidades: " + data.entidades);
 
                 const expiracionEnDias = 7;
                 const fechaExpiracionRT = new Date();

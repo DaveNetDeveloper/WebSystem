@@ -1,6 +1,5 @@
 ﻿const templatePath = "../Backoffice/Components/adminHeader";
 const rol_PropName = "rol";
-
 class AdminMenu extends HTMLElement {
     constructor() {
         super();
@@ -9,7 +8,6 @@ class AdminMenu extends HTMLElement {
         this._meanResizeHandler = null;
         this.mobileMenuOpen = false;
 
-        // evitar flicker
         this.shadowRoot.innerHTML = `<style>:host { visibility: hidden; }</style>`;
     }
 
@@ -36,7 +34,6 @@ class AdminMenu extends HTMLElement {
     }
 
     async disconnectedCallback() {
-        // Cleanup resize listener
         if (this._meanResizeHandler) window.removeEventListener('resize', this._meanResizeHandler);
     }
 
@@ -44,7 +41,7 @@ class AdminMenu extends HTMLElement {
         const html = await fetch(`${templatePath}/adminHeader.html`).then(r => r.text());
         const css = await fetch(`${templatePath}/adminHeader.css`).then(r => r.text());
 
-        // Carga global sin 'link' (preloadCss está definido en tu home.html)
+        // Carga global sin 'link' 
         const bootstrap = await preloadCss("css/bootstrap.min.css");
         const animate = await preloadCss("css/animate.min.css");
         const fontawesome = await preloadCss("css/fontawesome-all.min.css");
@@ -74,7 +71,6 @@ class AdminMenu extends HTMLElement {
 
         this.shadowRoot.appendChild(template.content.cloneNode(true));
 
-        // mostrar quan tot ha estat injectat
         requestAnimationFrame(() => {
             this.shadowRoot.host.style.visibility = "visible";
         });

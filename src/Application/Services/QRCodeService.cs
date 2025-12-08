@@ -18,8 +18,7 @@ namespace Application.Services
         public QRCodeService(IQRCodeRepository repo, 
                              IQRCodeImageService imageService,
                               IExcelExporter excelExporter,
-                              IExporter pdfExporter)
-        {
+                              IExporter pdfExporter) {
             _repo = repo;
             _imageService = imageService;
             _excelExporter = excelExporter;
@@ -72,11 +71,13 @@ namespace Application.Services
 
         public Task<bool> Remove(Guid id)
               => _repo.Remove(id);
+  
         /// <summary>
         /// 
         /// </summary>
         /// <param name="dataQueryType"></param>
         /// <returns></returns>
+        /// 
         public async Task<byte[]> ExportarAsync(ExportFormat formato) // TODO por implementar en todas las entidades exportables
         {
             Type entityType = typeof(QRCode);

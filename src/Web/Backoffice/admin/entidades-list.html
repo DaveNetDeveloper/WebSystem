@@ -77,7 +77,7 @@
             const controller = e.detail.controller;
             //const dataSource = e.detail.dataSource;
 
-            modal.setContent("Confirmar eliminación", `¿Deseas eliminar: ${id} - ${nombre}?`);
+            modal.setContent("Confirmar eliminación", `¿Deseas eliminar: ${id} - ${nombre}?`, "delete");
             modal.mostrar();
 
             // Limpiar listeners previos
