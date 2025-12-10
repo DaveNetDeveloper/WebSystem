@@ -22,8 +22,8 @@ namespace API.Controllers
         private readonly ExportConfiguration _exportConfig;
 
         public QRCodesController(IQRCodeService service,
-                                ILogger<QRCodesController> logger,
-                                   IOptions<ExportConfiguration> options)
+                                 ILogger<QRCodesController> logger,
+                                 IOptions<ExportConfiguration> options)
         {
             _service = service;
             _logger = logger;
@@ -46,7 +46,8 @@ namespace API.Controllers
             }
         }
 
-        [HttpPost]
+        [HttpPost ("CrearQR")]
+        [AllowAnonymous]
         public async Task<IActionResult> Create([FromBody] CreateQRCodeRequest request)
         {
             var qr = await _service.CreateAsync(

@@ -28,14 +28,18 @@ namespace API.Controllers
         private readonly ICorreoService _correoService;
         private readonly ITipoTransaccionService _tipoTransaccionService;
         private readonly ITransaccionService _transaccionService;
-         
+        private readonly IQRCodeService _qrCodeService;
+        private readonly IEntidadService _entidadService;
+
         public ActividadReservasController(ILogger<ActividadReservasController> logger,
                                            IActividadReservaService actividadReservaService,
                                            IActividadService actividadService,
                                            IUsuarioService usuarioService,
                                            ICorreoService correoService,
                                            ITipoTransaccionService tipoTransaccionService,
-                                           ITransaccionService transaccionService) {
+                                           ITransaccionService transaccionService,
+                                           IQRCodeService qrCodeService,
+                                           IEntidadService entidadService) {
             _logger = logger;
             _actividadReservaService = actividadReservaService ?? throw new ArgumentNullException(nameof(actividadReservaService));
             _actividadService = actividadService ?? throw new ArgumentNullException(nameof(actividadService));
@@ -43,6 +47,8 @@ namespace API.Controllers
             _correoService = correoService ?? throw new ArgumentNullException(nameof(correoService));
             _tipoTransaccionService = tipoTransaccionService ?? throw new ArgumentNullException(nameof(tipoTransaccionService));
             _transaccionService = transaccionService ?? throw new ArgumentNullException(nameof(transaccionService));
+            _qrCodeService = qrCodeService ?? throw new ArgumentNullException(nameof(qrCodeService));
+            _entidadService = entidadService ?? throw new ArgumentNullException(nameof(entidadService));
         }
 
         [Authorize]
@@ -146,15 +152,15 @@ namespace API.Controllers
         /// <returns> bool </returns>
         [HttpPost("ValidarReserva")]
         //[Authorize]
+        [AllowAnonymous]
         public async Task<IActionResult> ValidarReserva([FromQuery] string email,
                                                         [FromQuery] string codigoReserva) {
             
             var usuarioFilter = new UsuarioFilters {
                 Correo = email 
             };
-            var usuario = _usuarioService.GetByFiltersAsync(usuarioFilter)
-                                         .Result?
-                                         .SingleOrDefault();
+            var usuarios = await _usuarioService.GetByFiltersAsync(usuarioFilter);
+            var usuario = usuarios.SingleOrDefault();
             if (null == usuario)
                 return NotFound();
 
@@ -164,9 +170,8 @@ namespace API.Controllers
                 CodigoReserva = codigoReserva,
                 IdUsuario = idUsuario 
             };
-            var reserva = _actividadReservaService.GetByFiltersAsync(reservaFilter)?
-                                                  .Result
-                                                  .SingleOrDefault();
+            var reservas = await _actividadReservaService.GetByFiltersAsync(reservaFilter);
+            var reserva = reservas.SingleOrDefault();
 
             if (reserva == null || reserva.estado != ActividadReserva.EstadoReserva.Reservada)
                 return NotFound(false);
@@ -176,10 +181,9 @@ namespace API.Controllers
             var updateResult = await _actividadReservaService.UpdateAsync(reserva);
 
             // Crear transaccion de tipo [Puntos por validar la asistencia a la actividad] 
-            var tipoTransaccion = _tipoTransaccionService.GetAllAsync()
-                                                         .Result
-                                                         .Where(u => u.nombre == TiposTransaccion.ReservarActividad)
-                                                         .SingleOrDefault();
+            var tipoTransacciones = await _tipoTransaccionService.GetAllAsync();
+            var tipoTransaccion = tipoTransacciones.Where(u => u.nombre == TiposTransaccion.ReservarActividad)
+                                                   .SingleOrDefault();
             var transaccion = new Transaccion {
                 idTipoTransaccion = tipoTransaccion.id,
                 fecha = DateTime.UtcNow,
@@ -198,10 +202,12 @@ namespace API.Controllers
         /// <param name="idUsuario"></param>
         /// <param name="codigoReserva"></param>
         /// <returns> ReservaActividadDTO </returns>
+        [AllowAnonymous]
         [HttpPost("ReservarActividad")]
         //[Authorize]
         public async Task<IActionResult> ReservarActividad([FromQuery] int idUsuario, 
                                                            [FromQuery] int idActividad)
+                                                           
         {  
             var _idReserva = Guid.NewGuid();
             var _codigoReserva = CodesHelper.GenerarCodigoReservaActividad(idActividad);
@@ -210,6 +216,18 @@ namespace API.Controllers
 
             // Obtener entidad Actividad 
             var actividad = await _actividadService.GetByIdAsync(idActividad);
+
+            //Comprobar que el usuario no tiene ya una reserva para la actividad
+            var reservaFilter = new ActividadReservaFilters
+            {
+                IdActividad = idActividad,
+                IdUsuario = idUsuario
+            };
+            var reservas = await _actividadReservaService.GetByFiltersAsync(reservaFilter);
+            bool existeReserva = reservas.Any(r => r.estado != ActividadReserva.EstadoReserva.Cancelada);
+
+            if (existeReserva) 
+                return NotFound(null);
 
             // Crear la reserva en [ActividadReservas] en estado "Reservada"
             var actividadReserva = new ActividadReserva
@@ -224,15 +242,49 @@ namespace API.Controllers
             };
             var reservaResult = await _actividadReservaService.AddAsync(actividadReserva);
 
-            // Enviar correo al usuario informando de la reserva de la actividad.
-            var tipoEnvio = _correoService.ObtenerTiposEnvioCorreo()
-                                          .Result
-                                          .Where(u => u.nombre == TipoEnvio.ReservaActividad)
-                                          .SingleOrDefault();
-            // Obtener Usuario
+            // Crear QRCode 
+            Guid idQRCode = Guid.NewGuid();
+            string payload = $"https://localhost:7175/WebPages/loginQR.html?id={idQRCode}";
+
+            //calcular fecha de expiracion el QR basado en la fecha fin de la actividad
+            TimeSpan? ttl = null;
+            if (actividad.fechaFin.HasValue) 
+            {
+                ttl = actividad.fechaFin.Value - DateTime.UtcNow;    // Tiempo restante hasta la fecha de fin
+                if (ttl <= TimeSpan.Zero) // Evitar valores negativos por si la fecha ya ha venciudo
+                    ttl = TimeSpan.FromSeconds(1);
+            }
+            var qrCode = await _qrCodeService.CreateAsync(payload, ttl, idQRCode);
+            
+            // Enviar correo al usuario informando de la reserva de la actividad
+            var tiposEnvioUser = await _correoService.ObtenerTiposEnvioCorreo();
+            var tipoEnvioUser = tiposEnvioUser .Where(u => u.nombre == TipoEnvio.ReservaActividad)
+                                               .SingleOrDefault();
+
             var usuario = await _usuarioService.GetByIdAsync(idUsuario);
-            var correo = new Correo(tipoEnvio, usuario.correo, usuario.nombre, ""); // _config["AppConfiguration:LogoURL"]
-            Guid? emailToken = _correoService.EnviarCorreo(correo);
+            var correo = new Correo(tipoEnvioUser, usuario.correo, usuario.nombre, ""); // _config["AppConfiguration:LogoURL"]
+            correo.FicheroAdjunto = new FicheroAdjunto {
+                                            NombreArchivo = "QR_ReservaActividad.png",
+                                            ContentType = "image/png",
+                                            Archivo = qrCode.imagen }; 
+
+            _correoService.EnviarCorreo(correo);
+
+            // Enviar correo al manager de la entidad informando de la reserva
+            var tiposEnvioManager = await _correoService.ObtenerTiposEnvioCorreo();
+            var tipoEnvioManager = tiposEnvioManager.Where(u => u.nombre == TipoEnvio.ReservaActividad_Manager)
+                                                    .SingleOrDefault();
+
+
+            //obtener el usuario manager de la entidad
+
+            var entidadActividad  = await _entidadService.GetByIdAsync(actividad.idEntidad);
+            var emailManager = entidadActividad.manager;
+            var matchUsers = await _usuarioService.GetByFiltersAsync(new UsuarioFilters { Correo = emailManager });
+            var manager = matchUsers.SingleOrDefault();
+
+            var correoManager = new Correo(tipoEnvioManager, manager.correo, manager.nombre, ""); // _config["AppConfiguration:LogoURL"]
+            _correoService.EnviarCorreo(correoManager);
 
             // Devolver los datos de la reserva desde el controller(en DTO Response)
             var reservaResponse = new ReservaActividadDTO() {
@@ -254,6 +306,7 @@ namespace API.Controllers
         /// <param name="codigoReserva"></param>
         /// <returns> bool </returns>
         [HttpPut("CancelarReserva")]
+        [AllowAnonymous]
         //[Authorize]
         public async Task<IActionResult> CancelarReserva([FromQuery] string email,
                                                          [FromQuery] string codigoReserva) {
@@ -261,9 +314,9 @@ namespace API.Controllers
             var usuarioFilter = new UsuarioFilters {
                 Correo = email
             };
-            var usuario = _usuarioService.GetByFiltersAsync(usuarioFilter)
-                                         .Result?
-                                         .SingleOrDefault();
+            
+            var usuarios = await _usuarioService.GetByFiltersAsync(usuarioFilter);
+            var usuario = usuarios.SingleOrDefault();
             if (null == usuario)
                 return NotFound();
 
@@ -274,9 +327,8 @@ namespace API.Controllers
                 IdUsuario = idUsuario
             };
 
-            var reserva = _actividadReservaService.GetByFiltersAsync(reservaFilter)?
-                                                  .Result
-                                                  .SingleOrDefault();
+            var reservas = await _actividadReservaService.GetByFiltersAsync(reservaFilter);
+            var reserva = reservas.SingleOrDefault();
 
             if (reserva == null || 
                 reserva.estado == ActividadReserva.EstadoReserva.Cancelada ||

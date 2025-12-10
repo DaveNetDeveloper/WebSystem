@@ -12,7 +12,7 @@
         public Guid id { get; set; } = Guid.NewGuid();
         public string token { get; set; } = Guid.NewGuid().ToString("N");
         public string payload { get; set; } = default!;
-        public QrStatus status { get; set; } = QrStatus.Inactive;
+        public QrStatus status { get; set; } = QrStatus.Active;
         public DateTime fechaCreacion { get; set; } = DateTime.UtcNow;
         public DateTime? fechaExpiracion { get; set; }
         public byte[]? imagen { get; set; }
@@ -21,12 +21,17 @@
 
         public QRCode() { } 
 
-        public QRCode(string _payload, TimeSpan? _ttl, byte[] _imagen)
+        public QRCode(string _payload, TimeSpan? _ttl, byte[] _imagen, Guid? id)
         {
             payload = _payload;
             imagen = _imagen;
-            if (_ttl.HasValue)
+            if (_ttl.HasValue) { 
                 fechaExpiracion = DateTime.UtcNow.Add(_ttl.Value);
+            }
+
+            if (id.HasValue) {
+                this.id = id.Value;
+            }
         }
 
         public void Activate()

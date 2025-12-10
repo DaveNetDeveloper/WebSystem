@@ -17,8 +17,8 @@ namespace Application.Services
 
         public QRCodeService(IQRCodeRepository repo, 
                              IQRCodeImageService imageService,
-                              IExcelExporter excelExporter,
-                              IExporter pdfExporter) {
+                             IExcelExporter excelExporter,
+                             IExporter pdfExporter) {
             _repo = repo;
             _imageService = imageService;
             _excelExporter = excelExporter;
@@ -38,10 +38,10 @@ namespace Application.Services
         public Task<IEnumerable<QRCode>> GetAllAsync()
             => _repo.GetAllAsync();
 
-        public async Task<QRCode> CreateAsync(string payload, TimeSpan? ttl)
+        public async Task<QRCode> CreateAsync(string payload, TimeSpan? ttl , Guid? id = null)
         {
             var imageBytes = _imageService.GenerateQRCodeImage(payload);
-            var qr = new QRCode(payload, ttl, imageBytes);
+            var qr = new QRCode(payload, ttl, imageBytes, id);
             await _repo.AddAsync(qr);
             return qr;
         }
