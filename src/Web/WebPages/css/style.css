@@ -127,7 +127,7 @@ body{
 	bottom: 15px;
 	right: 15px;
 	padding: 10px 20px;
-	background: #1a76d1;
+	background: goldenrod;
 	color: #fff;
 	font-size: 25px;
 	width: 45px;
@@ -1098,13 +1098,13 @@ body{
 	border:1px solid #fff;
 	color:#1a76d1;
 }
-.call-action .content .btn:before{
-	background:#1A76D1;
-}
-.call-action .content .btn:hover{
-	background:#1A76D1;
-	color:#fff;
-}
+	.call-action .content .btn:before {
+		background: goldenrod;
+	}
+	.call-action .content .btn:hover {
+		background: goldenrod;
+		color: #fff;
+	}
 .call-action .content .btn:last-child{
 	margin-right:0px;
 }
@@ -2020,6 +2020,11 @@ body{
 	position:relative;
 	overflow:hidden;
 }
+
+		.blog .single-news .news-content:hover {
+			background: aliceblue;
+		}
+
 .blog .single-news .news-content {
 	text-align: left;
 	background: #fff;
@@ -2063,6 +2068,7 @@ body{
 	color:#1A76D1;
 }
 .blog .single-news .news-content p {
+	color:black;
 	font-weight: 400;
 	text-transform: capitalize;
 	font-size: 13px;

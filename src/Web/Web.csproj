@@ -16,8 +16,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Remove="WebPages\blog-single.html" />
     <None Remove="WebPages\contact.html" />
+    <None Remove="WebPages\css\core.min.css" />
+    <None Remove="WebPages\css\skin.css" />
     <None Remove="WebPages\test.html" />
   </ItemGroup>
 
@@ -30,6 +31,7 @@
     <Folder Include="Backoffice\Components\editList\" />
     <Folder Include="WebPages\img\actividades\" />
     <Folder Include="WebPages\img\entidades\" />
+    <Folder Include="WebPages\img\actividades\" />
   </ItemGroup>
 
 </Project>

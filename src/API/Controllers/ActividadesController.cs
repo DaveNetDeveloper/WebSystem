@@ -35,9 +35,10 @@ namespace API.Controllers
             return (actividades != null && actividades.Any()) ? Ok(actividades) : NoContent();
         }
 
-        [Authorize]
+        //[Authorize]
+        [AllowAnonymous]
         [HttpGet("FiltrarActividades")]
-        public async Task<IActionResult> GetByFiltersAsync([FromQuery] IFilters<Actividad> filters,
+        public async Task<IActionResult> GetByFiltersAsync([FromQuery] ActividadFilters filters,
                                                            [FromQuery] int? page,
                                                            [FromQuery] int? pageSize,
                                                            [FromQuery] string? orderBy,
@@ -74,7 +75,7 @@ namespace API.Controllers
                 descripcion = actividad.descripcion,
                 linkEvento = actividad.linkEvento,
                 idTipoActividad = actividad.idTipoActividad,
-                ubicación = actividad.ubicación,
+                ubicacion = actividad.ubicacion,
                 popularidad = actividad.popularidad,
                 descripcionCorta = actividad.descripcionCorta,
                 fechaInicio = actividad.fechaInicio,

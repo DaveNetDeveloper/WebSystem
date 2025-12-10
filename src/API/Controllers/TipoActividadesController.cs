@@ -32,7 +32,7 @@ namespace API.Controllers
         [AllowAnonymous]
         //[Authorize]
         [HttpGet("FiltrarTipoActividades")]
-        public async Task<IActionResult> GetByFiltersAsync([FromQuery] IFilters<TipoActividad>  filters,
+        public async Task<IActionResult> GetByFiltersAsync([FromQuery] TipoActividadFilters  filters,
                                                            [FromQuery] int? page,
                                                            [FromQuery] int? pageSize,
                                                            [FromQuery] string? orderBy,

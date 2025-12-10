@@ -17,6 +17,7 @@
             public const string SuscripcionActivada = "SuscripcionActivada";
             public const string ReservaProducto = "ReservaProducto";
             public const string ReservaActividad = "ReservaActividad";
+            public const string ReservaActividad_Manager = "ReservaActividad_Manager";
             public const string EnvioComunicacion = "EnvioComunicacion";
             public const string CambiarContrasena = "CambiarContrasena";
             public const string ContrasenaCambiada = "ContrasenaCambiada";

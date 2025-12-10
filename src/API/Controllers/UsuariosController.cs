@@ -89,8 +89,8 @@ namespace API.Controllers
         /// <param name="orderBy"></param>
         /// <param name="descending"></param>
         /// <returns> IEnumerable<Usuario> </returns>
-        //[AllowAnonymous]
-        [Authorize(Policy = "RequireAdmin")]
+        [AllowAnonymous]
+        //[Authorize(Policy = "RequireAdmin")]
         [HttpGet("FiltrarUsuarios")]
         public async Task<IActionResult> GetByFiltersAsync([FromQuery] UsuarioFilters filters, // TODO: IFilters<Usuario>
                                                            [FromQuery] int? page,
@@ -165,7 +165,7 @@ namespace API.Controllers
                 var result = await _usuarioService.AddAsync(nuevoUsuario); 
                 if (result == false) return NotFound();
                 else {
-                    _logger.LogInformation(MessageProvider.GetMessage("Usuario:Crear", "Success"));
+                    //_logger.LogInformation(MessageProvider.GetMessage("Usuario:Crear", "Success"));
                     return Ok(result);
                 }
             }
@@ -191,7 +191,7 @@ namespace API.Controllers
 
                 if (result == false) return NotFound();
                 else {
-                    _logger.LogInformation(MessageProvider.GetMessage("Usuario:Actualizar", "Success"));
+                   // _logger.LogInformation(MessageProvider.GetMessage("Usuario:Actualizar", "Success"));
                     return Ok(result);
                 }
             }
@@ -249,7 +249,7 @@ namespace API.Controllers
                 if (result == false) return NotFound();
                 else
                 {
-                    _logger.LogInformation(MessageProvider.GetMessage("Usuario:Eliminar", "Success"));
+                    //_logger.LogInformation(MessageProvider.GetMessage("Usuario:Eliminar", "Success"));
                     return Ok(result);
                 }
             }
@@ -277,7 +277,7 @@ namespace API.Controllers
                 var result = await _usuarioService.CambiarContrasena(email, nuevaContrasena);
                 if (result == false) return NotFound();
                 else {
-                    _logger.LogInformation(MessageProvider.GetMessage("Usuario:CambiarContraseña", "Success"));
+                    //_logger.LogInformation(MessageProvider.GetMessage("Usuario:CambiarContraseña", "Success"));
                     return Ok(result);
                 }
             }
@@ -292,8 +292,8 @@ namespace API.Controllers
         /// <param name="token">Token asociado si la petición viene de enlace de correo</param>
         /// <param name="email">Email del destinatario a buscar</param>
         /// <returns> bool </returns>
-        //[AllowAnonymous]
-        [Authorize]
+        [AllowAnonymous]
+        //[Authorize]
         [HttpPatch("ActivacionSuscripcion")]
         public async Task<IActionResult> ActivacionSuscripcion([FromQuery] string token, 
                                                                [FromQuery][Required] string email)  {
@@ -330,7 +330,7 @@ namespace API.Controllers
                             var correo = new Correo(tipoEnvioCorreo, email, usuario.nombre, _appConfiguration.LogoURL);
                             _correoService.EnviarCorreo(correo);
 
-                            _logger.LogInformation(MessageProvider.GetMessage("Usuario:ActivacionSuscripcion", "Success"));
+                            //_logger.LogInformation(MessageProvider.GetMessage("Usuario:ActivacionSuscripcion", "Success"));
                             return Ok(consumeResult);
                         }
                         else

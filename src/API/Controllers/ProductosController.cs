@@ -49,9 +49,10 @@ namespace API.Controllers
             } 
         }
 
-        [Authorize]
+        //[Authorize]
+        [AllowAnonymous]
         [HttpGet("FiltrarProductos")]
-        public async Task<IActionResult> GetByFiltersAsync([FromQuery] IFilters<Producto> filters,
+        public async Task<IActionResult> GetByFiltersAsync([FromQuery] ProductoFilters filters,
                                                            [FromQuery] int? page,
                                                            [FromQuery] int? pageSize,
                                                            [FromQuery] string? orderBy,

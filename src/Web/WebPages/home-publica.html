@@ -59,23 +59,6 @@
             align-items: center;
         }
 
-        /* --- ESTILOS MEJORADOS PARA LA ANIMACIÓN (El efecto "molón") --- */
-        .flecha {
-            /* Añade transición a la flecha para que rote suavemente */
-            transition: transform 0.3s ease-in-out;
-        }
-
-        /* Alternativamente, si quieres mantener el control en CSS y usar las clases de FA: */
-        .fa-chevron-up {
-            /* Asegura que el icono 'up' apunte hacia arriba (sin rotación) */
-            transform: rotate(0deg);
-        }
-
-        .fa-chevron-down {
-            /* Asegura que el icono 'down' apunte hacia abajo (sin rotación) */
-            transform: rotate(0deg);
-        }
-
         .respuesta {
             padding: 0 15px; /* Padding vertical inicial de 0 para empezar la transición */
             text-align: left;
@@ -95,11 +78,55 @@
             padding-bottom: 15px;
         }
 
-		@media (max-width: 600px) {
-			.pregunta {
-				font-size: 16px;
-			}
-		}
+        @media (max-width: 600px) {
+            .pregunta {
+                font-size: 16px;
+            }
+        }
+
+        respuesta {
+            padding: 0 15px; /* Padding vertical inicial de 0 para empezar la transición */
+            text-align: left;
+            /* CERO VISIBILIDAD INICIAL */
+            max-height: 0;
+            /* TRANSICIÓN CLAVE */
+            /* Anima el max-height y el padding vertical */
+            transition: max-height 0.4s ease-out, padding 0.4s ease-out;
+        }
+
+        /* Estado de la respuesta cuando el panel está activo/abierto */
+        .panel.activo .respuesta {
+            /* Al abrir, el JS se encarga de establecer dinámicamente el max-height */
+            /* max-height: 500px; ya no es necesario aquí */
+            /* Devolvemos el padding para que el contenido tenga espacio */
+            padding-top: 15px;
+            padding-bottom: 15px;
+        }
+
+        @media (max-width: 600px) {
+            .pregunta {
+                font-size: 16px;
+            }
+        }
+
+        /* --- ESTILOS MEJORADOS PARA LA ANIMACIÓN (El efecto "molón") --- */
+        .flecha {
+            /* Añade transición a la flecha para que rote suavemente */
+            transition: transform 0.3s ease-in-out;
+        }
+
+        /* Alternativamente, si quieres mantener el control en CSS y usar las clases de FA: */
+        .fa-chevron-up {
+            /* Asegura que el icono 'up' apunte hacia arriba (sin rotación) */
+            transform: rotate(0deg);
+        }
+
+        .fa-chevron-down {
+            /* Asegura que el icono 'down' apunte hacia abajo (sin rotación) */
+            transform: rotate(0deg);
+        }
+
+        .
 
         .slider .single-slider .button {
             margin-top: 30px;
