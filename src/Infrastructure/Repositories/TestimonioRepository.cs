@@ -28,6 +28,9 @@ namespace Infrastructure.Repositories
             if (_filters.Id.HasValue)
                 predicate = predicate.And(u => u.id == _filters.Id.Value);
 
+            if (_filters.IdEntidad.HasValue)
+                predicate = predicate.And(u => u.idEntidad == _filters.IdEntidad.Value);
+
             if (!string.IsNullOrEmpty(_filters.NombreUsuario))
                 predicate = predicate.And(u => u.nombreUsuario.ToLower() == _filters.NombreUsuario.ToLower());
 
@@ -53,7 +56,8 @@ namespace Infrastructure.Repositories
                 texto = testimonio.texto,
                 nombreUsuario = testimonio.nombreUsuario,
                 fecha = testimonio.fecha,
-                imagen = testimonio.imagen
+                imagen = testimonio.imagen,
+                idEntidad = testimonio.idEntidad
             };
 
             await _context.Testimonios.AddAsync(nuevoTestimonio);
@@ -71,6 +75,7 @@ namespace Infrastructure.Repositories
             updatedTestimonio.nombreUsuario = testimonio.nombreUsuario;
             updatedTestimonio.fecha = testimonio.fecha;
             updatedTestimonio.imagen = testimonio.imagen;
+            updatedTestimonio.idEntidad = testimonio.idEntidad;
 
             await _context.SaveChangesAsync();
             return true;

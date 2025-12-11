@@ -5,6 +5,7 @@ namespace Application.DTOs.Filters
 {
     public class FAQFilters : IFilters<FAQ>
     {
-        public Guid? Id { get; set; } 
+        public Guid? Id { get; set; }
+        public int? IdEntidad { get; set; }
     }
 }

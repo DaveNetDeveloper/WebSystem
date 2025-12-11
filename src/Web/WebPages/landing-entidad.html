@@ -76,6 +76,17 @@
         .blog .single-news img {
 			min-height:349px;
         }
+
+
+        .news-head {
+            min-height: 350px; 
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            width: 100%;
+            /*border-radius: 10px 10px 0 0;*/
+        }
+
 	</style>
 
 	<!--<script type="text/javascript" charset="UTF-8" src="http://maps.googleapis.com/maps-api-v3/api/js/62/13e/intl/es_ALL/common.js"></script>
@@ -200,6 +211,7 @@
 		var url = new URL(window.location.href);
 		var urlParams = new URLSearchParams(url.search);
 		var paramIdEntidad = urlParams.get('id');
+	 
 
 		GetEntidad(paramIdEntidad)
 			.then(entidad => {
@@ -289,7 +301,7 @@
 
 		function contactar() {
 
-            window.location.href = `contactar.html?id=${paramIdEntidad}`; 
+            window.location.href = `contactar.html?id=${paramIdEntidad}&idTipo=${tipoEntidad}`; 
 		}
 	</script>
 	 
@@ -298,12 +310,17 @@
 			<div class="row">
 				<div class="col-lg-12">
 					<div class="section-title" style=" padding: 0px;">
-						<h3 id="tituloDetalles">Explora los productos/actividades de la entidad</h3>
+						<h3 id="tituloDetalles" style="font-size: 32px;">Explora los productos/actividades de la entidad</h3>
 						<p>Lorem ipsum dolor sit amet consectetur adipiscing elit praesent aliquet. pretiumts</p>
 					</div>
 				</div>
 			</div>
 			<div id="cardsPanel" class="row">
+				
+				<div class="section-title" style=" padding: 0px;">
+					<h3 id="NoContent" style="color: burlywood;">No se han encontrado productos activos.</h3>
+					<p>Vuelve más tarde para encontrar las nuevas actividades que organice esta asociación.</p>
+				</div>
 
 			</div>
 		</div>
@@ -326,7 +343,7 @@
     function buscarActividades(idEntidad) {
 
         let contenedor = document.getElementById('cardsPanel');
-        contenedor.innerHTML = '';
+		contenedor.innerHTML = '';
 
         const baseUrl = `https://localhost`;
         const controllerName = `Actividades`;
@@ -340,8 +357,21 @@
                 if (!response.ok) throw new Error("Error en GetActividades");
 				return response.json();
             })
-            .then(data => {
-                var lista = data.items;
+			.then(data => { 
+				const lista = data.items;
+
+                if (lista == null || lista.length === 0) {
+                    contenedor.innerHTML = `
+                    <div class="col-lg-12" style="padding: 100px;text-align:center;">
+                        <h4 id="NoContent" style="color: burlywood;">No se han encontrado actividades activas.</h3>
+                        <p style="color: black;text-align: center;font-size: 15px;  margin-top: 15px;">Vuelve más tarde para encontrar las nuevas actividades de esta asociación.</p>
+						<div style="padding: 50px 0;">
+							<img src="img/no-content.png" alt="no content" style="transition-duration: 700ms;width: 10%;">
+						</div>
+					</div> `;
+                    return;
+                }
+
                 if (lista != null && lista.length > 0) {
                     for (const actividad of lista) {
                         let card = crearCardActividad(actividad);
@@ -358,20 +388,36 @@
 		contenedor.innerHTML = '';
 
 		GetProductos()
-			.then(productos => {
+			.then(productos => { 
 
+				var hasProducts = false;
 				var i = 1;
-				productos.forEach(function (producto) {
-
+				productos.forEach(function (producto) { 
 					if (producto.activo) {
 
 						if (idEntidad == producto.idEntidad) {
 							let card = crearCardProducto(producto);
 							contenedor.appendChild(card);
+							hasProducts = true;
 						}
 					}
 					i++;
 				})
+
+				if (!hasProducts) {
+                    contenedor.innerHTML = `
+					<div class="col-lg-12" style="padding: 100px;text-align:center;">
+						<h4 id="NoContent" style="color: burlywood;">No se han encontrado productos activos.</h3>
+						<p style="color: black;text-align: center;font-size: 15px;color: #888; margin-top: 15px;">
+							Vuelve más tarde para encontrar los nuevos productos de este comercio.
+						</p>
+						<div style="padding: 50px 0;">
+							<img src="img/no-content.png" alt="no content" style="transition-duration: 700ms;width: 10%;">
+						</div>
+
+					</div> `; 
+                    return;
+				}
 			})
 			.catch(error => {
 				console.error('Error en GetProductos:', error);
@@ -390,6 +436,7 @@
 		});
 
 		divCol.className = 'col-lg-4 col-md-6 col-12';
+        divCol.style.marginTop = "5%";
 
 		const divSingleNews = document.createElement('div');
 		divSingleNews.className = 'single-news';
@@ -397,10 +444,12 @@
 		const divNewsHead = document.createElement('div');
 		divNewsHead.className = 'news-head';
 
-		const img = document.createElement('img');
-		img.src = producto.imagen;
-		img.alt = '#';
-		img.style.minHeight = "350px";
+        divNewsHead.style.backgroundImage = `url('${producto.imagen}')`; // ajuste de imagen al contenedor (mejor que con 'img')
+
+		//const img = document.createElement('img');
+		//img.src = producto.imagen;
+		//img.alt = '#';
+		//img.style.minHeight = "350px";
 
 		const divNewsBody = document.createElement('div');
 		divNewsBody.className = 'news-body';
@@ -429,7 +478,7 @@
 
 		divNewsBody.appendChild(divNewsContent);
 
-		divNewsHead.appendChild(img);
+		//divNewsHead.appendChild(img);
 
 		divSingleNews.appendChild(divNewsHead);
 		divSingleNews.appendChild(divNewsBody);
@@ -457,10 +506,12 @@
         const divNewsHead = document.createElement('div');
         divNewsHead.className = 'news-head';
 
-        const img = document.createElement('img');
-        img.src = actividad.imagen;
-        img.alt = '#';
-        img.style.minHeight = "350px";
+        divNewsHead.style.backgroundImage = `url('${actividad.imagen}')`; // ajuste de imagen al contenedor (mejor que con 'img')
+
+        //const img = document.createElement('img');
+        //img.src = actividad.imagen;
+        //img.alt = '#';
+        //img.style.minHeight = "350px";
 
         const divNewsBody = document.createElement('div');
         divNewsBody.className = 'news-body';
@@ -489,7 +540,7 @@
 
         divNewsBody.appendChild(divNewsContent);
 
-        divNewsHead.appendChild(img);
+		//divNewsHead.appendChild(img);
 
         divSingleNews.appendChild(divNewsHead);
         divSingleNews.appendChild(divNewsBody);

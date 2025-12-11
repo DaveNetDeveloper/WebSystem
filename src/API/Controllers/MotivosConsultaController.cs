@@ -35,9 +35,10 @@ namespace API.Controllers
             return (motivosConsulta != null && motivosConsulta.Any()) ? Ok(motivosConsulta) : NoContent();
         }
 
-        [Authorize]
+        //[Authorize]
+        [AllowAnonymous]
         [HttpGet("FiltrarMotivoConsultas")]
-        public async Task<IActionResult> GetByFiltersAsync([FromQuery] IFilters<MotivoConsulta> filters,
+        public async Task<IActionResult> GetByFiltersAsync([FromQuery] MotivoConsultaFilters filters,
                                                            [FromQuery] int? page,
                                                            [FromQuery] int? pageSize,
                                                            [FromQuery] string? orderBy,

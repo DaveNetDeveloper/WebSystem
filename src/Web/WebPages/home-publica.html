@@ -170,6 +170,13 @@
 			padding: 10px;
 			cursor: pointer;
 		}*/
+
+        .slider .single-slider .btn:before {
+            background-color: white;
+            opacity: 1;
+            color: black !important;
+        } 
+
 	</style> 
 
 </head>
@@ -219,13 +226,16 @@
         var anchorInicioSesion = document.createElement("a");
         anchorInicioSesion.href = "login.html";
         anchorInicioSesion.textContent = "Inicia Sesión";
+        anchorInicioSesion.style = "color: WHITE;";
 
         var anchorO = document.createElement("span");
         anchorO.textContent = " o ";
+        anchorO.style = "color: WHITE;";
 
         var anchorRegistro = document.createElement("a");
         anchorRegistro.href = "register.html";
         anchorRegistro.textContent = "Regístrate";
+        anchorRegistro.style = "color: WHITE;";
 
         // Añadir los elementos al h1 del Panel de Login/Registro
         h1Login.appendChild(anchorInicioSesion);
@@ -325,7 +335,7 @@
 
         function onClickBtnSlide(id) {
             return function () {
-                alert(id);
+                window.location.href = `landing-entidad.html?id=${id}`;
             };
         }
 
@@ -487,7 +497,7 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="section-title">
-                        <h2>Los Mejores Servicios Y Productos Están Muy Cerca De Ti.</h2>
+                        <h2>Los Mejores Servicios Y Productos Están Muy Cerca De Ti</h2>
                         <img src="img/logo.jpg" alt="#" style="margin-top: 20px; margin-bottom: 20px;">
                         <p>Encuentra aquello que estabas buscando.</p>
                     </div>
@@ -606,7 +616,7 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="section-title">
-                        <h2>Consulta todas las actividades que hay a tu alrededor.</h2>
+                        <h2>Consulta todas las actividades que hay a tu alrededor</h2>
                         <p>Lorem ipsum dolor sit amet consectetur adipiscing elit praesent aliquet.</p>
                     </div>
                 </div>
@@ -619,7 +629,7 @@
                         </div>
                         <div class="news-body">
                             <div class="news-content">
-                                <div class="date">15 Enero, 2024</div>
+                                <div class="date">2 Diciembre, 2025</div>
                                 <h2><a href="blog-single.html">Lorem ipsum dolor sit amet, consectetur adipiscing.</a></h2>
                                 <p class="text">Lorem ipsum dolor a sit ameti, consectetur adipisicing elit, sed do eiusmod tempor incididunt sed do incididunt sed.</p>
                             </div>
@@ -633,7 +643,7 @@
                         </div>
                         <div class="news-body">
                             <div class="news-content">
-                                <div class="date">2 Febrero, 2024</div>
+                                <div class="date">5 Diciembre, 2025</div>
                                 <h2><a href="blog-single.html">Lorem ipsum dolor sit amet, consectetur.</a></h2>
                                 <p class="text">Lorem ipsum dolor a sit ameti, consectetur adipisicing elit, sed do eiusmod tempor incididunt sed do incididunt sed.</p>
                             </div>
@@ -648,7 +658,7 @@
                         </div>
                         <div class="news-body">
                             <div class="news-content">
-                                <div class="date">8 Febrero, 2024</div>
+                                <div class="date">12 Enero, 2026</div>
                                 <h2><a href="blog-single.html">Lorem ipsum dolor sit amet.</a></h2>
                                 <p class="text">Lorem ipsum dolor a sit ameti, consectetur adipisicing elit, sed do eiusmod tempor incididunt sed do incididunt sed.</p>
                             </div>
@@ -681,7 +691,9 @@
 
                     var i = 1;
                     testimonios.forEach(function (testimonio) {
-                        crearTestimonio(i, testimonio.nombreUsuario, testimonio.texto, testimonio.fecha, testimonio.imagen);
+                        if (testimonio.idEntidad == 0) {
+                            crearTestimonio(i, testimonio.nombreUsuario, testimonio.texto, testimonio.fecha, testimonio.imagen);
+                        }
                         i++;
                     });
                 })
@@ -841,7 +853,9 @@
                     });
                     var i = 1;
                     faqs.forEach(function (faq) {
-                        crearPanel(i, faq.pregunta, faq.respuesta);
+                        if (faq.idEntidad == 0) {
+                            crearPanel(i, faq.pregunta, faq.respuesta);
+                        }
                         i++;
                     });
                 })

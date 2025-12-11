@@ -1,0 +1,776 @@
+﻿<!DOCTYPE html>
+<html class="no-js" lang="es">
+<head>
+    <meta charset="utf-8" />
+    <title>Contactar con entidad</title>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="keywords" content="validación">
+    <meta name="description" content="Página para la activación de la cuenta">
+    <meta name='copyright' content='UOC'>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link rel="icon" href="img/favicon.png">
+
+    <link href="https://fonts.googleapis.com/css?family=Poppins:200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="./css/bootstrap.min.css">
+    <link rel="stylesheet" href="./css/nice-select.css">
+    <link rel="stylesheet" href="./css/font-awesome.min.css">
+    <link rel="stylesheet" href="./css/icofont.css">
+    <link rel="stylesheet" href="./css/slicknav.min.css">
+    <link rel="stylesheet" href="./css/owl-carousel.css">
+    <link rel="stylesheet" href="./css/datepicker.css">
+    <link rel="stylesheet" href="./css/animate.min.css">
+    <link rel="stylesheet" href="./css/magnific-popup.css">
+
+    <link rel="stylesheet" href="./css/normalize.css">
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="./css/responsive.css">
+
+    <!--G Maps-->
+    <!--<link rel="stylesheet" href="./css/core.min.css">
+    <link rel="stylesheet" href="./css/skin.css">-->
+    <!--<script type="text/javascript" charset="UTF-8" src="http://maps.googleapis.com/maps-api-v3/api/js/62/13e/intl/es_ALL/common.js"></script>
+    <script type="text/javascript" charset="UTF-8" src="http://maps.googleapis.com/maps-api-v3/api/js/62/13e/intl/es_ALL/util.js"></script>
+    <script type="text/javascript" charset="UTF-8" src="http://maps.googleapis.com/maps-api-v3/api/js/62/13e/intl/es_ALL/map.js"></script>
+    <script type="text/javascript" charset="UTF-8" src="http://maps.googleapis.com/maps-api-v3/api/js/62/13e/intl/es_ALL/marker.js"></script>
+    <script type="text/javascript" charset="UTF-8" src="http://maps.googleapis.com/maps-api-v3/api/js/62/13e/intl/es_ALL/controls.js"></script>
+    <script type="text/javascript" charset="UTF-8" src="http://maps.googleapis.com/maps-api-v3/api/js/62/13e/intl/es_ALL/infowindow.js"></script>
+    <script type="text/javascript" charset="UTF-8" src="http://maps.googleapis.com/maps-api-v3/api/js/62/13e/intl/es_ALL/log.js"></script>
+    <script type="text/javascript" charset="UTF-8" src="http://maps.googleapis.com/maps-api-v3/api/js/62/13e/intl/es_ALL/onion.js"></script>-->
+    <!--<link type="text/css" rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Google+Sans:400,500,700|Google+Sans+Text:400,500,700&amp;lang=es">-->
+    <!--<link type="text/css" rel="stylesheet" href="http://fonts.googleapis.com/css?family=Google+Sans+Text:400&amp;text=%E2%86%90%E2%86%92%E2%86%91%E2%86%93&amp;lang=es">-->
+    <!--<script src="./js/libraries/utilities.js"></script>
+    <script src="./js/services/usuariosController.js"></script>-->
+    <script src="./js/services/entidadesController.js"></script>
+    <script src="./js/services/productosController.js"></script>
+
+    <style>
+         
+        button {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            font-size: 18px;
+            padding: 10px;
+            cursor: pointer;
+        }
+
+        #myMap {
+            width: 100%;
+            height: 400px;
+        } 
+
+        .column > :first-child, .row {
+            margin-top: 0;
+        }
+
+        .contact-form-container, .contact-form-container .contact-form {
+            position: relative;
+        }
+
+        .audio-container, .box, .button-group, .contact-form-container, .content-slider, .feature-column, .lead, .menu-box, .menu-list, .menu-list li, .pricing-table, .progress-bar-group, .recent-slider, .signup-form-container, .table, .testimonial-2 blockquote, .text-column, .thumbnail, .video-container {
+            margin-bottom: 3rem;
+        }
+
+        *, :after, :before {
+            -moz-box-sizing: border-box;
+            -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+        }
+
+        user agent stylesheet
+        div {
+            display: block;
+            unicode-bidi: isolate;
+        }
+
+        body {
+            font-family: 'Open Sans', 'Helvetica Neue', sans-serif;
+            letter-spacing: 0;
+            font-weight: 400;
+            font-size: 1.4rem;
+            line-height: 1.8;
+            color: #666;
+        }
+
+        body {
+            padding: 0;
+            margin: 0;
+            background: #fff;
+            color: #666;
+            font-family: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            font-weight: 400;
+            font-style: normal;
+            font-size: 1.4rem;
+            line-height: 1.8;
+            overflow-x: hidden !important;
+            overflow-y: scroll;
+            -webkit-text-size-adjust: none;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        html {
+            font-size: 62.5%;
+        }
+
+        *, :after, :before {
+            -moz-box-sizing: border-box;
+            -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+        }
+
+        *, :after, :before {
+            -moz-box-sizing: border-box;
+            -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+        }
+
+        ::selection {
+            background: #333;
+            color: #fff;
+        }
+
+        ::selection {
+            background: #333;
+            color: #fff;
+        }
+
+        ::selection {
+            background: #333;
+            color: #fff;
+        }
+
+        ::selection {
+            background: #333;
+            color: #fff;
+        }
+
+        ::selection {
+            background: #333;
+            color: #fff;
+        }
+
+        ::selection {
+            background: #333;
+            color: #fff;
+        }
+         
+
+        .row .row {
+            width: auto;
+            margin-right: -1.5rem;
+            margin-left: -1.5rem;
+        }
+
+        .row {
+            margin-bottom: 0;
+        }
+
+        .row, body.boxed .wrapper-inner {
+            max-width: 114rem;
+        }
+
+        .row, .wrapper {
+            width: 100%;
+            margin-right: auto;
+            margin-left: auto;
+        }
+
+        .column > :first-child, .row {
+            margin-top: 0;
+        }
+
+        *, :after, :before {
+            -moz-box-sizing: border-box;
+            -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+        }
+
+        user agent stylesheet
+        div {
+            display: block;
+            unicode-bidi: isolate;
+        }
+
+        body {
+            font-family: 'Open Sans', 'Helvetica Neue', sans-serif;
+            letter-spacing: 0;
+            font-weight: 400;
+            font-size: 1.4rem;
+            line-height: 1.8;
+            color: #666;
+        }
+
+        body {
+            padding: 0;
+            margin: 0;
+            background: #fff;
+            color: #666;
+            font-family: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            font-weight: 400;
+            font-style: normal;
+            font-size: 1.4rem;
+            line-height: 1.8;
+            overflow-x: hidden !important;
+            overflow-y: scroll;
+            -webkit-text-size-adjust: none;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        [class*="form-container"] .column {
+            position: relative;
+        }
+
+        .contact-form-container [class*=width-], .signup-form-container [class*=width-] {
+            padding-left: 1rem;
+            padding-right: 1rem;
+        }
+
+        .width-6 {
+            width: 50%;
+        }
+
+        .column, [class*=content-grid] .grid-item {
+            width: 100%;
+            padding-left: 1.5rem;
+            padding-right: 1.5rem;
+            float: left;
+        }
+
+        *, :after, :before {
+            -moz-box-sizing: border-box;
+            -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+        }
+
+        user agent stylesheet
+        div {
+            display: block;
+            unicode-bidi: isolate;
+        }
+
+        .column > :first-child, .row {
+            margin-top: 0;
+        }
+
+        .field-wrapper {
+            position: relative;
+            overflow: hidden;
+        } 
+
+        *, :after, :before {
+            -moz-box-sizing: border-box;
+            -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+        }
+         
+
+        .contact-form-container .form-element, .login-form-container .form-element, .register-form-container .form-element, .search-form-container .form-element, .signup-form-container .form-element {
+            margin-bottom: 2rem;
+        }
+
+        .form-element.large {
+            padding: 1.6rem 3rem;
+            font-size: 1.4rem;
+        }
+
+        .form-element, textarea, select {
+            font-size: 1.3rem;
+            text-transform: none;
+            font-weight: normal;
+            letter-spacing: 0.1rem;
+            color: #666;
+        }
+
+        .form-element, textarea {
+            margin-bottom: 3rem;
+            background-color: #fff;
+            border: 1px solid #ddd;
+        }
+
+            .bar, .box, .form-element, .form-element + label:before, .overlay-info, .thumbnail, .thumbnail .background-image, .thumbnail img, a, button, input, textarea {
+                -webkit-transition-property: background, border-color, color, opacity, box-shadow, -webkit-transform;
+                transition-property: background, border-color, color, opacity, box-shadow, transform;
+                -webkit-transition-duration: .3s;
+                transition-duration: .3s;
+                -webkit-transition-timing-function: ease-in-out;
+                transition-timing-function: ease-in-out;
+            }
+
+        .form-element, textarea {
+            background: #f9f9f9;
+            font-size: 1.3rem;
+            color: #666;
+            border: 1px solid #eee;
+            border-radius: 0;
+        }
+
+        h1, h2, h3, h4, h5, h6, input, button, .button, select, textarea, .project-title, .product-title, .project-description, .font-alt-1, .header .navigation > ul > li > a, .side-navigation > ul > li > a, .overlay-navigation > ul > li > a, .grid-filter-menu a {
+            font-family: 'Lato', 'Helvetica Neue', sans-serif;
+        }
+
+        input, select, textarea {
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+            -webkit-border-radius: 0;
+        }
+
+        input, textarea {
+            width: 100%;
+            padding: 1.3rem 2.5rem;
+            margin: 0 0 1.5rem;
+        }
+
+        .button, button, input, select {
+            line-height: 1.4;
+        }
+
+        a, button, input, select, textarea {
+            touch-action: manipulation;
+        }
+
+        *, :after, :before {
+            -moz-box-sizing: border-box;
+            -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+        }
+
+        user agent stylesheet
+        input:not([type="image" i], [type="range" i], [type="checkbox" i], [type="radio" i]) {
+            overflow-clip-margin: 0px !important;
+            overflow: clip !important;
+        }
+
+        user agent stylesheet
+        input[type="text" i] {
+            padding-block: 1px;
+            padding-inline: 2px;
+        } 
+
+        .nice-select {
+            -webkit-tap-highlight-color: transparent;
+            background-color: #fff;
+            border-radius: 5px;
+            border: solid 1px #e8e8e8;
+            box-sizing: border-box;
+            clear: both;
+            cursor: pointer;
+            display: block;
+            float: left;
+            font-family: inherit;
+            font-size: 15px;
+            font-weight: normal;
+            height: 54px;
+            line-height: 45px;
+            outline: none;
+            padding-left: 18px;
+            padding-right: 30px;
+            position: relative;
+            text-align: left !important;
+            -webkit-transition: all 0.2s ease-in-out;
+            transition: all 0.2s ease-in-out;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+            white-space: nowrap;
+            width: 100%;
+            margin-bottom: 16px;
+        }
+
+        .nice-select.open .list {
+            opacity: 1;
+            pointer-events: auto;
+            -webkit-transform: scale(1) translateY(0);
+            -ms-transform: scale(1) translateY(0);
+            transform: scale(1) translateY(0);
+            width:100%;
+        }
+
+
+       /* #motivoSelect {
+            opacity: 1 !important;
+            display: block !important;
+            height: auto !important;
+            visibility: visible !important;
+        }*/
+
+    </style>
+
+    <!--<script type="text/javascript" charset="UTF-8" src="http://maps.googleapis.com/maps-api-v3/api/js/62/13e/intl/es_ALL/common.js"></script>
+    <script type="text/javascript" charset="UTF-8" src="http://maps.googleapis.com/maps-api-v3/api/js/62/13e/intl/es_ALL/util.js"></script>
+    <script type="text/javascript" charset="UTF-8" src="http://maps.googleapis.com/maps-api-v3/api/js/62/13e/intl/es_ALL/map.js"></script>
+    <script type="text/javascript" charset="UTF-8" src="http://maps.googleapis.com/maps-api-v3/api/js/62/13e/intl/es_ALL/infowindow.js"></script>
+    <script type="text/javascript" charset="UTF-8" src="http://maps.googleapis.com/maps-api-v3/api/js/62/13e/intl/es_ALL/controls.js"></script>-->
+
+</head>
+<body>
+
+    <div class="preloader">
+        <div class="loader">
+            <div class="loader-outter"></div>
+            <div class="loader-inner"></div>
+
+            <div class="indicator">
+                <svg width="16px" height="12px">
+                    <polyline id="back" points="1 6 4 6 6 11 10 1 12 6 15 6"></polyline>
+                    <polyline id="front" points="1 6 4 6 6 11 10 1 12 6 15 6"></polyline>
+                </svg>
+            </div>
+        </div>
+    </div>
+
+    <header class="header">
+        <div class="header-inner">
+            <div class="container">
+                <div class="inner">
+                    <div class="row">
+                        <div class="col-lg-3 col-md-3 col-12">
+                            <div class="logo">
+                                <a href="home-privada.html"><img src="img/logo.jpg" alt="#"></a>
+                            </div>
+                            <div class="mobile-nav"></div>
+                        </div>
+                        <div class="col-lg-7 col-md-9 col-12">
+                            <div class="main-menu">
+                                <nav class="navigation">
+                                    <ul class="nav menu">
+                                        <li><a href="home-privada.html">Inicio </a></li>
+                                        <li><a href="explorar.html">Explorar </a></li>
+                                        <li><a href="#">Recompensas </a></li>
+                                        <li><a href="#">Cómo ganar puntos? </a></li>
+                                    </ul>
+                                </nav>
+                            </div>
+                        </div>
+                        <div class="col-lg-2 col-12">
+                            <div class="get-quote">
+                                <a id="infoUsuario" style="background: goldenrod; margin: 15px;" href="#" class="btn">Hola {nombreUsuario}. Tienes {puntosUsuario} pts.</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="breadcrumbs overlay">
+        <div class="container">
+            <div class="bread-inner">
+                <div class="row">
+                    <div class="col-12">
+                        <h2 id="tituloPagina">Contactar</h2> 
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="section"> 
+        <form class="contact-form" id="formularioConsulta">
+            <div class="row">
+                <div class="column width-6">
+                    <div class="field-wrapper">
+                        <input id="nombreInput" type="text" name="fname" class="form-fname form-element large" placeholder="Nombre" tabindex="1" required="" value="">
+                    </div>
+                </div>
+                <div class="column width-6">
+                    <div class="field-wrapper">
+                        <input type="text"  id="apellidosInput"name="lname" class="form-lname form-element large" placeholder="Apellidos" tabindex="2" value="">
+                    </div>
+                </div>
+                <div class="column width-6">
+                    <div class="field-wrapper">
+                        <input type="email" id="emailInput" name="email" class="form-email form-element large" placeholder="Correo" tabindex="3" required="" value="">
+                    </div>
+                </div>
+                <div class="column width-6">
+                    <div class="field-wrapper">
+                        <input type="text" name="website" id="telefonoInput" class="form-phone form-element large" placeholder="Teléfono" tabindex="4">
+                    </div>
+                </div> 
+                <div  class="column width-6">
+                    <div class="form-select form-element large" style="padding: 0;">
+                        <select id="motivoSelect" tabindex="6" class="form-aux" data-label="MotivoConsulta">
+                            <option value="" disabled selected hidden>Motivo de la consulta</option> 
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="column width-12">
+                    <div class="field-wrapper">
+                        <textarea id="mensajeInput" name="message" style="min-height:150px;" class="form-message form-element large" placeholder="Mensaje" tabindex="7" required=""></textarea>
+                    </div>
+                </div> 
+                <div style="text-align:center;" class="column width-12">
+                    <button type="submit" style="min-width: 25%;" value="ENVIAR" class="btn" >ENVIAR</button>
+                </div>
+            </div>
+        </form>
+        <div class="form-response"></div>
+    </div> 
+ 
+    <script>
+
+        var url = new URL(window.location.href);
+        var urlParams = new URLSearchParams(url.search);
+
+        let idTipoEntidad = urlParams.get('idTipo'); // para filtrar los motivos de consulta
+        let idEntidad = urlParams.get('id'); // Para relacionar la consulta
+
+        document.addEventListener("DOMContentLoaded", () => {
+            if (idTipoEntidad !== null) {
+                cargarMotivosConsulta(idTipoEntidad); 
+            }
+        });
+         
+        document.addEventListener('DOMContentLoaded', () => {
+            const form = document.getElementById('formularioConsulta');
+
+            const baseUrl = `https://localhost`;
+            const controllerName = `Consultas`;
+            const port = `44311`;
+            const apiUrl = `${baseUrl}:${port}/${controllerName}/CrearConsulta`; 
+
+            form.addEventListener('submit', async (event) => {
+
+                event.preventDefault();
+
+                const consultaData = {
+                    id: '00000000-0000-0000-0000-000000000000', 
+                    nombreCompleto: document.getElementById('nombreInput').value + ' ' + document.getElementById('apellidosInput').value,
+                    email: document.getElementById('emailInput').value, 
+                    telefono: document.getElementById('telefonoInput').value || null, 
+                    mensaje: document.getElementById('mensajeInput').value,
+                    fecha: new Date().toISOString(), 
+                    idMotivoConsulta: document.getElementById('motivoSelect').value,
+                    idEntidad: 1
+                };
+
+                if (consultaData.idMotivoConsulta === "") {
+                    alert("Por favor, selecciona un Motivo de Consulta.");
+                    return;
+                }
+
+                try {
+                    const respuesta = await fetch(apiUrl, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify(consultaData)
+                    });
+
+                    if (respuesta.ok) {
+                        const resultado = await respuesta.json();
+
+                        if (resultado === true) {
+                            alert("Consulta enviada y guardada correctamente.");
+                            form.reset();
+                        } else {
+                            alert("Error: La API indicó un fallo al guardar (resultado 'false').");
+                        }
+                    } else {
+                        const errorTexto = await respuesta.text();
+                        alert(`Error al enviar la consulta. Código: ${respuesta.status}. Mensaje: ${errorTexto}`);
+                    }
+
+                } catch (error) {
+                    console.error('Error de red al enviar la consulta:', error);
+                    alert('No se pudo conectar con el servidor. Inténtalo de nuevo más tarde.');
+                }
+            });
+        });
+
+        async function cargarMotivosConsulta(idTipoEntidad) {
+
+            const baseUrl = `https://localhost`;
+            const controllerName = `MotivosConsulta`;
+            const port = `44311`;
+            const apiUrl = `${baseUrl}:${port}/${controllerName}/FiltrarMotivoConsultas`;
+
+            const url = `${apiUrl}?filters.IdTipoEntidad=${idTipoEntidad}`;
+
+            try {
+                const response = await fetch(url, {
+                    method: "GET",
+                    headers: { "Content-Type": "application/json" }
+                });
+
+                if (!response.ok) {
+                    console.error("Error al obtener motivos de consulta:", response.status);
+                    return;
+                }
+
+                const data = await response.json();
+                
+                let select = document.getElementById("motivoSelect");
+
+                //select.innerHTML = `<option value="">Motivo de la consulta</option>`;
+                select.innerHTML = `<option value="" disabled selected hidden>Motivo de la consulta</option>`;
+                 
+                if (data != null && data.length > 0) {
+                     
+                    for (const motivo of data) {
+                         
+                        let option = document.createElement("option");
+                        option.value = motivo.id;
+                        option.textContent = motivo.nombre;
+                        select.appendChild(option);
+                    }
+                } else {
+                     
+                    let option = document.createElement("option");
+                    option.value = "";
+                    option.textContent = "No hay motivos disponibles";
+                    select.appendChild(option);
+                }
+
+                const oldNice = document.querySelector(".nice-select.form-aux");
+                if (oldNice) oldNice.remove();
+
+                $(document).ready(function () {
+                    $('#motivoSelect').niceSelect();
+                    document.querySelector('.nice-select .current').classList.add('placeholder');
+                });
+
+            } catch (err) {
+                console.error("Error en cargarMotivosConsulta:", err);
+            }
+        }
+
+        function verificarSeleccion() {
+            const selectElemento = document.getElementById("motivoSelect");
+            const valorSeleccionado = selectElemento.value;
+
+            if (valorSeleccionado === "") {
+                console.log("No se ha seleccionado ninguna opción válida (el valor es vacío).");
+                return false;
+            } else {
+                console.log("Se ha seleccionado una opción válida. Valor: " + valorSeleccionado);
+                return true;
+            }
+        }
+
+    </script> 
+       
+    <footer id="footer" class="footer ">
+        <div class="footer-top">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-3 col-md-6 col-12">
+                        <div class="single-footer">
+                            <h2>About Us</h2>
+                            <p>Lorem ipsum dolor sit am consectetur adipisicing elit do eiusmod tempor incididunt ut labore dolore magna.</p>
+                            <ul class="social">
+                                <li><a href="#"><i class="icofont-facebook"></i></a></li>
+                                <li><a href="#"><i class="icofont-google-plus"></i></a></li>
+                                <li><a href="#"><i class="icofont-twitter"></i></a></li>
+                                <li><a href="#"><i class="icofont-vimeo"></i></a></li>
+                                <li><a href="#"><i class="icofont-pinterest"></i></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-12">
+                        <div class="single-footer f-link">
+                            <h2>Quick Links</h2>
+                            <div class="row">
+                                <div class="col-lg-6 col-md-6 col-12">
+                                    <ul>
+                                        <li><a href="#"><i class="fa fa-caret-right" aria-hidden="true"></i>Home</a></li>
+                                        <li><a href="#"><i class="fa fa-caret-right" aria-hidden="true"></i>About Us</a></li>
+                                        <li><a href="#"><i class="fa fa-caret-right" aria-hidden="true"></i>Services</a></li>
+                                        <li><a href="#"><i class="fa fa-caret-right" aria-hidden="true"></i>Our Cases</a></li>
+                                        <li><a href="#"><i class="fa fa-caret-right" aria-hidden="true"></i>Other Links</a></li>
+                                    </ul>
+                                </div>
+                                <div class="col-lg-6 col-md-6 col-12">
+                                    <ul>
+                                        <li><a href="#"><i class="fa fa-caret-right" aria-hidden="true"></i>Consuling</a></li>
+                                        <li><a href="#"><i class="fa fa-caret-right" aria-hidden="true"></i>Finance</a></li>
+                                        <li><a href="#"><i class="fa fa-caret-right" aria-hidden="true"></i>Testimonials</a></li>
+                                        <li><a href="#"><i class="fa fa-caret-right" aria-hidden="true"></i>FAQ</a></li>
+                                        <li><a href="#"><i class="fa fa-caret-right" aria-hidden="true"></i>Contact Us</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-12">
+                        <div class="single-footer">
+                            <h2>Open Hours</h2>
+                            <p>Lorem ipsum dolor sit ame consectetur adipisicing elit do eiusmod tempor incididunt.</p>
+                            <ul class="time-sidual">
+                                <li class="day">Monday - Fridayp <span>8.00-20.00</span></li>
+                                <li class="day">Saturday <span>9.00-18.30</span></li>
+                                <li class="day">Monday - Thusday <span>9.00-15.00</span></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-12">
+                        <div class="single-footer">
+                            <h2>Newsletter</h2>
+                            <p>subscribe to our newsletter to get allour news in your inbox.. Lorem ipsum dolor sit amet, consectetur adipisicing elit,</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="copyright">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12 col-md-12 col-12">
+                        <div class="copyright-content">
+                            <p>©  Copyright 2025  |  Todos los derechos reservados.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JQUERY -->
+    <script src="./js/jquery.min.js"></script>
+    <script src="./js/jquery-migrate-3.0.0.js"></script>
+    <script src="./js/jquery-ui.min.js"></script>
+
+    <!-- POPPER (antes de Bootstrap) -->
+    <script src="./js/popper.min.js"></script>
+
+    <!-- BOOTSTRAP -->
+    <script src="./js/bootstrap.min.js"></script>
+
+    <!-- PLUGINS -->
+    <script src="./js/easing.js"></script>
+    <script src="./js/colors.js"></script>
+    <script src="./js/bootstrap-datepicker.js"></script>
+    <script src="./js/jquery.nav.js"></script>
+    <script src="./js/slicknav.min.js"></script>
+    <script src="./js/jquery.scrollUp.min.js"></script>
+    <script src="./js/niceselect.js"></script>
+    <script src="./js/tilt.jquery.min.js"></script>
+    <script src="./js/owl-carousel.js"></script>
+    <script src="./js/jquery.counterup.min.js"></script>
+    <script src="./js/steller.js"></script>
+    <script src="./js/wow.min.js"></script>
+    <script src="./js/jquery.magnific-popup.min.js"></script>
+
+    <!--<script src="http://cdnjs.cloudflare.com/ajax/libs/waypoints/2.0.3/waypoints.min.js"></script>-->
+    <!-- GOOGLE MAPS API (antes de gmaps.js) -->
+    <!--<script src="https://maps.google.com/maps/api/js?key=AIzaSyBqYqG29bR27i8saIcOGZNYODKXUVIVqgY"></script>-->
+    <!-- GMAPS (solo una vez) -->
+    <!--<script src="./js/gmaps.min.js"></script>-->
+    <!-- MAP ACTIVE -->
+    <!--<script src="./js/map-active.js"></script>-->
+    <!-- MAIN JS (siempre al final) -->
+    <script src="./js/main.js"></script>
+
+</body>
+</html> 

@@ -1,7 +1,6 @@
 <!doctype html>
 <html class="no-js" lang="es">
 <head>
-	<!-- Meta Tags -->
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="keywords" content="">
@@ -11,29 +10,18 @@
 
 	<title>Inicio</title>
 	<link rel="icon" href="img/favicon.png">
-	<!-- Google Fonts -->
 	<link href="https://fonts.googleapis.com/./css?family=Poppins:200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i&display=swap" rel="stylesheet">
 
-	<!-- Bootstrap CSS -->
 	<link rel="stylesheet" href="./css/bootstrap.min.css">
-	<!-- Nice Select ./css -->
 	<link rel="stylesheet" href="./css/nice-select.css">
-	<!-- Font Awesome CSS -->
 	<link rel="stylesheet" href="./css/font-awesome.min.css">
-	<!-- icofont CSS -->
 	<link rel="stylesheet" href="./css/icofont.css">
-	<!-- Slicknav -->
 	<link rel="stylesheet" href="./css/slicknav.min.css">
-	<!-- Owl Carousel CSS -->
 	<link rel="stylesheet" href="./css/owl-carousel.css">
-	<!-- Datepicker CSS -->
 	<link rel="stylesheet" href="./css/datepicker.css">
-	<!-- Animate CSS -->
 	<link rel="stylesheet" href="./css/animate.min.css">
-	<!-- Magnific Popup CSS -->
 	<link rel="stylesheet" href="./css/magnific-popup.css">
 
-	<!-- Medipro CSS -->
 	<link rel="stylesheet" href="./css/normalize.css">
 	<link rel="stylesheet" href="./css/style.css">
 	<link rel="stylesheet" href="./css/responsive.css">
@@ -42,7 +30,6 @@
 
 	<!--<script src="./js/libraries/utilities.js"></script>-->
 	<script src="./js/services/entidadesController.js"></script>
-	<!--<script src="./js/services/usuariosController.js"></script>-->
 	<script src="./js/services/FAQSController.js"></script>
 	<script src="./js/services/testimoniosController.js"></script>
 
@@ -272,17 +259,17 @@
 				currentInAppNotification = inApp;
 
 				await delay(1500);
-				await MostrarModal(inApp.titulo, inApp.mensaje);
+                await mostrarModal(inApp.titulo, inApp.mensaje);
 				return;
 			}
 
 			// lista.forEach(inApp => {
 			// alert(`Tienes una notificación de tipo '${inApp.tipoEnvioInApp}'`);
-			// await MostrarModal(inApp.titulo, inApp.mensaje);
+			// await mostrarModal(inApp.titulo, inApp.mensaje);
 			// });
 		}
 
-		async function MostrarModal(titulo, mensaje) {
+		async function mostrarModal(titulo, mensaje) {
 			const modal = document.getElementById("modalPanel-InAPp");
 			modal.setContent(titulo, mensaje, "info");
 			modal.mostrar();
@@ -788,7 +775,9 @@
 				});
 				var i = 1;
 				faqs.forEach(function (faq) {
-					crearPanel(i, faq.pregunta, faq.respuesta);
+					if (faq.idEntidad == 0) {
+						crearPanel(i, faq.pregunta, faq.respuesta);
+                    }
 					i++;
 				});
 			})

@@ -628,16 +628,28 @@ body{
 	margin:0;
 	margin-right:10px;
 }
-.slider .single-slider .btn:last-child{
-	margin:0;
-}
+	.slider .single-slider .btn :before {
+		color: #fff;
+	}
+	.slider .single-slider .btn :hover {
+		color: #fff;
+	}
+	.slider .single-slider .btn:last-child {
+		margin: 0;
+		color: #fff;
+	}
+	.slider .single-slider .btn:last-child:hover {
+		margin: 0;
+		color: black;
+	}
 .slider .single-slider .btn.primary{
 	background:#2C2D3F;
 	color:#fff;
 }
-.slider .single-slider .btn.primary:before{
-	background:#1A76D1;
-}
+	.slider .single-slider .btn.primary:before {
+		background: #1A76D1;
+		color: #fff;
+	}
 .slider .owl-carousel .owl-nav {
 	margin: 0;
     position: absolute;

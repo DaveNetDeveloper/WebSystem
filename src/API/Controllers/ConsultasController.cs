@@ -4,24 +4,27 @@ using Application.Interfaces.Controllers;
 using Application.Interfaces.DTOs.Filters;
 using Application.Interfaces.Services;
 using Application.Services;
+using DocumentFormat.OpenXml.ExtendedProperties;
 using Domain.Entities;
 
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
+ 
 using static Utilities.ExporterHelper;
 
 namespace API.Controllers
 {
     [Route("[controller]")]
     [ApiController]
-    public class ConsultasController : BaseController<Consulta>, IController<IActionResult, Consulta, Guid>
+    public class ConsultasController : BaseController<Consulta>//, IController<IActionResult, Consulta, Guid>
     {
         private readonly IConsultaService _consultaService;
         private readonly ExportConfiguration _exportConfig;
-        public ConsultasController(ILogger<ConsultasController> logger, 
-                                   IConsultaService consultaService, 
-                                   IOptions<ExportConfiguration> options) {
+        public ConsultasController(ILogger<ConsultasController> logger,
+                                   IConsultaService consultaService,
+                                   IOptions<ExportConfiguration> options)
+        {
             _logger = logger;
             _consultaService = consultaService ?? throw new ArgumentNullException(nameof(consultaService));
             _exportConfig = options.Value ?? throw new ArgumentNullException(nameof(options));
@@ -42,7 +45,8 @@ namespace API.Controllers
                                                            [FromQuery] int? page,
                                                            [FromQuery] int? pageSize,
                                                            [FromQuery] string? orderBy,
-                                                           [FromQuery] bool descending = false) {
+                                                           [FromQuery] bool descending = false)
+        {
             var _filters = filters as ConsultaFilters;
 
             if (_filters is null)
@@ -62,11 +66,16 @@ namespace API.Controllers
         //    return consulta != null ? Ok(consulta) : NoContent();
         //}
 
-        [Authorize]
+        //[Authorize]
+        [AllowAnonymous]
         [HttpPost("CrearConsulta")]
-        public async Task<IActionResult> AddAsync([FromBody] Consulta consulta)
+        public async Task<IActionResult> AddAsync([FromBody] Consulta consulta,
+                                                  [FromServices] ICorreoService correoService,
+                                                  [FromServices] IUsuarioService usuarioService,
+                                                  [FromServices] IEntidadService entidadService)
         {
-            var nuevaConsulta = new Consulta {
+            var nuevaConsulta = new Consulta
+            {
                 nombreCompleto = consulta.nombreCompleto,
                 email = consulta.email,
                 telefono = consulta.telefono,
@@ -78,11 +87,29 @@ namespace API.Controllers
             };
 
             var result = await _consultaService.AddAsync(nuevaConsulta);
-            if (result == false) return NotFound();
-            else {
-                _logger.LogInformation(MessageProvider.GetMessage("Consulta:Crear", "Success"));
-                return Ok(result);
+            if (result == false) return NoContent();
+            else
+            {
+                // Obtene info de la entidad
+                var entidades = await entidadService.GetByFiltersAsync(new EntidadFilters { Activo = true, Id = consulta.idEntidad }, null);
+                var entidad = entidades.SingleOrDefault();
+
+                // Obtener usuario manager
+                var usuarios = await usuarioService.GetByFiltersAsync(new UsuarioFilters { Activo = true, Correo = entidad.manager }, null);
+                var manager = usuarios.SingleOrDefault();
+
+                if (null != manager) 
+                {
+                    var tiposEnvioCorreo = await correoService.ObtenerTiposEnvioCorreo();
+                    var tipoEnvioCorreo = tiposEnvioCorreo.Where(u => u.nombre == TipoEnvioCorreo.TipoEnvio.ConsultaUsuario_Manager)
+                                                          .SingleOrDefault();
+                    
+                    var correo = new Correo(tipoEnvioCorreo, manager.correo, manager.nombre, "");
+                    correoService.EnviarCorreo(correo);
+                }
             }
+            //_logger.LogInformation(MessageProvider.GetMessage("Consulta:Crear", "Success"));
+            return Ok(result);  
         }
 
         [Authorize]

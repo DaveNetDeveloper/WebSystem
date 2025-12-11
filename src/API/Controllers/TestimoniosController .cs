@@ -31,7 +31,7 @@ namespace API.Controllers
         //[Authorize]
         [AllowAnonymous]
         [HttpGet("FiltrarTestimonios")]
-        public async Task<IActionResult> GetByFiltersAsync([FromQuery] IFilters<Testimonio>  filters,
+        public async Task<IActionResult> GetByFiltersAsync([FromQuery] TestimonioFilters filters,
                                                            [FromQuery] int? page,
                                                            [FromQuery] int? pageSize,
                                                            [FromQuery] string? orderBy,
@@ -62,22 +62,6 @@ namespace API.Controllers
                 throw ex;
             } 
         }
-
-        //[Authorize]
-        //[HttpGet("ObtenerTestimonio/{id}")]
-        //public async Task<IActionResult> GetByIdAsync(int id)
-        //{ 
-        //    try {
-        //        _logger.LogInformation("Obteniendo un testimonio por Id.");
-
-        //        var testimonio = await _testimonioService.GetByIdAsync(id);
-        //        return testimonio != null ? Ok(testimonio) : NoContent();
-        //    }
-        //    catch (Exception ex) {
-        //        _logger.LogError(ex, "Error obteniendo un testimonio por Id.");
-        //        throw ex;
-        //    }
-        //}
 
         [Authorize]
         [HttpPost("CrearTestimonio")]

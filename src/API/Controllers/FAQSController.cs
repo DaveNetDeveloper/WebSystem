@@ -35,8 +35,8 @@ namespace API.Controllers
             try {
                 _logger.LogInformation("Obteniendo todas las FAQs.");
 
-                var productos = await _faqService.GetAllAsync();
-                return (productos != null && productos.Any()) ? Ok(productos) : NoContent();
+                var faqs = await _faqService.GetAllAsync();
+                return (faqs != null && faqs.Any()) ? Ok(faqs) : NoContent();
             }
             catch (Exception ex) {
                 _logger.LogError(ex, "Error obteniendo todas las FAQs.");

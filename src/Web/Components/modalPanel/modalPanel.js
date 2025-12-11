@@ -31,7 +31,10 @@
         // Botón Cancelar
         if (btnCancel) {
             btnCancel.addEventListener('click', () => {
-                this.dispatchEvent(new CustomEvent('cancel', { bubbles: true, composed: true }));
+                this.dispatchEvent(new CustomEvent('cancel', {
+                    detail: { noaction: true },
+                    composed: true
+                }));
                 this.ocultar();
             });
         }
@@ -39,7 +42,10 @@
         // Botón Confirmar
         if (btnConfirm) {
             btnConfirm.addEventListener('click', () => {
-                this.dispatchEvent(new CustomEvent('confirm', { bubbles: true, composed: true }));
+                this.dispatchEvent(new CustomEvent('confirm', {
+                    detail: { noaction: true },
+                    composed: true
+                }));
                 this.ocultar();
             });
         }
@@ -71,7 +77,7 @@
                 btnConfirm.style.display = 'inline-block';
                 closeBtn.style.display = 'inline-block';
 
-                //btnConfirm.classList.remove('btn-danger');
+                btnConfirm.classList.remove('btn-blue');
 
                 break;
 
@@ -82,6 +88,12 @@
 
                 btnConfirm.classList.add('btn-danger');
 
+            case 'confirm':
+                btnCancel.style.display = 'inline-block';
+                btnConfirm.style.display = 'inline-block';
+                closeBtn.style.display = 'inline-block';
+
+                btnConfirm.classList.add('btn-success');
 
                 break;
         }
