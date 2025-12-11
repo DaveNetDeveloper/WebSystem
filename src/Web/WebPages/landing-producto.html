@@ -153,10 +153,10 @@
 									<img id="imagenProducto" src="img/productos/producto_1.jpg" alt="#">
 								</div>
 								<h1 class="news-title"><a id="descuento"></a></h1>
-								<div class="meta">
+								<div class="meta" style=" margin-top: 25px; margin-bottom: 25px; padding: 15px 0;">
 									<div class="meta-left">
-										<span class="author"><a id="nombreEntidad" href="#"><img src="img/productos/producto_1.jpg" alt="#">Nombre Entidad</a></span>
-										<span id="disponible" class="date"><i class="fa fa-clock-o"></i>DISPONIBLE</span>
+										<span class="author" style="margin-top: 10px;"><a id="nombreEntidad" href="#"><img src="img/productos/producto_1.jpg" alt="#">Nombre Entidad</a></span>
+										<span id="disponible" style="font-weight: bold; margin-top: 10px;"><i class="fa fa-clock-o"></i>DISPONIBLE</span>
 									</div>
 									<div class="meta-right">
 										<!--<span class="comments"><a href="#"><i class="fa fa-comments"></i>03 Comentarios</a></span>-->
@@ -181,8 +181,8 @@
 										</div>
 									</div>
 									<p id="descripcionCorta">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse facilisis ultricies tortor, nec sollicitudin lorem sagittis vitae. Curabitur rhoncus commodo rutrum. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.</p>
-									<blockquote class="overlay">
-										<p id="puntos"></p>
+									<blockquote style="background-color:lightgrey;">
+										<p style="color:black; font-weight:bold;" id="puntos"></p>
 									</blockquote>
 
 								</div>
@@ -209,13 +209,12 @@
 				<div class="col-lg-4 col-12">
 					<div class="main-sidebar">
 
-						<div class="single-widget category">
-							<h3 class="title">Categorias</h3>
-							<ul class="categor-list">
+						<div class="single-widget side-tags">
+							<h3 class="title">Etiquetas</h3>
+							<ul class="tag">
 								<li><a href="#">Alimentación</a></li>
 								<li><a href="#">Casero</a></li>
 								<li><a href="#">Temporada</a></li>
-								<li><a href="#">Otra</a></li> 
 							</ul>
 						</div>
 						<div class="single-widget recent-post">
@@ -258,14 +257,7 @@
 							</div>
 						</div>
 
-						<div class="single-widget side-tags">
-							<h3 class="title">Etiquetas</h3>
-							<ul class="tag">
-								<li><a href="#">alimentación</a></li>
-								<li><a href="#">a mano</a></li>
-								<li><a href="#">Otra</a></li> 
-							</ul>
-						</div>
+						
 					</div>
 				</div>
 			</div>
@@ -303,7 +295,7 @@
 
                         document.getElementById('nombreProducto').innerText = producto.nombre;
                         document.getElementById('descripcion').innerText = producto.descripcion;
-                        document.getElementById('puntos').innerText = producto.puntos + ' puntos';
+                        document.getElementById('puntos').innerText = 'Puedes ganar ' + producto.puntos + ' puntos';
                         document.getElementById('descripcionCorta').innerText = producto.descripcionCorta;
 
                         document.getElementById('popularidad').innerText = 'Popularidad: ' + producto.popularidad;
@@ -331,7 +323,7 @@
 				.then(entidad => {
 
 					if (entidad !== undefined && entidad != null) {
-						document.getElementById('nombreEntidad').innerText = entidad.nombre;
+						document.getElementById('nombreEntidad').innerText = 'En ' + entidad.nombre;
 					}
 				})
 				.catch(error => {

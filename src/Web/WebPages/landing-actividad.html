@@ -143,13 +143,13 @@
 									<div class="news-head">
 										<img id="imagenActividad" src="img/actividades/Actividad_02.png" alt="#">
 									</div>
-									<h1 class="news-title"><a id="tipoActividad" href="news-single.html">Disfruta la mejor [tipoActividad]!</a></h1>
-									<div class="meta">
-										<div class="meta-left">
-											<span class="author"><a id="nombreEntidad" href="#"><img src="img/actividades/Actividad_01.png" alt="#">Nombre Entidad</a></span>
-											<span id="fechaActividad" class="date"><i class="fa fa-clock-o"></i>03 Feb 2019</span>
+									<h1 class="news-title" style="margin: 40px 0;"><a id="tipoActividad" href="news-single.html">Disfruta la mejor [tipoActividad]!</a></h1>
+									<div class="meta" style="padding: 25px 0;">
+										<div class="meta-left" style="margin-top: 5px;">
+											<span class="author"><a id="nombreEntidad" style="font-weight:bold"  href="#"><img src="img/actividades/Actividad_01.png" alt="#">Nombre Entidad</a></span>
+											<span style="font-weight:bold" id="fechaActividad"><i class="fa fa-clock-o"></i></span>
 										</div>
-										<div class="meta-right">
+										<div class="meta-right" style="margin-top: 5px;">
 
 											<!--<span class="comments"><a href="#"><i class="fa fa-comments"></i>05 Comentarios</a></span>-->
 											<span id="popularidad" class="views"><i class="fa fa-eye"></i> </span>
@@ -157,7 +157,7 @@
 										</div>
 									</div>
 									<div class="news-text">
-										<p id="descripcion">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse facilisis ultricies tortor, nec sollicitudin lorem sagittis vitae. Curabitur rhoncus commodo rutrum. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Aliquam nec lacus pulvinar, laoreet dolor quis, pellentesque ante. Cras nulla orci, pharetra at dictum consequat, pretium pretium nulla. Suspendisse porttitor nunc a sodales tempor. Mauris sed felis maximus, interdum metus vel, tincidunt diam.</p>
+										<p id="descripcion" style="margin-top: 20px;">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse facilisis ultricies tortor, nec sollicitudin lorem sagittis vitae. Curabitur rhoncus commodo rutrum. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Aliquam nec lacus pulvinar, laoreet dolor quis, pellentesque ante. Cras nulla orci, pharetra at dictum consequat, pretium pretium nulla. Suspendisse porttitor nunc a sodales tempor. Mauris sed felis maximus, interdum metus vel, tincidunt diam.</p>
 									 
 										<div class="image-gallery">
 											<div class="row">
@@ -173,11 +173,11 @@
 												</div>
 											</div>
 										</div>
-										<p id="descripcionCorta">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse facilisis ultricies tortor, nec sollicitudin lorem sagittis vitae. Curabitur rhoncus commodo rutrum. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.</p>
-										<blockquote class="overlay">
-											<p id="ubicacion">Ubicación: XXX</p>					
-										</blockquote>
-										 
+										<p id="descripcionCorta" style="margin-top: 25px;">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse facilisis ultricies tortor, nec sollicitudin lorem sagittis vitae. Curabitur rhoncus commodo rutrum. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.</p>
+										<blockquote style="background-color:lightgrey;">
+											<p style="color:black;" id="ubicacion"></p>					
+										</blockquote> 
+
 									</div>
 									<!--<div class="blog-bottom">
 										<ul class="social-share">
@@ -204,12 +204,13 @@
 								<a id="btnReservarActividad" style=" color: white; min-width: 225px; font-size: 18px; cursor: pointer;" onclick="reservarActividad();" class="btn">RESERVAR ACTIVIDAD</a>
 							</div>
 
-							<div class="single-widget category">
-								<h3 class="title">Categorias</h3>
-								<ul class="categor-list">
-									<li><a href="#">Men's Apparel</a></li>
-									<li><a href="#">Women's Apparel</a></li>
-									<li><a href="#">Bags Collection</a></li>
+							<div class="single-widget side-tags">
+								<h3 class="title">Etiquetas</h3>
+								<ul class="tag">
+									<li><a href="#">Actividad en grupo</a></li>
+									<li><a href="#">Taller</a></li>
+									<li><a href="#">Creatividad</a></li>
+									<li><a href="#">Terapia</a></li>
 								</ul>
 							</div>
 							<div class="single-widget recent-post">
@@ -252,15 +253,7 @@
 									</div>
 								</div>
 							</div>
-							<div class="single-widget side-tags">
-								<h3 class="title">Etiquetas</h3>
-								<ul class="tag">
-									<li><a href="#">Actividad en grupo</a></li>
-									<li><a href="#">Taller</a></li>
-									<li><a href="#">Creatividad</a></li>
-									<li><a href="#">Terapia</a></li>
-								</ul>
-							</div>
+							
 						</div>
 					</div>
 				</div>
@@ -302,12 +295,12 @@
 
                             document.getElementById('nombreActividad').innerText = actividad.nombre;
                             document.getElementById('descripcion').innerText = actividad.descripcion;
-                            document.getElementById('ubicacion').innerText = actividad.ubicacion;
+                            document.getElementById('ubicacion').innerText = '¿Dónde? En ' + actividad.ubicacion;
                             document.getElementById('descripcionCorta').innerText = actividad.descripcionCorta;
 
                             document.getElementById('popularidad').innerText = 'Popularidad: ' + actividad.popularidad;
                             document.getElementById('imagenActividad').innerText = actividad.imagen;
-                            document.getElementById('fechaActividad').innerText = actividad.fechaInicio;
+							document.getElementById('fechaActividad').innerText = formatearTimestamp(actividad.fechaInicio);
 
                             document.getElementById('img1').innerText = actividad.imagen;
                             document.getElementById('img2').innerText = actividad.imagen;
@@ -323,7 +316,7 @@
                     .then(entidad => {
 
                         if (entidad !== undefined && entidad != null) {
-                            document.getElementById('nombreEntidad').innerText = entidad.nombre;
+                            document.getElementById('nombreEntidad').innerText = 'En ' + entidad.nombre;
                         }
                     })
                     .catch(error => {
@@ -356,6 +349,53 @@
                     .catch(err => alert(err.message));
             }
 
+            function formatearTimestamp(ts) {
+                // Soporta:
+                // "2025-10-03 16:34:40.730896"
+                // "2025-12-15T18:00:00.730896"
+                // "2025-12-15T18:00:00"
+                if (!ts) return '';
+
+                // Si nos pasan un Date, lo formateamos directamente
+                if (ts instanceof Date) {
+                    const d = ts;
+                    const dia = d.getDate();
+                    const mes = d.getMonth() + 1;
+                    const anyo = d.getFullYear();
+                    const hh = String(d.getHours()).padStart(2, '0');
+                    const mm = String(d.getMinutes()).padStart(2, '0');
+                    const ss = String(d.getSeconds()).padStart(2, '0');
+                    return `El ${dia}/${mes}/${anyo} a las ${hh}:${mm}:${ss}`;
+                }
+
+                // Normalizar: reemplazar 'T' por espacio para un único separador
+                const normalized = ts.replace('T', ' ');
+
+                // Separar fecha y hora
+                const parts = normalized.split(' ');
+                const fechaStr = parts[0] || '';
+                let horaStr = parts[1] || '';
+
+                // Si no hay hora, devolvemos solo la fecha formateada
+                if (!horaStr) {
+                    const [yyyy, mm, dd] = fechaStr.split('-');
+                    return `El ${parseInt(dd)}/${parseInt(mm)}/${yyyy} a las 00:00:00`;
+                }
+
+                // Quitar fracciones de segundo si existen
+                horaStr = horaStr.split('.')[0]; 
+
+                // Descomponer fecha
+                const fechaParts = fechaStr.split('-');
+                const yyyy = fechaParts[0] ?? '';
+                const mm = fechaParts[1] ?? '';
+                const dd = fechaParts[2] ?? '';
+
+                // Devolver en el formato requerido
+                return `El ${parseInt(dd)}/${parseInt(mm)}/${yyyy} a las ${horaStr}`;
+            }
+
+
             //
             //
             function reservarActividad() {
@@ -385,10 +425,10 @@
                             alert("IdReserva: " + data.idReserva);
                             alert("CodigoReserva: " + data.codigoReserva);
                             alert("EstadoReserva: " + data.estadoReserva);
-                            alert("fechaReserva: " + data.fechaReserva);
-                            alert("FechaActividad: " + data.fechaActividad);
-                            alert("IdUsuario: " + data.idUsuario);
-                            alert("IdActividad: " + data.idActividad);
+                            //alert("fechaReserva: " + data.fechaReserva);
+                            //alert("FechaActividad: " + data.fechaActividad);
+                            //alert("IdUsuario: " + data.idUsuario);
+                            //alert("IdActividad: " + data.idActividad);
 
                         }
                     })

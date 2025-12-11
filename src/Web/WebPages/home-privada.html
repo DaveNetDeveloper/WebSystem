@@ -130,13 +130,13 @@
 		 
 
         .modal-contenido {
-            /* Por defecto, si usas `visible` para mostrar */
+            /* Por defecto */
             opacity: 0;
             transform: scale(0.7);  
             transition: opacity 0.3s ease-out, transform 0.3s ease-out;  
         }
 
-        /* 2. Define el estado final (mostrado) cuando tiene la clase `mostrar` */
+        /* 2. Define el estado final (mostrado) */
         .modal.mostrar .modal-contenido {
             opacity: 1;  
             transform: scale(1);  
@@ -147,7 +147,6 @@
 </head>
 <body>
 
-	<!-- Preloader -->
 	<div class="preloader">
 		<div class="loader">
 			<div class="loader-outter"></div>
@@ -161,26 +160,19 @@
 			</div>
 		</div>
 	</div>
-	<!-- End Preloader -->
-	<!-- Header Area -->
+	
 	<header class="header">
-		<!-- Header Inner -->
 		<div class="header-inner">
 			<div class="container">
 				<div class="inner">
 					<div class="row">
 						<div class="col-lg-3 col-md-3 col-12">
-							<!-- Start Logo -->
 							<div class="logo">
 								<a href="home-privada.html"><img src="img/logo.jpg" alt="#"></a>
 							</div>
-							<!-- End Logo -->
-							<!-- Mobile Nav -->
 							<div class="mobile-nav"></div>
-							<!-- End Mobile Nav -->
 						</div>
 						<div class="col-lg-7 col-md-9 col-12">
-							<!-- Main Menu -->
 							<div class="main-menu">
 								<nav class="navigation">
 									<ul class="nav menu">
@@ -191,7 +183,6 @@
 									</ul>
 								</nav>
 							</div>
-							<!--/ End Main Menu -->
 						</div>
 						<div class="col-lg-2 col-12">
 							<div class="get-quote">
@@ -202,10 +193,8 @@
 				</div>
 			</div>
 		</div>
-		<!--/ End Header Inner -->
 	</header>
-	<!-- End Header Area -->
-
+	
 	<div class="container">
 		<div class="row ">
 			<div class="col-lg-6  col-12">
@@ -239,10 +228,7 @@
 		document.addEventListener("DOMContentLoaded", async () => {
 
 			localStorage.setItem('idUsuario', String(15));
-
-			//
 			await revisarYMostrarNotificaciones(idUsuario);
-
 		});
 
 		async function cargarNotificaciones(idUsuario) {
@@ -344,20 +330,16 @@
 
 	</script>
 
-	<!-- Start Search Area -->
 	<section class="newsletter section">
 		<div class="container">
 			<div class="row ">
 				<div class="col-lg-6  col-12">
-					<!-- Start Search Form -->
 					<div class="subscribe-text ">
 						<h6>Explora tu entorno</h6>
 						<p style="color:white" class="">Descubre entidades cercanas.</p>
 					</div>
-					<!-- End Search Form -->
 				</div>
 				<div class="col-lg-6  col-12">
-					<!-- Start Search Form -->
 					<div class="subscribe-form ">
 						<div class="newsletter-inner">
 							<input id="textEntidad" name="textEntidad" placeholder="Buscar entidad" class="common-input" onfocus="this.placeholder = ''"
@@ -365,7 +347,6 @@
 							<button id="btnBuscarEntidad" class="btn" onclick="redirigir()">BUSCAR</button>
 						</div>
 					</div>
-					<!-- End Search Form -->
 				</div>
 			</div>
 		</div>
@@ -382,24 +363,20 @@
 			}
 		}
 	</script>
-	<!-- /End Search Area -->
-	<!-- Pricing Table -->
 	<section class="pricing-table section">
 		<div class="container">
-			<!--<div class="row">
+			<!-- <div class="row">
 				<div class="col-lg-12">
 					<div class="section-title">
 						<h2>We Provide You The Best Treatment In Resonable Price</h2>-->
-			<!--<img src="img/section-img.png" alt="#">-->
-			<!--<p>Lorem ipsum dolor sit amet consectetur adipiscing elit praesent aliquet. pretiumts</p>
+							<!--<img src="img/section-img.png" alt="#">-->
+							<!--<p>Lorem ipsum dolor sit amet consectetur adipiscing elit praesent aliquet. pretiumts</p>
 					</div>
 				</div>
-			</div>-->
+			</div> -->
 			<div class="row">
-				<!-- Single Table -->
 				<div class="col-lg-6 col-md-12 col-12">
 					<div class="single-table">
-						<!-- Table Head -->
 						<div class="table-head">
 							<div class="icon">
 								<i class="icofont icofont-briefcase"></i>
@@ -410,14 +387,10 @@
 						<div class="table-bottom">
 							<a id="buscarComercios" class="btn" href="explorar.html?type=64569dd3-4d65-4eed-9f41-ea87b2270a6c">EXPLORAR COMERCIOS</a>
 						</div>
-						<!-- Table Bottom -->
 					</div>
 				</div>
-				<!-- End Single Table-->
-				<!-- Single Table -->
 				<div class="col-lg-6 col-md-12 col-12">
 					<div class="single-table">
-						<!-- Table Head -->
 						<div class="table-head">
 							<div class="icon">
 								<i class="icofont icofont-group"></i>
@@ -428,16 +401,11 @@
 						<div class="table-bottom">
 							<a id="buscarAsociaciones" class="btn" href="explorar.html?type=e170a0db-660f-4c34-ae71-3e9b9dbbd92b">EXPLORAR ASOCIACIONES</a>
 						</div>
-						<!-- Table Bottom -->
 					</div>
 				</div>
-				<!-- End Single Table-->
-
 			</div>
 		</div>
 	</section>
-	<!--/ End Pricing Table -->
-	<!-- Start Feautes -->
 	<section class="Feautes section">
 		<div class="container">
 			<div class="row">
@@ -480,8 +448,6 @@
 			</div>
 		</div>
 	</section>
-	<!--/ End Feautes -->
-	<!-- Start Fun-facts -->
 	<div id="fun-facts" class="fun-facts section overlay">
 		<div class="container">
 			<div class="row">
@@ -524,13 +490,10 @@
 			</div>
 		</div>
 	</div>
-	<!--/ End Fun-facts -->
-	<!-- Start Why choose -->
 	<section class="why-choose section">
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-6 col-12">
-					<!-- Start Choose Left -->
 					<div class="choose-left">
 						<h3>¿Cómo encontrar promociones?</h3>
 						<p style="color: black;">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas pharetra antege vel est lobortis, a commodo magna rhoncus. In quis nisi non emet quam pharetra commodo. </p>
@@ -545,30 +508,24 @@
 							</div>
 						</div>
 					</div>
-					<!-- End Choose Left -->
 				</div>
 				<div class="col-lg-6 col-12">
-					<!-- Start Choose Rights -->
 					<div class="choose-right">
 						<div class="video-image">
-							<!-- Video Animation -->
 							<div class="promo-video">
 								<div class="waves-block">
 									<div class="waves wave-1"></div>
 									<div class="waves wave-2"></div>
 									<div class="waves wave-3"></div>
 								</div>
-							</div>
-							<!--/ End Video Animation -->
+								</div>
 							<a href="https://www.youtube.com/watch?v=vh2wIHwCVUI" class="video video-popup mfp-iframe"><i class="fa fa-play"></i></a>
 						</div>
 					</div>
-					<!-- End Choose Rights -->
 				</div>
 			</div>
 		</div>
 	</section>
-	<!--/ End Why choose -->
  
 	<section class="call-action overlay" data-stellar-background-ratio="0.5">
 		<div class="container">
@@ -627,7 +584,6 @@
 
 	</script>
 
-	<!-- Start portfolio -->
 	<section class="portfolio section">
 		<div class="container">
 			<div class="row">
@@ -686,15 +642,12 @@
 			singlePfDiv.appendChild(image);
 			singlePfDiv.appendChild(detailsLink);
 
-
 			// Agregar el contenedor al cuerpo del documento
 			document.getElementById("panelImages").appendChild(singlePfDiv);
 		}
 
 	</script>
 
-	<!--/ End portfolio -->
-	<!-- Start service -->
 	<section class="services section">
 		<div class="container">
 			<div class="row">
@@ -751,7 +704,6 @@
 			</div>
 		</div>
 	</section>
-	<!--/ End service -->
 
 	<section>
 		<div>
@@ -828,7 +780,6 @@
 			}
 		}
 
-
 		// --- Lógica de Carga de FAQS (Sin cambios) ---
 		GetFAQS('ObtenerFAQS')
 			.then(faqs => {
@@ -847,9 +798,7 @@
 			});
 	</script>
 
-	<!-- Footer Area -->
 	<footer id="footer" class="footer ">
-		<!-- Footer Top -->
 		<div class="footer-top">
 			<div class="container">
 				<div class="row">
@@ -857,7 +806,6 @@
 						<div class="single-footer">
 							<h2>About Us</h2>
 							<p>Lorem ipsum dolor sit am consectetur adipisicing elit do eiusmod tempor incididunt ut labore dolore magna.</p>
-							<!-- Social -->
 							<ul class="social">
 								<li><a href="#"><i class="icofont-facebook"></i></a></li>
 								<li><a href="#"><i class="icofont-google-plus"></i></a></li>
@@ -865,7 +813,6 @@
 								<li><a href="#"><i class="icofont-vimeo"></i></a></li>
 								<li><a href="#"><i class="icofont-pinterest"></i></a></li>
 							</ul>
-							<!-- End Social -->
 						</div>
 					</div>
 					<div class="col-lg-3 col-md-6 col-12">
@@ -918,8 +865,6 @@
 				</div>
 			</div>
 		</div>
-		<!--/ End Footer Top -->
-		<!-- Copyright -->
 		<div class="copyright">
 			<div class="container">
 				<div class="row">
@@ -931,48 +876,27 @@
 				</div>
 			</div>
 		</div>
-		<!--/ End Copyright -->
 	</footer>
-	<!--/ End Footer Area -->
-	<!-- jquery Min JS -->
+
 	<script src="./js/jquery.min.js"></script>
-	<!-- jquery Migrate JS -->
 	<script src="./js/jquery-migrate-3.0.0.js"></script>
-	<!-- jquery Ui JS -->
 	<script src="./js/jquery-ui.min.js"></script>
-	<!-- Easing JS -->
 	<script src="./js/easing.js"></script>
-	<!-- Color JS -->
 	<script src="./js/colors.js"></script>
-	<!-- Popper JS -->
 	<script src="./js/popper.min.js"></script>
-	<!-- Bootstrap Datepicker JS -->
 	<script src="./js/bootstrap-datepicker.js"></script>
-	<!-- Jquery Nav JS -->
 	<script src="./js/jquery.nav.js"></script>
-	<!-- Slicknav JS -->
 	<script src="./js/slicknav.min.js"></script>
-	<!-- ScrollUp JS -->
 	<script src="./js/jquery.scrollUp.min.js"></script>
-	<!-- Niceselect JS -->
 	<script src="./js/niceselect.js"></script>
-	<!-- Tilt Jquery JS -->
 	<script src="./js/tilt.jquery.min.js"></script>
-	<!-- Owl Carousel JS -->
 	<script src="./js/owl-carousel.js"></script>
-	<!-- counterup JS -->
 	<script src="./js/jquery.counterup.min.js"></script>
-	<!-- Steller JS -->
 	<script src="./js/steller.js"></script>
-	<!-- Wow JS -->
 	<script src="./js/wow.min.js"></script>
-	<!-- Magnific Popup JS -->
 	<script src="./js/jquery.magnific-popup.min.js"></script>
-	<!-- Counter Up CDN JS -->
 	<script src="http://cdnjs.cloudflare.com/ajax/libs/waypoints/2.0.3/waypoints.min.js"></script>
-	<!-- Bootstrap JS -->
 	<script src="./js/bootstrap.min.js"></script>
-	<!-- Main JS -->
 	<script src="./js/main.js"></script>
 </body>
 </html>

@@ -165,15 +165,23 @@
 						<div id="infoEntidad" style="min-height:100px;" class="date"> </div>
 						<div style="margin-top: 50px;" class="body-text">
 							<h3 id="h3Entidad"></h3>
-							<p id="pEntidad" style="font-size: medium; line-height: 30px;"></p>
-							<div class="share">
-								<h4 style="font-size: 20px;">Comparte </h4>
-								<ul>
-									<li><a id="linkFacebook" href="#" target="_blank"><i id="facebookEntidad" class="fa fa-facebook-official" aria-hidden="true"></i></a></li>
-									<li><a id="linkInstagram" href="#" target="_blank"><i id="twiterrInstagram" class="fa fa-instagram" aria-hidden="true"></i></a></li>
-									<li><a id="linkLinkedin" href="#" target="_blank"><i id="linkedinEntidad" class="fa fa-linkedin" aria-hidden="true"></i></a></li>
-								</ul>
-							</div>
+							<p id="pEntidad" style="font-size: medium; line-height: 35px; text-align: justify;"></p>
+
+							<!--<div class="container">-->
+								<div class="row">
+									<div class="share col-lg-8 col-md-6 col-8">
+										<h4 style="font-size: 20px;">Comparte </h4>
+										<ul>
+											<li><a id="linkFacebook" href="#" target="_blank"><i id="facebookEntidad" class="fa fa-facebook-official" aria-hidden="true"></i></a></li>
+											<li><a id="linkInstagram" href="#" target="_blank"><i id="twiterrInstagram" class="fa fa-instagram" aria-hidden="true"></i></a></li>
+											<li><a id="linkLinkedin" href="#" target="_blank"><i id="linkedinEntidad" class="fa fa-linkedin" aria-hidden="true"></i></a></li>
+										</ul>
+									</div>
+									<div class="col-lg-4 col-md-2 col-2" style="margin-top: 20px; display: flex;">
+										<a id="btnContactar" style="color: white; min-width: 225px; font-size: 18px; cursor: pointer; margin-left: auto; " onclick="contactar();" class="btn">CONTACTAR</a>
+									</div>
+								</div>
+							<!--</div>--> 
 						</div>
 					</div>
 				</div>
@@ -184,6 +192,7 @@
 
         let tipoEntidad = null;
 
+		// migas de pan
 		//var liPaginaActual = document.getElementById("paginaActual");
 		//liPaginaActual.innerHTML = document.title;
 
@@ -277,6 +286,11 @@
 				alert('Error en GetEntidad: ', error);
 			});
 
+
+		function contactar() {
+
+            window.location.href = `contactar.html?id=${paramIdEntidad}`; 
+		}
 	</script>
 	 
 	<section class="blog section" style="padding-top: 0px;" id="blog">
@@ -297,196 +311,197 @@
 
 	<script>
 
-        function adaptarTituloByTipo(tipoEntidad) {
+    function adaptarTituloByTipo(tipoEntidad) {
 
-            const titulo = document.getElementById("tituloDetalles");
+        const titulo = document.getElementById("tituloDetalles");
 
-            if (tipoEntidad === '64569dd3-4d65-4eed-9f41-ea87b2270a6c') {
-                titulo.textContent = "Explora los productos del comercio";
-            }
-            else if (tipoEntidad === 'e170a0db-660f-4c34-ae71-3e9b9dbbd92b') {
-                titulo.textContent = "Explora las actividades de la asociación";
-            }  
-		}
+        if (tipoEntidad === '64569dd3-4d65-4eed-9f41-ea87b2270a6c') {
+            titulo.textContent = "Explora los productos del comercio";
+        }
+        else if (tipoEntidad === 'e170a0db-660f-4c34-ae71-3e9b9dbbd92b') {
+            titulo.textContent = "Explora las actividades de la asociación";
+        }  
+	}
 		 
-        function buscarActividades(idEntidad) {
+    function buscarActividades(idEntidad) {
 
-            let contenedor = document.getElementById('cardsPanel');
-            contenedor.innerHTML = '';
+        let contenedor = document.getElementById('cardsPanel');
+        contenedor.innerHTML = '';
 
-            const baseUrl = `https://localhost`;
-            const controllerName = `Actividades`;
-            const port = `44311`;
-            const apiUrl = `${baseUrl}:${port}/${controllerName}/FiltrarActividades`;
+        const baseUrl = `https://localhost`;
+        const controllerName = `Actividades`;
+        const port = `44311`;
+        const apiUrl = `${baseUrl}:${port}/${controllerName}/FiltrarActividades`;
 
-            const url = `${apiUrl}?filters.IdEntidad=${idEntidad}&filters.Activo=true&orderBy=fechaInicio&descending=true`;
+        const url = `${apiUrl}?filters.IdEntidad=${idEntidad}&filters.Activo=true&orderBy=fechaInicio&descending=true`;
 
-            fetch(url, { method: "GET" })
-                .then(response => {
-                    if (!response.ok) throw new Error("Error en GetActividades");
-					return response.json();
-                })
-                .then(data => {
-                    var lista = data.items;
-                    if (lista != null && lista.length > 0) {
-                        for (const actividad of lista) {
-                            let card = crearCardActividad(actividad);
-                            contenedor.appendChild(card); 
-                        }
-                    } 
-                })
-                .catch(err => alert(err.message)); 
-        }
+        fetch(url, { method: "GET" })
+            .then(response => {
+                if (!response.ok) throw new Error("Error en GetActividades");
+				return response.json();
+            })
+            .then(data => {
+                var lista = data.items;
+                if (lista != null && lista.length > 0) {
+                    for (const actividad of lista) {
+                        let card = crearCardActividad(actividad);
+                        contenedor.appendChild(card); 
+                    }
+                } 
+            })
+            .catch(err => alert(err.message)); 
+    }
 
-		function buscarProductos(idEntidad) {
+	function buscarProductos(idEntidad) {
 
-			let contenedor = document.getElementById('cardsPanel');
-			contenedor.innerHTML = '';
+		let contenedor = document.getElementById('cardsPanel');
+		contenedor.innerHTML = '';
 
-			GetProductos()
-				.then(productos => {
+		GetProductos()
+			.then(productos => {
 
-					var i = 1;
-					productos.forEach(function (producto) {
+				var i = 1;
+				productos.forEach(function (producto) {
 
-						if (producto.activo) {
+					if (producto.activo) {
 
-							if (idEntidad == producto.idEntidad) {
-								let card = crearCardProducto(producto);
-								contenedor.appendChild(card);
-							}
+						if (idEntidad == producto.idEntidad) {
+							let card = crearCardProducto(producto);
+							contenedor.appendChild(card);
 						}
-						i++;
-					})
+					}
+					i++;
 				})
-				.catch(error => {
-					console.error('Error en GetProductos:', error);
-					alert('Error en GetProductos: ', error);
-				});
-		}
-
-		function crearCardProducto(producto) {
-
-			const divCol = document.createElement('div');
-			divCol.id = producto.id;
-
-			divCol.addEventListener("click", function () {
-
-                window.location.href = `landing-producto.html?id=${encodeURIComponent(producto.id)}`;
+			})
+			.catch(error => {
+				console.error('Error en GetProductos:', error);
+				alert('Error en GetProductos: ', error);
 			});
+	}
 
-			divCol.className = 'col-lg-4 col-md-6 col-12';
+	function crearCardProducto(producto) {
 
-			const divSingleNews = document.createElement('div');
-			divSingleNews.className = 'single-news';
+		const divCol = document.createElement('div');
+		divCol.id = producto.id;
 
-			const divNewsHead = document.createElement('div');
-			divNewsHead.className = 'news-head';
+		divCol.addEventListener("click", function () {
 
-			const img = document.createElement('img');
-			img.src = producto.imagen;
-			img.alt = '#';
-			img.style.minHeight = "350px";
+            window.location.href = `landing-producto.html?id=${encodeURIComponent(producto.id)}`;
+		});
 
-			const divNewsBody = document.createElement('div');
-			divNewsBody.className = 'news-body';
+		divCol.className = 'col-lg-4 col-md-6 col-12';
 
-			const divNewsContent = document.createElement('div');
-			divNewsContent.className = 'news-content';
+		const divSingleNews = document.createElement('div');
+		divSingleNews.className = 'single-news';
 
-			const divDate = document.createElement('div');
-			divDate.className = 'date';
-			divDate.textContent = producto.puntos + " Pts.";
+		const divNewsHead = document.createElement('div');
+		divNewsHead.className = 'news-head';
 
-			const h2 = document.createElement('h2');
-			const a = document.createElement('a'); 
-            a.href = `landing-producto.html?id=${encodeURIComponent(producto.id)}`;
-			a.textContent = producto.nombre;
-			h2.appendChild(a);
+		const img = document.createElement('img');
+		img.src = producto.imagen;
+		img.alt = '#';
+		img.style.minHeight = "350px";
 
-			const p = document.createElement('p');
-			p.className = 'text';
-			p.textContent = producto.descripcion.slice(0, 300);;
+		const divNewsBody = document.createElement('div');
+		divNewsBody.className = 'news-body';
 
-			//
-			divNewsContent.appendChild(divDate);
-			divNewsContent.appendChild(h2);
-			divNewsContent.appendChild(p);
+		const divNewsContent = document.createElement('div');
+		divNewsContent.className = 'news-content';
 
-			divNewsBody.appendChild(divNewsContent);
+		const divDate = document.createElement('div');
+		divDate.className = 'date';
+		divDate.textContent = producto.puntos + " Pts.";
 
-			divNewsHead.appendChild(img);
+		const h2 = document.createElement('h2');
+		const a = document.createElement('a'); 
+        a.href = `landing-producto.html?id=${encodeURIComponent(producto.id)}`;
+		a.textContent = producto.nombre;
+		h2.appendChild(a);
 
-			divSingleNews.appendChild(divNewsHead);
-			divSingleNews.appendChild(divNewsBody);
+		const p = document.createElement('p');
+		p.className = 'text';
+		p.textContent = producto.descripcion.slice(0, 300);;
 
-			divCol.appendChild(divSingleNews);
+		//
+		divNewsContent.appendChild(divDate);
+		divNewsContent.appendChild(h2);
+		divNewsContent.appendChild(p);
 
-			return divCol;
-		}
+		divNewsBody.appendChild(divNewsContent);
 
-        function crearCardActividad(actividad) {
+		divNewsHead.appendChild(img);
 
-            const divCol = document.createElement('div');
-            divCol.id = actividad.id;
+		divSingleNews.appendChild(divNewsHead);
+		divSingleNews.appendChild(divNewsBody);
 
-            divCol.addEventListener("click", function () {
+		divCol.appendChild(divSingleNews);
 
-                window.location.href = `landing-actividad.html?id=${encodeURIComponent(actividad.id)}`;
-            });
+		return divCol;
+	}
 
-            divCol.className = 'col-lg-4 col-md-6 col-12';
+    function crearCardActividad(actividad) {
 
-            const divSingleNews = document.createElement('div');
-            divSingleNews.className = 'single-news';
+        const divCol = document.createElement('div');
+        divCol.id = actividad.id;
 
-            const divNewsHead = document.createElement('div');
-            divNewsHead.className = 'news-head';
+        divCol.addEventListener("click", function () {
 
-            const img = document.createElement('img');
-            img.src = actividad.imagen;
-            img.alt = '#';
-            img.style.minHeight = "350px";
+            window.location.href = `landing-actividad.html?id=${encodeURIComponent(actividad.id)}`;
+        });
 
-            const divNewsBody = document.createElement('div');
-            divNewsBody.className = 'news-body';
+        divCol.className = 'col-lg-4 col-md-6 col-12';
 
-            const divNewsContent = document.createElement('div');
-            divNewsContent.className = 'news-content';
+        const divSingleNews = document.createElement('div');
+        divSingleNews.className = 'single-news';
 
-            const divDate = document.createElement('div');
-            divDate.className = 'date';
-            divDate.textContent = actividad.ubicacion;
+        const divNewsHead = document.createElement('div');
+        divNewsHead.className = 'news-head';
 
-            const h2 = document.createElement('h2');
-            const a = document.createElement('a');
-            a.href = `landing-actividad.html?id=${encodeURIComponent(actividad.id)}`;
-            a.textContent = actividad.nombre;
-            h2.appendChild(a);
+        const img = document.createElement('img');
+        img.src = actividad.imagen;
+        img.alt = '#';
+        img.style.minHeight = "350px";
 
-            const p = document.createElement('p');
-            p.className = 'text';
-            p.textContent = actividad.descripcion.slice(0, 300);;
+        const divNewsBody = document.createElement('div');
+        divNewsBody.className = 'news-body';
 
-            //
-            divNewsContent.appendChild(divDate);
-            divNewsContent.appendChild(h2);
-            divNewsContent.appendChild(p);
+        const divNewsContent = document.createElement('div');
+        divNewsContent.className = 'news-content';
 
-            divNewsBody.appendChild(divNewsContent);
+        const divDate = document.createElement('div');
+        divDate.className = 'date';
+        divDate.textContent = actividad.ubicacion;
 
-            divNewsHead.appendChild(img);
+        const h2 = document.createElement('h2');
+        const a = document.createElement('a');
+        a.href = `landing-actividad.html?id=${encodeURIComponent(actividad.id)}`;
+        a.textContent = actividad.nombre;
+        h2.appendChild(a);
 
-            divSingleNews.appendChild(divNewsHead);
-            divSingleNews.appendChild(divNewsBody);
+        const p = document.createElement('p');
+        p.className = 'text';
+        p.textContent = actividad.descripcion.slice(0, 300);;
 
-            divCol.appendChild(divSingleNews);
+        //
+        divNewsContent.appendChild(divDate);
+        divNewsContent.appendChild(h2);
+        divNewsContent.appendChild(p);
 
-            return divCol;
-        }
+        divNewsBody.appendChild(divNewsContent);
+
+        divNewsHead.appendChild(img);
+
+        divSingleNews.appendChild(divNewsHead);
+        divSingleNews.appendChild(divNewsBody);
+
+        divCol.appendChild(divSingleNews);
+
+        return divCol;
+    }
+
 	</script>
 	 
-	<div class="section-block no-padding">
+	<!--<div class="section-block no-padding">
 		<div class="row collapse full-width">
 			<div class="column width-12 center">
 				<div class="map-container" data-coordinates="[[40.723301,-74.002988]]" data-icon='"images/assets/map-marker.png"' data-info='"Downtown New York Office<br>44 St. West 32"' data-zoom-level="13" data-style="color">
@@ -494,7 +509,7 @@
 				</div>
 			</div>
 		</div>
-	</div>
+	</div>-->
 
 	<div class="container">
 		<div class="row">
@@ -717,13 +732,12 @@
 			</div>
 		</footer>
 
-
 		<!-- JQUERY -->
 		<script src="./js/jquery.min.js"></script>
 		<script src="./js/jquery-migrate-3.0.0.js"></script>
 		<script src="./js/jquery-ui.min.js"></script>
 
-		<!-- POPPER (siempre antes de Bootstrap) -->
+		<!-- POPPER (antes de Bootstrap) -->
 		<script src="./js/popper.min.js"></script>
 
 		<!-- BOOTSTRAP -->
@@ -743,15 +757,17 @@
 		<script src="./js/steller.js"></script>
 		<script src="./js/wow.min.js"></script>
 		<script src="./js/jquery.magnific-popup.min.js"></script>
+
 		<!--<script src="http://cdnjs.cloudflare.com/ajax/libs/waypoints/2.0.3/waypoints.min.js"></script>-->
-		<!-- GOOGLE MAPS API (siempre antes de gmaps.js) -->
-		<script src="https://maps.google.com/maps/api/js?key=AIzaSyBqYqG29bR27i8saIcOGZNYODKXUVIVqgY"></script>
+		
+		<!-- GOOGLE MAPS API (antes de gmaps.js) -->
+		<!--<script src="https://maps.google.com/maps/api/js?key=AIzaSyBqYqG29bR27i8saIcOGZNYODKXUVIVqgY"></script>-->
 
 		<!-- GMAPS (solo una vez) -->
-		<script src="./js/gmaps.min.js"></script>
+		<!--<script src="./js/gmaps.min.js"></script>-->
 
 		<!-- MAP ACTIVE -->
-		<script src="./js/map-active.js"></script>
+		<!--<script src="./js/map-active.js"></script>-->
 
 		<!-- MAIN JS (siempre al final) -->
 		<script src="./js/main.js"></script>

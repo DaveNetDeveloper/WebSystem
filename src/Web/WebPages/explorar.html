@@ -1,7 +1,6 @@
 <!doctype html>
 <html class="no-js" lang="es">
 <head>
-	<!-- Meta Tags -->
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="keywords" content="Site keywords here">
@@ -24,7 +23,6 @@
 	<link rel="stylesheet" href="./css/animate.min.css">
 	<link rel="stylesheet" href="./css/magnific-popup.css">
 	 
-
 	<link rel="stylesheet" href="./css/normalize.css">
 	<link rel="stylesheet" href="./css/style.css">
 	<link rel="stylesheet" href="./css/responsive.css">
@@ -69,9 +67,8 @@
             border-style: dashed;
         }*/
 
-                /*
+         /*
          * Estilo Hover (border-hover-theme) cuando el botón está inactivo.
-         * Aquí podrías hacerlo sólido o cambiar ligeramente el color.
          */
         .button.border-theme:hover,
         .button.border-hover-theme:hover {
@@ -98,10 +95,6 @@
             background-color: goldenrod;
             border-color: lightgray;
         }
-
-       /* h1, h2, h3, h4, h5, h6, input, button, .button, select, textarea, .project-title, .product-title, .project-description, .font-alt-1, .header .navigation > ul > li > a, .side-navigation > ul > li > a, .overlay-navigation > ul > li > a, .grid-filter-menu a {
-            font-family: 'Lato', 'Helvetica Neue', sans-serif;
-        }*/
 
         .color-hover-white:hover, .color-white {
             color: #fff;
@@ -162,12 +155,12 @@
             -webkit-box-sizing: border-box;
             box-sizing: border-box;
         }
- 
-/*        a:-webkit-any-link {
+
+        /*     a:-webkit-any-link {
             color: -webkit-link;
             cursor: pointer;
-            */text-decoration: underline;
-        }
+           text-decoration: underline;
+        } */
 
         .center, .navigation.nav-center > ul {
             text-align: center;
@@ -294,11 +287,9 @@
         }
 
     </style>
-
 </head>
 <body>
-
-	<!-- Preloader -->
+     
 	<div class="preloader">
 		<div class="loader">
 			<div class="loader-outter"></div>
@@ -311,27 +302,20 @@
 				</svg>
 			</div>
 		</div>
-	</div>
-	<!-- End Preloader -->
-	<!-- Header Area -->
-	<header class="header">
-		<!-- Header Inner -->
+	</div> 
+
+	<header class="header"> 
 		<div class="header-inner">
 			<div class="container">
 				<div class="inner">
 					<div class="row">
-						<div class="col-lg-2 col-md-3 col-12">
-							<!-- Start Logo -->
+						<div class="col-lg-2 col-md-3 col-12"> 
 							<div class="logo">
 								<a href="home-privada.html"><img src="img/logo.jpg" alt="#"></a>
-							</div>
-							<!-- End Logo -->
-							<!-- Mobile Nav -->
-							<div class="mobile-nav"></div>
-							<!-- End Mobile Nav -->
+							</div> 
+							<div class="mobile-nav"></div> 
 						</div>
-						<div class="col-lg-7 col-md-9 col-12">
-							<!-- Main Menu -->
+						<div class="col-lg-7 col-md-9 col-12"> 
 							<div class="main-menu">
 								<nav class="navigation">
 									<ul class="nav menu">
@@ -341,8 +325,7 @@
 										<li><a href="#">Cómo ganar puntos? </a></li>
 									</ul>
 								</nav>
-							</div>
-							<!--/ End Main Menu -->
+							</div> 
 						</div>
 						<div class="col-lg-2 col-12">
 							<div class="get-quote">
@@ -352,10 +335,8 @@
 					</div>
 				</div>
 			</div>
-		</div>
-		<!--/ End Header Inner -->
-	</header>
-	<!-- End Header Area -->
+		</div> 
+	</header> 
 
 	<script type="text/javascript">
 
@@ -386,7 +367,6 @@
 			}
 
 			const data = await response.json(); 
-            //alert(data.length);
 
             if (data.length > 0 && data[0] != null) {
 				var infoUsuarioElement = document.getElementById("infoUsuario");
@@ -412,8 +392,8 @@
 						<div class="">
 							<input id="textEntidad" name="textEntidad" placeholder="Buscar entidad" class="common-input" onfocus="this.placeholder = ''"
 								   onblur="this.placeholder = 'Buscar entidad'" type="text">
-							<button id="btnBuscarEntidad" class="btn" style=" margin: 0px 0px 0px 25px;" onclick="buscarPorNombre()">BUSCAR</button>
-							<button id="btnFiltrar" class="btn" style=" margin: 0px 0px 0px 25px;" onclick="borrarBusqueda()">BORRAR</button>
+							<button id="btnBuscarEntidad" class="btn" style=" margin: 0px 0px 0px 25px;" onclick="buscarUser()">BUSCAR</button>
+							<button id="btnFiltrar" class="btn" style=" margin: 0px 0px 0px 25px;" onclick="borrarBusqueda()">LIMPIAR</button>
 						</div>
 					</div>
 				</div>
@@ -427,42 +407,44 @@
 		<div class="col-12">
 			<div class="button-group"> 
 				<div class="row"> 
-					<button id="filtro1" style="width: 150px;" href="#" class="button border-theme border-hover-theme color-theme color-hover-theme dashed">Comercio</button><br>
-					<button id="filtro2" style="width: 150px;" href="#" class="button border-theme border-hover-theme color-theme color-hover-theme dashed">Asociación</button><br>
+					<button id="filtro1" onclick="aplicarFiltro1()" style=" width: 210px; font-size: 18px; }" href="#" class="button border-theme border-hover-theme color-theme color-hover-theme dashed">Comercio</button><br>
+					<button id="filtro2" onclick="aplicarFiltro2()" style=" width: 210px; font-size: 18px; }" href="#" class="button border-theme border-hover-theme color-theme color-hover-theme dashed">Asociación</button><br>
 				</div>
 			</div>
 		</div>
 	</div>
 
-	<script type="text/javascript">
-		 
+    <script type="text/javascript">
+
+        function alternarEstiloFiltro(boton) {
+             
+            const clases_activo = ['bkg-theme', 'bkg-hover-theme', 'color-white', 'color-hover-white', 'shadow'];
+            const clases_inactivo = ['border-theme', 'border-hover-theme', 'color-theme', 'color-hover-theme', 'dashed'];
+
+            // Verificar si el botón ya tiene la clase principal de activo (bkg-theme)
+            const estaActivo = boton.classList.contains('bkg-theme');
+
+            if (estaActivo) {
+                // Remover clases de activo
+                clases_activo.forEach(clase => boton.classList.remove(clase));
+
+                // Añadir clases de inactivo
+                clases_inactivo.forEach(clase => boton.classList.add(clase));
+
+            } else {
+                // Remover clases de inactivo
+                clases_inactivo.forEach(clase => boton.classList.remove(clase));
+
+                // Añadir clases de activo
+                clases_activo.forEach(clase => boton.classList.add(clase));
+            }
+        }
+
+        // gestión estilos botones filtros
         document.addEventListener('DOMContentLoaded', () => {
+
             const filtro1 = document.getElementById('filtro1');
             const filtro2 = document.getElementById('filtro2');
-
-            function alternarEstiloFiltro(boton) {
-            
-                const clases_activo = ['bkg-theme', 'bkg-hover-theme', 'color-white', 'color-hover-white', 'shadow'];
-                const clases_inactivo = ['border-theme', 'border-hover-theme', 'color-theme', 'color-hover-theme', 'dashed'];
-
-                // Verificar si el botón ya tiene la clase principal de activo (bkg-theme)
-                const estaActivo = boton.classList.contains('bkg-theme');
-
-                if (estaActivo) { 
-                    // Remover clases de activo
-                    clases_activo.forEach(clase => boton.classList.remove(clase));
-
-                    // Añadir clases de inactivo
-                    clases_inactivo.forEach(clase => boton.classList.add(clase)); 
-
-                } else {  
-                    // Remover clases de inactivo
-                    clases_inactivo.forEach(clase => boton.classList.remove(clase));
-
-                    // Añadir clases de activo
-                    clases_activo.forEach(clase => boton.classList.add(clase)); 
-                }
-            }
 
             // Asignar el listener de clic a ambos botones
             filtro1.addEventListener('click', () => {
@@ -471,23 +453,13 @@
 
             filtro2.addEventListener('click', () => {
                 alternarEstiloFiltro(filtro2);
-            }); 
+            });
         });
 
-	</script>
+    </script>
 
 	<section class="blog section" id="blog">
 		<div class="container">
-
-			<!--<div class="row">
-				<div class="col-lg-12">
-					<div class="section-title">
-						<h2>Keep up with Our Most Recent Medical News.</h2>
-						<img src="img/section-img.png" alt="#">
-						<p>Lorem ipsum dolor sit amet consectetur adipiscing elit praesent aliquet. pretiumts</p>
-					</div>
-				</div>
-			</div>-->
 
 			<div id="cardsPanel" class="row">
 
@@ -497,458 +469,206 @@
 
 	<script type="text/javascript">
 
-		var url = new URL(window.location.href);
-		var urlParams = new URLSearchParams(url.search);
+        let filtros = null;
 
-        var pNombre = urlParams.get('name');
-		var pTipo = urlParams.get('type');
-		 
-        if (pTipo != null && pTipo.trim() != '') {
+        document.addEventListener('DOMContentLoaded', () => {
 
-            buscarPorTipo(pTipo);
+            filtros = getInitialFilters();
 
-			//buscarEntidadByFilters('', 0, pTipo, 0);
+            filtros.tiposActivos.forEach(tipo => {
+                if (tipo === '64569dd3-4d65-4eed-9f41-ea87b2270a6c')
+                    alternarEstiloFiltro(filtro1);
 
-		}
-        else if (pNombre != null && pNombre.trim() != '') {
+                if (tipo === 'e170a0db-660f-4c34-ae71-3e9b9dbbd92b')
+                    alternarEstiloFiltro(filtro2);
+            });
 
-            busquedaInicial(pNombre);
-		}
-		else {
-			busquedaInicial();
-		}
+            document.getElementById('textEntidad').value = filtros.nombre;
+            buscarEntidad();
+        });
+         
+        function aplicarFiltro1() {
 
-		//cargarContenidoModal('Filtros de la búsqueda', '');
+            toggleFiltroTipo('64569dd3-4d65-4eed-9f41-ea87b2270a6c', 'filtro1');
+        }
 
-		//const FiltrosBusqueda = {};
+        function aplicarFiltro2() {
 
-		//crearInputTexto('Nombre');
+            toggleFiltroTipo('e170a0db-660f-4c34-ae71-3e9b9dbbd92b', 'filtro2');
+        }
 
-		//crearDropdown('Tipo', ['Tipo 1', 'Tipo 2', 'Tipo 3']);
+        function toggleFiltroTipo(valorTipo, idBoton) {
 
-		//crearDropdown('Categoria', ['Categoría 1', 'Categoría 2', 'Categoría 3']);
+            const index = filtros.tiposActivos.indexOf(valorTipo);
 
-		//crearSlider('Distancia', 200, 1500);
+            if (index >= 0) {
+                // Si ya está -> eliminar de la lista
+                filtros.tiposActivos.splice(index, 1);
+            } else {
+                // Si no está -> añadir
+                filtros.tiposActivos.push(valorTipo);
+            }
 
-		//crearBoton();
-		 
-		function borrarBusqueda() {
+            // Si no hay ninguno → tipo = null
+            if (filtros.tiposActivos.length === 0) {
+                filtros.tipo = null;
+            }
+            // Si hay 1 → tipo = ese
+            else if (filtros.tiposActivos.length === 1) {
+                filtros.tipo = filtros.tiposActivos[0];
+            }
+            // Si hay 2 → tipo = "all"
+            else if (filtros.tiposActivos.length === 2) {
+                filtros.tipo = "all";
+            }
+
+            buscarEntidad();
+        }
+          
+        function getInitialFilters() {
+
+            const params = new URLSearchParams(window.location.search);
+
+            const filtrosIniciales = {
+                nombre: params.get("name") || null,
+                tipo: params.get("type") || null,
+                tiposActivos: [] 
+            };
+
+            // Si viene un tipo por URL lo ponemos en la lista
+            if (filtrosIniciales.tipo)
+                filtrosIniciales.tiposActivos = [filtrosIniciales.tipo];
+
+            return filtrosIniciales;
+        }
+          
+        function buscarEntidad() {
+
+            let contenedor = document.getElementById('cardsPanel');
+            contenedor.innerHTML = '';
+
+            GetEntidades()
+                .then(entidades => {
+
+                    entidades
+                        .filter(entidad => entidad.activo)
+                        .filter(entidad => {
+
+                            if (filtros.nombre && !incluyeSubcadena(entidad.nombre, filtros.nombre)) {
+                                return false;
+                            }
+                             
+                            if (filtros.tiposActivos.length > 0 &&
+                                !filtros.tiposActivos.includes(entidad.idTipoEntidad)) {
+                                return false;
+                            } 
+                            return true;
+                        })
+                        .forEach(entidad => {
+                            let card = crearCard(entidad.id, entidad.nombre, entidad.tipo, entidad.categoria, entidad.descripcion, entidad.imagen, entidad.ubicacion);
+                            contenedor.appendChild(card);
+                        });
+
+                })
+                .catch(error => {
+                    console.error('Error en GetEntidades:', error);
+                    alert('Error en GetEntidades');
+                });
+        }
+
+        function buscarUser() {
+
+            filtros.nombre = document.getElementById('textEntidad').value.trim() || null;
+            buscarEntidad();
+        }
+
+        function borrarBusqueda() {
 
             document.getElementById('textEntidad').value = '';
-			busquedaInicial(); 
-		}
+            filtros.nombre = null;
 
-		function busquedaInicial(nombre) {
+            const botones = [
+                { id: 'filtro1', valor: '64569dd3-4d65-4eed-9f41-ea87b2270a6c' },
+                { id: 'filtro2', valor: 'e170a0db-660f-4c34-ae71-3e9b9dbbd92b' }
+            ];
 
-            if (nombre != undefined && nombre != '') {
-                document.getElementById('textEntidad').value = nombre;
-			}
-            buscarEntidad(nombre);
-		}
+            // Desactivar todos los botones que estén activos
+            botones.forEach(b => {
+                if (filtros.tiposActivos.includes(b.valor)) {
+                    alternarEstiloFiltro(document.getElementById(b.id));
+                }
+            });
 
+            filtros.tipo = null;
+            filtros.tiposActivos = [];
 
-        function buscarPorNombre() {
-            const textName = document.getElementById('textEntidad').value;
-
-            if (textName.trim() === '') {
-                buscarEntidad();
-            }
-            else {
-                buscarEntidad(textName);
-            }
+            buscarEntidad();
         }
 
         function incluyeSubcadena(principal, subcadena) {
             return principal.toLowerCase().includes(subcadena.toLowerCase());
         }
 
-        function buscarPorTipo(tipo) {
-
-            let contenedor = document.getElementById('cardsPanel');
-            contenedor.innerHTML = '';
-
-            GetEntidades()
-                .then(entidades => {
-
-                    var i = 1;
-                    entidades.forEach(function (entidad) {
-
-                        if (entidad.activo) {
-                            let card = crearCard(entidad.id, entidad.nombre, entidad.tipo, entidad.categoria, entidad.descripcion, entidad.imagen, entidad.ubicacion);
-
-                            if (tipo != undefined && tipo != null && tipo != '') {
-                                if (entidad.idTipoEntidad == tipo) {
-                                    contenedor.appendChild(card);
-                                }
-                            }
-                        }
-                        i++;
-                    })
-                })
-                .catch(error => {
-                    console.error('Error en GetEntidades:', error);
-                    alert('Error en GetEntidades: ', error);
-                });
-        }
-
-        function buscarEntidad(textName) {
-
-            //const searchParams = new Filtros();
-            //let nombre = textName;
-            //searchParams.agregarElemento('nombre', nombre);
-
-            let contenedor = document.getElementById('cardsPanel');
-            contenedor.innerHTML = '';
-
-            GetEntidades()
-                .then(entidades => {
-
-                    var i = 1;
-                    entidades.forEach(function (entidad) {
-
-                        if (entidad.activo) {
-                            let card = crearCard(entidad.id, entidad.nombre, entidad.tipo, entidad.categoria, entidad.descripcion, entidad.imagen, entidad.ubicacion);
-                            if (textName != undefined && textName != null && textName != '') {
-                                if (incluyeSubcadena(entidad.nombre, textName)) {
-                                    contenedor.appendChild(card);
-                                }
-                            }
-                            else {
-                                contenedor.appendChild(card);
-                            }
-                        }
-                        i++;
-                    })
-                })
-                .catch(error => {
-                    console.error('Error en GetEntidades:', error);
-                    alert('Error en GetEntidades: ', error);
-                });
-        }
-
-
-		//function crearInputTexto(titulo) {
-		//    const input = document.createElement('input');
-		//    input.type = 'text';
-		//    input.name = titulo.toLowerCase();
-		//    input.placeholder = '';
-
-		//    input.addEventListener('input', function () {
-
-		//        //alert(input.name + " " + input.value);
-		//        //actualizarFiltros(input.name, input.value);
-		//    });
-
-		//    const row = crearFila(titulo, input);
-		//    document.getElementById('containerModal').appendChild(row);
-		//}
-
-		//function crearDropdown(titulo, opciones) {
-		//    const select = document.createElement('select');
-		//    select.name = titulo.toLowerCase();
-		//    select.style.float = "right";
-
-		//    let i = 1;
-		//    opciones.forEach(opcion => {
-		//        const option = document.createElement('option');
-		//        option.text = opcion;
-		//        option.value = i;
-		//        select.add(option);
-		//        i++;
-		//    });
-
-		//    select.addEventListener('change', function () {
-		//        actualizarFiltros(select.name, select.value);
-		//    });
-
-		//    const row = crearFila(titulo, select);
-		//    document.getElementById('containerModal').appendChild(row);
-		//}
+        function crearCard(id, nombre, tipo, categoria, descripcion, imagen, ubicacion) {
 
-		//function crearSlider(titulo, min, max) {
-		//    const slider = document.createElement('input');
-		//    slider.type = 'range';
-		//    slider.name = titulo.toLowerCase();
-		//    slider.min = min;
-		//    slider.max = max;
+            const divCol = document.createElement('div');
+            divCol.id = id;
 
-		//    slider.addEventListener('input', function () {
-		//        actualizarFiltros(slider.name, slider.value);
-		//    });
+            divCol.addEventListener("click", function () {
 
-		//    const row = crearFila(titulo, slider);
-		//    document.getElementById('containerModal').appendChild(row);
-		//}
+                window.location.href = `landing-entidad.html?id=${encodeURIComponent(id)}`;
+            });
 
-		//function crearFila(titulo, input) {
-		//    const row = document.createElement('div');
-		//    row.classList.add('input-row');
-		//    row.style.marginTop = "40px";
+            divCol.className = 'col-lg-4 col-md-6 col-12';
 
-		//    const label = document.createElement('label');
-		//    label.textContent = titulo;
-		//    //label.style.float = "left";
+            const divSingleNews = document.createElement('div');
+            divSingleNews.className = 'single-news';
 
-		//    row.appendChild(label);
-		//    row.appendChild(input);
+            const divNewsHead = document.createElement('div');
+            divNewsHead.className = 'news-head';
 
-		//    return row;
-		//}
+            const img = document.createElement('img');
+            img.src = 'img/entidades/' + imagen;
+            img.alt = '#';
+            img.style.minHeight = "235px";
 
-		//function crearBoton() {
-		//    const boton = document.createElement('button');
-		//    boton.classList.add('btn');
+            const divNewsBody = document.createElement('div');
+            divNewsBody.className = 'news-body';
 
-		//    boton.textContent = 'APLICAR';
-		//    boton.style.marginTop = '20px';
+            const divNewsContent = document.createElement('div');
+            divNewsContent.className = 'news-content';
 
-		//    boton.addEventListener('click', function () {
+            const divDate = document.createElement('div');
+            divDate.className = 'date';
+            divDate.textContent = ubicacion;
 
-		//        //alert(FiltrosBusqueda.nombre + " - " + FiltrosBusqueda.distancia + " - " + document.getElementsByName("tipo")[0].value + " - " + document.getElementsByName("categoria")[0].value);
-		//        //buscarEntidadByFilters(FiltrosBusqueda.nombre, FiltrosBusqueda.distancia, document.getElementsByName("tipo")[0].value, document.getElementsByName("categoria")[0].value);
-		//    });
-		//    document.getElementById('containerModal').appendChild(boton);
-		//}
+            const h2 = document.createElement('h2');
+            const a = document.createElement('a');
+            //a.href = 'blog-single.html';
+            a.href = `landing-entidad.html?id=${encodeURIComponent(id)}`;
+            a.textContent = nombre;
+            h2.appendChild(a);
 
-		// Función para actualizar los filtros si el valor no está vacío
-		//      function actualizarFiltros(nombreCampo, valor) {
-		//          if (valor.trim() !== '') {
+            const p = document.createElement('p');
+            p.className = 'text';
+            p.textContent = descripcion.slice(0, 300);;
 
-		//              FiltrosBusqueda[nombreCampo] = valor.trim();
-		//          } else {
+            //
+            divNewsContent.appendChild(divDate);
+            divNewsContent.appendChild(h2);
+            divNewsContent.appendChild(p);
 
-		//              delete FiltrosBusqueda[nombreCampo];
-		//          }
-		//      }
+            divNewsBody.appendChild(divNewsContent);
 
-		//function filtros() {
+            divNewsHead.appendChild(img);
 
-		//	document.getElementsByName("nombre")[0].value = "";
-		//	document.getElementsByName("distancia")[0].value = 0;
+            divSingleNews.appendChild(divNewsHead);
+            divSingleNews.appendChild(divNewsBody);
 
-		//	document.getElementsByName("categoria")[0].selectedIndex = 0;
-		//	document.getElementsByName("tipo")[0].selectedIndex = 0;
-		//}
+            divCol.appendChild(divSingleNews);
 
-		//function buscarEntidadByFilters(nombre, proximidad, tipo, categoria) {
-
-		//	const searchParams = new Filtros();
-		//	searchParams.agregarElemento('nombre', nombre);
-		//	searchParams.agregarElemento('tipo', tipo);
-		//	searchParams.agregarElemento('categoria', categoria);
-		//	searchParams.agregarElemento('proximidad', proximidad);
-
-		//	let contenedor = document.getElementById('cardsPanel');
-		//	contenedor.innerHTML = '';
-
-
-		//	GetEntidadByFilters('ObtenerEntidadesByFilters', searchParams)
-		//		.then(entidades => {
-
-		//			resetFiltroBusqueda();
-
-		//			if (entidades !== undefined && entidades.length > 0) {
-
-		//				var i = 1;
-		//				entidades.forEach(function (entidad) {
-
-		//					//alert(entidad.nombre);
-
-		//					//Construir card de la entidad
-		//					let card = crearCard(entidad.id, entidad.nombre, entidad.tipo, entidad.categoria, entidad.descripcion, entidad.imagen, entidad.ubicacion);
-		//					contenedor.appendChild(card);
-		//					i++;
-		//				})
-		//			}
-
-		//			//alert("pre aplicarFiltros");
-		//			//aplicarFiltros(searchParams);
-		//			//alert("post  aplicarFiltros");
-		//			//miModal.style.display = 'none';
-		//		})
-		//		.catch(error => {
-		//			console.error('Error en GetEntidades:', error);
-		//			alert('Error en GetEntidades: ', error);
-		//		});
-		//}
-
-		//function aplicarFiltros(searchParams) {
-
-		//	//alert("aplicarFiltros");
-
-		//	resetEtiquetas();
-
-		//	searchParams.elementos.forEach(filtro => {
-
-		//		switch (filtro[0]) {
-		//			case "nombre":
-
-		//				//alert("nombre - " + filtro[1]);
-		//				if (filtro[1].length > 0) {
-		//					agregarFiltro(filtro[0]);
-		//				}
-		//				break;
-		//			case "tipo":
-
-		//				//alert("tipo - " + filtro[1]);
-		//				if (filtro[1] > 0) {
-		//					agregarFiltro(filtro[0]);
-		//				}
-		//				break;
-		//			case "categoria":
-
-		//				//alert("categoria - " + filtro[1]);
-		//				if (filtro[1] > 0) {
-		//					agregarFiltro(filtro[0]);
-		//				}
-		//				break;
-		//			case "proximidad":
-
-		//				//alert("proximidad - " + filtro[1]);
-		//				if (filtro[1] > 0) {
-		//					agregarFiltro(filtro[0]);
-		//				}
-		//				break;
-		//		}
-		//	});
-		//}
-
-
-
-		//
-		function crearCard(id, nombre, tipo, categoria, descripcion, imagen, ubicacion) {
-
-			const divCol = document.createElement('div');
-			divCol.id = id;
-
-			divCol.addEventListener("click", function () {
-
-                window.location.href = `landing-entidad.html?id=${encodeURIComponent(id)}`; 
-			});
-
-			divCol.className = 'col-lg-4 col-md-6 col-12';
-
-			const divSingleNews = document.createElement('div');
-			divSingleNews.className = 'single-news';
-
-			const divNewsHead = document.createElement('div');
-			divNewsHead.className = 'news-head';
-
-			const img = document.createElement('img');
-			img.src = 'img/entidades/' + imagen;
-			img.alt = '#';
-			img.style.minHeight = "235px";
-
-			const divNewsBody = document.createElement('div');
-			divNewsBody.className = 'news-body';
-
-			const divNewsContent = document.createElement('div');
-			divNewsContent.className = 'news-content';
-
-			const divDate = document.createElement('div');
-			divDate.className = 'date';
-			divDate.textContent = ubicacion;
-
-			const h2 = document.createElement('h2');
-			const a = document.createElement('a');
-			//a.href = 'blog-single.html';
-            a.href = `landing-entidad.html?id=${encodeURIComponent(id)}`; 
-			a.textContent = nombre;
-			h2.appendChild(a);
-
-			const p = document.createElement('p');
-			p.className = 'text';
-			p.textContent = descripcion.slice(0, 300);;
-
-			//
-			divNewsContent.appendChild(divDate);
-			divNewsContent.appendChild(h2);
-			divNewsContent.appendChild(p);
-
-			divNewsBody.appendChild(divNewsContent);
-
-			divNewsHead.appendChild(img);
-
-			divSingleNews.appendChild(divNewsHead);
-			divSingleNews.appendChild(divNewsBody);
-
-			divCol.appendChild(divSingleNews);
-
-			return divCol;
+            return divCol;
 		}
-
-		//function resetEtiquetas() {
-
-		//	var elementos = document.getElementsByClassName("filter-pill");
-		//	var elementosArray = Array.from(elementos);
-		//	elementosArray.forEach(function (elemento) {
-		//		elemento.remove();
-		//	});
-		//}
-
-		//function resetFiltroBusqueda() {
-
-		//	FiltrosBusqueda.nombre = "";
-		//	FiltrosBusqueda.proximidad = 200;
-		//}
-
-		//function agregarFiltro(tipoFiltro) {
-		//	// Crear la pastilla de filtro
-		//	const filterPill = document.createElement('div');
-		//	filterPill.classList.add('filter-pill');
-		//          filterPill.classList.add('container');
-
-		//	// Contenido de la pastilla
-		//	filterPill.innerHTML = tipoFiltro + '<button id="' + tipoFiltro + '" onclick="eliminarFiltro(this, \'' + tipoFiltro + '\')">❌</button>';
-
-
-		//	// Agregar la pastilla al contenedor
-		//	document.getElementById('filterContainer').appendChild(filterPill);
-		//}
-
-		//function eliminarFiltro(btnEliminar, tipoFiltro) {
-
-		//	// Obtener el padre (la pastilla) del botón de eliminar y eliminarlo
-		//	const filterPill = btnEliminar.parentNode;
-
-		//	//alert(tipoFiltro);
-		//	switch (tipoFiltro) {
-		//		case "nombre":
-		//			FiltrosBusqueda.nombre = "";
-		//			break;
-		//		case "tipo":
-
-		//			break;
-		//		case "categoria":
-
-		//			break;
-		//		case "proximidad":
-		//			FiltrosBusqueda.distancia = 200;
-		//			break;
-		//	}
-		//	filterPill.remove();
-
-		//	//buscarEntidadByFilters(FiltrosBusqueda.nombre, FiltrosBusqueda.distancia, document.getElementsByName("tipo")[0].value, document.getElementsByName("categoria")[0].value);
-
-		//}
-
-		//class Filtros {
-		//    constructor() {
-		//        this.elementos = [];
-		//    }
-		//    agregarElemento(clave, valor) {
-		//        this.elementos.push([clave, valor]);
-		//    }
-		//    obtenerValor(clave) {
-		//        const elementoEncontrado = this.elementos.find(elemento => elemento[0] === clave);
-		//        return elementoEncontrado ? elementoEncontrado[1] : undefined;
-		//    }
-		//    imprimirElementos() {
-		//        this.elementos.forEach(elemento => {
-		//            console.log(`Clave: ${elemento[0]}, Valor: ${elemento[1]}`);
-		//        });
-		//    }
-		//};
 
 	</script>
 
@@ -1043,8 +763,7 @@
 		</div>
 	</section> 
 
-	<footer id="footer" class="footer ">
-		<!-- Footer Top -->
+	<footer id="footer" class="footer">
 		<div class="footer-top">
 			<div class="container">
 				<div class="row">
@@ -1052,7 +771,6 @@
 						<div class="single-footer">
 							<h2>Sobre Nosotros Us</h2>
 							<p>Lorem ipsum dolor sit am consectetur adipisicing elit do eiusmod tempor incididunt ut labore dolore magna.</p>
-							<!-- Social -->
 							<ul class="social">
 								<li><a href="#"><i class="icofont-facebook"></i></a></li>
 								<li><a href="#"><i class="icofont-google-plus"></i></a></li>
@@ -1060,7 +778,6 @@
 								<li><a href="#"><i class="icofont-vimeo"></i></a></li>
 								<li><a href="#"><i class="icofont-pinterest"></i></a></li>
 							</ul>
-							<!-- End Social -->
 						</div>
 					</div>
 					<div class="col-lg-3 col-md-6 col-12">
@@ -1113,8 +830,6 @@
 				</div>
 			</div>
 		</div>
-		<!--/ End Footer Top -->
-		<!-- Copyright -->
 		<div class="copyright">
 			<div class="container">
 				<div class="row">
@@ -1126,8 +841,7 @@
 				</div>
 			</div>
 		</div>
-		<!--/ End Copyright -->
-	</footer> 
+	</footer>
 
 	<script src="./js/jquery.min.js"></script>
 	<script src="./js/jquery-migrate-3.0.0.js"></script>

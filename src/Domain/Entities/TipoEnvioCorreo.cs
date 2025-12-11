@@ -24,6 +24,7 @@
             public const string Recompensa = "Recompensa";
             public const string EnvioReport = "EnvioReport";
             public const string Undefined = "Undefined";
+            public const string ConsultaUsuario_Manager = "ConsultaUsuario_Manager";
             
         }
 
@@ -32,13 +33,18 @@
             ValidacionCuenta,
             Bienvenida,
             SuscripcionActivada,
-            ResetContrasena ,
+            RecordatorioSuscripcion,
+            ResetContrasena,
+            CambiarContrasena,
             ContrasenaCambiada,
             ReservaProducto,
             ReservaActividad ,
             RememberSubscribe,
             Recompensa,
             EnvioReport,
+            ReservaActividad_Manager,
+            ConsultaUsuario_Manager,
+            EnvioComunicacion,
             Undefined
         }
     }

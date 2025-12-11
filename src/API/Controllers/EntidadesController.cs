@@ -49,9 +49,10 @@ namespace API.Controllers
             return (entidades != null && entidades.Any()) ? Ok(entidades) : NoContent();
         }
 
-        [Authorize]
+        //[Authorize]
+        [AllowAnonymous]
         [HttpGet("FiltrarEntidades")]
-        public async Task<IActionResult> GetByFiltersAsync([FromQuery] IFilters<Entidad> filters,
+        public async Task<IActionResult> GetByFiltersAsync([FromQuery] EntidadFilters filters,
                                                            [FromQuery] int? page,
                                                            [FromQuery] int? pageSize,
                                                            [FromQuery] string? orderBy,
