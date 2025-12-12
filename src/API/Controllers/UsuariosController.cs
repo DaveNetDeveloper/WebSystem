@@ -5,6 +5,7 @@ using Application.Interfaces.Controllers;
 using Application.Interfaces.DTOs.Filters;
 using Application.Interfaces.Services;
 using Application.Services;
+using DocumentFormat.OpenXml.Office2010.Excel;
 using Domain.Entities;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -18,6 +19,7 @@ using System.Security.Claims;
 using System.Text;
 using Twilio.TwiML.Voice;
 using Utilities;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 using static Utilities.ExporterHelper;
 namespace API.Controllers
 {
@@ -113,25 +115,27 @@ namespace API.Controllers
             }
         }
 
-        // TODO To Delete
-        //[Authorize(Policy = "RequireAdmin")]
-        //[HttpGet("ObtenerUsuario/{id}")]
-        //public async Task<IActionResult> GetByIdAsync(int id) 
-        //{
-        //    var resulToken = IsValidToken();
-        //    try {  
-        //        var usuario = await _usuarioService.GetByIdAsync(id);
-        //        if (usuario == null) return NoContent();
 
-        //        _logger.LogInformation(MessageProvider.GetMessage("Usuario:ObtenerPorId", "Success")); 
-        //        return Ok(usuario);
-        //    }
-        //    catch (Exception ex) {
-        //        _logger.LogError(ex, "Error obteniendo un usuario por Id, {id}.", id);
-        //        return StatusCode(StatusCodes.Status500InternalServerError,
-        //                         new { message = MessageProvider.GetMessage("Usuario:ObtenerPorId", "Error"), id });
-        //    } 
-        //}
+        //[Authorize(Policy = "RequireAdmin")]
+        [AllowAnonymous]
+        [HttpGet("ObtenerUsuario/{id}")]
+        public async Task<IActionResult> GetByIdAsync(int id)
+        { 
+            try
+            {
+                var usuario = await _usuarioService.GetByIdAsync(id);
+                if (usuario == null) return NoContent();
+
+                //_logger.LogInformation(MessageProvider.GetMessage("Usuario:ObtenerPorId", "Success"));
+                return Ok(usuario);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Error obteniendo un usuario por Id, {id}.", id);
+                return StatusCode(StatusCodes.Status500InternalServerError,
+                                 new { message = "Error obteniendo un usuario por Id", id });
+            }
+        }
 
         /// <summary>
         /// 

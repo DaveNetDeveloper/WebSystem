@@ -394,7 +394,7 @@
 				const hh = String(d.getHours()).padStart(2, '0');
 				const mm = String(d.getMinutes()).padStart(2, '0');
 				const ss = String(d.getSeconds()).padStart(2, '0');
-				return `El ${dia}/${mes}/${anyo} a las ${hh}:${mm}:${ss}h`;
+				return `el ${dia}/${mes}/${anyo} a las ${hh}:${mm}:${ss}h`;
 			}
 
 			// Normalizar: reemplazar 'T' por espacio para un único separador
@@ -408,7 +408,7 @@
 			// Si no hay hora, devolvemos solo la fecha formateada
 			if (!horaStr) {
 				const [yyyy, mm, dd] = fechaStr.split('-');
-				return `El ${parseInt(dd)}/${parseInt(mm)}/${yyyy} a las 00:00:00`;
+				return `el ${parseInt(dd)}/${parseInt(mm)}/${yyyy} a las 00:00:00`;
 			}
 
 			// Quitar fracciones de segundo si existen
@@ -421,7 +421,7 @@
 			const dd = fechaParts[2] ?? '';
 
 			// Devolver en el formato requerido
-			return `El ${parseInt(dd)}/${parseInt(mm)}/${yyyy} a las ${horaStr}h`;
+			return `el ${parseInt(dd)}/${parseInt(mm)}/${yyyy} a las ${horaStr}h`;
 		}
 
 		//

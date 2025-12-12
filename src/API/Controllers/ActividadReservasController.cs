@@ -227,7 +227,7 @@ namespace API.Controllers
             bool existeReserva = reservas.Any(r => r.estado != ActividadReserva.EstadoReserva.Cancelada);
 
             if (existeReserva) 
-                return NotFound(null);
+                return StatusCode(StatusCodes.Status500InternalServerError, "Ya existe una reereva activa para el usuario");
 
             // Crear la reserva en [ActividadReservas] en estado "Reservada"
             var actividadReserva = new ActividadReserva
