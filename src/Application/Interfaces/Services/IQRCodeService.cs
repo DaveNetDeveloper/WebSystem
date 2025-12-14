@@ -10,7 +10,7 @@ namespace Application.Interfaces.Services
         Task<QRCode?> GetAsync(Guid id);
         Task ActivateAsync(Guid id);
         Task DeactivateAsync(Guid id);
-        Task ConsumeAsync(Guid id);
+        Task<bool> ConsumeAsync(Guid id);
         Task<bool> Remove(Guid id);
         Task<byte[]> ExportarAsync(ExportFormat formato);
     }

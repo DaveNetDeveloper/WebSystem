@@ -536,6 +536,7 @@
         let _idEntidad = urlParams.get('id'); // Para relacionar la consulta
 
         document.addEventListener("DOMContentLoaded", () => {
+
             if (_idTipoEntidad !== null) {
                 cargarMotivosConsulta(_idTipoEntidad);
             }
@@ -543,9 +544,11 @@
             //localStorage.setItem("IdUsuario", 15); // TODO
             const idUsuario = localStorage.getItem("IdUsuario");
 
-            obtenerUsuarioPorId(idUsuario).then(usuario => {
-                rellenarFormulario(usuario);
-            });
+            if (idUsuario !== null && idUsuario !== undefined) {
+                obtenerUsuarioPorId(idUsuario).then(usuario => {
+                    rellenarFormulario(usuario);
+                });
+            }
         }); 
 
         function rellenarFormulario(usuario) {

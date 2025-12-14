@@ -3268,17 +3268,17 @@ body{
 .contact-us .contact-us-form{
 	padding:50px 40px;
 }
-.contact-us .contact-us-form h2 {
-	position: relative;
-	font-size: 32px;
-	color: #333;
-	font-weight: 600;
-	line-height: 27px;
-	text-transform: capitalize;
-	margin-bottom: 12px;
-	padding-bottom: 20px;
-	text-align: left;
-}
+	.contact-us .contact-us-form h2 {
+		position: relative;
+		font-size: 32px;
+		color: #333;
+		font-weight: 600;
+		line-height: 27px;
+		text-transform: capitalize;
+		margin-bottom: 12px;
+		padding-bottom: 20px;
+		text-align: center;
+	}
 	.contact-us .contact-us-form h2:before {
 		position: absolute;
 		content: "";
@@ -3287,8 +3287,8 @@ body{
 		height: 2px;
 		width: 50px;
 		background: #1A76D1;
-
-		font-family: 'Poppins', sans-serif; 
+		text-align: center;
+		font-family: 'Poppins', sans-serif;
 	}
 	.contact-us .contact-us-form p {
 		font-size: 14px;

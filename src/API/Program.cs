@@ -188,11 +188,11 @@ if (!builder.Environment.IsEnvironment(Application.Common.Environments.Test) &&
 }
 
 // Lanzar el consumidor de la cola de notificaciones
-using (var scope = app.Services.CreateScope())
-{
-    var consumer = scope.ServiceProvider.GetRequiredService<IMessageConsumer>();
-    consumer.StartConsuming("notificaciones");
-}
+//using (var scope = app.Services.CreateScope()) // TODO: Descomentar
+//{
+//    var consumer = scope.ServiceProvider.GetRequiredService<IMessageConsumer>();
+//    consumer.StartConsuming("notificaciones");
+//}
 
 // Health endpoint en JSON
 app.MapHealthChecks("/health", new Microsoft.AspNetCore.Diagnostics.HealthChecks.HealthCheckOptions  {

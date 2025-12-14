@@ -1,15 +1,19 @@
 ﻿using Application.Common;
 using Application.DTOs.Filters;
 using Application.DTOs.Requests;
+using Application.DTOs.Responses;
 using Application.Interfaces.Controllers;
 using Application.Interfaces.DTOs.Filters;
 using Application.Interfaces.Services;
 using Application.Services;
 using Domain.Entities;
-
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
+using static Domain.Entities.InAppNotification;
+using static Domain.Entities.QRCode;
+using static Domain.Entities.TipoEnvioCorreo;
+using static Domain.Entities.TipoTransaccion;
 using static Utilities.ExporterHelper;
 
 namespace API.Controllers
@@ -20,14 +24,17 @@ namespace API.Controllers
     {
         private readonly IQRCodeService _service;
         private readonly ExportConfiguration _exportConfig;
+        protected IConfiguration _config;
 
         public QRCodesController(IQRCodeService service,
                                  ILogger<QRCodesController> logger,
-                                 IOptions<ExportConfiguration> options)
+                                 IOptions<ExportConfiguration> options,
+                                 IConfiguration config)
         {
             _service = service;
             _logger = logger;
             _exportConfig = options.Value ?? throw new ArgumentNullException(nameof(options));
+            _config = config;
         }
 
         [AllowAnonymous]
@@ -59,6 +66,7 @@ namespace API.Controllers
         }
 
         [HttpGet("{id}")]
+        [AllowAnonymous]
         public async Task<IActionResult> Get(Guid id)
         {
             var qr = await _service.GetAsync(id);
@@ -67,6 +75,7 @@ namespace API.Controllers
         }
 
         [HttpGet("{id}/image")]
+        [AllowAnonymous]
         public async Task<IActionResult> GetImage(Guid id)
         {
             var qr = await _service.GetAsync(id);
@@ -89,10 +98,114 @@ namespace API.Controllers
         }
 
         [HttpPost("{id}/consume")]
-        public async Task<IActionResult> Consume(Guid id)
+        [AllowAnonymous]
+        public async Task<IActionResult> Consume([FromServices] ITransaccionService transaccionService,
+                                                 [FromServices] ITipoTransaccionService tipoTransaccionService,
+                                                 [FromServices] IUsuarioService usuarioService,
+                                                 [FromServices] ICorreoService correoService,
+                                                 [FromServices] IInAppNotificationService inAppNotificationService,
+                                                 [FromServices] IProductoService productoService,
+                                                 [FromServices] IPerfilService perfilService,
+                                                 Guid id,
+                                                 [FromQuery] string email)
         {
-            await _service.ConsumeAsync(id);
-            return Ok("QR consumido correctamente");
+            var qrResult = await _service.ConsumeAsync(id);
+
+            if (!qrResult) return StatusCode(StatusCodes.Status500InternalServerError, new { message = "Se produjo un error al consumir el QR." });
+
+
+            var filter = new UsuarioFilters();
+            filter.Correo = email;
+            var usuarios = await usuarioService.GetByFiltersAsync(filter);
+            var usuario = usuarios.FirstOrDefault();
+
+            // 
+            var tiposTransaccion = await tipoTransaccionService.GetAllAsync();
+            var tipoTransaccion = tiposTransaccion
+                                  .Where(u => u.nombre == TiposTransaccion.QrProduto)
+                                  .SingleOrDefault();
+
+            // obtener datos del producto del QR para saber los puntos a sumar al usuario
+            var qr = await _service.GetAsync(id);
+
+            if (qr == null || 
+                qr.origen.ToLower() != QRCode.Origen.Producto.ToLower() ||
+                qr.idProducto == null) {
+                return StatusCode(StatusCodes.Status500InternalServerError, new { message = "El QRCode tiene problemas de configuración." });
+            }
+
+            var idProducto = qr.idProducto.Value;
+
+            var producto = await productoService.GetByIdAsync(idProducto);
+            var nombreProducto = producto.nombre;  
+            int puntosProducto = producto.puntos; 
+              
+            var transaccion = new Transaccion
+            {
+                idTipoTransaccion = tipoTransaccion.id,
+                fecha = DateTime.UtcNow,
+                puntos = puntosProducto,
+                idUsuario = usuario.id.Value,
+                nombre = tipoTransaccion.nombre,
+                idProducto = producto.id
+            };
+            await transaccionService.AddAsync(transaccion);
+
+            // Crear InAppNotificacion para que el usuario lo vea en la home privada
+            var inApp = new InAppNotification
+            {
+                idUsuario = usuario.id.Value,
+                titulo = "Has escaneado un producto!",
+                mensaje = "Has ganado [" + puntosProducto + "] puntos por escanear [" + nombreProducto + "]",
+                activo = true,
+                fechaCreacion = DateTime.UtcNow,
+                tipoEnvioInApp = TipoEnvioInApp.NuevaRecompensa
+            };
+           await inAppNotificationService.AddAsync(inApp);
+
+            // Enviar mail notificando la recompensa al recomendador
+            var tiposEnvio = await correoService.ObtenerTiposEnvioCorreo();
+            var tipoEnvio = tiposEnvio.Where(u => u.nombre == TipoEnvio.EscanearProducto)
+                                            .SingleOrDefault();
+
+            var correo = new Correo(tipoEnvio, usuario.correo, usuario.nombre, _config["AppConfiguration:LogoURL"]);
+            correoService.EnviarCorreo(correo);
+
+            // si el usuario tiene perfil 'Basic' o 'Friend' entonces lo cambiamos a perfil 'Lover' 
+            var perfilUsuario = await perfilService.GetByIdAsync(usuario.idPerfil.Value);
+
+            bool cambiarPerfil = (perfilUsuario.nombre == Perfil.Perfiles.Basic || perfilUsuario.nombre == Perfil.Perfiles.Friend);
+                 
+            if (cambiarPerfil)
+            {
+                var perfiles = await perfilService.GetAllAsync();
+                var perfilLover = perfiles
+                                  .Where(u => u.nombre == Perfil.Perfiles.Lover)
+                                  .SingleOrDefault();
+
+                usuario.idPerfil = perfilLover.id;
+                var updateResult = await usuarioService.UpdateAsync(usuario);
+
+                if(updateResult) 
+                {  
+                    // creamos inApp notificando el cambio de perfil
+                    var inAppPerfil = new InAppNotification
+                    {
+                        idUsuario = usuario.id.Value,
+                        titulo = "Tu perfil ha cambiado!",
+                        mensaje = "Tu perfil ahora es 'Lover' porque has escaneado un propducto de [" + qr.idEntidad + "].",
+                        activo = true,
+                        fechaCreacion = DateTime.UtcNow,
+                        tipoEnvioInApp = TipoEnvioInApp.PrimeraCompra
+                    };
+                    await inAppNotificationService.AddAsync(inAppPerfil);
+
+                } 
+            } 
+
+            // enviamos nuevo correo notificando el cambio de perfil?
+
+            return Ok(true);
         }
 
         [Authorize]

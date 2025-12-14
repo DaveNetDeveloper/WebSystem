@@ -47,7 +47,12 @@ namespace Infrastructure.Repositories
             qrToUpdate.fechaExpiracion = qr.fechaExpiracion;
             qrToUpdate.payload = qr.payload;
             qrToUpdate.status = qr.status;
-             
+            
+            qrToUpdate.idEntidad = qr.idEntidad;
+            qrToUpdate.idActividad = qr.idActividad;
+            qrToUpdate.idProducto = qr.idProducto;
+            qrToUpdate.origen = qr.origen; 
+
             await _context.SaveChangesAsync();
             return true;
         }

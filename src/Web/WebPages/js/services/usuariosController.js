@@ -15,7 +15,6 @@ export const controllerActions = [
     'ObtenerUsuarioByEmail',
     'ObtenerUsuarios',
     'ActualizarUsuario',
-    'Login',
     'CambiarContrasena',
     'ValidarCuenta',
     'ActivacionSuscripcion',

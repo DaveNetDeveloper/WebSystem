@@ -15,7 +15,7 @@
             public const string Bienvenida = "Bienvenida";
             public const string RecordatorioSuscripcion = "RecordatorioSuscripcion";
             public const string SuscripcionActivada = "SuscripcionActivada";
-            public const string ReservaProducto = "ReservaProducto";
+            public const string EscanearProducto = "EscanearProducto";
             public const string ReservaActividad = "ReservaActividad";
             public const string ReservaActividad_Manager = "ReservaActividad_Manager";
             public const string EnvioComunicacion = "EnvioComunicacion";
@@ -37,7 +37,7 @@
             ResetContrasena,
             CambiarContrasena,
             ContrasenaCambiada,
-            ReservaProducto,
+            EscanearProducto,
             ReservaActividad ,
             RememberSubscribe,
             Recompensa,

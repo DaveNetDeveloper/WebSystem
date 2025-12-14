@@ -69,25 +69,26 @@ namespace API.Controllers
         }
 
         //[Authorize]
-        //[HttpGet("ObtenerProducto/{id}")]
-        //public async Task<IActionResult> GetByIdAsync(int id)
-        //{
-        //    try
-        //    {
-        //        _logger.LogInformation("Obteniendo un producto por Id.");
+        [AllowAnonymous]
+        [HttpGet("ObtenerProducto/{id}")]
+        public async Task<IActionResult> GetByIdAsync(int id)
+        {
+            try
+            {
+                _logger.LogInformation("Obteniendo un producto por Id.");
 
-        //        var producto = await _productoService.GetByIdAsync(id);
-        //        if (producto == null) return NoContent();
+                var producto = await _productoService.GetByIdAsync(id);
+                if (producto == null) return NoContent();
 
-        //        return Ok(producto);
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        _logger.LogError(ex, "Error obteniendo un producto por Id, {id}.", id);
-        //        return StatusCode(StatusCodes.Status500InternalServerError,
-        //                         new { message = "Se produjo un error al obtener un producto por el Id.", id });
-        //    }
-        //}
+                return Ok(producto);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Error obteniendo un producto por Id, {id}.", id);
+                return StatusCode(StatusCodes.Status500InternalServerError,
+                                 new { message = "Se produjo un error al obtener un producto por el Id.", id });
+            }
+        }
 
         [Authorize]
         [HttpPost("CrearProducto")]

@@ -9,13 +9,17 @@
 
     public class QRCode
     {
-        public Guid id { get; set; } = Guid.NewGuid();
+        public Guid id { get; set; } = Guid.NewGuid(); // PK
         public string token { get; set; } = Guid.NewGuid().ToString("N");
         public string payload { get; set; } = default!;
         public QrStatus status { get; set; } = QrStatus.Active;
         public DateTime fechaCreacion { get; set; } = DateTime.UtcNow;
         public DateTime? fechaExpiracion { get; set; }
         public byte[]? imagen { get; set; }
+        public int idEntidad { get; set; } // FK
+        public string origen { get; set; }
+        public int? idProducto { get; set; } // FK
+        public int? idActividad { get; set; }  // FK
 
         public bool IsExpired => fechaExpiracion.HasValue && DateTime.UtcNow > fechaExpiracion.Value;
 
@@ -60,5 +64,12 @@
                 throw new InvalidOperationException("Solo los QR activos pueden consumirse.");
             status = QrStatus.Consumed;
         }
+
+        public static class Origen
+        {
+            public const string Producto = "producto";
+            public const string Actividad = "actividad"; 
+        }  
+
     }
 }

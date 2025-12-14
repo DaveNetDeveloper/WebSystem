@@ -8,8 +8,6 @@ let baseUrl4 = `https://localhost`;
 let controllerName4 = `Productos`;
 let port4 = `44311`;
 let apiUrl4 = `${baseUrl4}:${port4}/${controllerName4}/`;
-
-//var userToken = "qAGlDm9o9oS1Ir+xNlWk3XXHkJy/+nJmBy3KUPoms2w="; // TODO: cambiar por valor de la cookie
  
 class Producto {
     constructor(id, idEntidad, nombre, imagen, descripcion, puntos, precio, activo, descuento, popularidad, descripcionCorta, disponible, informacioExtra, linkInstagram, linkFacebook, linkYoutube) {

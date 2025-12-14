@@ -1,38 +1,39 @@
 <!doctype html>
 <html class="no-js" lang="es">
 <head>
-	<meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="keywords" content="Site keywords here">
-	<meta name="description" content="">
-	<meta name='copyright' content='UOC'>
-	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="keywords" content="Site keywords here">
+    <meta name="description" content="">
+    <meta name='copyright' content='UOC'>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-	<title>Explorar entidades</title>
+    <title>Explorar entidades</title>
 
-	<link rel="icon" href="img/favicon.png">
+    <link rel="icon" href="img/favicon.png">
 
-	<link href="https://fonts.googleapis.com/./css?family=Poppins:200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i&display=swap" rel="stylesheet">
-	<link rel="stylesheet" href="./css/bootstrap.min.css">
-	<link rel="stylesheet" href="./css/nice-select.css">
-	<link rel="stylesheet" href="./css/font-awesome.min.css">
-	<link rel="stylesheet" href="./css/icofont.css">
-	<link rel="stylesheet" href="./css/slicknav.min.css">
-	<link rel="stylesheet" href="./css/owl-carousel.css">
-	<link rel="stylesheet" href="./css/datepicker.css">
-	<link rel="stylesheet" href="./css/animate.min.css">
-	<link rel="stylesheet" href="./css/magnific-popup.css">
-	 
-	<link rel="stylesheet" href="./css/normalize.css">
-	<link rel="stylesheet" href="./css/style.css">
-	<link rel="stylesheet" href="./css/responsive.css">
+    <link href="https://fonts.googleapis.com/./css?family=Poppins:200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./css/bootstrap.min.css">
+    <link rel="stylesheet" href="./css/nice-select.css">
+    <link rel="stylesheet" href="./css/font-awesome.min.css">
+    <link rel="stylesheet" href="./css/icofont.css">
+    <link rel="stylesheet" href="./css/slicknav.min.css">
+    <link rel="stylesheet" href="./css/owl-carousel.css">
+    <link rel="stylesheet" href="./css/datepicker.css">
+    <link rel="stylesheet" href="./css/animate.min.css">
+    <link rel="stylesheet" href="./css/magnific-popup.css">
 
-	<script src="./js/services/entidadesController.js"></script>
-	<!--<script src="./js/services/usuariosController.js"></script>-->
-	<!--<script src="./js/libraries/modalPanel.js"></script>-->
+    <link rel="stylesheet" href="./css/normalize.css">
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="./css/responsive.css">
+
+    <script src="./js/services/entidadesController.js"></script>
+    <!--<script src="./js/services/usuariosController.js"></script>-->
+    <!--<script src="./js/libraries/modalPanel.js"></script>-->
+    <script src="/Components/webHeader/webHeader.js"></script>
 
     <style>
-                /*.filter-pills {
+        /*.filter-pills {
                     display: flex;
                     gap: 10px;
                     margin-bottom: 10px;
@@ -54,20 +55,18 @@
                         cursor: pointer;
                         background: transparent;
                     }*/
-
-
-
-                /*
+         
+        /*
          * Asegura el estilo inactivo base (dashed, borde, texto de color)
          */
-                /*.button.border-theme {
+        /*.button.border-theme {
             background-color: transparent;
             border: 2px solid var(--color-theme-base);
             color: var(--color-theme-base);
             border-style: dashed;
         }*/
 
-         /*
+        /*
          * Estilo Hover (border-hover-theme) cuando el botón está inactivo.
          */
         .button.border-theme:hover,
@@ -77,7 +76,7 @@
             color: white;
             cursor: pointer;
         }
-		 
+
         .button.hard-shadow, button.hard-shadow {
             border-bottom: 3px solid rgba(0, 0, 0, .15);
         }
@@ -142,9 +141,9 @@
             outline: 0;
         }
 
-        .box.dismissable .close, .box.dismissable .close:hover, .header .logo a, .shop .product-price ins, a, a:hover, p a, p a:hover {
-            text-decoration: none;
-        }
+            .box.dismissable .close, .box.dismissable .close:hover, .header .logo a, .shop .product-price ins, a, a:hover, p a, p a:hover {
+                text-decoration: none;
+            }
 
         a, button, input, select, textarea {
             touch-action: manipulation;
@@ -156,7 +155,7 @@
             box-sizing: border-box;
         }
 
-        /*     a:-webkit-any-link {
+        /* a:-webkit-any-link {
             color: -webkit-link;
             cursor: pointer;
            text-decoration: underline;
@@ -266,7 +265,7 @@
         ::selection {
             background: #333;
             color: #fff;
-        } 
+        }
 
         .disabled {
             opacity: 0.6;
@@ -276,9 +275,8 @@
         }
 
         .bkg-theme {
-
             background-color: goldenrod;
-			color:white;
+            color: white;
             border-color: lightgray;
         }
 
@@ -288,14 +286,14 @@
 
         .news-head {
             /*min-height: 350px;*/
-           /* background-size: cover;
+            /* background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
             width: 100%;*/
-           /* border-radius: 10px 10px 0 0;*/
+            /* border-radius: 10px 10px 0 0;*/
         }
-
     </style>
+
 </head>
 <body>
      
@@ -313,40 +311,41 @@
 		</div>
 	</div> 
 
-	<header class="header"> 
-		<div class="header-inner">
-			<div class="container">
-				<div class="inner">
-					<div class="row">
-						<div class="col-lg-2 col-md-3 col-12"> 
-							<div class="logo">
-								<a href="home-privada.html"><img src="img/logo.jpg" alt="#"></a>
-							</div> 
-							<div class="mobile-nav"></div> 
-						</div>
-						<div class="col-lg-7 col-md-9 col-12"> 
-							<div class="main-menu">
-								<nav class="navigation">
-									<ul class="nav menu">
-										<li><a href="home-privada.html">Inicio </a></li>
-										<li class="active"><a href="explorar.html">Explorar </a></li>
-										<li><a href="#">Recompensas </a></li>
-										<li><a href="#">Cómo ganar puntos? </a></li>
-									</ul>
-								</nav>
-							</div> 
-						</div>
-						<div class="col-lg-2 col-12">
-							<div class="get-quote">
-								<a id="infoUsuario" style="margin: 15px;background: goldenrod;" href="#" class="btn">Hola {nombreUsuario}, tienes {puntosUsuario} pts.</a>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div> 
-	</header> 
+      
+        <web-header active="explorar"></web-header>
 
+        <!--<div class="header-inner">
+            <div class="container">
+                <div class="inner">
+                    <div class="row">
+                        <div class="col-lg-2 col-md-3 col-12">
+                            <div class="logo">
+                                <a href="home-privada.html"><img src="img/logo.jpg" alt="#"></a>
+                            </div>
+                            <div class="mobile-nav"></div>
+                        </div>
+                        <div class="col-lg-7 col-md-9 col-12">
+                            <div class="main-menu">
+                                <nav class="navigation">
+                                    <ul class="nav menu">
+                                        <li><a href="home-privada.html">Inicio </a></li>
+                                        <li class="active"><a href="explorar.html">Explorar </a></li>
+                                        <li><a href="#">Recompensas </a></li>
+                                        <li><a href="#">Cómo ganar puntos? </a></li>
+                                    </ul>
+                                </nav>
+                            </div>
+                        </div>
+                        <div class="col-lg-2 col-12">
+                            <div class="get-quote">
+                                <a id="infoUsuario" style="margin: 15px;background: goldenrod;" href="#" class="btn">Hola {nombreUsuario}, tienes {puntosUsuario} pts.</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>-->
+     
 	<script type="text/javascript">
 
         (async () => {

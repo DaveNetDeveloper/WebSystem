@@ -62,11 +62,11 @@ namespace Application.Services
             await _repo.UpdateAsync(qr);
         }
 
-        public async Task ConsumeAsync(Guid id)
+        public async Task<bool> ConsumeAsync(Guid id)
         {
             var qr = await _repo.GetByIdAsync(id) ?? throw new KeyNotFoundException();
             qr.Consume();
-            await _repo.UpdateAsync(qr);
+            return await _repo.UpdateAsync(qr);
         }
 
         public Task<bool> Remove(Guid id)
