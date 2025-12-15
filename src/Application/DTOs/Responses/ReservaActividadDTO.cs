@@ -8,6 +8,7 @@
         public int IdUsuario { get; set; }
         public DateTime FechaActividad { get; set; } 
         public DateTime FechaReserva { get; set; }
-        public string EstadoReserva { get; set; } 
+        public string EstadoReserva { get; set; }
+        public string ImagenActividad { get; set; }
     }
 }

@@ -17,6 +17,7 @@
             public const string SuscripcionActivada = "SuscripcionActivada";
             public const string EscanearProducto = "EscanearProducto";
             public const string ReservaActividad = "ReservaActividad";
+            public const string ValidarReserva = "ValidarReserva";
             public const string ReservaActividad_Manager = "ReservaActividad_Manager";
             public const string EnvioComunicacion = "EnvioComunicacion";
             public const string CambiarContrasena = "CambiarContrasena";
@@ -45,6 +46,7 @@
             ReservaActividad_Manager,
             ConsultaUsuario_Manager,
             EnvioComunicacion,
+            ValidarReserva,
             Undefined
         }
     }

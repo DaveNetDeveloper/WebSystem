@@ -17,7 +17,6 @@
 
   <ItemGroup>
     <None Remove="WebPages\contact.html" />
-    <None Remove="WebPages\css\core.min.css" />
     <None Remove="WebPages\css\skin.css" />
     <None Remove="WebPages\test.html" />
   </ItemGroup>

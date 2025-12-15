@@ -29,8 +29,7 @@ namespace API.Controllers
         public QRCodesController(IQRCodeService service,
                                  ILogger<QRCodesController> logger,
                                  IOptions<ExportConfiguration> options,
-                                 IConfiguration config)
-        {
+                                 IConfiguration config) {
             _service = service;
             _logger = logger;
             _exportConfig = options.Value ?? throw new ArgumentNullException(nameof(options));
@@ -112,7 +111,6 @@ namespace API.Controllers
             var qrResult = await _service.ConsumeAsync(id);
 
             if (!qrResult) return StatusCode(StatusCodes.Status500InternalServerError, new { message = "Se produjo un error al consumir el QR." });
-
 
             var filter = new UsuarioFilters();
             filter.Correo = email;
