@@ -1,10 +1,593 @@
-﻿<!DOCTYPE html>
-<html>
+﻿<!doctype html>
+<html class="no-js" lang="es">
 <head>
-    <meta charset="utf-8" />
-    <title></title>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>  Administración / Códigos QR</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!--<link rel="manifest" href="site.webmanifest">-->
+    <link rel="shortcut icon" type="image/x-icon" href="img/favicon.png">
+
+    <!-- <link rel="stylesheet" href="css/fontawesome-all.min.css">
+    <link rel="stylesheet" href="../css/et-line-fonts.css">
+    <link rel="stylesheet" href="../css/themify-icons.css">-->
+    <!--<link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css">-->
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <link rel="stylesheet" href="../css/owl.carousel.min.css">
+    <link rel="stylesheet" href="../css/animate.min.css">
+    <link rel="stylesheet" href="../css/magnific-popup.css">
+    <link rel="stylesheet" href="../css/fontawesome-all.min.css">
+    <link rel="stylesheet" href="../css/bootstrap-datetimepicker.min.css">
+    <link rel="stylesheet" href="../css/et-line-fonts.css">
+    <link rel="stylesheet" href="../css/nice-select.css">
+    <link rel="stylesheet" href="../css/typeaheadjs.css">
+    <link rel="stylesheet" href="../css/themify-icons.css">
+    <link rel="stylesheet" href="../css/meanmenu.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css">
+    <link rel="stylesheet" href="../css/chart.css">
+    <link rel="stylesheet" href="../css/default.css">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/responsive.css">
 </head>
 <body>
+
+    <div class="body-wrapper body-bg">
+        <header>
+        </header>
+        <div class="dashboard-area pt-30">
+            <div class="container">
+                <div class="row">
+
+                    <div class="col-lg-12">
+                        <div class="pannel-wrapper white-bg mb-30">
+                            <div class="panel-heading heading-border">
+                                <h4>Editar un QRCode</h4>
+                            </div>
+                            <div class="panel-body">
+
+                                <div class="custom-form">
+                                    <form>
+                                        <div style="text-align: end;" class="form-group row">
+                                            <div class="col-sm-8">
+                                            </div>
+                                            <div class="col-sm-4 ">
+                                                <button style="width: 150px;" id="btnEliminar" class="btn btn-danger">ELIMINAR</button>
+                                            </div>
+                                        </div>
+                                        <br /> <br />
+                                        <div class="form-group row">
+                                            <label style="cursor: default;" for="inputId" class="col-sm-2 col-form-label">Id</label>
+                                            <div class="col-sm-10">
+                                                <input style="cursor: not-allowed;" type="text" class="form-control" id="inputId" readonly placeholder="">
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label style="cursor: default;" for="inputToken" class="col-sm-2 col-form-label">Token</label>
+                                            <div class="col-sm-10">
+                                                <input style="cursor: not-allowed;" type="text" class="form-control" id="inputToken" readonly placeholder="">
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group row">
+                                            <label style="cursor: default;" for="payload" class="col-sm-2 col-form-label">Payload</label>
+                                            <div class="col-sm-10">
+                                                <textarea style="min-height:100px" class="form-control" id="payload"></textarea>
+                                            </div>
+                                        </div>
+
+                                        <div class="input-append date form_datetime form-group row">
+                                            <label style="cursor: default;" for="FechaExpiración" class="col-sm-2 col-form-label">Fecha de Expiración</label>
+                                            <div class="col-sm-10">
+                                                <input class="form-control" id="FechaExpiración" type="text" value="" placeholder="" readonly>
+                                                <span style="margin-right: 15px;" class="add-on">
+                                                    <i class="fas fa-th icon-th"></i>
+                                                </span>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group row">
+                                            <label style="cursor: default;" for="listaEstados" class="col-sm-2 col-form-label">Estado</label>
+                                            <div class="col-sm-10">
+                                                <select style="cursor: pointer;" class="form-control" id="listaEstados">
+                                                    <option value=""></option>
+                                                    <option value="0">Inactive</option>
+                                                    <option value="1">Active</option>
+                                                    <option value="2">Consumed</option>
+                                                </select>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group row">
+                                            <label style="cursor: default;" for="listaEntidades" class="col-sm-2 col-form-label">Entidad</label>
+                                            <div class="col-sm-10">
+                                                <select style="cursor: pointer;" class="form-control" id="listaEntidades">
+                                                </select>
+                                            </div>
+                                        </div>
+
+                                        <div id="divOrigenGroup" class="form-group row">
+                                            <label style="cursor: default;" for="listaOrigenes" class="col-sm-2 col-form-label">Origen</label>
+                                            <div class="col-sm-10">
+                                                <select style="cursor: not-allowed;" class="form-control" id="listaOrigenes" disabled>
+                                                    <option value=""></option>
+                                                    <option value="producto">Producto</option>
+                                                    <option value="actividad">Actividad</option>
+                                                </select>
+                                            </div>
+                                        </div>
+
+                                        <div id="divProductosGroup" class="form-group row d-none">
+                                            <label style="cursor: default;" for="listaProductos" class="col-sm-2 col-form-label">Producto</label>
+                                            <div class="col-sm-10">
+                                                <select style="cursor: pointer;" disabled class="form-control" id="listaProductos">
+                                                </select>
+                                            </div>
+                                        </div>
+
+                                        <div id="divActividadesGroup" class="form-group row d-none">
+                                            <label style="cursor: default;" for="listaActividades" class="col-sm-2 col-form-label">Actividad</label>
+                                            <div class="col-sm-10">
+                                                <select style="cursor: pointer;" disabled class="form-control" id="listaActividades">
+                                                </select>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group row">
+                                            <label style="cursor: default;" for="imagenQRCode" class="col-sm-2 col-form-label">Imagen QR</label>
+                                            <div class="col-sm-10">
+                                                <img style="cursor: pointer; width: inherit; max-width: 250px;" src="" id="imagenQRCode" />
+                                                <button id="btnDescargarQR" class="btn btn-green mt-2">Descargar QR</button>
+                                            </div>
+                                        </div>
+
+
+                                        <div class="form-group row">
+                                            <label for="expiredCheck" style="cursor: default;" class="col-sm-2 col-form-label">Expirado?</label>
+                                            <div class="col-sm-10">
+                                                <div class="form-check">
+                                                    <input style="cursor: default; width: 20px; height: 20px;" class="form-check-input" type="checkbox" id="expiredCheck">
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <br /> <br />
+
+                                        <div style="margin-top: 50px;" class="form-group row">
+                                            <div class="col-sm-8" style="width: auto;">
+                                                <button style="width: 150px;" id="btnCancelar" class="btn btn-dark">CANCELAR</button>
+
+                                            </div>
+                                            <div style="width: auto; text-align: right;" class="col-sm-4">
+                                                <button style="width: 150px;" id="btnGuardar" type="submit" class="btn btn-primary">GUARDAR</button>
+                                            </div>
+                                        </div>
+
+                                    </form>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+
+            <footer>
+            </footer>
+        </div>
+    </div>
+
+    <script type="text/javascript">
+        (() => {
+
+            /* =========================
+                Configuración API
+            ========================== */
+            // Definiciones de tipos de entidad
+            const TIPO_ENTIDAD = {
+                COMERCIO: "64569dd3-4d65-4eed-9f41-ea87b2270a6c", // Carga productos
+                ASOCIACION: "e170a0db-660f-4c34-ae71-3e9b9dbbd92b" // Carga actividades
+            };
+
+            // ********** CAMBIO CLAVE AÑADIDO: Mapeo de estado de texto a valor numérico **********
+            const ESTADO_A_NUMERO = {
+                "Inactive": "0", // Usamos string para que el .value funcione
+                "Active": "1",
+                "Consumed": "2"
+            };
+            // ************************************************************************************
+
+            const API = {
+                QR: "https://localhost:44311/api/qr",
+                ENTIDADES: "https://localhost:44311/Entidades/ObtenerEntidades",
+                PRODUCTOS: "https://localhost:44311/Productos/FiltrarProductos",
+                ACTIVIDADES: "https://localhost:44311/Actividades/FiltrarActividades"
+            };
+
+            const LISTADO_URL = "../admin/qrs-list.html";
+            let todasLasEntidades = []; // Para almacenar las entidades y buscar el idTipoEntidad
+
+            /* =========================
+                DOM
+            ========================== */
+            const inputId = document.getElementById("inputId");
+            const inputToken = document.getElementById("inputToken");
+            const payloadInput = document.getElementById("payload");
+            const fechaExpInput = document.getElementById("FechaExpiración");
+
+            const listaEstados = document.getElementById("listaEstados");
+            const listaEntidades = document.getElementById("listaEntidades");
+            const listaOrigenes = document.getElementById("listaOrigenes");
+            const listaProductos = document.getElementById("listaProductos");
+            const listaActividades = document.getElementById("listaActividades");
+
+            // Nuevos contenedores
+            const divOrigenGroup = document.getElementById("divOrigenGroup");
+            const divProductosGroup = document.getElementById("divProductosGroup");
+            const divActividadesGroup = document.getElementById("divActividadesGroup");
+
+            const imagenQRCode = document.getElementById("imagenQRCode");
+            const expiredCheck = document.getElementById("expiredCheck");
+
+            const btnGuardar = document.getElementById("btnGuardar");
+            const btnCancelar = document.getElementById("btnCancelar");
+            const btnEliminar = document.getElementById("btnEliminar");
+            const btnDescargarQR = document.getElementById("btnDescargarQR");
+
+            /* =========================
+                Utils
+            ========================== */
+            const getQueryParam = name =>
+                new URLSearchParams(window.location.search).get(name);
+
+            const volverAlListado = () =>
+                window.location.href = LISTADO_URL;
+
+            const limpiarSelect = (select, placeholder = "-- Selecciona --") => {
+                select.innerHTML = `<option value="">${placeholder}</option>`;
+            };
+
+            const ocultar = element => element.classList.add('d-none');
+            const mostrar = element => element.classList.remove('d-none');
+             
+            /* =========================
+                Cargar entidades
+            ========================== */
+            async function cargarEntidades(selectedId = null) {
+                const res = await fetch(API.ENTIDADES);
+                todasLasEntidades = await res.json(); // Guardamos todas las entidades
+
+                limpiarSelect(listaEntidades, "-- Selecciona entidad --");
+
+                todasLasEntidades
+                    .filter(e => e.activo)
+                    .forEach(e => {
+                        const opt = document.createElement("option");
+                        opt.value = e.id;
+                        opt.textContent = e.nombre;
+                        if (selectedId && e.id === selectedId) opt.selected = true;
+                        listaEntidades.appendChild(opt);
+                    });
+
+                // Si hay una entidad seleccionada inicialmente, manejar su selección
+                if (selectedId) {
+                    const entidadSeleccionada = todasLasEntidades.find(e => e.id === selectedId);
+                    // Llamamos a manejarEntidadSeleccionada si hay una entidad seleccionada
+                    await manejarEntidadSeleccionada(
+                        entidadSeleccionada.id,
+                        dataInicial.idProducto, // Usamos dataInicial para rellenar
+                        dataInicial.idActividad
+                    );
+                }
+            }
+
+            /* =========================
+                Productos / Actividades
+            ========================== */
+            async function cargarProductos(idEntidad, selectedId = null) {
+                limpiarSelect(listaProductos, "-- Selecciona producto --");
+                listaProductos.disabled = true;
+                listaActividades.disabled = true;
+
+                const res = await fetch(`${API.PRODUCTOS}?IdEntidad=${idEntidad}&Activo=true`);
+                const productos = await res.json();
+
+                productos.forEach(p => {
+                    const opt = document.createElement("option");
+                    opt.value = p.id;
+                    opt.textContent = p.nombre;
+                    if (selectedId && p.id === selectedId) opt.selected = true;
+                    listaProductos.appendChild(opt);
+                });
+
+                listaProductos.disabled = false;
+            }
+
+            async function cargarActividades(idEntidad, selectedId = null) {
+                limpiarSelect(listaActividades, "-- Selecciona actividad --");
+                listaProductos.disabled = true;
+                listaActividades.disabled = true;
+
+                const res = await fetch(`${API.ACTIVIDADES}?IdEntidad=${idEntidad}&Activo=true`);
+                const result = await res.json();
+
+                result.items.forEach(a => {
+                    const opt = document.createElement("option");
+                    opt.value = a.id;
+                    opt.textContent = a.nombre;
+                    if (selectedId && a.id === selectedId) opt.selected = true;
+                    listaActividades.appendChild(opt);
+                });
+
+                listaActividades.disabled = false;
+            } 
+
+            /* =========================
+                Lógica de Entidad / Origen
+            ========================== */ 
+            function actualizarVisibilidadOrigen() {
+                const origen = listaOrigenes.value;
+
+                // Ocultar ambos por defecto
+                ocultar(divProductosGroup);
+                ocultar(divActividadesGroup);
+
+                // Mostrar el grupo correspondiente
+                if (origen === "producto") {
+                    mostrar(divProductosGroup);
+                } else if (origen === "actividad") {
+                    mostrar(divActividadesGroup);
+                }
+            }
+
+            async function manejarEntidadSeleccionada(idEntidad, selectedProductoId = null, selectedActividadId = null) {
+                limpiarSelect(listaProductos, "-- Selecciona producto --");
+                limpiarSelect(listaActividades, "-- Selecciona actividad --");
+
+                listaProductos.disabled = true;
+                listaActividades.disabled = true;
+
+                if (!idEntidad) {
+                    listaOrigenes.value = "";
+                    actualizarVisibilidadOrigen();
+                    return;
+                }
+
+                const entidad = todasLasEntidades.find(e => e.id == idEntidad);
+
+                if (!entidad) {
+                    listaOrigenes.value = "";
+                    actualizarVisibilidadOrigen();
+                    return;
+                }
+
+                // 1. Establecer el Origen basado en el idTipoEntidad
+                let nuevoOrigen = "";
+                if (entidad.idTipoEntidad === TIPO_ENTIDAD.COMERCIO) {
+                    nuevoOrigen = "producto";
+                } else if (entidad.idTipoEntidad === TIPO_ENTIDAD.ASOCIACION) {
+                    nuevoOrigen = "actividad";
+                }
+                listaOrigenes.value = nuevoOrigen;
+
+                // 2. Actualizar visibilidad
+                actualizarVisibilidadOrigen();
+
+                // 3. Cargar las listas relacionadas (Productos o Actividades)
+                if (nuevoOrigen === "producto") {
+                    await cargarProductos(idEntidad, selectedProductoId);
+                } else if (nuevoOrigen === "actividad") {
+                    await cargarActividades(idEntidad, selectedActividadId);
+                }
+            }
+
+            // Cargar QR
+            let dataInicial = null; // Almacenamos los datos iniciales para rellenar el formulario
+
+            async function cargarQRCode(id) {
+                const res = await fetch(`${API.QR}/${id}`);
+                if (!res.ok) throw new Error("QR no encontrado");
+                return await res.json();
+            }
+
+            async function rellenarFormulario(data) {
+                dataInicial = data; // Guardar los datos iniciales
+
+                inputId.value = data.id;
+                inputToken.value = data.token;
+                payloadInput.value = data.payload ?? "";
+                fechaExpInput.value = data.expiresAt
+                    ? new Date(data.expiresAt).toISOString().slice(0, 16)
+                    : "";
+
+                // ********** CAMBIO CLAVE PARA RELLENAR: Traducir texto de estado a valor numérico **********
+                const valorNumericoEstado = ESTADO_A_NUMERO[data.status];
+                if (valorNumericoEstado !== undefined) {
+                    listaEstados.value = valorNumericoEstado;
+                } else {
+                    listaEstados.value = ""; // Si no se encuentra, deja el valor por defecto
+                }
+                // ******************************************************************************************
+
+                expiredCheck.checked = data.isExpired;
+
+                imagenQRCode.src = data.imageBase64
+                    ? `data:image/png;base64,${data.imageBase64}`
+                    : "";
+
+                // Cargar entidades primero
+                await cargarEntidades(data.idEntidad);
+            }
+
+              //  Validación (NUEVA FUNCIÓN)
+            function validarFormulario() {
+                const camposAValidar = [
+                    payloadInput.value,
+                    fechaExpInput.value,
+                    listaEstados.value,
+                    listaEntidades.value,
+                    listaOrigenes.value
+                ];
+                 
+                const origen = listaOrigenes.value;
+                // Debemos decidir si listaProductos y listaActividades son siempre requeridos
+                // o solo si se selecciona su origen. Por simplicidad, los incluiremos si su origen aplica.
+                if (origen === "producto") {
+                    camposAValidar.push(listaProductos.value);
+                } else if (origen === "actividad") {
+                    camposAValidar.push(listaActividades.value);
+                }
+
+                //  CAMBIO DE LÓGICA: Usar .every() para asegurar que TODOS estén llenos
+                const todosLlenos = camposAValidar.every(valor =>
+                    valor !== null && valor !== undefined && String(valor).trim() !== ""
+                );
+
+                if (!todosLlenos) {
+                    alert("Debes informar todos los campos requeridos.");
+                    return false;
+                } 
+                return true;
+            }
+
+             //   Guardar
+            async function guardarQRCode(e) {
+                e.preventDefault();
+                  
+                if (!validarFormulario()) {
+                    return;
+                }
+
+                // Validar y obtener valores numéricos
+                const origenSeleccionado = listaOrigenes.value;
+                const estadoNumerico = listaEstados.value ? parseInt(listaEstados.value, 10) : null;
+                const idEntidadValor = listaEntidades.value ? parseInt(listaEntidades.value, 10) : null;
+                const idProductoValor = origenSeleccionado === "producto" && listaProductos.value
+                    ? parseInt(listaProductos.value, 10)
+                    : null;
+                const idActividadValor = origenSeleccionado === "actividad" && listaActividades.value
+                    ? parseInt(listaActividades.value, 10)
+                    : null;
+
+                // Preparar la fecha como UTC (solución del problema anterior)
+                let fechaExpiracionUTC = null;
+                if (fechaExpInput.value) {
+                    let fechaTemporal = new Date(fechaExpInput.value);
+                    if (!isNaN(fechaTemporal)) {
+                        fechaExpiracionUTC = fechaTemporal.toISOString();
+                    }
+                }
+
+                // Construir el objeto QR para enviar
+                const qr = {
+                    id: inputId.value,
+                    token: inputToken.value,
+                    payload: payloadInput.value,
+                    status: estadoNumerico,
+                    fechaExpiracion: fechaExpiracionUTC,
+                    idEntidad: idEntidadValor,
+                    origen: origenSeleccionado,
+                    idProducto: idProductoValor,
+                    idActividad: idActividadValor,
+
+                    // ********** CAMBIO CLAVE AÑADIDO **********
+                    // Reenviamos el Base64 original de la imagen, ya que no se modifica en el formulario.
+                    imageBase64: dataInicial.imageBase64 || null
+                    // *******************************************
+                };
+
+                const res = await fetch(`${API.QR}/ActualizarQR`, {
+                    method: "PUT",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify(qr)
+                });
+
+                if (!(await res.json())) {
+                    alert("Error al guardar");
+                    return;
+                }
+
+                alert("Guardado correctamente");
+                // volverAlListado();
+            }
+
+           //     Eliminar
+            async function eliminarQRCode(e) {
+                e.preventDefault();
+                if (!confirm("¿Eliminar este QR?")) return;
+
+                const res = await fetch(`${API.QR}/Eliminar/${inputId.value}`, {
+                    method: "DELETE"
+                });
+
+                if (!(await res.json())) {
+                    alert("No se pudo eliminar");
+                    return;
+                }
+
+                alert("Eliminado correctamente"); // Añadido para confirmar la eliminación
+                volverAlListado();
+            }
+
+            
+             //   Descargar QR
+           
+            btnDescargarQR.addEventListener("click", () => {
+                const link = document.createElement("a");
+                link.href = imagenQRCode.src;
+                link.download = `QRCode-${inputId.value}.png`;
+                link.click();
+            });
+
+            //    Eventos
+            listaEntidades.addEventListener("change", (e) => manejarEntidadSeleccionada(e.target.value));
+            btnGuardar.addEventListener("click", guardarQRCode);
+            btnCancelar.addEventListener("click", e => {
+                e.preventDefault();
+                volverAlListado();
+            });
+            btnEliminar.addEventListener("click", eliminarQRCode);
+
+           //     Init
+            (async () => {
+                try {
+                    const id = getQueryParam("id");
+                    if (!id) throw new Error("Falta id");
+                    const data = await cargarQRCode(id);
+                    await rellenarFormulario(data);
+                } catch (err) {
+                    alert(err.message);
+
+                    // volverAlListado();
+                }
+            })();
+
+        })();
+    </script>
+
+    <script>
+        document.getElementById('expiredCheck').addEventListener('click', function (event) {
+            event.preventDefault();
+        });
+    </script> 
+
+    <script src="../js/vendor/modernizr-3.5.0.min.js"></script>
+    <script src="../js/vendor/jquery-1.12.4.min.js"></script>
+    <script src="../js/popper.min.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
+    <script src="../js/jquery.meanmenu.min.js"></script>
+    <script src="../js/bootstrap-datetimepicker.min.js"></script>
+    <script src="../js/typeahead.min.js"></script>
+    <script src="../js/jquery.nice-select.min.js"></script>
+    <script src="../js/plugins.js"></script>
+    <!-- active code -->
+    <script src="../js/datetimepicker-active.js"></script>
+    <script src="../js/typeahead-active.js"></script>
+    <script src="../js/nice-select-active.js"></script>
+    <script src="../js/main.js"></script>
 
 </body>
 </html>

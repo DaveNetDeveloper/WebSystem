@@ -37,15 +37,28 @@ namespace Application.Services
 
         public Task<IEnumerable<QRCode>> GetAllAsync()
             => _repo.GetAllAsync();
+         
 
-        public async Task<QRCode> CreateAsync(string payload, TimeSpan? ttl , Guid? id = null)
+        public async Task<QRCode> CreateAsync(string payload, TimeSpan? ttl, string origen, Guid? id = null, QRCode? qrCode = null)
         {
             var imageBytes = _imageService.GenerateQRCodeImage(payload);
-            var qr = new QRCode(payload, ttl, imageBytes, id);
+            var qr = new QRCode(payload, ttl, imageBytes, origen, id);
+
+            if(qrCode != null){
+                qr.status = qrCode.status;
+                qr.idEntidad = qrCode.idEntidad;
+                qr.idActividad = qrCode.idActividad;
+                qr.idProducto = qrCode.idProducto;
+                qr.id = qrCode.id;
+                qr.token = qrCode.token;
+            }
             await _repo.AddAsync(qr);
             return qr;
         }
 
+        public Task<bool> UpdateAsync(QRCode qrCode)
+             => _repo.UpdateAsync(qrCode);
+         
         public async Task<QRCode?> GetAsync(Guid id) => await _repo.GetByIdAsync(id);
 
         public async Task ActivateAsync(Guid id)

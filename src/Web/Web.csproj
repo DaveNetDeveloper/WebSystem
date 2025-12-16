@@ -16,6 +16,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Remove="Backoffice\cool-login.html" />
     <None Remove="WebPages\contact.html" />
     <None Remove="WebPages\css\skin.css" />
     <None Remove="WebPages\test.html" />

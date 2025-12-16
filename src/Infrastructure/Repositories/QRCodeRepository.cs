@@ -42,8 +42,8 @@ namespace Infrastructure.Repositories
 
             qrToUpdate.id = qr.id;
             qrToUpdate.token = qr.token;
-            qrToUpdate.imagen = qr.imagen;
-            qrToUpdate.fechaCreacion = qr.fechaCreacion;
+            //qrToUpdate.imagen = qr.imagen;
+            //qrToUpdate.fechaCreacion = qr.fechaCreacion;
             qrToUpdate.fechaExpiracion = qr.fechaExpiracion;
             qrToUpdate.payload = qr.payload;
             qrToUpdate.status = qr.status;

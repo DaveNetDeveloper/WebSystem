@@ -52,13 +52,32 @@ namespace API.Controllers
             }
         }
 
+
+
+        // TODO: Crear nuevo endpoint -> [HttpPost ("CrearQRFull")]
+        [HttpPost("CrearQRFull")]
+        [AllowAnonymous]
+        public async Task<IActionResult> CrearQRFull([FromBody] CreateQRCodeFullRequest request)
+        {
+            var qr = await _service.CreateAsync(
+                request.Payload,
+                request.Ttl.HasValue ? TimeSpan.FromSeconds(request.Ttl.Value) : null,
+                request.Origen,
+                null,
+                new QRCode{ idEntidad = request.IdEntidad , idProducto = request.IdProducto, idActividad = request.IdActividad, status = (QrStatus)request.Status }
+            ); 
+            return Ok(new QRCodeResponse(qr));
+        }
+
+
         [HttpPost ("CrearQR")]
         [AllowAnonymous]
         public async Task<IActionResult> Create([FromBody] CreateQRCodeRequest request)
         {
             var qr = await _service.CreateAsync(
                 request.Payload,
-                request.Ttl.HasValue ? TimeSpan.FromSeconds(request.Ttl.Value) : null
+                request.Ttl.HasValue ? TimeSpan.FromSeconds(request.Ttl.Value) : null,
+                request.Origen
             );
 
             return Ok(new QRCodeResponse(qr));
@@ -80,6 +99,28 @@ namespace API.Controllers
             var qr = await _service.GetAsync(id);
             if (qr == null) return NotFound();
             return File(qr.imagen!, "image/png");
+        }
+
+
+        [AllowAnonymous]
+        [HttpPut("ActualizarQR")]
+        public async Task<IActionResult> Update([FromBody] QRCode qrCode)
+        {
+            try {
+                _logger.LogInformation("Actualizando un QRCode.");
+
+                var result = await _service.UpdateAsync(qrCode);
+                if (result == false) return NotFound();
+                else {
+                    //_logger.LogInformation(MessageProvider.GetMessage("Producto:Actualizar", "Success"));
+                    return Ok(result);
+                }
+            }
+            catch (Exception ex) {
+                _logger.LogError(ex, "Error actualizando un QRCode.");
+
+            }
+            return NoContent();
         }
 
         [HttpPost("{id}/activate")]
@@ -206,7 +247,9 @@ namespace API.Controllers
             return Ok(true);
         }
 
-        [Authorize]
+        [AllowAnonymous]
+        
+        //[Authorize]
         [HttpDelete("Eliminar/{id}")]
         public async Task<IActionResult> Remove(Guid id)
         {
@@ -214,7 +257,7 @@ namespace API.Controllers
             {
                 var result = await _service.Remove(id);
                 if (result == false) return NotFound();
-                return Ok("QR consumido correctamente");
+                return Ok(true);
             }
             catch (Exception ex)
             {

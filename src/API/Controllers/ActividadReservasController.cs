@@ -14,6 +14,7 @@ using Microsoft.Identity.Client;
 using Utilities;
 using static Domain.Entities.ActividadReserva;
 using static Domain.Entities.InAppNotification;
+using static Domain.Entities.QRCode;
 using static Domain.Entities.TipoEnvioCorreo;
 using static Domain.Entities.TipoTransaccion;
 
@@ -25,34 +26,19 @@ namespace API.Controllers
                                                IController<IActionResult, ActividadReserva, Guid>
     {
         private readonly IActividadReservaService _actividadReservaService;
-        //private readonly IActividadService _actividadService;
-        //private readonly IUsuarioService _usuarioService;
         private readonly ICorreoService _correoService;
-        //private readonly ITipoTransaccionService _tipoTransaccionService;
-        //private readonly ITransaccionService _transaccionService;
         private readonly IQRCodeService _qrCodeService;
-        //private readonly IEntidadService _entidadService;
         protected IConfiguration _config;
 
         public ActividadReservasController(ILogger<ActividadReservasController> logger,
                                            IActividadReservaService actividadReservaService,
-                                           //IActividadService actividadService,
-                                           //IUsuarioService usuarioService,
                                            ICorreoService correoService,
-                                           //ITipoTransaccionService tipoTransaccionService,
-                                           //ITransaccionService transaccionService,
                                            IQRCodeService qrCodeService,
-                                           //IEntidadService entidadService,
                                            IConfiguration config) {
             _logger = logger;
             _actividadReservaService = actividadReservaService ?? throw new ArgumentNullException(nameof(actividadReservaService));
-            //_actividadService = actividadService ?? throw new ArgumentNullException(nameof(actividadService));
-            //_usuarioService = usuarioService ?? throw new ArgumentNullException(nameof(usuarioService));
             _correoService = correoService ?? throw new ArgumentNullException(nameof(correoService));
-            //_tipoTransaccionService = tipoTransaccionService ?? throw new ArgumentNullException(nameof(tipoTransaccionService));
-            //_transaccionService = transaccionService ?? throw new ArgumentNullException(nameof(transaccionService));
             _qrCodeService = qrCodeService ?? throw new ArgumentNullException(nameof(qrCodeService));
-            //_entidadService = entidadService ?? throw new ArgumentNullException(nameof(entidadService));
             _config = config;
         }
 
@@ -64,9 +50,10 @@ namespace API.Controllers
             return (reservas != null && reservas.Any()) ? Ok(reservas) : NoContent();
         }
 
-        [Authorize]
+        //[Authorize]
+        [AllowAnonymous]
         [HttpGet("FiltrarActividadReservas")]
-        public async Task<IActionResult> GetByFiltersAsync([FromQuery] IFilters<ActividadReserva> filters,
+        public async Task<IActionResult> GetByFiltersAsync([FromQuery] ActividadReservaFilters filters,
                                                            [FromQuery] int? page,
                                                            [FromQuery] int? pageSize,
                                                            [FromQuery] string? orderBy,
@@ -207,7 +194,7 @@ namespace API.Controllers
             reserva.estado = ActividadReserva.EstadoReserva.Validada;
             var updateResult = await _actividadReservaService.UpdateAsync(reserva);
 
-            // Crear transaccion de tipo [Puntos por validar la asistencia a la actividad] 
+            // Crear transaccion de tipo [Puntos por validar reserva] 
             var tipoTransacciones = await tipoTransaccionService.GetAllAsync();
             var tipoTransaccion = tipoTransacciones.Where(u => u.nombre == TiposTransaccion.ReservarActividad)
                                                    .SingleOrDefault();
@@ -315,9 +302,7 @@ namespace API.Controllers
                                                            [FromQuery] int idActividad,
                                                            [FromServices] IUsuarioService usuarioService,
                                                            [FromServices] IActividadService actividadService,
-                                                           [FromServices] IEntidadService entidadService)
-                                                           
-        {  
+                                                           [FromServices] IEntidadService entidadService) {  
             var _idReserva = Guid.NewGuid();
             var _codigoReserva = CodesHelper.GenerarCodigoReservaActividad(idActividad);
             var _estadoReserva = ActividadReserva.EstadoReserva.Reservada;
@@ -356,7 +341,7 @@ namespace API.Controllers
 
             // creamos el enlace de detrino del QR
             var apiURL = $"{_config["AppConfiguration:apiServer"]}:{_config["AppConfiguration:apiPort"]}";
-            var destinationWebPage = $"WebPages/validateActivityBooking.html?id={idQRCode}&reserva={_idReserva}";
+            var destinationWebPage = $"WebPages/validateBooking.html?id={idQRCode}&reserva={_idReserva}";
 
             //string payload = $"https://localhost:7175/WebPages/loginQR.html?id={idQRCode}";
             string payload = $"{apiURL}/{destinationWebPage}";
@@ -369,7 +354,7 @@ namespace API.Controllers
                 if (ttl <= TimeSpan.Zero) // Evitar valores negativos por si la fecha ya ha venciudo
                     ttl = TimeSpan.FromSeconds(1);
             }
-            var qrCode = await _qrCodeService.CreateAsync(payload, ttl, idQRCode);
+            var qrCode = await _qrCodeService.CreateAsync(payload, ttl, QRCode.Origen.Actividad, idQRCode);
             
             // Enviar correo al usuario informando de la reserva de la actividad
             var tiposEnvioUser = await _correoService.ObtenerTiposEnvioCorreo();
@@ -420,39 +405,23 @@ namespace API.Controllers
         [HttpPut("CancelarReserva")]
         [AllowAnonymous]
         //[Authorize]
-        public async Task<IActionResult> CancelarReserva([FromQuery] string email,
-                                                         [FromQuery] string codigoReserva,
-                                                         [FromServices] IUsuarioService usuarioService) {
-            var usuarioFilter = new UsuarioFilters {
-                Correo = email
-            };
-            
-            var usuarios = await usuarioService.GetByFiltersAsync(usuarioFilter);
-            var usuario = usuarios.SingleOrDefault();
-            if (null == usuario)
-                return NotFound();
-
-            int? idUsuario = usuario.id;
+        public async Task<IActionResult> CancelarReserva([FromQuery] int idUsuario,
+                                                         [FromQuery] int idActividad) {
 
             var reservaFilter = new ActividadReservaFilters {
-                CodigoReserva = codigoReserva,
+                IdActividad = idActividad,
                 IdUsuario = idUsuario
             };
 
             var reservas = await _actividadReservaService.GetByFiltersAsync(reservaFilter);
-            var reserva = reservas.SingleOrDefault();
-
-            if (reserva == null
-                // || reserva.estado == ActividadReserva.EstadoReserva.Cancelada 
-                //|| reserva.estado == ActividadReserva.EstadoReserva.Validada
-                ) { 
-                return NotFound(false);
+            foreach(var reserva in reservas)
+            {
+                //if (reserva.estado != ActividadReserva.EstadoReserva.Cancelada) {
+                    reserva.estado = ActividadReserva.EstadoReserva.Cancelada;
+                    var updateResult = await _actividadReservaService.UpdateAsync(reserva);
+                //}
             }
-            
-            reserva.estado = ActividadReserva.EstadoReserva.Cancelada;
-            var updateResult = await _actividadReservaService.UpdateAsync(reserva);
-             
-            return Ok(updateResult);
+            return Ok(true);
         } 
     }
 }

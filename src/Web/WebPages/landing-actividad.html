@@ -133,6 +133,13 @@
 		</div>
 	</div>
 
+	<div class="container">
+		<div class="row ">
+			<div class="col-lg-6  col-12">
+				<modal-panel id="modalPanel-CancelarReserva"></modal-panel>
+			</div>
+		</div>
+	</div>
 
 	<div class="breadcrumbs overlay">
 		<div class="container">
@@ -215,6 +222,7 @@
 
 						<div style="text-align: center;" class="single-widget category">
 							<a id="btnReservarActividad" style=" color: white; min-width: 225px; font-size: 18px; cursor: pointer;" class="btn">RESERVAR ACTIVIDAD</a>
+							<a id="btnCancelarReserva" style="background-color: firebrick; color: white; min-width: 225px; font-size: 18px; cursor: pointer; " class="btn">CANCELAR RESERVA</a>
 						</div>
 
 						<div class="single-widget side-tags">
@@ -274,19 +282,53 @@
 		</div>
 	</section>
 
-
 	<script>
-		 
-		var url = new URL(window.location.href);
-		var urlParams = new URLSearchParams(url.search);
-		var idActividad = urlParams.get('id');
 
-		var reserva = false;
+		(async () => {
 
-		cargarActividad(idActividad);
+			var url = new URL(window.location.href);
+			var urlParams = new URLSearchParams(url.search);
+			let idActividad = urlParams.get('id');
+			  
+			let idUsuario = localStorage.getItem('idUsuario');
+
+			const btnReservar = document.getElementById("btnReservarActividad");
+			const btnCancelar = document.getElementById("btnCancelarReserva");
+
+			btnReservar.style.display = "none";
+			btnCancelar.style.display = "none";
+
+			const reservas = await getActividadReservas(idUsuario, idActividad);
+
+			if (reservas != null && reservas.length > 0) {
+				btnCancelar.style.display = "inline-block";
+				btnReservar.style.display = "none";
+			} else {
+				btnReservar.style.display = "inline-block";
+				btnCancelar.style.display = "none";
+			} 
+			cargarActividad(idActividad); 
+		})();
+
+		async function getActividadReservas(idUsuario, idActividad) {
+
+			const baseUrl = `https://localhost`;
+			const port = `44311`;
+
+			const url = `${baseUrl}:${port}/ActividadReservas/FiltrarActividadReservas?filters.IdUsuario=${idUsuario}&filters.IdActividad=${idActividad}&filters.Estado=Reservada`;
+
+			const response = await fetch(url, {
+				method: "GET"
+			});
+
+			if (!response.ok) {
+				throw new Error(`Error ${response.status}`);
+			}
+			return response.json();
+		}
 
 		//
-		function cargarActividad(id) {
+		async function cargarActividad(id) {
 
 			const baseUrl = `https://localhost`;
 			const controllerName = `Actividades`;
@@ -295,7 +337,7 @@
 
 			const url = `${apiUrl}?filters.Id=${id}&filters.Activo=true`;
 
-			fetch(url, { method: "GET" })
+			await fetch(url, { method: "GET" })
 				.then(response => {
 					if (!response.ok) throw new Error("Error en FiltrarActividades");
 					return response.json();
@@ -316,10 +358,10 @@
 						document.getElementById('descripcionCorta').innerText = actividad.descripcionCorta;
 
 						document.getElementById('popularidad').innerText = 'Popularidad: ' + actividad.popularidad;
-						 
-                        document.getElementById('imagenActividad').src = actividad.imagen;
 
-                        document.getElementById('img1').src = actividad.imagen;
+						document.getElementById('imagenActividad').src = actividad.imagen;
+
+						document.getElementById('img1').src = actividad.imagen;
 						//document.getElementById('img2').src = actividad.imagen;
 
 						document.getElementById('fechaActividad').innerText = formatearTimestamp(actividad.fechaInicio);
@@ -332,18 +374,18 @@
 		}
 
 		//
-		function cargarEntidad(id) {
+		async function cargarEntidad(id) {
 
 			GetEntidad(id)
 				.then(entidad => {
 
 					if (entidad !== undefined && entidad != null) {
 
-                        let nombreEntidad = document.getElementById('nombreEntidad'); 
-						nombreEntidad.innerText = 'En ' + entidad.nombre; 
-                        nombreEntidad.addEventListener('click', () => {
-                            window.location.href = 'landing-entidad.html?id=' + id;
-                        });
+						let nombreEntidad = document.getElementById('nombreEntidad');
+						nombreEntidad.innerText = 'En ' + entidad.nombre;
+						nombreEntidad.addEventListener('click', () => {
+							window.location.href = 'landing-entidad.html?id=' + id;
+						});
 
 					}
 				})
@@ -354,7 +396,7 @@
 		}
 
 		//
-		function cargarTipoEntidad(idTipoActividad) {
+		async function cargarTipoEntidad(idTipoActividad) {
 
 			const baseUrl = `https://localhost`;
 			const controllerName = `TipoActividades`;
@@ -425,23 +467,55 @@
 		}
 
 		//
-		function reservarActividad() {
+        async function cancelarReserva(idUsuario, idActividad) {
 
-			reserva = false;
+            const params = new URLSearchParams({
+                idUsuario: idUsuario,
+                idActividad: idActividad
+            });
+
+            const baseUrl = `https://localhost`;
+            const port = `44311`;
+
+            const url = `${baseUrl}:${port}/ActividadReservas/CancelarReserva?${params.toString()}`;
+
+            const response = await fetch(url, {
+                method: "PUT"
+            });
+
+            if (!response.ok) {
+                throw new Error(`Error ${response.status}`);
+            }
+
+            const result = await response.json(); // bool
+
+            if (result === true) {
+                window.location.reload();
+            } else {
+                alert("No se pudo cancelar la reserva");
+            }
+        }
+
+		//
+		// ReservarActividad
+		//
+		async function reservarActividad() {
+
+			//reserva = false;
 			var urlQuery = new URL(window.location.href);
 			var urlParams = new URLSearchParams(urlQuery.search);
 			var idActividad = urlParams.get('id');
 
-			let idUsuario = localStorage.getItem('idUsuario');
+			let idUsuario = localStorage.getItem('idUsuario'); 
 
 			const baseUrl = `https://localhost`;
-			const controllerName = `ActividadReservas`;
 			const port = `44311`;
+			const controllerName = `ActividadReservas`;
 			const apiUrl = `${baseUrl}:${port}/${controllerName}/ReservarActividad`;
 
 			const url = `${apiUrl}?idActividad=${idActividad}&idUsuario=${idUsuario}`;
 
-			fetch(url, { method: "POST" })
+			await fetch(url, { method: "POST" })
 				.then(response => {
 					if (!response.ok) throw new Error("Error en ReservarActividad");
 					return response.json();
@@ -449,12 +523,11 @@
 				.then(data => {
 
 					if (data != undefined && data != null) {
+						 
+                        mostrarModalReserva('Reserva Completada', `La reserva se ha realizado correctamente con el código de reserva [${data.codigoReserva}. Te hemos enviado un correo con toda la información.`, 'info');
+						window.location.reload();
 
-						reserva = true;
-
-                        mostrarModal('Reserva Completada', `La reserva se ha realizado correctamente con el código de reserva [${data.codigoReserva}. Te hemos enviado un correo con toda la información.`, 'info');
-
-						//alert("IdReserva: " + data.idReserva); 
+						//alert("IdReserva: " + data.idReserva);
 						//alert("EstadoReserva: " + data.estadoReserva);
 						//alert("fechaReserva: " + data.fechaReserva);
 						//alert("FechaActividad: " + data.fechaActividad);
@@ -465,29 +538,48 @@
 				.catch(err => alert(err.message));
 		}
 
-        //
-        function mostrarModal(titulo, mensaje, mode) {
-            const modal = document.getElementById("modalPanel-ConfirmarReserva");
+		function mostrarModalReserva(titulo, mensaje, mode) {
+			const modal = document.getElementById("modalPanel-ConfirmarReserva");
+			modal.setContent(titulo, mensaje, mode);
+			modal.mostrar();
+		}
+
+		// click en reservar
+		document.getElementById('btnReservarActividad').addEventListener('click', (e) => {
+			mostrarModalReserva('Confirmar Reserva', '¿Deseas confirmar la reserva para esta actividad?', 'confirm');
+		});
+
+		// evento confirmar reserva
+        document.getElementById("modalPanel-ConfirmarReserva").addEventListener('confirm', async (e) => {
+			await reservarActividad()
+		});
+
+		//
+		// CANCELAR RESERVA 
+		//
+        function mostrarModalCancelar(titulo, mensaje, mode) {
+            const modal = document.getElementById("modalPanel-CancelarReserva");
             modal.setContent(titulo, mensaje, mode);
             modal.mostrar();
-        }
+		}
 
-        // click en reservar
-        document.getElementById('btnReservarActividad').addEventListener('click', (e) => {
-			 
-            mostrarModal('Confirmar Reserva', '¿Deseas confirmar la reserva para esta actividad?', 'confirm');
-        });
+		// click en cancelar
+		document.getElementById('btnCancelarReserva').addEventListener('click', (e) => {
+			mostrarModalCancelar('Cancelar Reserva', '¿Deseas cancelar la reserva para esta actividad?', 'confirm');
+		});
 
-        // evento confirmar reserva
-        document.querySelector('modal-panel').addEventListener('confirm', (e) => {
- 
-            //alert(e.detail.noaction);
-            if(!reserva) reservarActividad()
-        });
+        // evento cancelar reserva async () => {
+        document.getElementById("modalPanel-CancelarReserva").addEventListener('confirm', async (e) => {
+
+			const idUsuario = localStorage.getItem("idUsuario");
+			const idActividad = new URLSearchParams(window.location.search).get("id");
+
+             await cancelarReserva(idUsuario, idActividad);
+            });
 
 	</script>
 
-	<footer id="footer" class="footer ">
+	<footer id="footer" class="footer">
 
 		<div class="footer-top">
 			<div class="container">
