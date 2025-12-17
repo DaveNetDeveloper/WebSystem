@@ -293,6 +293,49 @@ namespace API.Controllers
         }
 
         /// <summary> Activa la suscripcion de un usuario </summary>
+        /// <param name="email">Email del destinatario a buscar</param>
+        /// <returns> bool </returns>
+        [AllowAnonymous]
+        //[Authorize]
+        [HttpPatch("ActivacionSuscripcionWeb")]
+        public async Task<IActionResult> ActivacionSuscripcionWeb([FromQuery][Required] string email)
+        {
+            try
+            {
+                var validEmail = FormatValidationHelper.IsValidEmail(email);
+                 
+                if (!validEmail)
+                    return BadRequest(new { message = "El token o email no son válidos." });
+                
+                var ip = HttpContext.Connection.RemoteIpAddress?.ToString();
+                var userAgent = HttpContext.Request.Headers["User-Agent"].ToString();
+
+                var activationResult = await _usuarioService.ActivarSuscripcion(email);
+                if (activationResult == false) return NotFound(new { message = "Error al activar la suscripción." });
+                    
+                // Enviar corrreo: Bienvenido a nuestra newsletter
+                var tiposEnvioCorreo = await _correoService.ObtenerTiposEnvioCorreo();
+                var tipoEnvioCorreo = tiposEnvioCorreo.Where(u => u.nombre.Trim() == TipoEnvioCorreo.TipoEnvio.SuscripcionActivada)
+                                                        .SingleOrDefault();
+
+                var usuarios = await _usuarioService.GetAllAsync();
+                var usuario = usuarios.Where(u => u.correo.ToLower() == email.ToLower())
+                                        .SingleOrDefault();
+
+                var correo = new Correo(tipoEnvioCorreo, email, usuario.nombre, _appConfiguration.LogoURL);
+                _correoService.EnviarCorreo(correo);
+
+                return Ok(true);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Error activando la cuenta del usuario, {email}.", email);
+                return StatusCode(StatusCodes.Status500InternalServerError,
+                                 new { message = "Error en ActivacionSuscripcionWeb" });
+            }
+        }
+
+        /// <summary> Activa la suscripcion de un usuario </summary>
         /// <param name="token">Token asociado si la petición viene de enlace de correo</param>
         /// <param name="email">Email del destinatario a buscar</param>
         /// <returns> bool </returns>

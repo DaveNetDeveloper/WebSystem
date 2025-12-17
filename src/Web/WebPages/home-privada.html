@@ -181,27 +181,33 @@
 		let moreInAPps = false;
 		let idUsuario = localStorage.getItem('idUsuario');
 
-		document.querySelector('modal-panel') // Escucha el evento emitido por el componente
-			.addEventListener('confirm', (e) => {
+		if (!idUsuario) {
+			//alert("No hay idUsuario en localStorage");
+			//return;
+		} 
+
+        document.addEventListener("DOMContentLoaded", async () => {
+
+            //localStorage.setItem('idUsuario', String(1));
+            await revisarYMostrarNotificaciones(idUsuario);
+		});
+
+		document.querySelector('modal-panel') 
+            .addEventListener('confirm', async(e) => {
 
 				//alert(currentInAppNotification.id);
-				var result = actualizarNotificacionComoLeida(currentInAppNotification);
-				delay(1500);
+                var result = await actualizarNotificacionComoLeida(currentInAppNotification);
+                await delay(1500);
 
-				const nuevaLista = cargarNotificaciones(idUsuario);
-				if (nuevaLista.length > 0) { moreInAPps = true; }
+                const nuevaLista = await cargarNotificaciones(idUsuario);
+				//if (nuevaLista.length > 0) { moreInAPps = true; }
+
+                moreInAPps = nuevaLista.length > 0;
 
 				if (result && moreInAPps) {
-					revisarYMostrarNotificaciones(idUsuario);
-				}
-
+                    await revisarYMostrarNotificaciones(idUsuario);
+				} 
 			});
-
-		document.addEventListener("DOMContentLoaded", async () => {
-
-			//localStorage.setItem('idUsuario', String(1));
-			await revisarYMostrarNotificaciones(idUsuario);
-		});
 
 		async function cargarNotificaciones(idUsuario) {
 
@@ -228,30 +234,23 @@
 			return lista;
 		}
 
-		function delay(ms) {
+		async function delay(ms) {
 			return new Promise(resolve => setTimeout(resolve, ms));
 		}
 
 		async function revisarYMostrarNotificaciones(idUsuario) {
 			const lista = await cargarNotificaciones(idUsuario);
 
+			moreInAPps = lista.length > 0;
+
 			if (!lista || lista.length === 0) return;
 
-			if (lista.length > 1) { moreInAPps = true; }
+			//if (lista.length > 1) { moreInAPps = true; }
 
-			for (const inApp of lista) {
-
-				currentInAppNotification = inApp;
-
-				await delay(1500);
-				await mostrarModal(inApp.titulo, inApp.mensaje);
-				return;
-			}
-
-			// lista.forEach(inApp => {
-			// alert(`Tienes una notificación de tipo '${inApp.tipoEnvioInApp}'`);
-			// await mostrarModal(inApp.titulo, inApp.mensaje);
-			// });
+            const inApp = lista[0];
+            currentInAppNotification = inApp;
+            await delay(1500);
+            await mostrarModal(inApp.titulo, inApp.mensaje);
 		}
 
 		async function mostrarModal(titulo, mensaje) {
@@ -316,7 +315,7 @@
 						<div class="newsletter-inner">
 							<input id="textEntidad" name="textEntidad" placeholder="Buscar entidad" class="common-input" onfocus="this.placeholder = ''"
 								   onblur="this.placeholder = 'Buscar entidad'" type="text">
-							<button id="btnBuscarEntidad" class="btn" onclick="redirigir()">BUSCAR</button>
+							<button id="btnBuscarEntidad" class="btn" onclick="redirigirExplorar()">BUSCAR</button>
 						</div>
 					</div>
 				</div>
@@ -324,11 +323,11 @@
 		</div>
 	</section>
 	<script>
-		function redirigir() {
+		function redirigirExplorar() {
 
 			const textEntidadValue = document.getElementById('textEntidad').value;
 			if (textEntidadValue.trim() == '') {
-				alert('Por favor, ingrese un valor válido para la búsqueda.');
+				alert('Por favor, ingresa un valor válido para la búsqueda.');
 			}
 			else {
 				window.location.href = `explorar.html?name=${encodeURIComponent(textEntidadValue)}`;
@@ -508,7 +507,7 @@
 			<div class="row">
 				<div class="col-lg-12 col-md-12 col-12">
 					<div class="content">
-						<h2 style="margin-bottom:30px">Suscríbete a nuestra newsletter y entérate de noticas, ofertas, promociones y actividades.</h2>
+						<h2 style="margin-bottom:30px">Suscríbete a nuestra newsletter y entérate de noticas, promociones, actividades y más!</h2>
 						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque porttitor dictum turpis nec gravida.</p>
 						<div onclick="suscribirme()" id="btnActivarSuscripcion" class="button">
 							<a href="#" class="btn">QUIERO SUSCRIBIRME</a>
@@ -519,15 +518,30 @@
 		</div>
 	</section>
 	<script>
-		async function activarSuscripcion(token, email) {
+
+        (async () => {
+
+            const suscripcionU = localStorage.getItem("suscripcion");
+			if (suscripcionU != undefined && suscripcionU != null && (suscripcionU == 'true' || suscripcionU == true)) {
+				document.getElementById("btnActivarSuscripcion").style.visibility = "hidden";
+				//alert("El usuario ya está suscrito (Local Storage)!");
+			}
+			else {
+                document.getElementById("btnActivarSuscripcion").style.visibility = "visible";
+			}
+
+		})()
+
+
+		async function activarSuscripcion( email) {
 
 			const baseUrl = `https://localhost`;
 			const controllerName = `Usuarios`;
 			const port = `44311`;
-			const apiUrl = `${baseUrl}:${port}/${controllerName}/ActivacionSuscripcion`;
+            const apiUrl = `${baseUrl}:${port}/${controllerName}/ActivacionSuscripcionWeb`;
 
 			// IMPORTANT → parámetros en query string
-			const url = `${apiUrl}?token=${encodeURIComponent(token)}&email=${encodeURIComponent(email)}`;
+			const url = `${apiUrl}?email=${encodeURIComponent(email)}`;
 
 			const response = await fetch(url, {
 				method: "PATCH",
@@ -545,18 +559,73 @@
 
 		async function suscribirme() {
 
-			const token = "BA03E160-11C9-4A7D-BF5D-9DF60140F893";
-			const email = "dgomezma+admin@gmail.com";
+            const suscripcionUser = localStorage.getItem("suscripcion");
 
-			const ok = await activarSuscripcion(token, email);
+			if (suscripcionUser != undefined && suscripcionUser != null && suscripcionUser == true) {
 
-			//TODO: Mostrra MODAL-PANEL (Componente)
-			if (ok) {
-				alert("¡Suscripción activada correctamente!");
-			} else {
-				alert("No se ha podido activar la suscripción.");
+                ocultarBotonSuscripcion();
+                alert("El usuario ya está suscrito (Local Storage)!");
+				return;
 			}
+			else
+			{  
+				//const token = "BA03E160-11C9-4A7D-BF5D-9DF60140F893";
+				//const email = "dgomezma+admin@gmail.com";
+				//const loggedUserId = localStorage.getItem("idUsuario");
+
+				var loggedUser = await getUserData(); 
+
+				if (loggedUser.suscrito == null || loggedUser.suscrito == false) {
+
+					const ok = await activarSuscripcion(loggedUser.correo);
+
+					//TODO: Mostrar MODAL-PANEL (Componente Web)
+					if (ok) {
+
+						ocultarBotonSuscripcion();
+						alert("¡Suscripción activada correctamente!");
+
+					} else {
+						alert("No se ha podido activar la suscripción.");
+					}
+				}
+				else {
+                    ocultarBotonSuscripcion();
+                    alert("El usuario ya está suscrito (Base de Datos)!");
+				}
+            }
 		}
+
+		async function ocultarBotonSuscripcion() {
+			 
+			document.getElementById("btnActivarSuscripcion").style.visibility = "hidden";
+		}
+
+        async function getUserData() {
+			 
+            const baseUrl = `https://localhost`;
+            const controllerName = `Usuarios`;
+            const port = `44311`;
+            const apiUrl = `${baseUrl}:${port}/${controllerName}/FiltrarUsuarios`;
+
+            const url = `${apiUrl}?filters.Id=${idUsuario}&filters.Activo=true`;
+
+            const response = await fetch(url, {
+                method: "GET",
+                //redentials: "include",
+                headers: { "Content-Type": "application/json" }
+            });
+
+            if (!response.ok) {
+                console.error("Error al obtener el usuario", response.status);
+            } 
+			const data = await response.json();
+			 
+            if (data != null && data.length > 0 && data[0] != null) {
+				return data[0];
+			}
+			return null;
+        }
 
 	</script>
 
@@ -694,10 +763,8 @@
 	</section>>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js"></script>
 	<script>
-		// Variable global para almacenar el índice del panel actualmente abierto (YA NO SE USA)
-		// let openPanelIndex = null;
 
-		// Función para generar dinámicamente el código HTML de un panel FAQ (SIN CAMBIOS)
+		// Función para generar dinámicamente el código HTML de un panel FAQ
 		function crearPanel(id, pregunta, respuesta) {
 			const panel = document.createElement('div');
 			panel.className = 'panel';
@@ -705,7 +772,6 @@
 
 			const preguntaDiv = document.createElement('div');
 			preguntaDiv.className = 'pregunta';
-			// Usamos el icono fa-chevron-down por defecto (cerrado)
 			preguntaDiv.innerHTML = `<span>${pregunta}</span><i class="fas fa-chevron-down flecha"></i>`;
 
 			preguntaDiv.addEventListener('click', function () {
@@ -730,8 +796,6 @@
 			const respuesta = panel.querySelector('.respuesta');
 			const flecha = panel.querySelector('.flecha');
 
-			// Solo gestionamos el panel clickeado (permitiendo que otros sigan abiertos)
-
 			const estaActivo = panel.classList.contains('activo');
 			panel.classList.toggle('activo');
 
@@ -744,7 +808,6 @@
 				flecha.classList.add('fa-chevron-up');
 			} else {
 				// Al cerrar
-				// Forzar un repaint para que la transición de cierre funcione
 				respuesta.style.maxHeight = respuesta.scrollHeight + "px";
 				setTimeout(() => {
 					respuesta.style.maxHeight = '0';
@@ -755,7 +818,7 @@
 			}
 		}
 
-		// --- Lógica de Carga de FAQS (Sin cambios) ---
+		//  Lógica de carga de FAQS 
 		GetFAQS('ObtenerFAQS')
 			.then(faqs => {
 				faqs.sort(function (a, b) {

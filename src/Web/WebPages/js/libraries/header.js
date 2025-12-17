@@ -71,8 +71,10 @@ async function setUserData() {
     }
 
     const data = await response.json(); 
-    if (data.length > 0 && data[0] != null) {
-         
+    if (data != null && data.length > 0 && data[0] != null) {
+
+        localStorage.setItem("suscripcion", data[0].suscrito);
+        
         var infoUsuarioElement = document.getElementById("infoUsuario");
         infoUsuarioElement.innerHTML = infoUsuarioElement.innerHTML.replace("{nombre}", data[0].nombre).replace("{puntos}", data[0].puntos);
     }
