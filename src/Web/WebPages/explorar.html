@@ -3,9 +3,9 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="keywords" content="Site keywords here">
-    <meta name="description" content="">
-    <meta name='copyright' content='UOC'>
+    <meta name="keywords" content="TODO">
+    <meta name="description" content="explorar">
+    <meta name='copyright' content='TODO'>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <title>Explorar entidades</title>
@@ -28,9 +28,8 @@
     <link rel="stylesheet" href="./css/responsive.css">
 
     <script src="./js/services/entidadesController.js"></script>
-    <!--<script src="./js/services/usuariosController.js"></script>-->
-    <!--<script src="./js/libraries/modalPanel.js"></script>-->
-    <script src="/Components/webHeader/webHeader.js"></script>
+    <script src="./js/libraries/header.js"></script>
+    <script src="./js/libraries/footer.js"></script>
 
     <style>
         /*.filter-pills {
@@ -55,7 +54,7 @@
                         cursor: pointer;
                         background: transparent;
                     }*/
-         
+
         /*
          * Asegura el estilo inactivo base (dashed, borde, texto de color)
          */
@@ -296,136 +295,72 @@
 
 </head>
 <body>
-     
-	<div class="preloader">
-		<div class="loader">
-			<div class="loader-outter"></div>
-			<div class="loader-inner"></div>
 
-			<div class="indicator">
-				<svg width="16px" height="12px">
-					<polyline id="back" points="1 6 4 6 6 11 10 1 12 6 15 6"></polyline>
-					<polyline id="front" points="1 6 4 6 6 11 10 1 12 6 15 6"></polyline>
-				</svg>
-			</div>
-		</div>
-	</div> 
+    <div class="preloader">
+        <div class="loader">
+            <div class="loader-outter"></div>
+            <div class="loader-inner"></div>
 
-      
-        <web-header active="explorar"></web-header>
+            <div class="indicator">
+                <svg width="16px" height="12px">
+                    <polyline id="back" points="1 6 4 6 6 11 10 1 12 6 15 6"></polyline>
+                    <polyline id="front" points="1 6 4 6 6 11 10 1 12 6 15 6"></polyline>
+                </svg>
+            </div>
+        </div>
+    </div>
 
-        <!--<div class="header-inner">
-            <div class="container">
-                <div class="inner">
-                    <div class="row">
-                        <div class="col-lg-2 col-md-3 col-12">
-                            <div class="logo">
-                                <a href="home-privada.html"><img src="img/logo.jpg" alt="#"></a>
-                            </div>
-                            <div class="mobile-nav"></div>
-                        </div>
-                        <div class="col-lg-7 col-md-9 col-12">
-                            <div class="main-menu">
-                                <nav class="navigation">
-                                    <ul class="nav menu">
-                                        <li><a href="home-privada.html">Inicio </a></li>
-                                        <li class="active"><a href="explorar.html">Explorar </a></li>
-                                        <li><a href="#">Recompensas </a></li>
-                                        <li><a href="#">Cómo ganar puntos? </a></li>
-                                    </ul>
-                                </nav>
-                            </div>
-                        </div>
-                        <div class="col-lg-2 col-12">
-                            <div class="get-quote">
-                                <a id="infoUsuario" style="margin: 15px;background: goldenrod;" href="#" class="btn">Hola {nombreUsuario}, tienes {puntosUsuario} pts.</a>
-                            </div>
+    <header id="headerExplorar" class="header"> </header>
+    <script>
+        (async () => {
+
+            await renderHeader('explorar', 'headerExplorar');
+            await setUserData();
+        })()
+    </script>
+
+    <section class="newsletter section">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12  col-12">
+                    <div class="subscribe-text">
+                        <h6>Encuentra la entidad que andabas buscando</h6>
+                        <!--<p class="">Descubre entidades cercanas.</p>-->
+                    </div>
+
+                </div>
+                <br /><br /><br />
+                <div class="col-lg-12 col-12">
+                    <div class="">
+                        <div class="">
+                            <input id="textEntidad" name="textEntidad" placeholder="Buscar entidad" class="common-input" onfocus="this.placeholder = ''"
+                                   onblur="this.placeholder = 'Buscar entidad'" type="text">
+                            <button id="btnBuscarEntidad" class="btn" style=" margin: 0px 0px 0px 25px;" onclick="buscarUser()">BUSCAR</button>
+                            <button id="btnFiltrar" class="btn" style=" margin: 0px 0px 0px 25px;" onclick="borrarBusqueda()">LIMPIAR</button>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>-->
-     
-	<script type="text/javascript">
+        </div>
+    </section>
 
-        (async () => {
-            await setUserData();
-        })()
+    <br /><br />
 
-		async function setUserData() {
-
-			localStorage.setItem("IdUsuario", 15);
-			const idUsuario = localStorage.getItem("IdUsuario");
-
-			const baseUrl = `https://localhost`;
-			const controllerName = `Usuarios`;
-			const port = `44311`;
-			const apiUrl = `${baseUrl}:${port}/${controllerName}/FiltrarUsuarios`;
-
-			const url = `${apiUrl}?filters.Id=${idUsuario}&filters.Activo=true`;
-
-			const response = await fetch(url, {
-				method: "GET",
-				//redentials: "include",
-				headers: { "Content-Type": "application/json" }
-			});
-
-			if (!response.ok) {
-				console.error("Error al obtener el usuario", response.status);
-			}
-
-			const data = await response.json(); 
-
-            if (data.length > 0 && data[0] != null) {
-				var infoUsuarioElement = document.getElementById("infoUsuario");
-                infoUsuarioElement.innerHTML = infoUsuarioElement.innerHTML.replace("{nombreUsuario}", data[0].nombre).replace("{puntosUsuario}", data[0].puntos);
-			}
-		}
-		 
-	</script>
-
-	<section class="newsletter section">
-		<div class="container">
-			<div class="row">
-				<div class="col-lg-12  col-12"> 
-					<div class="subscribe-text">
-						<h6>Encuentra la entidad que andabas buscando</h6>
-						<!--<p class="">Descubre entidades cercanas.</p>-->
-					</div>
-
-				</div> 
-				<br /><br /><br />
-				<div class="col-lg-12 col-12">
-					<div class="">
-						<div class="">
-							<input id="textEntidad" name="textEntidad" placeholder="Buscar entidad" class="common-input" onfocus="this.placeholder = ''"
-								   onblur="this.placeholder = 'Buscar entidad'" type="text">
-							<button id="btnBuscarEntidad" class="btn" style=" margin: 0px 0px 0px 25px;" onclick="buscarUser()">BUSCAR</button>
-							<button id="btnFiltrar" class="btn" style=" margin: 0px 0px 0px 25px;" onclick="borrarBusqueda()">LIMPIAR</button>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</section> 
-
-	<br /><br />
-
-	<div class="container">
-		<div class="col-12">
-			<div class="button-group"> 
-				<div class="row"> 
-					<button id="filtro1" onclick="aplicarFiltro1()" style=" width: 210px; font-size: 18px; }" href="#" class="button border-theme border-hover-theme color-theme color-hover-theme dashed">Comercio</button><br>
-					<button id="filtro2" onclick="aplicarFiltro2()" style=" width: 210px; font-size: 18px; }" href="#" class="button border-theme border-hover-theme color-theme color-hover-theme dashed">Asociación</button><br>
-				</div>
-			</div>
-		</div>
-	</div>
+    <div class="container">
+        <div class="col-12">
+            <div class="button-group">
+                <div class="row">
+                    <button id="filtro1" onclick="aplicarFiltro1()" style=" width: 210px; font-size: 18px; }" href="#" class="button border-theme border-hover-theme color-theme color-hover-theme dashed">Comercio</button><br>
+                    <button id="filtro2" onclick="aplicarFiltro2()" style=" width: 210px; font-size: 18px; }" href="#" class="button border-theme border-hover-theme color-theme color-hover-theme dashed">Asociación</button><br>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <script type="text/javascript">
 
         function alternarEstiloFiltro(boton) {
-             
+
             const clases_activo = ['bkg-theme', 'bkg-hover-theme', 'color-white', 'color-hover-white', 'shadow'];
             const clases_inactivo = ['border-theme', 'border-hover-theme', 'color-theme', 'color-hover-theme', 'dashed'];
 
@@ -466,16 +401,16 @@
 
     </script>
 
-	<section class="blog section" id="blog">
-		<div class="container">
+    <section class="blog section" id="blog">
+        <div class="container">
 
-			<div id="cardsPanel" class="row">
+            <div id="cardsPanel" class="row">
 
-			</div>
-		</div>
-	</section>
+            </div>
+        </div>
+    </section>
 
-	<script type="text/javascript">
+    <script type="text/javascript">
 
         let filtros = null;
 
@@ -494,7 +429,7 @@
             document.getElementById('textEntidad').value = filtros.nombre;
             buscarEntidad();
         });
-         
+
         function aplicarFiltro1() {
 
             toggleFiltroTipo('64569dd3-4d65-4eed-9f41-ea87b2270a6c', 'filtro1');
@@ -532,7 +467,7 @@
 
             buscarEntidad();
         }
-          
+
         function getInitialFilters() {
 
             const params = new URLSearchParams(window.location.search);
@@ -540,7 +475,7 @@
             const filtrosIniciales = {
                 nombre: params.get("name") || null,
                 tipo: params.get("type") || null,
-                tiposActivos: [] 
+                tiposActivos: []
             };
 
             // Si viene un tipo por URL lo ponemos en la lista
@@ -549,7 +484,7 @@
 
             return filtrosIniciales;
         }
-          
+
         function buscarEntidad() {
 
             let contenedor = document.getElementById('cardsPanel');
@@ -565,11 +500,11 @@
                             if (filtros.nombre && !incluyeSubcadena(entidad.nombre, filtros.nombre)) {
                                 return false;
                             }
-                             
+
                             if (filtros.tiposActivos.length > 0 &&
                                 !filtros.tiposActivos.includes(entidad.idTipoEntidad)) {
                                 return false;
-                            } 
+                            }
                             return true;
                         })
                         .forEach(entidad => {
@@ -676,200 +611,127 @@
             divCol.appendChild(divSingleNews);
 
             return divCol;
-		}
+        }
 
-	</script>
+    </script>
 
-	<section class="why-choose section">
-		<div class="container">
-			<div class="row">
-				<div class="col-lg-6 col-12">
-					<div class="choose-left">
-						<h3>¿Cómo puntuar entidades?</h3>
-						<p style=" color: black;">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas pharetra antege vel est lobortis, a commodo magna rhoncus. In quis nisi non emet quam pharetra commodo. </p>
-						<p style=" color: black;">Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. </p>
-						<div class="row">
-							<div class="col-lg-6">
-								<ul class="list">
-									<li><i class="fa fa-caret-right"></i>Maecenas vitae luctus nibh. </li>
-									<li><i class="fa fa-caret-right"></i>Duis massa massa.</li>
-									<li><i class="fa fa-caret-right"></i>Aliquam feugiat interdum.</li>
-								</ul>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="col-lg-6 col-12">
-					<div class="choose-right">
-						<div class="video-image">
-							<div class="promo-video">
-								<div class="waves-block">
-									<div class="waves wave-1"></div>
-									<div class="waves wave-2"></div>
-									<div class="waves wave-3"></div>
-								</div>
-							</div>
-							<a href="https://www.youtube.com/watch?v=RFVXy6CRVR4" class="video video-popup mfp-iframe"><i class="fa fa-play"></i></a>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</section>
+    <section class="why-choose section">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 col-12">
+                    <div class="choose-left">
+                        <h3>¿Cómo puntuar entidades?</h3>
+                        <p style=" color: black;">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas pharetra antege vel est lobortis, a commodo magna rhoncus. In quis nisi non emet quam pharetra commodo. </p>
+                        <p style=" color: black;">Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. </p>
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <ul class="list">
+                                    <li><i class="fa fa-caret-right"></i>Maecenas vitae luctus nibh. </li>
+                                    <li><i class="fa fa-caret-right"></i>Duis massa massa.</li>
+                                    <li><i class="fa fa-caret-right"></i>Aliquam feugiat interdum.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-12">
+                    <div class="choose-right">
+                        <div class="video-image">
+                            <div class="promo-video">
+                                <div class="waves-block">
+                                    <div class="waves wave-1"></div>
+                                    <div class="waves wave-2"></div>
+                                    <div class="waves wave-3"></div>
+                                </div>
+                            </div>
+                            <a href="https://www.youtube.com/watch?v=RFVXy6CRVR4" class="video video-popup mfp-iframe"><i class="fa fa-play"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-	<section class="portfolio section">
-		<div class="container">
-			<div class="row">
-				<div class="col-lg-12">
-					<div class="section-title">
-						<h2>Encuentra las entidades mejor valoradas.</h2>
-						<img src="img/logo.jpg" alt="#">
-						<p>Lorem ipsum dolor sit amet consectetur adipiscing elit praesent aliquet. pretiumts</p>
-					</div>
-				</div>
-			</div>
-		</div>
-		<div class="container-fluid">
-			<div class="row">
-				<div class="col-lg-12 col-12">
-					<div class="owl-carousel portfolio-slider">
-						<div class="single-pf">
-							<img src="img/fotos/31_Foto.1569071024.png" alt="#">
-							<a style="height: 300px;" href="#" class="btn">View Details</a>
-						</div>
-						<div class="single-pf">
-							<img style="height: 300px;" src="img/fotos/1.jpg" alt="#">
-							<a href="#" class="btn">View Details</a>
-						</div>
-						<div class="single-pf">
-							<img style="height: 300px;" src="img/fotos/foto7.jpg" alt="#">
-							<a href="#" class="btn">View Details</a>
-						</div>
-						<div class="single-pf">
-							<img style="height: 300px;" src="img/fotos/cal-ton-sant-andreu-barca-cruz-01.jpg" alt="#">
-							<a href="#" class="btn">View Details</a>
-						</div>
-						<div class="single-pf">
-							<img style="height: 300px;" src="img/fotos/photo5780873586842643674-1024x682-1.jpg" alt="#">
-							<a href="#" class="btn">View Details</a>
-						</div>
-						<div class="single-pf">
-							<img style="height: 300px;" src="img/fotos/foto4.jpg" alt="#">
-							<a href="#" class="btn">View Details</a>
-						</div>
-						<div class="single-pf">
-							<img style="height: 300px;" src="img/fotos/foto1.jpg" alt="#">
-							<a href="#" class="btn">View Details</a>
-						</div>
-						<div class="single-pf">
-							<img style="height: 300px;" src="img/fotos/farmacia_guinart.jpg" alt="#">
-							<a href="#" class="btn">View Details</a>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</section> 
+    <section class="portfolio section">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="section-title">
+                        <h2>Encuentra las entidades mejor valoradas.</h2>
+                        <img src="img/logo.jpg" alt="#">
+                        <p>Lorem ipsum dolor sit amet consectetur adipiscing elit praesent aliquet. pretiumts</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-12 col-12">
+                    <div class="owl-carousel portfolio-slider">
+                        <div class="single-pf">
+                            <img src="img/fotos/31_Foto.1569071024.png" alt="#">
+                            <a style="height: 300px;" href="#" class="btn">Ver más</a>
+                        </div>
+                        <div class="single-pf">
+                            <img style="height: 300px;" src="img/fotos/1.jpg" alt="#">
+                            <a href="#" class="btn">Ver más</a>
+                        </div>
+                        <div class="single-pf">
+                            <img style="height: 300px;" src="img/fotos/foto7.jpg" alt="#">
+                            <a href="#" class="btn">Ver más</a>
+                        </div>
+                        <div class="single-pf">
+                            <img style="height: 300px;" src="img/fotos/cal-ton-sant-andreu-barca-cruz-01.jpg" alt="#">
+                            <a href="#" class="btn">Ver más</a>
+                        </div>
+                        <div class="single-pf">
+                            <img style="height: 300px;" src="img/fotos/photo5780873586842643674-1024x682-1.jpg" alt="#">
+                            <a href="#" class="btn">Ver más</a>
+                        </div>
+                        <div class="single-pf">
+                            <img style="height: 300px;" src="img/fotos/foto4.jpg" alt="#">
+                            <a href="#" class="btn">Ver más</a>
+                        </div>
+                        <div class="single-pf">
+                            <img style="height: 300px;" src="img/fotos/foto1.jpg" alt="#">
+                            <a href="#" class="btn">Ver más</a>
+                        </div>
+                        <div class="single-pf">
+                            <img style="height: 300px;" src="img/fotos/farmacia_guinart.jpg" alt="#">
+                            <a href="#" class="btn">Ver más</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-	<footer id="footer" class="footer">
-		<div class="footer-top">
-			<div class="container">
-				<div class="row">
-					<div class="col-lg-3 col-md-6 col-12">
-						<div class="single-footer">
-							<h2>Sobre Nosotros Us</h2>
-							<p>Lorem ipsum dolor sit am consectetur adipisicing elit do eiusmod tempor incididunt ut labore dolore magna.</p>
-							<ul class="social">
-								<li><a href="#"><i class="icofont-facebook"></i></a></li>
-								<li><a href="#"><i class="icofont-google-plus"></i></a></li>
-								<li><a href="#"><i class="icofont-twitter"></i></a></li>
-								<li><a href="#"><i class="icofont-vimeo"></i></a></li>
-								<li><a href="#"><i class="icofont-pinterest"></i></a></li>
-							</ul>
-						</div>
-					</div>
-					<div class="col-lg-3 col-md-6 col-12">
-						<div class="single-footer f-link">
-							<h2>Enlaces</h2>
-							<div class="row">
-								<div class="col-lg-6 col-md-6 col-12">
-									<ul>
-										<li><a href="#"><i class="fa fa-caret-right" aria-hidden="true"></i>Home</a></li>
-										<li><a href="#"><i class="fa fa-caret-right" aria-hidden="true"></i>About Us</a></li>
-										<li><a href="#"><i class="fa fa-caret-right" aria-hidden="true"></i>Services</a></li>
-										<li><a href="#"><i class="fa fa-caret-right" aria-hidden="true"></i>Our Cases</a></li>
-										<li><a href="#"><i class="fa fa-caret-right" aria-hidden="true"></i>Other Links</a></li>
-									</ul>
-								</div>
-								<div class="col-lg-6 col-md-6 col-12">
-									<ul>
-										<li><a href="#"><i class="fa fa-caret-right" aria-hidden="true"></i>Consuling</a></li>
-										<li><a href="#"><i class="fa fa-caret-right" aria-hidden="true"></i>Finance</a></li>
-										<li><a href="#"><i class="fa fa-caret-right" aria-hidden="true"></i>Testimonials</a></li>
-										<li><a href="#"><i class="fa fa-caret-right" aria-hidden="true"></i>FAQ</a></li>
-										<li><a href="#"><i class="fa fa-caret-right" aria-hidden="true"></i>Contact Us</a></li>
-									</ul>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="col-lg-3 col-md-6 col-12">
-						<div class="single-footer">
-							<h2>Open Hours</h2>
-							<p>Lorem ipsum dolor sit ame consectetur adipisicing elit do eiusmod tempor incididunt.</p>
-							<ul class="time-sidual">
-								<li class="day">Monday - Fridayp <span>8.00-20.00</span></li>
-								<li class="day">Saturday <span>9.00-18.30</span></li>
-								<li class="day">Monday - Thusday <span>9.00-15.00</span></li>
-							</ul>
-						</div>
-					</div>
-					<div class="col-lg-3 col-md-6 col-12">
-						<div class="single-footer">
-							<h2>Newsletter</h2>
-							<p>subscribe to our newsletter to get allour news in your inbox.. Lorem ipsum dolor sit amet, consectetur adipisicing elit,</p>
-							<form action="mail/mail.php" method="get" target="_blank" class="newsletter-inner">
-								<input name="email" placeholder="Email Address" class="common-input" onfocus="this.placeholder = ''"
-									   onblur="this.placeholder = 'Your email address'" required="" type="email">
-								<button class="button"><i class="icofont icofont-paper-plane"></i></button>
-							</form>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-		<div class="copyright">
-			<div class="container">
-				<div class="row">
-					<div class="col-lg-12 col-md-12 col-12">
-						<div class="copyright-content">
-							<p>©  Copyright 2025  |  Todos los derechos reservados.</p>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</footer>
+    <footer id="footer" class="footer"></footer>
+    <script>
+        (async () => {
+            await renderFooter('footer');
+        })()
+    </script>
 
-	<script src="./js/jquery.min.js"></script>
-	<script src="./js/jquery-migrate-3.0.0.js"></script>
-	<script src="./js/jquery-ui.min.js"></script>
-	<script src="./js/easing.js"></script>
-	<script src="./js/colors.js"></script>
-	<script src="./js/popper.min.js"></script>
-	<script src="./js/bootstrap-datepicker.js"></script>
-	<script src="./js/jquery.nav.js"></script>
-	<script src="./js/slicknav.min.js"></script>
-	<script src="./js/jquery.scrollUp.min.js"></script>
-	<script src="./js/niceselect.js"></script>
-	<script src="./js/tilt.jquery.min.js"></script>
-	<script src="./js/owl-carousel.js"></script>
-	<script src="./js/jquery.counterup.min.js"></script>
-	<script src="./js/steller.js"></script>
-	<script src="./js/wow.min.js"></script>
-	<script src="./js/jquery.magnific-popup.min.js"></script>
-	<script src="http://cdnjs.cloudflare.com/ajax/libs/waypoints/2.0.3/waypoints.min.js"></script>
-	<script src="./js/bootstrap.min.js"></script>
-	<script src="./js/main.js"></script>
+    <script src="./js/jquery.min.js"></script>
+    <script src="./js/jquery-migrate-3.0.0.js"></script>
+    <script src="./js/jquery-ui.min.js"></script>
+    <script src="./js/easing.js"></script>
+    <script src="./js/colors.js"></script>
+    <script src="./js/popper.min.js"></script>
+    <script src="./js/bootstrap-datepicker.js"></script>
+    <script src="./js/jquery.nav.js"></script>
+    <script src="./js/slicknav.min.js"></script>
+    <script src="./js/jquery.scrollUp.min.js"></script>
+    <script src="./js/niceselect.js"></script>
+    <script src="./js/tilt.jquery.min.js"></script>
+    <script src="./js/owl-carousel.js"></script>
+    <script src="./js/jquery.counterup.min.js"></script>
+    <script src="./js/steller.js"></script>
+    <script src="./js/wow.min.js"></script>
+    <script src="./js/jquery.magnific-popup.min.js"></script>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/waypoints/2.0.3/waypoints.min.js"></script>
+    <script src="./js/bootstrap.min.js"></script>
+    <script src="./js/main.js"></script>
 </body>
 </html>

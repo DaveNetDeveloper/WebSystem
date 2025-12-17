@@ -3,9 +3,9 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="keywords" content="">
-	<meta name="description" content="Home pública">
-	<meta name='copyright' content='UOC'>
+	<meta name="keywords" content="TODO">
+	<meta name="description" content="home privada">
+	<meta name='copyright' content='TODO'>
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
 	<title>Inicio</title>
@@ -28,107 +28,118 @@
 
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 
-	<!--<script src="./js/libraries/utilities.js"></script>-->
 	<script src="./js/services/entidadesController.js"></script>
 	<script src="./js/services/FAQSController.js"></script>
 	<script src="./js/services/testimoniosController.js"></script>
 
 	<script type="module" src="../Components/modalPanel/modalPanel.js"></script>
+	<script src="./js/libraries/header.js"></script>
+	<script src="./js/libraries/footer.js"></script>
 
 	<style>
-        body {
-            font-family: 'Arial', sans-serif;
-        }
 
-        .panel {
-            background-color: #f8f8f8;
-            border: 1px solid #ddd;
-            margin-bottom: 10px;
-            border-radius: 5px;
-            /* overflow: hidden; es clave aquí para que el max-height funcione con el contenido */
-            overflow: hidden;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
+		.section-title {
+			text-align: center;
+			margin-bottom: 60px;
+			padding: 0 125px;
+		}
 
-        .pregunta {
-            padding: 15px;
-            cursor: pointer;
-            background-color: #3498db;
-            color: #fff;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
+		.pricing-table .btn:before {
+			background-color: goldenrod;
+		}
 
-        .respuesta {
-            padding: 0 15px; /* Padding vertical inicial de 0 para empezar la transición */
-            text-align: left;
-            /* CERO VISIBILIDAD INICIAL */
-            max-height: 0;
-            /* TRANSICIÓN CLAVE */
-            /* Anima el max-height y el padding vertical */
-            transition: max-height 0.4s ease-out, padding 0.4s ease-out;
-        }
+		body {
+			font-family: 'Arial', sans-serif;
+		}
 
-        /* Estado de la respuesta cuando el panel está activo/abierto */
-        .panel.activo .respuesta {
-            /* Al abrir, el JS se encarga de establecer dinámicamente el max-height */
-            /* max-height: 500px; ya no es necesario aquí */
-            /* Devolvemos el padding para que el contenido tenga espacio */
-            padding-top: 15px;
-            padding-bottom: 15px;
-        }
+		.panel {
+			background-color: #f8f8f8;
+			border: 1px solid #ddd;
+			margin-bottom: 10px;
+			border-radius: 5px;
+			/* overflow: hidden; es clave aquí para que el max-height funcione con el contenido */
+			overflow: hidden;
+			box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+		}
 
-        @media (max-width: 600px) {
-            .pregunta {
-                font-size: 16px;
-            }
-        }
+		.pregunta {
+			padding: 15px;
+			cursor: pointer;
+			background-color: #3498db;
+			color: #fff;
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+		}
 
-        respuesta {
-            padding: 0 15px; /* Padding vertical inicial de 0 para empezar la transición */
-            text-align: left;
-            /* CERO VISIBILIDAD INICIAL */
-            max-height: 0;
-            /* TRANSICIÓN CLAVE */
-            /* Anima el max-height y el padding vertical */
-            transition: max-height 0.4s ease-out, padding 0.4s ease-out;
-        }
+		.respuesta {
+			padding: 0 15px; /* Padding vertical inicial de 0 para empezar la transición */
+			text-align: left;
+			/* CERO VISIBILIDAD INICIAL */
+			max-height: 0;
+			/* TRANSICIÓN CLAVE */
+			/* Anima el max-height y el padding vertical */
+			transition: max-height 0.4s ease-out, padding 0.4s ease-out;
+		}
 
-        /* Estado de la respuesta cuando el panel está activo/abierto */
-        .panel.activo .respuesta {
-            /* Al abrir, el JS se encarga de establecer dinámicamente el max-height */
-            /* max-height: 500px; ya no es necesario aquí */
-            /* Devolvemos el padding para que el contenido tenga espacio */
-            padding-top: 15px;
-            padding-bottom: 15px;
-        }
+		/* Estado de la respuesta cuando el panel está activo/abierto */
+		.panel.activo .respuesta {
+			/* Al abrir, el JS se encarga de establecer dinámicamente el max-height */
+			/* max-height: 500px; ya no es necesario aquí */
+			/* Devolvemos el padding para que el contenido tenga espacio */
+			padding-top: 15px;
+			padding-bottom: 15px;
+		}
 
-        @media (max-width: 600px) {
-            .pregunta {
-                font-size: 16px;
-            }
-        }
+		@media (max-width: 600px) {
+			.pregunta {
+				font-size: 16px;
+			}
+		}
+
+		respuesta {
+			padding: 0 15px; /* Padding vertical inicial de 0 para empezar la transición */
+			text-align: left;
+			/* CERO VISIBILIDAD INICIAL */
+			max-height: 0;
+			/* TRANSICIÓN CLAVE */
+			/* Anima el max-height y el padding vertical */
+			transition: max-height 0.4s ease-out, padding 0.4s ease-out;
+		}
+
+		/* Estado de la respuesta cuando el panel está activo/abierto */
+		.panel.activo .respuesta {
+			/* Al abrir, el JS se encarga de establecer dinámicamente el max-height */
+			/* max-height: 500px; ya no es necesario aquí */
+			/* Devolvemos el padding para que el contenido tenga espacio */
+			padding-top: 15px;
+			padding-bottom: 15px;
+		}
+
+		@media (max-width: 600px) {
+			.pregunta {
+				font-size: 16px;
+			}
+		}
 
 		.flecha {
 			font-size: 20px;
 		}
 
-		 
 
-        .modal-contenido {
-            /* Por defecto */
-            opacity: 0;
-            transform: scale(0.7);  
-            transition: opacity 0.3s ease-out, transform 0.3s ease-out;  
-        }
 
-        /* 2. Define el estado final (mostrado) */
-        .modal.mostrar .modal-contenido {
-            opacity: 1;  
-            transform: scale(1);  
-        }
+		.modal-contenido {
+			/* Por defecto */
+			opacity: 0;
+			transform: scale(0.7);
+			transition: opacity 0.3s ease-out, transform 0.3s ease-out;
+		}
 
+		/* 2. Define el estado final (mostrado) */
+		.modal.mostrar .modal-contenido {
+			opacity: 1;
+			transform: scale(1);
+		}
 	</style>
 
 </head>
@@ -147,41 +158,15 @@
 			</div>
 		</div>
 	</div>
-	
-	<header class="header">
-		<div class="header-inner">
-			<div class="container">
-				<div class="inner">
-					<div class="row">
-						<div class="col-lg-3 col-md-3 col-12">
-							<div class="logo">
-								<a href="home-privada.html"><img src="img/logo.jpg" alt="#"></a>
-							</div>
-							<div class="mobile-nav"></div>
-						</div>
-						<div class="col-lg-7 col-md-9 col-12">
-							<div class="main-menu">
-								<nav class="navigation">
-									<ul class="nav menu">
-										<li class="active"><a href="home-privada.html">Inicio </a></li>
-										<li><a href="explorar.html">Explorar </a></li>
-										<li><a href="#">Recompensas </a></li>
-										<li><a href="#">Cómo ganar puntos? </a></li>
-									</ul>
-								</nav>
-							</div>
-						</div>
-						<div class="col-lg-2 col-12">
-							<div class="get-quote">
-								<a id="infoUsuario" style="background: goldenrod; margin: 15px;" href="#" class="btn">Hola David. Tienes {puntosUsuario} pts.</a>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</header>
-	
+
+	<header id="headerHomePrivada" class="header"></header>
+	<script>
+		(async () => {
+			await renderHeader('home', 'headerHomePrivada');
+			await setUserData();
+		})()
+	</script>
+
 	<div class="container">
 		<div class="row ">
 			<div class="col-lg-6  col-12">
@@ -214,7 +199,7 @@
 
 		document.addEventListener("DOMContentLoaded", async () => {
 
-			localStorage.setItem('idUsuario', String(1));
+			//localStorage.setItem('idUsuario', String(1));
 			await revisarYMostrarNotificaciones(idUsuario);
 		});
 
@@ -259,7 +244,7 @@
 				currentInAppNotification = inApp;
 
 				await delay(1500);
-                await mostrarModal(inApp.titulo, inApp.mensaje);
+				await mostrarModal(inApp.titulo, inApp.mensaje);
 				return;
 			}
 
@@ -350,14 +335,15 @@
 			}
 		}
 	</script>
+
 	<section class="pricing-table section">
 		<div class="container">
 			<!-- <div class="row">
 				<div class="col-lg-12">
 					<div class="section-title">
 						<h2>We Provide You The Best Treatment In Resonable Price</h2>-->
-							<!--<img src="img/section-img.png" alt="#">-->
-							<!--<p>Lorem ipsum dolor sit amet consectetur adipiscing elit praesent aliquet. pretiumts</p>
+			<!--<img src="img/section-img.png" alt="#">-->
+			<!--<p>Lorem ipsum dolor sit amet consectetur adipiscing elit praesent aliquet. pretiumts</p>
 					</div>
 				</div>
 			</div> -->
@@ -393,6 +379,7 @@
 			</div>
 		</div>
 	</section>
+
 	<section class="Feautes section">
 		<div class="container">
 			<div class="row">
@@ -435,6 +422,7 @@
 			</div>
 		</div>
 	</section>
+
 	<div id="fun-facts" class="fun-facts section overlay">
 		<div class="container">
 			<div class="row">
@@ -477,6 +465,7 @@
 			</div>
 		</div>
 	</div>
+
 	<section class="why-choose section">
 		<div class="container">
 			<div class="row">
@@ -505,7 +494,7 @@
 									<div class="waves wave-2"></div>
 									<div class="waves wave-3"></div>
 								</div>
-								</div>
+							</div>
 							<a href="https://www.youtube.com/watch?v=vh2wIHwCVUI" class="video video-popup mfp-iframe"><i class="fa fa-play"></i></a>
 						</div>
 					</div>
@@ -513,7 +502,7 @@
 			</div>
 		</div>
 	</section>
- 
+
 	<section class="call-action overlay" data-stellar-background-ratio="0.5">
 		<div class="container">
 			<div class="row">
@@ -554,19 +543,19 @@
 			return resultado;
 		}
 
-        async function suscribirme() {
+		async function suscribirme() {
 
-            const token = "BA03E160-11C9-4A7D-BF5D-9DF60140F893";
-            const email = "dgomezma+admin@gmail.com";
+			const token = "BA03E160-11C9-4A7D-BF5D-9DF60140F893";
+			const email = "dgomezma+admin@gmail.com";
 
-            const ok = await activarSuscripcion(token, email);
+			const ok = await activarSuscripcion(token, email);
 
 			//TODO: Mostrra MODAL-PANEL (Componente)
-            if (ok) {
-                alert("¡Suscripción activada correctamente!"); 
-            } else {
-                alert("No se ha podido activar la suscripción.");
-            }
+			if (ok) {
+				alert("¡Suscripción activada correctamente!");
+			} else {
+				alert("No se ha podido activar la suscripción.");
+			}
 		}
 
 	</script>
@@ -594,7 +583,6 @@
 			</div>
 		</div>
 	</section>
-
 	<script>
 
 		const imagenes = [
@@ -619,9 +607,9 @@
 			image.alt = '#';
 
 			const detailsLink = document.createElement('a');
-			detailsLink.href = 'portfolio-details.html';
+			detailsLink.href = 'explorar.html';
 			detailsLink.className = 'btn';
-			detailsLink.textContent = 'View Details';
+			detailsLink.textContent = 'Ver más';
 
 			// Agregar los elementos al contenedor
 			singlePfDiv.style.height = "275px";
@@ -777,7 +765,7 @@
 				faqs.forEach(function (faq) {
 					if (faq.idEntidad == 0) {
 						crearPanel(i, faq.pregunta, faq.respuesta);
-                    }
+					}
 					i++;
 				});
 			})
@@ -787,85 +775,12 @@
 			});
 	</script>
 
-	<footer id="footer" class="footer ">
-		<div class="footer-top">
-			<div class="container">
-				<div class="row">
-					<div class="col-lg-3 col-md-6 col-12">
-						<div class="single-footer">
-							<h2>About Us</h2>
-							<p>Lorem ipsum dolor sit am consectetur adipisicing elit do eiusmod tempor incididunt ut labore dolore magna.</p>
-							<ul class="social">
-								<li><a href="#"><i class="icofont-facebook"></i></a></li>
-								<li><a href="#"><i class="icofont-google-plus"></i></a></li>
-								<li><a href="#"><i class="icofont-twitter"></i></a></li>
-								<li><a href="#"><i class="icofont-vimeo"></i></a></li>
-								<li><a href="#"><i class="icofont-pinterest"></i></a></li>
-							</ul>
-						</div>
-					</div>
-					<div class="col-lg-3 col-md-6 col-12">
-						<div class="single-footer f-link">
-							<h2>Quick Links</h2>
-							<div class="row">
-								<div class="col-lg-6 col-md-6 col-12">
-									<ul>
-										<li><a href="#"><i class="fa fa-caret-right" aria-hidden="true"></i>Home</a></li>
-										<li><a href="#"><i class="fa fa-caret-right" aria-hidden="true"></i>About Us</a></li>
-										<li><a href="#"><i class="fa fa-caret-right" aria-hidden="true"></i>Services</a></li>
-										<li><a href="#"><i class="fa fa-caret-right" aria-hidden="true"></i>Our Cases</a></li>
-										<li><a href="#"><i class="fa fa-caret-right" aria-hidden="true"></i>Other Links</a></li>
-									</ul>
-								</div>
-								<div class="col-lg-6 col-md-6 col-12">
-									<ul>
-										<li><a href="#"><i class="fa fa-caret-right" aria-hidden="true"></i>Consuling</a></li>
-										<li><a href="#"><i class="fa fa-caret-right" aria-hidden="true"></i>Finance</a></li>
-										<li><a href="#"><i class="fa fa-caret-right" aria-hidden="true"></i>Testimonials</a></li>
-										<li><a href="#"><i class="fa fa-caret-right" aria-hidden="true"></i>FAQ</a></li>
-										<li><a href="#"><i class="fa fa-caret-right" aria-hidden="true"></i>Contact Us</a></li>
-									</ul>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="col-lg-3 col-md-6 col-12">
-						<div class="single-footer">
-							<h2>Open Hours</h2>
-							<p>Lorem ipsum dolor sit ame consectetur adipisicing elit do eiusmod tempor incididunt.</p>
-							<ul class="time-sidual">
-								<li class="day">Monday - Fridayp <span>8.00-20.00</span></li>
-								<li class="day">Saturday <span>9.00-18.30</span></li>
-								<li class="day">Monday - Thusday <span>9.00-15.00</span></li>
-							</ul>
-						</div>
-					</div>
-					<div class="col-lg-3 col-md-6 col-12">
-						<div class="single-footer">
-							<h2>Newsletter</h2>
-							<p>subscribe to our newsletter to get allour news in your inbox.. Lorem ipsum dolor sit amet, consectetur adipisicing elit,</p>
-							<form action="mail/mail.php" method="get" target="_blank" class="newsletter-inner">
-								<input name="email" placeholder="Email Address" class="common-input" onfocus="this.placeholder = ''"
-									   onblur="this.placeholder = 'Your email address'" required="" type="email">
-								<button class="button"><i class="icofont icofont-paper-plane"></i></button>
-							</form>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-		<div class="copyright">
-			<div class="container">
-				<div class="row">
-					<div class="col-lg-12 col-md-12 col-12">
-						<div class="copyright-content">
-							<p>©  Copyright 2025  |  Todos los derechos reservados.</p>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</footer>
+	<footer id="footer" class="footer"></footer>
+	<script>
+		(async () => {
+			await renderFooter('footer');
+		})()
+	</script>
 
 	<script src="./js/jquery.min.js"></script>
 	<script src="./js/jquery-migrate-3.0.0.js"></script>

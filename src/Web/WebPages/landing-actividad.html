@@ -30,6 +30,8 @@
 
 	<script src="./js/services/entidadesController.js"></script>
 	<script type="module" src="../Components/modalPanel/modalPanel.js"></script>
+	<script src="./js/libraries/header.js"></script>
+	<script src="./js/libraries/footer.js"></script>
 
 	<style>
 		p {
@@ -54,76 +56,14 @@
 		</div>
 	</div>
 
-	<header class="header">
-		<div class="topbar">
-			<div class="container">
-				<div class="row">
-					<div class="col-lg-6 col-md-5 col-12">
-						<ul class="top-link">
-							<li><a href="#">About</a></li>
-							<li><a href="#">Doctors</a></li>
-							<li><a href="#">Contact</a></li>
-							<li><a href="#">FAQ</a></li>
-						</ul>
-					</div>
-					<div class="col-lg-6 col-md-7 col-12">
-						<ul class="top-contact">
-							<li><i class="fa fa-phone"></i>+880 1234 56789</li>
-							<li><i class="fa fa-envelope"></i><a href="mailto:support@yourmail.com">support@yourmail.com</a></li>
-						</ul>
-					</div>
-				</div>
-			</div>
-		</div>
-		<div class="header-inner">
-			<div class="container">
-				<div class="inner">
-					<div class="row">
-						<div class="col-lg-3 col-md-3 col-12">
-							<div class="logo">
-								<a href="index.html"><img src="img/logo.png" alt="#"></a>
-							</div>
-							<div class="mobile-nav"></div>
-						</div>
-						<div class="col-lg-7 col-md-9 col-12">
-							<div class="main-menu">
-								<nav class="navigation">
-									<ul class="nav menu">
-										<li class="active">
-											<a href="#">Home <i class="icofont-rounded-down"></i></a>
-											<ul class="dropdown">
-												<li><a href="index.html">Home Page 1</a></li>
-											</ul>
-										</li>
-										<li><a href="#">Doctos </a></li>
-										<li><a href="#">Services </a></li>
-										<li>
-											<a href="#">Pages <i class="icofont-rounded-down"></i></a>
-											<ul class="dropdown">
-												<li><a href="404.html">404 Error</a></li>
-											</ul>
-										</li>
-										<li>
-											<a href="#">Blogs <i class="icofont-rounded-down"></i></a>
-											<ul class="dropdown">
-												<li><a href="blog-single.html">Blog Details</a></li>
-											</ul>
-										</li>
-										<li><a href="contact.html">Contact Us</a></li>
-									</ul>
-								</nav>
-							</div>
-						</div>
-						<div class="col-lg-2 col-12">
-							<div class="get-quote">
-								<a href="appointment.html" class="btn">Book Appointment</a>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</header>
+	<header id="headerExplorarActividad" class="header"> </header>
+	<script>
+		(async () => {
+
+			await renderHeader('explorar', 'headerExplorarActividad');
+			await setUserData();
+		})()
+	</script>
 
 	<div class="container">
 		<div class="row ">
@@ -289,7 +229,7 @@
 			var url = new URL(window.location.href);
 			var urlParams = new URLSearchParams(url.search);
 			let idActividad = urlParams.get('id');
-			  
+
 			let idUsuario = localStorage.getItem('idUsuario');
 
 			const btnReservar = document.getElementById("btnReservarActividad");
@@ -306,357 +246,285 @@
 			} else {
 				btnReservar.style.display = "inline-block";
 				btnCancelar.style.display = "none";
-			} 
-			cargarActividad(idActividad); 
+			}
+			cargarActividad(idActividad);
 		})();
 
-		async function getActividadReservas(idUsuario, idActividad) {
+	async function getActividadReservas(idUsuario, idActividad) {
 
-			const baseUrl = `https://localhost`;
-			const port = `44311`;
+		const baseUrl = `https://localhost`;
+		const port = `44311`;
 
-			const url = `${baseUrl}:${port}/ActividadReservas/FiltrarActividadReservas?filters.IdUsuario=${idUsuario}&filters.IdActividad=${idActividad}&filters.Estado=Reservada`;
+		const url = `${baseUrl}:${port}/ActividadReservas/FiltrarActividadReservas?filters.IdUsuario=${idUsuario}&filters.IdActividad=${idActividad}&filters.Estado=Reservada`;
 
-			const response = await fetch(url, {
-				method: "GET"
+		const response = await fetch(url, {
+			method: "GET"
+		});
+
+		if (!response.ok) {
+			throw new Error(`Error ${response.status}`);
+		}
+		return response.json();
+	}
+
+	//
+	async function cargarActividad(id) {
+
+		const baseUrl = `https://localhost`;
+		const controllerName = `Actividades`;
+		const port = `44311`;
+		const apiUrl = `${baseUrl}:${port}/${controllerName}/FiltrarActividades`;
+
+		const url = `${apiUrl}?filters.Id=${id}&filters.Activo=true`;
+
+		await fetch(url, { method: "GET" })
+			.then(response => {
+				if (!response.ok) throw new Error("Error en FiltrarActividades");
+				return response.json();
+			})
+			.then(data => {
+
+				var lista = data.items;
+				if (lista != null && lista.length > 0 && lista[0] != null) {
+
+					var actividad = lista[0];
+
+					cargarEntidad(actividad.idEntidad);
+					cargarTipoEntidad(actividad.idTipoActividad);
+
+					document.getElementById('nombreActividad').innerText = actividad.nombre;
+					document.getElementById('descripcion').innerText = actividad.descripcion;
+					document.getElementById('ubicacion').innerText = '¿Dónde? En ' + actividad.ubicacion;
+					document.getElementById('descripcionCorta').innerText = actividad.descripcionCorta;
+
+					document.getElementById('popularidad').innerText = 'Popularidad: ' + actividad.popularidad;
+
+					document.getElementById('imagenActividad').src = actividad.imagen;
+
+					document.getElementById('img1').src = actividad.imagen;
+					//document.getElementById('img2').src = actividad.imagen;
+
+					document.getElementById('fechaActividad').innerText = formatearTimestamp(actividad.fechaInicio);
+
+					document.getElementById('img1').innerText = actividad.imagen;
+					document.getElementById('img2').innerText = actividad.imagen;
+				}
+			})
+			.catch(err => alert(err.message));
+	}
+
+	//
+	async function cargarEntidad(id) {
+
+		GetEntidad(id)
+			.then(entidad => {
+
+				if (entidad !== undefined && entidad != null) {
+
+					let nombreEntidad = document.getElementById('nombreEntidad');
+					nombreEntidad.innerText = 'En ' + entidad.nombre;
+					nombreEntidad.addEventListener('click', () => {
+						window.location.href = 'landing-entidad.html?id=' + id;
+					});
+
+				}
+			})
+			.catch(error => {
+				console.error('Error en GetEntidad:', error);
+				alert('Error en GetEntidad: ', error);
 			});
+	}
 
-			if (!response.ok) {
-				throw new Error(`Error ${response.status}`);
-			}
-			return response.json();
+	//
+	async function cargarTipoEntidad(idTipoActividad) {
+
+		const baseUrl = `https://localhost`;
+		const controllerName = `TipoActividades`;
+		const port = `44311`;
+		const apiUrl = `${baseUrl}:${port}/${controllerName}/FiltrarTipoActividades`;
+
+		const url = `${apiUrl}?filters.Id=${idTipoActividad}&filters.Activo=true`;
+
+		fetch(url, { method: "GET" })
+			.then(response => {
+				if (!response.ok) throw new Error("Error en GetTipoActividades");
+				return response.json();
+			})
+			.then(data => {
+
+				if (data != undefined && data.length > 0 && data != null && data[0] != null) {
+					document.getElementById('tipoActividad').innerText = 'Disfruta de la mejor ' + data[0].nombre + '!';
+				}
+			})
+			.catch(err => alert(err.message));
+	}
+
+	//
+	function formatearTimestamp(ts) {
+		// Soporta:
+		// "2025-10-03 16:34:40.730896"
+		// "2025-12-15T18:00:00.730896"
+		// "2025-12-15T18:00:00"
+		if (!ts) return '';
+
+		// Si nos pasan un Date, lo formateamos directamente
+		if (ts instanceof Date) {
+			const d = ts;
+			const dia = d.getDate();
+			const mes = d.getMonth() + 1;
+			const anyo = d.getFullYear();
+			const hh = String(d.getHours()).padStart(2, '0');
+			const mm = String(d.getMinutes()).padStart(2, '0');
+			const ss = String(d.getSeconds()).padStart(2, '0');
+			return `el ${dia}/${mes}/${anyo} a las ${hh}:${mm}:${ss}h`;
 		}
 
-		//
-		async function cargarActividad(id) {
+		// Normalizar: reemplazar 'T' por espacio para un único separador
+		const normalized = ts.replace('T', ' ');
 
-			const baseUrl = `https://localhost`;
-			const controllerName = `Actividades`;
-			const port = `44311`;
-			const apiUrl = `${baseUrl}:${port}/${controllerName}/FiltrarActividades`;
+		// Separar fecha y hora
+		const parts = normalized.split(' ');
+		const fechaStr = parts[0] || '';
+		let horaStr = parts[1] || '';
 
-			const url = `${apiUrl}?filters.Id=${id}&filters.Activo=true`;
-
-			await fetch(url, { method: "GET" })
-				.then(response => {
-					if (!response.ok) throw new Error("Error en FiltrarActividades");
-					return response.json();
-				})
-				.then(data => {
-
-					var lista = data.items;
-					if (lista != null && lista.length > 0 && lista[0] != null) {
-
-						var actividad = lista[0];
-
-						cargarEntidad(actividad.idEntidad);
-						cargarTipoEntidad(actividad.idTipoActividad);
-
-						document.getElementById('nombreActividad').innerText = actividad.nombre;
-						document.getElementById('descripcion').innerText = actividad.descripcion;
-						document.getElementById('ubicacion').innerText = '¿Dónde? En ' + actividad.ubicacion;
-						document.getElementById('descripcionCorta').innerText = actividad.descripcionCorta;
-
-						document.getElementById('popularidad').innerText = 'Popularidad: ' + actividad.popularidad;
-
-						document.getElementById('imagenActividad').src = actividad.imagen;
-
-						document.getElementById('img1').src = actividad.imagen;
-						//document.getElementById('img2').src = actividad.imagen;
-
-						document.getElementById('fechaActividad').innerText = formatearTimestamp(actividad.fechaInicio);
-
-						document.getElementById('img1').innerText = actividad.imagen;
-						document.getElementById('img2').innerText = actividad.imagen;
-					}
-				})
-				.catch(err => alert(err.message));
+		// Si no hay hora, devolvemos solo la fecha formateada
+		if (!horaStr) {
+			const [yyyy, mm, dd] = fechaStr.split('-');
+			return `el ${parseInt(dd)}/${parseInt(mm)}/${yyyy} a las 00:00:00`;
 		}
 
-		//
-		async function cargarEntidad(id) {
+		// Quitar fracciones de segundo si existen
+		horaStr = horaStr.split('.')[0];
 
-			GetEntidad(id)
-				.then(entidad => {
+		// Descomponer fecha
+		const fechaParts = fechaStr.split('-');
+		const yyyy = fechaParts[0] ?? '';
+		const mm = fechaParts[1] ?? '';
+		const dd = fechaParts[2] ?? '';
 
-					if (entidad !== undefined && entidad != null) {
+		// Devolver en el formato requerido
+		return `el ${parseInt(dd)}/${parseInt(mm)}/${yyyy} a las ${horaStr}h`;
+	}
 
-						let nombreEntidad = document.getElementById('nombreEntidad');
-						nombreEntidad.innerText = 'En ' + entidad.nombre;
-						nombreEntidad.addEventListener('click', () => {
-							window.location.href = 'landing-entidad.html?id=' + id;
-						});
+	//
+	async function cancelarReserva(idUsuario, idActividad) {
 
-					}
-				})
-				.catch(error => {
-					console.error('Error en GetEntidad:', error);
-					alert('Error en GetEntidad: ', error);
-				});
-		}
-
-		//
-		async function cargarTipoEntidad(idTipoActividad) {
-
-			const baseUrl = `https://localhost`;
-			const controllerName = `TipoActividades`;
-			const port = `44311`;
-			const apiUrl = `${baseUrl}:${port}/${controllerName}/FiltrarTipoActividades`;
-
-			const url = `${apiUrl}?filters.Id=${idTipoActividad}&filters.Activo=true`;
-
-			fetch(url, { method: "GET" })
-				.then(response => {
-					if (!response.ok) throw new Error("Error en GetTipoActividades");
-					return response.json();
-				})
-				.then(data => {
-
-					if (data != undefined && data.length > 0 && data != null && data[0] != null) {
-						document.getElementById('tipoActividad').innerText = 'Disfruta de la mejor ' + data[0].nombre + '!';
-					}
-				})
-				.catch(err => alert(err.message));
-		}
-
-		//
-		function formatearTimestamp(ts) {
-			// Soporta:
-			// "2025-10-03 16:34:40.730896"
-			// "2025-12-15T18:00:00.730896"
-			// "2025-12-15T18:00:00"
-			if (!ts) return '';
-
-			// Si nos pasan un Date, lo formateamos directamente
-			if (ts instanceof Date) {
-				const d = ts;
-				const dia = d.getDate();
-				const mes = d.getMonth() + 1;
-				const anyo = d.getFullYear();
-				const hh = String(d.getHours()).padStart(2, '0');
-				const mm = String(d.getMinutes()).padStart(2, '0');
-				const ss = String(d.getSeconds()).padStart(2, '0');
-				return `el ${dia}/${mes}/${anyo} a las ${hh}:${mm}:${ss}h`;
-			}
-
-			// Normalizar: reemplazar 'T' por espacio para un único separador
-			const normalized = ts.replace('T', ' ');
-
-			// Separar fecha y hora
-			const parts = normalized.split(' ');
-			const fechaStr = parts[0] || '';
-			let horaStr = parts[1] || '';
-
-			// Si no hay hora, devolvemos solo la fecha formateada
-			if (!horaStr) {
-				const [yyyy, mm, dd] = fechaStr.split('-');
-				return `el ${parseInt(dd)}/${parseInt(mm)}/${yyyy} a las 00:00:00`;
-			}
-
-			// Quitar fracciones de segundo si existen
-			horaStr = horaStr.split('.')[0];
-
-			// Descomponer fecha
-			const fechaParts = fechaStr.split('-');
-			const yyyy = fechaParts[0] ?? '';
-			const mm = fechaParts[1] ?? '';
-			const dd = fechaParts[2] ?? '';
-
-			// Devolver en el formato requerido
-			return `el ${parseInt(dd)}/${parseInt(mm)}/${yyyy} a las ${horaStr}h`;
-		}
-
-		//
-        async function cancelarReserva(idUsuario, idActividad) {
-
-            const params = new URLSearchParams({
-                idUsuario: idUsuario,
-                idActividad: idActividad
-            });
-
-            const baseUrl = `https://localhost`;
-            const port = `44311`;
-
-            const url = `${baseUrl}:${port}/ActividadReservas/CancelarReserva?${params.toString()}`;
-
-            const response = await fetch(url, {
-                method: "PUT"
-            });
-
-            if (!response.ok) {
-                throw new Error(`Error ${response.status}`);
-            }
-
-            const result = await response.json(); // bool
-
-            if (result === true) {
-                window.location.reload();
-            } else {
-                alert("No se pudo cancelar la reserva");
-            }
-        }
-
-		//
-		// ReservarActividad
-		//
-		async function reservarActividad() {
-
-			//reserva = false;
-			var urlQuery = new URL(window.location.href);
-			var urlParams = new URLSearchParams(urlQuery.search);
-			var idActividad = urlParams.get('id');
-
-			let idUsuario = localStorage.getItem('idUsuario'); 
-
-			const baseUrl = `https://localhost`;
-			const port = `44311`;
-			const controllerName = `ActividadReservas`;
-			const apiUrl = `${baseUrl}:${port}/${controllerName}/ReservarActividad`;
-
-			const url = `${apiUrl}?idActividad=${idActividad}&idUsuario=${idUsuario}`;
-
-			await fetch(url, { method: "POST" })
-				.then(response => {
-					if (!response.ok) throw new Error("Error en ReservarActividad");
-					return response.json();
-				})
-				.then(data => {
-
-					if (data != undefined && data != null) {
-						 
-                        mostrarModalReserva('Reserva Completada', `La reserva se ha realizado correctamente con el código de reserva [${data.codigoReserva}. Te hemos enviado un correo con toda la información.`, 'info');
-						window.location.reload();
-
-						//alert("IdReserva: " + data.idReserva);
-						//alert("EstadoReserva: " + data.estadoReserva);
-						//alert("fechaReserva: " + data.fechaReserva);
-						//alert("FechaActividad: " + data.fechaActividad);
-						//alert("IdUsuario: " + data.idUsuario);
-						//alert("IdActividad: " + data.idActividad);
-					}
-				})
-				.catch(err => alert(err.message));
-		}
-
-		function mostrarModalReserva(titulo, mensaje, mode) {
-			const modal = document.getElementById("modalPanel-ConfirmarReserva");
-			modal.setContent(titulo, mensaje, mode);
-			modal.mostrar();
-		}
-
-		// click en reservar
-		document.getElementById('btnReservarActividad').addEventListener('click', (e) => {
-			mostrarModalReserva('Confirmar Reserva', '¿Deseas confirmar la reserva para esta actividad?', 'confirm');
+		const params = new URLSearchParams({
+			idUsuario: idUsuario,
+			idActividad: idActividad
 		});
 
-		// evento confirmar reserva
-        document.getElementById("modalPanel-ConfirmarReserva").addEventListener('confirm', async (e) => {
-			await reservarActividad()
+		const baseUrl = `https://localhost`;
+		const port = `44311`;
+
+		const url = `${baseUrl}:${port}/ActividadReservas/CancelarReserva?${params.toString()}`;
+
+		const response = await fetch(url, {
+			method: "PUT"
 		});
 
-		//
-		// CANCELAR RESERVA 
-		//
-        function mostrarModalCancelar(titulo, mensaje, mode) {
-            const modal = document.getElementById("modalPanel-CancelarReserva");
-            modal.setContent(titulo, mensaje, mode);
-            modal.mostrar();
+		if (!response.ok) {
+			throw new Error(`Error ${response.status}`);
 		}
 
-		// click en cancelar
-		document.getElementById('btnCancelarReserva').addEventListener('click', (e) => {
-			mostrarModalCancelar('Cancelar Reserva', '¿Deseas cancelar la reserva para esta actividad?', 'confirm');
-		});
+		const result = await response.json(); // bool
 
-        // evento cancelar reserva async () => {
-        document.getElementById("modalPanel-CancelarReserva").addEventListener('confirm', async (e) => {
+		if (result === true) {
+			window.location.reload();
+		} else {
+			alert("No se pudo cancelar la reserva");
+		}
+	}
 
-			const idUsuario = localStorage.getItem("idUsuario");
-			const idActividad = new URLSearchParams(window.location.search).get("id");
+	//
+	// ReservarActividad
+	//
+	async function reservarActividad() {
 
-             await cancelarReserva(idUsuario, idActividad);
-            });
+		//reserva = false;
+		var urlQuery = new URL(window.location.href);
+		var urlParams = new URLSearchParams(urlQuery.search);
+		var idActividad = urlParams.get('id');
+
+		let idUsuario = localStorage.getItem('idUsuario');
+
+		const baseUrl = `https://localhost`;
+		const port = `44311`;
+		const controllerName = `ActividadReservas`;
+		const apiUrl = `${baseUrl}:${port}/${controllerName}/ReservarActividad`;
+
+		const url = `${apiUrl}?idActividad=${idActividad}&idUsuario=${idUsuario}`;
+
+		await fetch(url, { method: "POST" })
+			.then(response => {
+				if (!response.ok) throw new Error("Error en ReservarActividad");
+				return response.json();
+			})
+			.then(data => {
+
+				if (data != undefined && data != null) {
+
+					mostrarModalReserva('Reserva Completada', `La reserva se ha realizado correctamente con el código de reserva [${data.codigoReserva}. Te hemos enviado un correo con toda la información.`, 'info');
+					window.location.reload();
+
+					//alert("IdReserva: " + data.idReserva);
+					//alert("EstadoReserva: " + data.estadoReserva);
+					//alert("fechaReserva: " + data.fechaReserva);
+					//alert("FechaActividad: " + data.fechaActividad);
+					//alert("IdUsuario: " + data.idUsuario);
+					//alert("IdActividad: " + data.idActividad);
+				}
+			})
+			.catch(err => alert(err.message));
+	}
+
+	function mostrarModalReserva(titulo, mensaje, mode) {
+		const modal = document.getElementById("modalPanel-ConfirmarReserva");
+		modal.setContent(titulo, mensaje, mode);
+		modal.mostrar();
+	}
+
+	// click en reservar
+	document.getElementById('btnReservarActividad').addEventListener('click', (e) => {
+		mostrarModalReserva('Confirmar Reserva', '¿Deseas confirmar la reserva para esta actividad?', 'confirm');
+	});
+
+	// evento confirmar reserva
+	document.getElementById("modalPanel-ConfirmarReserva").addEventListener('confirm', async (e) => {
+		await reservarActividad()
+	});
+
+	//
+	// CANCELAR RESERVA
+	//
+	function mostrarModalCancelar(titulo, mensaje, mode) {
+		const modal = document.getElementById("modalPanel-CancelarReserva");
+		modal.setContent(titulo, mensaje, mode);
+		modal.mostrar();
+	}
+
+	// click en cancelar
+	document.getElementById('btnCancelarReserva').addEventListener('click', (e) => {
+		mostrarModalCancelar('Cancelar Reserva', '¿Deseas cancelar la reserva para esta actividad?', 'confirm');
+	});
+
+	// evento cancelar reserva async () => {
+	document.getElementById("modalPanel-CancelarReserva").addEventListener('confirm', async (e) => {
+
+		const idUsuario = localStorage.getItem("idUsuario");
+		const idActividad = new URLSearchParams(window.location.search).get("id");
+
+		await cancelarReserva(idUsuario, idActividad);
+	});
 
 	</script>
 
-	<footer id="footer" class="footer">
-
-		<div class="footer-top">
-			<div class="container">
-				<div class="row">
-					<div class="col-lg-3 col-md-6 col-12">
-						<div class="single-footer">
-							<h2>About Us</h2>
-							<p>Lorem ipsum dolor sit am consectetur adipisicing elit do eiusmod tempor incididunt ut labore dolore magna.</p>
-
-							<ul class="social">
-								<li><a href="#"><i class="icofont-facebook"></i></a></li>
-								<li><a href="#"><i class="icofont-google-plus"></i></a></li>
-								<li><a href="#"><i class="icofont-twitter"></i></a></li>
-								<li><a href="#"><i class="icofont-vimeo"></i></a></li>
-								<li><a href="#"><i class="icofont-pinterest"></i></a></li>
-							</ul>
-
-						</div>
-					</div>
-					<div class="col-lg-3 col-md-6 col-12">
-						<div class="single-footer f-link">
-							<h2>Quick Links</h2>
-							<div class="row">
-								<div class="col-lg-6 col-md-6 col-12">
-									<ul>
-										<li><a href="#"><i class="fa fa-caret-right" aria-hidden="true"></i>Home</a></li>
-										<li><a href="#"><i class="fa fa-caret-right" aria-hidden="true"></i>About Us</a></li>
-										<li><a href="#"><i class="fa fa-caret-right" aria-hidden="true"></i>Services</a></li>
-										<li><a href="#"><i class="fa fa-caret-right" aria-hidden="true"></i>Our Cases</a></li>
-										<li><a href="#"><i class="fa fa-caret-right" aria-hidden="true"></i>Other Links</a></li>
-									</ul>
-								</div>
-								<div class="col-lg-6 col-md-6 col-12">
-									<ul>
-										<li><a href="#"><i class="fa fa-caret-right" aria-hidden="true"></i>Consuling</a></li>
-										<li><a href="#"><i class="fa fa-caret-right" aria-hidden="true"></i>Finance</a></li>
-										<li><a href="#"><i class="fa fa-caret-right" aria-hidden="true"></i>Testimonials</a></li>
-										<li><a href="#"><i class="fa fa-caret-right" aria-hidden="true"></i>FAQ</a></li>
-										<li><a href="#"><i class="fa fa-caret-right" aria-hidden="true"></i>Contact Us</a></li>
-									</ul>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="col-lg-3 col-md-6 col-12">
-						<div class="single-footer">
-							<h2>Open Hours</h2>
-							<p>Lorem ipsum dolor sit ame consectetur adipisicing elit do eiusmod tempor incididunt.</p>
-							<ul class="time-sidual">
-								<li class="day">Monday - Fridayp <span>8.00-20.00</span></li>
-								<li class="day">Saturday <span>9.00-18.30</span></li>
-								<li class="day">Monday - Thusday <span>9.00-15.00</span></li>
-							</ul>
-						</div>
-					</div>
-					<div class="col-lg-3 col-md-6 col-12">
-						<div class="single-footer">
-							<h2>Newsletter</h2>
-							<p>subscribe to our newsletter to get allour news in your inbox.. Lorem ipsum dolor sit amet, consectetur adipisicing elit,</p>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-
-		<div class="copyright">
-			<div class="container">
-				<div class="row">
-					<div class="col-lg-12 col-md-12 col-12">
-						<div class="copyright-content">
-							<p>© Copyright 2023  |  Todos los derechos reservados.</p>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</footer>
+	<footer id="footer" class="footer"></footer>
+	<script>
+		(async () => {
+			await renderFooter('footer');
+		})()
+	</script>
 
 	<script src="./js/jquery.min.js"></script>
 	<script src="./js/jquery-migrate-3.0.0.js"></script>

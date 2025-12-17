@@ -19,6 +19,11 @@
     <None Remove="Backoffice\cool-login.html" />
     <None Remove="WebPages\contact.html" />
     <None Remove="WebPages\css\skin.css" />
+    <None Remove="WebPages\header.html" />
+    <None Remove="WebPages\js\libraries\modalPanel-old.js" />
+    <None Remove="WebPages\login - old.html" />
+    <None Remove="WebPages\modal-panel-old.html" />
+    <None Remove="WebPages\register-old.html" />
     <None Remove="WebPages\test.html" />
   </ItemGroup>
 
