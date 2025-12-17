@@ -118,6 +118,12 @@ class BOReadOnlyList extends HTMLElement {
         await this.loadData();
         this.setupEventHandlers();
         this.applyFilters();
+         
+        var btnCrear = this.shadowRoot.querySelector('#btnCrear'); 
+        btnCrear.addEventListener('click', (e) => {
+            e.preventDefault();
+            window.location.href = "../admin/qr-form-new.html";
+        });
 
         var btnExport = this.shadowRoot.querySelector('#btnExport');  
         btnExport.hidden = !this.showExport; 
