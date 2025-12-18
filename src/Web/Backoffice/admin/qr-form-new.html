@@ -43,7 +43,7 @@
                     <div class="col-lg-12">
                         <div class="pannel-wrapper white-bg mb-30">
                             <div class="panel-heading heading-border">
-                                <h4>Crear un QRCode</h4>
+                                <h4>Crear un Código QR</h4>
                             </div>
                             <div class="panel-body">
 
@@ -184,15 +184,13 @@
     <script type="text/javascript">
         (() => {
 
-            /* =========================
-                Configuración y Constantes
-            ========================== */
+            /* Configuración y Constantes */
             const TIPO_ENTIDAD = {
                 COMERCIO: "64569dd3-4d65-4eed-9f41-ea87b2270a6c",
                 ASOCIACION: "e170a0db-660f-4c34-ae71-3e9b9dbbd92b"
             };
             const API = {
-                // 🔑 CAMBIO: Nuevo Endpoint de creación Full
+                // CAMBIO: Nuevo Endpoint de creación Full
                 QR_CREATE: "https://localhost:44311/api/qr/CrearQRFull",
                 ENTIDADES: "https://localhost:44311/Entidades/ObtenerEntidades",
                 PRODUCTOS: "https://localhost:44311/Productos/FiltrarProductos",
@@ -201,9 +199,7 @@
             const LISTADO_URL = "../admin/qrs-list.html";
             let todasLasEntidades = [];
 
-            /* =========================
-                DOM y Utils
-            ========================== */
+            /*  DOM y Utils */
             const inputId = document.getElementById("inputId");
             const inputToken = document.getElementById("inputToken");
             const payloadInput = document.getElementById("payload");
@@ -233,9 +229,7 @@
                 actualizarVisibilidadOrigen();
             }
 
-            /* =========================
-                Lógica de TTL (Time-To-Live)
-            ========================== */
+            /*Lógica de TTL (Time-To-Live) */
             function calcularTTL(fechaExpiracionInput) {
                 if (!fechaExpiracionInput || String(fechaExpiracionInput).trim() === "") {
                     return null;
@@ -259,9 +253,7 @@
                 return ttlSegundos;
             }
 
-            /* =========================
-                Validación (Todos llenos)
-            ========================== */
+            /* Validación */
             function validarFormulario() {
                 // Estos campos deben estar llenos para que la solicitud al backend tenga sentido
                 const camposAValidar = [
@@ -292,13 +284,10 @@
                     alert("Debes informar todos los campos requeridos.");
                     return false;
                 }
-
                 return true;
             }
 
-            /* =========================
-                Lógica de Carga y Eventos (Funciones inalteradas)
-            ========================== */
+            /*  Lógica de Carga y Eventos  */
             async function cargarEntidades() {
                 const res = await fetch(API.ENTIDADES);
                 todasLasEntidades = await res.json();
@@ -399,9 +388,7 @@
                 }
             }
 
-            /* =========================
-                Crear QR (Guardar con Payload Full)
-            ========================== */
+            /*  Crear QR (Guardar con Payload Full) */
             async function crearQRCode(e) {
                 e.preventDefault();
 
@@ -409,7 +396,7 @@
                     return;
                 }
 
-                // 1. Cálculo de TTL y obtención de IDs
+                // Cálculo de TTL y obtención de IDs
                 const ttlCalculado = calcularTTL(fechaExpInput.value);
                 const origenSeleccionado = listaOrigenes.value;
 
@@ -425,7 +412,7 @@
                     : null;
 
 
-                // 2. CONSTRUCCIÓN DEL PAYLOAD (Mapeado a CreateQRCodeFullRequest)
+                // CONSTRUCCIÓN DEL PAYLOAD (Mapeado a CreateQRCodeFullRequest)
                 const qr = {
                     // Detalle Básico
                     payload: payloadInput.value,
@@ -441,14 +428,14 @@
                     status: estadoNumerico
                 };
 
-                // NOTA: Si IdEntidad o Status no pueden ser null en C# (ya que son int en el record),
+                // Si IdEntidad o Status no pueden ser null en C# (ya que son int en el record),
                 // la validación debe asegurar que no son null. La validación actual lo hace.
                 if (idEntidadValor === null || estadoNumerico === null) {
                     alert("Error de lógica: Entidad y Estado deben ser valores enteros válidos.");
                     return;
                 }
 
-                // 3. Envío al nuevo Endpoint
+                // Envío al nuevo Endpoint
                 const res = await fetch(API.QR_CREATE, {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
@@ -485,13 +472,9 @@
                 if (!inputToken.value) {
                     inputToken.value = generarGUID();
                 }
-
-                // Ahora que estos campos tienen valor, la validación funcionará correctamente.
             }
 
-            /* =========================
-                Inicialización y Event Listeners
-            ========================== */
+            /*  Inicialización y Event Listeners */
             listaEntidades.addEventListener("change", (e) => manejarEntidadSeleccionada(e.target.value));
             btnGuardar.addEventListener("click", crearQRCode);
             btnCancelar.addEventListener("click", e => {
@@ -514,301 +497,6 @@
 
         })();
     </script>
-
-
-    <!--<script type="text/javascript">
-        (() => {
-
-            /* =========================
-                Configuración y Constantes
-            ========================== */
-            const TIPO_ENTIDAD = {
-                COMERCIO: "64569dd3-4d65-4eed-9f41-ea87b2270a6c",
-                ASOCIACION: "e170a0db-660f-4c34-ae71-3e9b9dbbd92b"
-            };
-            const API = {
-                QR_CREATE: "https://localhost:44311/api/qr/CrearQR", // Endpoint de creación
-                ENTIDADES: "https://localhost:44311/Entidades/ObtenerEntidades",
-                PRODUCTOS: "https://localhost:44311/Productos/FiltrarProductos",
-                ACTIVIDADES: "https://localhost:44311/Actividades/FiltrarActividades"
-            };
-            const LISTADO_URL = "../admin/qrs-list.html";
-            let todasLasEntidades = [];
-
-            /* =========================
-                DOM y Utils
-            ========================== */
-            const inputId = document.getElementById("inputId");
-            const inputToken = document.getElementById("inputToken");
-            const payloadInput = document.getElementById("payload");
-            const fechaExpInput = document.getElementById("FechaExpiración");
-            const listaEstados = document.getElementById("listaEstados");
-            const listaEntidades = document.getElementById("listaEntidades");
-            const listaOrigenes = document.getElementById("listaOrigenes");
-            const listaProductos = document.getElementById("listaProductos");
-            const listaActividades = document.getElementById("listaActividades");
-            const divProductosGroup = document.getElementById("divProductosGroup");
-            const divActividadesGroup = document.getElementById("divActividadesGroup");
-            const imagenQRCode = document.getElementById("imagenQRCode");
-            const expiredCheck = document.getElementById("expiredCheck");
-            const btnGuardar = document.getElementById("btnGuardar");
-            const btnCancelar = document.getElementById("btnCancelar");
-
-            const volverAlListado = () => window.location.href = LISTADO_URL;
-            const limpiarSelect = (select, placeholder = "-- Selecciona --") => {
-                select.innerHTML = `<option value="">${placeholder}</option>`;
-            };
-            const ocultar = element => element.classList.add('d-none');
-            const mostrar = element => element.classList.remove('d-none');
-
-            function limpiarFormulario() {
-                imagenQRCode.src = "";
-                expiredCheck.checked = false;
-                actualizarVisibilidadOrigen();
-            }
-
-            /* =========================
-                Lógica de TTL (Time-To-Live)
-            ========================== */
-            /**
-             * Calcula el TTL en segundos a partir de una fecha de expiración.
-             * Simula la lógica: (Fecha de Expiración - Hora Actual) en segundos.
-             * Si el resultado es <= 0, devuelve 1 segundo.
-             * @param {string} fechaExpiracionInput Valor del campo de fecha.
-             * @returns {number | null} TTL en segundos (entero), o null.
-             */
-            function calcularTTL(fechaExpiracionInput) {
-                if (!fechaExpiracionInput || String(fechaExpiracionInput).trim() === "") {
-                    return null;
-                }
-
-                const fechaExpiracion = new Date(fechaExpiracionInput);
-                const ahoraUTC = new Date();
-
-                if (isNaN(fechaExpiracion.getTime())) {
-                    return null; // Fecha no válida
-                }
-
-                // Diferencia en milisegundos (Fecha Fin - Ahora)
-                let diferenciaMs = fechaExpiracion.getTime() - ahoraUTC.getTime();
-
-                if (diferenciaMs <= 0) {
-                    // Si ya expiró o expira ahora, forzar 1 segundo.
-                    diferenciaMs = 1000;
-                }
-
-                // Convertir a segundos y redondear hacia arriba (ej: 0.1s es 1s)
-                const ttlSegundos = Math.ceil(diferenciaMs / 1000);
-
-                return ttlSegundos;
-            }
-
-            /* =========================
-                Validación (Todos llenos)
-            ========================== */
-            function validarFormulario() {
-                // Incluye ID y Token (aunque sean readonly, deben tener valor si el proceso de backend los genera antes)
-                const camposAValidar = [
-                    inputId.value,
-                    inputToken.value,
-                    payloadInput.value,
-                    fechaExpInput.value,
-                    listaEstados.value,
-                    listaEntidades.value,
-                    listaOrigenes.value
-                ];
-
-                const origen = listaOrigenes.value;
-                if (origen === "producto") {
-                    camposAValidar.push(listaProductos.value);
-                } else if (origen === "actividad") {
-                    camposAValidar.push(listaActividades.value);
-                }
-
-                const todosLlenos = camposAValidar.every(valor =>
-                    valor !== null && valor !== undefined && String(valor).trim() !== ""
-                );
-
-                if (!todosLlenos) {
-                    alert("Debes informar TODOS los campos requeridos.");
-                    return false;
-                }
-
-                return true;
-            }
-
-            /* =========================
-                Lógica de Carga y Eventos
-            ========================== */
-            async function cargarEntidades() {
-                const res = await fetch(API.ENTIDADES);
-                todasLasEntidades = await res.json();
-
-                limpiarSelect(listaEntidades, "-- Selecciona entidad --");
-
-                todasLasEntidades
-                    .filter(e => e.activo)
-                    .forEach(e => {
-                        const opt = document.createElement("option");
-                        opt.value = e.id;
-                        opt.textContent = e.nombre;
-                        listaEntidades.appendChild(opt);
-                    });
-            }
-
-            // (Las funciones cargarProductos, cargarActividades, actualizarVisibilidadOrigen,
-            // y manejarEntidadSeleccionada se mantienen igual que en el código anterior,
-            // ya que solo manejan la UI de los desplegables.)
-
-            async function cargarProductos(idEntidad) {
-                limpiarSelect(listaProductos, "-- Selecciona producto --");
-                listaProductos.disabled = true;
-                listaActividades.disabled = true;
-
-                const res = await fetch(`${API.PRODUCTOS}?IdEntidad=${idEntidad}&Activo=true`);
-                const productos = await res.json();
-
-                productos.forEach(p => {
-                    const opt = document.createElement("option");
-                    opt.value = p.id;
-                    opt.textContent = p.nombre;
-                    listaProductos.appendChild(opt);
-                });
-
-                listaProductos.disabled = false;
-            }
-
-            async function cargarActividades(idEntidad) {
-                limpiarSelect(listaActividades, "-- Selecciona actividad --");
-                listaProductos.disabled = true;
-                listaActividades.disabled = true;
-
-                const res = await fetch(`${API.ACTIVIDADES}?IdEntidad=${idEntidad}&Activo=true`);
-                const result = await res.json();
-
-                result.items.forEach(a => {
-                    const opt = document.createElement("option");
-                    opt.value = a.id;
-                    opt.textContent = a.nombre;
-                    listaActividades.appendChild(opt);
-                });
-
-                listaActividades.disabled = false;
-            }
-
-            function actualizarVisibilidadOrigen() {
-                const origen = listaOrigenes.value;
-                ocultar(divProductosGroup);
-                ocultar(divActividadesGroup);
-
-                if (origen === "producto") {
-                    mostrar(divProductosGroup);
-                } else if (origen === "actividad") {
-                    mostrar(divActividadesGroup);
-                }
-            }
-
-            async function manejarEntidadSeleccionada(idEntidad) {
-                limpiarSelect(listaProductos, "-- Selecciona producto --");
-                limpiarSelect(listaActividades, "-- Selecciona actividad --");
-                listaProductos.disabled = true;
-                listaActividades.disabled = true;
-
-                if (!idEntidad) {
-                    listaOrigenes.value = "";
-                    actualizarVisibilidadOrigen();
-                    return;
-                }
-
-                const entidad = todasLasEntidades.find(e => e.id == idEntidad);
-                if (!entidad) {
-                    listaOrigenes.value = "";
-                    actualizarVisibilidadOrigen();
-                    return;
-                }
-
-                let nuevoOrigen = "";
-                if (entidad.idTipoEntidad === TIPO_ENTIDAD.COMERCIO) {
-                    nuevoOrigen = "producto";
-                } else if (entidad.idTipoEntidad === TIPO_ENTIDAD.ASOCIACION) {
-                    nuevoOrigen = "actividad";
-                }
-                listaOrigenes.value = nuevoOrigen;
-
-                actualizarVisibilidadOrigen();
-
-                if (nuevoOrigen === "producto") {
-                    await cargarProductos(idEntidad);
-                } else if (nuevoOrigen === "actividad") {
-                    await cargarActividades(idEntidad);
-                }
-            }
-
-
-            async function crearQRCode(e) {
-                e.preventDefault();
-
-                if (!validarFormulario()) {
-                    return;
-                }
-
-                // USAMOS LA FUNCIÓN DE CÁLCULO DE TTL
-                const ttlCalculado = calcularTTL(fechaExpInput.value);
-
-                // CONSTRUIMOS EL PAYLOAD SOLO CON LOS CAMPOS QUE EL ENDPOINT REQUIERE
-                const qr = {
-                    payload: payloadInput.value,
-                    ttl: ttlCalculado,
-                    origen: listaOrigenes.value
-                };
-
-                const res = await fetch(API.QR_CREATE, {
-                    method: "POST",
-                    headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify(qr)
-                });
-
-                if (!res.ok) {
-                    const errorText = await res.text();
-                    alert(`Error al crear QR (HTTP ${res.status}): ${errorText.substring(0, 100)}...`);
-                    return;
-                }
-
-                // El backend devuelve 200 OK(new QRCodeResponse(qr))
-                // Podríamos leer el ID y Token si quisiéramos mostrarlos:
-                 const nuevoQR = await res.json();
-                // console.log("Nuevo QR ID:", nuevoQR.id);
-
-                alert("QR creado correctamente.");
-
-                //const LISTADO_URL = "../admin/qrs-list.html";
-                window.location.href = "../admin/qrs-form.html?id=" + nuevoQR.id ;
-
-                //volverAlListado();
-            }
-
-            /* =========================
-                Inicialización
-            ========================== */
-            listaEntidades.addEventListener("change", (e) => manejarEntidadSeleccionada(e.target.value));
-            btnGuardar.addEventListener("click", crearQRCode);
-            btnCancelar.addEventListener("click", e => {
-                e.preventDefault();
-                volverAlListado();
-            });
-
-            (async () => {
-                try {
-                    limpiarFormulario();
-                    await cargarEntidades();
-                } catch (err) {
-                    console.error("Error durante la inicialización:", err);
-                    alert("Error al cargar datos iniciales: " + err.message);
-                }
-            })();
-
-        })();
-    </script>-->
 
     <script>
         document.getElementById('expiredCheck').addEventListener('click', function (event) {
