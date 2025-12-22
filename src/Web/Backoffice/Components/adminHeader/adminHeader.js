@@ -1,10 +1,13 @@
-﻿const templatePath = "../Backoffice/Components/adminHeader";
+﻿let templatePath = "../Backoffice/Components/adminHeader";
 const rol_PropName = "rol";
+const isHome_PropName = "is-home";
+
 class AdminMenu extends HTMLElement {
     constructor() {
         super();
         this.attachShadow({ mode: "open" });
         this.rol = null;
+        this.isHome = null;
         this._meanResizeHandler = null;
         this.mobileMenuOpen = false;
 
@@ -12,24 +15,28 @@ class AdminMenu extends HTMLElement {
     }
 
     static get observedAttributes() {
-        return [rol_PropName];
+        return [rol_PropName, isHome_PropName];
     }
 
     attributeChangedCallback(name, oldValue, newValue) {
         if (name === rol_PropName) {
             this.rol = newValue;
         }
+        if (name === isHome_PropName) {
+            this.isHome = newValue;
+        }
     }
 
     async connectedCallback() {
         await this.loadTemplate();
-        this.rol = this.rol || this.getCookie("app-role");
 
+        if (!this.rol) {
+            this.rol = await this.getCookie("app-role");
+        } 
         if (!this.rol) {
             console.error("No se encontró el rol en atributo ni en cookie.");
             return;
-        }
-
+        } 
         await this.loadMenuFromServer();
     }
 
@@ -38,18 +45,33 @@ class AdminMenu extends HTMLElement {
     }
 
     async loadTemplate() {
+
+        if (this.isHome == true || this.isHome == 'true') {
+
+            templatePath = '../Backoffice/Components/adminHeader';
+        }
+        else {
+            templatePath = '../Components/adminHeader';
+        }
+
         const html = await fetch(`${templatePath}/adminHeader.html`).then(r => r.text());
         const css = await fetch(`${templatePath}/adminHeader.css`).then(r => r.text());
 
+        let prefixCss = '../';
+        if (this.isHome == true || this.isHome == 'true') {
+
+            prefixCss = '';
+        }  
+
         // Carga global sin 'link' 
-        const bootstrap = await preloadCss("css/bootstrap.min.css");
-        const animate = await preloadCss("css/animate.min.css");
-        const fontawesome = await preloadCss("css/fontawesome-all.min.css");
-        const etline = await preloadCss("css/et-line-fonts.css");
-        const meanmenu = await preloadCss("css/meanmenu.css");
-        const defaultCss = await preloadCss("css/default.css");
-        const style = await preloadCss("css/style.css");
-        const responsive = await preloadCss("css/responsive.css");
+        const bootstrap = await preloadCss(prefixCss + "css/bootstrap.min.css");
+        const animate = await preloadCss(prefixCss + "css/animate.min.css");
+        const fontawesome = await preloadCss(prefixCss + "css/fontawesome-all.min.css");
+        const etline = await preloadCss(prefixCss + "css/et-line-fonts.css");
+        const meanmenu = await preloadCss(prefixCss + "css/meanmenu.css");
+        const defaultCss = await preloadCss(prefixCss + "css/default.css");
+        const style = await preloadCss(prefixCss + "css/style.css");
+        const responsive = await preloadCss(prefixCss + "css/responsive.css");
 
         const template = document.createElement("template");
         template.innerHTML = ` 
@@ -64,6 +86,18 @@ class AdminMenu extends HTMLElement {
                 ${responsive} 
                
                 ${css}
+
+                .active-menu > a {
+                    color: #e0a800 !important;
+                    font-weight: 600;
+                }
+                 
+                #mobileMenuList li.active-menu > a:hover {
+                   
+                    background-color: rgba(255, 152, 0, 0.15);
+                    color: white;
+                }
+
             </style>
 
             ${html}
@@ -112,6 +146,25 @@ class AdminMenu extends HTMLElement {
         }
     }
 
+    getActiveMenuFromUrl() {
+        const path = window.location.pathname.toLowerCase();
+        const segments = path.split("/").filter(Boolean);
+        return segments.length > 0 ? segments[segments.length-2] : null;
+    }
+
+    getActivePageFromUrl() {
+        const path = window.location.pathname.toLowerCase();
+        const segments = path.split("/").filter(Boolean);
+        return segments.length > 0 ? segments[segments.length - 1] : null; 
+    }
+
+    cortarHastaGuion(texto) {
+        if (!texto) return "";
+
+        const index = texto.indexOf("-");
+        return index === -1 ? texto : texto.substring(0, index);
+    }
+
     // Render dinámico del menú desktop
     async renderMenu(opciones) {
         const ulMenu = this.shadowRoot.querySelector("#ulMenuOptions");
@@ -120,13 +173,22 @@ class AdminMenu extends HTMLElement {
             return;
         }
         ulMenu.innerHTML = "";
-
+         
         const nivel1 = opciones.filter(o => o.nivel === 1);
         const nivel2 = opciones.filter(o => o.nivel === 2);
+
+        let activeMenu = this.getActiveMenuFromUrl();
+        let activePage = this.cortarHastaGuion(this.getActivePageFromUrl());
+         
+        if (activeMenu == 'backoffice') activeMenu = activePage;
 
         nivel1.forEach(op => {
             const li = document.createElement("li");
             const hijos = nivel2.filter(h => h.parent === op.nombre);
+              
+            if (op.nombre.toLowerCase().includes(activeMenu.toLowerCase())) {
+                li.classList.add("active-menu");
+            }  
 
             if (hijos.length === 0) {
                 li.innerHTML = `<a href="${op.path}">${op.nombre}</a>`;
@@ -139,10 +201,13 @@ class AdminMenu extends HTMLElement {
                 hijos.forEach(sub => {
                     const subLi = document.createElement("li");
                     subLi.innerHTML = `<a href="${sub.path}">${sub.nombre}</a>`;
+
+                    if (sub.nombre.toLowerCase().includes(activePage.toLowerCase())) {
+                        subLi.classList.add("active-menu");
+                    }   
                     subUl.appendChild(subLi);
                 });
-            }
-
+            } 
             ulMenu.appendChild(li);
         });
 
@@ -170,13 +235,22 @@ class AdminMenu extends HTMLElement {
         }
 
         mobileList.innerHTML = "";
-
+         
         const nivel1 = opciones.filter(o => o.nivel === 1);
         const nivel2 = opciones.filter(o => o.nivel === 2);
+
+        let activeMenu = this.getActiveMenuFromUrl();
+        let activePage = this.cortarHastaGuion(this.getActivePageFromUrl());
+
+        if (activeMenu == 'backoffice') activeMenu = activePage;
 
         nivel1.forEach(op => {
             const li = document.createElement("li");
             const hijos = nivel2.filter(h => h.parent === op.nombre);
+             
+            if (op.nombre.toLowerCase().includes(activeMenu.toLowerCase())) { 
+                li.classList.add("active-menu");
+            } 
 
             if (hijos.length === 0) {
                 li.innerHTML = `<a href="${op.path}">${op.nombre}</a>`;
@@ -190,10 +264,13 @@ class AdminMenu extends HTMLElement {
                 hijos.forEach(sub => {
                     const subLi = document.createElement("li");
                     subLi.innerHTML = `<a href="${sub.path}">${sub.nombre}</a>`;
+
+                    if (sub.nombre.toLowerCase().includes(activePage.toLowerCase())) {
+                        subLi.classList.add("active-menu");
+                    }  
                     subUl.appendChild(subLi);
                 });
-            }
-
+            } 
             mobileList.appendChild(li);
         });
 
@@ -393,4 +470,4 @@ class AdminMenu extends HTMLElement {
     }
 }
 
-customElements.define("admin-menu", AdminMenu);
+customElements.define("admin-menu", AdminMenu); 

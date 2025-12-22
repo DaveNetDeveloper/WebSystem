@@ -28,6 +28,7 @@
     font-size: 28px;
     margin: 0;
     font-weight: 600;
+    text-align: end;
 }
 
 .c-number span {
@@ -121,7 +122,7 @@
     padding-left: 15px;
 }
  
-user agent stylesheet
+ 
 div {
     display: block;
     unicode-bidi: isolate;

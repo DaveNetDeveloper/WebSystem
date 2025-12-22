@@ -132,7 +132,7 @@ class BOReadOnlyList extends HTMLElement {
                 window.location.href = "../admin/" + this.urlPart + "-form-new.html"; 
             });
         } else if (btnCrear) {
-            btnCrear.remove(); // Esto elimina el botón del DOM por completo si no se debe mostrar
+            btnCrear.remove();
         }
 
         // Lógica del botón de Exportar
@@ -142,10 +142,12 @@ class BOReadOnlyList extends HTMLElement {
         this.initExportDropdowns();  
     }
 
-    //
+    // TOFO crear el resto de entidades/modelos de BD
     async getUrlPart() { 
         let urlPart = undefined;
         switch (this.controller) {
+
+            //
             case "Usuarios":
                 urlPart = "usuario";
                 break;
@@ -181,6 +183,65 @@ class BOReadOnlyList extends HTMLElement {
                 break;
             case "Actividades":
                 urlPart = "actividad";
+                break; 
+
+            //
+            case "TipoActividades":
+                urlPart = "tipo-actividades";
+                break; 
+            case "TipoCampanas":
+                urlPart = "tipo-camapanas";
+                break; 
+            case "MotivosConsulta":
+                urlPart = "tipo-consultas";
+                break; 
+            case "TipoEntidades":
+                urlPart = "tipo-entidades";
+                break; 
+            case "Perfiles":
+                urlPart = "tipo-perfiles";
+                break; 
+            case "TipoEnvioCorreos":
+                urlPart = "tipo-plantillas";
+                break; 
+            case "TipoRecompensas":
+                urlPart = "tipo-recompensas";
+                break; 
+            case "Roles":
+                urlPart = "tipo-roles";
+                break; 
+            case "TipoSegmentos":
+                urlPart = "tipo-segmentos";
+                break; 
+            case "TipoTransaccion":
+                urlPart = "tipo-transaccion"; 
+                break; 
+            //
+            case "Campanas":
+                urlPart = "campanas";
+                break; 
+            case "Segmentos":
+                urlPart = "segmentos";
+                break; 
+            case "SmsNotification":
+                urlPart = "envio-sms";
+                break; 
+            case "InAppNotification":
+                urlPart = "envio-inapps";
+                break; 
+            case "CampanaExecutions":
+                urlPart = "campanas-ejecuciones";
+                break; 
+            case "xxxx":
+                urlPart = "envio-correos";
+                break; 
+
+            //
+            case "Logins":
+                urlPart = "logins";
+                break; 
+            case "xxxx":
+                urlPart = "logs";
                 break; 
         } 
         return urlPart;

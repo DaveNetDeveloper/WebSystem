@@ -2,15 +2,8 @@
 
     constructor() {
         super();
-        this.attachShadow({ mode: "open" });
-
-        // DataSource que podrás reemplazar dinámicamente
-        this.data = [
-            { icon: "fas fa-signal", value: "41,456", label: "Usuarios" },
-            { icon: "far fa-lightbulb", value: "62,236", label: "Visitas" },
-            { icon: "fas fa-chart-line", value: "29,423", label: "Transacciones" },
-            { icon: "far fa-comments", value: "32,220", label: "Contactos" }
-        ];
+        this.attachShadow({ mode: "open" }); 
+        this.data = []; 
     }
 
     async connectedCallback() {
@@ -19,36 +12,61 @@
 
         this.shadowRoot.innerHTML = `
             <style>
+            
             .single-counter {
-    padding: 30px;
-    position: relative;
-    background: #fff;
-}
+                padding: 30px;
+                position: relative;
+                background: #fff;
+            }
 
-               .counter-box {
-                    display: flex;
-                    flex-wrap: wrap; 
-                    font-family: sans-serif; 
-                }
-
-                 
-
-
-                ${css}
+            .counter-box {
+                display: flex;
+                flex-wrap: wrap; 
+                font-family: sans-serif; 
+            }
+             
+            ${css}
 
             </style>
             ${html}
         `;
 
+        await this.getDashboardTotales();
+
         this.renderItems();
     }
 
-    /** Permite cambiar los datos desde fuera */
-    set dataSource(value) {
-        this.data = value;
-        this.renderItems();
-    }
+    async getDashboardTotales() {
+        try {
+            const endpoint = "https://localhost:44311/Dashboard/ObtenerDatosTotales";
 
+            const response = await fetch(endpoint, {
+                method: "GET",
+                headers: {
+                    "Content-Type": "application/json"
+                }
+            });
+
+            if (!response.ok) {
+                throw new Error("Error al obtener los datos del dashboard");
+            }
+
+            const globalData = await response.json();
+
+            this.data = [
+                { icon: "fas fa-user", value: globalData.usuarios, label: "Usuarios" },
+                { icon: "fas fa-clock", value: globalData.entidades, label: "Entidades" },
+                { icon: "fas fa-check", value: globalData.transacciones, label: "Transacciones" },
+                { icon: "fas fa-times", value: globalData.visitas, label: "Visitas" }
+            ];
+
+            this.renderItems();
+
+        } catch (error) {
+            console.error("Dashboard error:", error);
+        }
+    } 
+     
     renderItems() {
         if (!this.shadowRoot) return;
 

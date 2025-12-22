@@ -24,7 +24,19 @@
      
     <div class="body-wrapper body-bg">
         <header>
+            <admin-menu is-home="false"></admin-menu>
+            <script type="module" src="../Components/adminHeader/adminHeader.js"></script>
         </header>
+        <script>
+            window.GlobalCssCache = {};
+            async function preloadCss(path) {
+                if (!window.GlobalCssCache[path]) {
+                    const css = await fetch(path).then(r => r.text());
+                    window.GlobalCssCache[path] = css;
+                }
+                return window.GlobalCssCache[path];
+            }
+        </script>
 
         <div class="dashboard-area pt-30">
             <div class="container">
@@ -36,7 +48,7 @@
                                 <h4>Listado de Códigos QR</h4>
                             </div>
 
-                            <div class="panel-body"> 
+                            <div class="panel-body">
                                 <bo-readonlylist show-create="true" show-actions="true" show-export="true" controller="api/qr" data-source="ObtenerQRs"></bo-readonlylist>
                                 <script type="module" src="../Components/readOnlyList/readOnlyList.js"></script>
 

@@ -82,6 +82,7 @@
         async function Logout() {
             await RevokeRefreshToken();
             await DeleteCookies();
+            await DeletLocalStorage();
             //window.location.href = '../WebPages/home-publica.html';
         }
 
@@ -105,6 +106,13 @@
             cookieNames.forEach(name => {
                 document.cookie = `${name}=; ${EXPIRATION}; path=${COOKIE_PATH};`;
             });
+        }
+
+        async function DeletLocalStorage() {
+
+            localStorage.removeItem("idUsuario");
+            localStorage.removeItem("keepSession");
+            localStorage.removeItem("suscripcion");
         }
 
         async function RevokeRefreshToken() {

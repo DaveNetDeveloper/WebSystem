@@ -35,7 +35,19 @@
 
     <div class="body-wrapper body-bg">
         <header>
+            <admin-menu is-home="false"></admin-menu>
+            <script type="module" src="../Components/adminHeader/adminHeader.js"></script>
         </header>
+        <script>
+            window.GlobalCssCache = {};
+            async function preloadCss(path) {
+                if (!window.GlobalCssCache[path]) {
+                    const css = await fetch(path).then(r => r.text());
+                    window.GlobalCssCache[path] = css;
+                }
+                return window.GlobalCssCache[path];
+            }
+        </script>
         <div class="dashboard-area pt-30">
             <div class="container">
                 <div class="row">
@@ -535,7 +547,8 @@
             
              //   Descargar QR
            
-            btnDescargarQR.addEventListener("click", () => {
+            btnDescargarQR.addEventListener("click", (e) => {
+                e.preventDefault(); 
                 const link = document.createElement("a");
                 link.href = imagenQRCode.src;
                 link.download = `QRCode-${inputId.value}.png`;

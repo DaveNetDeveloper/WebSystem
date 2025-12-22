@@ -17,6 +17,8 @@
 
   <ItemGroup>
     <None Remove="Backoffice\cool-login.html" />
+    <None Remove="Backoffice\marketing\campanas-segmentos-list.html" />
+    <None Remove="Backoffice\marketing\usuarios-segmentos-list.html" />
     <None Remove="WebPages\contact.html" />
     <None Remove="WebPages\css\skin.css" />
     <None Remove="WebPages\header.html" />

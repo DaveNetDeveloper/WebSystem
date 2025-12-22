@@ -24,7 +24,7 @@
 
 	<link rel="stylesheet" href="./css/normalize.css">
 	<link rel="stylesheet" href="./css/style.css">
-	<link rel="stylesheet" href="./css/responsive.css">
+	<link rel="stylesheet" href="./css/responsive.css"> 
 
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 
@@ -37,6 +37,20 @@
 	<script src="./js/libraries/footer.js"></script>
 
 	<style>
+		/**/ /*
+		.fluidvids {
+			width: 100%;
+			max-width: 100%;
+			position: relative;
+		}
+
+		.fluidvids-item {
+			position: absolute;
+			top: 0px;
+			left: 0px;
+			width: 100%;
+			height: 100%;
+		}*/
 
 		.section-title {
 			text-align: center;
@@ -184,29 +198,29 @@
 		if (!idUsuario) {
 			//alert("No hay idUsuario en localStorage");
 			//return;
-		} 
+		}
 
-        document.addEventListener("DOMContentLoaded", async () => {
+		document.addEventListener("DOMContentLoaded", async () => {
 
-            //localStorage.setItem('idUsuario', String(1));
-            await revisarYMostrarNotificaciones(idUsuario);
+			//localStorage.setItem('idUsuario', String(1));
+			await revisarYMostrarNotificaciones(idUsuario);
 		});
 
-		document.querySelector('modal-panel') 
-            .addEventListener('confirm', async(e) => {
+		document.querySelector('modal-panel')
+			.addEventListener('confirm', async (e) => {
 
 				//alert(currentInAppNotification.id);
-                var result = await actualizarNotificacionComoLeida(currentInAppNotification);
-                await delay(1500);
+				var result = await actualizarNotificacionComoLeida(currentInAppNotification);
+				await delay(1500);
 
-                const nuevaLista = await cargarNotificaciones(idUsuario);
+				const nuevaLista = await cargarNotificaciones(idUsuario);
 				//if (nuevaLista.length > 0) { moreInAPps = true; }
 
-                moreInAPps = nuevaLista.length > 0;
+				moreInAPps = nuevaLista.length > 0;
 
 				if (result && moreInAPps) {
-                    await revisarYMostrarNotificaciones(idUsuario);
-				} 
+					await revisarYMostrarNotificaciones(idUsuario);
+				}
 			});
 
 		async function cargarNotificaciones(idUsuario) {
@@ -247,10 +261,10 @@
 
 			//if (lista.length > 1) { moreInAPps = true; }
 
-            const inApp = lista[0];
-            currentInAppNotification = inApp;
-            await delay(1500);
-            await mostrarModal(inApp.titulo, inApp.mensaje);
+			const inApp = lista[0];
+			currentInAppNotification = inApp;
+			await delay(1500);
+			await mostrarModal(inApp.titulo, inApp.mensaje);
 		}
 
 		async function mostrarModal(titulo, mensaje) {
@@ -300,6 +314,19 @@
 		}
 
 	</script>
+
+	<!--<div class="section-block replicable-content stats-1 stats-1-1 pt-150 pb-120 center">
+		<div class="row">
+			<div class="column width-12 tmh-perspective">
+				<div class="stat mb-30" style="backface-visibility: hidden; transition: -webkit-transform 1000ms cubic-bezier(0.42, 0, 0.58, 1), opacity; transform: translate3d(0px, 0px, 0px) rotateX(0deg) rotateY(0deg) rotateZ(0deg) scale3d(1, 1, 1); opacity: 1; visibility: visible; transform-origin: 50% 50% 0px;">
+					<div class="stat-inner text-medium">
+						<p class="mb-20"><span class="counter"><span style="color: brown; margin-left: 100px;" class="stat-counter" data-count-from="0" data-count-to="500">500</span> puntos</span></p>
+						<p class="description text-uppercase">Featured in App World &amp; on iTunes</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>-->
 
 	<section class="newsletter section">
 		<div class="container">
@@ -519,26 +546,25 @@
 	</section>
 	<script>
 
-        (async () => {
+		(async () => {
 
-            const suscripcionU = localStorage.getItem("suscripcion");
+			const suscripcionU = localStorage.getItem("suscripcion");
 			if (suscripcionU != undefined && suscripcionU != null && (suscripcionU == 'true' || suscripcionU == true)) {
 				document.getElementById("btnActivarSuscripcion").style.visibility = "hidden";
 				//alert("El usuario ya está suscrito (Local Storage)!");
 			}
 			else {
-                document.getElementById("btnActivarSuscripcion").style.visibility = "visible";
+				document.getElementById("btnActivarSuscripcion").style.visibility = "visible";
 			}
 
 		})()
 
-
-		async function activarSuscripcion( email) {
+		async function activarSuscripcion(email) {
 
 			const baseUrl = `https://localhost`;
 			const controllerName = `Usuarios`;
 			const port = `44311`;
-            const apiUrl = `${baseUrl}:${port}/${controllerName}/ActivacionSuscripcionWeb`;
+			const apiUrl = `${baseUrl}:${port}/${controllerName}/ActivacionSuscripcionWeb`;
 
 			// IMPORTANT → parámetros en query string
 			const url = `${apiUrl}?email=${encodeURIComponent(email)}`;
@@ -559,21 +585,20 @@
 
 		async function suscribirme() {
 
-            const suscripcionUser = localStorage.getItem("suscripcion");
+			const suscripcionUser = localStorage.getItem("suscripcion");
 
 			if (suscripcionUser != undefined && suscripcionUser != null && suscripcionUser == true) {
 
-                ocultarBotonSuscripcion();
-                alert("El usuario ya está suscrito (Local Storage)!");
+				ocultarBotonSuscripcion();
+				alert("El usuario ya está suscrito (Local Storage)!");
 				return;
 			}
-			else
-			{  
+			else {
 				//const token = "BA03E160-11C9-4A7D-BF5D-9DF60140F893";
 				//const email = "dgomezma+admin@gmail.com";
 				//const loggedUserId = localStorage.getItem("idUsuario");
 
-				var loggedUser = await getUserData(); 
+				var loggedUser = await getUserData();
 
 				if (loggedUser.suscrito == null || loggedUser.suscrito == false) {
 
@@ -590,42 +615,42 @@
 					}
 				}
 				else {
-                    ocultarBotonSuscripcion();
-                    alert("El usuario ya está suscrito (Base de Datos)!");
+					ocultarBotonSuscripcion();
+					alert("El usuario ya está suscrito (Base de Datos)!");
 				}
-            }
+			}
 		}
 
 		async function ocultarBotonSuscripcion() {
-			 
+
 			document.getElementById("btnActivarSuscripcion").style.visibility = "hidden";
 		}
 
-        async function getUserData() {
-			 
-            const baseUrl = `https://localhost`;
-            const controllerName = `Usuarios`;
-            const port = `44311`;
-            const apiUrl = `${baseUrl}:${port}/${controllerName}/FiltrarUsuarios`;
+		async function getUserData() {
 
-            const url = `${apiUrl}?filters.Id=${idUsuario}&filters.Activo=true`;
+			const baseUrl = `https://localhost`;
+			const controllerName = `Usuarios`;
+			const port = `44311`;
+			const apiUrl = `${baseUrl}:${port}/${controllerName}/FiltrarUsuarios`;
 
-            const response = await fetch(url, {
-                method: "GET",
-                //redentials: "include",
-                headers: { "Content-Type": "application/json" }
-            });
+			const url = `${apiUrl}?filters.Id=${idUsuario}&filters.Activo=true`;
 
-            if (!response.ok) {
-                console.error("Error al obtener el usuario", response.status);
-            } 
+			const response = await fetch(url, {
+				method: "GET",
+				//redentials: "include",
+				headers: { "Content-Type": "application/json" }
+			});
+
+			if (!response.ok) {
+				console.error("Error al obtener el usuario", response.status);
+			}
 			const data = await response.json();
-			 
-            if (data != null && data.length > 0 && data[0] != null) {
+
+			if (data != null && data.length > 0 && data[0] != null) {
 				return data[0];
 			}
 			return null;
-        }
+		}
 
 	</script>
 
@@ -818,7 +843,7 @@
 			}
 		}
 
-		//  Lógica de carga de FAQS 
+		//  Lógica de carga de FAQS
 		GetFAQS('ObtenerFAQS')
 			.then(faqs => {
 				faqs.sort(function (a, b) {
@@ -864,6 +889,6 @@
 	<script src="./js/jquery.magnific-popup.min.js"></script>
 	<script src="http://cdnjs.cloudflare.com/ajax/libs/waypoints/2.0.3/waypoints.min.js"></script>
 	<script src="./js/bootstrap.min.js"></script>
-	<script src="./js/main.js"></script>
+	<script src="./js/main.js"></script> 
 </body>
 </html>
