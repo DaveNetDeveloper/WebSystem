@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>  Administración / Entidades</title>
+    <title>  Marketing / Notificaciones SMS</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -45,12 +45,11 @@
                         <div class="pannel-wrapper white-bg mb-30">
 
                             <div class="panel-heading heading-border">
-                                <h4>Listado de Entidades</h4>
+                                <h4>Listado de Notificaciones SMS</h4>
                             </div>
 
-                            <div class="panel-body">
-
-                                <bo-readonlylist show-export="true" controller="Entidades" data-source="ObtenerEntidades"></bo-readonlylist>
+                            <div class="panel-body"> 
+                                <bo-readonlylist show-export="true" controller="SmsNotification" data-source="ObtenerSmsNotifications"></bo-readonlylist>
                                 <script type="module" src="../Components/readOnlyList/readOnlyList.js"></script>
 
                             </div>

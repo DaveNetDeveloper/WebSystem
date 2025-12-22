@@ -44,7 +44,7 @@ namespace API.Controllers
         /// 
         /// </summary>
         /// <returns></returns>
-        [Authorize]
+        //[Authorize]
         [HttpGet("ObtenerInAppNotifications")]
         public async Task<IActionResult> GetAllAsync()
         {

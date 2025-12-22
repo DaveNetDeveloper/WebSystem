@@ -3,14 +3,14 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>  Informes / Logs</title>
+    <title>  Configuración / Tipos de Transacción</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!--<link rel="manifest" href="site.webmanifest">-->
-    <link rel="shortcut icon" type="image/x-icon" href="../img/favicon.png">
+    <link rel="shortcut icon" type="image/x-icon" href="img/favicon.png">
 
-    <!-- <link rel="stylesheet" href="../css/fontawesome-all.min.css">
+    <!-- <link rel="stylesheet" href="css/fontawesome-all.min.css">
     <link rel="stylesheet" href="../css/et-line-fonts.css">
     <link rel="stylesheet" href="../css/themify-icons.css">-->
     <!--<link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css">-->
@@ -45,12 +45,12 @@
                         <div class="pannel-wrapper white-bg mb-30">
 
                             <div class="panel-heading heading-border">
-                                <h4>Listado de Logs</h4>
+                                <h4>Listado de Tipos de Transacción</h4>
                             </div>
 
                             <div class="panel-body">
 
-                                <bo-readonlylist show-export="true" controller="Logs" data-source="ObtenerLogs"></bo-readonlylist>
+                                <bo-readonlylist show-actions="true" show-export="true" controller="TipoTransaccion" data-source="ObtenerTipoTransacciones"></bo-readonlylist>
                                 <script type="module" src="../Components/readOnlyList/readOnlyList.js"></script>
 
                             </div>

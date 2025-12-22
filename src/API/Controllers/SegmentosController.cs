@@ -28,7 +28,7 @@ namespace API.Controllers
             _exportConfig = options.Value ?? throw new ArgumentNullException(nameof(options));
         }
 
-        [Authorize]
+        //[Authorize]
         [HttpGet("ObtenerSegmentos")]
         public async Task<IActionResult> GetAllAsync()
         {

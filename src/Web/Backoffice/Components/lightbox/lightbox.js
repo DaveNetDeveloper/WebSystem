@@ -67,8 +67,6 @@
                 .mfp-arrow-right:before {
                     content: ">";
                 }
-                 
-
 
                 ${css}
 
@@ -142,6 +140,7 @@
       
     async iniciarLightbox() {
         setTimeout(() => {
+
             const anchors = Array.from(
                 this.shadowRoot.querySelectorAll(".popup-image-gallery")
             );
@@ -152,7 +151,6 @@
                 type: "image"
             }));
 
-            // Añadir evento a cada imagen
             anchors.forEach((a, index) => {
                 a.addEventListener("click", e => {
                     e.preventDefault();
@@ -161,16 +159,12 @@
                         items: items,
                         type: "image",
                         gallery: {
-                            enabled: true,
-                            navigateByImgClick: true
-                        },
-                        index: index 
-                    });
+                            enabled: true
+                        }
+                    }, index); 
                 });
-            });
+            });  
         }, 100);
-    }
-     
-}
-
+    } 
+} 
 customElements.define("app-lightbox", LightBoxComponent);
