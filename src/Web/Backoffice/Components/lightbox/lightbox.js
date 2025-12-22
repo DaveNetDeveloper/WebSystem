@@ -123,18 +123,18 @@
                 </a>
             </div>
              <div class="col-lg-3 col-md-6 mb-30">
-                <a class="popup-image-gallery" href="${imgPath}/02-MercatSantAndreu.jpeg">
-                    <img  style="height: 165px;" src="${imgPath}/02-MercatSantAndreu.jpeg" alt="02-MercatSantAndreu.jpeg">
+                <a class="popup-image-gallery" href="${imgPath}/Bostik.jpg">
+                    <img  style="height: 165px;" src="${imgPath}/Bostik.jpg" alt="Imgen Nau Bostik">
                 </a>
             </div>
              <div class="col-lg-3 col-md-6 mb-30">
-               <a class="popup-image-gallery" href="${imgPath}/02-MercatSantAndreu.jpg">
-                    <img  style="height: 165px;" src="${imgPath}/02-MercatSantAndreu.jpg" alt="02-MercatSantAndreu.jpg">
+               <a class="popup-image-gallery" href="${imgPath}/EspaiGrafic.jpg">
+                    <img  style="height: 165px;" src="${imgPath}/EspaiGrafic.jpg" alt="Espai Grafic">
                 </a>
             </div>
              <div class="col-lg-3 col-md-6 mb-30">
-               <a class="popup-image-gallery" href="${imgPath}/03-PlataformaCarnica.jpg">
-                    <img  style="height: 165px;" src="${imgPath}/03-PlataformaCarnica.jpg" alt="03-PlataformaCarnica.jpg">
+               <a class="popup-image-gallery" href="${imgPath}/CalTon.jpg">
+                    <img  style="height: 165px;" src="${imgPath}/CalTon.jpg" alt="Cal Ton">
                 </a>
             </div>  
         `;
