@@ -239,6 +239,10 @@
 					contenedor.appendChild(nuevaImagen3);
 
 
+					setTimeout(() => {
+						inicializarSlider();
+					}, 0);
+
 					var h3Entidad = document.getElementById("h3Entidad");
 					h3Entidad.innerHTML = entidad.nombre;
 
@@ -274,6 +278,16 @@
 			});
 
 
+		function inicializarSlider() {
+			$('.pf-details-slider').not('.slick-initialized').slick({
+				slidesToShow: 1,
+				slidesToScroll: 1,
+				autoplay: true,
+				arrows: true,
+				dots: true
+			});
+		}
+
 		function contactar() {
 
 			window.location.href = `contactar.html?id=${paramIdEntidad}&idTipo=${tipoEntidad}`;
@@ -286,7 +300,7 @@
 				<div class="col-lg-12">
 					<div class="section-title" style=" padding: 0px;">
 						<h3 id="tituloDetalles" style="font-size: 32px;">Explora los productos/actividades de la entidad</h3>
-						<p>Lorem ipsum dolor sit amet consectetur adipiscing elit praesent aliquet. pretiumts</p>
+						<p>Descubre todas las actividades que organiza la asociación y participa en talleres, eventos y proyectos pensados para ti.</p>
 					</div>
 				</div>
 			</div>
@@ -337,13 +351,13 @@
 
 					if (lista == null || lista.length === 0) {
 						contenedor.innerHTML = `
-							<div class="col-lg-12" style="padding: 100px;text-align:center;">
-								<h4 id="NoContent" style="color: burlywood;">No se han encontrado actividades activas.</h3>
-								<p style="color: black;text-align: center;font-size: 15px;  margin-top: 15px;">Vuelve más tarde para encontrar las nuevas actividades de esta asociación.</p>
-								<div style="padding: 50px 0;">
-									<img src="img/no-content.png" alt="no content" style="transition-duration: 700ms;width: 10%;">
-								</div>
-							</div> `;
+								<div class="col-lg-12" style="padding: 100px;text-align:center;">
+									<h4 id="NoContent" style="color: burlywood;">No se han encontrado actividades activas.</h3>
+									<p style="color: black;text-align: center;font-size: 15px;  margin-top: 15px;">Vuelve más tarde para encontrar las nuevas actividades de esta asociación.</p>
+									<div style="padding: 50px 0;">
+										<img src="img/no-content.png" alt="no content" style="transition-duration: 700ms;width: 10%;">
+									</div>
+								</div> `;
 						return;
 					}
 
@@ -381,16 +395,16 @@
 
 					if (!hasProducts) {
 						contenedor.innerHTML = `
-							<div class="col-lg-12" style="padding: 100px;text-align:center;">
-								<h4 id="NoContent" style="color: burlywood;">No se han encontrado productos activos.</h3>
-								<p style="color: black;text-align: center;font-size: 15px;color: #888; margin-top: 15px;">
-									Vuelve más tarde para encontrar los nuevos productos de este comercio.
-								</p>
-								<div style="padding: 50px 0;">
-									<img src="img/no-content.png" alt="no content" style="transition-duration: 700ms;width: 10%;">
-								</div>
+								<div class="col-lg-12" style="padding: 100px;text-align:center;">
+									<h4 id="NoContent" style="color: burlywood;">No se han encontrado productos activos.</h3>
+									<p style="color: black;text-align: center;font-size: 15px;color: #888; margin-top: 15px;">
+										Vuelve más tarde para encontrar los nuevos productos de este comercio.
+									</p>
+									<div style="padding: 50px 0;">
+										<img src="img/no-content.png" alt="no content" style="transition-duration: 700ms;width: 10%;">
+									</div>
 
-							</div> `;
+								</div> `;
 						return;
 					}
 				})
@@ -565,51 +579,61 @@
 					<div class="blog-comments">
 						<h2>Todos los comentarios</h2>
 						<div class="comments-body">
-							<!-- Single Comments -->
+
 							<div class="single-comments">
 								<div class="main">
 									<div class="head">
 										<img src="img/author1.jpg" alt="#">
 									</div>
 									<div class="body">
-										<h4>Afsana Mimi</h4>
-										<div class="comment-meta"><span class="meta"><i class="fa fa-calendar"></i>March 05, 2019</span><span class="meta"><i class="fa fa-clock-o"></i>03:38 AM</span></div>
-										<p style="color: black; font-size: 15px; line-height: 30px;">Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words Mirum est notare quam littera gothica, quam nunc putamus parum claram, anteposuerit litterarum formas</p>
-										<!--<a href="#"><i class="fa fa-reply"></i>replay</a>-->
+										<h4>Laura M.</h4>
+										<div class="comment-meta">
+											<span class="meta"><i class="fa fa-calendar"></i>Noviembre 10, 2025</span>
+											<span class="meta"><i class="fa fa-clock-o"></i>09:15 AM</span>
+										</div>
+										<p style="color: black; font-size: 15px; line-height: 30px;">
+											Excelente atención y muy fácil acceder a los servicios de la entidad. Me gustó la experiencia general.
+										</p>
 									</div>
 								</div>
 							</div>
-							<!--/ End Single Comments -->
-							<!-- Single Comments -->
+
 							<div class="single-comments left">
 								<div class="main">
 									<div class="head">
 										<img src="img/author2.jpg" alt="#">
 									</div>
 									<div class="body">
-										<h4>Naimur Rahman</h4>
-										<div class="comment-meta"><span class="meta"><i class="fa fa-calendar"></i>March 05, 2019</span><span class="meta"><i class="fa fa-clock-o"></i>03:38 AM</span></div>
-										<p style="color: black; font-size: 15px; line-height: 30px;">Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words Mirum est notare quam littera gothica, quam nunc putamus parum claram, anteposuerit litterarum formas</p>
-										<!--<a href="#"><i class="fa fa-reply"></i>replay</a>-->
+										<h4>Javier R.</h4>
+										<div class="comment-meta">
+											<span class="meta"><i class="fa fa-calendar"></i>Octubre 22, 2025</span>
+											<span class="meta"><i class="fa fa-clock-o"></i>03:45 PM</span>
+										</div>
+										<p style="color: black; font-size: 15px; line-height: 30px;">
+											Muy buena organización y variedad de actividades. Recomiendo visitar esta entidad a todos.
+										</p>
 									</div>
 								</div>
 							</div>
-							<!--/ End Single Comments -->
-							<!-- Single Comments -->
+
 							<div class="single-comments">
 								<div class="main">
 									<div class="head">
 										<img src="img/author3.jpg" alt="#">
 									</div>
 									<div class="body">
-										<h4>Suriya Molharta</h4>
-										<div class="comment-meta"><span class="meta"><i class="fa fa-calendar"></i>March 05, 2019</span><span class="meta"><i class="fa fa-clock-o"></i>03:38 AM</span></div>
-										<p style="color: black; font-size: 15px; line-height: 30px;">Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words Mirum est notare quam littera gothica, quam nunc putamus parum claram, anteposuerit litterarum formas</p>
-										<!--<a href="#"><i class="fa fa-reply"></i>replay</a>-->
+										<h4>Sofía P.</h4>
+										<div class="comment-meta">
+											<span class="meta"><i class="fa fa-calendar"></i>Septiembre 15, 2025</span>
+											<span class="meta"><i class="fa fa-clock-o"></i>11:20 AM</span>
+										</div>
+										<p style="color: black; font-size: 15px; line-height: 30px;">
+											La atención al cliente fue excelente y los servicios ofrecidos cumplen con las expectativas. Muy recomendable.
+										</p>
 									</div>
 								</div>
 							</div>
-							<!--/ End Single Comments -->
+
 						</div>
 					</div>
 				</div>
@@ -617,71 +641,70 @@
 		</div>
 	</section>
 
-	<section style="padding: 50px 0px 150px; " class="pricing-table section">
+	<section style="padding: 50px 0px 150px;" class="pricing-table section">
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-12">
 					<div class="section-title">
-						<h2>Caracteristicas de la entidad</h2>
-						<p>Lorem ipsum dolor sit amet consectetur adipiscing elit praesent aliquet. pretiumts</p>
+						<h2>Características de la entidad</h2>
+						<p>Descubre los aspectos principales que definen a la entidad y qué la hace especial para sus usuarios.</p>
 					</div>
 				</div>
 			</div>
 			<div class="row">
+
 				<div class="col-lg-4 col-md-12 col-12">
-					<div class="single-table">
+					<div class="single-table" style="max-height: 440px; min-height: 440px;">
 						<div class="table-head">
-							<div class="icon">
-								<i class="icofont icofont-file-check"></i>
-							</div>
+							<div class="icon"><i class="icofont icofont-file-check"></i></div>
 							<h4 class="title">Calidad</h4>
 						</div>
 						<ul class="table-list">
-							<li><i class="icofont icofont-ui-check"></i>Lorem ipsum dolor sit</li>
-							<li><i class="icofont icofont-ui-check"></i>Cubitur sollicitudin fentum</li>
-							<li class="cross"><i class="icofont icofont-ui-close"></i>Nullam interdum enim</li>
-							<li class="cross"><i class="icofont icofont-ui-close"></i>Donec ultricies metus</li>
-							<li class="cross"><i class="icofont icofont-ui-close"></i>Pellentesque eget nibh</li>
+							<li><i class="icofont icofont-ui-check"></i>Servicios confiables y consistentes</li>
+							<li><i class="icofont icofont-ui-check"></i>Atención profesional y cercana</li>
+							<li class="cross"><i class="icofont icofont-ui-close"></i>Disponibilidad limitada en horarios</li>
+							<li class="cross"><i class="icofont icofont-ui-close"></i>Espacios reducidos para actividades</li>
+							<li class="cross"><i class="icofont icofont-ui-close"></i>Algunos servicios no incluidos</li>
 						</ul>
 					</div>
 				</div>
+
 				<div class="col-lg-4 col-md-12 col-12">
-					<div class="single-table">
+					<div class="single-table" style="max-height: 440px; min-height: 440px;">
 						<div class="table-head">
-							<div class="icon">
-								<i class="icofont-wand"></i>
-							</div>
+							<div class="icon"><i class="icofont-wand"></i></div>
 							<h4 class="title">Disponibilidad</h4>
 						</div>
 						<ul class="table-list">
-							<li><i class="icofont icofont-ui-check"></i>Lorem ipsum dolor sit</li>
-							<li><i class="icofont icofont-ui-check"></i>Cubitur sollicitudin fentum</li>
-							<li><i class="icofont icofont-ui-check"></i>Nullam interdum enim</li>
-							<li class="cross"><i class="icofont icofont-ui-close"></i>Donec ultricies metus</li>
-							<li class="cross"><i class="icofont icofont-ui-close"></i>Pellentesque eget nibh</li>
+							<li><i class="icofont icofont-ui-check"></i>Atención en días hábiles</li>
+							<li><i class="icofont icofont-ui-check"></i>Reserva de actividades online</li>
+							<li><i class="icofont icofont-ui-check"></i>Atención telefónica y digital</li>
+							<li class="cross"><i class="icofont icofont-ui-close"></i>Servicios limitados fines de semana</li>
+							<li class="cross"><i class="icofont icofont-ui-close"></i>Capacidad máxima por sesión</li>
 						</ul>
 					</div>
 				</div>
+
 				<div class="col-lg-4 col-md-12 col-12">
-					<div class="single-table">
+					<div class="single-table" style="max-height: 440px; min-height: 440px;">
 						<div class="table-head">
-							<div class="icon">
-								<i class="icofont icofont-menu-alt"></i>
-							</div>
+							<div class="icon"><i class="icofont icofont-menu-alt"></i></div>
 							<h4 class="title">Variedad</h4>
 						</div>
 						<ul class="table-list">
-							<li><i class="icofont icofont-ui-check"></i>Lorem ipsum dolor sit</li>
-							<li><i class="icofont icofont-ui-check"></i>Cubitur sollicitudin fentum</li>
-							<li><i class="icofont icofont-ui-check"></i>Nullam interdum enim</li>
-							<li><i class="icofont icofont-ui-check"></i>Donec ultricies metus</li>
-							<li><i class="icofont icofont-ui-check"></i>Pellentesque eget nibh</li>
+							<li><i class="icofont icofont-ui-check"></i>Diversidad de actividades y servicios</li>
+							<li><i class="icofont icofont-ui-check"></i>Opciones para distintos perfiles de usuario</li>
+							<li><i class="icofont icofont-ui-check"></i>Eventos periódicos y talleres</li>
+							<li><i class="icofont icofont-ui-check"></i>Programas de fidelización</li>
+							<li><i class="icofont icofont-ui-check"></i>Promociones y ventajas exclusivas</li>
 						</ul>
 					</div>
 				</div>
+
 			</div>
 		</div>
 	</section>
+
 
 	<footer id="footer" class="footer"></footer>
 	<script>

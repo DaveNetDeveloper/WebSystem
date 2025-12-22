@@ -21,6 +21,7 @@
     <None Remove="Backoffice\marketing\usuarios-segmentos-list.html" />
     <None Remove="WebPages\contact.html" />
     <None Remove="WebPages\css\skin.css" />
+    <None Remove="WebPages\footer.html" />
     <None Remove="WebPages\header.html" />
     <None Remove="WebPages\js\libraries\modalPanel-old.js" />
     <None Remove="WebPages\login - old.html" />

@@ -37,20 +37,91 @@
 	<script src="./js/libraries/footer.js"></script>
 
 	<style>
-		/**/ /*
-		.fluidvids {
-			width: 100%;
-			max-width: 100%;
-			position: relative;
-		}
 
-		.fluidvids-item {
-			position: absolute;
-			top: 0px;
-			left: 0px;
-			width: 100%;
-			height: 100%;
-		}*/
+        .video-image {
+            background-image: url(img/videoImage.png);
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            height: 350px;
+            position: relative;
+        }
+
+        /*=======================
+			Start Fun Facts CSS
+		=========================*/
+        .fun-facts {
+            position: relative;
+        }
+
+            .fun-facts.section {
+                padding: 120px 0;
+            }
+
+        .fun-facts {
+            background: url('img/fun-bg.jpg');
+            background-size: cover;
+            background-repeat: no-repeat;
+        }
+
+            .fun-facts .single-fun {
+            }
+
+                .fun-facts .single-fun i {
+                    background-color: #1a76d1;
+                    position: absolute;
+                    left: 0;
+                    font-size: 62px;
+                    color: white;
+                    height: 70px;
+                    width: 70px;
+                    line-height: 67px;
+                    font-size: 28px;
+                    text-align: center;
+                    padding: 0;
+                    margin: 0;
+                    border: 2px solid #fff;
+                    border-radius: 0px;
+                    top: 50%;
+                    margin-top: -35px;
+                    -webkit-transition: all 0.4s ease;
+                    -moz-transition: all 0.4s ease;
+                    transition: all 0.4s ease;
+                    border-radius: 50%;
+                }
+
+                .fun-facts .single-fun:hover i {
+                    color: white;
+                    background: goldenrod;
+                    border-color: transparent;
+                    cursor: pointer;
+                }
+
+                .fun-facts .single-fun .content {
+                    padding-left: 80px;
+                }
+
+                .fun-facts .single-fun span {
+                    color: #1a76d1;
+                    font-weight: 600;
+                    font-size: 30px;
+                    position: relative;
+                    display: block;
+                    -webkit-transition: all 0.4s ease;
+                    -moz-transition: all 0.4s ease;
+                    transition: all 0.4s eas;
+                    display: block;
+                    margin-bottom: 7px;
+                }
+
+                .fun-facts .single-fun p {
+                    color: black;
+                    font-size: 15px;
+                }
+                .fun-facts .single-fun span:hover {
+                    color: goldenrod; 
+					cursor:pointer;
+                }
 
 		.section-title {
 			text-align: center;
@@ -138,9 +209,7 @@
 
 		.flecha {
 			font-size: 20px;
-		}
-
-
+		} 
 
 		.modal-contenido {
 			/* Por defecto */
@@ -154,6 +223,22 @@
 			opacity: 1;
 			transform: scale(1);
 		}
+
+        .single-table-parent :hover {
+            background-color: aliceblue;
+            border: 1px #1A76D1 solid;
+        }
+
+        .single-table :hover {
+            background-color: aliceblue;
+            border: 0;
+        }
+
+        .pricing-table .btn { 
+            width: 100%;
+            color: #fff;
+        }
+
 	</style>
 
 </head>
@@ -175,30 +260,31 @@
 
 	<header id="headerHomePrivada" class="header"></header>
 	<script>
+		 
 		(async () => {
 			await renderHeader('home', 'headerHomePrivada');
-			await setUserData();
+			await setUserData(); 
 		})()
 	</script>
 
 	<div class="container">
 		<div class="row ">
-			<div class="col-lg-6  col-12">
+			<div class="col-lg-6 col-12">
 				<modal-panel id="modalPanel-InAPp"></modal-panel>
 			</div>
 		</div>
 	</div>
 
 	<script>
-
+         
 		let currentInAppNotification = null;
 		let moreInAPps = false;
 		let idUsuario = localStorage.getItem('idUsuario');
 
-		if (!idUsuario) {
-			//alert("No hay idUsuario en localStorage");
-			//return;
-		}
+		//if (!idUsuario) {
+		//	//alert("No hay idUsuario en localStorage");
+		//	//return;
+		//}
 
 		document.addEventListener("DOMContentLoaded", async () => {
 
@@ -315,317 +401,52 @@
 
 	</script>
 
-	<!--<div class="section-block replicable-content stats-1 stats-1-1 pt-150 pb-120 center">
-		<div class="row">
-			<div class="column width-12 tmh-perspective">
-				<div class="stat mb-30" style="backface-visibility: hidden; transition: -webkit-transform 1000ms cubic-bezier(0.42, 0, 0.58, 1), opacity; transform: translate3d(0px, 0px, 0px) rotateX(0deg) rotateY(0deg) rotateZ(0deg) scale3d(1, 1, 1); opacity: 1; visibility: visible; transform-origin: 50% 50% 0px;">
-					<div class="stat-inner text-medium">
-						<p class="mb-20"><span class="counter"><span style="color: brown; margin-left: 100px;" class="stat-counter" data-count-from="0" data-count-to="500">500</span> puntos</span></p>
-						<p class="description text-uppercase">Featured in App World &amp; on iTunes</p>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>-->
-
-	<section class="newsletter section">
+	<section class="newsletter section " style="padding: 50px 0;">
 		<div class="container">
 			<div class="row ">
-				<div class="col-lg-6  col-12">
-					<div class="subscribe-text ">
-						<h6>Explora tu entorno</h6>
-						<p style="color:white" class="">Descubre entidades cercanas.</p>
-					</div>
-				</div>
-				<div class="col-lg-6  col-12">
-					<div class="subscribe-form ">
-						<div class="newsletter-inner">
-							<input id="textEntidad" name="textEntidad" placeholder="Buscar entidad" class="common-input" onfocus="this.placeholder = ''"
-								   onblur="this.placeholder = 'Buscar entidad'" type="text">
-							<button id="btnBuscarEntidad" class="btn" onclick="redirigirExplorar()">BUSCAR</button>
-						</div>
-					</div>
+				<div class="col-lg-12  col-12">
 				</div>
 			</div>
 		</div>
 	</section>
-	<script>
-		function redirigirExplorar() {
-
-			const textEntidadValue = document.getElementById('textEntidad').value;
-			if (textEntidadValue.trim() == '') {
-				alert('Por favor, ingresa un valor válido para la búsqueda.');
-			}
-			else {
-				window.location.href = `explorar.html?name=${encodeURIComponent(textEntidadValue)}`;
-			}
-		}
-	</script>
-
-	<section class="pricing-table section">
+	<div id="fun-facts" class="fun-facts section" style="padding: 100px 0;">
 		<div class="container">
-			<!-- <div class="row">
-				<div class="col-lg-12">
-					<div class="section-title">
-						<h2>We Provide You The Best Treatment In Resonable Price</h2>-->
-			<!--<img src="img/section-img.png" alt="#">-->
-			<!--<p>Lorem ipsum dolor sit amet consectetur adipiscing elit praesent aliquet. pretiumts</p>
-					</div>
-				</div>
-			</div> -->
 			<div class="row">
-				<div class="col-lg-6 col-md-12 col-12">
-					<div class="single-table">
-						<div class="table-head">
-							<div class="icon">
-								<i class="icofont icofont-briefcase"></i>
+				<div class="col-lg-2 col-md-2 col-2">
+				</div>
+				<div class="col-lg-3 col-md-3 col-3">
+					<div class="single-fun">
+						<i class="icofont icofont-heart-alt"></i>
+						<div class="content">
+							<div class="row">
+								<p style="padding-left: 10px;">Sigues a </p>
+								<span style="padding-left: 10px; padding-right: 10px;" id="entidadesUsuario" class="counter">0</span>
+								<p> Entidades</p>
 							</div>
-							<h4 class="title">Comercios y locales</h4>
-						</div>
-						<p>Lorem ipsum dolor sit,cubitur sollicitudin fentum,Nullam interdum enim.</p>
-						<div class="table-bottom">
-							<a id="buscarComercios" class="btn" href="explorar.html?type=64569dd3-4d65-4eed-9f41-ea87b2270a6c">EXPLORAR COMERCIOS</a>
 						</div>
 					</div>
 				</div>
-				<div class="col-lg-6 col-md-12 col-12">
-					<div class="single-table">
-						<div class="table-head">
-							<div class="icon">
-								<i class="icofont icofont-group"></i>
+				<div class="col-lg-2 col-md-2 col-2">
+				</div>
+				<div class="col-lg-3 col-md-3 col-3">
+					<div class="single-fun">
+						<i class="icofont icofont-money-bag"></i>
+						<div class="content">
+							<div class="row">
+								<p style="padding-left: 10px;">Tienes </p>
+								<span style="padding-left: 10px; padding-right: 10px;" id="puntoUsuario" class="counter">0</span>
+								<p> Puntos</p>
 							</div>
-							<h4 class="title">Asociaciones Culturales</h4>
-						</div>
-						<p>Lorem ipsum dolor sit,cubitur sollicitudin fentum,Nullam interdum enim.</p>
-						<div class="table-bottom">
-							<a id="buscarAsociaciones" class="btn" href="explorar.html?type=e170a0db-660f-4c34-ae71-3e9b9dbbd92b">EXPLORAR ASOCIACIONES</a>
 						</div>
 					</div>
 				</div>
-			</div>
-		</div>
-	</section>
-
-	<section class="Feautes section">
-		<div class="container">
-			<div class="row">
-				<div class="col-lg-12">
-					<div class="section-title" style="padding-top: 60px;">
-						<h2>Descubre entidades en tu barrio y crea nuevas conexiones</h2>
-						<!--<img src="img/section-img.png" alt="#">
-						<p>Lorem ipsum dolor sit amet consectetur adipiscing elit praesent aliquet. pretiumts</p>-->
-					</div>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-lg-4 col-12">
-					<div class="single-features">
-						<div class="signle-icon">
-							<i class="icofont-link"></i>
-						</div>
-						<h3>Conecta</h3>
-						<p>Lorem ipsum sit, consectetur adipiscing elit. Maecenas mi quam vulputate.</p>
-					</div>
-				</div>
-				<div class="col-lg-4 col-12">
-					<div class="single-features">
-						<div class="signle-icon">
-							<i class="icofont-eye-open"></i>
-						</div>
-						<h3>Reconoce</h3>
-						<p>Lorem ipsum sit, consectetur adipiscing elit. Maecenas mi quam vulputate.</p>
-					</div>
-				</div>
-				<div class="col-lg-4 col-12">
-					<div class="single-features last">
-						<div class="signle-icon">
-							<i class="icofont-home"></i>
-						</div>
-						<h3>Cerca de casa</h3>
-						<p>Lorem ipsum sit, consectetur adipiscing elit. Maecenas mi quam vulputate.</p>
-					</div>
-				</div>
-			</div>
-		</div>
-	</section>
-
-	<div id="fun-facts" class="fun-facts section overlay">
-		<div class="container">
-			<div class="row">
-				<div class="col-lg-3 col-md-6 col-12">
-					<div class="single-fun">
-						<i class="icofont icofont-home"></i>
-						<div class="content">
-							<span class="counter">74</span>
-							<p>Entidades asociadas</p>
-						</div>
-					</div>
-				</div>
-				<div class="col-lg-3 col-md-6 col-12">
-					<div class="single-fun">
-						<i class="icofont icofont-user-alt-3"></i>
-						<div class="content">
-							<span class="counter">340</span>
-							<p>Usuarios activos</p>
-						</div>
-					</div>
-				</div>
-				<div class="col-lg-3 col-md-6 col-12">
-					<div class="single-fun">
-						<i class="icofont-heart-alt"></i>
-						<div class="content">
-							<span class="counter">600</span>
-							<p>Conexiones</p>
-						</div>
-					</div>
-				</div>
-				<div class="col-lg-3 col-md-6 col-12">
-					<div class="single-fun">
-						<i class="icofont icofont-table"></i>
-						<div class="content">
-							<span class="counter">200</span>
-							<p>Actividades</p>
-						</div>
-					</div>
+				<div class="col-lg-2 col-md-2 col-2">
 				</div>
 			</div>
 		</div>
 	</div>
 
-	<section class="why-choose section">
-		<div class="container">
-			<div class="row">
-				<div class="col-lg-6 col-12">
-					<div class="choose-left">
-						<h3>¿Cómo encontrar promociones?</h3>
-						<p style="color: black;">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas pharetra antege vel est lobortis, a commodo magna rhoncus. In quis nisi non emet quam pharetra commodo. </p>
-						<p style="color: black;">Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. </p>
-						<div class="row">
-							<div class="col-lg-12">
-								<ul class="list">
-									<li><i class="fa fa-caret-right"></i>Maecenas vitae luctus nibh. </li>
-									<li><i class="fa fa-caret-right"></i>Duis massa massa.</li>
-									<li><i class="fa fa-caret-right"></i>Aliquam feugiat interdum.</li>
-								</ul>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="col-lg-6 col-12">
-					<div class="choose-right">
-						<div class="video-image">
-							<div class="promo-video">
-								<div class="waves-block">
-									<div class="waves wave-1"></div>
-									<div class="waves wave-2"></div>
-									<div class="waves wave-3"></div>
-								</div>
-							</div>
-							<a href="https://www.youtube.com/watch?v=vh2wIHwCVUI" class="video video-popup mfp-iframe"><i class="fa fa-play"></i></a>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</section>
-
-	<section class="call-action overlay" data-stellar-background-ratio="0.5">
-		<div class="container">
-			<div class="row">
-				<div class="col-lg-12 col-md-12 col-12">
-					<div class="content">
-						<h2 style="margin-bottom:30px">Suscríbete a nuestra newsletter y entérate de noticas, promociones, actividades y más!</h2>
-						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque porttitor dictum turpis nec gravida.</p>
-						<div onclick="suscribirme()" id="btnActivarSuscripcion" class="button">
-							<a href="#" class="btn">QUIERO SUSCRIBIRME</a>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</section>
 	<script>
-
-		(async () => {
-
-			const suscripcionU = localStorage.getItem("suscripcion");
-			if (suscripcionU != undefined && suscripcionU != null && (suscripcionU == 'true' || suscripcionU == true)) {
-				document.getElementById("btnActivarSuscripcion").style.visibility = "hidden";
-				//alert("El usuario ya está suscrito (Local Storage)!");
-			}
-			else {
-				document.getElementById("btnActivarSuscripcion").style.visibility = "visible";
-			}
-
-		})()
-
-		async function activarSuscripcion(email) {
-
-			const baseUrl = `https://localhost`;
-			const controllerName = `Usuarios`;
-			const port = `44311`;
-			const apiUrl = `${baseUrl}:${port}/${controllerName}/ActivacionSuscripcionWeb`;
-
-			// IMPORTANT → parámetros en query string
-			const url = `${apiUrl}?email=${encodeURIComponent(email)}`;
-
-			const response = await fetch(url, {
-				method: "PATCH",
-				headers: { "Content-Type": "application/json" }
-			});
-
-			if (!response.ok) {
-				console.error("Error activando suscripción", response.status);
-				return false;
-			}
-
-			const resultado = await response.json();
-			return resultado;
-		}
-
-		async function suscribirme() {
-
-			const suscripcionUser = localStorage.getItem("suscripcion");
-
-			if (suscripcionUser != undefined && suscripcionUser != null && suscripcionUser == true) {
-
-				ocultarBotonSuscripcion();
-				alert("El usuario ya está suscrito (Local Storage)!");
-				return;
-			}
-			else {
-				//const token = "BA03E160-11C9-4A7D-BF5D-9DF60140F893";
-				//const email = "dgomezma+admin@gmail.com";
-				//const loggedUserId = localStorage.getItem("idUsuario");
-
-				var loggedUser = await getUserData();
-
-				if (loggedUser.suscrito == null || loggedUser.suscrito == false) {
-
-					const ok = await activarSuscripcion(loggedUser.correo);
-
-					//TODO: Mostrar MODAL-PANEL (Componente Web)
-					if (ok) {
-
-						ocultarBotonSuscripcion();
-						alert("¡Suscripción activada correctamente!");
-
-					} else {
-						alert("No se ha podido activar la suscripción.");
-					}
-				}
-				else {
-					ocultarBotonSuscripcion();
-					alert("El usuario ya está suscrito (Base de Datos)!");
-				}
-			}
-		}
-
-		async function ocultarBotonSuscripcion() {
-
-			document.getElementById("btnActivarSuscripcion").style.visibility = "hidden";
-		}
-
 		async function getUserData() {
 
 			const baseUrl = `https://localhost`;
@@ -636,6 +457,7 @@
 			const url = `${apiUrl}?filters.Id=${idUsuario}&filters.Activo=true`;
 
 			const response = await fetch(url, {
+                cache: 'no-store',
 				method: "GET",
 				//redentials: "include",
 				headers: { "Content-Type": "application/json" }
@@ -651,6 +473,321 @@
 			}
 			return null;
 		}
+
+		function actualizarPuntos() {
+			getUserData().then(user => {
+				const puntoElemento = document.getElementById('puntoUsuario');
+				if (puntoElemento && typeof user.puntos !== 'undefined') {
+					puntoElemento.textContent = user.puntos;
+				}
+			});
+		}
+
+		// Observar cuando la sección #fun-facts entra en pantalla
+		const seccion = document.getElementById('fun-facts');
+		if (seccion) {
+			const observer = new IntersectionObserver((entries) => {
+				entries.forEach(entry => {
+					if (entry.isIntersecting) { // la sección está visible
+						actualizarPuntos();
+					}
+				});
+			}, { threshold: 0.1 }); // 10% visible
+			observer.observe(seccion);
+		}
+	</script>
+
+	<section class="newsletter section">
+		<div class="container">
+			<div class="row ">
+				<div class="col-lg-6  col-12">
+					<div class="subscribe-text ">
+						<h6>Explora tu entorno</h6>
+						<p style="color:white" class="">Descubre entidades cercanas y explora todo lo que ofrecen.</p>
+					</div>
+				</div>
+				<div class="col-lg-6  col-12">
+					<div class="subscribe-form ">
+						<div class="newsletter-inner">
+							<input id="textEntidad" name="textEntidad" placeholder="Buscar entidad" class="common-input" onfocus="this.placeholder = ''"
+								   onblur="this.placeholder = 'Buscar entidad'" type="text">
+							<button id="btnBuscarEntidad" class="btn" onclick="redirigirExplorar()">BUSCAR</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<script>
+
+		function redirigirExplorar() {
+
+			const textEntidadValue = document.getElementById('textEntidad').value;
+		if (textEntidadValue.trim() == '') {
+			alert('Por favor, ingresa un valor válido para la búsqueda.');
+			}
+		else {
+			window.location.href = `explorar.html?name=${encodeURIComponent(textEntidadValue)}`;
+			}
+		}
+	</script>
+
+	<section class="pricing-table section">
+		<div class="container"> 
+			<div class="row" >
+				<div class="col-lg-6 col-md-12 col-12 single-table-parent">
+					<div class="single-table" style="cursor: pointer;">
+						<div class="table-head">
+							<div class="icon">
+								<i class="icofont icofont-briefcase"></i>
+							</div>
+							<h4 class="title">Comercios y locales</h4>
+						</div>
+						<p style="margin: 30px 0px; color: black;">Establecimientos dedicados a la venta de productos o servicios, orientados a satisfacer necesidades locales.</p>
+						<div class="table-bottom">	
+							<a style=" min-height: 50px;" id="buscarComercios" class="btn" href="explorar.html?type=64569dd3-4d65-4eed-9f41-ea87b2270a6c">EXPLORAR COMERCIOS</a>
+						</div>
+					</div>
+				</div>
+				<div class="col-lg-6 col-md-12 col-12 single-table-parent">
+					<div class="single-table" style="cursor: pointer;">
+						<div class="table-head">
+							<div class="icon">
+								<i class="icofont icofont-group"></i>
+							</div>
+							<h4 class="title">Asociaciones Culturales</h4>
+						</div>
+						<p style="margin: 30px 0px; color: black;">Entidades sin ánimo de lucro que agrupan personas con intereses comunes y fines sociales o culturales.</p>
+						<div class="table-bottom">
+							<a style=" min-height: 50px;" id="buscarAsociaciones" class="btn" href="explorar.html?type=e170a0db-660f-4c34-ae71-3e9b9dbbd92b">EXPLORAR ASOCIACIONES</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<section class="Feautes section">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-12">
+					<div class="section-title" style="padding-top: 60px;">
+						<h2>Descubre entidades en tu barrio y crea nuevas conexiones</h2>
+						<!--<img src="img/section-img.png" alt="#">
+				<p>Lorem ipsum dolor sit amet consectetur adipiscing elit praesent aliquet. pretiumts</p>-->
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-lg-4 col-12">
+					<div class="single-features">
+						<div class="signle-icon">
+							<i class="icofont-link"></i>
+						</div>
+						<h3>Conecta</h3>
+						<p style=" color: black;">Conecta con locales y personas de tu barrio de forma directa y sencilla.</p>
+					</div>
+				</div>
+				<div class="col-lg-4 col-12">
+					<div class="single-features">
+						<div class="signle-icon">
+							<i class="icofont-eye-open"></i>
+						</div>
+						<h3>Reconoce</h3>
+						<p style=" color: black;">Mira tu entorno con otros ojos y redescubre el valor de lo local y lo cercano.</p>
+					</div>
+				</div>
+				<div class="col-lg-4 col-12">
+					<div class="single-features last">
+						<div class="signle-icon">
+							<i class="icofont-home"></i>
+						</div>
+						<h3>Cerca de casa</h3>
+						<p style=" color: black;">Todo lo que te interesa está más cerca de lo que imaginas, a solo unos pasos de ti.</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<div id="fun-facts" class="fun-facts section overlay">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-3 col-md-6 col-12">
+					<div class="single-fun">
+						<i class="icofont icofont-home"></i>
+						<div class="content">
+							<span style="color: white;" class="counter">74</span>
+							<p style="color: white;" >Entidades asociadas</p>
+						</div>
+					</div>
+				</div>
+				<div class="col-lg-3 col-md-6 col-12">
+					<div class="single-fun">
+						<i class="icofont icofont-user-alt-3"></i>
+						<div class="content">
+							<span style="color: white;"  class="counter">340</span>
+							<p style="color: white;" >Usuarios activos</p>
+						</div>
+					</div>
+				</div>
+				<div class="col-lg-3 col-md-6 col-12">
+					<div class="single-fun">
+						<i class="icofont-heart-alt"></i>
+						<div class="content">
+							<span style="color: white;"  class="counter">600</span>
+							<p style="color: white;" >Conexiones</p>
+						</div>
+					</div>
+				</div>
+				<div class="col-lg-3 col-md-6 col-12">
+					<div class="single-fun">
+						<i class="icofont icofont-table"></i>
+						<div class="content">
+							<span style="color: white;"  class="counter">120</span>
+							<p style="color: white;" >Actividades</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<section class="why-choose section">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-6 col-12">
+					<div class="choose-left">
+						<h3>¿Cómo encontrar promociones?</h3>
+						<p style="color: black;">Encuentra promociones y descuentos mientras exploras los comercios y actividades de tu entorno de forma sencilla.</p>
+						<p style="color: black;">Navega por la plataforma, descubre entidades locales y accede a ofertas especiales pensadas para ti.</p>
+						<div class="row">
+							<div class="col-lg-12">
+								<ul class="list">
+									<li><i class="fa fa-caret-right"></i>   Explora comercios y actividades cercanas desde un solo lugar</li>
+									<li><i class="fa fa-caret-right"></i>   Consulta catalogos y descubre promociones y descuentos activos</li>
+									<li><i class="fa fa-caret-right"></i>   Aprovecha ofertas locales de manera directa</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-lg-6 col-12">
+					<div class="choose-right">
+						<div class="video-image">
+							<div class="promo-video">
+								<div class="waves-block">
+									<div class="waves wave-1"></div>
+									<div class="waves wave-2"></div>
+									<div class="waves wave-3"></div>
+								</div>
+							</div>
+
+							<a href="https://www.youtube-nocookie.com/embed/h0DJkZEgZpA?autoplay=1&rel=0" class="video video-popup mfp-iframe"><i class="fa fa-play"></i></a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<section class="call-action overlay" data-stellar-background-ratio="0.5">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-12 col-md-12 col-12">
+					<div class="content">
+						<h2 style="margin-bottom:30px">Suscríbete a nuestra newsletter</h2>
+						<p>Para enterarte de ofertas, promociones y mucho más</p>
+						<div onclick="suscribirme()" id="btnActivarSuscripcion" class="button">
+							<a href="#" class="btn">QUIERO SUSCRIBIRME</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<script>
+
+				(async () => {
+
+					const suscripcionU = localStorage.getItem("suscripcion");
+				if (suscripcionU != undefined && suscripcionU != null && (suscripcionU == 'true' || suscripcionU == true)) {
+					document.getElementById("btnActivarSuscripcion").style.visibility = "hidden";
+						//alert("El usuario ya está suscrito (Local Storage)!");
+					}
+				else {
+					document.getElementById("btnActivarSuscripcion").style.visibility = "visible";
+					}
+
+				})()
+
+				async function activarSuscripcion(email) {
+
+					const baseUrl = `https://localhost`;
+				const controllerName = `Usuarios`;
+				const port = `44311`;
+				const apiUrl = `${baseUrl}:${port}/${controllerName}/ActivacionSuscripcionWeb`;
+
+				// IMPORTANT → parámetros en query string
+				const url = `${apiUrl}?email=${encodeURIComponent(email)}`;
+
+				const response = await fetch(url, {
+					method: "PATCH",
+				headers: {"Content-Type": "application/json" }
+					});
+
+				if (!response.ok) {
+					console.error("Error activando suscripción", response.status);
+				return false;
+					}
+
+				const resultado = await response.json();
+				return resultado;
+				}
+
+				async function suscribirme() {
+
+					const suscripcionUser = localStorage.getItem("suscripcion");
+
+				if (suscripcionUser != undefined && suscripcionUser != null && suscripcionUser == true) {
+
+					ocultarBotonSuscripcion();
+				alert("El usuario ya está suscrito (Local Storage)!");
+				return;
+					}
+				else {
+						//const token = "BA03E160-11C9-4A7D-BF5D-9DF60140F893";
+						//const email = "dgomezma+admin@gmail.com";
+						//const loggedUserId = localStorage.getItem("idUsuario");
+
+						var loggedUser = await getUserData();
+
+				if (loggedUser.suscrito == null || loggedUser.suscrito == false) {
+
+							const ok = await activarSuscripcion(loggedUser.correo);
+
+				//TODO: Mostrar MODAL-PANEL (Componente Web)
+				if (ok) {
+
+					ocultarBotonSuscripcion();
+				alert("¡Suscripción activada correctamente!");
+
+							} else {
+					alert("No se ha podido activar la suscripción.");
+							}
+						}
+				else {
+					ocultarBotonSuscripcion();
+				alert("El usuario ya está suscrito (Base de Datos)!");
+						}
+					}
+				}
+
+				async function ocultarBotonSuscripcion() {
+
+					document.getElementById("btnActivarSuscripcion").style.visibility = "hidden";
+				}
+
 
 	</script>
 
@@ -680,14 +817,14 @@
 	<script>
 
 		const imagenes = [
-			'foto1.jpg',
-			'foto2.jpg',
-			'foto3.jpg',
-			'foto4.jpg',
-			'foto5.jpg',
-			'foto6.jpg',
-			'foto7.jpg',
-			'foto8.jpg'
+		'foto1.jpg',
+		'foto2.jpg',
+		'foto3.jpg',
+		'foto4.jpg',
+		'foto5.jpg',
+		'foto6.jpg',
+		'foto7.jpg',
+		'foto8.jpg'
 		];
 
 		for (const url of imagenes) {
@@ -704,10 +841,8 @@
 			detailsLink.href = 'explorar.html';
 			detailsLink.className = 'btn';
 			detailsLink.textContent = 'Ver más';
-
-			// Agregar los elementos al contenedor
-			singlePfDiv.style.height = "275px";
-
+		 
+			singlePfDiv.style.height = "275px"; 
 			singlePfDiv.appendChild(image);
 			singlePfDiv.appendChild(detailsLink);
 
@@ -720,72 +855,68 @@
 	<section class="services section">
 		<div class="container">
 			<div class="row">
-				<div class="col-lg-12">
-					<div class="section-title">
-						<h2>Cientos de productos y Servicios</h2>
-						<img src="img/logo.jpg" alt="#" style="margin-top: 20px; margin-bottom: 20px; width: 100px;">
-					</div>
-				</div>
-			</div>
-			<div class="row">
 				<div class="col-lg-4 col-md-6 col-12">
 					<div class="single-service">
 						<i class="icofont-book-alt"></i>
-						<h4><a href="service-details.html">Descubre</a></h4>
-						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec luctus dictum eros ut imperdiet. </p>
+						<h4><a>Descubre</a></h4>
+						<p>Explora comercios, servicios y actividades de tu entorno. Encuentra lugares y personas que forman parte de tu día a día.</p>
 					</div>
 				</div>
+
 				<div class="col-lg-4 col-md-6 col-12">
 					<div class="single-service">
 						<i class="icofont-location"></i>
-						<h4><a href="service-details.html">De proximidad</a></h4>
-						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec luctus dictum eros ut imperdiet. </p>
+						<h4><a>De proximidad</a></h4>
+						<p>Conecta con iniciativas locales y apoya el comercio cercano. Todo lo que necesitas, a pocos pasos de casa.</p>
 					</div>
 				</div>
+
 				<div class="col-lg-4 col-md-6 col-12">
 					<div class="single-service">
 						<i class="icofont-heart-alt"></i>
-						<h4><a href="service-details.html">Aprecia tu Barrio</a></h4>
-						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec luctus dictum eros ut imperdiet. </p>
+						<h4><a>Aprecia tu barrio</a></h4>
+						<p>Redescubre tu barrio desde otra perspectiva y valora lo que lo hace único: su gente, sus espacios y su historia.</p>
 					</div>
 				</div>
+
 				<div class="col-lg-4 col-md-6 col-12">
 					<div class="single-service">
 						<i class="icofont-groups-alt"></i>
-						<h4><a href="service-details.html">Participa</a></h4>
-						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec luctus dictum eros ut imperdiet. </p>
+						<h4><a>Participa</a></h4>
+						<p>Comparte, colabora y forma parte activa de la comunidad. Tus aportaciones ayudan a construir un barrio mejor.</p>
 					</div>
 				</div>
+
 				<div class="col-lg-4 col-md-6 col-12">
 					<div class="single-service">
 						<i class="icofont-screen"></i>
-						<h4><a href="service-details.html">Desde tu dispositivo</a></h4>
-						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec luctus dictum eros ut imperdiet. </p>
+						<h4><a>Desde tu dispositivo</a></h4>
+						<p>Accede a la plataforma de forma rápida y sencilla desde tu móvil, tablet u ordenador, cuando quieras.</p>
 					</div>
 				</div>
+
 				<div class="col-lg-4 col-md-6 col-12">
 					<div class="single-service">
 						<i class="icofont-user"></i>
-						<h4><a href="service-details.html">Tu Perfil</a></h4>
-						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec luctus dictum eros ut imperdiet. </p>
+						<h4><a>Tu perfil</a></h4>
+						<p>Crea tu perfil, guarda tus favoritos y personaliza tu experiencia para sacarle el máximo partido a la plataforma.</p>
 					</div>
 				</div>
+
 			</div>
 		</div>
 	</section>
 
 	<section>
-		<div>
-			<div class="row">
+		<div class="services section">
+			<div class="container">
 				<div class="col-lg-12">
-					<div class="section-title">
-						<h2 style="margin-bottom: 50px">¿Tienes dudas?</h2>
-						<div id="FAQS"> </div>
-					</div>
+					<h2 style="margin-bottom: 50px">¿Tienes dudas?</h2>
+					<div id="FAQS"> </div>
 				</div>
 			</div>
 		</div>
-	</section>>
+	</section>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js"></script>
 	<script>
 
@@ -843,31 +974,33 @@
 			}
 		}
 
-		//  Lógica de carga de FAQS
-		GetFAQS('ObtenerFAQS')
-			.then(faqs => {
-				faqs.sort(function (a, b) {
-					return a.orden - b.orden;
+		document.addEventListener("DOMContentLoaded", function () {
+
+			GetFAQS('ObtenerFAQS')
+				.then(faqs => {
+					faqs.sort(function (a, b) {
+						return a.orden - b.orden;
+					});
+					var i = 1;
+					faqs.forEach(function (faq) {
+						if (faq.idEntidad == 0) {
+							crearPanel(i, faq.pregunta, faq.respuesta);
+                            i++;
+						}
+					});
+				})
+				.catch(error => {
+					console.error('Error en GetFAQS:', error);
+					alert('Error en GetFAQS: ' + error);
 				});
-				var i = 1;
-				faqs.forEach(function (faq) {
-					if (faq.idEntidad == 0) {
-						crearPanel(i, faq.pregunta, faq.respuesta);
-					}
-					i++;
-				});
-			})
-			.catch(error => {
-				console.error('Error en GetFAQS:', error);
-				alert('Error en GetFAQS: ' + error);
-			});
+		});
 	</script>
 
 	<footer id="footer" class="footer"></footer>
 	<script>
-		(async () => {
-			await renderFooter('footer');
-		})()
+				(async () => {
+					await renderFooter('footer');
+				})()
 	</script>
 
 	<script src="./js/jquery.min.js"></script>
@@ -889,6 +1022,6 @@
 	<script src="./js/jquery.magnific-popup.min.js"></script>
 	<script src="http://cdnjs.cloudflare.com/ajax/libs/waypoints/2.0.3/waypoints.min.js"></script>
 	<script src="./js/bootstrap.min.js"></script>
-	<script src="./js/main.js"></script> 
+	<script src="./js/main.js"></script>
 </body>
 </html>

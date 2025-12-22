@@ -86,7 +86,7 @@ class AppLogin extends HTMLElement {
         if (name === isQRLogin_PropName) {
             this.isQRLogin = newValue;
         }
-        else if (name === session_PropName) {
+        if (name === session_PropName) {
             this.keepSession = newValue;
         }
     }
@@ -273,7 +273,8 @@ class AppLogin extends HTMLElement {
         let submitButtonContent = "ENTRAR";
         if (this.loginType == loginType_Web) {
 
-            if (this.isQRLogin) {
+            if (this.isQRLogin == false) {
+
                 subTitleContent = "Introduce tus datos para completar el escaneo de tu producto!";
                 submitButtonContent = "CONTINUAR";
             }

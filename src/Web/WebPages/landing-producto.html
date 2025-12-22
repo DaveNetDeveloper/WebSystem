@@ -33,9 +33,18 @@
 	<script src="./js/libraries/footer.js"></script>
 
 	<style>
+		
 		p {
 			color: black;
 		}
+
+        .main-sidebar .single-post .image img {
+            float: left;
+            width: 60px;
+            height: 60px;
+            margin-right: 20px;
+        }
+
 	</style>
 
 </head>
@@ -117,25 +126,8 @@
 									<p id="descripcionCorta">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse facilisis ultricies tortor, nec sollicitudin lorem sagittis vitae. Curabitur rhoncus commodo rutrum. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.</p>
 									<blockquote style="background-color:lightgrey;">
 										<p style="color:black; font-weight:bold;" id="puntos"></p>
-									</blockquote>
-
-								</div>
-								<!--<div class="blog-bottom">-->
-								<!-- Social Share -->
-								<!--<ul class="social-share">
-									<li class="facebook"><a href="#"><i class="fa fa-facebook"></i><span>Facebook</span></a></li>
-									<li class="twitter"><a href="#"><i class="fa fa-twitter"></i><span>Twitter</span></a></li>
-									<li class="google-plus"><a href="#"><i class="fa fa-google-plus"></i></a></li>
-									<li class="linkedin"><a href="#"><i class="fa fa-linkedin"></i></a></li>
-									<li class="pinterest"><a href="#"><i class="fa fa-pinterest"></i></a></li>
-								</ul>-->
-								<!-- Next Prev -->
-								<!--<ul class="prev-next">
-									<li class="prev"><a href="#"><i class="fa fa-angle-double-left"></i></a></li>
-									<li class="next"><a href="#"><i class="fa fa-angle-double-right"></i></a></li>
-								</ul>-->
-								<!--/ End Next Prev -->
-								<!--</div>-->
+									</blockquote> 
+								</div>  
 							</div>
 						</div>
 					</div>
@@ -144,7 +136,7 @@
 					<div class="main-sidebar">
 
 						<div class="single-widget side-tags">
-							<h3 class="title">Etiquetas</h3>
+							<h3 class="title">Categorias</h3>
 							<ul class="tag">
 								<li><a href="#">Alimentación</a></li>
 								<li><a href="#">Casero</a></li>
@@ -152,40 +144,38 @@
 							</ul>
 						</div>
 						<div class="single-widget recent-post">
-							<h3 class="title">Reviews</h3>
+							<h3 class="title">Opiniones</h3>
 							<div class="single-post">
 								<div class="image">
-									<img src="img/blog-sidebar1.jpg" alt="#">
+									<img src="img/author3.jpg" alt="#">
 								</div>
 								<div class="content">
-									<h5><a href="#">We have annnocuced our new product.</a></h5>
+									<h5><a href="#">Atención inmejorable</a></h5>
 									<ul class="comment">
-										<li><i class="fa fa-calendar" aria-hidden="true"></i>Jan 11, 2020</li>
-										<li><i class="fa fa-commenting-o" aria-hidden="true"></i>35</li>
+										<li><i class="fa fa-calendar" aria-hidden="true"></i>Noviembre 08, 2025</li>
+									 
 									</ul>
 								</div>
 							</div>
 							<div class="single-post">
 								<div class="image">
-									<img src="img/blog-sidebar2.jpg" alt="#">
+									<img src="img/author1.jpg" alt="#">
 								</div>
 								<div class="content">
-									<h5><a href="#">Top five way for solving teeth problems.</a></h5>
+									<h5><a href="#">Una gran variedad</a></h5>
 									<ul class="comment">
-										<li><i class="fa fa-calendar" aria-hidden="true"></i>Mar 05, 2019</li>
-										<li><i class="fa fa-commenting-o" aria-hidden="true"></i>59</li>
+										<li><i class="fa fa-calendar" aria-hidden="true"></i>Diciembre 27, 2025</li> 
 									</ul>
 								</div>
 							</div>
 							<div class="single-post">
 								<div class="image">
-									<img src="img/blog-sidebar3.jpg" alt="#">
+									<img src="img/author2.jpg" alt="#">
 								</div>
 								<div class="content">
-									<h5><a href="#">We provide highly business soliutions.</a></h5>
+									<h5><a href="#">Calidad superior</a></h5>
 									<ul class="comment">
-										<li><i class="fa fa-calendar" aria-hidden="true"></i>June 09, 2019</li>
-										<li><i class="fa fa-commenting-o" aria-hidden="true"></i>44</li>
+										<li><i class="fa fa-calendar" aria-hidden="true"></i>Enero 09, 2026</li> 
 									</ul>
 								</div>
 							</div>
@@ -236,7 +226,16 @@
 						document.getElementById('imagenProducto').src = producto.imagen;
 
 						document.getElementById('img1').src = producto.imagen;
-						//document.getElementById('img2').src = producto.imagen;
+
+
+						// TODO: TO DELETE AFTER DEMO
+						if (producto.id == 2) {
+                            document.getElementById('img2').src = 'img/productos/producto_2-2.jpg';
+						}
+                        if (producto.id == 4) {
+                            document.getElementById('img1').src = 'img/productos/producto_4-2-copia.png';
+                            document.getElementById('img2').src = 'img/nodisponible.png';
+                        }
 
 						document.getElementById('descuento').innerText = 'Disfruta del ' + producto.descuento + '% de decuento!';
 

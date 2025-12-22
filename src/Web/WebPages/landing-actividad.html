@@ -34,9 +34,18 @@
 	<script src="./js/libraries/footer.js"></script>
 
 	<style>
+		
 		p {
 			color: black;
 		}
+
+        .main-sidebar .single-post .image img {
+            float: left;
+            width: 60px;
+            height: 60px;
+            margin-right: 20px;
+        }
+
 	</style>
 
 </head>
@@ -103,7 +112,7 @@
 								<div class="news-head">
 									<img id="imagenActividad" src="img/nodisponible.png" alt="#">
 								</div>
-								<h1 class="news-title" style="margin: 40px 0;"><a id="tipoActividad" href="news-single.html">Disfruta la mejor [tipoActividad]!</a></h1>
+								<h1 class="news-title" style="margin: 40px 0;"><a id="tipoActividad" href="news-single.html"></a></h1>
 								<div class="meta" style="padding: 25px 0;">
 									<div class="meta-left" style="margin-top: 5px;">
 										<span class="author"><a id="nombreEntidad" style="font-weight:bold" href="#"><img src="" alt="#">Nombre Entidad</a></span>
@@ -166,7 +175,7 @@
 						</div>
 
 						<div class="single-widget side-tags">
-							<h3 class="title">Etiquetas</h3>
+							<h3 class="title">Categorias</h3>
 							<ul class="tag">
 								<li><a href="#">Actividad en grupo</a></li>
 								<li><a href="#">Taller</a></li>
@@ -176,41 +185,40 @@
 						</div>
 
 						<div class="single-widget recent-post">
-							<h3 class="title">Reviews</h3>
-							<!-- Single Post -->
+							<h3 class="title">Opiniones</h3> 
 							<div class="single-post">
 								<div class="image">
-									<img src="img/blog-sidebar1.jpg" alt="#">
+									<img src="img/author1.jpg" alt="#">
 								</div>
 								<div class="content">
-									<h5><a href="#">We have annnocuced our new product.</a></h5>
+									<h5><a href="#">Muy buena elección</a></h5>
 									<ul class="comment">
-										<li><i class="fa fa-calendar" aria-hidden="true"></i>Jan 11, 2020</li>
-										<li><i class="fa fa-commenting-o" aria-hidden="true"></i>35</li>
+										<li><i class="fa fa-calendar" aria-hidden="true"></i>Noviembre 11, 2025</li>
+										<!--<li><i class="fa fa-commenting-o" aria-hidden="true"></i>35</li>-->
 									</ul>
 								</div>
 							</div>
 							<div class="single-post">
 								<div class="image">
-									<img src="img/blog-sidebar2.jpg" alt="#">
+									<img src="img/author2.jpg" alt="#">
 								</div>
 								<div class="content">
-									<h5><a href="#">Top five way for solving teeth problems.</a></h5>
+									<h5><a href="#">Super recomendable</a></h5>
 									<ul class="comment">
-										<li><i class="fa fa-calendar" aria-hidden="true"></i>Mar 05, 2019</li>
-										<li><i class="fa fa-commenting-o" aria-hidden="true"></i>59</li>
+										<li><i class="fa fa-calendar" aria-hidden="true"></i>Diciembre 05, 2025</li>
+										<!--<li><i class="fa fa-commenting-o" aria-hidden="true"></i>59</li>-->
 									</ul>
 								</div>
 							</div>
 							<div class="single-post">
 								<div class="image">
-									<img src="img/blog-sidebar3.jpg" alt="#">
+									<img src="img/author3.jpg" alt="#">
 								</div>
 								<div class="content">
-									<h5><a href="#">We provide highly business soliutions.</a></h5>
+									<h5><a href="#">Una gran experiencia</a></h5>
 									<ul class="comment">
-										<li><i class="fa fa-calendar" aria-hidden="true"></i>June 09, 2019</li>
-										<li><i class="fa fa-commenting-o" aria-hidden="true"></i>44</li>
+										<li><i class="fa fa-calendar" aria-hidden="true"></i>Octubre 15, 2025</li>
+										<!--<li><i class="fa fa-commenting-o" aria-hidden="true"></i>44</li>-->
 									</ul>
 								</div>
 							</div>
@@ -304,6 +312,18 @@
 					document.getElementById('img1').src = actividad.imagen;
 					//document.getElementById('img2').src = actividad.imagen;
 
+
+                    // TODO: TO DELETE AFTER DEMO
+                    if (actividad.id == 1) {
+						document.getElementById('img1').src = 'img/actividades/Actividad05.jpg';
+                        document.getElementById('img2').src = 'img/nodisponible.png';
+                    }
+                    if (actividad.id == 3) {
+                        document.getElementById('img1').src = 'img/actividades/Actividad_06.png';
+                        document.getElementById('img2').src = 'img/nodisponible.png';
+                    }
+
+
 					document.getElementById('fechaActividad').innerText = formatearTimestamp(actividad.fechaInicio);
 
 					document.getElementById('img1').innerText = actividad.imagen;
@@ -353,7 +373,7 @@
 			.then(data => {
 
 				if (data != undefined && data.length > 0 && data != null && data[0] != null) {
-					document.getElementById('tipoActividad').innerText = 'Disfruta de la mejor ' + data[0].nombre + '!';
+					document.getElementById('tipoActividad').innerText = data[0].nombre;
 				}
 			})
 			.catch(err => alert(err.message));

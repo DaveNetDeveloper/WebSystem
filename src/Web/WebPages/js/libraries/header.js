@@ -1,4 +1,4 @@
-﻿
+﻿ 
 async function renderHeader(paginaActiva, headerId) {
 
     const header = document.getElementById(headerId);
@@ -29,7 +29,7 @@ async function renderHeader(paginaActiva, headerId) {
                                             <a href="#">Recompensas</a>
                                         </li>
                                         <li class="${paginaActiva === 'como-ganar' ? 'active' : ''}">
-                                            <a href="#">Cómo ganar puntos?</a>
+                                            <a href="#">¿Cómo ganar puntos?</a>
                                         </li>
                                     </ul>
                                 </nav>
@@ -61,6 +61,7 @@ async function setUserData() {
     const url = `${apiUrl}?filters.Id=${idUsuario}&filters.Activo=true`;
 
     const response = await fetch(url, {
+        cache: 'no-store',
         method: "GET",
         //redentials: "include",
         headers: { "Content-Type": "application/json" }
@@ -73,9 +74,10 @@ async function setUserData() {
     const data = await response.json(); 
     if (data != null && data.length > 0 && data[0] != null) {
 
-        localStorage.setItem("suscripcion", data[0].suscrito);
-        
+        localStorage.setItem("suscripcion", data[0].suscrito); 
+
         var infoUsuarioElement = document.getElementById("infoUsuario");
         infoUsuarioElement.innerHTML = infoUsuarioElement.innerHTML.replace("{nombre}", data[0].nombre).replace("{puntos}", data[0].puntos);
+          
     }
 }

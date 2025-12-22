@@ -8,6 +8,7 @@ using Infrastructure.Persistence;
 using LinqKit;
 using Microsoft.EntityFrameworkCore;
 using System.Linq;
+using System.Runtime.CompilerServices;
 
 namespace Infrastructure.Repositories
 {
@@ -68,7 +69,9 @@ namespace Infrastructure.Repositories
                 popularidad = entidad.popularidad,
                 activo = entidad.activo,
                 imagen = entidad.imagen,
-                manager = entidad.manager
+                manager = entidad.manager,
+                posLat = entidad.posLat,
+                posLong = entidad.posLong
             };  
 
             await _context.Entidades.AddAsync(nuevaEntidad);
@@ -91,7 +94,8 @@ namespace Infrastructure.Repositories
             updatedEntity.activo = entidad.activo;
             updatedEntity.imagen = entidad.imagen;
             updatedEntity.manager = entidad.manager;
-
+            updatedEntity.posLat = entidad.posLat;
+            updatedEntity.posLong = entidad.posLong;
 
             await _context.SaveChangesAsync();
             return true;

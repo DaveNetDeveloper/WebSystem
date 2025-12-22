@@ -335,7 +335,7 @@ Preloader Area CSS
 }
 
 .preloader .loader .indicator svg polyline#back {
-  stroke: #ffffff;
+ /* stroke: #ffffff;*/
 }
 
 .preloader .loader .indicator svg polyline#front {

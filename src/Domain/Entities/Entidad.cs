@@ -14,6 +14,8 @@ namespace Domain.Entities
         public Guid idTipoEntidad { get; set; }
         public string? imagen { get; set; }
         public string manager { get; set; }
+        public decimal posLat { get; set; }
+        public decimal posLong { get; set; }
 
         [JsonIgnore]
         public ICollection<UsuarioRol> UsuarioRoles { get; set; }
