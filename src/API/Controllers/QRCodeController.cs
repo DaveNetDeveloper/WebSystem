@@ -146,6 +146,7 @@ namespace API.Controllers
                                                  [FromServices] IInAppNotificationService inAppNotificationService,
                                                  [FromServices] IProductoService productoService,
                                                  [FromServices] IPerfilService perfilService,
+                                                  [FromServices] IEntidadService entidadService,
                                                  Guid id,
                                                  [FromQuery] string email)
         {
@@ -203,12 +204,32 @@ namespace API.Controllers
            await inAppNotificationService.AddAsync(inApp);
 
             // Enviar mail notificando la recompensa al recomendador
-            var tiposEnvio = await correoService.ObtenerTiposEnvioCorreo();
-            var tipoEnvio = tiposEnvio.Where(u => u.nombre == TipoEnvio.EscanearProducto)
-                                            .SingleOrDefault();
+            //var tiposEnvio = await correoService.ObtenerTiposEnvioCorreo();
+            //var tipoEnvio = tiposEnvio.Where(u => u.nombre == TipoEnvio.EscanearProducto)
+            //                                .SingleOrDefault();
 
-            var correo = new Correo(tipoEnvio, usuario.correo, usuario.nombre, _config["AppConfiguration:LogoURL"]);
-            correoService.EnviarCorreo(correo);
+            //var correo = new Correo(tipoEnvio, usuario.correo, usuario.nombre, _config["AppConfiguration:LogoURL"]);
+            //correoService.EnviarCorreo(correo);
+
+            var entidad = await entidadService.GetByIdAsync(producto.idEntidad);
+
+            // Nuevo
+            var tipoEnvio = await correoService.ObtenerTipoEnvioCorreo(TipoEnvioCorreos.EscanearProducto);
+
+            var context = new EnvioEscanearProductoEmailContext(email: usuario.correo,
+                                                                nombre: usuario.nombre,
+                                                                nombreEntidad: entidad.nombre,
+                                                                nombreProducto: nombreProducto,
+                                                                puntosProducto: puntosProducto.ToString(),
+                                                                fechaEscaneo: transaccion.fecha.ToString());
+             
+            var correo = new CorreoN {
+                Destinatario = context.Email,
+                Asunto = tipoEnvio.asunto,
+                Cuerpo = tipoEnvio.cuerpo
+            }; 
+            correo.ApplyTags(context.GetTags()); 
+            correoService.EnviarCorreo_Nuevo(correo);
 
             // si el usuario tiene perfil 'Basic' o 'Friend' entonces lo cambiamos a perfil 'Lover' 
             var perfilUsuario = await perfilService.GetByIdAsync(usuario.idPerfil.Value);
@@ -300,22 +321,46 @@ namespace API.Controllers
             var fileName = $"List_{entityName.ToString()}_{DateTime.UtcNow:yyyyMMddHHmmss}{fileExtension}";
 
             if (envioEmail)
-            {
-                var tiposEnvioCorreo = await correoService.ObtenerTiposEnvioCorreo();
-                var tipoEnvioCorreo = tiposEnvioCorreo.Where(u => u.nombre == TipoEnvioCorreo.TipoEnvio.EnvioReport)
-                                                      .SingleOrDefault();
+            { 
+                // Nuevo
+                var tipoEnvio = await correoService.ObtenerTipoEnvioCorreo(TipoEnvioCorreos.EnvioReport);
 
-                tipoEnvioCorreo.asunto = $"Report {entityName.ToString()} ({fileExtension})";
-                tipoEnvioCorreo.cuerpo = $"Se adjunta el informe para la vista de datos {entityName.ToString()}";
+                var context = new EnvioReportEmailContext(email: _exportConfig.CorreoAdmin,
+                                                          nombre: "Admin",
+                                                          nombreEntidad: entityName,
+                                                          nombreInforme: $"List_{entityName.ToString()}");
+                var correoN = new CorreoN
+                {
+                    Destinatario = context.Email,
+                    Asunto = tipoEnvio.asunto,
+                    Cuerpo = tipoEnvio.cuerpo
+                };
 
-                var correo = new Correo(tipoEnvioCorreo, _exportConfig.CorreoAdmin, "Admin", "");
-                correo.FicheroAdjunto = new FicheroAdjunto()
+                correoN.ApplyTags(context.GetTags());
+
+                correoN.FicheroAdjunto = new FicheroAdjunto()
                 {
                     Archivo = file,
                     ContentType = contentType,
                     NombreArchivo = fileName
-                };
-                correoService.EnviarCorreo(correo);
+                }; 
+                correoService.EnviarCorreo_Nuevo(correoN);
+                 
+                //var tiposEnvioCorreo = await correoService.ObtenerTiposEnvioCorreo();
+                //var tipoEnvioCorreo = tiposEnvioCorreo.Where(u => u.nombre == TipoEnvioCorreo.TipoEnvio.EnvioReport)
+                //                                      .SingleOrDefault();
+
+                //tipoEnvioCorreo.asunto = $"Report {entityName.ToString()} ({fileExtension})";
+                //tipoEnvioCorreo.cuerpo = $"Se adjunta el informe para la vista de datos {entityName.ToString()}";
+
+                //var correo = new Correo(tipoEnvioCorreo, _exportConfig.CorreoAdmin, "Admin", "");
+                //correo.FicheroAdjunto = new FicheroAdjunto()
+                //{
+                //    Archivo = file,
+                //    ContentType = contentType,
+                //    NombreArchivo = fileName
+                //};
+                //correoService.EnviarCorreo(correo);
             }
             return File(file, contentType, fileName);
         }

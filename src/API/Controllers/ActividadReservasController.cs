@@ -152,7 +152,8 @@ namespace API.Controllers
                                                         [FromServices] ITipoTransaccionService tipoTransaccionService,
                                                         [FromServices] IInAppNotificationService inAppNotificationService,
                                                         [FromServices] IPerfilService perfilService,
-                                                        [FromServices] IActividadService actividadService) {
+                                                        [FromServices] IActividadService actividadService,
+                                                        [FromServices] IEntidadService entidadService) {
              
             var reservaFilter = new ActividadReservaFilters { IdReserva = idReserva};
             var reservas = await _actividadReservaService.GetByFiltersAsync(reservaFilter);
@@ -224,13 +225,25 @@ namespace API.Controllers
             };
             await inAppNotificationService.AddAsync(inApp);
 
-            // Enviar mail notificando la recompensa al recomendador
-            var tiposEnvio = await _correoService.ObtenerTiposEnvioCorreo();
-            var tipoEnvio = tiposEnvio.Where(u => u.nombre == TipoEnvio.ValidarReserva)
-                                      .SingleOrDefault();
+            // Enviar mail notificando la recompensa 
+            var tipoEnvio = await _correoService.ObtenerTipoEnvioCorreo(TipoEnvioCorreos.Recompensa);
+            var entidad = await entidadService.GetByIdAsync(actividad.idEntidad);
 
-            var correo = new Correo(tipoEnvio, usuario.correo, usuario.nombre, _config["AppConfiguration:LogoURL"]);
-            _correoService.EnviarCorreo(correo);
+            var context = new EnvioRecompensaEmailContext(email: usuario.correo,
+                                                      nombre: usuario.nombre,
+                                                      nombreEntidad: entidad.nombre,
+                                                      accionRecompensa: "Validar asistencia para la actividad '" + actividad.nombre + "'",
+                                                      nombreRecompensa: "Validar Reserva",
+                                                      puntosRecompensa: tipoTransaccion.puntos.ToString(),
+                                                      fechaRecompensa: transaccion.fecha.ToString() );
+            var correoN = new CorreoN {
+                Destinatario = context.Email,
+                Asunto = tipoEnvio.asunto,
+                Cuerpo = tipoEnvio.cuerpo
+            };
+
+            correoN.ApplyTags(context.GetTags()); 
+            _correoService.EnviarCorreo_Nuevo(correoN);  
 
             // si el usuario tiene perfil 'Basic' o 'Friend' entonces lo cambiamos a perfil 'Lover' 
             var perfilUsuario = await perfilService.GetByIdAsync(usuario.idPerfil.Value);
@@ -302,7 +315,9 @@ namespace API.Controllers
                                                            [FromQuery] int idActividad,
                                                            [FromServices] IUsuarioService usuarioService,
                                                            [FromServices] IActividadService actividadService,
-                                                           [FromServices] IEntidadService entidadService) {  
+                                                           [FromServices] IEntidadService entidadService) {
+            
+             
             var _idReserva = Guid.NewGuid();
             var _codigoReserva = CodesHelper.GenerarCodigoReservaActividad(idActividad);
             var _estadoReserva = ActividadReserva.EstadoReserva.Reservada;
@@ -310,6 +325,8 @@ namespace API.Controllers
 
             // Obtener entidad Actividad 
             var actividad = await actividadService.GetByIdAsync(idActividad);
+
+            var entidadActividad = await entidadService.GetByIdAsync(actividad.idEntidad);
 
             //Comprobar que el usuario no tiene ya una reserva para la actividad
             var reservaFilter = new ActividadReservaFilters
@@ -357,31 +374,78 @@ namespace API.Controllers
             var qrCode = await _qrCodeService.CreateAsync(payload, ttl, QRCode.Origen.Actividad, idQRCode);
             
             // Enviar correo al usuario informando de la reserva de la actividad
-            var tiposEnvioUser = await _correoService.ObtenerTiposEnvioCorreo();
-            var tipoEnvioUser = tiposEnvioUser .Where(u => u.nombre == TipoEnvio.ReservaActividad)
-                                               .SingleOrDefault();
+            //var tiposEnvioUser = await _correoService.ObtenerTiposEnvioCorreo();
+            //var tipoEnvioUser = tiposEnvioUser .Where(u => u.nombre == TipoEnvio.ReservaActividad)
+            //                                   .SingleOrDefault();
 
             var usuario = await usuarioService.GetByIdAsync(idUsuario);
-            var correo = new Correo(tipoEnvioUser, usuario.correo, usuario.nombre, _config["AppConfiguration:LogoURL"]); 
-            correo.FicheroAdjunto = new FicheroAdjunto {
-                                            NombreArchivo = "QR_" + _codigoReserva + "_" + idUsuario.ToString() + ".png",
-                                            ContentType = "image/png",
-                                            Archivo = qrCode.imagen }; 
-            _correoService.EnviarCorreo(correo);
+            //var correo = new Correo(tipoEnvioUser, usuario.correo, usuario.nombre, _config["AppConfiguration:LogoURL"]); 
+            //correo.FicheroAdjunto = new FicheroAdjunto {
+            //                                NombreArchivo = "QR_" + _codigoReserva + "_" + idUsuario.ToString() + ".png",
+            //                                ContentType = "image/png",
+            //                                Archivo = qrCode.imagen };
+
+            //_correoService.EnviarCorreo(correo);
+
+            // 
+            var tipoEnvioUser = await _correoService.ObtenerTipoEnvioCorreo(TipoEnvioCorreos.ReservaActividad);
+
+            var contextEnvioUser = new EnvioReservaActividadEmailContext(email: usuario.correo,
+                                                                nombre: usuario.nombre,
+                                                                nombreEntidad: entidadActividad.nombre,
+                                                                nombreActividad: actividad.nombre,
+                                                                fechaActividad: actividad.fechaInicio.ToString());
+            var correo = new CorreoN {
+                Destinatario = contextEnvioUser.Email,
+                Asunto = tipoEnvioUser.asunto,
+                Cuerpo = tipoEnvioUser.cuerpo
+            };
+
+            correo.ApplyTags(contextEnvioUser.GetTags());
+
+            correo.FicheroAdjunto = new FicheroAdjunto
+            {
+                NombreArchivo = "QR_" + _codigoReserva + "_" + idUsuario.ToString() + ".png",
+                ContentType = "image/png",
+                Archivo = qrCode.imagen
+            };
+
+            _correoService.EnviarCorreo_Nuevo(correo);
+
 
             // Enviar correo al manager de la entidad informando de la reserva
-            var tiposEnvioManager = await _correoService.ObtenerTiposEnvioCorreo();
-            var tipoEnvioManager = tiposEnvioManager.Where(u => u.nombre == TipoEnvio.ReservaActividad_Manager)
-                                                    .SingleOrDefault();
+            //
+            //
+
+            //var tiposEnvioManager = await _correoService.ObtenerTiposEnvioCorreo();
+            //var tipoEnvioManager = tiposEnvioManager.Where(u => u.nombre == TipoEnvio.ReservaActividad_Manager)
+            //                                        .SingleOrDefault();
 
             //obtener el usuario manager de la entidad
-            var entidadActividad  = await entidadService.GetByIdAsync(actividad.idEntidad);
+           
             var emailManager = entidadActividad.manager;
             var matchUsers = await usuarioService.GetByFiltersAsync(new UsuarioFilters { Correo = emailManager });
             var manager = matchUsers.SingleOrDefault();
 
-            var correoManager = new Correo(tipoEnvioManager, manager.correo, manager.nombre, _config["AppConfiguration:LogoURL"]);
-            _correoService.EnviarCorreo(correoManager);
+            //var correoManager = new Correo(tipoEnvioManager, manager.correo, manager.nombre, _config["AppConfiguration:LogoURL"]);
+            //_correoService.EnviarCorreo(correoManager);
+
+            // 
+            var tipoEnvioManager = await _correoService.ObtenerTipoEnvioCorreo(TipoEnvioCorreos.ReservaActividad_Manager);
+
+            var contextEnvioManager = new EnvioReservaActividadManagerEmailContext(email: manager.correo,
+                                                                                   nombre: manager.nombre,
+                                                                                   nombreEntidad: entidadActividad.nombre);
+            var correoManager = new CorreoN
+            {
+                Destinatario = contextEnvioManager.Email,
+                Asunto = tipoEnvioManager.asunto,
+                Cuerpo = tipoEnvioManager.cuerpo
+            };
+
+            correoManager.ApplyTags(contextEnvioManager.GetTags());
+            _correoService.EnviarCorreo_Nuevo(correoManager);
+
 
             // Devolver los datos de la reserva desde el controller(en DTO Response)
             var reservaResponse = new ReservaActividadDTO() {

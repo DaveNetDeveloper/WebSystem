@@ -10,6 +10,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Text.Json.Serialization;
 
 using static Application.Services.DataQueryService;
+using static Domain.Entities.TipoEnvioCorreo;
 using static Utilities.ExporterHelper;
 
 namespace API.Controllers
@@ -63,22 +64,27 @@ namespace API.Controllers
             var fileName = $"DataQuery_{dataQueryType.ToString()}_{DateTime.UtcNow:yyyyMMddHHmmss}{fileExtension}";
 
             if(envioEmail)
-            {
-                var tipoEnvioCorreo = _correoService.ObtenerTiposEnvioCorreo()
-                                                    .Result.Where(u => u.nombre == TipoEnvioCorreo.TipoEnvio.EnvioReport)
-                                                    .SingleOrDefault();
+            {  
+                var tipoEnvio = await _correoService.ObtenerTipoEnvioCorreo(TipoEnvioCorreos.EnvioReport);
 
-                tipoEnvioCorreo.asunto = $"Report {dataQueryType.ToString()} ({fileExtension})";
-                tipoEnvioCorreo.cuerpo = $"Se adjunta el informe para la vista de datos {dataQueryType.ToString()}";
+                var context = new EnvioReportEmailContext(email: _exportConfig.CorreoAdmin,
+                                                          nombre: "Admin",
+                                                          nombreEntidad: "",
+                                                          nombreInforme: $"List_{dataQueryType.ToString()}");
+                var correoN = new CorreoN {
+                    Destinatario = context.Email,
+                    Asunto = tipoEnvio.asunto,
+                    Cuerpo = tipoEnvio.cuerpo
+                };
 
-                var correo = new Correo(tipoEnvioCorreo, _exportConfig.CorreoAdmin, "Admin", "");
-                correo.FicheroAdjunto = new FicheroAdjunto()
-                { 
+                correoN.ApplyTags(context.GetTags());
+
+                correoN.FicheroAdjunto = new FicheroAdjunto() {
                     Archivo = file,
                     ContentType = contentType,
                     NombreArchivo = fileName
                 };
-                _correoService.EnviarCorreo(correo);
+                _correoService.EnviarCorreo_Nuevo(correoN);  
             }
             return File(file, contentType, fileName);
         }

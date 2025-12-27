@@ -19,6 +19,7 @@ using System.Security.Claims;
 using System.Text;
 using Twilio.TwiML.Voice;
 using Utilities;
+using static Domain.Entities.TipoEnvioCorreo;
 using static System.Runtime.InteropServices.JavaScript.JSType;
 using static Utilities.ExporterHelper;
 namespace API.Controllers
@@ -314,17 +315,32 @@ namespace API.Controllers
                 if (activationResult == false) return NotFound(new { message = "Error al activar la suscripción." });
                     
                 // Enviar corrreo: Bienvenido a nuestra newsletter
-                var tiposEnvioCorreo = await _correoService.ObtenerTiposEnvioCorreo();
-                var tipoEnvioCorreo = tiposEnvioCorreo.Where(u => u.nombre.Trim() == TipoEnvioCorreo.TipoEnvio.SuscripcionActivada)
-                                                        .SingleOrDefault();
+                //var tiposEnvioCorreo = await _correoService.ObtenerTiposEnvioCorreo();
+                //var tipoEnvioCorreo = tiposEnvioCorreo.Where(u => u.nombre.Trim() == TipoEnvioCorreo.TipoEnvio.SuscripcionActivada)
+                //                                        .SingleOrDefault();
 
                 var usuarios = await _usuarioService.GetAllAsync();
                 var usuario = usuarios.Where(u => u.correo.ToLower() == email.ToLower())
                                         .SingleOrDefault();
 
-                var correo = new Correo(tipoEnvioCorreo, email, usuario.nombre, _appConfiguration.LogoURL);
-                _correoService.EnviarCorreo(correo);
+                //var correo = new Correo(tipoEnvioCorreo, email, usuario.nombre, _appConfiguration.LogoURL);
+                //_correoService.EnviarCorreo(correo);
+                 
+                //
+                var tiposEnvioCorreo = await _correoService.ObtenerTipoEnvioCorreo(TipoEnvioCorreos.SuscripcionActivada);
 
+                var contextEnvio = new EnvioSuscripcionActivadaEmailContext(email: email,
+                                                                           nombre: usuario.nombre);
+                var correo = new CorreoN
+                {
+                    Destinatario = contextEnvio.Email,
+                    Asunto = tiposEnvioCorreo.asunto,
+                    Cuerpo = tiposEnvioCorreo.cuerpo
+                };
+                correo.ApplyTags(contextEnvio.GetTags());
+
+                _correoService.EnviarCorreo_Nuevo(correo);
+                 
                 return Ok(true);
             }
             catch (Exception ex)
@@ -366,17 +382,32 @@ namespace API.Controllers
                         if(consumeResult) {
 
                             // Enviar corrreo: Bienvenido a nuestra newsletter
-                            var tiposEnvioCorreo = await _correoService.ObtenerTiposEnvioCorreo();
-                            var tipoEnvioCorreo = tiposEnvioCorreo.Where(u => u.nombre.Trim() == TipoEnvioCorreo.TipoEnvio.SuscripcionActivada)
-                                                                  .SingleOrDefault();
+                            //var tiposEnvioCorreo = await _correoService.ObtenerTiposEnvioCorreo();
+                            //var tipoEnvioCorreo = tiposEnvioCorreo.Where(u => u.nombre.Trim() == TipoEnvioCorreo.TipoEnvio.SuscripcionActivada)
+                            //                                      .SingleOrDefault();
 
                             var usuarios = await _usuarioService.GetAllAsync();
                             var usuario = usuarios.Where(u => u.correo.ToLower() == email.ToLower())
                                                   .SingleOrDefault();
 
-                            var correo = new Correo(tipoEnvioCorreo, email, usuario.nombre, _appConfiguration.LogoURL);
-                            _correoService.EnviarCorreo(correo);
+                            //var correo = new Correo(tipoEnvioCorreo, email, usuario.nombre, _appConfiguration.LogoURL);
+                            //_correoService.EnviarCorreo(correo);
 
+                            //
+                            var tiposEnvioCorreo = await _correoService.ObtenerTipoEnvioCorreo(TipoEnvioCorreos.SuscripcionActivada);
+
+                            var contextEnvio = new EnvioSuscripcionActivadaEmailContext(email: email,
+                                                                                        nombre: usuario.nombre);
+                            var correo = new CorreoN
+                            {
+                                Destinatario = contextEnvio.Email,
+                                Asunto = tiposEnvioCorreo.asunto,
+                                Cuerpo = tiposEnvioCorreo.cuerpo
+                            };
+                            correo.ApplyTags(contextEnvio.GetTags());
+
+                            _correoService.EnviarCorreo_Nuevo(correo);
+                             
                             //_logger.LogInformation(MessageProvider.GetMessage("Usuario:ActivacionSuscripcion", "Success"));
                             return Ok(consumeResult);
                         }
@@ -487,21 +518,44 @@ namespace API.Controllers
 
             if (envioEmail)
             {
-                var tiposEnvioCorreo = await correoService.ObtenerTiposEnvioCorreo();
-                var tipoEnvioCorreo = tiposEnvioCorreo.Where(u => u.nombre == TipoEnvioCorreo.TipoEnvio.EnvioReport)
-                                                      .SingleOrDefault();
+                //var tiposEnvioCorreo = await correoService.ObtenerTiposEnvioCorreo();
+                //var tipoEnvioCorreo = tiposEnvioCorreo.Where(u => u.nombre == TipoEnvioCorreo.TipoEnvio.EnvioReport)
+                //                                      .SingleOrDefault();
 
-                tipoEnvioCorreo.asunto = $"Report {entityName.ToString()} ({fileExtension})";
-                tipoEnvioCorreo.cuerpo = $"Se adjunta el informe para la vista de datos {entityName.ToString()}";
+                //tipoEnvioCorreo.asunto = $"Report {entityName.ToString()} ({fileExtension})";
+                //tipoEnvioCorreo.cuerpo = $"Se adjunta el informe para la vista de datos {entityName.ToString()}";
 
-                var correo = new Correo(tipoEnvioCorreo, _exportConfig.CorreoAdmin, "Admin", "");
+                //var correo = new Correo(tipoEnvioCorreo, _exportConfig.CorreoAdmin, "Admin", "");
+                //correo.FicheroAdjunto = new FicheroAdjunto()
+                //{
+                //    Archivo = file,
+                //    ContentType = contentType,
+                //    NombreArchivo = fileName
+                //};
+                //correoService.EnviarCorreo(correo);
+                 
+                // Nuevo
+                var tipoEnvio = await correoService.ObtenerTipoEnvioCorreo(TipoEnvioCorreos.EnvioReport);
+
+                var context = new EnvioReportEmailContext(email: _exportConfig.CorreoAdmin,
+                                                          nombre: "Admin",
+                                                          nombreEntidad: "",
+                                                          nombreInforme: $"List_{entityName.ToString()}");
+                var correo = new CorreoN {
+                    Destinatario = context.Email,
+                    Asunto = tipoEnvio.asunto,
+                    Cuerpo = tipoEnvio.cuerpo
+                };
+
+                correo.ApplyTags(context.GetTags());
+
                 correo.FicheroAdjunto = new FicheroAdjunto()
                 {
                     Archivo = file,
                     ContentType = contentType,
                     NombreArchivo = fileName
-                };
-                correoService.EnviarCorreo(correo);
+                }; 
+                correoService.EnviarCorreo_Nuevo(correo);
             }
             return File(file, contentType, fileName);
         }

@@ -9,7 +9,11 @@ using Microsoft.Extensions.Options;
 using System.Collections.Generic;
 using System.Security.Cryptography;
 using System.Text;
+using System.Transactions;
+using Twilio.Jwt.AccessToken;
 using Utilities;
+using static Domain.Entities.TipoEnvioCorreo;
+using static Domain.Entities.TipoTransaccion;
 
 namespace Application.Services
 {
@@ -21,6 +25,7 @@ namespace Application.Services
         private readonly IUsuarioRepository _usuarioRepo;
         private readonly IRefreshTokenRepository _refreshTokenRepo;
         private readonly IEntidadService _entidadService;
+        private readonly IEmailTokenService _emailTokenService;
 
         private readonly ICorreoService _correoService;
         private readonly ILoginService _loginService;
@@ -37,13 +42,16 @@ namespace Application.Services
                            ILoginService loginService,
                            IOptions<MailConfiguration> configOptions,
                            IRefreshTokenRepository refreshTokenRepo,
-                           IEntidadService entidadService) {
+                           IEntidadService entidadService,
+                           IEmailTokenService emailTokenService) {
+
             _usuarioRepo = usuarioRepo;
             _correoService = correoService;
             _loginService = loginService;
             _appConfig = configOptions.Value;
             _refreshTokenRepo = refreshTokenRepo;
             _entidadService = entidadService;
+            _emailTokenService = emailTokenService;
         }
 
         /// <summary>
@@ -126,17 +134,34 @@ namespace Application.Services
         /// <returns> Guid del Token asocuado al correo enviado</returns>
         public async Task<Guid?> RequestResetPassword(string email)
         {
-            var tipoEnvioCorreo = _correoService.ObtenerTiposEnvioCorreo()
-                                                .Result.Where(u => u.nombre.Trim() == TipoEnvioCorreo.TipoEnvio.CambiarContrasena.Trim())
-                                                .SingleOrDefault();
+            //var tipoEnvioCorreo = _correoService.ObtenerTiposEnvioCorreo()
+            //                                    .Result.Where(u => u.nombre.Trim() == TipoEnvioCorreo.TipoEnvio.CambiarContrasena.Trim())
+            //                                    .SingleOrDefault();
             var filters = new UsuarioFilters() { 
                 Correo = email 
             };
             var usersByEmail = await _usuarioRepo.GetByFiltersAsync(filters);
-            var nombre = usersByEmail.SingleOrDefault().nombre;
+            var usuario = usersByEmail.SingleOrDefault();
 
-            var correo = new Correo(tipoEnvioCorreo, email, nombre, _appConfig.LogoURL);
-            return _correoService.EnviarCorreo(correo);
+            //var correo = new Correo(tipoEnvioCorreo, email, nombre, _appConfig.LogoURL);
+            //return _correoService.EnviarCorreo(correo);
+             
+            var tipoEnvioCorreo = await _correoService.ObtenerTipoEnvioCorreo(TipoEnvioCorreos.CambiarContrasena);
+
+            // Creamos nuevo EmailToken
+            string? emailToken = await _emailTokenService.GenerateEmailToken(usuario.id.Value, TipoEnvio.CambiarContrasena);
+
+            var context = new EnvioCambiarContrasenaEmailContext(email: email,
+                                                                 nombre: usuario.nombre,
+                                                                 token: emailToken);
+            var correoN = new CorreoN {
+                Destinatario = context.Email,
+                Asunto = tipoEnvioCorreo.asunto,
+                Cuerpo = tipoEnvioCorreo.cuerpo
+            };
+
+            correoN.ApplyTags(context.GetTags());
+            return _correoService.EnviarCorreo_Nuevo(correoN); 
         }
 
         /// <summary>

@@ -10,7 +10,8 @@ using Domain.Entities;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
- 
+
+using static Domain.Entities.TipoEnvioCorreo;
 using static Utilities.ExporterHelper;
 
 namespace API.Controllers
@@ -100,12 +101,22 @@ namespace API.Controllers
 
                 if (null != manager) 
                 {
-                    var tiposEnvioCorreo = await correoService.ObtenerTiposEnvioCorreo();
-                    var tipoEnvioCorreo = tiposEnvioCorreo.Where(u => u.nombre == TipoEnvioCorreo.TipoEnvio.ConsultaUsuario_Manager)
-                                                          .SingleOrDefault();
+                     
+                    var tipoEnvioCorreo = await correoService.ObtenerTipoEnvioCorreo(TipoEnvioCorreo.TipoEnvioCorreos.ConsultaUsuario_Manager);
                     
-                    var correo = new Correo(tipoEnvioCorreo, manager.correo, manager.nombre, "");
-                    correoService.EnviarCorreo(correo);
+                    var context = new EnvioConsultaUsuarioManagerEmailContext(email: manager.correo,
+                                                                              nombre: manager.nombre,
+                                                                              nombreEntidad : entidad.nombre,
+                                                                              nombreUsuario: consulta.nombreCompleto,
+                                                                              correoUsuario: consulta.email);
+                    var correoN = new CorreoN {
+                        Destinatario = context.Email,
+                        Asunto = tipoEnvioCorreo.asunto,
+                        Cuerpo = tipoEnvioCorreo.cuerpo
+                    };
+
+                    correoN.ApplyTags(context.GetTags());
+                    correoService.EnviarCorreo_Nuevo(correoN);
                 }
             }
             //_logger.LogInformation(MessageProvider.GetMessage("Consulta:Crear", "Success"));
@@ -177,21 +188,29 @@ namespace API.Controllers
 
             if (envioEmail)
             {
-                var tiposEnvioCorreo = await correoService.ObtenerTiposEnvioCorreo();
-                var tipoEnvioCorreo = tiposEnvioCorreo.Where(u => u.nombre == TipoEnvioCorreo.TipoEnvio.EnvioReport)
-                                                      .SingleOrDefault();
+                var tipoEnvio = await correoService.ObtenerTipoEnvioCorreo(TipoEnvioCorreos.EnvioReport);
 
-                tipoEnvioCorreo.asunto = $"Report {entityName.ToString()} ({fileExtension})";
-                tipoEnvioCorreo.cuerpo = $"Se adjunta el informe para la vista de datos {entityName.ToString()}";
+                var context = new EnvioReportEmailContext(email: _exportConfig.CorreoAdmin,
+                                                          nombre: "Admin",
+                                                          nombreEntidad: "",
+                                                          nombreInforme: $"List_{entityName.ToString()}");
+                var correoN = new CorreoN
+                {
+                    Destinatario = context.Email,
+                    Asunto = tipoEnvio.asunto,
+                    Cuerpo = tipoEnvio.cuerpo
+                };
 
-                var correo = new Correo(tipoEnvioCorreo, _exportConfig.CorreoAdmin, "Admin", "");
-                correo.FicheroAdjunto = new FicheroAdjunto()
+                correoN.ApplyTags(context.GetTags());
+
+                correoN.FicheroAdjunto = new FicheroAdjunto()
                 {
                     Archivo = file,
                     ContentType = contentType,
                     NombreArchivo = fileName
                 };
-                correoService.EnviarCorreo(correo);
+
+                correoService.EnviarCorreo_Nuevo(correoN);
             }
             return File(file, contentType, fileName);
         }

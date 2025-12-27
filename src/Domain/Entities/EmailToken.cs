@@ -14,7 +14,7 @@
         public string? ip { get; set; }
 
         public enum EmailTokenActions {
-            SubscribeNewsletter, Login, AccountActivation, ResetPassword, ChangeEmail
+            SubscribeNewsletter, Login, AccountActivation, ResetPassword, ChangeEmail, EnvioComunicacion
         }
     }
 }
