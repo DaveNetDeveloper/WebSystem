@@ -8,6 +8,7 @@ namespace Domain.Entities
         public string? nombre { get; set; }
         public string? descripcion { get; set; }
         public int? identidad { get; set; }
+        public Guid? idtiporecompensa { get; set; }
 
         [JsonIgnore]
         public ICollection<UsuarioRecompensa> UsuarioRecompensas { get; set; }

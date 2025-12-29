@@ -1,0 +1,762 @@
+﻿<!DOCTYPE html>
+<html class="no-js" lang="es">
+<head>
+    <meta charset="utf-8" />
+    <title>Contactar con entidad</title>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="keywords" content="validación">
+    <meta name="description" content="Página para la activación de la cuenta">
+    <meta name='copyright' content='UOC'>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link rel="icon" href="img/favicon.png">
+
+    <link href="https://fonts.googleapis.com/css?family=Poppins:200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="./css/bootstrap.min.css">
+    <link rel="stylesheet" href="./css/nice-select.css">
+    <link rel="stylesheet" href="./css/font-awesome.min.css">
+    <link rel="stylesheet" href="./css/icofont.css">
+    <link rel="stylesheet" href="./css/slicknav.min.css">
+    <link rel="stylesheet" href="./css/owl-carousel.css">
+    <link rel="stylesheet" href="./css/datepicker.css">
+    <link rel="stylesheet" href="./css/animate.min.css">
+    <link rel="stylesheet" href="./css/magnific-popup.css">
+
+    <link rel="stylesheet" href="./css/normalize.css">
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="./css/responsive.css">
+
+    <script src="./js/services/entidadesController.js"></script>
+    <script src="./js/services/productosController.js"></script>
+
+    <style>
+
+        #map {
+            height: 50vh;
+            width: 100%;
+        }
+
+        button {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            font-size: 18px;
+            padding: 10px;
+            cursor: pointer;
+        }
+         
+        .column > :first-child, .row {
+            margin-top: 0;
+        }
+
+        .contact-form-container, .contact-form-container .contact-form {
+            position: relative;
+        }
+
+        .audio-container, .box, .button-group, .contact-form-container, .content-slider, .feature-column, .lead, .menu-box, .menu-list, .menu-list li, .pricing-table, .progress-bar-group, .recent-slider, .signup-form-container, .table, .testimonial-2 blockquote, .text-column, .thumbnail, .video-container {
+            margin-bottom: 3rem;
+        }
+
+        *, :after, :before {
+            -moz-box-sizing: border-box;
+            -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+        }
+
+        
+        div {
+            display: block;
+            unicode-bidi: isolate;
+        }
+
+        body {
+            font-family: 'Open Sans', 'Helvetica Neue', sans-serif;
+            letter-spacing: 0;
+            font-weight: 400;
+            font-size: 1.4rem;
+            line-height: 1.8;
+            color: #666;
+        }
+
+        body {
+            padding: 0;
+            margin: 0;
+            background: #fff;
+            color: #666;
+            font-family: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            font-weight: 400;
+            font-style: normal;
+            font-size: 1.4rem;
+            line-height: 1.8;
+            overflow-x: hidden !important;
+            overflow-y: scroll;
+            -webkit-text-size-adjust: none;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        html {
+            font-size: 62.5%;
+        }
+
+        *, :after, :before {
+            -moz-box-sizing: border-box;
+            -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+        }
+
+        *, :after, :before {
+            -moz-box-sizing: border-box;
+            -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+        }
+
+        ::selection {
+            background: #333;
+            color: #fff;
+        }
+
+        ::selection {
+            background: #333;
+            color: #fff;
+        }
+
+        ::selection {
+            background: #333;
+            color: #fff;
+        }
+
+        ::selection {
+            background: #333;
+            color: #fff;
+        }
+
+        ::selection {
+            background: #333;
+            color: #fff;
+        }
+
+        ::selection {
+            background: #333;
+            color: #fff;
+        }
+
+
+        .row .row {
+            width: auto;
+            margin-right: -1.5rem;
+            margin-left: -1.5rem;
+        }
+
+        .row {
+            margin-bottom: 0;
+        }
+
+        .row, body.boxed .wrapper-inner {
+            max-width: 114rem;
+        }
+
+        .row, .wrapper {
+            width: 100%;
+            margin-right: auto;
+            margin-left: auto;
+        }
+
+        .column > :first-child, .row {
+            margin-top: 0;
+        }
+
+        *, :after, :before {
+            -moz-box-sizing: border-box;
+            -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+        }
+
+
+        div {
+            display: block;
+            unicode-bidi: isolate;
+        }
+
+        body {
+            font-family: 'Open Sans', 'Helvetica Neue', sans-serif;
+            letter-spacing: 0;
+            font-weight: 400;
+            font-size: 1.4rem;
+            line-height: 1.8;
+            color: #666;
+        }
+
+        body {
+            padding: 0;
+            margin: 0;
+            background: #fff;
+            color: #666;
+            font-family: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            font-weight: 400;
+            font-style: normal;
+            font-size: 1.4rem;
+            line-height: 1.8;
+            overflow-x: hidden !important;
+            overflow-y: scroll;
+            -webkit-text-size-adjust: none;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        [class*="form-container"] .column {
+            position: relative;
+        }
+
+        .contact-form-container [class*=width-], .signup-form-container [class*=width-] {
+            padding-left: 1rem;
+            padding-right: 1rem;
+        }
+
+        .width-6 {
+            width: 50%;
+        }
+
+        .column, [class*=content-grid] .grid-item {
+            width: 100%;
+            padding-left: 1.5rem;
+            padding-right: 1.5rem;
+            float: left;
+        }
+
+        *, :after, :before {
+            -moz-box-sizing: border-box;
+            -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+        }
+
+   
+        div {
+            display: block;
+            unicode-bidi: isolate;
+        }
+
+        .column > :first-child, .row {
+            margin-top: 0;
+        }
+
+        .field-wrapper {
+            position: relative;
+            overflow: hidden;
+        }
+
+        *, :after, :before {
+            -moz-box-sizing: border-box;
+            -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+        }
+
+
+        .contact-form-container .form-element, .login-form-container .form-element, .register-form-container .form-element, .search-form-container .form-element, .signup-form-container .form-element {
+            margin-bottom: 2rem;
+        }
+
+        .form-element.large {
+            padding: 1.6rem 3rem;
+            font-size: 1.4rem;
+        }
+
+        .form-element, textarea, select {
+            font-size: 1.3rem;
+            text-transform: none;
+            font-weight: normal;
+            letter-spacing: 0.1rem;
+            color: #666;
+        }
+
+        .form-element, textarea {
+            margin-bottom: 3rem;
+            background-color: #fff;
+            border: 1px solid #ddd;
+        }
+
+            .bar, .box, .form-element, .form-element + label:before, .overlay-info, .thumbnail, .thumbnail .background-image, .thumbnail img, a, button, input, textarea {
+                -webkit-transition-property: background, border-color, color, opacity, box-shadow, -webkit-transform;
+                transition-property: background, border-color, color, opacity, box-shadow, transform;
+                -webkit-transition-duration: .3s;
+                transition-duration: .3s;
+                -webkit-transition-timing-function: ease-in-out;
+                transition-timing-function: ease-in-out;
+            }
+
+        .form-element, textarea {
+            background: #f9f9f9;
+            font-size: 1.3rem;
+            color: #666;
+            border: 1px solid #eee;
+            border-radius: 0;
+        }
+
+        h1, h2, h3, h4, h5, h6, input, button, .button, select, textarea, .project-title, .product-title, .project-description, .font-alt-1, .header .navigation > ul > li > a, .side-navigation > ul > li > a, .overlay-navigation > ul > li > a, .grid-filter-menu a {
+            font-family: 'Lato', 'Helvetica Neue', sans-serif;
+        }
+
+        input, select, textarea {
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+            -webkit-border-radius: 0;
+        }
+
+        input, textarea {
+            width: 100%;
+            padding: 1.3rem 2.5rem;
+            margin: 0 0 1.5rem;
+        }
+
+        .button, button, input, select {
+            line-height: 1.4;
+        }
+
+        a, button, input, select, textarea {
+            touch-action: manipulation;
+        }
+
+        *, :after, :before {
+            -moz-box-sizing: border-box;
+            -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+        }
+
+  
+        input:not([type="image" i], [type="range" i], [type="checkbox" i], [type="radio" i]) {
+            overflow-clip-margin: 0px !important;
+            overflow: clip !important;
+        }
+
+    
+        input[type="text" i] {
+            padding-block: 1px;
+            padding-inline: 2px;
+        }
+
+        .nice-select {
+            -webkit-tap-highlight-color: transparent;
+            background-color: #fff;
+            border-radius: 5px;
+            border: solid 1px #e8e8e8;
+            box-sizing: border-box;
+            clear: both;
+            cursor: pointer;
+            display: block;
+            float: left;
+            font-family: inherit;
+            font-size: 15px;
+            font-weight: normal;
+            height: 54px;
+            line-height: 45px;
+            outline: none;
+            padding-left: 18px;
+            padding-right: 30px;
+            position: relative;
+            text-align: left !important;
+            -webkit-transition: all 0.2s ease-in-out;
+            transition: all 0.2s ease-in-out;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+            white-space: nowrap;
+            width: 100%;
+            margin-bottom: 16px;
+        }
+
+            .nice-select.open .list {
+                opacity: 1;
+                pointer-events: auto;
+                -webkit-transform: scale(1) translateY(0);
+                -ms-transform: scale(1) translateY(0);
+                transform: scale(1) translateY(0);
+                width: 100%;
+            }
+
+        /* #motivoSelect {
+            opacity: 1 !important;
+            display: block !important;
+            height: auto !important;
+            visibility: visible !important;
+        }*/
+
+    </style>
+
+    <script type="module" src="../Components/modalPanel/modalPanel.js"></script>
+    <script src="./js/libraries/header.js"></script>
+    <script src="./js/libraries/footer.js"></script>
+
+</head>
+<body>
+    <script>
+        let map = null;
+        let localizacionEntidad = null;
+        let googleReady = false;
+    </script>
+
+    <div class="preloader">
+        <div class="loader">
+            <div class="loader-outter"></div>
+            <div class="loader-inner"></div>
+
+            <div class="indicator">
+                <svg width="16px" height="12px">
+                    <polyline id="back" points="1 6 4 6 6 11 10 1 12 6 15 6"></polyline>
+                    <polyline id="front" points="1 6 4 6 6 11 10 1 12 6 15 6"></polyline>
+                </svg>
+            </div>
+        </div>
+    </div>
+
+    <header id="headerContactar" class="header"> </header>
+    <script>
+        (async () => {
+
+            await renderHeader('explorar', 'headerContactar');
+            await setUserData();
+        })()
+    </script>
+
+    <div class="container">
+        <div class="row ">
+            <div class="col-lg-6  col-12">
+                <modal-panel id="modalPanel-ConfirmarContacto"></modal-panel>
+            </div>
+        </div>
+    </div>
+
+    <div class="breadcrumbs overlay">
+        <div class="container">
+            <div class="bread-inner">
+                <div class="row">
+                    <div class="col-12">
+                        <h2 id="tituloPagina">Contactar</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="section">
+        <form class="contact-form" id="formularioConsulta">
+            <div class="row">
+                <div class="column width-6">
+                    <div class="field-wrapper">
+                        <input id="nombreInput" type="text" name="fname" class="form-fname form-element large" placeholder="Nombre" tabindex="1" required="" value="">
+                    </div>
+                </div>
+                <div class="column width-6">
+                    <div class="field-wrapper">
+                        <input type="text" id="apellidosInput" name="lname" class="form-lname form-element large" placeholder="Apellidos" tabindex="2" value="">
+                    </div>
+                </div>
+                <div class="column width-6">
+                    <div class="field-wrapper">
+                        <input type="email" id="emailInput" name="email" class="form-email form-element large" placeholder="Correo" tabindex="3" required="" value="">
+                    </div>
+                </div>
+                <div class="column width-6">
+                    <div class="field-wrapper">
+                        <input type="text" name="website" id="telefonoInput" class="form-phone form-element large" placeholder="Teléfono" tabindex="4">
+                    </div>
+                </div>
+                <div class="column width-6">
+                    <div class="form-select form-element large" style="padding: 0;">
+                        <select id="motivoSelect" tabindex="6" class="form-aux" data-label="MotivoConsulta">
+                            <option value="" disabled selected hidden>Motivo de la consulta</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="column width-12">
+                    <div class="field-wrapper">
+                        <textarea id="mensajeInput" name="message" style="min-height:150px;" class="form-message form-element large" placeholder="Mensaje" tabindex="7" required=""></textarea>
+                    </div>
+                </div>
+                <div style="text-align:center;" class="column width-12">
+                    <button type="submit" style="min-width: 25%;" value="ENVIAR" class="btn">ENVIAR</button>
+                </div>
+            </div>
+        </form>
+        <div class="form-response"></div>
+    </div>
+
+    <script>
+
+        var url = new URL(window.location.href);
+        var urlParams = new URLSearchParams(url.search);
+
+        let _idTipoEntidad = urlParams.get('idTipo'); // para filtrar los motivos de consulta
+        let _idEntidad = urlParams.get('id'); // Para relacionar la consulta
+         
+        cargarEntidad(_idEntidad)
+
+        document.addEventListener("DOMContentLoaded", () => {
+
+            if (_idTipoEntidad !== null) {
+                cargarMotivosConsulta(_idTipoEntidad);
+            }
+            const idUsuario = localStorage.getItem("idUsuario");
+
+            if (idUsuario !== null && idUsuario !== undefined) {
+                obtenerUsuarioPorId(idUsuario).then(usuario => {
+                    rellenarFormulario(usuario);
+                });
+            }
+        });
+
+        function cargarEntidad(id) {
+
+            GetEntidad(id).then(entidad => {
+
+                if (!entidad) return;
+
+                document.getElementById('tituloPagina').textContent += ` con ${entidad.nombre}`;
+                document.getElementById('tituloMapa').textContent = `¿Dónde está ${entidad.nombre}?`;
+
+                document.getElementById('direccioionEntidad').textContent = `En ${entidad.ubicacion}`; 
+
+                localizacionEntidad = {
+                    lat: Number(entidad.posLat),
+                    lng: Number(entidad.posLong)
+                };
+
+            }).catch(error => {
+                console.error(error);
+            });
+        }
+
+        function rellenarFormulario(usuario) {
+            document.getElementById("nombreInput").value = usuario.nombre ?? "";
+            document.getElementById("apellidosInput").value = usuario.apellidos ?? "";
+            document.getElementById("emailInput").value = usuario.correo ?? "";
+            document.getElementById("telefonoInput").value = usuario.telefono ?? "";
+        }
+
+        function obtenerUsuarioPorId(idUsuario) {
+
+            const baseUrl = "https://localhost:44311";
+            const controller = "Usuarios";
+            const endpoint = `${baseUrl}/${controller}/ObtenerUsuario/${idUsuario}`;
+
+            return fetch(endpoint, {
+                method: "GET",
+                headers: { "Content-Type": "application/json" }
+            })
+                .then(response => response.json());
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const form = document.getElementById('formularioConsulta');
+
+            const baseUrl = `https://localhost`;
+            const controllerName = `Consultas`;
+            const port = `44311`;
+            const apiUrl = `${baseUrl}:${port}/${controllerName}/CrearConsulta`;
+
+            form.addEventListener('submit', async (event) => {
+
+                event.preventDefault();
+
+                const consultaData = {
+                    id: '00000000-0000-0000-0000-000000000000',
+                    nombreCompleto: document.getElementById('nombreInput').value + ' ' + document.getElementById('apellidosInput').value,
+                    email: document.getElementById('emailInput').value,
+                    telefono: document.getElementById('telefonoInput').value || null,
+                    mensaje: document.getElementById('mensajeInput').value,
+                    fecha: new Date().toISOString(),
+                    idMotivoConsulta: document.getElementById('motivoSelect').value,
+                    idEntidad: _idEntidad
+                };
+
+                if (consultaData.idMotivoConsulta === "") {
+                    alert("Por favor, selecciona un Motivo de Consulta.");
+                    return;
+                }
+
+                try {
+                    const respuesta = await fetch(apiUrl, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify(consultaData)
+                    });
+
+                    if (respuesta.ok) {
+                        const resultado = await respuesta.json();
+
+                        if (resultado === true) {
+
+                            form.reset();
+                            document.getElementById('motivoSelect').value = "";
+                            $('#motivoSelect').niceSelect('update');
+
+                            mostrarModal('Consulta enviada', 'Tú consulta se ha enviado corretamente a la entidad', 'info');
+                            //alert("Consulta enviada y guardada correctamente.");
+                        } else {
+                            console.error("Error: La API indicó un fallo al guardar (resultado 'false').");
+                        }
+                    } else {
+                        const errorTexto = await respuesta.text();
+                        console.error(`Error al enviar la consulta. Código: ${respuesta.status}. Mensaje: ${errorTexto}`);
+                    }
+
+                } catch (error) {
+                    console.error('Error de red al enviar la consulta:', error);
+                    //alert('No se pudo conectar con el servidor. Inténtalo de nuevo más tarde.');
+                }
+            });
+        });
+
+        async function cargarMotivosConsulta(idTipoEntidad) {
+
+            const baseUrl = `https://localhost`;
+            const controllerName = `MotivosConsulta`;
+            const port = `44311`;
+            const apiUrl = `${baseUrl}:${port}/${controllerName}/FiltrarMotivoConsultas`;
+
+            const url = `${apiUrl}?filters.IdTipoEntidad=${idTipoEntidad}`;
+
+            try {
+                const response = await fetch(url, {
+                    method: "GET",
+                    headers: { "Content-Type": "application/json" }
+                });
+
+                if (!response.ok) {
+                    console.error("Error al obtener motivos de consulta:", response.status);
+                    return;
+                }
+
+                const data = await response.json();
+
+                let select = document.getElementById("motivoSelect");
+
+                //select.innerHTML = `<option value="">Motivo de la consulta</option>`;
+                select.innerHTML = `<option value="" disabled selected hidden>Motivo de la consulta</option>`;
+
+                if (data != null && data.length > 0) {
+
+                    for (const motivo of data) {
+
+                        let option = document.createElement("option");
+                        option.value = motivo.id;
+                        option.textContent = motivo.nombre;
+                        select.appendChild(option);
+                    }
+                } else {
+
+                    let option = document.createElement("option");
+                    option.value = "";
+                    option.textContent = "No hay motivos disponibles";
+                    select.appendChild(option);
+                }
+
+                const oldNice = document.querySelector(".nice-select.form-aux");
+                if (oldNice) oldNice.remove();
+
+                $(document).ready(function () {
+                    $('#motivoSelect').niceSelect();
+                    document.querySelector('.nice-select .current').classList.add('placeholder');
+                });
+
+            } catch (err) {
+                console.error("Error en cargarMotivosConsulta:", err);
+            }
+        }
+
+        function verificarSeleccion() {
+            const selectElemento = document.getElementById("motivoSelect");
+            const valorSeleccionado = selectElemento.value;
+
+            if (valorSeleccionado === "") {
+                console.log("No se ha seleccionado ninguna opción válida (el valor es vacío).");
+                return false;
+            } else {
+                console.log("Se ha seleccionado una opción válida. Valor: " + valorSeleccionado);
+                return true;
+            }
+        }
+
+        function mostrarModal(titulo, mensaje, mode) {
+            const modal = document.getElementById("modalPanel-ConfirmarContacto");
+            modal.setContent(titulo, mensaje, mode);
+            modal.mostrar();
+        }
+
+    </script>
+
+    <div class="section" style="padding-top: 0;">
+        <div class="row">
+            <div class="center column width-12">
+                <h3 style=" font-size: 24px; font-weight: 600; color: #2C2D3F; position: relative; padding-bottom: 20px; margin-bottom: 24px;" id="tituloMapa">¿Dónde está?</h3>
+                <p id="direccioionEntidad" style=" font-size: 16px; color: #2C2D3F; padding-bottom: 20px; margin-bottom: 24px;"></p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="column width-12">
+                <div id="map"></div>
+            </div>
+        </div>
+     </div> 
+    <script>
+
+        function initMap() {
+            googleReady = true;
+            tryInitMap();
+        }
+
+        function tryInitMap() {
+            if (!googleReady || !localizacionEntidad) return;
+
+            map = new google.maps.Map(document.getElementById("map"), {
+                zoom: 16,
+                center: localizacionEntidad
+            });
+
+            new google.maps.Marker({
+                position: localizacionEntidad,
+                map: map
+            });
+        }
+    </script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBqYqG29bR27i8saIcOGZNYODKXUVIVqgY&callback=initMap" async defer></script>
+
+    <footer id="footer" class="footer"></footer>
+    <script>
+        (async () => {
+            await renderFooter('footer');
+        })()
+    </script>
+
+    <script src="./js/jquery.min.js"></script>
+    <script src="./js/jquery-migrate-3.0.0.js"></script>
+    <script src="./js/jquery-ui.min.js"></script>
+    <script src="./js/popper.min.js"></script>
+    <script src="./js/bootstrap.min.js"></script>
+
+    <!-- PLUGINS -->
+    <script src="./js/easing.js"></script>
+    <script src="./js/colors.js"></script>
+    <script src="./js/bootstrap-datepicker.js"></script>
+    <script src="./js/jquery.nav.js"></script>
+    <script src="./js/slicknav.min.js"></script>
+    <script src="./js/jquery.scrollUp.min.js"></script>
+    <script src="./js/niceselect.js"></script>
+    <script src="./js/tilt.jquery.min.js"></script>
+    <script src="./js/owl-carousel.js"></script>
+    <script src="./js/jquery.counterup.min.js"></script>
+    <script src="./js/steller.js"></script>
+    <script src="./js/wow.min.js"></script>
+    <script src="./js/jquery.magnific-popup.min.js"></script>
+    <script src="./js/main.js"></script>
+
+</body>
+</html> 

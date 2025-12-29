@@ -6,15 +6,14 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
-
 using System.Threading.RateLimiting; 
 using Microsoft.AspNetCore.RateLimiting;
-
 using Microsoft.Extensions.Options;
 using Microsoft.AspNetCore.Builder;
 
 using Infrastructure.Persistence;
- 
+using Application.Common;
+
 namespace Test.Integration
 { 
     public class CustomWebApplicationFactory : WebApplicationFactory<Program>
@@ -24,7 +23,7 @@ namespace Test.Integration
 
         protected override IHost CreateHost(IHostBuilder builder)
         { 
-            builder.UseEnvironment("Test");  
+            builder.UseEnvironment(Application.Common.Environments.Test);  
             return base.CreateHost(builder);
         }
 
@@ -47,14 +46,14 @@ namespace Test.Integration
                     services.Remove(descriptor);
 
                 //TODO revisar porque hace que pete el test unitario de security.RateLimiter
-                services.AddRateLimiter(options => {
-                    options.AddFixedWindowLimiter("UsuariosLimiter", opt => {
-                        opt.PermitLimit = 5; // muy bajo para test
-                        opt.Window = TimeSpan.FromSeconds(30);
-                        opt.QueueProcessingOrder = QueueProcessingOrder.OldestFirst;
-                        opt.QueueLimit = 1;
-                    });  
-                });
+                //services.AddRateLimiter(options => {
+                //    options.AddFixedWindowLimiter("UsuariosLimiter", opt => {
+                //        opt.PermitLimit = 5; // muy bajo para test
+                //        opt.Window = TimeSpan.FromSeconds(30);
+                //        opt.QueueProcessingOrder = QueueProcessingOrder.OldestFirst;
+                //        opt.QueueLimit = 1;
+                //    });  
+                //});
 
                 services.AddDbContext<ApplicationDbContext>(options => {
                     options.UseInMemoryDatabase(_dbName);

@@ -6,6 +6,7 @@ namespace Application.DTOs.Filters
     public class LoginFilters : IFilters<Login>
     {
         public Guid? Id { get; set; }
-        public int? IdUsuario { get; set; }  
+        public int? IdUsuario { get; set; }
+        public string? LoginType { get; set; }
     }
 }

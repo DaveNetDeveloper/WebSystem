@@ -4,7 +4,7 @@
     <TargetFramework>net8.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
-    
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>    
     <WarningLevel>0</WarningLevel>
   </PropertyGroup>
 
@@ -15,6 +15,10 @@
     <EmbeddedResource Remove="Repositories\**" />
     <None Remove="Filters\**" />
     <None Remove="Repositories\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Utilities\Utilities.csproj" />
   </ItemGroup>
 
 </Project>

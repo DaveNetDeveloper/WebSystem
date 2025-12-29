@@ -1,8 +1,14 @@
+using Application.Common;
 using Application.DTOs.Filters;
+using Application.Interfaces.Common;
+using Application.Interfaces.Common;
+using Application.Interfaces.DTOs.Filters;
 using Application.Interfaces.Repositories;
 using Application.Interfaces.Services;
 using Application.Services;
 using Domain.Entities; 
+using Infrastructure.Repositories;
+using Microsoft.Extensions.Options;
 using Moq;
 using Test; 
 using Test.UnitTest.Services;
@@ -23,52 +29,99 @@ namespace Test.UnitTest.Services
 
         private ILoginService _loginService;
         private Mock<ILoginRepository> _mockRepoLogin;
+        private Mock<IExcelExporter> _mockExcelExporter;
+        private Mock<IExporter> _mockPdfExporter;
+
+        private Mock<IRefreshTokenRepository> _refreshTokenRepository;
+        private Mock<IEntidadService> _entidadService;
+        private Mock<IEmailTokenService> _emailTokenService;
+
+        private int? page = null;
+        private int? pageSize = null;
+        private string? orderBy = "id";
+        private bool descending = false;
+        private IQueryOptions<Usuario> _queryOptions;
+        private IOptions<MailConfiguration> _configOptions;
 
         [SetUp]
         public void SetUp() {
 
-            _mockRepoLogin = new Mock<ILoginRepository>();
+            //email = "mail@test.com";
+            //newPassword = "newPassword";
 
+            _queryOptions = GetQueryOptions(page, pageSize, orderBy, descending);
+
+            _mockRepoLogin = new Mock<ILoginRepository>();
+            _mockExcelExporter = new Mock<IExcelExporter>();
+            _mockPdfExporter = new Mock<IExporter>();
             _mockRepoTipoEnvio = new Mock<ITipoEnvioCorreoRepository>();
 
             _mockRepo = new Mock<IUsuarioRepository>(); 
-            _mockRepo.Setup(r => r.GetByIdAsync(1)).ReturnsAsync(new Usuario { id = 1, nombre = "TestUser", apellidos = "apellidos", correo = "mail@test.com", contraseña = "5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8", token = "XYx7U8rYIFKEhx/A8k6uDFpK9mjNpe9MhU7+lY1URKE=" });
+            _mockRepo.Setup(r => r.GetByIdAsync(1)).ReturnsAsync(new Usuario { id = 1, nombre = "TestUser", apellidos = "apellidos", correo = "mail@test.com", contrasena = "5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8" });
+            
             _mockRepo.Setup(r => r.GetAllAsync()).ReturnsAsync(new List<Usuario> {
                                                                 new Usuario {
                                                                     id = 1,
                                                                     nombre = "TestUser 1",
                                                                     apellidos = "apellidos",
                                                                     correo = "mail@test.com",
-                                                                    contraseña = "5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8",
-                                                                    token = "XYx7U8rYIFKEhx/A8k6uDFpK9mjNpe9MhU7+lY1URKE="
+                                                                    contrasena = "AQAAAAIAAYagAAAAELW6NstElhq6DQMmb0vLiGZaS8JJ+u0941cgEOyVkulcK+Zg7NGisT2EJ4zxZlLlIQ=="
                                                                 },
                                                                 new Usuario {
                                                                     id = 2,
                                                                     nombre = "TestUser 2",
                                                                     apellidos = "apellidos",
-                                                                    correo = "mail@test.com",
-                                                                    contraseña = "5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8",
-                                                                    token = "XYx7U8rYIFKEhx/A8k6uDFpK9mjNpe9MhU7+lY1URKE="
+                                                                    correo = "mail2@test.com",
+                                                                    contrasena = "AQAAAAIAAYagAAAAELW6NstElhq6DQMmb0vLiGZaS8JJ+u0941cgEOyVkulcK+Zg7NGisT2EJ4zxZlLlIQ=="
                                                                 },
                                                                 new Usuario {
                                                                     id = 3,
                                                                     nombre = "TestUser 3",
                                                                     apellidos = "apellidos",
-                                                                    correo = "mail@test.com",
-                                                                    contraseña = "5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8",
-                                                                    token = "XYx7U8rYIFKEhx/A8k6uDFpK9mjNpe9MhU7+lY1URKE="
+                                                                    correo = "mail3@test.com",
+                                                                    contrasena = "AQAAAAIAAYagAAAAELW6NstElhq6DQMmb0vLiGZaS8JJ+u0941cgEOyVkulcK+Zg7NGisT2EJ4zxZlLlIQ=="
                                                                 }
                                                             });
 
-
-            _mockRepo.Setup(r => r.ValidarCuenta("mail@test.com")).ReturnsAsync(true); 
+            _mockRepo.Setup(r => r.GetByFiltersAsync(It.Is<UsuarioFilters>(f => f.Correo == "mail@test.com"), It.IsAny<QueryOptions<Usuario>>())).ReturnsAsync(new List<Usuario> {
+                                                                new Usuario {
+                                                                    id = 1,
+                                                                    nombre = "TestUser 1",
+                                                                    apellidos = "apellidos",
+                                                                    correo = "mail@test.com",
+                                                                    contrasena = "AQAAAAIAAYagAAAAELW6NstElhq6DQMmb0vLiGZaS8JJ+u0941cgEOyVkulcK+Zg7NGisT2EJ4zxZlLlIQ=="
+                                                                } });
             
-            _userService = new UsuarioService(_mockRepo.Object);
+            _mockRepo.Setup(r => r.ValidarCuenta("mail@test.com")).ReturnsAsync(true);
+            _mockRepo.Setup(r => r.Remove(1)).ReturnsAsync(true);
+            _mockRepo.Setup(r => r.CambiarContrasena("mail@test.com", It.IsAny<string>())).ReturnsAsync(true);
+            _mockRepo.Setup(r => r.Login("mail@test.com", It.IsAny<string>(), false)).ReturnsAsync(new AuthUser() { Id = 1, Email = "mail@test.com", Role = "Admin" });
+            _mockRepo.Setup(r => r.ActivarSuscripcion("mail@test.com")).ReturnsAsync(true);
+            _mockRepo.Setup(r => r.AddAsync(It.IsAny<Usuario>())).ReturnsAsync(true);
+            _mockRepo.Setup(r => r.UpdateAsync(It.IsAny<Usuario>())).ReturnsAsync(true);
 
-            _loginService = new LoginService(_mockRepoLogin.Object);
+            _userService = new UsuarioService(_mockRepo.Object, _mockExcelExporter.Object, _mockPdfExporter.Object);
+
+            _loginService = new LoginService(_mockRepoLogin.Object, _mockExcelExporter.Object, _mockPdfExporter.Object);
+
             _correoService = new CorreoService(_mockRepoTipoEnvio.Object);
 
-            _authService = new AuthService(_mockRepo.Object, _correoService, _loginService);
+
+            var mailConfig = new MailConfiguration() {
+                ServidorSmtp = "",
+                UsuarioSmtp = "",
+                ContrasenaSmtp = "",
+                PuertoSmtp = "",
+                LogoURL = ""
+            }; 
+            _configOptions = Options.Create(mailConfig);
+
+            _refreshTokenRepository = new Mock<IRefreshTokenRepository>();
+            _entidadService = new Mock<IEntidadService>();
+            _emailTokenService = new Mock<IEmailTokenService>();
+
+            _authService = new AuthService(_mockRepo.Object, _correoService, _loginService, _configOptions, _refreshTokenRepository.Object, _entidadService.Object, _emailTokenService.Object);
+
         } 
         [Test]
         public void GetById_Test()
@@ -91,13 +144,13 @@ namespace Test.UnitTest.Services
             var filters = new UsuarioFilters();
             filters.Correo = "mail@test.com";
 
-            int? page = null;
-            int? pageSize = null;
-            string? orderBy = "id";
-            bool descending = false; 
-            var queryOptions = GetQueryOptions(page, pageSize, orderBy, descending);
+            //int? page = null;
+            //int? pageSize = null;
+            //string? orderBy = "id";
+            //bool descending = false; 
+            //var queryOptions = GetQueryOptions(page, pageSize, orderBy, descending);  
 
-            var results =  _userService.GetByFiltersAsync(filters, queryOptions);
+            var results =  _userService.GetByFiltersAsync(filters, _queryOptions);
 
             Assert.IsNotNull(results);
 
@@ -127,6 +180,7 @@ namespace Test.UnitTest.Services
         {
             var email = "mail@test.com";
             var password = "5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8";
+
             var result = _authService.Login(email, password);
             Assert.IsNotNull(result.Result);
         }
@@ -139,31 +193,25 @@ namespace Test.UnitTest.Services
             Assert.IsTrue(result.Result);
         }
         [Test]
-        public void CambiarContraseña_Test()
-        { 
-            var email = "mail@test.com"; 
-            var nuevaContraseña = "5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8";
-            var result = _userService.CambiarContraseña(email, nuevaContraseña);
-            Assert.IsTrue(result.Result);
-        }
-        [Test]
-        public void ValidarCuenta_Test()
+        public void CambiarContrasena_Test()
         {
-            var email = "mail@test.com";
-            var result = _userService.ValidarCuenta(email);
+            var email = "mail@test.com"; 
+            var nuevaContrasena = "newPassword";
+            
+            var result = _userService.CambiarContrasena(email, nuevaContrasena);
             Assert.IsTrue(result.Result);
         }
         [Test]
         public void Add_Test()
         {
-            Usuario usuario = new Usuario { id = 9999, nombre = "TestUser", apellidos = "apellidos", correo = "mail@test.com", contraseña = "newPassword", token = "", activo=true, suscrito=true, fechaCreación = DateTime.Now, puntos=0, fechaNacimiento=DateTime.Now.AddYears(-39) };
+            Usuario usuario = new Usuario { id = 9999, nombre = "TestUser", apellidos = "apellidos", correo = "mail@test.com", contrasena = "newPassword", activo=true, suscrito=true, fechaCreacion = DateTime.Now, puntos=0, fechaNacimiento=DateTime.Now.AddYears(-39), genero = "Hombre" };
             var result = _userService.AddAsync(usuario);
             Assert.IsTrue(result.Result);
         }
         [Test]
         public void Update_Test()
         {
-            Usuario usuario = new Usuario { id = 1, nombre = "TestUser", apellidos = "apellidos", correo = "mail@test.com", contraseña = "newPassword", token = "VBx7U8rYIFKEhx/A8k6uDFpK9mjNpe9MhU7+lY1URKE=" };
+            Usuario usuario = new Usuario { id = 1, nombre = "TestUser", apellidos = "apellidos", correo = "mail@test.com", contrasena = "newPassword", genero = "Hombre" };
             var result = _userService.UpdateAsync(usuario);
             Assert.IsTrue(result.Result);
         } 

@@ -6,13 +6,16 @@ namespace Domain.Entities
     {
         public int id { get; set; }
         public string nombre { get; set; }
-        public string ubicacion { get; set; }
-        public DateTime fechaAlta { get; set; }
-        public int popularidad { get; set; }
-        public string descripcion { get; set; }
+        public string? ubicacion { get; set; }
+        public DateTime? fechaAlta { get; set; }
+        public int? popularidad { get; set; }
+        public string? descripcion { get; set; }
         public bool activo { get; set; }
         public Guid idTipoEntidad { get; set; }
-        public string imagen { get; set; }
+        public string? imagen { get; set; }
+        public string manager { get; set; }
+        public decimal posLat { get; set; }
+        public decimal posLong { get; set; }
 
         [JsonIgnore]
         public ICollection<UsuarioRol> UsuarioRoles { get; set; }

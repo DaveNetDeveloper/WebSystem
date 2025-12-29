@@ -1,216 +1,122 @@
-﻿using System.Net;
-using System.Net.Mail;
-using System.Text;
-
-using Application.Interfaces;
-using Domain.Entities;
+﻿using Application.Interfaces;
 using Application.Interfaces.Repositories;
 using Application.Interfaces.Services;
+using Domain.Entities;
+
+using Microsoft.Extensions.Options;
+using System.Net;
+using System.Net.Mail;
+using System.Text;
+using Utilities;
+using static Domain.Entities.TipoEnvioCorreo;
 
 namespace Application.Services
 {
     public class CorreoService : ICorreoService
     {
         private readonly ITipoEnvioCorreoRepository _repoTipoEnvioCorreo;
+        private readonly MailConfiguration _mailConfig;
 
-        public CorreoService(ITipoEnvioCorreoRepository repo) {
+        public CorreoService(ITipoEnvioCorreoRepository repo,
+                             IOptions<MailConfiguration> mailConfig) {
+            _repoTipoEnvioCorreo = repo;
+            _mailConfig = mailConfig.Value;
+        }
+
+        public CorreoService(ITipoEnvioCorreoRepository repo)
+        {
             _repoTipoEnvioCorreo = repo;
         }
 
-        public Task<List<TipoEnvioCorreo>> ObtenerTiposEnvioCorreo() { 
-            return _repoTipoEnvioCorreo.GetAllAsync(); 
+        public Task<IEnumerable<TipoEnvioCorreo>> ObtenerTiposEnvioCorreo() { 
+            return _repoTipoEnvioCorreo.GetAllAsync();
         }
 
-        public Guid EnviarCorreo(Correo correo, string nombreUsuario, string servidorSmtp, string puertoSmtp, string usuarioSmtp, string contraseñaSmtp)
+        public async Task<TipoEnvioCorreo> ObtenerTipoEnvioCorreo(TipoEnvioCorreos tipoEnvio)
         {
-            var emailToken = Guid.NewGuid();
+            var tipos = await _repoTipoEnvioCorreo.GetAllAsync();
+            var tipo = tipos.Where(t => t.nombre == tipoEnvio.ToString()).SingleOrDefault(); 
+            return tipo;
+        }
 
-            var contenido = ConstruirCuerpoHTML(correo.TipoEnvio, nombreUsuario, correo.Destinatario, emailToken.ToString());
-            
-            using (var mensaje = new MailMessage()) {
-                mensaje.From = new MailAddress(usuarioSmtp);
+        public Guid? EnviarCorreo_Nuevo(CorreoN correo)
+        {
+            var guidRelated = Guid.NewGuid();
+            using (var mensaje = new MailMessage())
+            {
+                mensaje.From = new MailAddress(EncodeDecodeHelper.GetDecodeValue(_mailConfig.UsuarioSmtp));
                 mensaje.To.Add(correo.Destinatario);
-                mensaje.Subject = contenido.Asunto;
-                mensaje.Body = contenido.Cuerpo;
+                mensaje.Subject = correo.Asunto;
+                mensaje.Body = correo.Cuerpo;
                 mensaje.IsBodyHtml = true;
 
-                using (var clienteSmtp = new SmtpClient(servidorSmtp, Convert.ToInt32(puertoSmtp))) { 
-                    clienteSmtp.Credentials = new NetworkCredential(usuarioSmtp, contraseñaSmtp);
-                    clienteSmtp.EnableSsl = true;
-                    clienteSmtp.Send(mensaje);
+                bool hasAttachment = correo.FicheroAdjunto != null && correo.FicheroAdjunto.Archivo.Length > 0;
+
+                if (hasAttachment)
+                {
+                    var stream = new MemoryStream(correo.FicheroAdjunto.Archivo);
+                    var attachment = new Attachment(stream, correo.FicheroAdjunto.NombreArchivo, correo.FicheroAdjunto.ContentType);
+                    mensaje.Attachments.Add(attachment);
+                }
+
+                using var clienteSmtp = new SmtpClient(EncodeDecodeHelper.GetDecodeValue(_mailConfig.ServidorSmtp))
+                {
+                    Port = Convert.ToInt32(EncodeDecodeHelper.GetDecodeValue(_mailConfig.PuertoSmtp)),
+                    Credentials = new NetworkCredential(EncodeDecodeHelper.GetDecodeValue(_mailConfig.UsuarioSmtp),
+                                                        EncodeDecodeHelper.GetDecodeValue(_mailConfig.ContrasenaSmtp)),
+                    EnableSsl = true
+                };
+
+                clienteSmtp.SendAsync(mensaje, guidRelated.ToString());
+
+                if (hasAttachment)
+                {
+                    foreach (var adjunto in mensaje.Attachments)
+                        adjunto.ContentStream.Dispose();
                 }
             }
-            return emailToken;
+            return guidRelated;
         }
-         
-        private Correo ConstruirCuerpoHTML(TipoEnvioCorreos tipoEnvio, string nombreUsuario, string email, string emailToken)
-        {
-            string asunto = string.Empty;
-            string logoUrl = "https://www.getautismactive.com/wp-content/uploads/2021/01/Test-Logo-Circle-black-transparent.png";
 
-            StringBuilder body = new();
-            switch (tipoEnvio)
+        /// <summary>
+        /// Envia un correo electronico con los datos especificados por parámetro
+        /// </summary>
+        /// <param name="correo"> Objeto con los detalles del correo a enviar </param>
+        /// <returns> Devuelve el EmailToken asociado al correo enviado </returns>
+        public Guid? EnviarCorreo(Correo correo)
+        {
+            using (var mensaje = new MailMessage())
             {
-                case TipoEnvioCorreos.ValidaciónCuenta:
-                    asunto = "Valida tu nueva cuenta";
-                    body = BuildBodyValidateAccount(logoUrl, nombreUsuario, email, emailToken);
-                    break;
-                case TipoEnvioCorreos.Bienvenida:
-                    asunto = "Bienvenidx a nuestra aplicación";
-                    body = BuildBodyWelcome(logoUrl, nombreUsuario, email, emailToken);
-                    break;
-               
-                case TipoEnvioCorreos.ContraseñaCambiada: 
-                    asunto = "Tu contraseña ha cambiado";
-                    body = BuildBodyPasswordChanged(logoUrl, nombreUsuario, email, emailToken);
-                    break;
-                case TipoEnvioCorreos.RememberSubscribe:
-                    asunto = "Apuntate a nuestra Newsletter para estar a la última";
-                    body = BuildBodyRememberSubscribe(logoUrl, nombreUsuario, email, emailToken);
-                    break;
-                case TipoEnvioCorreos.ResetContraseña:
+                mensaje.From = new MailAddress(EncodeDecodeHelper.GetDecodeValue(_mailConfig.UsuarioSmtp));
+                mensaje.To.Add(correo.Destinatario);
+                mensaje.Subject = correo.Asunto;
+                mensaje.Body = correo.Cuerpo;
+                mensaje.IsBodyHtml = true;
 
-                    break; 
-                case TipoEnvioCorreos.SuscripciónActivada:
+                bool hasAttachment = correo.FicheroAdjunto != null && correo.FicheroAdjunto.Archivo.Length > 0;
 
-                    break;
-            } 
-            return new Correo { Asunto = asunto, 
-                                Cuerpo = body.ToString() };
-        }
+                if (hasAttachment)
+                {
+                    var stream = new MemoryStream(correo.FicheroAdjunto.Archivo);
+                    var attachment = new Attachment(stream, correo.FicheroAdjunto.NombreArchivo, correo.FicheroAdjunto.ContentType);
+                    mensaje.Attachments.Add(attachment);
+                }
 
-        private StringBuilder BuildBodyPasswordChanged(string logo, string nombreUsuario, string email, string emailToken)
-        {
-            StringBuilder body = new();
+                using var clienteSmtp = new SmtpClient(EncodeDecodeHelper.GetDecodeValue(_mailConfig.ServidorSmtp)) 
+                {
+                    Port = Convert.ToInt32(EncodeDecodeHelper.GetDecodeValue(_mailConfig.PuertoSmtp)),
+                    Credentials = new NetworkCredential(EncodeDecodeHelper.GetDecodeValue(_mailConfig.UsuarioSmtp),
+                                                        EncodeDecodeHelper.GetDecodeValue(_mailConfig.ContrasenaSmtp)),
+                    EnableSsl = true
+                };
+                clienteSmtp.Send(mensaje);
 
-            body.AppendLine("<html>");
-            body.AppendLine("<head>");
-            body.AppendLine("<style>");
-            body.AppendLine("/* Estilos CSS */");
-            body.AppendLine("</style>");
-            body.AppendLine("</head>");
-            body.AppendLine("<body>");
-            body.AppendLine("<div id='header'>");
-            body.AppendLine("<img width='100px' src='" + logo + "' alt='Logo' />");
-            body.AppendLine("<h1>Contraseña modificada</h1>");
-            body.AppendLine("</div>");
-            body.AppendLine("<div id='cuerpo'>");
-            body.AppendLine("<p>Hola " + nombreUsuario + ",</p>");
-            body.AppendLine("<p>La contraseña de tu cuenta se ha cambiado correctamente.</p>");
-            body.AppendLine("<p>Haz clic en el siguiente botón para ir al inicio de sesión:</p>");
-            body.AppendLine("<a href='https://localhost:7175/WebPages/login.html?email=" + email + "'>");
-            body.AppendLine("<button type='button'>INICIAR SESIÓN</button>");
-            body.AppendLine("</a>");
-            body.AppendLine("</div>");
-            body.AppendLine("</body>");
-            body.AppendLine("</html>");
-
-            return body;
-        }
-
-        private StringBuilder BuildBodyValidateAccount(string logo, string nombreUsuario, string email, string emailToken)
-        {
-            StringBuilder body = new();
-
-            body.AppendLine("<html>");
-            body.AppendLine("<head>");
-            body.AppendLine("<style>");
-            body.AppendLine("/* Estilos CSS */");
-            body.AppendLine("</style>");
-            body.AppendLine("</head>");
-            body.AppendLine("<body>");
-            body.AppendLine("<div id='header'>");
-            body.AppendLine("<img width='100px' src='" + logo + "' alt='Logo' />");
-            body.AppendLine("<h1>Activa tu cuenta</h1>");
-            body.AppendLine("</div>");
-            body.AppendLine("<div id='cuerpo'>");
-            body.AppendLine("<p>Hola " + nombreUsuario + ",</p>");
-            body.AppendLine("<p>Gracias por unirte a nuestra aplicación.</p>");
-            body.AppendLine("<p>Haz clic en el siguiente botón para activar tu cuenta:</p>");
-            body.AppendLine("<a href='https://localhost:7175/WebPages/validateAccount.html?email=" + email + "'>");
-            body.AppendLine("<button type='button'>Activar Cuenta</button>");
-            body.AppendLine("</a>");
-            body.AppendLine("</div>");
-            body.AppendLine("</body>");
-            body.AppendLine("</html>");
-
-            return body;
-        }
-
-        private StringBuilder BuildBodyWelcome(string logo, string nombreUsuario, string email, string emailToken)
-        {
-            StringBuilder body = new();
-
-            body.AppendLine("<html>");
-            body.AppendLine("<head>");
-            body.AppendLine("<style>");
-            body.AppendLine("/* Estilos CSS */");
-            body.AppendLine("</style>");
-            body.AppendLine("</head>");
-            body.AppendLine("<body>");
-            body.AppendLine("<div id='header'>");
-            body.AppendLine("<img width='100px' src='" + logo + "' alt='Logo' />");
-            body.AppendLine("<h1>Bienvenido a nuestra plataforma</h1>");
-            body.AppendLine("</div>");
-            body.AppendLine("<div id='cuerpo'>");
-            body.AppendLine("<p>Hola " + nombreUsuario + ",</p>");
-            body.AppendLine("<p>Gracias por unirte a nuestra aplicación.</p>");
-            body.AppendLine("<p>Inicia sesión para explorar tus beneficios como vecinx.</p>");
-            body.AppendLine("<a href='https://localhost:7175/WebPages/index.html'>");
-            body.AppendLine("<button type='button'>Ir a la platforma</button>");
-            body.AppendLine("</a>");
-            body.AppendLine("</div>");
-            body.AppendLine("</body>");
-            body.AppendLine("</html>");
-
-            return body;
-        }
-
-        private StringBuilder BuildBodyRememberSubscribe(string logo, string nombreUsuario, string email, string emailToken)
-        {
-            StringBuilder body = new();
-            
-            body.AppendLine("<html>");
-            body.AppendLine("<head>");
-                body.AppendLine("<style>");
-                    body.AppendLine("/* Estilos CSS */");
-                body.AppendLine("</style>");
-            body.AppendLine("</head>");
-            body.AppendLine("<body>");
-            body.AppendLine("<div id='header'>");
-                body.AppendLine("<img width='100px' src='" + logo + "' alt='Logo' />");
-            //body.AppendLine("<h1>Bienvenido a nuestra plataforma</h1>");
-            body.AppendLine("</div>");
-            body.AppendLine("<div id='cuerpo'>");
-                body.AppendLine("<p>Hola " + nombreUsuario + ",</p>");
-                body.AppendLine("<p>Vemos que aún no formas parte de las personas que reciben las últimas noticias sobre todos los locales y asociaciones de tu entorno!.</p>");
-                body.AppendLine("<p>Inicia sesión para apuntarte a la Newsletter.</p>");
-               // body.AppendLine("<a href='https://localhost:7175/WebPages/index.html'>");
-               //     body.AppendLine("<button type='button'>Ir a la platforma</button>");
-
-            //var token = Guid.NewGuid().ToString("N");  
-
-            // URL de confirmación
-            var linkConfirmacion = $"https://localhost:7175/ConfirmarNewsletter?token={emailToken}&email={email}";
-
-            // Botón como enlace estilizado
-            body.AppendLine($@"    <a href='{linkConfirmacion}' 
-                                   style='display:inline-block;
-                                          padding:10px 20px;
-                                          font-size:16px;
-                                          font-weight:bold;
-                                          color:#ffffff;
-                                          background-color:#007BFF;
-                                          text-decoration:none;
-                                          border-radius:5px;'>
-                                    Activar Suscripción a la Newsletter
-                                    </a> ");
-            //body.AppendLine("</a>");
-            body.AppendLine("</div>");
-            body.AppendLine("</body>");
-            body.AppendLine("</html>");
-
-            return body;
+                if (hasAttachment) {
+                    foreach (var adjunto in mensaje.Attachments)
+                        adjunto.ContentStream.Dispose();
+                }
+            }
+            return correo.EmailToken;
         }
     }
 }

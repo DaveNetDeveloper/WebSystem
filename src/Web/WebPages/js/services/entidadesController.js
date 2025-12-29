@@ -6,7 +6,7 @@
 
 let baseUrl5 = `https://localhost`;
 let controllerName5 = `Entidades`;
-let port5 = `7161`;
+let port5 = `44311`;
 let apiUrl5 = `${baseUrl5}:${port5}/${controllerName5}/`;
 
 //var userToken = "qAGlDm9o9oS1Ir+xNlWk3XXHkJy/+nJmBy3KUPoms2w="; 
@@ -130,8 +130,6 @@ function PatchEntidadesByFilters(nameMethod, pFiltros) {
 
     let urlConFiltros = `${apiUrl5}${nameMethod}`;
 
-    alert(urlConFiltros);
-
     let isFirstParam = true;
     pFiltros.elementos.forEach(filtro => {
         if (isFirstParam) urlConFiltros = `${urlConFiltros}?`; 
@@ -140,24 +138,21 @@ function PatchEntidadesByFilters(nameMethod, pFiltros) {
         isFirstParam = false;
     });
 
-    alert(urlConFiltros);
-
     return fetch(urlConFiltros, requestOptions)
         .then(response => {
             if (!response.ok) {
-                alert('ko: ' + response.status);
+                console.error('ko: ' + response.status);
                 throw new Error(`Error en la solicitud: ${response.status}`);
-            }
-            alert('ok');
+            } 
             return response.json();
         })
         .then(data => {
-            alert('data ok');
+             
             return data;
         })
         .catch(error => {
-            //console.error('Error al recuperar datos:', error.message);
-            alert('catch error');
+            console.error('Error al recuperar datos en PatchEntidadesByFilters()');
+            //alert('catch error');
             //throw error;
             return error;
         }); 

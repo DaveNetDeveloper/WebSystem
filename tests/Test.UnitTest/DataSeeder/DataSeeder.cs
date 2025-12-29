@@ -58,8 +58,11 @@ namespace Test.UnitTest.DataSeeder
                         break; 
                     case Enums.EntityType.Actividad:
 
+                        Guid _____idTipoEntidad = SeedTipoEntidades(count);
+                        int ____idEntidad = SeedEntidades(count, _____idTipoEntidad);
+
                         idTipoActividad = SeedTipoActividades(count);
-                        idActividad = SeedActividades(count, idTipoActividad);
+                        idActividad = SeedActividades(count, idTipoActividad, ____idEntidad);
                         SeedActividadImagenes(count, idActividad);                        
                         break;
                     case Enums.EntityType.Categoria:
@@ -120,17 +123,19 @@ namespace Test.UnitTest.DataSeeder
         // Usuarios 
         private int SeedUsuarios(int count)
         {
+            var opcionesGenero = new[] { "Hombre", "Mujer", "Otro" };
+
             var faker = new Faker<Usuario>()
                 .RuleFor(u => u.id, f => f.IndexFaker + 1) // IndexFaker empieza en 0 y se incrementa
                 .RuleFor(u => u.nombre, f => f.Person.FirstName)
                 .RuleFor(u => u.apellidos, f => f.Person.LastName)
                 .RuleFor(u => u.correo, f => f.Internet.Email())
-                .RuleFor(u => u.contraseña, f => f.Internet.Password())
+                .RuleFor(u => u.contrasena, "AQAAAAIAAYagAAAAELW6NstElhq6DQMmb0vLiGZaS8JJ+u0941cgEOyVkulcK+Zg7NGisT2EJ4zxZlLlIQ==")
                 .RuleFor(u => u.activo, f => f.Random.Bool())
                 .RuleFor(u => u.fechaNacimiento, f => f.Person.DateOfBirth)
                 .RuleFor(u => u.suscrito, f => f.Random.Bool())
-                .RuleFor(u => u.fechaCreación, DateTime.Now)
-                .RuleFor(u => u.token, f => f.Random.AlphaNumeric(45))
+                .RuleFor(u => u.fechaCreacion, DateTime.Now)
+                .RuleFor(u => u.genero, f => f.PickRandom(opcionesGenero))
                 .RuleFor(u => u.puntos, f => f.Random.Number(0, 1000));
             
             var usuarios = faker.Generate(count);
@@ -257,7 +262,7 @@ namespace Test.UnitTest.DataSeeder
                     .RuleFor(a => a.descripcion, f => "Descripción de la actividad " + nextId)
                     .RuleFor(a => a.linkEvento, f => f.Internet.Url())
                     .RuleFor(a => a.idTipoActividad, f => f.Random.Guid())
-                    .RuleFor(a => a.ubicación, f => f.Address.ToString())
+                    .RuleFor(a => a.ubicacion, f => f.Address.ToString())
                     .RuleFor(a => a.popularidad, f => f.Random.Number(1, 5))
                     .RuleFor(a => a.descripcionCorta, f => "Descripción corta de la actividad " + nextId)
                     .RuleFor(a => a.fechaInicio, DateTime.Now.AddDays(7)) //f => f.Date.FutureDateOnly().ToDateTime())
@@ -283,18 +288,18 @@ namespace Test.UnitTest.DataSeeder
             var actividadImagenes = faker.Generate(count);
             _context.ActividadImagenes.AddRange(actividadImagenes);
         } 
-        private int SeedActividades(int count, Guid idTipoActividad)
+        private int SeedActividades(int count, Guid idTipoActividad, int idEntidad)
         {
             //var faker = GetFaker_Actividad();
 
             var faker = new Faker<Actividad>()
                 .RuleFor(a => a.nombre, f => "Actividad " + f.IndexFaker + 1)
                 .RuleFor(a => a.id, f => f.IndexFaker + 1)
-                .RuleFor(a => a.idEntidad, f => f.Random.Number(1, 2))
+                .RuleFor(a => a.idEntidad, idEntidad)
                 .RuleFor(a => a.descripcion, f => "Descripción de la actividad " + f.IndexFaker + 1)
                 .RuleFor(a => a.linkEvento, f => f.Internet.Url())
                 .RuleFor(a => a.idTipoActividad, idTipoActividad)
-                .RuleFor(a => a.ubicación, f => f.Address.ToString())
+                .RuleFor(a => a.ubicacion, f => f.Address.ToString())
                 .RuleFor(a => a.popularidad, f => f.Random.Number(1, 5))
                 .RuleFor(a => a.descripcionCorta, f => "Descripción corta de la actividad " + f.IndexFaker + 1)
                 .RuleFor(a => a.fechaInicio, DateTime.Now.AddDays(7)) //f => f.Date.FutureDateOnly().ToDateTime())
@@ -351,9 +356,10 @@ namespace Test.UnitTest.DataSeeder
                 .RuleFor(e => e.fechaAlta, DateTime.Now.AddDays(-7))
                 .RuleFor(e => e.popularidad, f => f.Random.Number(1, 5))
                 .RuleFor(e => e.descripcion, f => "Descripción de la entidad " + f.IndexFaker + 1)
-                .RuleFor(e => e.activo, f => f.Random.Bool()) 
-                .RuleFor(e => e.imagen, f => "image_" + (f.IndexFaker + 1).ToString() + ".png");
-             
+                .RuleFor(e => e.activo, f => f.Random.Bool())
+                .RuleFor(e => e.imagen, f => "image_" + (f.IndexFaker + 1).ToString() + ".png")
+                .RuleFor(e => e.manager, f => "dgomezma+" + (f.IndexFaker + 1).ToString() + "@gmail.com");
+
             var entidades = faker.Generate(count);
             _context.Entidades.AddRange(entidades);
             return entidades.FirstOrDefault().id;
@@ -375,7 +381,8 @@ namespace Test.UnitTest.DataSeeder
             var faker = new Faker<Rol>()
                 .RuleFor(r => r.id, f => f.Random.Guid())
                 .RuleFor(r => r.nombre, f => "Rol " + (f.IndexFaker + 1).ToString())
-                .RuleFor(r => r.descripcion, f => "Descripción para el rol " + (f.IndexFaker + 1).ToString());
+                .RuleFor(r => r.descripcion, f => "Descripción para el rol " + (f.IndexFaker + 1).ToString())
+                .RuleFor(r => r.level, f => 1);
             
              var roles = faker.Generate(count);
             _context.Roles.AddRange(roles);
@@ -470,17 +477,17 @@ namespace Test.UnitTest.DataSeeder
         // QR 
         private Guid SeedQRs(int count, int idProducto)
         {
-            var faker = new Faker<QR>()
-                .RuleFor(r => r.id, f => f.Random.Guid())
-                .RuleFor(r => r.idProducto, idProducto)
-                .RuleFor(r => r.activo, true)
-                .RuleFor(r => r.multicliente, false)
-                .RuleFor(r => r.consumido, false)
-                .RuleFor(r => r.qrCode, f => f.Random.AlphaNumeric(12))
-                .RuleFor(r => r.fechaExpiracion, DateTime.Now); 
+            var faker = new Faker<QRCode>();
+                //.RuleFor(r => r.id, f => f.Random.Guid())
+                //.RuleFor(r => r.idProducto, idProducto)
+                //.RuleFor(r => r.activo, true)
+                //.RuleFor(r => r.multicliente, false)
+                //.RuleFor(r => r.consumido, false)
+                //.RuleFor(r => r.qrCode, f => f.Random.AlphaNumeric(12))
+                //.RuleFor(r => r.fechaExpiracion, DateTime.Now); 
              
             var qrs = faker.Generate(count);
-            _context.QRs.AddRange(qrs);
+            _context.QRCodes.AddRange(qrs);
             return qrs.FirstOrDefault().id;
         }
 

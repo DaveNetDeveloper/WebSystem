@@ -1,6 +1,8 @@
-﻿namespace Application.DTOs.DataQuery
+﻿using Application.Interfaces.DTOs.DataQuery;
+
+namespace Application.DTOs.DataQuery
 {
-    public class vRolesUsuariosDTO
+    public class vRolesUsuariosDTO : IView
     {
         public string? Rol { get; }
         public decimal? RolUsage { get; }

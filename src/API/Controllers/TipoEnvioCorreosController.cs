@@ -1,0 +1,192 @@
+using Application.DTOs.Filters;
+using Application.Interfaces.Controllers;
+using Application.Interfaces.DTOs.Filters;
+using Application.Interfaces.Services;
+using Application.Services;
+using Domain.Entities;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.RateLimiting;
+using Microsoft.Extensions.Options;
+using static Domain.Entities.TipoEnvioCorreo;
+using static Utilities.ExporterHelper;
+
+namespace API.Controllers
+{
+    [ApiController]
+    [Route("[controller]")]
+    public class TipoEnvioCorreosController : BaseController<TipoEnvioCorreo>, 
+                                              IController<IActionResult, TipoEnvioCorreo, Guid>
+    {  
+        private readonly ITipoEnvioCorreoService _tipoEnvioCorreoService;
+        private readonly ExportConfiguration _exportConfig;
+
+        public TipoEnvioCorreosController(ILogger<TipoEnvioCorreosController> logger,
+                                          ITipoEnvioCorreoService tipoEnvioCorreoService,
+                                          IOptions<ExportConfiguration> options)
+        {
+            _logger = logger;
+            _tipoEnvioCorreoService = tipoEnvioCorreoService ?? throw new ArgumentNullException(nameof(tipoEnvioCorreoService));
+            _exportConfig = options.Value ?? throw new ArgumentNullException(nameof(options));
+        }
+
+        [AllowAnonymous]
+        //[Authorize]
+        [HttpGet("FiltrarTipoEnvioCorreos")]
+        public async Task<IActionResult> GetByFiltersAsync([FromQuery] IFilters<TipoEnvioCorreo>  filters,
+                                                           [FromQuery] int? page,
+                                                           [FromQuery] int? pageSize,
+                                                           [FromQuery] string? orderBy,
+                                                           [FromQuery] bool descending = false)
+        {
+            var _filters = filters as TipoEnvioCorreoFilters;
+            if (_filters is null)
+                throw new InvalidOperationException("El filtro recibido no es 'TipoEnvioCorreoFilters'.");
+
+            var queryOptions = GetQueryOptions(page, pageSize, orderBy, descending);
+
+            var filtered = await _tipoEnvioCorreoService.GetByFiltersAsync(_filters, queryOptions);
+            return Ok(filtered);
+        }
+
+        //[Authorize]
+        [HttpGet("ObtenerTipoEnvioCorreos")]
+        public async Task<IActionResult> GetAllAsync()
+        {
+            try {
+                _logger.LogInformation("Obteniendo todos los tipos de envio de correos."); 
+
+                var tiposEnvioCorreo = await _tipoEnvioCorreoService.GetAllAsync();
+                return (tiposEnvioCorreo != null && tiposEnvioCorreo.Any()) ? Ok(tiposEnvioCorreo) : NoContent();
+
+            }
+            catch (Exception ex) {
+                _logger.LogError(ex, "Error obteniendo todos los tipos de envio de correos.");
+                throw ex;
+            }
+        }
+
+        //[Authorize]
+        [HttpGet("ObtenerTipoEnvioCorreo/{id}")]
+        public async Task<IActionResult> GetByIdAsync(Guid id)
+        {
+            try
+            {
+                _logger.LogInformation("Obteniendo un tipo de envio de correo por Id.");
+
+                var tipoEnvioCorreo = await _tipoEnvioCorreoService.GetByIdAsync(id);
+                return tipoEnvioCorreo != null ? Ok(tipoEnvioCorreo) : NoContent();
+
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Error obteniendo un tipo de envio de correo por Id.");
+                throw ex;
+            }
+        }
+
+        // [Authorize]
+        [HttpPost("CrearTipoEnvioCorreo")]
+        public async Task<IActionResult> AddAsync([FromBody] TipoEnvioCorreo tipoEnvioCorreo)
+        { 
+            var result = await _tipoEnvioCorreoService.AddAsync(tipoEnvioCorreo);
+            if (result == false) return NotFound();
+            else {
+                _logger.LogInformation(MessageProvider.GetMessage("TipoEnvioCorreo:Crear", "Success"));
+                return Ok(result);
+            } 
+        }
+
+        [Authorize]
+        [HttpPut("ActualizarTipoEnvioCorreo")]
+        public async Task<IActionResult> UpdateAsync([FromBody] TipoEnvioCorreo tipoEnvioCorreo)
+        {
+            var result = await _tipoEnvioCorreoService.UpdateAsync(tipoEnvioCorreo);
+            if (result == false) return NotFound();
+            else {
+                _logger.LogInformation(MessageProvider.GetMessage("TipoEnvioCorreo:Actualizar", "Success"));
+                return Ok(result);
+            }             
+        }
+
+        [Authorize] 
+        [HttpDelete("Eliminar/{id}")]
+        public async Task<IActionResult> Remove(Guid id)
+        {
+            try {
+                var result = await _tipoEnvioCorreoService.Remove(id);
+                if (result == false) return NotFound();
+                else {
+                    _logger.LogInformation(MessageProvider.GetMessage("TipoEnvioCorreo:Eliminar", "Success"));
+                    return Ok(result);
+                }
+            }
+            catch (Exception ex) {
+                _logger.LogError(ex, "Error eliminando el tipo de envio de correo, {id}.", id);
+                return StatusCode(StatusCodes.Status500InternalServerError,
+                                 new { message = MessageProvider.GetMessage("TipoEnvioCorreo:Eliminar", "Error"), id });
+            } 
+        }
+
+        /// <summary>
+        /// Exportar vista a Excel o pdf
+        /// </summary> 
+        /// <returns> File to download </returns>
+        [HttpGet("Exportar")]
+        //[Authorize(Policy = "RequireAdmin")]
+        //[Authorize]
+        [AllowAnonymous]
+        public async Task<IActionResult> Exportar([FromServices] ICorreoService correoService,
+                                                  [FromQuery] ExportFormat formato,
+                                                  [FromQuery] bool envioEmail)
+        {
+            var entityName = nameof(TipoEnvioCorreo);
+
+            var file = await _tipoEnvioCorreoService.ExportarAsync(formato);
+
+            string fileExtension = string.Empty;
+            string contentType = string.Empty;
+
+            switch (formato)
+            {
+                case ExportFormat.Excel:
+                    contentType = _exportConfig.ExcelContentType;
+                    fileExtension = _exportConfig.ExcelExtension;
+                    break;
+                case ExportFormat.Pdf:
+                    contentType = _exportConfig.PdfContentType;
+                    fileExtension = _exportConfig.PdfExtension;
+                    break;
+            }
+
+            var fileName = $"List_{entityName.ToString()}_{DateTime.UtcNow:yyyyMMddHHmmss}{fileExtension}";
+
+            if (envioEmail)
+            {
+                var tipoEnvio = await correoService.ObtenerTipoEnvioCorreo(TipoEnvioCorreos.EnvioReport);
+
+                var context = new EnvioReportEmailContext(email: _exportConfig.CorreoAdmin,
+                                                          nombre: "Admin",
+                                                          nombreEntidad: "",
+                                                          nombreInforme: $"List_{entityName.ToString()}");
+                var correoN = new CorreoN
+                {
+                    Destinatario = context.Email,
+                    Asunto = tipoEnvio.asunto,
+                    Cuerpo = tipoEnvio.cuerpo
+                };
+
+                correoN.ApplyTags(context.GetTags());
+
+                correoN.FicheroAdjunto = new FicheroAdjunto()
+                {
+                    Archivo = file,
+                    ContentType = contentType,
+                    NombreArchivo = fileName
+                };
+                correoService.EnviarCorreo_Nuevo(correoN);
+            }
+            return File(file, contentType, fileName);
+        }
+    }
+}

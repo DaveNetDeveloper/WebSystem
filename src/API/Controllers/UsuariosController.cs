@@ -1,17 +1,27 @@
-using Domain.Entities;
-using Application.DTOs.Filters;
-using Application.Interfaces.DTOs.Filters;
-using Application.Services;
 using Application.Common;
-using Application.Interfaces.Services;
+using Application.DTOs.Filters;
+using Application.DTOs.Requests;
 using Application.Interfaces.Controllers;
-
+using Application.Interfaces.DTOs.Filters;
+using Application.Interfaces.Services;
+using Application.Services;
+using DocumentFormat.OpenXml.Office2010.Excel;
+using Domain.Entities;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.RateLimiting; 
-using System.Text.Json;
+using Microsoft.Extensions.Options;
+using Microsoft.Extensions.Options;
+using Microsoft.IdentityModel.Tokens;
+using System.ComponentModel.DataAnnotations;
+using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
+using System.Text;
+using Twilio.TwiML.Voice;
 using Utilities;
-
+using static Domain.Entities.TipoEnvioCorreo;
+using static System.Runtime.InteropServices.JavaScript.JSType;
+using static Utilities.ExporterHelper;
 namespace API.Controllers
 {
     [ApiController]
@@ -20,19 +30,40 @@ namespace API.Controllers
     {
         private readonly IUsuarioService _usuarioService;
         private readonly IEmailTokenService _emailTokenService;
+        private readonly ICorreoService _correoService;
+        private readonly AppConfiguration _appConfiguration;
+        private readonly ILogService _logService; 
+        private readonly ILoginService _loginService;
+        private readonly ExportConfiguration _exportConfig;
 
+        /// <summary> Constructor </summary>  
         public UsuariosController(ILogger<UsuariosController> logger, 
                                   IUsuarioService usuarioService,
                                   IEmailTokenService emailTokenService,
-                                  ITokenService tokenService) {
-            base._logger = logger;  
-            base._tokenService = tokenService;
+                                  ICorreoService correoService,
+                                  IOptions<AppConfiguration> options,
+                                  ILogService logService, 
+                                  ILoginService loginService,
+                                  IOptions<ExportConfiguration> optionsExport)
+        {
+            base._logger = logger;
+            //base._config = config ?? throw new ArgumentNullException(nameof(config));
+            _appConfiguration = options.Value ?? throw new ArgumentNullException(nameof(options));
             _usuarioService = usuarioService ?? throw new ArgumentNullException(nameof(usuarioService));
+            _correoService = correoService ?? throw new ArgumentNullException(nameof(correoService));
             _emailTokenService = emailTokenService ?? throw new ArgumentNullException(nameof(emailTokenService));
+            _logService = logService ?? throw new ArgumentNullException(nameof(logService)); 
+            _loginService = loginService ?? throw new ArgumentNullException(nameof(loginService));
+            _exportConfig = optionsExport.Value ?? throw new ArgumentNullException(nameof(optionsExport));
         }
 
-        [Authorize(Policy = "RequireAdmin")] 
-        [EnableRateLimiting("UsuariosLimiter")]
+        /// <summary>
+        /// 
+        /// </summary>  
+        /// <returns> IEnumerable<Usuario> </returns>
+        [AllowAnonymous]
+        //[Authorize(Roles = "Admin,Manager")]
+        //[EnableRateLimiting("UsuariosLimiter")]
         [HttpGet("ObtenerUsuarios")]
         public async Task<IActionResult> GetAllAsync()
         { 
@@ -52,8 +83,17 @@ namespace API.Controllers
             }
         }
 
-        //[AllowAnonymous]
-        [Authorize(Policy = "RequireAdmin")]
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="filters"></param>
+        /// <param name="page"></param>
+        /// <param name="pageSize"></param>
+        /// <param name="orderBy"></param>
+        /// <param name="descending"></param>
+        /// <returns> IEnumerable<Usuario> </returns>
+        [AllowAnonymous]
+        //[Authorize(Policy = "RequireAdmin")]
         [HttpGet("FiltrarUsuarios")]
         public async Task<IActionResult> GetByFiltersAsync([FromQuery] UsuarioFilters filters, // TODO: IFilters<Usuario>
                                                            [FromQuery] int? page,
@@ -76,51 +116,61 @@ namespace API.Controllers
             }
         }
 
-        //// TODO To Delete
+
         //[Authorize(Policy = "RequireAdmin")]
-        //[HttpGet("ObtenerUsuario/{id}")]
-        //public async Task<IActionResult> GetByIdAsync(int id) 
-        //{
-        //    var resulToken = IsValidToken();
-        //    try {  
-        //        var usuario = await _usuarioService.GetByIdAsync(id);
-        //        if (usuario == null) return NoContent();
+        [AllowAnonymous]
+        [HttpGet("ObtenerUsuario/{id}")]
+        public async Task<IActionResult> GetByIdAsync(int id)
+        { 
+            try
+            {
+                var usuario = await _usuarioService.GetByIdAsync(id);
+                if (usuario == null) return NoContent();
 
-        //        _logger.LogInformation(MessageProvider.GetMessage("Usuario:ObtenerPorId", "Success")); 
-        //        return Ok(usuario);
-        //    }
-        //    catch (Exception ex) {
-        //        _logger.LogError(ex, "Error obteniendo un usuario por Id, {id}.", id);
-        //        return StatusCode(StatusCodes.Status500InternalServerError,
-        //                         new { message = MessageProvider.GetMessage("Usuario:ObtenerPorId", "Error"), id });
-        //    } 
-        //}
+                //_logger.LogInformation(MessageProvider.GetMessage("Usuario:ObtenerPorId", "Success"));
+                return Ok(usuario);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Error obteniendo un usuario por Id, {id}.", id);
+                return StatusCode(StatusCodes.Status500InternalServerError,
+                                 new { message = "Error obteniendo un usuario por Id", id });
+            }
+        }
 
-        [Authorize(Policy = "RequireAdmin")]
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param  name="usuario"></param> 
+        /// <returns> bool </returns>
+        //[Authorize(Policy = "RequireAdmin")]
+        [Authorize(Roles = "Admin,Manager")]
         [HttpPost("CrearUsuario")]
         public async Task<IActionResult> AddAsync([FromBody] Usuario usuario)
         {
             try {
                 var nuevoUsuario = new Usuario {
-                    id = -1,
+                    id = 10,
                     nombre = usuario.nombre,
                     correo = usuario.correo,
                     apellidos = usuario.apellidos,
-                    activo = false, 
-                    contraseña = usuario.contraseña,
+                    activo = false,
+                    contrasena = usuario.contrasena,
                     fechaNacimiento = usuario.fechaNacimiento.ToUniversalTime(),
                     suscrito = usuario.suscrito,
-                    fechaCreación = DateTime.UtcNow,
+                    fechaCreacion = DateTime.UtcNow,
                     ultimaConexion = null,
                     puntos = 0,//defaultPuntos,
-                    token= null,
-                    expiracionToken = null
+                    //token= null,
+                    //expiracionToken = null,
+                    genero = usuario.genero,
+                    idPerfil = usuario.idPerfil
                 };
 
                 var result = await _usuarioService.AddAsync(nuevoUsuario); 
                 if (result == false) return NotFound();
                 else {
-                    _logger.LogInformation(MessageProvider.GetMessage("Usuario:Crear", "Success"));
+                    //_logger.LogInformation(MessageProvider.GetMessage("Usuario:Crear", "Success"));
                     return Ok(result);
                 }
             }
@@ -131,7 +181,13 @@ namespace API.Controllers
             }
         }
 
-        [Authorize(Policy = "RequireAdmin")]
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="usuario"></param>
+        /// <returns> bool </returns>
+        //[Authorize(Policy = "RequireAdmin")]
+        [Authorize]
         [HttpPut("ActualizarUsuario")]
         public async Task<IActionResult> UpdateAsync([FromBody] Usuario usuario) 
         {
@@ -140,26 +196,93 @@ namespace API.Controllers
 
                 if (result == false) return NotFound();
                 else {
-                    _logger.LogInformation(MessageProvider.GetMessage("Usuario:Actualizar", "Success"));
+                   // _logger.LogInformation(MessageProvider.GetMessage("Usuario:Actualizar", "Success"));
                     return Ok(result);
                 }
             }
             catch (Exception ex) {
-                _logger.LogError(ex, "Error actualizandousuario, {id}.", usuario.id);
+                _logger.LogError(ex, "Error actualizando el usuario, {id}.", usuario.id);
                 return StatusCode(StatusCodes.Status500InternalServerError,
                                  new { message = MessageProvider.GetMessage("Usuario:Actualizar", "Error"), usuario.id });
             }
         }
 
-        [Authorize]
-        [HttpPatch("CambiarContraseña")]
-        public async Task<IActionResult> CambiarContraseña([FromQuery] string email, string nuevaContraseña) 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="usuario"></param>
+        /// <returns> bool </returns>
+        //[Authorize(Policy = "RequireAdmin")]
+        [Authorize(Roles = "WebUser")]
+        [HttpPut("CompletarPerfil")]
+        public async Task<IActionResult> CompletarPerfil([FromBody] CompleteProfleRequest completeProfileDTO)
         {
-            try {
-                var result = await _usuarioService.CambiarContraseña(email, nuevaContraseña);
+            try
+            {
+                // Obtener el claim principal (NameIdentifier) para el id del usuario logeado
+                //var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+                if (base.IdUsuario == null) { return Unauthorized("No se pudo obtener el Id del usuario desde el token."); }
+
+                completeProfileDTO.IdUsuario = Int32.Parse(base.IdUsuario);
+                var result = await _usuarioService.CompletarPerfil(completeProfileDTO);
+
                 if (result == false) return NotFound();
                 else {
-                    _logger.LogInformation(MessageProvider.GetMessage("Usuario:CambiarContraseña", "Success"));
+                    //_logger.LogInformation(MessageProvider.GetMessage("Usuario:CompletarPerfil", "Success"));
+                    return Ok(result);
+                }
+            }
+            catch (Exception ex) {
+                _logger.LogError(ex, "Error actualizando el usuario, {id}.");
+                return StatusCode(StatusCodes.Status500InternalServerError,
+                                 new { message = MessageProvider.GetMessage("Usuario:CompletarPerfil", "Error") });
+            }
+        }
+
+        /// <summary>  </summary>
+        /// <param name="id">  </param> 
+        /// <returns> bool </returns>
+        //[Authorize(Policy = "RequireAdmin")]
+        
+        //[Authorize(Roles = "Admin,Manager")]
+        [HttpDelete("Eliminar/{id}")]
+        public async Task<IActionResult> Remove(int id)
+        {
+            try
+            {
+                var result = await _usuarioService.Remove(id);
+                if (result == false) return NotFound();
+                else
+                {
+                    //_logger.LogInformation(MessageProvider.GetMessage("Usuario:Eliminar", "Success"));
+                    return Ok(result);
+                }
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Error eliminando el usuario, {id}.", id);
+                return StatusCode(StatusCodes.Status500InternalServerError,
+                                 new { message = MessageProvider.GetMessage("Usuario:Eliminar", "Error"), id });
+            }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="email"></param>
+        /// <param name="nuevaContrasena"></param>
+        /// <returns> bool </returns>
+        [Authorize]
+        //[AllowAnonymous]
+        [HttpPatch("CambiarContrasena")]
+        public async Task<IActionResult> CambiarContrasena([FromQuery] string email,
+                                                           [FromQuery] string nuevaContrasena) 
+        {
+            try {
+                var result = await _usuarioService.CambiarContrasena(email, nuevaContrasena);
+                if (result == false) return NotFound();
+                else {
+                    //_logger.LogInformation(MessageProvider.GetMessage("Usuario:CambiarContraseña", "Success"));
                     return Ok(result);
                 }
             }
@@ -170,36 +293,80 @@ namespace API.Controllers
             }
         }
 
-        //[AllowAnonymous]
-        [HttpPatch("ValidarCuenta")]
-        public async Task<IActionResult> ValidarCuenta([FromQuery] string email) 
+        /// <summary> Activa la suscripcion de un usuario </summary>
+        /// <param name="email">Email del destinatario a buscar</param>
+        /// <returns> bool </returns>
+        [AllowAnonymous]
+        //[Authorize]
+        [HttpPatch("ActivacionSuscripcionWeb")]
+        public async Task<IActionResult> ActivacionSuscripcionWeb([FromQuery][Required] string email)
         {
-            try { 
-                var result = await _usuarioService.ValidarCuenta(email);
-                if (result == false) return NotFound();
-                else {
-                    _logger.LogInformation(MessageProvider.GetMessage("Usuario:ValidarCuenta", "Success"));
-                    return Ok(result);
-                }
+            try
+            {
+                var validEmail = FormatValidationHelper.IsValidEmail(email);
+                 
+                if (!validEmail)
+                    return BadRequest(new { message = "El token o email no son válidos." });
+                
+                var ip = HttpContext.Connection.RemoteIpAddress?.ToString();
+                var userAgent = HttpContext.Request.Headers["User-Agent"].ToString();
+
+                var activationResult = await _usuarioService.ActivarSuscripcion(email);
+                if (activationResult == false) return NotFound(new { message = "Error al activar la suscripción." });
+                    
+                // Enviar corrreo: Bienvenido a nuestra newsletter
+                //var tiposEnvioCorreo = await _correoService.ObtenerTiposEnvioCorreo();
+                //var tipoEnvioCorreo = tiposEnvioCorreo.Where(u => u.nombre.Trim() == TipoEnvioCorreo.TipoEnvio.SuscripcionActivada)
+                //                                        .SingleOrDefault();
+
+                var usuarios = await _usuarioService.GetAllAsync();
+                var usuario = usuarios.Where(u => u.correo.ToLower() == email.ToLower())
+                                        .SingleOrDefault();
+
+                //var correo = new Correo(tipoEnvioCorreo, email, usuario.nombre, _appConfiguration.LogoURL);
+                //_correoService.EnviarCorreo(correo);
+                 
+                //
+                var tiposEnvioCorreo = await _correoService.ObtenerTipoEnvioCorreo(TipoEnvioCorreos.SuscripcionActivada);
+
+                var contextEnvio = new EnvioSuscripcionActivadaEmailContext(email: email,
+                                                                           nombre: usuario.nombre);
+                var correo = new CorreoN
+                {
+                    Destinatario = contextEnvio.Email,
+                    Asunto = tiposEnvioCorreo.asunto,
+                    Cuerpo = tiposEnvioCorreo.cuerpo
+                };
+                correo.ApplyTags(contextEnvio.GetTags());
+
+                _correoService.EnviarCorreo_Nuevo(correo);
+                 
+                return Ok(true);
             }
-            catch (Exception ex) {
-                _logger.LogError(ex, "Error validando la cuenta del usuario, {email}.", email);
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Error activando la cuenta del usuario, {email}.", email);
                 return StatusCode(StatusCodes.Status500InternalServerError,
-                                 new { message = MessageProvider.GetMessage("Usuario:ValidarCuenta", "Error"), email });
+                                 new { message = "Error en ActivacionSuscripcionWeb" });
             }
         }
 
+        /// <summary> Activa la suscripcion de un usuario </summary>
+        /// <param name="token">Token asociado si la petición viene de enlace de correo</param>
+        /// <param name="email">Email del destinatario a buscar</param>
+        /// <returns> bool </returns>
+        [AllowAnonymous]
         //[Authorize]
         [HttpPatch("ActivacionSuscripcion")]
-        public async Task<IActionResult> ActivacionSuscripcion([FromQuery] string token, string email) 
-        {
+        public async Task<IActionResult> ActivacionSuscripcion([FromQuery] string token, 
+                                                               [FromQuery][Required] string email)  {
             try {
                 var validToken = FormatValidationHelper.GetValidGuidFronString(token);
                 var validEmail = FormatValidationHelper.IsValidEmail(email);
                  
                 bool isValidToken = false;
                 if (validToken.HasValue && validEmail) {
-                    isValidToken =  _emailTokenService.CheckEmailToken(validToken.ToString(), email);
+                    isValidToken =  await _emailTokenService.CheckEmailToken(validToken.ToString(), email);
                 }
 
                 if (!isValidToken)
@@ -211,9 +378,37 @@ namespace API.Controllers
                     var activationResult = await _usuarioService.ActivarSuscripcion(email);
                     if (activationResult == false) return NotFound(new { message = "El usuario no ha sido encontrado." });
                     else {
-                       var consumeResult = _emailTokenService.ConsumeEmailToken(validToken.ToString(), ip, userAgent);
-                        if(consumeResult) { 
-                            _logger.LogInformation(MessageProvider.GetMessage("Usuario:ActivacionSuscripcion", "Success"));
+                       var consumeResult = await _emailTokenService.ConsumeEmailToken(validToken.ToString(), ip, userAgent);
+                        if(consumeResult) {
+
+                            // Enviar corrreo: Bienvenido a nuestra newsletter
+                            //var tiposEnvioCorreo = await _correoService.ObtenerTiposEnvioCorreo();
+                            //var tipoEnvioCorreo = tiposEnvioCorreo.Where(u => u.nombre.Trim() == TipoEnvioCorreo.TipoEnvio.SuscripcionActivada)
+                            //                                      .SingleOrDefault();
+
+                            var usuarios = await _usuarioService.GetAllAsync();
+                            var usuario = usuarios.Where(u => u.correo.ToLower() == email.ToLower())
+                                                  .SingleOrDefault();
+
+                            //var correo = new Correo(tipoEnvioCorreo, email, usuario.nombre, _appConfiguration.LogoURL);
+                            //_correoService.EnviarCorreo(correo);
+
+                            //
+                            var tiposEnvioCorreo = await _correoService.ObtenerTipoEnvioCorreo(TipoEnvioCorreos.SuscripcionActivada);
+
+                            var contextEnvio = new EnvioSuscripcionActivadaEmailContext(email: email,
+                                                                                        nombre: usuario.nombre);
+                            var correo = new CorreoN
+                            {
+                                Destinatario = contextEnvio.Email,
+                                Asunto = tiposEnvioCorreo.asunto,
+                                Cuerpo = tiposEnvioCorreo.cuerpo
+                            };
+                            correo.ApplyTags(contextEnvio.GetTags());
+
+                            _correoService.EnviarCorreo_Nuevo(correo);
+                             
+                            //_logger.LogInformation(MessageProvider.GetMessage("Usuario:ActivacionSuscripcion", "Success"));
                             return Ok(consumeResult);
                         }
                         else
@@ -228,25 +423,26 @@ namespace API.Controllers
             }
         }
 
-        [Authorize(Policy = "RequireAdmin")]
-        [HttpDelete("Eliminar/{id}")]
-        public async Task<IActionResult> Remove(int id)
+        [Authorize(Roles = "SAdmin")]
+        [HttpPatch("BajaLogica/{idUsuario}")]
+        public async Task<IActionResult> BajaLogica(int idUsuario)
         {
-            try {
-                var result = await _usuarioService.Remove(id); 
-                if (result == false) return NotFound();
-                else { 
-                    _logger.LogInformation(MessageProvider.GetMessage("Usuario:Eliminar", "Success"));
-                    return Ok(result);
-                } 
-            }
-            catch (Exception ex) {
-                _logger.LogError(ex, "Error eliminando el usuario, {id}.", id);
-                return StatusCode(StatusCodes.Status500InternalServerError,
-                                 new { message = MessageProvider.GetMessage("Usuario:Eliminar", "Error"), id });
-            }  
+            await _usuarioService.BajaLogicaAsync(idUsuario);
+
+            _logService.AddAsync(new Log {
+                tipoLog = Log.TipoLog.Info,
+                proceso = Log.Proceso.API_BajaLogica,
+                titulo = "Proceso de baja lógica completado.",
+                detalle = null,
+                idUsuario = idUsuario,
+                fecha = DateTime.UtcNow
+            });
+            return Ok(true);
         }
 
+        /// <summary>  </summary>
+        /// <param name="idUsuario">  </param> 
+        /// <returns> List<Direccion> </returns>
         [Authorize]
         [HttpGet("GetDireccionesByUsuario/{idUsuario}")]
         public async Task<IActionResult> GetDireccionesByUsuario(int idUsuario)
@@ -266,6 +462,9 @@ namespace API.Controllers
             }
         }
 
+        /// <summary>  </summary>
+        /// <param name="idUsuario">  </param> 
+        /// <returns> List<Rol> </returns>
         [Authorize]
         [HttpGet("GetRolesByUsuario/{idUsuario}")]
         public async Task<IActionResult> GetRolesByUsuarioId(int idUsuario)
@@ -282,6 +481,83 @@ namespace API.Controllers
                 return StatusCode(StatusCodes.Status500InternalServerError,
                                  new { message = MessageProvider.GetMessage("Usuario:GetRoles", "Error"), idUsuario });
             }
-        }  
+        }
+
+        /// <summary>
+        /// Exportar vista a Excel o pdf
+        /// </summary> 
+        /// <returns> File to download </returns>
+        [HttpGet("Exportar")]
+        //[Authorize(Policy = "RequireAdmin")]
+        //[Authorize]
+        [AllowAnonymous]
+        public async Task<IActionResult> Exportar([FromServices] ICorreoService correoService,
+                                                  [FromQuery] ExportFormat formato,
+                                                  [FromQuery] bool envioEmail)
+        {
+            var entityName = nameof(Usuario);
+
+            var file = await _usuarioService.ExportarAsync(formato);
+
+            string fileExtension = string.Empty;
+            string contentType = string.Empty;
+
+            switch (formato)
+            {
+                case ExportFormat.Excel:
+                    contentType = _exportConfig.ExcelContentType;
+                    fileExtension = _exportConfig.ExcelExtension;
+                    break;
+                case ExportFormat.Pdf:
+                    contentType = _exportConfig.PdfContentType;
+                    fileExtension = _exportConfig.PdfExtension;
+                    break;
+            }
+
+            var fileName = $"List_{entityName.ToString()}_{DateTime.UtcNow:yyyyMMddHHmmss}{fileExtension}";
+
+            if (envioEmail)
+            {
+                //var tiposEnvioCorreo = await correoService.ObtenerTiposEnvioCorreo();
+                //var tipoEnvioCorreo = tiposEnvioCorreo.Where(u => u.nombre == TipoEnvioCorreo.TipoEnvio.EnvioReport)
+                //                                      .SingleOrDefault();
+
+                //tipoEnvioCorreo.asunto = $"Report {entityName.ToString()} ({fileExtension})";
+                //tipoEnvioCorreo.cuerpo = $"Se adjunta el informe para la vista de datos {entityName.ToString()}";
+
+                //var correo = new Correo(tipoEnvioCorreo, _exportConfig.CorreoAdmin, "Admin", "");
+                //correo.FicheroAdjunto = new FicheroAdjunto()
+                //{
+                //    Archivo = file,
+                //    ContentType = contentType,
+                //    NombreArchivo = fileName
+                //};
+                //correoService.EnviarCorreo(correo);
+                 
+                // Nuevo
+                var tipoEnvio = await correoService.ObtenerTipoEnvioCorreo(TipoEnvioCorreos.EnvioReport);
+
+                var context = new EnvioReportEmailContext(email: _exportConfig.CorreoAdmin,
+                                                          nombre: "Admin",
+                                                          nombreEntidad: "",
+                                                          nombreInforme: $"List_{entityName.ToString()}");
+                var correo = new CorreoN {
+                    Destinatario = context.Email,
+                    Asunto = tipoEnvio.asunto,
+                    Cuerpo = tipoEnvio.cuerpo
+                };
+
+                correo.ApplyTags(context.GetTags());
+
+                correo.FicheroAdjunto = new FicheroAdjunto()
+                {
+                    Archivo = file,
+                    ContentType = contentType,
+                    NombreArchivo = fileName
+                }; 
+                correoService.EnviarCorreo_Nuevo(correo);
+            }
+            return File(file, contentType, fileName);
+        }
     }
 }

@@ -1,16 +1,10 @@
 ﻿namespace Application.DTOs.Responses
 {
-    public class CategoriaDTO
+    public class DashboardTotalesDTO
     {
-        public Guid Id { get; set; }
-        public string Nombre { get; set; }
-        public string Descripcion { get; set; }
-
-        public Guid IdTipoEntidad { get; set; }
-        public string NombreTipoEntidad { get; set; }
-
-        public int IdEntidad { get; set; }
-        public string NombreEntidad { get; set; }
-
+        public int Usuarios { get; set; }
+        public int Transacciones { get; set; }
+        public int Visitas { get; set; }
+        public int Entidades { get; set; } 
     }
 }

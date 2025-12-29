@@ -7,5 +7,6 @@ namespace Application.DTOs.Filters
     {
         public int? Id { get; set; }
         public string? NombreUsuario { get; set; }
+        public int? IdEntidad { get; set; }
     }
 }

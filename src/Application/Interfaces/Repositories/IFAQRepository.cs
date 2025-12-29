@@ -1,12 +1,14 @@
-﻿using Domain.Entities;
-using Application.Interfaces.DTOs.Filters;
+﻿using Application.DTOs.Filters;
 using Application.Interfaces.Common;
+using Application.Interfaces.DTOs.Filters;
+using Domain.Entities;
 
 namespace Application.Interfaces.Repositories
 {
     public interface IFAQRepository : IRepository<FAQ, Guid>
     {
-        Task<IEnumerable<FAQ>> GetByFiltersAsync(IFilters<FAQ> filters, IQueryOptions<FAQ>? options = null);
+        Task<IEnumerable<FAQ>> GetByFiltersAsync(FAQFilters filters, 
+                                                 IQueryOptions<FAQ>? options = null);
 
     }
 }

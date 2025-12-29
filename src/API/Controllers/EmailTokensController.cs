@@ -95,10 +95,10 @@ namespace API.Controllers
 
         //[Authorize]
         [HttpGet("CheckEmailToken")]
-        public async Task<IActionResult> CheckEmailToken(string emailToken, string email)
+        public async Task<IActionResult> CheckEmailToken([FromQuery] string emailToken, string email)
         {
             try {
-                var result = _emailTokenService.CheckEmailToken(emailToken, email);
+                var result = await _emailTokenService.CheckEmailToken(emailToken, email);
                 if (result == false) return BadRequest(new { message = "El token o email no son válidos." });
                 else {
                     _logger.LogInformation(MessageProvider.GetMessage("EmailToken:CheckEmailToken", "Success"));
@@ -114,10 +114,10 @@ namespace API.Controllers
 
         //[Authorize]
         [HttpPatch("ConsumeEmailToken")]
-        public async Task<IActionResult> ConsumeEmailToken(string emailToken, string ip, string userAgent)
+        public async Task<IActionResult> ConsumeEmailToken([FromQuery] string emailToken, string ip, string userAgent)
         {
             try {
-                var consumeResult = _emailTokenService.ConsumeEmailToken(emailToken, ip, userAgent);
+                var consumeResult = await _emailTokenService.ConsumeEmailToken(emailToken, ip, userAgent);
                 if (consumeResult == false) return NotFound(new { message = "El token no fue encontrado o ya se encuentra consumido." });
                 else {
                     _logger.LogInformation(MessageProvider.GetMessage("EmailToken:ConsumeEmailToken", "Success"));

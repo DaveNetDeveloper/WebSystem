@@ -5,7 +5,8 @@ namespace Application.Interfaces.Repositories
 {
     public interface IEmailTokenRepository : IRepository<EmailToken, Guid>
     {
-        public bool CheckEmailToken(string emailToken, string email);
-        public bool ConsumeEmailToken(string emailToken, string ip, string userAgent);
+        Task<string> GenerateEmailToken(int idUsuariol, string emailAction);
+        Task<bool> CheckEmailToken(string emailToken, string email);
+        Task<bool> ConsumeEmailToken(string emailToken, string ip, string userAgent);
     }
 }

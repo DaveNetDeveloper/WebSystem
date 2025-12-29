@@ -1,8 +1,10 @@
 using API.Middlewares;
-using Domain.Entities;
-using Application.Common; 
 using Application.DependencyInjection;
-using Infrastructure.DependencyInjection; 
+using Infrastructure.DependencyInjection;
+using Domain.Entities;
+using Application.Interfaces.Services;
+using Application.Interfaces.Messaging;
+using Application.Services;
 
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -11,41 +13,52 @@ using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using Microsoft.VisualBasic; 
+using System.Reflection;
 using System.Text;
+using System.Text.Json.Serialization;
 using System.Threading.RateLimiting;
+using FluentMigrator.Runner;
 
-var builder = WebApplication.CreateBuilder(args);   // Add services to the container.
+using QuestPDF.Infrastructure;
+QuestPDF.Settings.License = LicenseType.Community;
 
-builder.Services.AddRateLimiter(options =>
-{
-    options.AddFixedWindowLimiter("UsuariosLimiter", opt =>
-    {
-        opt.PermitLimit = 5; // máximo x requests
-        opt.Window = TimeSpan.FromSeconds(30); // cada x segundos
-        opt.QueueProcessingOrder = QueueProcessingOrder.OldestFirst;
-        opt.QueueLimit = 0;
-    });
-});
+var builder = WebApplication.CreateBuilder(args);
 
-builder.Logging.ClearProviders();   // Limpiar providers por defecto (opcional)
-builder.Logging.AddConsole();   // Logs en consola
-builder.Logging.AddDebug(); // Logs en Debug
-builder.Logging.AddEventSourceLogger(); // Logs en EventSource
-builder.Logging.AddFile(builder.Configuration.GetSection("Paths")["LogFilePath"]); //"Logs/api-{Date}.txt");
+//builder.Services.AddRateLimiter(options =>
+//{
+//    options.AddFixedWindowLimiter("UsuariosLimiter", opt =>
+//    {
+//        opt.PermitLimit = 5; // máximo x requests
+//        opt.Window = TimeSpan.FromSeconds(30); // cada x segundos
+//        opt.QueueProcessingOrder = QueueProcessingOrder.OldestFirst;
+//        opt.QueueLimit = 0;
+//    });
+//});
+
+builder.Logging.ClearProviders();
+builder.Logging.AddConsole();
+builder.Logging.AddDebug();
+builder.Logging.AddEventSourceLogger();
+builder.Logging.AddFile(builder.Configuration.GetSection("Paths")["LogFilePath"]);
  
 builder.Services.AddHealthChecks();
-
-builder.Services.AddControllers();
-
+builder.Services.AddControllers().AddJsonOptions(options =>
+{
+    // Para que los enums se serialicen/deserialicen como texto en vez de como int
+    options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
+});
 builder.Services.AddEndpointsApiExplorer(); 
-
 builder.Services.Configure<AppConfiguration>(builder.Configuration.GetSection("AppConfiguration"));
+builder.Services.Configure<MailConfiguration>(builder.Configuration.GetSection("MailConfiguration"));
+builder.Services.Configure<ExportConfiguration>(builder.Configuration.GetSection("ExportConfiguration"));
+builder.Services.Configure<SmsConfiguration>(builder.Configuration.GetSection("SmsConfiguration"));
+builder.Services.Configure<MQServiceConfiguration>(builder.Configuration.GetSection("MQServiceConfiguration"));
 
 builder.Configuration.AddJsonFile("Resources/messages.json", optional: false, reloadOnChange: true);
 
 builder.Services.AddSwaggerGen(c => {
     c.SwaggerDoc("v1", new() { Title = "API", Version = "v1" });
- 
+    c.UseInlineDefinitionsForEnums();
     c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme {
         Name = "Authorization",
         Type = SecuritySchemeType.ApiKey,
@@ -54,8 +67,6 @@ builder.Services.AddSwaggerGen(c => {
         In = ParameterLocation.Header,
         Description = "Introduce el token JWT así: Bearer {tu token}"
     });
-
-    // Requisito de seguridad global
     c.AddSecurityRequirement(new OpenApiSecurityRequirement {
         { 
             new OpenApiSecurityScheme {
@@ -67,18 +78,22 @@ builder.Services.AddSwaggerGen(c => {
             new string[] {}
         }
     });
-
     c.ResolveConflictingActions(apiDescriptions => apiDescriptions.First());
     c.IgnoreObsoleteActions();
     c.IgnoreObsoleteProperties();
     c.CustomSchemaIds(type => type.FullName);
+    //c.SchemaFilter<EnumDisplaySchemaFilter>();
+
+    var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+    var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
+    c.IncludeXmlComments(xmlPath);
 }); 
  
 // Register Services & Filters 
 builder.Services.AddApplication();
  
 // Register Repositories & Filters 
-builder.Services.AddInfrastructure();
+builder.Services.AddInfrastructure(builder.Environment.EnvironmentName);
 
 //var key = Encoding.ASCII.GetBytes("mi__secreto_secreto");
 var key = builder.Configuration["Jwt:Key"]; // guarda en appsettings.json
@@ -86,7 +101,7 @@ var issuer = builder.Configuration["Jwt:Issuer"];
 
 //if (System.Diagnostics.Debugger.IsAttached == false)  System.Diagnostics.Debugger.Launch(); 
 
-if (!builder.Environment.IsEnvironment("Test"))
+if (!builder.Environment.IsEnvironment(Application.Common.Environments.Test))
 {
     builder.Services.AddAuthentication(options =>
     {
@@ -115,10 +130,9 @@ if (!builder.Environment.IsEnvironment("Test"))
     //builder.Services.AddAuthorization();
 } 
 
-if (builder.Environment.EnvironmentName == "Test") {
+if (builder.Environment.EnvironmentName == Application.Common.Environments.Test) {
 
     builder.Services.RemoveAll<IAuthenticationSchemeProvider>();
-     
     builder.Services.AddAuthentication(options => {
         options.DefaultAuthenticateScheme = "Test";
         options.DefaultChallengeScheme = "Test";
@@ -128,29 +142,63 @@ if (builder.Environment.EnvironmentName == "Test") {
 
 //builder.Services.AddAuthorization();
 builder.Services.AddAuthorization(options => {
-    options.AddPolicy("RequireAdmin", policy => policy.RequireRole(Roles.Admin));
+    options.AddPolicy("RequireAdmin", policy => policy.RequireRole(Rol.Roles.Admin));
+    options.AddPolicy("RequireManager", policy => policy.RequireRole(Rol.Roles.Manager));
+    options.AddPolicy("RequireWebUser", policy => policy.RequireRole(Rol.Roles.WebUser));
 });
 
-builder.Services.AddCors(options => {
-    options.AddPolicy("AllowAll",
-        builder => {
-            builder
-            .AllowAnyOrigin()
-            .AllowAnyMethod()
+//builder.Services.AddCors(options => {
+//    options.AddPolicy("AllowAll",
+//        builder => {
+//            builder
+//            .AllowAnyOrigin()
+//            .AllowAnyMethod()
+//            .AllowAnyHeader() 
+//            .Build();
+//        }); 
+//});
+
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowFrontend", policy =>
+    {
+        policy
+            .WithOrigins("https://localhost:7175")   
             .AllowAnyHeader()
-            .Build();
-
-        });
+            .AllowAnyMethod()
+            .AllowCredentials();// NECESARIO para cookies seguras(server)
+    });
 });
+
+builder.Services
+    .AddOptions<AppConfiguration>()
+    .Bind(builder.Configuration.GetSection("ServidorSmtp"))
+    .Validate(o => !string.IsNullOrEmpty(o.ServidorSmtp), "ServidorSmtp missing")
+    .ValidateOnStart();
 
 //var sp = builder.Services.BuildServiceProvider();
 //var authOptions = sp.GetRequiredService<Microsoft.Extensions.Options.IOptions<Microsoft.AspNetCore.Authentication.AuthenticationOptions>>().Value;
 //Console.Out.WriteLine("DefaultAuthenticateScheme: " + authOptions.DefaultAuthenticateScheme);
 //Console.Out.WriteLine("DefaultChallengeScheme: " + authOptions.DefaultChallengeScheme);
- 
+
 var app = builder.Build();
 
 app.UseMiddleware<ExceptionMiddleware>();
+
+if (!builder.Environment.IsEnvironment(Application.Common.Environments.Test) && 
+    !builder.Environment.IsEnvironment(Application.Common.Environments.Production)) 
+{
+    using var scope = app.Services.CreateScope();
+    var runner = scope.ServiceProvider.GetRequiredService<IMigrationRunner>();
+    runner.MigrateUp();
+}
+
+// Lanzar el consumidor de la cola de notificaciones
+//using (var scope = app.Services.CreateScope()) // TODO: Descomentar
+//{
+//    var consumer = scope.ServiceProvider.GetRequiredService<IMessageConsumer>();
+//    consumer.StartConsuming("notificaciones");
+//}
 
 // Health endpoint en JSON
 app.MapHealthChecks("/health", new Microsoft.AspNetCore.Diagnostics.HealthChecks.HealthCheckOptions  {
@@ -170,24 +218,29 @@ app.MapHealthChecks("/health", new Microsoft.AspNetCore.Diagnostics.HealthChecks
         await context.Response.WriteAsync(result);
     }
 }); 
+ 
+//app.UseCors("AllowFrontend");
 
-app.UseCors(builder => {
-    builder.AllowAnyOrigin()
-           .AllowAnyHeader()
-           .AllowAnyMethod();
-});
-
-if (app.Environment.IsDevelopment())
+if (app.Environment.IsEnvironment(Application.Common.Environments.Development))
 { 
     app.UseSwagger();
     app.UseSwaggerUI();
 }
 
 app.UseHttpsRedirection();
+app.UseCors("AllowFrontend");
+
+//app.UseCors(builder => {
+//    builder.AllowAnyOrigin()
+//           .AllowAnyHeader()
+//           .AllowAnyMethod();
+
+//});
+
 app.UseAuthorization();
-app.UseRateLimiter(); 
+//app.UseRateLimiter(); 
 app.MapControllers();
-app.MapControllers().RequireRateLimiting("UsuariosLimiter");
+//app.MapControllers().RequireRateLimiting("UsuariosLimiter");
 app.Run();
 
 public partial class Program { }

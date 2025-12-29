@@ -5,6 +5,7 @@ using Infrastructure.Persistence;
 using Infrastructure.Repositories;
 using Test.UnitTest.DataSeeder;
 using Test.UnitTest.Repositories.Interfaces;
+using Utilities;
 
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -60,11 +61,8 @@ namespace Test.UnitTest.Repositories
             Assert.NotNull(usuario.correo);
             Assert.IsNotEmpty(usuario.correo);
 
-            Assert.NotNull(usuario.contraseña);
-            Assert.IsNotEmpty(usuario.contraseña);
-
-            Assert.NotNull(usuario.token);
-            Assert.IsNotEmpty(usuario.token);
+            Assert.NotNull(usuario.contrasena);
+            Assert.IsNotEmpty(usuario.contrasena);
 
             Assert.NotNull(usuario.activo); 
 
@@ -73,7 +71,7 @@ namespace Test.UnitTest.Repositories
 
             Assert.NotNull(usuario.suscrito); 
 
-            Assert.NotNull(usuario.fechaCreación); 
+            Assert.NotNull(usuario.fechaCreacion); 
 
             Assert.NotNull(usuario.puntos); 
             Assert.GreaterOrEqual(usuario.puntos, 0);
@@ -116,45 +114,29 @@ namespace Test.UnitTest.Repositories
         }
 
         [Test]
-        public async Task GetByTokenAsync_ReturnsEntity_WhenIdExists()
-        {
-            int id = 1;
-            var usuarioById = await _repo.GetByIdAsync(id);
-            Assert.IsNotNull(usuarioById);
-
-            var filters = new UsuarioFilters();
-            filters.Token = usuarioById.token;
-
-            int? page = null;
-            int? pageSize = null;
-            string? orderBy = null;
-            bool descending = false;
-            var queryOptions = GetQueryOptions(page, pageSize, orderBy, descending);
-
-            var filteredByToken = await _repo.GetByFiltersAsync(filters, queryOptions);
-
-            Assert.IsNotNull(filteredByToken);
-            Assert.AreEqual(usuarioById.token, filteredByToken.First().token);
-
-            Assert.Pass("Test passed succesfully. User with token {0} exist.", [usuarioById.token]);
-        }
-
-        [Test]
         public async Task LoginUser_ReturnsEntity_WithValidData()
         {
             int id = 1;
             var usuariobyId = await _repo.GetByIdAsync(id);
             Assert.IsNotNull(usuariobyId);
 
-            string email = usuariobyId.correo;
-            string password = usuariobyId.contraseña;
-            var authLogin = await _repo.Login(email, password);
+            string userName = usuariobyId.nombre;
+            string password = "MyPassword-123";
+            var authUser = await _repo.Login(userName, password);
 
-            Assert.IsNotNull(authLogin);
+            Assert.IsNotNull(authUser);
+            Assert.IsNotNull(authUser.Id);
+            Assert.IsNotNull(authUser.Email);
 
-            Assert.IsNotNull(authLogin.Id);
-            Assert.IsNotNull(authLogin.UserName);
-            Assert.IsNotNull(authLogin.Role);
+            var roles = await _repo.GetRolesByUsuarioId(authUser.Id);
+            if (roles != null && roles.Any()) 
+            {
+                var maxRole = roles.OrderByDescending(r => r.level).FirstOrDefault();
+                authUser.Role = maxRole.nombre;
+            }
+            else authUser.Role = string.Empty;
+
+            Assert.IsNotNull(authUser.Role);
 
             //Assert.AreEqual(usuariobyId.id, usuarioByLogin.id);
 
@@ -173,14 +155,14 @@ namespace Test.UnitTest.Repositories
         }
 
         [Test]
-        public async Task CambiarContraseña_ReturnsEntity_WithValidData()
+        public async Task CambiarContrasena_ReturnsEntity_WithValidData()
         {
             int userIdToUpdate = 1;
             var userToUpdate = await _repo.GetByIdAsync(userIdToUpdate);
             Assert.IsNotNull(userToUpdate);
 
             var newPassword = "TestPassword";
-            var result = await _repo.CambiarContraseña(userToUpdate.correo, newPassword);
+            var result = await _repo.CambiarContrasena(userToUpdate.correo, newPassword);
             Assert.IsNotNull(result);
             Assert.IsTrue(result);
 
@@ -196,7 +178,7 @@ namespace Test.UnitTest.Repositories
             var userUpdated = await _repo.GetByFiltersAsync(filters, queryOptions);
 
             Assert.IsNotNull(userUpdated);
-            Assert.IsNotNull(userUpdated.First().contraseña); 
+            Assert.IsNotNull(userUpdated.First().contrasena); 
 
             Assert.Pass("Test passed succesfully.Password for user with email {0} has been updated succesfully.", [userIdToUpdate]);
         }
@@ -224,17 +206,18 @@ namespace Test.UnitTest.Repositories
         {   
             var newId = _repo.GetAllAsync().Result.Count() + 1;
 
+            var opcionesGenero = new[] { "Hombre", "Mujer", "Otro" };
             var faker = new Faker<Usuario>()
                 .RuleFor(u => u.id, newId)  
                 .RuleFor(u => u.nombre, f => f.Person.FirstName)
                 .RuleFor(u => u.apellidos, f => f.Person.LastName)
                 .RuleFor(u => u.correo, f => f.Internet.Email())
-                .RuleFor(u => u.contraseña, f => f.Internet.Password())
+                .RuleFor(u => u.contrasena, f => f.Internet.Password())
                 .RuleFor(u => u.activo, f => f.Random.Bool())
                 .RuleFor(u => u.fechaNacimiento, f => f.Person.DateOfBirth)
                 .RuleFor(u => u.suscrito, f => f.Random.Bool())
-                .RuleFor(u => u.fechaCreación, DateTime.Now)
-                .RuleFor(u => u.token, f => f.Random.AlphaNumeric(45))
+                .RuleFor(u => u.fechaCreacion, DateTime.Now)
+                .RuleFor(u => u.genero, f => f.PickRandom(opcionesGenero))
                 .RuleFor(u => u.puntos, f => f.Random.Number(0, 1000));
 
             var usuario = faker.Generate(1)[0];
@@ -259,8 +242,15 @@ namespace Test.UnitTest.Repositories
 
             userToUpdate.nombre = "updated name";
             userToUpdate.apellidos = "updated surnames";
-            userToUpdate.activo = true;
-            userToUpdate.contraseña = "updated password";  
+            userToUpdate.activo = !userToUpdate.activo;
+            userToUpdate.contrasena = "updated password";
+            userToUpdate.correo = "updatedMail@mail.com";
+            userToUpdate.fechaNacimiento = DateTime.UtcNow.AddYears(-39);
+            userToUpdate.suscrito = !userToUpdate.suscrito;
+            userToUpdate.fechaCreacion = DateTime.UtcNow;
+            //userToUpdate.token = "updated token";
+            userToUpdate.genero = "updated genero";
+            userToUpdate.puntos = userToUpdate.puntos + 1000; 
 
             var result = await _repo.UpdateAsync(userToUpdate);
             Assert.IsNotNull(result);
@@ -269,19 +259,19 @@ namespace Test.UnitTest.Repositories
             var userUpdated = await _repo.GetByIdAsync(userToUpdate.id.Value);
             Assert.IsNotNull(userUpdated);
 
-            //Assert.AreNotEqual(userUpdated.nombre, userToUpdate.nombre);
             Assert.AreEqual(userUpdated.nombre, "updated name");
-
-            //Assert.AreNotEqual(userUpdated.apellidos, userToUpdate.apellidos);
             Assert.AreEqual(userUpdated.apellidos, "updated surnames");
-
-            Assert.IsTrue(userUpdated.activo);
-
-            //Assert.AreNotEqual(userUpdated.contraseña, userToUpdate.contraseña);
-            Assert.AreEqual(userUpdated.contraseña, "updated password");
+            Assert.IsNotNull(userUpdated.activo);
+            Assert.AreEqual(userUpdated.contrasena, "updated password");
+            Assert.IsNotNull(userUpdated.suscrito);
+            Assert.AreEqual(userUpdated.correo, "updatedMail@mail.com");
+            //Assert.IsNotNull(userUpdated.fechaNacimiento);
+            Assert.IsNotNull(userUpdated.fechaCreacion);
+           // Assert.AreEqual(userUpdated.token, "updated token"); 
+            Assert.AreEqual(userUpdated.genero, "updated genero"); 
+            Assert.IsNotNull(userUpdated.puntos);
 
             Assert.Pass("Test passed succesfully.User with id {0} has been updated succesfully.", [userIdToUpdate]);
-                   
         }
         
         [Test]

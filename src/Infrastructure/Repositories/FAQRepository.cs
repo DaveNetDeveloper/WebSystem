@@ -21,8 +21,8 @@ namespace Infrastructure.Repositories
         public async Task<IEnumerable<FAQ>> GetAllAsync() =>
            await _context.FAQS.ToListAsync();
 
-        public async Task<IEnumerable<FAQ>> GetByFiltersAsync(IFilters<FAQ> filters,
-                                                                  IQueryOptions<FAQ>? options = null)
+        public async Task<IEnumerable<FAQ>> GetByFiltersAsync(FAQFilters filters,
+                                                              IQueryOptions<FAQ>? options = null)
         {
             FAQFilters _filters = ((FAQFilters)filters);
 
@@ -30,6 +30,9 @@ namespace Infrastructure.Repositories
 
             if (_filters.Id.HasValue)
                 predicate = predicate.And(u => u.id == _filters.Id.Value);
+
+            if (_filters.IdEntidad.HasValue)
+                predicate = predicate.And(u => u.idEntidad == _filters.IdEntidad.Value);
 
             var query = _context.FAQS
                             .AsExpandable()
@@ -46,10 +49,11 @@ namespace Infrastructure.Repositories
         public async Task<bool> AddAsync(FAQ faq)
         {
             var nuevaFaq = new FAQ {
-                id = new Guid(),
+                id =Guid.NewGuid(),
                 orden = faq.orden,
                 pregunta = faq.pregunta,
-                respuesta = faq.respuesta
+                respuesta = faq.respuesta,
+                idEntidad = faq.idEntidad
             };
 
             await _context.FAQS.AddAsync(nuevaFaq);
@@ -66,6 +70,7 @@ namespace Infrastructure.Repositories
             updatedFaq.orden = faq.orden;
             updatedFaq.pregunta = faq.pregunta;
             updatedFaq.respuesta = faq.respuesta;
+            updatedFaq.idEntidad = faq.idEntidad;
 
             await _context.SaveChangesAsync();
             return true;

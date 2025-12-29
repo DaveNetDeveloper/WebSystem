@@ -30,7 +30,7 @@ namespace Infrastructure.Repositories
         public async Task<bool> AddAsync(EmailToken emailToken)
         {
             var nuevoEmailToken = new EmailToken {
-                id = new Guid(),
+                id =Guid.NewGuid(),
                 token = emailToken.token,
                 userId = emailToken.userId,
                 consumido = emailToken.consumido,
@@ -77,12 +77,34 @@ namespace Infrastructure.Repositories
             await _context.SaveChangesAsync();
             return true;
         }
-
-        public bool CheckEmailToken(string emailToken, string email)
+        public async Task<string> GenerateEmailToken(int idUsuario, string emailAction)
         {
-            var userId = _context.Usuarios.Single(u => u.correo.ToLower() == email.ToLower())?.id;
+            var token = Guid.NewGuid();
+            var nuevoEmailToken = new EmailToken
+            {
+                id = Guid.NewGuid(),
+                token = token,
+                userId = idUsuario,
+                consumido = false,
+                emailAction = emailAction,
+                fechaCreacion = DateTime.UtcNow,
+                fechaExpiracion = DateTime.UtcNow.AddMonths(6),
+                fechaConsumido = null,
+                ip = null,
+                userAgent = null
+            };
 
-            var emailTokenElement = _context.EmailTokens.Single(a => a.token.ToString() == emailToken && a.userId == userId);
+            await _context.EmailTokens.AddAsync(nuevoEmailToken);
+            await _context.SaveChangesAsync();
+            
+            return nuevoEmailToken.token.ToString();
+        }
+
+        public async Task<bool> CheckEmailToken(string emailToken, string email)
+        {
+            var user = await _context.Usuarios.SingleOrDefaultAsync(u => u.correo.ToLower() == email.ToLower());
+
+            var emailTokenElement = await _context.EmailTokens.SingleOrDefaultAsync(a => a.token.ToString() == emailToken && a.userId == user.id);
 
             if (null == emailTokenElement ||
                 emailTokenElement.consumido == true || 
@@ -93,9 +115,9 @@ namespace Infrastructure.Repositories
             return true;
         }
 
-        public bool ConsumeEmailToken(string emailToken, string ip, string userAgent)
+        public async Task<bool> ConsumeEmailToken(string emailToken, string ip, string userAgent)
         {
-            var emailTokenElement = _context.EmailTokens.Single(a => a.token.ToString() == emailToken);
+            var emailTokenElement = await _context.EmailTokens.SingleOrDefaultAsync(a => a.token.ToString() == emailToken);
 
             if (null != emailTokenElement && !emailTokenElement.consumido) {
 

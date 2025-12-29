@@ -3,7 +3,8 @@ using Microsoft.Extensions.Options;
 
 using Application.Interfaces.Services;
 using Application.Services;
-using Domain.Entities; 
+using Domain.Entities;
+using System.ComponentModel.DataAnnotations;
 
 namespace API.Controllers
 {
@@ -12,20 +13,21 @@ namespace API.Controllers
     public class CorreoController : BaseController<Correo>
     {
         private readonly ICorreoService _correoService;
-        private readonly AppConfiguration _appConfiguration;
 
-        public CorreoController(ILogger<CorreoController> logger, ICorreoService correoService, IOptions<AppConfiguration> options) 
+        public CorreoController(ILogger<CorreoController> logger, 
+                                ICorreoService correoService)
         { 
             _logger = logger;
             _correoService = correoService ?? throw new ArgumentNullException(nameof(correoService));
-            _appConfiguration = options.Value ?? throw new ArgumentNullException(nameof(options));
         }
-        
+
+        /// <summary> Envia un correo electronico </summary>
+        /// <param name="correo"> Correo con los datos del envio </param> 
         // [Authorize]
         [HttpPost("Enviar")]
-        public IActionResult EnviarCorreo([FromBody] Correo correo) {
+        public IActionResult EnviarCorreo([FromBody][Required] Correo correo) {
             try {
-                var result = _correoService.EnviarCorreo(correo, "userName", _appConfiguration.ServidorSmtp, _appConfiguration.PuertoSmtp, _appConfiguration.UsuarioSmtp, _appConfiguration.ContraseñaSmtp);
+                var result = _correoService.EnviarCorreo(correo);
                 return Ok("Correo enviado correctamente");
             }
             catch (Exception ex) {

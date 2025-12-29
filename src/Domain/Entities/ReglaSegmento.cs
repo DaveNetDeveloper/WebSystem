@@ -1,6 +1,7 @@
 ﻿using System.Drawing;
 using System.Security.Cryptography;
 using System.Text.Json;
+using Domain.DataQuery;
 
 namespace Domain.Entities
 {
@@ -40,7 +41,9 @@ namespace Domain.Entities
             }
         }
 
-        // Enumerado de operadores soportados
+        /// <summary>
+        /// Enumerado de operadores soportados
+        /// </summary>
         public enum OperadorReglaSegmentacion
         {
             Between,
@@ -56,18 +59,11 @@ namespace Domain.Entities
             NotContains
         }
 
-        // Método para evaluar si una regla se aplica a un usuario concreto
-        public bool AplicaReglaAUsuario(Usuario usuario, ReglaSegmento regla)
-        {
-            // Obtener el valor del usuario según el campo de la regla
-            var prop = typeof(Usuario).GetProperty(regla.Campo);
-            if (prop == null) return false;
-
-            var valorUsuario = prop.GetValue(usuario); 
-
-            return EvaluarRegla(valorUsuario);
-        }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="valorUsuario"></param>
+        /// <returns> bool </returns>
         public bool EvaluarRegla(object valorUsuario)
         {
             using var doc = JsonDocument.Parse(Valor);

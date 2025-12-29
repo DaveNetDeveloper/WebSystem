@@ -2,11 +2,13 @@
 using Application.Interfaces.Common;
 using Application.Interfaces.DTOs.Filters;
 using Application.Interfaces.Repositories;
+using DocumentFormat.OpenXml.ExtendedProperties;
 using Domain.Entities;
 using Infrastructure.Persistence;
 using LinqKit;
 using Microsoft.EntityFrameworkCore;
 using System.Linq;
+using System.Runtime.CompilerServices;
 
 namespace Infrastructure.Repositories
 {
@@ -40,6 +42,9 @@ namespace Infrastructure.Repositories
             if (_filters.IdTipoEntidad.HasValue)
                 predicate = predicate.And(u => u.idTipoEntidad == _filters.IdTipoEntidad.Value);
 
+            if (!string.IsNullOrEmpty(_filters.Manager))
+                 predicate = predicate.And(u => u.manager.ToLower() == _filters.Manager.ToLower());
+
             var query = _context.Entidades
                             .AsExpandable()
                             .Where(predicate);
@@ -63,7 +68,10 @@ namespace Infrastructure.Repositories
                 fechaAlta = DateTime.Now,
                 popularidad = entidad.popularidad,
                 activo = entidad.activo,
-                imagen = entidad.imagen
+                imagen = entidad.imagen,
+                manager = entidad.manager,
+                posLat = entidad.posLat,
+                posLong = entidad.posLong
             };  
 
             await _context.Entidades.AddAsync(nuevaEntidad);
@@ -85,7 +93,10 @@ namespace Infrastructure.Repositories
             updatedEntity.popularidad = entidad.popularidad;
             updatedEntity.activo = entidad.activo;
             updatedEntity.imagen = entidad.imagen;
-             
+            updatedEntity.manager = entidad.manager;
+            updatedEntity.posLat = entidad.posLat;
+            updatedEntity.posLong = entidad.posLong;
+
             await _context.SaveChangesAsync();
             return true;
         }

@@ -8,7 +8,9 @@ using Domain.Entities;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.RateLimiting;
-
+using Microsoft.Extensions.Options;
+using static Domain.Entities.TipoEnvioCorreo;
+using static Utilities.ExporterHelper;
 namespace API.Controllers
 {
     [ApiController]
@@ -16,16 +18,20 @@ namespace API.Controllers
     public class TransaccionesController : BaseController<Transaccion>, IController<IActionResult, Transaccion, int>
     {
         private readonly ITransaccionService _transaccionService;
+        private readonly ExportConfiguration _exportConfig;
 
-        public TransaccionesController(ILogger<TransaccionesController> logger, ITransaccionService transaccionService)
+        public TransaccionesController(ILogger<TransaccionesController> logger, 
+                                       ITransaccionService transaccionService,
+                                       IOptions<ExportConfiguration> options)
         {
             _logger = logger; 
             _transaccionService = transaccionService ?? throw new ArgumentNullException(nameof(transaccionService));
+            _exportConfig = options.Value ?? throw new ArgumentNullException(nameof(options));
         }
 
-        //[AllowAnonymous]
-        [Authorize]
-        [EnableRateLimiting("UsuariosLimiter")]
+        [AllowAnonymous]
+        //[Authorize]
+        //[EnableRateLimiting("UsuariosLimiter")]
         [HttpGet("FiltrarTransacciones")]
         public async Task<IActionResult> GetByFiltersAsync([FromQuery] IFilters<Transaccion> filters,
                                                            [FromQuery] int? page,
@@ -42,7 +48,8 @@ namespace API.Controllers
             return Ok(filteredTransactions);
         }
 
-        [Authorize]
+        [AllowAnonymous]
+        //[Authorize]
         [HttpGet("ObtenerTransacciones")]
         public async Task<IActionResult> GetAllAsync()
         { 
@@ -57,22 +64,6 @@ namespace API.Controllers
                 return NoContent();
             }  
         }
-
-        //[Authorize]
-        //[HttpGet("ObtenerTransaccion/{id}")]
-        //public async Task<IActionResult> GetByIdAsync(int id)
-        //{
-        //    try {
-        //        _logger.LogInformation("Obteniendo una transacción por Id.");
-
-        //        var transaccion = await _transaccionService.GetByIdAsync(id);
-        //        return transaccion != null ? Ok(transaccion) : NoContent();
-        //    }
-        //    catch (Exception ex) {
-        //        _logger.LogError(ex, "Error obteniendo una transacción por Id.");
-        //        return NoContent();
-        //    }
-        //} 
          
         [Authorize]
         [HttpPost("CrearTransaccion")]
@@ -116,6 +107,66 @@ namespace API.Controllers
                                  new { message = MessageProvider.GetMessage("Transaccion:Eliminar", "Error"), id });
             }  
         }
-         
+
+        /// <summary>
+        /// Exportar vista a Excel o pdf
+        /// </summary> 
+        /// <returns> File to download </returns>
+        [HttpGet("Exportar")]
+        //[Authorize(Policy = "RequireAdmin")]
+        //[Authorize]
+        [AllowAnonymous]
+        public async Task<IActionResult> Exportar([FromServices] ICorreoService correoService,
+                                                  [FromQuery] ExportFormat formato,
+                                                  [FromQuery] bool envioEmail)
+        {
+            var entityName = nameof(Transaccion);
+
+            var file = await _transaccionService.ExportarAsync(formato);
+
+            string fileExtension = string.Empty;
+            string contentType = string.Empty;
+
+            switch (formato)
+            {
+                case ExportFormat.Excel:
+                    contentType = _exportConfig.ExcelContentType;
+                    fileExtension = _exportConfig.ExcelExtension;
+                    break;
+                case ExportFormat.Pdf:
+                    contentType = _exportConfig.PdfContentType;
+                    fileExtension = _exportConfig.PdfExtension;
+                    break;
+            }
+
+            var fileName = $"List_{entityName.ToString()}_{DateTime.UtcNow:yyyyMMddHHmmss}{fileExtension}";
+
+            if (envioEmail)
+            {
+                var tipoEnvio = await correoService.ObtenerTipoEnvioCorreo(TipoEnvioCorreos.EnvioReport);
+
+                var context = new EnvioReportEmailContext(email: _exportConfig.CorreoAdmin,
+                                                          nombre: "Admin",
+                                                          nombreEntidad: "",
+                                                          nombreInforme: $"List_{entityName.ToString()}");
+                var correoN = new CorreoN
+                {
+                    Destinatario = context.Email,
+                    Asunto = tipoEnvio.asunto,
+                    Cuerpo = tipoEnvio.cuerpo
+                };
+
+                correoN.ApplyTags(context.GetTags());
+
+                correoN.FicheroAdjunto = new FicheroAdjunto()
+                {
+                    Archivo = file,
+                    ContentType = contentType,
+                    NombreArchivo = fileName
+                };
+                correoService.EnviarCorreo_Nuevo(correoN);
+            }
+            return File(file, contentType, fileName);
+        }
     }
 }

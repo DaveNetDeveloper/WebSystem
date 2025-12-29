@@ -30,7 +30,7 @@ namespace Infrastructure.Repositories
         public async Task<bool> AddAsync(WorkerServiceExecution workerServiceExecution)
         {
             var _workerServiceExecution = new WorkerServiceExecution {
-                id = new Guid(),
+                id = Guid.NewGuid(),
                 workerService = workerServiceExecution.workerService,
                 result = workerServiceExecution.result,
                 resultDetailed = workerServiceExecution.resultDetailed,
@@ -41,6 +41,7 @@ namespace Infrastructure.Repositories
             await _context.SaveChangesAsync();
             return true;
         }
+
         public async Task<bool> UpdateAsync(WorkerServiceExecution workerServiceExecution)
         {
             var _workerServiceExecution = await _context.WorkerServiceExecutions.Where(a => a.id == workerServiceExecution.id).SingleOrDefaultAsync();

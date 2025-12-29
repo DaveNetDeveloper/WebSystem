@@ -7,18 +7,14 @@ using System.Threading.Tasks;
 
 namespace Application.Common
 {
-    public static class Roles
+    /// <summary>
+    /// 
+    /// </summary>
+    public static class Environments
     {
-        public const string Admin = "Admin";
-        public const string User = "User";
-        public const string Manager = "Manager";
+        public static string Development { get => "Development"; }
+        public static string Test { get => "Test"; }
+        public static string Staging { get => "Staging"; }
+        public static string Production { get => "Production"; }
     }
-
-    public static class AuthenticationSchemes
-    {
-        public const string Admin = "Admin";
-        public const string Test = "Test";
-        public const string Default = "Bearer";
-    }
-     
 } 

@@ -7,6 +7,6 @@
         public DateTime fecha { get; set; }
 
         public Usuario Usuario { get; set; }
-        //public Segmento Segmento { get; set; }  
+        public Segmento Segmento { get; set; }  
     }
 }

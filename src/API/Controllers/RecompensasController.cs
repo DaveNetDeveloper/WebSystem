@@ -5,23 +5,33 @@ using Application.Interfaces.DTOs.Filters;
 using Application.Interfaces.Services;
 using Application.Services;
 using Domain.Entities;
+
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
- 
+using Microsoft.Extensions.Options;
+using static Domain.Entities.TipoEnvioCorreo;
+using static Utilities.ExporterHelper;
+
 namespace API.Controllers
 {
     [Route("[controller]")]
     [ApiController]
-    public class RecompensasController : BaseController<Recompensa>, IController<IActionResult, Recompensa, int>
+    public class RecompensasController : BaseController<Recompensa>, 
+                                         IController<IActionResult, Recompensa, int>
     {
         private readonly IRecompensaService _recompensaService;
-        public RecompensasController(ILogger<RecompensasController> logger, IRecompensaService recompensaService)
+        private readonly ExportConfiguration _exportConfig;
+        public RecompensasController(ILogger<RecompensasController> logger, 
+                                     IRecompensaService recompensaService,
+                                   IOptions<ExportConfiguration> options)
         {
             _logger = logger;
             _recompensaService = recompensaService ?? throw new ArgumentNullException(nameof(recompensaService));
+            _exportConfig = options.Value ?? throw new ArgumentNullException(nameof(options));
         }
 
-        [Authorize]
+        [AllowAnonymous]
+        //[Authorize]
         [HttpGet("ObtenerRecompensas")]
         public async Task<IActionResult> GetAllAsync()
         {
@@ -46,13 +56,13 @@ namespace API.Controllers
             return Ok(filtered);
         }
 
-        //[Authorize]
-        //[HttpGet("ObtenerRecompensa/{id}")]
-        //public async Task<IActionResult> GetByIdAsync(int id)
-        //{
-        //    var recompensa = await _recompensaService.GetByIdAsync(id);
-        //    return recompensa != null ? Ok(recompensa) : NoContent();
-        //}
+        [Authorize]
+        [HttpGet("ObtenerRecompensa/{id}")]
+        public async Task<IActionResult> GetByIdAsync(int id)
+        {
+            var recompensa = await _recompensaService.GetByIdAsync(id);
+            return recompensa != null ? Ok(recompensa) : NoContent();
+        }
 
 
         [Authorize]
@@ -105,7 +115,7 @@ namespace API.Controllers
             }
         }
 
-        [Authorize]
+        //[Authorize]
         [HttpGet("GetRecompensasByUsuario/{idUsuario}")]
         public async Task<IActionResult> GetRecompensasByUsuario(int idUsuario)
         {
@@ -123,6 +133,66 @@ namespace API.Controllers
                 return StatusCode(StatusCodes.Status500InternalServerError,
                                  new { message = MessageProvider.GetMessage("Recompensa:GetByUser", "Error"), idUsuario });
             }
+        }
+        /// <summary>
+        /// Exportar listado a Excel o pdf
+        /// </summary> 
+        /// <returns> File to download </returns>
+        [HttpGet("Exportar")]
+        //[Authorize(Policy = "RequireAdmin")]
+        //[Authorize]
+        [AllowAnonymous]
+        public async Task<IActionResult> Exportar([FromServices] ICorreoService correoService,
+                                                  [FromQuery] ExportFormat formato,
+                                                  [FromQuery] bool envioEmail)
+        {
+            var entityName = nameof(Recompensa);
+
+            var file = await _recompensaService.ExportarAsync(formato);
+
+            string fileExtension = string.Empty;
+            string contentType = string.Empty;
+
+            switch (formato)
+            {
+                case ExportFormat.Excel:
+                    contentType = _exportConfig.ExcelContentType;
+                    fileExtension = _exportConfig.ExcelExtension;
+                    break;
+                case ExportFormat.Pdf:
+                    contentType = _exportConfig.PdfContentType;
+                    fileExtension = _exportConfig.PdfExtension;
+                    break;
+            }
+
+            var fileName = $"List_{entityName.ToString()}_{DateTime.UtcNow:yyyyMMddHHmmss}{fileExtension}";
+
+            if (envioEmail)
+            {
+                var tipoEnvio = await correoService.ObtenerTipoEnvioCorreo(TipoEnvioCorreos.EnvioReport);
+
+                var context = new EnvioReportEmailContext(email: _exportConfig.CorreoAdmin,
+                                                          nombre: "Admin",
+                                                          nombreEntidad: "",
+                                                          nombreInforme: $"List_{entityName.ToString()}");
+                var correoN = new CorreoN
+                {
+                    Destinatario = context.Email,
+                    Asunto = tipoEnvio.asunto,
+                    Cuerpo = tipoEnvio.cuerpo
+                };
+
+                correoN.ApplyTags(context.GetTags());
+
+                correoN.FicheroAdjunto = new FicheroAdjunto()
+                {
+                    Archivo = file,
+                    ContentType = contentType,
+                    NombreArchivo = fileName
+                };
+                correoService.EnviarCorreo_Nuevo(correoN);
+            }
+            return File(file, contentType, fileName);
         }
     }
 }

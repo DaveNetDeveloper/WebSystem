@@ -9,8 +9,24 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="WebPages\blog-single.html" />
+    <Compile Remove=".github\**" />
+    <Content Remove=".github\**" />
+    <EmbeddedResource Remove=".github\**" />
+    <None Remove=".github\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="Backoffice\cool-login.html" />
+    <None Remove="Backoffice\marketing\campanas-segmentos-list.html" />
+    <None Remove="Backoffice\marketing\usuarios-segmentos-list.html" />
     <None Remove="WebPages\contact.html" />
+    <None Remove="WebPages\css\skin.css" />
+    <None Remove="WebPages\footer.html" />
+    <None Remove="WebPages\header.html" />
+    <None Remove="WebPages\js\libraries\modalPanel-old.js" />
+    <None Remove="WebPages\login - old.html" />
+    <None Remove="WebPages\modal-panel-old.html" />
+    <None Remove="WebPages\register-old.html" />
     <None Remove="WebPages\test.html" />
   </ItemGroup>
 
@@ -20,8 +36,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Backoffice\Components\editList\" />
     <Folder Include="WebPages\img\actividades\" />
     <Folder Include="WebPages\img\entidades\" />
+    <Folder Include="WebPages\img\actividades\" />
   </ItemGroup>
 
 </Project>

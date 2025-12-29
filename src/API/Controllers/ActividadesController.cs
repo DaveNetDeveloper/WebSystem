@@ -3,9 +3,13 @@ using Application.DTOs.Filters;
 using Application.Interfaces.Controllers; 
 using Application.Interfaces.DTOs.Filters;
 using Application.Interfaces.Services;
+using Application.Services;
 using Domain.Entities;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Options;
+using static Domain.Entities.TipoEnvioCorreo;
+using static Utilities.ExporterHelper;
 
 namespace API.Controllers
 {   
@@ -14,14 +18,17 @@ namespace API.Controllers
     public class ActividadesController : BaseController<Actividad>, IController<IActionResult, Actividad, int>
     { 
         private readonly IActividadService _actividadService;
-
-        public ActividadesController(ILogger<ActividadesController> logger, IActividadService actividadService)
-        {
+        private readonly ExportConfiguration _exportConfig;
+        public ActividadesController(ILogger<ActividadesController> logger, 
+                                     IActividadService actividadService,
+                                     IOptions<ExportConfiguration> options) {
             _logger = logger;
             _actividadService = actividadService ?? throw new ArgumentNullException(nameof(actividadService));
+            _exportConfig = options.Value ?? throw new ArgumentNullException(nameof(options));
         }
 
-        [Authorize]
+        [AllowAnonymous]
+        //[Authorize]
         [HttpGet("ObtenerActividades")]
         public async Task<IActionResult> GetAllAsync()
         {
@@ -29,9 +36,10 @@ namespace API.Controllers
             return (actividades != null && actividades.Any()) ? Ok(actividades) : NoContent();
         }
 
-        [Authorize]
+        //[Authorize]
+        [AllowAnonymous]
         [HttpGet("FiltrarActividades")]
-        public async Task<IActionResult> GetByFiltersAsync([FromQuery] IFilters<Actividad> filters,
+        public async Task<IActionResult> GetByFiltersAsync([FromQuery] ActividadFilters filters,
                                                            [FromQuery] int? page,
                                                            [FromQuery] int? pageSize,
                                                            [FromQuery] string? orderBy,
@@ -49,13 +57,13 @@ namespace API.Controllers
             return Ok(filtered);
         }
 
-        //[Authorize]
-        //[HttpGet("ObtenerActividad/{id}")]
-        //public async Task<IActionResult> GetByIdAsync(int id)
-        //{
-        //    var actividad = await _actividadService.GetByIdAsync(id);
-        //    return actividad != null ? Ok(actividad) : NoContent(); 
-        //}
+        [Authorize]
+        [HttpGet("ObtenerActividad/{id}")]
+        public async Task<IActionResult> GetByIdAsync(int id)
+        {
+            var actividad = await _actividadService.GetByIdAsync(id);
+            return actividad != null ? Ok(actividad) : NoContent(); 
+        }
 
         [Authorize]
         [HttpPost("CrearActividad")]
@@ -68,7 +76,7 @@ namespace API.Controllers
                 descripcion = actividad.descripcion,
                 linkEvento = actividad.linkEvento,
                 idTipoActividad = actividad.idTipoActividad,
-                ubicación = actividad.ubicación,
+                ubicacion = actividad.ubicacion,
                 popularidad = actividad.popularidad,
                 descripcionCorta = actividad.descripcionCorta,
                 fechaInicio = actividad.fechaInicio,
@@ -119,6 +127,14 @@ namespace API.Controllers
                                  new { message = MessageProvider.GetMessage("Actividad:Eliminar", "Error"), id });
             }  
         }
+        
+        //[Authorize]
+        [HttpGet("ObtenerActividadesByTipoActividad/{id}")]
+        public async Task<IActionResult> GetActividadesByTipoActividad(Guid id)
+        {
+            var actividades = await _actividadService.GetActividadesByTipoActividad(id);
+            return actividades != null ? Ok(actividades) : NoContent();
+        }
 
         //
         // //Bindings - Table relations
@@ -141,6 +157,84 @@ namespace API.Controllers
                 return StatusCode(StatusCodes.Status500InternalServerError,
                                  new { message = MessageProvider.GetMessage("Actividad:GetImagenes", "Error"), id });
             }
+        }
+
+        /// <summary>
+        /// Exportar vista a Excel o pdf
+        /// </summary> 
+        /// <returns> File to download </returns>
+        [HttpGet("Exportar")]
+        //[Authorize(Policy = "RequireAdmin")]
+        //[Authorize]
+        [AllowAnonymous]
+        public async Task<IActionResult> Exportar([FromServices] ICorreoService correoService,
+                                                  [FromQuery] ExportFormat formato,
+                                                  [FromQuery] bool envioEmail)
+        {
+            var entityName = nameof(Actividad);
+
+            var file = await _actividadService.ExportarAsync(formato);
+
+            string fileExtension = string.Empty;
+            string contentType = string.Empty;
+
+            switch (formato)
+            {
+                case ExportFormat.Excel:
+                    contentType = _exportConfig.ExcelContentType;
+                    fileExtension = _exportConfig.ExcelExtension;
+                    break;
+                case ExportFormat.Pdf:
+                    contentType = _exportConfig.PdfContentType;
+                    fileExtension = _exportConfig.PdfExtension;
+                    break;
+            }
+
+            var fileName = $"List_{entityName.ToString()}_{DateTime.UtcNow:yyyyMMddHHmmss}{fileExtension}";
+
+            if (envioEmail)
+            { 
+                var tipoEnvio = await correoService.ObtenerTipoEnvioCorreo(TipoEnvioCorreos.EnvioReport);
+
+                var context = new EnvioReportEmailContext(email: _exportConfig.CorreoAdmin,
+                                                          nombre: "Admin",
+                                                          nombreEntidad: "",
+                                                          nombreInforme: $"List_{entityName.ToString()}");
+                var correoN = new CorreoN {
+                    Destinatario = context.Email,
+                    Asunto = tipoEnvio.asunto,
+                    Cuerpo = tipoEnvio.cuerpo
+                };
+
+                correoN.ApplyTags(context.GetTags());
+
+                correoN.FicheroAdjunto = new FicheroAdjunto() {
+                    Archivo = file,
+                    ContentType = contentType,
+                    NombreArchivo = fileName
+                };
+
+                correoService.EnviarCorreo_Nuevo(correoN);
+
+                //OLD
+
+                //var tiposEnvioCorreo = await correoService.ObtenerTiposEnvioCorreo();
+                //var tipoEnvioCorreo = tiposEnvioCorreo.Where(u => u.nombre == TipoEnvioCorreo.TipoEnvio.EnvioReport)
+                //                                      .SingleOrDefault();
+
+                //tipoEnvioCorreo.asunto = $"Report {entityName.ToString()} ({fileExtension})";
+                //tipoEnvioCorreo.cuerpo = $"Se adjunta el informe para la vista de datos {entityName.ToString()}";
+
+                //var correo = new Correo(tipoEnvioCorreo, _exportConfig.CorreoAdmin, "Admin", "");
+                //correo.FicheroAdjunto = new FicheroAdjunto()
+                //{
+                //    Archivo = file,
+                //    ContentType = contentType,
+                //    NombreArchivo = fileName
+                //};
+                //correoService.EnviarCorreo(correo);
+            }
+            return File(file, contentType, fileName);
         }
     }
 }

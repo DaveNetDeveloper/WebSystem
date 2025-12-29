@@ -293,6 +293,8 @@ Version:	1.1
 }
 .contact-us .contact-us-form h2 {
 	font-size: 28px;
+
+
 }
 .contact-us .single-info {
 	margin: 10px 0;
@@ -561,6 +563,7 @@ Version:	1.1
 	padding: 11px 20px;
 	font-weight: 400;
 	font-size: 13px;
+	width:250px;
 }
 .header .top-link {
 	float: none;

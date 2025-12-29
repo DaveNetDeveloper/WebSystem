@@ -1,4 +1,6 @@
-﻿namespace Domain.Entities
+﻿using System.Text.Json.Serialization;
+
+namespace Domain.Entities
 {
     public class Actividad
     {
@@ -10,7 +12,7 @@
         public string linkEvento { get; set; }
         public bool activo { get; set; }
         public Guid idTipoActividad { get; set; }
-        public string ubicación { get; set; }
+        public string ubicacion { get; set; }
         public DateTime? fechaInicio { get; set; }
         public DateTime? fechaFin { get; set; }
         public int? popularidad { get; set; }
@@ -19,6 +21,9 @@
         public string? informacioExtra { get; set; }
         public string? linkInstagram { get; set; }
         public string? linkFacebook { get; set; }
-        public string? linkYoutube { get; set; } 
+        public string? linkYoutube { get; set; }
+
+        [JsonIgnore]
+        public ICollection<ActividadReserva> ActividadReservas { get; set; }
     }
 }

@@ -18,9 +18,9 @@ namespace Test.UnitTest.Repositories
 {
     [Category("UnitTest")]
     [TestFixture]
-    internal class QRRepositoryTests : BaseRepositoryTest<QR> //, IRepositoryTests
+    internal class QRRepositoryTests : BaseRepositoryTest<QRCode> //, IRepositoryTests
     { 
-        private IQRRepository _repo;
+        private IQRCodeRepository _repo;
 
         [SetUp]
         public override void Setup()
@@ -29,7 +29,7 @@ namespace Test.UnitTest.Repositories
             _entitiesToSeed = new List<Enums.EntityType> { Enums.EntityType.QR };
             _seeder.Count = 5;
             _seeder.Seed(_entitiesToSeed, count: 5, seed: 777);
-            _repo = new QRRepository(_context);
+            _repo = new QRCodeRepository(_context);
         }
     }
 }

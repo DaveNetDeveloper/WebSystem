@@ -1,0 +1,209 @@
+﻿<!doctype html>
+<html class="no-js" lang="es">
+<head>
+    <!-- Meta Tags -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="keywords" content="registro">
+    <meta name="description" content="Página para completar el perfil.">
+    <meta name='copyright' content='UOC'>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <title>Completa tu perfil</title>
+
+    <link rel="icon" href="img/favicon.png">
+
+    <link href="https://fonts.googleapis.com/css?family=Poppins:200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../WebPages/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../WebPages/css/nice-select.css">
+    <link rel="stylesheet" href="../WebPages/css/font-awesome.min.css">
+    <link rel="stylesheet" href="../WebPages/css/icofont.css">
+    <link rel="stylesheet" href="../WebPages/css/slicknav.min.css">
+    <link rel="stylesheet" href="../WebPages/css/owl-carousel.css">
+    <link rel="stylesheet" href="../WebPages/css/datepicker.css">
+    <link rel="stylesheet" href="../WebPages/css/animate.min.css">
+
+    <link rel="stylesheet" href="../WebPages/css/normalize.css">
+    <link rel="stylesheet" href="../WebPages/css/style.css">
+    <link rel="stylesheet" href="../WebPages/css/responsive.css">
+
+    <script src="../WebPages/js/jquery.min.js"></script>
+    <script src="../WebPages/js/jquery-migrate-3.0.0.js"></script>
+    <script src="../WebPages/js/jquery-ui.min.js"></script>
+    <script src="../WebPages/js/easing.js"></script>
+    <script src="../WebPages/js/colors.js"></script>
+    <!--<script src="../WebPages/js/popper.min.js"></script>
+    <script src="../WebPages/js/bootstrap-datepicker.js"></script>-->
+    <script src="../WebPages/js/jquery.nav.js"></script>
+    <!--<script src="../WebPages/js/slicknav.min.js"></script>
+    <script src="../WebPages/js/jquery.scrollUp.min.js"></script>-->
+    <script src="../WebPages/js/niceselect.js"></script>
+    <script src="../WebPages/js/tilt.jquery.min.js"></script>
+    <!--<script src="../WebPages/js/owl-carousel.js"></script>-->
+    <script src="../WebPages/js/jquery.counterup.min.js"></script>
+    <script src="../WebPages/js/steller.js"></script>
+    <script src="../WebPages/js/wow.min.js"></script>
+    <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/waypoints/2.0.3/waypoints.min.js"></script>
+    <script src="https://maps.google.com/maps/api/js?key=AIzaSyDGqTyqoPIvYxhn_Sa7ZrK5bENUWhpCo0w"></script>
+    <script src="../WebPages/js/gmaps.min.js"></script>
+    <script src="../WebPages/js/map-active.js"></script>-->
+    <script src="../WebPages/js/bootstrap.min.js"></script>
+
+</head>
+<body>
+
+    <section class="contact-us section">
+        <div class="container">
+            <div class="inner">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <form id="completeProfileForm" class="contact-us-form">
+                            <h2>Completa tú perfil</h2>
+                            <p>Déjanos conocerte un poco mejor y consigue 100 puntos.</p>
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <input type="tel" style="width: 180px; height: 30px;" id="telefono" placeholder="Télefono" required value="635198891">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <input type="text" style="width: 180px; height: 30px;" id="CP" placeholder="Código Postal" required value="08030">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-6">
+                                    <div class="form-group login-btn">
+                                        <button class="btn" type="submit" id="btnCompletarPerfil">GUARDAR</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <input type="text" id="errorMsg" value="" readonly style="display:none; color: red; border: 1px solid red; width: 100%; padding: 6px;">
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script src="./js/libraries/globalAuth.js"></script>
+
+    <script type="module">
+
+        import {
+            baseUrl, port, usuariosControllerName, accessTokenCookieName,
+            loadGlobalConfiguration
+        } from "../WebPages/js/libraries/appConfiguration.js";
+
+        async function init() {
+            await loadGlobalConfiguration();
+
+            window.baseUrl = baseUrl;
+            window.port = port;
+            window.accessTokenCookieName = accessTokenCookieName;
+            window.usuariosControllerName = usuariosControllerName;
+
+        }
+        init();
+    </script>
+     
+    <script type="module">
+
+        function validateData(completeProfileDTO) {
+
+            const telefono = completeProfileDTO.Telefono;
+            const cp = completeProfileDTO.CodigoPostal;
+
+            // Validar que sean numéricos
+            if (isNaN(telefono) || isNaN(cp)) {
+                alert("Teléfono y Código Postal deben ser numéricos");
+                return false;
+            }
+
+            // Validar código postal exactamente 5 dígitos
+            if (cp.toString().length !== 5) {
+                alert("El Código Postal debe tener 5 dígitos");
+                return false;
+            }
+
+            // Validar teléfono mínimo 9 dígitos
+            if (telefono.toString().length < 9) {
+                alert("El teléfono debe tener al menos 9 dígitos");
+                return false;
+            }
+
+            //alert("Datos correctos");
+            return true;
+        }
+
+        const form = document.querySelector('#completeProfileForm');
+        const errorMsg = document.querySelector('#errorMsg');
+
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            //alert(window.baseUrl);
+            //alert(window.port);
+            //alert(window.accessTokenCookieName);
+            //alert(window.usuariosControllerName);
+
+            const _telefono = document.querySelector('#telefono').value.trim();
+            const _cp = document.querySelector('#CP').value.trim();
+            const defaultIdUser = 0;
+
+            const completeProfileDTO = {
+                IdUsuario: defaultIdUser,
+                Telefono: _telefono,
+                CodigoPostal: _cp
+            }
+
+            if (!validateData(completeProfileDTO)) {
+                alert("Errores de validación en los datos introducidos.");
+            }
+
+            try {
+
+                const apiMethod = `CompletarPerfil`;
+                const apiUrl = `${window.baseUrl}:${window.port}/${window.usuariosControllerName}/${apiMethod}`;
+
+                const token = getCookie(window.accessTokenCookieName); //getCookie('app-access-token');
+
+                if (!token) throw new Error('No se encontró el token. Inicia sesión primero.');
+
+                const res = await fetchWithAuth(apiUrl, {
+                //const res = await fetch(apiUrl,{
+                    method: 'PUT',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${token}`
+                    },
+                    body: JSON.stringify(completeProfileDTO)
+                });
+
+                if (!res.ok) throw new Error('Datos incorrectos');
+
+                const data = await res.json();
+                //alert("result: " + data);
+
+                if (data == true) {
+                    //alert('Proceso de completar perfil finalizado correctamente');
+                    console.log('Proceso de completar perfil finalizado correctamente.');
+                    errorMsg.textContent = '';
+
+                    //window.location.href = 'home-privada.html';
+                }
+            }
+            catch (err) {
+                //alert("ERROR: " + err.message);
+                console.error("ERROR: " + err.message);
+                errorMsg.textContent = err.message || 'Error durante el proceso de registro';
+            }
+        });
+
+    </script>
+</body>
+</html>
+

@@ -76,14 +76,14 @@ namespace Infrastructure.Repositories
 
         public async Task<bool> AddAsync(Actividad actividad)
         {
-            var nuevaCategoria = new Actividad {
+            var nuevaActividad = new Actividad {
                 id = (_context.Actividades.Count() + 1),
                 descripcion = actividad.descripcion,
                 nombre = actividad.nombre,
                 idEntidad = actividad.idEntidad,
                 linkEvento = actividad.linkEvento,
                 idTipoActividad = actividad.idTipoActividad,
-                ubicación = actividad.ubicación,
+                ubicacion = actividad.ubicacion,
                 popularidad = actividad.popularidad,
                 descripcionCorta = actividad.descripcionCorta,
                 fechaInicio = actividad.fechaInicio,
@@ -96,7 +96,10 @@ namespace Infrastructure.Repositories
                 linkYoutube = actividad.linkYoutube
             };
 
-            await _context.Actividades.AddAsync(actividad);
+            if (actividad.id != null)
+                nuevaActividad.id = actividad.id;
+
+            await _context.Actividades.AddAsync(nuevaActividad);
             await _context.SaveChangesAsync();
             return true;
         }
@@ -111,7 +114,7 @@ namespace Infrastructure.Repositories
             actividadDb.descripcion = actividad.descripcion;
             actividadDb.linkEvento = actividad.linkEvento;
             actividadDb.idTipoActividad = actividad.idTipoActividad;
-            actividadDb.ubicación = actividad.ubicación;
+            actividadDb.ubicacion = actividad.ubicacion;
             actividadDb.popularidad = actividad.popularidad;
             actividadDb.descripcionCorta = actividad.descripcionCorta;
             actividadDb.fechaInicio = actividad.fechaInicio;
@@ -148,17 +151,17 @@ namespace Infrastructure.Repositories
             var entidadActividades = await _context.Actividades.Where(a => a.idEntidad == idEntidad).ToListAsync();
 
             if (entidadActividades != null && entidadActividades.Any())  { 
-                return entidadActividades.OrderBy(c => c.nombre);
+                return entidadActividades.OrderBy(c => c.id);
             }
             return null;
         }
 
-        public async Task<IEnumerable<Actividad>> GetActividadesByTipoEntidad(Guid idTipoEntidad)
+        public async Task<IEnumerable<Actividad>> GetActividadesByTipoActividad(Guid idTipoActividad)
         {
-            var tipoEntidadActividades = await _context.Actividades.Where(a => a.idTipoActividad == idTipoEntidad).ToListAsync();
+            var tipoActividades = await _context.Actividades.Where(a => a.idTipoActividad == idTipoActividad).ToListAsync();
 
-            if (tipoEntidadActividades != null && tipoEntidadActividades.Any()) {
-                return tipoEntidadActividades.OrderBy(c => c.nombre);
+            if (tipoActividades != null && tipoActividades.Any()) {
+                return tipoActividades.OrderBy(c => c.id);
             }
             return null;
         }

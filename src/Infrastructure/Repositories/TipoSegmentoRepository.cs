@@ -51,7 +51,7 @@ namespace Infrastructure.Repositories
         public async Task<bool> AddAsync(TipoSegmento tipoSegmento)
         {
             var toCreate = new TipoSegmento {
-                id = new Guid(),
+                id =Guid.NewGuid(),
                 nombre = tipoSegmento.nombre,
                 descripcion = tipoSegmento.descripcion
             };

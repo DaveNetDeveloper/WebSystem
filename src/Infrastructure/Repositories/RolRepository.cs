@@ -2,6 +2,7 @@
 using Application.Interfaces.Common;
 using Application.Interfaces.DTOs.Filters;
 using Application.Interfaces.Repositories;
+using DocumentFormat.OpenXml.Spreadsheet;
 using Domain.Entities;
 using Infrastructure.Persistence;
 using LinqKit;
@@ -48,12 +49,15 @@ namespace Infrastructure.Repositories
             await _context.Roles.ToListAsync();
 
         public async Task<bool> AddAsync(Rol rol) {
-             
+
             var nuevoRol = new Rol {
-                id = new Guid(),
+                id =Guid.NewGuid(),
                 nombre = rol.nombre,
                 descripcion = rol.descripcion
             };
+
+            if (rol.id != null)
+                nuevoRol.id  = rol.id;
 
             await _context.Roles.AddAsync(nuevoRol);
             await _context.SaveChangesAsync();
@@ -84,5 +88,11 @@ namespace Infrastructure.Repositories
             await _context.SaveChangesAsync();
             return true;
         }
+
+       
+
+        
+
+
     }
 }

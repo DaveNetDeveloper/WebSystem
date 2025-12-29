@@ -1,13 +1,19 @@
-﻿using Domain.Entities;
+﻿using Application.DTOs.Requests;
+using Domain.Entities;
 
 namespace Application.Interfaces.Services
 {
     public interface IAuthService
     {
-        public Task<AuthUser?> Login(string userName, string password); 
-        Task<bool> RefreshToken(int idUser, string token, DateTime expires);
-        Task<Guid> RequestResetPassword(string email);
+        Task<AuthUser?> Login(string email, string password, bool force = false);
+        Task<bool> ValidarCuenta(string emai);
+        Task<int?> Register(Usuario user);
+        Task<Guid?> RequestResetPassword(string email);
         Task<bool> ResetPassword(string email, string newPassword);
-        Task<bool> DeleteUserToken(int idser);
+
+
+        Task<RefreshToken> GetRefreshToken(string refreshToken);
+        Task<string> GenerateRefreshToken(int idUsuario); 
+        Task<bool> RevokeRefreshTokenAsync(string refreshToken);
     }
 }

@@ -5,8 +5,8 @@
 //TODO: refactorizar las variables globales para la URL
 
 const baseUrl3 = `https://localhost`;
-const controllerName3 = `QRs`;
-const port3 = `7161`;
+const controllerName3 = `api`;
+const port3 = `44311`;
 const apiUrl3 = `${baseUrl3}:${port3}/${controllerName3}/`;
 
 //var userToken = "qAGlDm9o9oS1Ir+xNlWk3XXHkJy/+nJmBy3KUPoms2w="; // TODO: cambiar por valor de la cookie
@@ -31,7 +31,7 @@ class QR {
 //
 function GetQR(id) {
 
-    let nameMethod = "ObtenerQR";
+    let nameMethod = "QR";
     let requestOptions = {
         method: 'GET',
         headers: {
@@ -40,6 +40,7 @@ function GetQR(id) {
     };
 
     let urlConParametro = `${apiUrl3}${nameMethod}/${id}`; 
+    //alert(urlConParametro);
 
     return fetch(urlConParametro, requestOptions)
         .then(response => {
@@ -126,8 +127,6 @@ function PatchQRByFilters(nameMethod, pFiltros) {
 
     let urlConFiltros = `${apiUrl3}${nameMethod}`;
 
-    alert(urlConFiltros);
-
     let isFirstParam = true;
     pFiltros.elementos.forEach(filtro => {
         if (isFirstParam) urlConFiltros = `${urlConFiltros}?`; 
@@ -136,25 +135,19 @@ function PatchQRByFilters(nameMethod, pFiltros) {
         isFirstParam = false;
     });
 
-    alert(urlConFiltros);
-
     return fetch(urlConFiltros, requestOptions)
         .then(response => {
             if (!response.ok) {
-                alert('ko: ' + response.status);
+                console.error('ko: ' + response.status);
                 throw new Error(`Error en la solicitud: ${response.status}`);
             }
-            alert('ok');
             return response.json();
         })
         .then(data => {
-            alert('data ok');
             return data;
         })
         .catch(error => {
-            //console.error('Error al recuperar datos:', error.message);
-            alert('catch error');
-            //throw error;
+            console.error('Error al recuperar datos en PatchQRByFilters()');
             return error;
         }); 
 }

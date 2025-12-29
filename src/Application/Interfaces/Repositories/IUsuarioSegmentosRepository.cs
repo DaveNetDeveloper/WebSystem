@@ -10,6 +10,8 @@ namespace Application.Interfaces.Repositories
         UsuarioSegmentos GetSegmentoByIdUsuario(int idUsuario, int idSegmento);
         bool AddUsuarioSegmento(UsuarioSegmentos usuarioSegmentos);
         bool UpdateUsuarioSegmento(UsuarioSegmentos toUpdate);
-        bool RemoveUsuarioSegmento(int idUsuario, int idSegmento);  
+        bool RemoveUsuarioSegmento(int idUsuario, int idSegmento);
+
+        Task<IEnumerable<Usuario>> GetUsuariosBySegmento(int idUsuario);
     }
 }

@@ -6,10 +6,8 @@
 
 let baseUrl4 = `https://localhost`;
 let controllerName4 = `Productos`;
-let port4 = `7161`;
+let port4 = `44311`;
 let apiUrl4 = `${baseUrl4}:${port4}/${controllerName4}/`;
-
-//var userToken = "qAGlDm9o9oS1Ir+xNlWk3XXHkJy/+nJmBy3KUPoms2w="; // TODO: cambiar por valor de la cookie
  
 class Producto {
     constructor(id, idEntidad, nombre, imagen, descripcion, puntos, precio, activo, descuento, popularidad, descripcionCorta, disponible, informacioExtra, linkInstagram, linkFacebook, linkYoutube) {
@@ -134,9 +132,7 @@ function PatchProductoByFilters(nameMethod, pFiltros) {
     }; 
 
     let urlConFiltros = `${apiUrl4}${nameMethod}`;
-
-    alert(urlConFiltros);
-
+     
     let isFirstParam = true;
     pFiltros.elementos.forEach(filtro => {
         if (isFirstParam) urlConFiltros = `${urlConFiltros}?`; 
@@ -145,25 +141,19 @@ function PatchProductoByFilters(nameMethod, pFiltros) {
         isFirstParam = false;
     });
 
-    alert(urlConFiltros);
-
     return fetch(urlConFiltros, requestOptions)
         .then(response => {
             if (!response.ok) {
-                alert('ko: ' + response.status);
+                console.error('ko: ' + response.status);
                 throw new Error(`Error en la solicitud: ${response.status}`);
-            }
-            alert('ok');
+            } 
             return response.json();
         })
-        .then(data => {
-            alert('data ok');
+        .then(data => { 
             return data;
         })
         .catch(error => {
-            //console.error('Error al recuperar datos:', error.message);
-            alert('catch error');
-            //throw error;
+            console.error('Error al recuperar datos en PatchProductoByFilters()');
             return error;
         }); 
 }
