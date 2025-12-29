@@ -135,7 +135,6 @@ namespace Test.UnitTest.DataSeeder
                 .RuleFor(u => u.fechaNacimiento, f => f.Person.DateOfBirth)
                 .RuleFor(u => u.suscrito, f => f.Random.Bool())
                 .RuleFor(u => u.fechaCreacion, DateTime.Now)
-                .RuleFor(u => u.token, f => f.Random.AlphaNumeric(45))
                 .RuleFor(u => u.genero, f => f.PickRandom(opcionesGenero))
                 .RuleFor(u => u.puntos, f => f.Random.Number(0, 1000));
             
@@ -263,7 +262,7 @@ namespace Test.UnitTest.DataSeeder
                     .RuleFor(a => a.descripcion, f => "Descripción de la actividad " + nextId)
                     .RuleFor(a => a.linkEvento, f => f.Internet.Url())
                     .RuleFor(a => a.idTipoActividad, f => f.Random.Guid())
-                    .RuleFor(a => a.ubicación, f => f.Address.ToString())
+                    .RuleFor(a => a.ubicacion, f => f.Address.ToString())
                     .RuleFor(a => a.popularidad, f => f.Random.Number(1, 5))
                     .RuleFor(a => a.descripcionCorta, f => "Descripción corta de la actividad " + nextId)
                     .RuleFor(a => a.fechaInicio, DateTime.Now.AddDays(7)) //f => f.Date.FutureDateOnly().ToDateTime())
@@ -300,7 +299,7 @@ namespace Test.UnitTest.DataSeeder
                 .RuleFor(a => a.descripcion, f => "Descripción de la actividad " + f.IndexFaker + 1)
                 .RuleFor(a => a.linkEvento, f => f.Internet.Url())
                 .RuleFor(a => a.idTipoActividad, idTipoActividad)
-                .RuleFor(a => a.ubicación, f => f.Address.ToString())
+                .RuleFor(a => a.ubicacion, f => f.Address.ToString())
                 .RuleFor(a => a.popularidad, f => f.Random.Number(1, 5))
                 .RuleFor(a => a.descripcionCorta, f => "Descripción corta de la actividad " + f.IndexFaker + 1)
                 .RuleFor(a => a.fechaInicio, DateTime.Now.AddDays(7)) //f => f.Date.FutureDateOnly().ToDateTime())

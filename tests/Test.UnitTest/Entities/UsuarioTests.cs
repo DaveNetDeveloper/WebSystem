@@ -68,9 +68,7 @@ namespace Test.UnitTest.Entities
                 suscrito = true,
                 ultimaConexion = DateTime.Now.AddMinutes(-5),
                 fechaCreacion = DateTime.Now.AddDays(-10),
-                puntos = 10,
-                token = "token123",
-                expiracionToken = DateTime.Now.AddHours(1)
+                puntos = 10
             };
 
             Assert.AreEqual(1, usuario.id);
@@ -80,9 +78,7 @@ namespace Test.UnitTest.Entities
             Assert.IsTrue(usuario.activo);
             Assert.AreEqual("12345", usuario.contrasena);
             Assert.IsTrue(usuario.suscrito);
-            Assert.AreEqual(10, usuario.puntos);
-            Assert.AreEqual("token123", usuario.token);
-            Assert.NotNull(usuario.expiracionToken);
+            Assert.AreEqual(10, usuario.puntos); 
         }
     }
 }
