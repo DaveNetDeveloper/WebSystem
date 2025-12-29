@@ -42,9 +42,9 @@ namespace Test.Integration.Api
 
             int idUsuario = 1;
             context.Usuarios.AddRange(
-                 new Usuario { id = idUsuario, nombre = "Juan", apellidos = "apellidos", correo = "juan@test.com", suscrito = false, activo = true, contrasena = "AQAAAAIAAYagAAAAECVRFLNzpiyzxS7peWWidxwcz3p3WtNEkx4ILLDsnMFWOj9sAbJgTxQV1tWt+gAs1w==", token = "VBx7U8rYIFKEhx/A8k6uDFpK9mjNpe9MhU7+lY1URKE=", genero="Hombre" },
-                 new Usuario { id = 2, nombre = "Ana",  apellidos = "apellidos", correo = "ana@test.com", suscrito = false, activo = false, contrasena = "abc", token = "Zly7U8rYIFKEhx/A8k6uDFpK9mjNpe9MhU7+lY1URCA=", genero = "Mujer" },
-                 new Usuario { id = 999, nombre = "testAdmin", apellidos = "apellidos", correo = "mail@test.com", suscrito = true, activo = false, contrasena = "abc", token= "XYx7U8rYIFKEhx/A8k6uDFpK9mjNpe9MhU7+lY1URKE=", genero = "Otro" }
+                 new Usuario { id = idUsuario, nombre = "Juan", apellidos = "apellidos", correo = "juan@test.com", suscrito = false, activo = true, contrasena = "AQAAAAIAAYagAAAAECVRFLNzpiyzxS7peWWidxwcz3p3WtNEkx4ILLDsnMFWOj9sAbJgTxQV1tWt+gAs1w==", genero="Hombre" },
+                 new Usuario { id = 2, nombre = "Ana",  apellidos = "apellidos", correo = "ana@test.com", suscrito = false, activo = false, contrasena = "abc", genero = "Mujer" },
+                 new Usuario { id = 999, nombre = "testAdmin", apellidos = "apellidos", correo = "mail@test.com", suscrito = true, activo = false, contrasena = "abc", genero = "Otro" }
             );
              
             Guid idTipoEntidad = Guid.NewGuid();
@@ -217,7 +217,7 @@ namespace Test.Integration.Api
         [Test]
         public async Task Login_Test()
         {
-            var loginDTO = new LoginDto("Juan", "abc"); 
+            var loginDTO = new LoginDto("Juan", "abc", "Web"); 
             var response = await _client.PostAsJsonAsync("/auth/login", loginDTO);
 
             Assert.That(response.StatusCode, Is.EqualTo(HttpStatusCode.OK));

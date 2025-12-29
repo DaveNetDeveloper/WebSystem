@@ -86,7 +86,7 @@ namespace Test.UnitTest.Repositories
 
             Assert.NotNull(actividad.fechaFin); 
 
-            Assert.NotNull(actividad.ubicación);
+            Assert.NotNull(actividad.ubicacion);
              
             Assert.NotNull(actividad.linkEvento);
             Assert.IsNotEmpty(actividad.linkEvento);
@@ -156,7 +156,7 @@ namespace Test.UnitTest.Repositories
 
             Assert.NotNull(activityByName.fechaFin);
 
-            Assert.NotNull(activityByName.ubicación);
+            Assert.NotNull(activityByName.ubicacion);
 
             Assert.NotNull(activityByName.linkEvento);
             Assert.IsNotEmpty(activityByName.linkEvento);

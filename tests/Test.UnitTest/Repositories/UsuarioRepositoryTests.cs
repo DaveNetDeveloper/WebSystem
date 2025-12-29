@@ -64,9 +64,6 @@ namespace Test.UnitTest.Repositories
             Assert.NotNull(usuario.contrasena);
             Assert.IsNotEmpty(usuario.contrasena);
 
-            Assert.NotNull(usuario.token);
-            Assert.IsNotEmpty(usuario.token);
-
             Assert.NotNull(usuario.activo); 
 
             Assert.NotNull(usuario.fechaNacimiento); 
@@ -117,30 +114,6 @@ namespace Test.UnitTest.Repositories
         }
 
         [Test]
-        public async Task GetByTokenAsync_ReturnsEntity_WhenIdExists()
-        {
-            int id = 1;
-            var usuarioById = await _repo.GetByIdAsync(id);
-            Assert.IsNotNull(usuarioById);
-
-            var filters = new UsuarioFilters();
-            filters.Token = usuarioById.token;
-
-            int? page = null;
-            int? pageSize = null;
-            string? orderBy = null;
-            bool descending = false;
-            var queryOptions = GetQueryOptions(page, pageSize, orderBy, descending);
-
-            var filteredByToken = await _repo.GetByFiltersAsync(filters, queryOptions);
-
-            Assert.IsNotNull(filteredByToken);
-            Assert.AreEqual(usuarioById.token, filteredByToken.First().token);
-
-            Assert.Pass("Test passed succesfully. User with token {0} exist.", [usuarioById.token]);
-        }
-
-        [Test]
         public async Task LoginUser_ReturnsEntity_WithValidData()
         {
             int id = 1;
@@ -153,7 +126,7 @@ namespace Test.UnitTest.Repositories
 
             Assert.IsNotNull(authUser);
             Assert.IsNotNull(authUser.Id);
-            Assert.IsNotNull(authUser.UserName);
+            Assert.IsNotNull(authUser.Email);
 
             var roles = await _repo.GetRolesByUsuarioId(authUser.Id);
             if (roles != null && roles.Any()) 
@@ -244,7 +217,6 @@ namespace Test.UnitTest.Repositories
                 .RuleFor(u => u.fechaNacimiento, f => f.Person.DateOfBirth)
                 .RuleFor(u => u.suscrito, f => f.Random.Bool())
                 .RuleFor(u => u.fechaCreacion, DateTime.Now)
-                .RuleFor(u => u.token, f => f.Random.AlphaNumeric(45))
                 .RuleFor(u => u.genero, f => f.PickRandom(opcionesGenero))
                 .RuleFor(u => u.puntos, f => f.Random.Number(0, 1000));
 
