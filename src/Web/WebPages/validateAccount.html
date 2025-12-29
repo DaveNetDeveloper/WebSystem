@@ -193,7 +193,8 @@
                 window.location.href = 'home-privada.html';
             }
             catch (err) {
-                alert("Error en proceso de validación de la cuenta " + email);
+                console.error("Error en proceso de validación de la cuenta " + email);
+                //alert("Error en proceso de validación de la cuenta " + email);
                 errorMsg.textContent = err.message || 'Error durante el proceso de Validación';
             }
         })();

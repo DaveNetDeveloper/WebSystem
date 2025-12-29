@@ -250,7 +250,7 @@
 						document.getElementById('img2').innerText = producto.imagen;
 					}
 				})
-				.catch(err => alert(err.message));
+                .catch(err => console.error(err.message));
 		}
 
 		//
@@ -270,7 +270,7 @@
 				})
 				.catch(error => {
 					console.error('Error en GetEntidad:', error);
-					alert('Error en GetEntidad: ', error);
+					//alert('Error en GetEntidad: ', error);
 				});
 		}
 

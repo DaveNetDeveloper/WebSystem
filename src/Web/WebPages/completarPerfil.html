@@ -189,7 +189,7 @@
                 //alert("result: " + data);
 
                 if (data == true) {
-                    alert('Proceso de completar perfil finalizado correctamente');
+                    //alert('Proceso de completar perfil finalizado correctamente');
                     console.log('Proceso de completar perfil finalizado correctamente.');
                     errorMsg.textContent = '';
 
@@ -197,8 +197,8 @@
                 }
             }
             catch (err) {
-                alert("ERROR: " + err.message);
-                console.error(err);
+                //alert("ERROR: " + err.message);
+                console.error("ERROR: " + err.message);
                 errorMsg.textContent = err.message || 'Error durante el proceso de registro';
             }
         });

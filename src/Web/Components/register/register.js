@@ -186,7 +186,7 @@ class AppRegister extends HTMLElement {
                     if (!res.ok) throw new Error('Datos incorrectos');
 
                     const data = await res.json();
-                    alert("result: " + data);
+                    console.info("result: " + data);
 
                     if (data == true) {
                         this.dispatchEvent(new CustomEvent('register-success', { detail: _correo }));

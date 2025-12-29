@@ -248,7 +248,7 @@ class AppLogin extends HTMLElement {
                 errorMsg.textContent = '';
 
             } catch (err) {
-                alert(err.message);
+                console.error(err.message);
                 errorMsg.textContent = err.message || 'Error durante el proceso de login';
             }
         });

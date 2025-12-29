@@ -274,7 +274,7 @@
 			})
 			.catch(error => {
 				console.error('Error en GetEntidad:', error);
-				alert('Error en GetEntidad: ', error);
+				//alert('Error en GetEntidad: ', error);
 			});
 
 
@@ -368,7 +368,7 @@
 						}
 					}
 				})
-				.catch(err => alert(err.message));
+                .catch(err => console.error(err.message));
 		}
 
 		function buscarProductos(idEntidad) {
@@ -410,7 +410,7 @@
 				})
 				.catch(error => {
 					console.error('Error en GetProductos:', error);
-					alert('Error en GetProductos: ', error);
+					//alert('Error en GetProductos: ', error);
 				});
 		}
 

@@ -146,7 +146,7 @@
                     if (!res.ok) throw new Error('Error cerrando la sesión');
 
                     const result = res.ok;
-                    alert("result: " + result);
+                    console.info("result: " + result);
                     return result;
                 }
                 catch (err) {

@@ -46,17 +46,11 @@
 
     document.querySelector('app-register') 
 		.addEventListener('register-success', (e) => {
-
-            alert("result: " + e.detail);
-            
-            //'registerConfirmation.html?email=' + newUser.correo);
-
+            //alert("result: " + e.detail);
+            console.info("result: " + e.detail);
             window.location.href = '../WebPages/registerConfirmation.html?email=' + e.detail;
-
 		});
-
     </script>
-
 </body>
 </html>
 

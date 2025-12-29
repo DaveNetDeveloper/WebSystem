@@ -330,7 +330,7 @@
 					document.getElementById('img2').innerText = actividad.imagen;
 				}
 			})
-			.catch(err => alert(err.message));
+            .catch(err => console.error(err.message));
 	}
 
 	//
@@ -351,7 +351,7 @@
 			})
 			.catch(error => {
 				console.error('Error en GetEntidad:', error);
-				alert('Error en GetEntidad: ', error);
+				//alert('Error en GetEntidad: ', error);
 			});
 	}
 
@@ -376,7 +376,7 @@
 					document.getElementById('tipoActividad').innerText = data[0].nombre;
 				}
 			})
-			.catch(err => alert(err.message));
+            .catch(err => console.error(err.message));
 	}
 
 	//
@@ -495,7 +495,7 @@
 					//alert("IdActividad: " + data.idActividad);
 				}
 			})
-			.catch(err => alert(err.message));
+            .catch(err => console.error(err.message));
 	}
 
 	function mostrarModalReserva(titulo, mensaje, mode) {

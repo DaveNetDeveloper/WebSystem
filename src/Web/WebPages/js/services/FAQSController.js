@@ -123,8 +123,6 @@ function PatchFAQByFilters(nameMethod, pFiltros) {
 
     let urlConFiltros = `${apiUrl6}${nameMethod}`;
 
-    alert(urlConFiltros);
-
     let isFirstParam = true;
     pFiltros.elementos.forEach(filtro => {
         if (isFirstParam) urlConFiltros = `${urlConFiltros}?`; 
@@ -133,24 +131,19 @@ function PatchFAQByFilters(nameMethod, pFiltros) {
         isFirstParam = false;
     });
 
-    alert(urlConFiltros);
-
     return fetch(urlConFiltros, requestOptions)
         .then(response => {
             if (!response.ok) {
-                alert('ko: ' + response.status);
+                console.error('ko: ' + response.status);
                 throw new Error(`Error en la solicitud: ${response.status}`);
             }
-            alert('ok');
             return response.json();
         })
-        .then(data => {
-            alert('data ok');
+        .then(data => { 
             return data;
         })
         .catch(error => {
-            //console.error('Error al recuperar datos:', error.message);
-            alert('catch error');
+            console.error('Error al recuperar datos en PatchFAQByFilters()');
             //throw error;
             return error;
         }); 

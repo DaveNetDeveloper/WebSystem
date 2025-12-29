@@ -331,7 +331,7 @@
             })
             .catch(error => {
                 console.error('Error en GetEntidades:', error);
-                alert('Error en GetEntidades: ', error);
+                //alert('Error en GetEntidades: ', error);
             });
 
         function onClickBtnSlide(id) {
@@ -545,10 +545,10 @@
             if (ok) {
                 document.getElementById("inputEmail").value = '';
                 await ocultarBotonSuscripcion();
-                alert("¡Suscripción activada correctamente!");
+                console.info("¡Suscripción activada correctamente!");
             }
             else {
-                alert("No se ha podido activar la suscripción.");
+                console.error("No se ha podido activar la suscripción.");
             }
         }
 
@@ -774,7 +774,7 @@
                     })
                     .catch(error => {
                         console.error('Error en GetTestimonios:', error);
-                        alert('Error en GetTestimonios: ', error);
+                        //alert('Error en GetTestimonios: ', error);
                     });
 
                 // Función para generar dinámicamente el código HTML de un panel FAQ
@@ -938,7 +938,7 @@
             })
             .catch(error => {
                 console.error('Error en GetFAQS:', error);
-                alert('Error en GetFAQS: ' + error);
+                //alert('Error en GetFAQS: ' + error);
             });
 
         });
