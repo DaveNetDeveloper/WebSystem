@@ -601,16 +601,16 @@
                             mostrarModal('Consulta enviada', 'Tú consulta se ha enviado corretamente a la entidad', 'info');
                             //alert("Consulta enviada y guardada correctamente.");
                         } else {
-                            alert("Error: La API indicó un fallo al guardar (resultado 'false').");
+                            console.error("Error: La API indicó un fallo al guardar (resultado 'false').");
                         }
                     } else {
                         const errorTexto = await respuesta.text();
-                        alert(`Error al enviar la consulta. Código: ${respuesta.status}. Mensaje: ${errorTexto}`);
+                        console.error(`Error al enviar la consulta. Código: ${respuesta.status}. Mensaje: ${errorTexto}`);
                     }
 
                 } catch (error) {
                     console.error('Error de red al enviar la consulta:', error);
-                    alert('No se pudo conectar con el servidor. Inténtalo de nuevo más tarde.');
+                    //alert('No se pudo conectar con el servidor. Inténtalo de nuevo más tarde.');
                 }
             });
         });

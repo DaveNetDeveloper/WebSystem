@@ -521,13 +521,12 @@
 	<script>
 
 		function redirigirExplorar() {
-
 			const textEntidadValue = document.getElementById('textEntidad').value;
-		if (textEntidadValue.trim() == '') {
-			alert('Por favor, ingresa un valor válido para la búsqueda.');
+			if (textEntidadValue.trim() == '') {
+				alert('Por favor, ingresa un valor válido para la búsqueda.');
 			}
-		else {
-			window.location.href = `explorar.html?name=${encodeURIComponent(textEntidadValue)}`;
+			else {
+				window.location.href = `explorar.html?name=${encodeURIComponent(textEntidadValue)}`;
 			}
 		}
 	</script>
@@ -749,36 +748,36 @@
 
 					const suscripcionUser = localStorage.getItem("suscripcion");
 
-				if (suscripcionUser != undefined && suscripcionUser != null && suscripcionUser == true) {
+					if (suscripcionUser != undefined && suscripcionUser != null && suscripcionUser == true) {
 
-					ocultarBotonSuscripcion();
-				alert("El usuario ya está suscrito (Local Storage)!");
-				return;
+						ocultarBotonSuscripcion();
+						console.info("El usuario ya está suscrito (Local Storage)!");
+						return;
 					}
-				else {
+					else {
 						//const token = "BA03E160-11C9-4A7D-BF5D-9DF60140F893";
 						//const email = "dgomezma+admin@gmail.com";
 						//const loggedUserId = localStorage.getItem("idUsuario");
 
 						var loggedUser = await getUserData();
 
-				if (loggedUser.suscrito == null || loggedUser.suscrito == false) {
+						if (loggedUser.suscrito == null || loggedUser.suscrito == false) {
 
 							const ok = await activarSuscripcion(loggedUser.correo);
-
-				//TODO: Mostrar MODAL-PANEL (Componente Web)
-				if (ok) {
-
-					ocultarBotonSuscripcion();
-				alert("¡Suscripción activada correctamente!");
-
-							} else {
-					alert("No se ha podido activar la suscripción.");
+							//TODO: Mostrar MODAL-PANEL (Componente Web)
+							if (ok) {
+								ocultarBotonSuscripcion();
+                                console.info("¡Suscripción activada correctamente!");
+							}
+							else
+							{
+                                console.error("No se ha podido activar la suscripción.");
 							}
 						}
-				else {
-					ocultarBotonSuscripcion();
-				alert("El usuario ya está suscrito (Base de Datos)!");
+						else
+						{
+							ocultarBotonSuscripcion();
+                            console.info("El usuario ya está suscrito (Base de Datos)!");
 						}
 					}
 				}
@@ -991,7 +990,7 @@
 				})
 				.catch(error => {
 					console.error('Error en GetFAQS:', error);
-					alert('Error en GetFAQS: ' + error);
+					//alert('Error en GetFAQS: ' + error);
 				});
 		});
 	</script>

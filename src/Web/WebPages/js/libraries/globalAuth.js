@@ -14,7 +14,7 @@
         // Si es 401, intentar regenerar el token
         if (response.status === 401) {
             console.warn('Token expirado, intentando renovar...');
-            alert('Token expirado, intentando renovar...');
+            //alert('Token expirado, intentando renovar...');
 
             var data = await refreshToken();
              
@@ -35,7 +35,7 @@
 
         // Si sigue siendo error, lanzamos excepción para capturarlo fuera
         if (!response.ok) {
-            alert("Sigue siendo error, lanzamos excepción para capturarlo fuera");
+            console.error("Sigue siendo error, lanzamos excepción para capturarlo fuera");
             const errorText = await response.text();
             throw new Error(errorText || response.statusText);
         }
@@ -51,15 +51,13 @@
         return response.text();
 
     } catch (err) {
-        alert("Error en fetchWithAuth");
+        //alert("Error en fetchWithAuth");
         console.error('Error en fetchWithAuth:', err);
         throw err; 
     }
 }
 
 async function refreshToken() {
-
-    alert("refreshToken");
 
     try {
         const baseUrl = `https://localhost`;
@@ -79,15 +77,13 @@ async function refreshToken() {
             }) 
         });
 
-        alert(response.ok);
-
         if (!response.ok) return null;
 
         const data = await response.json();
 
         return data;
     } catch (err) {
-        alert("error en refreshToken()");
+        console.error("error en refreshToken()");
         return null;
     }
 }

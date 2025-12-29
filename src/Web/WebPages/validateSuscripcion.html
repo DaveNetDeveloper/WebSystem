@@ -125,7 +125,8 @@
                 window.location.href = 'login.html';
             }
             catch (err) {
-                alert("Error en proceso de activación de la newletter para: " + email);
+                console.error("Error en proceso de activación de la newletter para: " + email);
+                //alert("Error en proceso de activación de la newletter para: " + email);
                 errorMsg.textContent = err.message || 'Error durante la activación de la newletter';
             }
 

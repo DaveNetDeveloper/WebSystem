@@ -505,10 +505,7 @@
                     idProducto: idProductoValor,
                     idActividad: idActividadValor,
 
-                    // ********** CAMBIO CLAVE AÑADIDO **********
-                    // Reenviamos el Base64 original de la imagen, ya que no se modifica en el formulario.
                     imageBase64: dataInicial.imageBase64 || null
-                    // *******************************************
                 };
 
                 const res = await fetch(`${API.QR}/ActualizarQR`, {
@@ -518,11 +515,10 @@
                 });
 
                 if (!(await res.json())) {
-                    alert("Error al guardar");
+                    console.error("Error al guardar");
                     return;
-                }
-
-                alert("Guardado correctamente");
+                } 
+                console.info(" QR guardado correctamente");
                 // volverAlListado();
             }
 
@@ -536,14 +532,12 @@
                 });
 
                 if (!(await res.json())) {
-                    alert("No se pudo eliminar");
+                    console.warn("No se pudo eliminar");
                     return;
-                }
-
-                alert("Eliminado correctamente"); // Añadido para confirmar la eliminación
+                } 
+                console.info("Eliminado correctamente"); // Añadido para confirmar la eliminación
                 volverAlListado();
-            }
-
+            } 
             
              //   Descargar QR
            
@@ -572,7 +566,7 @@
                     const data = await cargarQRCode(id);
                     await rellenarFormulario(data);
                 } catch (err) {
-                    alert(err.message);
+                    console.error(err.message);
 
                     // volverAlListado();
                 }
