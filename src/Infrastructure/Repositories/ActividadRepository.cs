@@ -83,7 +83,7 @@ namespace Infrastructure.Repositories
                 idEntidad = actividad.idEntidad,
                 linkEvento = actividad.linkEvento,
                 idTipoActividad = actividad.idTipoActividad,
-                ubicación = actividad.ubicación,
+                ubicacion = actividad.ubicacion,
                 popularidad = actividad.popularidad,
                 descripcionCorta = actividad.descripcionCorta,
                 fechaInicio = actividad.fechaInicio,
@@ -114,7 +114,7 @@ namespace Infrastructure.Repositories
             actividadDb.descripcion = actividad.descripcion;
             actividadDb.linkEvento = actividad.linkEvento;
             actividadDb.idTipoActividad = actividad.idTipoActividad;
-            actividadDb.ubicación = actividad.ubicación;
+            actividadDb.ubicacion = actividad.ubicacion;
             actividadDb.popularidad = actividad.popularidad;
             actividadDb.descripcionCorta = actividad.descripcionCorta;
             actividadDb.fechaInicio = actividad.fechaInicio;

@@ -30,7 +30,7 @@ namespace API.Controllers
             _exportConfig = options.Value ?? throw new ArgumentNullException(nameof(options));
         }
 
-        [Authorize]
+       // [Authorize]
         [HttpGet("ObtenerCampanaExecutions")]
         public async Task<IActionResult> GetAllAsync()
         {

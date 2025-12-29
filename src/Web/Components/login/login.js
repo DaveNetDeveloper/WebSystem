@@ -9,6 +9,7 @@
 // Component properties
 const loginType_PropName = "login-type";
 const session_PropName = "keep-session";
+const isQRLogin_PropName = "is-qr-login";
 
 var loginType_Admin = "Admin";
 var loginType_Web = "Web";
@@ -50,6 +51,14 @@ class AppLogin extends HTMLElement {
                     100% { opacity: 1; }
                 }
 
+                .contact-us .contact-us-form h2:before {
+                    text-align: center !important;
+                    }
+
+                    .contact-us .contact-us-form h2{
+                        text-align: center !important;
+                    }
+
             </style>
             
             <div id="container">
@@ -61,15 +70,23 @@ class AppLogin extends HTMLElement {
         `;
     }
 
+    getEmail() {
+        const input = this.shadowRoot.querySelector('#email').value;
+        return input ? input.trim() : null;
+    }
+
     static get observedAttributes() {
-        return [loginType_PropName];
+        return [loginType_PropName, isQRLogin_PropName];
     }
 
     attributeChangedCallback(name, oldValue, newValue) {
         if (name === loginType_PropName) {
             this.loginType = newValue; 
         }
-        else if (name === session_PropName) {
+        if (name === isQRLogin_PropName) {
+            this.isQRLogin = newValue;
+        }
+        if (name === session_PropName) {
             this.keepSession = newValue;
         }
     }
@@ -173,8 +190,6 @@ class AppLogin extends HTMLElement {
         form.addEventListener('submit', async (e) => {
             e.preventDefault();
 
-           
-
             try { 
                 //var hashedPassword = Utilities.calcularHash(password);
 
@@ -201,19 +216,17 @@ class AppLogin extends HTMLElement {
                         LoginType: this.loginType,
                     })
                 });
-
-               
-
+                 
                 if (!res.ok) throw new Error('Credenciales incorrectas');
 
                 const data = await res.json();
 
-                alert("access_token: " + data.access_token);
-                alert("token_type: " + data.token_type);
-                alert("expires_at: " + data.expires_at);
-                alert("role: " + data.role);
-                alert("profile: " + data.profile);
-                alert("entidades: " + data.entidades);
+                //alert("access_token: " + data.access_token);
+                //alert("token_type: " + data.token_type);
+                //alert("expires_at: " + data.expires_at);
+                //alert("role: " + data.role);
+                //alert("profile: " + data.profile);
+                //alert("entidades: " + data.entidades);
 
                 const expiracionEnDias = 7;
                 const fechaExpiracionRT = new Date();
@@ -256,14 +269,25 @@ class AppLogin extends HTMLElement {
             window.location.href = url;
         });
          
-        var subTitleContent = "";
+        let subTitleContent = "";
+        let submitButtonContent = "ENTRAR";
         if (this.loginType == loginType_Web) {
-            subTitleContent = "Introduce tus datos para acceder a la plataforma.";
+
+            if (this.isQRLogin == false) {
+
+                subTitleContent = "Introduce tus datos para completar el escaneo de tu producto!";
+                submitButtonContent = "CONTINUAR";
+            }
+            else {
+                subTitleContent = "Introduce tus datos para acceder a la plataforma.";
+            }
         }
         else if (this.loginType == loginType_Admin) {
             subTitleContent = "Introduce tus datos para acceder a la zona de administración.";
         }
+
         this.shadowRoot.querySelector('#loginSubTitle').textContent = subTitleContent;
+        this.shadowRoot.querySelector('#btnLogin').textContent = submitButtonContent;
     }
 }
 

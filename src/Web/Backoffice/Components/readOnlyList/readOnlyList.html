@@ -3,43 +3,50 @@
     <div id="table_name_wrapper" class="dataTables_wrapper dt-bootstrap4 no-footer">
 
         <div class="row" id="filterTable">
-            <div class="col-sm-12 col-md-4">
-                <div class="dataTables_length" id="table_name_length">
-                    <label>
-                        Mostrar
-                        <select name="table_name_length" aria-controls="table_name" class="custom-select custom-select-sm form-control form-control-sm">
-                            <option value="10">10</option>
-                            <option value="25">25</option>
-                            <option value="50">50</option>
-                            <option value="100">100</option>
-                        </select>
-                        registros
-                    </label>
-                </div>
-            </div>
 
-            <div class="col-sm-12 col-md-2">
-                <div class="btn-group mb-1">
-                    <button class="btn dropdown-toggle btn-warning export-btn" id="btnExport" style="width: 100px; height: 45px;" type="button">
-                        Exportar
-                    </button>
-                    <div class="dropdown-menu">
-                        <a id="exportExcel" class="dropdown-item" href="#">Excel</a>
-                        <a id="exportPdf" class="dropdown-item" href="#">Pdf</a>
+                <div class="col-sm-12 col-md-4">
+                    <div class="dataTables_length" id="table_name_length">
+                        <label>
+                            Mostrar
+                            <select name="table_name_length" aria-controls="table_name" class="custom-select custom-select-sm form-control form-control-sm">
+                                <option value="10">10</option>
+                                <option value="25">25</option>
+                                <option value="50">50</option>
+                                <option value="100">100</option>
+                            </select>
+                            registros
+                        </label>
                     </div>
                 </div>
-            </div>
 
-            <div class="col-sm-12 col-md-6">
-                <div id="table_name_filter" class="dataTables_filter">
-                    <label>
-                        Buscar:
-                        <input type="search" class="form-control form-control-sm" placeholder="" aria-controls="table_name">
-                    </label>
+                <div class="col-sm-12 col-md-4">
+
+                    <div class="btn-group mb-2"> 
+                        <button  class="btn btn-warning" id="btnCrear" style=" background-color: darkcyan; width: 100px; height: 45px;" type="button">
+                            Crear
+                        </button>  
+                     </div>  
+                    <div class="btn-group mb-2">
+                        <button class="btn dropdown-toggle btn-warning export-btn" id="btnExport" style="width: 100px; height: 45px;" type="button">
+                            Exportar
+                        </button>
+                        <div class="dropdown-menu">
+                            <a id="exportExcel" class="dropdown-item" href="#">Excel</a>
+                            <a id="exportPdf" class="dropdown-item" href="#">Pdf</a>
+                        </div>
+                    </div>
                 </div>
-            </div>
 
-        </div>
+                <div class="col-sm-12 col-md-4">
+                    <div id="table_name_filter" class="dataTables_filter">
+                        <label>
+                            Buscar:
+                            <input type="search" class="form-control form-control-sm" placeholder="" aria-controls="table_name">
+                        </label>
+                    </div>
+                </div>
+
+            </div>
 
         <br />
 

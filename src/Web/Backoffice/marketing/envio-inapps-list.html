@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>  Administración / Entidades</title>
+    <title>  Marketing / Notificaciones InApp</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -24,8 +24,19 @@
      
     <div class="body-wrapper body-bg">
         <header>
-
+            <admin-menu is-home="false"></admin-menu>
+            <script type="module" src="../Components/adminHeader/adminHeader.js"></script>
         </header>
+        <script>
+            window.GlobalCssCache = {};
+            async function preloadCss(path) {
+                if (!window.GlobalCssCache[path]) {
+                    const css = await fetch(path).then(r => r.text());
+                    window.GlobalCssCache[path] = css;
+                }
+                return window.GlobalCssCache[path];
+            }
+        </script>
 
         <div class="dashboard-area pt-30">
             <div class="container">
@@ -34,12 +45,12 @@
                         <div class="pannel-wrapper white-bg mb-30">
 
                             <div class="panel-heading heading-border">
-                                <h4>Listado de Entidades</h4>
+                                <h4>Listado de Notificaciones InApp</h4>
                             </div>
 
                             <div class="panel-body">
 
-                                <bo-readonlylist show-export="true" controller="Entidades" data-source="ObtenerEntidades"></bo-readonlylist>
+                                <bo-readonlylist show-export="true" controller="InAppNotification" data-source="ObtenerInAppNotifications"></bo-readonlylist>
                                 <script type="module" src="../Components/readOnlyList/readOnlyList.js"></script>
 
                             </div>
@@ -48,7 +59,6 @@
                 </div>
             </div>
             <footer>
-
             </footer>
         </div>
     </div>

@@ -64,12 +64,83 @@
             border-radius: .3rem;
         }
 
+
         .btn-danger {
             color: #fff;
             background-color: #dc3545;
-            border-color: #dc3545;
+            border-color: #dc3545
         }
 
+            .btn-danger:hover {
+                color: #fff;
+                background-color: #c82333;
+                border-color: #bd2130
+            }
+
+            .btn-danger.focus, .btn-danger:focus {
+                box-shadow: 0 0 0 .2rem rgba(220,53,69,.5)
+            }
+
+            .btn-danger.disabled, .btn-danger:disabled {
+                color: #fff;
+                background-color: #dc3545;
+                border-color: #dc3545
+            }
+
+            .btn-danger:not(:disabled):not(.disabled).active, .btn-danger:not(:disabled):not(.disabled):active, .show > .btn-danger.dropdown-toggle {
+                color: #fff;
+                background-color: #bd2130;
+                border-color: #b21f2d
+            }
+
+                .btn-danger:not(:disabled):not(.disabled).active:focus, .btn-danger:not(:disabled):not(.disabled):active:focus, .show > .btn-danger.dropdown-toggle:focus {
+                    box-shadow: 0 0 0 .2rem rgba(220,53,69,.5)
+                }
+
+        .btn-success {
+            color: #fff;
+            background-color: #00b02f;
+            border-color: rgba(24, 28, 33, 0.1);
+        }
+
+            .btn-success:hover {
+                color: #fff;
+                background-color: #009a29;
+                border-color: black
+            }
+
+
+        .btn-light {
+            color: #212529;
+            background-color: #f8f9fa;
+            border-color: #f8f9fa
+        }
+
+            .btn-light:hover {
+                color: #212529;
+                background-color: #e2e6ea;
+                border-color: #dae0e5
+            }
+
+            .btn-light.focus, .btn-light:focus {
+                box-shadow: 0 0 0 .2rem rgba(248,249,250,.5)
+            }
+
+            .btn-light.disabled, .btn-light:disabled {
+                color: #212529;
+                background-color: #f8f9fa;
+                border-color: #f8f9fa
+            }
+
+            .btn-light:not(:disabled):not(.disabled).active, .btn-light:not(:disabled):not(.disabled):active, .show > .btn-light.dropdown-toggle {
+                color: #212529;
+                background-color: #dae0e5;
+                border-color: #d3d9df
+            }
+
+                .btn-light:not(:disabled):not(.disabled).active:focus, .btn-light:not(:disabled):not(.disabled):active:focus, .show > .btn-light.dropdown-toggle:focus {
+                    box-shadow: 0 0 0 .2rem rgba(248,249,250,.5)
+                }
         .sweet-alert .sa-confirm-button-container {
             position: relative;
             /*display: inline-block;*/
@@ -83,25 +154,24 @@
             
     </style>
 
-    <div class=" modal sweet-alert  showSweetAlert visible" tabindex="-1" data-custom-class="" data-has-cancel-button="" data-has-confirm-button="" data-allow-outside-click="false" data-has-done-function="true" data-animation="pop" data-timer="null" style="display: block;">
+    <div class=" modal sweet-alert showSweetAlert visible" tabindex="-1" data-custom-class="" data-has-cancel-button="" data-has-confirm-button="" data-allow-outside-click="false" data-has-done-function="true" data-animation="pop" data-timer="null" style="display: block;">
         <div class="modal-contenido">
             <span class="cerrar">&times;</span>
             <h3></h3>
             <p></p>
-
-            <div class="sa-button-container">
-                <button class="cancel btn btn-lg btn-default" tabindex="2" style="display: inline-block;">Cancelar</button>
-                <div class="sa-confirm-button-container">
-                    <button class="confirm btn btn-lg btn-danger" tabindex="1" style="display: inline-block;">Sí, eliminar</button>
+            <div class="sa-button-container_" style="margin-top: 25px;">
+                <div class="row" style="text-align: center; padding-bottom: 10px;">
+                    
+                    <button class="cancel btn btn-lg btn-default" tabindex="2" style="min-width:100px; inline-block;">Cancelar</button>
+                    <button class="confirm btn btn-lg" tabindex="1" style="min-width: 100px; display: inline-block;">Aceptar</button>
                     <div class="la-ball-fall">
                         <div></div>
                         <div></div>
                         <div></div>
-                    </div>
+                    </div> 
                 </div>
             </div>
-
-
+             
         </div> 
     </div>
 </template>

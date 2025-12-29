@@ -53,85 +53,101 @@
 </head>
 <body>
 
-    <app-login login-type="Web"></app-login>
+    <header class="header">
+        <div class="header-inner">
+            <div class="container">
+                <div class="inner" style="padding: 18px;">
+                    <div class="row" style="margin-left: 48%;">
+                        <div>
+                            <div class="logo">
+                                <a href="home-publica.html"><img src="../../WebPages/img/logo.jpg" alt="#"></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+        
+    <app-login login-type="Web" is-qr-login="false"></app-login>
     <script type="module" src="../Components/login/login.js"></script>
 
-    <button id="btnPrueba">Probar Endpoint Seguro</button>
+    <!--<button id="btnPrueba">Probar Endpoint Seguro</button>-->
 
     <script>
 
-        function getCookie(nombre) {
-            const nombreEQ = nombre + "=";
-            const cookies = document.cookie.split(';');
-            for (let i = 0; i < cookies.length; i++) {
-                let cookie = cookies[i];
-                while (cookie.charAt(0) === ' ') {
-                    cookie = cookie.substring(1, cookie.length);
-                }
-                if (cookie.indexOf(nombreEQ) === 0) {
-                    return decodeURIComponent(cookie.substring(nombreEQ.length, cookie.length));
-                }
-            }
-            return null;
-        }
+        //function getCookie(nombre) {
+        //    const nombreEQ = nombre + "=";
+        //    const cookies = document.cookie.split(';');
+        //    for (let i = 0; i < cookies.length; i++) {
+        //        let cookie = cookies[i];
+        //        while (cookie.charAt(0) === ' ') {
+        //            cookie = cookie.substring(1, cookie.length);
+        //        }
+        //        if (cookie.indexOf(nombreEQ) === 0) {
+        //            return decodeURIComponent(cookie.substring(nombreEQ.length, cookie.length));
+        //        }
+        //    }
+        //    return null;
+        //}
 
-        async function llamarEndpointSeguro() {
-            try {
-                const token = getCookie('app-access-token');
-                if (!token) throw new Error('No se encontró el token. Inicia sesión primero.');
+        //async function llamarEndpointSeguro() {
+        //    try {
+        //        const token = getCookie('app-access-token');
+        //        if (!token) throw new Error('No se encontró el token. Inicia sesión primero.');
 
-                const baseUrl = `https://localhost`;
-                const port = `44311`;
-                const apiUrl = `${baseUrl}:${port}/Usuarios/ObtenerUsuarios`;
+        //        const baseUrl = `https://localhost`;
+        //        const port = `44311`;
+        //        const apiUrl = `${baseUrl}:${port}/Usuarios/ObtenerUsuarios`;
 
-                const res = await fetchWithAuth(apiUrl, {
-                    method: 'GET',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'Authorization': `Bearer ${token}`
-                    }
-                    //, body: JSON.stringify({ foo: 'bar' })
-                });
-                if (!res.ok) {
-                    //alert("Error en WebPages/Login.html");
-                    throw new Error('Error al llamar al endpoint seguro');
-                }
+        //        const res = await fetchWithAuth(apiUrl, {
+        //            method: 'GET',
+        //            headers: {
+        //                'Content-Type': 'application/json',
+        //                'Authorization': `Bearer ${token}`
+        //            }
+        //            //, body: JSON.stringify({ foo: 'bar' })
+        //        });
+        //        if (!res.ok) {
+        //            //alert("Error en WebPages/Login.html");
+        //            throw new Error('Error al llamar al endpoint seguro');
+        //        }
 
-                return await res.json();
-            }
-            catch (err) {
-                console.error(err);
-                throw err;
-            }
-        }
+        //        return await res.json();
+        //    }
+        //    catch (err) {
+        //        console.error(err);
+        //        throw err;
+        //    }
+        //}
 
-        document.getElementById('btnPrueba').addEventListener('click', async () => {
-            try {
-                const usuarios = await llamarEndpointSeguro();
-                console.log('Usuarios desde botón:', usuarios);
-                alert('Revisa la consola para ver los usuarios');
+        //document.getElementById('btnPrueba').addEventListener('click', async () => {
+        //    try {
+        //        const usuarios = await llamarEndpointSeguro();
+        //        console.log('Usuarios desde botón:', usuarios);
+        //        alert('Revisa la consola para ver los usuarios');
 
-            }
-            catch (error) {
-                console.error('Error al llamar al endpoint:', error);
-                alert('Error al llamar al endpoint seguro. Revisa la consola para ver los errores');
-            }
-        });
+        //    }
+        //    catch (error) {
+        //        console.error('Error al llamar al endpoint:', error);
+        //        alert('Error al llamar al endpoint seguro. Revisa la consola para ver los errores');
+        //    }
+        //});
 
         document.querySelector('app-login') // Escucha el evento emitido por el componente
             .addEventListener('login-success', (e) => {
 
                 // Cokkie data
-                alert("Cokkie " + getCookie('app-access-token'));
-                alert("Cokkie " + getCookie('app-refresh-token'));
-                alert("Cokkie " + getCookie('app-role'));
-                alert("Cokkie " + getCookie('app-profile'));
+                //alert("Cokkie " + getCookie('app-access-token'));
+                //alert("Cokkie " + getCookie('app-refresh-token'));
+                //alert("Cokkie " + getCookie('app-role'));
+                //alert("Cokkie " + getCookie('app-profile'));
 
-                const usuarios = llamarEndpointSeguro();
-                console.log('Usuarios:', usuarios);
-                alert('Revisa la consola para ver los usuarios');
+                //const usuarios = llamarEndpointSeguro();
+                //console.log('Usuarios:', usuarios);
+                //alert('Revisa la consola para ver los usuarios');
 
-                //window.location.href = '../WebPages/home-privada.html';
+                window.location.href = '../WebPages/home-privada.html';
             });
 
     </script>

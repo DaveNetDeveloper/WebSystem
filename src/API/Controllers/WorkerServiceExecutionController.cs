@@ -9,6 +9,7 @@ using Domain.Entities;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
+using static Domain.Entities.TipoEnvioCorreo;
 using static Utilities.ExporterHelper;
 
 namespace API.Controllers
@@ -133,21 +134,46 @@ namespace API.Controllers
 
             if (envioEmail)
             {
-                var tiposEnvioCorreo = await correoService.ObtenerTiposEnvioCorreo();
-                var tipoEnvioCorreo = tiposEnvioCorreo.Where(u => u.nombre == TipoEnvioCorreo.TipoEnvio.EnvioReport)
-                                                      .SingleOrDefault();
 
-                tipoEnvioCorreo.asunto = $"Report {entityName.ToString()} ({fileExtension})";
-                tipoEnvioCorreo.cuerpo = $"Se adjunta el informe para la vista de datos {entityName.ToString()}";
+                var tipoEnvio = await correoService.ObtenerTipoEnvioCorreo(TipoEnvioCorreos.EnvioReport);
 
-                var correo = new Correo(tipoEnvioCorreo, _exportConfig.CorreoAdmin, "Admin", "");
-                correo.FicheroAdjunto = new FicheroAdjunto()
+                var context = new EnvioReportEmailContext(email: _exportConfig.CorreoAdmin,
+                                                          nombre: "Admin",
+                                                          nombreEntidad: "",
+                                                          nombreInforme: $"List_{entityName.ToString()}");
+                var correoN = new CorreoN
+                {
+                    Destinatario = context.Email,
+                    Asunto = tipoEnvio.asunto,
+                    Cuerpo = tipoEnvio.cuerpo
+                };
+
+                correoN.ApplyTags(context.GetTags());
+
+                correoN.FicheroAdjunto = new FicheroAdjunto()
                 {
                     Archivo = file,
                     ContentType = contentType,
                     NombreArchivo = fileName
                 };
-                correoService.EnviarCorreo(correo);
+
+                //correoService.EnviarCorreo_Nuevo(correoN);
+
+                //var tiposEnvioCorreo = await correoService.ObtenerTiposEnvioCorreo();
+                //var tipoEnvioCorreo = tiposEnvioCorreo.Where(u => u.nombre == TipoEnvioCorreo.TipoEnvio.EnvioReport)
+                //                                      .SingleOrDefault();
+
+                //tipoEnvioCorreo.asunto = $"Report {entityName.ToString()} ({fileExtension})";
+                //tipoEnvioCorreo.cuerpo = $"Se adjunta el informe para la vista de datos {entityName.ToString()}";
+
+                //var correo = new Correo(tipoEnvioCorreo, _exportConfig.CorreoAdmin, "Admin", "");
+                //correo.FicheroAdjunto = new FicheroAdjunto()
+                //{
+                //    Archivo = file,
+                //    ContentType = contentType,
+                //    NombreArchivo = fileName
+                //};
+                //correoService.EnviarCorreo(correo);
             }
             return File(file, contentType, fileName);
         }

@@ -1,12 +1,15 @@
 using Application.Interfaces.Services;
+using Application.Services;
 using Domain.Entities;
+using Microsoft.Extensions.Options;
 using System.Text;
+using Twilio.Jwt.AccessToken;
 using Utilities;
 using WorkerService.Common;
 using WorkerService.Configuration;
 using WorkerService.Interfaces;
-
-using Microsoft.Extensions.Options;
+using static Domain.Entities.TipoEnvioCorreo;
+using static Domain.Entities.TipoTransaccion;
 
 namespace WorkerService.Jobs
 {
@@ -52,13 +55,13 @@ namespace WorkerService.Jobs
                             var (scopeMail, correoService) = GetServiceProvider<ICorreoService>();
                             using (scopeMail)
                             {
-                                var tipoEnvioCorreo = correoService.ObtenerTiposEnvioCorreo().Result.Where(u => u.nombre == "RecordatorioSuscripcion").Single();
-                                
-                                var correo = new Correo(tipoEnvioCorreo, usuario.correo, usuario.nombre, _mailSettings.LogoURL);
-                                var emailToken = correoService.EnviarCorreo(correo);
-                               
-                                sb.AppendLine($"Se ha enviado un correo de tipo [RememberSubscribe] al usuario [{usuario.correo}]");
+                                //
+                                //var tipoEnvioCorreo = correoService.ObtenerTiposEnvioCorreo().Result.Where(u => u.nombre == "RecordatorioSuscripcion").Single();
 
+                                //var correo = new Correo(tipoEnvioCorreo, usuario.correo, usuario.nombre, _mailSettings.LogoURL);
+                                //var emailToken = correoService.EnviarCorreo(correo);
+
+                                //
                                 var (scopeEmailToken, emailTokenService) = GetServiceProvider<IEmailTokenService>();
                                 using (scopeEmailToken)
                                 {
@@ -66,7 +69,7 @@ namespace WorkerService.Jobs
                                     var emailTokenEntity = new EmailToken {
                                         id = Guid.NewGuid(),
                                         userId = usuario.id.Value,
-                                        token = emailToken.Value, // TODO proteger campo Guid y mover 4este codifo antes del envio del email
+                                        token = Guid.NewGuid(), // TODO proteger campo Guid y mover 4este codifo antes del envio del email
                                         fechaCreacion = DateTime.UtcNow,
                                         fechaExpiracion = emailTokenService.GetExpirationDate(DateTime.UtcNow),
                                         emailAction = EmailToken.EmailTokenActions.SubscribeNewsletter.ToString(),
@@ -75,8 +78,42 @@ namespace WorkerService.Jobs
                                         userAgent = null,
                                         ip = null
                                     };
-                                    var results = await emailTokenService.AddAsync(emailTokenEntity);
+                                    await emailTokenService.AddAsync(emailTokenEntity);
+
+                                    var tipoEnvioCorreo = await correoService.ObtenerTipoEnvioCorreo(TipoEnvioCorreos.RecordatorioSuscripcion);
+
+                                    var context = new EnvioRecordatorioSuscripcionEmailContext(email: usuario.correo,
+                                                                                               nombre: usuario.nombre,
+                                                                                               token: emailTokenEntity.token.ToString());
+                                    var correo = new CorreoN {
+                                        Destinatario = context.Email,
+                                        Asunto = tipoEnvioCorreo.asunto,
+                                        Cuerpo = tipoEnvioCorreo.cuerpo
+                                    };
+
+                                    correo.ApplyTags(context.GetTags());
+                                    correoService.EnviarCorreo_Nuevo(correo);
+
+                                    sb.AppendLine($"Se ha enviado un correo de tipo [RememberSubscribe] al usuario [{usuario.correo}]");
                                 }
+                                //var (scopeEmailToken, emailTokenService) = GetServiceProvider<IEmailTokenService>();
+                                //using (scopeEmailToken)
+                                //{
+                                //    // creamos un objeto de la entidad EmailToken y lo guardamos en BD para el seguimiento del tolken enviado en el email
+                                //    var emailTokenEntity = new EmailToken {
+                                //        id = Guid.NewGuid(),
+                                //        userId = usuario.id.Value,
+                                //        token = emailToken.Value, // TODO proteger campo Guid y mover 4este codifo antes del envio del email
+                                //        fechaCreacion = DateTime.UtcNow,
+                                //        fechaExpiracion = emailTokenService.GetExpirationDate(DateTime.UtcNow),
+                                //        emailAction = EmailToken.EmailTokenActions.SubscribeNewsletter.ToString(),
+                                //        consumido = false,
+                                //        fechaConsumido = null,
+                                //        userAgent = null,
+                                //        ip = null
+                                //    };
+                                //    var results = await emailTokenService.AddAsync(emailTokenEntity);
+                                //}
                             }
                         }
 

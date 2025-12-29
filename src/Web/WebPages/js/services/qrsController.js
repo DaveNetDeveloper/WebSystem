@@ -5,7 +5,7 @@
 //TODO: refactorizar las variables globales para la URL
 
 const baseUrl3 = `https://localhost`;
-const controllerName3 = `QRs`;
+const controllerName3 = `api`;
 const port3 = `44311`;
 const apiUrl3 = `${baseUrl3}:${port3}/${controllerName3}/`;
 
@@ -31,7 +31,7 @@ class QR {
 //
 function GetQR(id) {
 
-    let nameMethod = "ObtenerQR";
+    let nameMethod = "QR";
     let requestOptions = {
         method: 'GET',
         headers: {
@@ -40,6 +40,7 @@ function GetQR(id) {
     };
 
     let urlConParametro = `${apiUrl3}${nameMethod}/${id}`; 
+    //alert(urlConParametro);
 
     return fetch(urlConParametro, requestOptions)
         .then(response => {

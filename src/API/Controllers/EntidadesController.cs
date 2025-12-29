@@ -11,6 +11,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
 using System.ComponentModel.DataAnnotations; 
 using static Utilities.ExporterHelper;
+using static Domain.Entities.TipoEnvioCorreo;
 
 namespace API.Controllers
 {
@@ -41,7 +42,7 @@ namespace API.Controllers
             // si existe la cookkie [entitiesIds] aplicar filtro
             var valor = Request.Cookies["Entidades-Cookie"];
 
-            if(!string.IsNullOrEmpty(valor.Trim()))
+            if(valor != null && !string.IsNullOrEmpty(valor.Trim()))
             {
                 entidades = entidades.Where(e => valor.Split(',').Contains(e.id.ToString())).ToList();
             }
@@ -49,9 +50,10 @@ namespace API.Controllers
             return (entidades != null && entidades.Any()) ? Ok(entidades) : NoContent();
         }
 
-        [Authorize]
+        //[Authorize]
+        [AllowAnonymous]
         [HttpGet("FiltrarEntidades")]
-        public async Task<IActionResult> GetByFiltersAsync([FromQuery] IFilters<Entidad> filters,
+        public async Task<IActionResult> GetByFiltersAsync([FromQuery] EntidadFilters filters,
                                                            [FromQuery] int? page,
                                                            [FromQuery] int? pageSize,
                                                            [FromQuery] string? orderBy,
@@ -176,21 +178,26 @@ namespace API.Controllers
 
             if (envioEmail)
             {
-                var tiposEnvioCorreo = await correoService.ObtenerTiposEnvioCorreo();
-                var tipoEnvioCorreo = tiposEnvioCorreo.Where(u => u.nombre == TipoEnvioCorreo.TipoEnvio.EnvioReport)
-                                                      .SingleOrDefault();
+                var tipoEnvio = await correoService.ObtenerTipoEnvioCorreo(TipoEnvioCorreos.EnvioReport);
 
-                tipoEnvioCorreo.asunto = $"Report {entityName.ToString()} ({fileExtension})";
-                tipoEnvioCorreo.cuerpo = $"Se adjunta el informe para la vista de datos {entityName.ToString()}";
+                var context = new EnvioReportEmailContext(email: _exportConfig.CorreoAdmin,
+                                                          nombre: "Admin",
+                                                          nombreEntidad: "",
+                                                          nombreInforme: $"List_{entityName.ToString()}");
+                var correoN = new CorreoN {
+                    Destinatario = context.Email,
+                    Asunto = tipoEnvio.asunto,
+                    Cuerpo = tipoEnvio.cuerpo
+                };
 
-                var correo = new Correo(tipoEnvioCorreo, _exportConfig.CorreoAdmin, "Admin", "");
-                correo.FicheroAdjunto = new FicheroAdjunto()
-                {
+                correoN.ApplyTags(context.GetTags());
+
+                correoN.FicheroAdjunto = new FicheroAdjunto() {
                     Archivo = file,
                     ContentType = contentType,
                     NombreArchivo = fileName
-                };
-                correoService.EnviarCorreo(correo);
+                }; 
+                correoService.EnviarCorreo_Nuevo(correoN);
             }
             return File(file, contentType, fileName);
         }

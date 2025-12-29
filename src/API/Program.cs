@@ -166,9 +166,15 @@ builder.Services.AddCors(options =>
             .WithOrigins("https://localhost:7175")   
             .AllowAnyHeader()
             .AllowAnyMethod()
-            .AllowCredentials();// NECESARIO para cookies
+            .AllowCredentials();// NECESARIO para cookies seguras(server)
     });
 });
+
+builder.Services
+    .AddOptions<AppConfiguration>()
+    .Bind(builder.Configuration.GetSection("ServidorSmtp"))
+    .Validate(o => !string.IsNullOrEmpty(o.ServidorSmtp), "ServidorSmtp missing")
+    .ValidateOnStart();
 
 //var sp = builder.Services.BuildServiceProvider();
 //var authOptions = sp.GetRequiredService<Microsoft.Extensions.Options.IOptions<Microsoft.AspNetCore.Authentication.AuthenticationOptions>>().Value;
@@ -188,11 +194,11 @@ if (!builder.Environment.IsEnvironment(Application.Common.Environments.Test) &&
 }
 
 // Lanzar el consumidor de la cola de notificaciones
-using (var scope = app.Services.CreateScope())
-{
-    var consumer = scope.ServiceProvider.GetRequiredService<IMessageConsumer>();
-    consumer.StartConsuming("notificaciones");
-}
+//using (var scope = app.Services.CreateScope()) // TODO: Descomentar
+//{
+//    var consumer = scope.ServiceProvider.GetRequiredService<IMessageConsumer>();
+//    consumer.StartConsuming("notificaciones");
+//}
 
 // Health endpoint en JSON
 app.MapHealthChecks("/health", new Microsoft.AspNetCore.Diagnostics.HealthChecks.HealthCheckOptions  {

@@ -7,5 +7,6 @@
         public string nombreUsuario { get; set; }
         public DateTime fecha { get; set; }
         public string imagen { get; set; }
+        public int idEntidad { get; set; }
     }
 }

@@ -100,7 +100,7 @@ namespace Infrastructure.Repositories
             inAppNotificationDb.titulo = inAppNotification.titulo;
             inAppNotificationDb.mensaje = inAppNotification.mensaje;
             inAppNotificationDb.activo = inAppNotification.activo;
-            inAppNotificationDb.fechaCreacion = DateTime.UtcNow;
+            //inAppNotificationDb.fechaCreacion = DateTime.UtcNow;
 
             await _context.SaveChangesAsync();
             return true;

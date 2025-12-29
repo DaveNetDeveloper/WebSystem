@@ -31,7 +31,10 @@
         // Botón Cancelar
         if (btnCancel) {
             btnCancel.addEventListener('click', () => {
-                this.dispatchEvent(new CustomEvent('cancel', { bubbles: true, composed: true }));
+                this.dispatchEvent(new CustomEvent('cancel', {
+                    detail: { noaction: true },
+                    composed: true
+                }));
                 this.ocultar();
             });
         }
@@ -39,7 +42,10 @@
         // Botón Confirmar
         if (btnConfirm) {
             btnConfirm.addEventListener('click', () => {
-                this.dispatchEvent(new CustomEvent('confirm', { bubbles: true, composed: true }));
+                this.dispatchEvent(new CustomEvent('confirm', {
+                    detail: { noaction: true },
+                    composed: true
+                }));
                 this.ocultar();
             });
         }
@@ -55,9 +61,42 @@
         });
     }
 
-    setContent(title, message) {
+    setContent(title, message, type) {
+
         this.shadowRoot.querySelector('h3').textContent = title;
         this.shadowRoot.querySelector('p').textContent = message;
+
+        const closeBtn = this.shadowRoot.querySelector('.cerrar');
+        const btnCancel = this.shadowRoot.querySelector('.cancel');
+        const btnConfirm = this.shadowRoot.querySelector('.confirm');
+        btnConfirm.classList.remove('btn-danger');
+
+        switch (type) {
+            case 'info':
+                btnCancel.style.display = 'none';
+                btnConfirm.style.display = 'inline-block';
+                closeBtn.style.display = 'inline-block';
+
+                btnConfirm.classList.remove('btn-blue');
+
+                break;
+
+            case 'delete':
+                btnCancel.style.display = 'inline-block';
+                btnConfirm.style.display = 'inline-block';
+                closeBtn.style.display = 'inline-block';
+
+                btnConfirm.classList.add('btn-danger');
+
+            case 'confirm':
+                btnCancel.style.display = 'inline-block';
+                btnConfirm.style.display = 'inline-block';
+                closeBtn.style.display = 'inline-block';
+
+                btnConfirm.classList.add('btn-success');
+
+                break;
+        }
     }
 
     mostrar() {

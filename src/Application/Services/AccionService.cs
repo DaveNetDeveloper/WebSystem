@@ -5,11 +5,12 @@ using Application.Interfaces.Common;
 using Application.Interfaces.Repositories;
 using Application.Interfaces.Services;
 using Domain.Entities;
-using static Domain.Entities.Accion;
-using Utilities;
-
 using Microsoft.Extensions.Options;
 using System.Text.Json;
+using Twilio.Jwt.AccessToken;
+using Utilities;
+using static Domain.Entities.Accion;
+using static Domain.Entities.TipoEnvioCorreo;
 
 namespace Application.Services
 {
@@ -21,7 +22,8 @@ namespace Application.Services
         private readonly IAccionRepository _repo;
         private readonly ICorreoService _correoService;
         private readonly IUsuarioService _usuarioService;
-        private readonly MailConfiguration _appConfig; 
+        private readonly MailConfiguration _appConfig;
+        private readonly IEmailTokenService _emailTokenService;
         private int _idUsuario;
         private int _idCampana;
 
@@ -31,10 +33,12 @@ namespace Application.Services
         public AccionService(IAccionRepository repo,
                              ICorreoService correoService,
                              IUsuarioService usuarioService,
+                             IEmailTokenService emailTokenService,
                              IOptions<MailConfiguration> configOptions) {
             _repo = repo;
             _correoService = correoService;
             _usuarioService = usuarioService;
+            _emailTokenService = emailTokenService;
             _appConfig = configOptions.Value;
         }
 
@@ -120,16 +124,29 @@ namespace Application.Services
             {
                     case Accion.NombreAccion.EnvioEmail:
 
-                        Console.WriteLine($"[Accion] Enviando email al usuario {_idUsuario}");
-                        var tipoEnvioCorreo = _correoService.ObtenerTiposEnvioCorreo()
-                                                            .Result
-                                                            .Where(u => u.nombre == accion.tipoAccion).Single();
-                        // obtener datos del usuario
-                        var usuario = _usuarioService.GetByIdAsync(_idUsuario).Result;
-                        var correo = new Correo(tipoEnvioCorreo, usuario.correo, usuario.nombre, _appConfig.LogoURL);
-                        var emailToken = _correoService.EnviarCorreo(correo);
+                        Console.WriteLine($"[Accion] Enviando email al usuario {_idUsuario}"); 
+                        var usuario = _usuarioService.GetByIdAsync(_idUsuario).Result; 
 
-                        return true;
+                        var tipoEnvioCorreo =  _correoService.ObtenerTipoEnvioCorreo(TipoEnvioCorreo.TipoEnvioCorreos.EnvioComunicacion);
+
+                        // Creamos nuevo EmailToken
+                        string? emailToken = _emailTokenService.GenerateEmailToken(_idUsuario, TipoEnvioCorreo.TipoEnvio.EnvioComunicacion).Result;
+
+                        var context = new EnvioComunicacionEmailContext(email: usuario.correo,
+                                                                        nombre: usuario.nombre,
+                                                                        tituloComunicacion: detallesAccion.titulo,
+                                                                        contenidoComunicacion: detallesAccion.contenido,
+                                                                        token: emailToken);
+                        var correo = new CorreoN {
+                            Destinatario = context.Email,
+                            Asunto = tipoEnvioCorreo.Result.asunto,
+                            Cuerpo = tipoEnvioCorreo.Result.cuerpo
+                        };
+
+                        correo.ApplyTags(context.GetTags());
+                        _correoService.EnviarCorreo_Nuevo(correo); 
+
+                    return true;
                     break;
                     case Accion.NombreAccion.EnvioSMS:
 

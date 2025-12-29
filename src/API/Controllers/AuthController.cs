@@ -10,11 +10,13 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using Microsoft.IdentityModel.Tokens;
+using QRCoder;
 using System.IdentityModel.Tokens.Jwt;
 using System.Runtime.ConstrainedExecution;
 using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
+using Twilio.Jwt.AccessToken;
 using Twilio.TwiML.Voice;
 using UAParser;
 
@@ -312,22 +314,38 @@ namespace API.Controllers
                 var refreshToken = await _authService.GenerateRefreshToken(authUser.Id);
 
                 // Enviar corrreo: 'Cuenta validada correctamente'
-                var tiposEnvioCorreo = await _correoService.ObtenerTiposEnvioCorreo();
-                var tipoCorreo = tiposEnvioCorreo.Where(u => u.nombre.Trim() == TipoEnvioCorreo.TipoEnvio.Bienvenida.Trim())
-                                                 .Single();
+                //var tiposEnvioCorreo = await _correoService.ObtenerTiposEnvioCorreo();
+                //var tipoCorreo = tiposEnvioCorreo.Where(u => u.nombre.Trim() == TipoEnvioCorreo.TipoEnvio.Bienvenida.Trim())
+                //                                 .Single();
 
                 var usuarios = await _usuarioService.GetAllAsync();
                 var usuario = usuarios.Where(u => u.correo.ToLower() == email.ToLower())
                                       .SingleOrDefault();
 
-                var correo = new Correo(tipoCorreo, 
-                                        email, 
-                                        usuario.nombre, 
-                                        _config["AppConfiguration:LogoURL"]);
+                //var correo = new Correo(tipoCorreo, 
+                //                        email, 
+                //                        usuario.nombre, 
+                //                        _config["AppConfiguration:LogoURL"]);
                 
-                var res = _correoService.EnviarCorreo(correo);
+                //var res = _correoService.EnviarCorreo(correo);
+ 
+                // 
+                var tipoCorreo = await _correoService.ObtenerTipoEnvioCorreo(TipoEnvioCorreos.Bienvenida);
 
-                 return Ok(new  { 
+                var contextEnvio = new EnvioBienvenidaEmailContext(email: email,
+                                                                   nombre: usuario.nombre);
+                var correo = new CorreoN
+                {
+                    Destinatario = contextEnvio.Email,
+                    Asunto = tipoCorreo.asunto,
+                    Cuerpo = tipoCorreo.cuerpo
+                };
+
+                correo.ApplyTags(contextEnvio.GetTags());
+
+                var res = _correoService.EnviarCorreo_Nuevo(correo);
+                 
+                return Ok(new  { 
                     access_token = jwt,
                     refresh_token = refreshToken,
                     token_type = "Bearer", 
@@ -371,18 +389,33 @@ namespace API.Controllers
                 string? emailToken = await _emailTokenService.GenerateEmailToken(idUsuario.Value, TipoEnvio.ValidacionCuenta);
 
                 // Enviar corrreo para validacion de la nueva cuenta de usuario
-                var tiposEnvio = await _correoService.ObtenerTiposEnvioCorreo();
-                var tipoEnvio = tiposEnvio.Where(u => u.nombre == TipoEnvio.ValidacionCuenta)
-                                          .FirstOrDefault();
+                //var tiposEnvio = await _correoService.ObtenerTiposEnvioCorreo();
+                //var tipoEnvio = tiposEnvio.Where(u => u.nombre == TipoEnvio.ValidacionCuenta)
+                                       //   .FirstOrDefault();
 
-                var correo = new Correo(tipoEnvio, 
-                                        usuarioDTO.correo, 
-                                        usuarioDTO.nombre, 
-                                        _config["AppConfiguration:LogoURL"], 
-                                        Guid.Parse(emailToken));
+                //var correo = new Correo(tipoEnvio, 
+                //                        usuarioDTO.correo, 
+                //                        usuarioDTO.nombre, 
+                //                        _config["AppConfiguration:LogoURL"], 
+                //                        Guid.Parse(emailToken));
 
-                Guid? resultEmailToken = _correoService.EnviarCorreo(correo);
+                //Guid? resultEmailToken = _correoService.EnviarCorreo(correo);
 
+                // 
+                var tipoEnvio = await _correoService.ObtenerTipoEnvioCorreo(TipoEnvioCorreos.ValidacionCuenta);
+
+                var contextEnvio = new EnvioValidacionCuentaEmailContext(email: usuarioDTO.correo,
+                                                                         nombre: usuarioDTO.nombre,
+                                                                         token: emailToken);
+                var correo = new CorreoN
+                {
+                    Destinatario = contextEnvio.Email,
+                    Asunto = tipoEnvio.asunto,
+                    Cuerpo = tipoEnvio.cuerpo
+                }; 
+                correo.ApplyTags(contextEnvio.GetTags()); 
+                Guid? resultEmailToken = _correoService.EnviarCorreo_Nuevo(correo);
+                 
                 // Añadimos la notificación InApp de 'Bienvenida' para el nuevo usuario
                 var inApp = new InAppNotification { 
                     idUsuario = idUsuario.Value,
@@ -443,12 +476,31 @@ namespace API.Controllers
                         var result = await _inAppNotificationService.AddAsync(inAppRef);
 
                         // Enviar mail notificando la recompensa al recomendador
-                        var tiposEnvioRef = await _correoService.ObtenerTiposEnvioCorreo();
-                        var tipoEnvioRef = tiposEnvioRef.Where(u => u.nombre == TipoEnvio.Recompensa)
-                                                        .SingleOrDefault();
+                        //var tiposEnvioRef = await _correoService.ObtenerTiposEnvioCorreo();
+                        //var tipoEnvioRef = tiposEnvioRef.Where(u => u.nombre == TipoEnvio.Recompensa)
+                        //                                .SingleOrDefault();
 
-                        var correoRef = new Correo(tipoEnvioRef, usuarioRef.correo, usuarioRef.nombre, _config["AppConfiguration:LogoURL"]);
-                        Guid? emailTokenRef = _correoService.EnviarCorreo(correoRef);
+                        //var correoRef = new Correo(tipoEnvioRef, usuarioRef.correo, usuarioRef.nombre, _config["AppConfiguration:LogoURL"]);
+                        //Guid? emailTokenRef = _correoService.EnviarCorreo(correoRef);
+
+                        // 
+                        var tipoEnvioRef = await _correoService.ObtenerTipoEnvioCorreo(TipoEnvioCorreos.Recompensa);
+
+                        var contextEnvio = new EnvioRecompensaEmailContext(email: usuarioRef.correo,
+                                                                           nombre: usuarioRef.nombre,
+                                                                           nombreEntidad: "",
+                                                                           accionRecompensa: TiposRecompensa.Recomendacion,
+                                                                           nombreRecompensa: tipoTransaccion.nombre,
+                                                                           fechaRecompensa: transaccion.fecha.ToString(),
+                                                                           puntosRecompensa: transaccion.puntos.ToString() );
+                        var correoRef = new CorreoN
+                        {
+                            Destinatario = contextEnvio.Email,
+                            Asunto = tipoEnvioRef.asunto,
+                            Cuerpo = tipoEnvioRef.cuerpo
+                        }; 
+                        correoRef.ApplyTags(contextEnvio.GetTags()); 
+                        Guid? emailTokenRef = _correoService.EnviarCorreo_Nuevo(correoRef); 
                     }
                 }
                 else 
@@ -484,24 +536,41 @@ namespace API.Controllers
         {
             var result = await _authService.ResetPassword(email, newPassword);
             if (!result) return NoContent();
-
-
+             
             // Enviar corrreo: 'Contraseña cambiada correctamente'
-            var tiposEnvioCorreo = await _correoService.ObtenerTiposEnvioCorreo();
-            var tipoCorreo = tiposEnvioCorreo.Where(u => u.nombre.Trim() == TipoEnvioCorreo.TipoEnvio.ContrasenaCambiada.Trim())
-                                             .Single();
+            //var tiposEnvioCorreo = await _correoService.ObtenerTiposEnvioCorreo();
+            //var tipoCorreo = tiposEnvioCorreo.Where(u => u.nombre.Trim() == TipoEnvioCorreo.TipoEnvio.ContrasenaCambiada.Trim())
+            //                                 .Single();
 
             var usuarios = await _usuarioService.GetAllAsync();
             var usuario = usuarios.Where(u => u.correo.ToLower() == email.ToLower())
                                   .SingleOrDefault();
 
-            var correo = new Correo(tipoCorreo,
-                                    email,
-                                    usuario.nombre,
-                                    _config["AppConfiguration:LogoURL"]);
+            //var correo = new Correo(tipoCorreo,
+            //                        email,
+            //                        usuario.nombre,
+            //                        _config["AppConfiguration:LogoURL"]);
 
-            var res = _correoService.EnviarCorreo(correo);
+            //var res = _correoService.EnviarCorreo(correo);
 
+            string? emailToken = await _emailTokenService.GenerateEmailToken(usuario.id.Value, TipoEnvio.ContrasenaCambiada);
+
+            //
+            var tipoCorreo = await _correoService.ObtenerTipoEnvioCorreo(TipoEnvioCorreos.ContrasenaCambiada);
+
+            var contextEnvio = new EnvioCambiarContrasenaEmailContext(email: email,
+                                                                      nombre: usuario.nombre,
+                                                                      token: emailToken);
+            var correo = new CorreoN
+            {
+                Destinatario = contextEnvio.Email,
+                Asunto = tipoCorreo.asunto,
+                Cuerpo = tipoCorreo.cuerpo
+            };
+            correo.ApplyTags(contextEnvio.GetTags());
+
+            var res = _correoService.EnviarCorreo_Nuevo(correo);
+             
             return Ok(result); 
         } 
     }

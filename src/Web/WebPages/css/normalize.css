@@ -335,7 +335,7 @@ Preloader Area CSS
 }
 
 .preloader .loader .indicator svg polyline#back {
-  stroke: #ffffff;
+ /* stroke: #ffffff;*/
 }
 
 .preloader .loader .indicator svg polyline#front {
@@ -470,7 +470,7 @@ Preloader Area CSS
 	bottom: 0;
 	left: 0;
 	right: 0;
-	background: #2C2D3F;
+	background: goldenrod;
 	-webkit-transform: scaleX(0);
 	transform: scaleX(0);
 	-webkit-transform-origin: 50%;
@@ -517,7 +517,7 @@ Preloader Area CSS
 	height:100%;
 	width:100%;
 	background:#1a76d1;
-	opacity:0.8;
+	opacity:1;
 }
 /* Bread Crumbs */
 .breadcrumbs {
@@ -526,7 +526,7 @@ Preloader Area CSS
 	background-position: center;
 	background-repeat: no-repeat;
 	position: relative;
-	padding: 50px 0px;
+	padding: 50px 0px; 
 }
 .breadcrumbs .bread-inner{
 	z-index:22;

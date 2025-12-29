@@ -17,9 +17,8 @@ namespace Application.Services
 
         public QRCodeService(IQRCodeRepository repo, 
                              IQRCodeImageService imageService,
-                              IExcelExporter excelExporter,
-                              IExporter pdfExporter)
-        {
+                             IExcelExporter excelExporter,
+                             IExporter pdfExporter) {
             _repo = repo;
             _imageService = imageService;
             _excelExporter = excelExporter;
@@ -38,15 +37,28 @@ namespace Application.Services
 
         public Task<IEnumerable<QRCode>> GetAllAsync()
             => _repo.GetAllAsync();
+         
 
-        public async Task<QRCode> CreateAsync(string payload, TimeSpan? ttl)
+        public async Task<QRCode> CreateAsync(string payload, TimeSpan? ttl, string origen, Guid? id = null, QRCode? qrCode = null)
         {
             var imageBytes = _imageService.GenerateQRCodeImage(payload);
-            var qr = new QRCode(payload, ttl, imageBytes);
+            var qr = new QRCode(payload, ttl, imageBytes, origen, id);
+
+            if(qrCode != null){
+                qr.status = qrCode.status;
+                qr.idEntidad = qrCode.idEntidad;
+                qr.idActividad = qrCode.idActividad;
+                qr.idProducto = qrCode.idProducto;
+                qr.id = qrCode.id;
+                qr.token = qrCode.token;
+            }
             await _repo.AddAsync(qr);
             return qr;
         }
 
+        public Task<bool> UpdateAsync(QRCode qrCode)
+             => _repo.UpdateAsync(qrCode);
+         
         public async Task<QRCode?> GetAsync(Guid id) => await _repo.GetByIdAsync(id);
 
         public async Task ActivateAsync(Guid id)
@@ -63,20 +75,22 @@ namespace Application.Services
             await _repo.UpdateAsync(qr);
         }
 
-        public async Task ConsumeAsync(Guid id)
+        public async Task<bool> ConsumeAsync(Guid id)
         {
             var qr = await _repo.GetByIdAsync(id) ?? throw new KeyNotFoundException();
             qr.Consume();
-            await _repo.UpdateAsync(qr);
+            return await _repo.UpdateAsync(qr);
         }
 
         public Task<bool> Remove(Guid id)
               => _repo.Remove(id);
+  
         /// <summary>
         /// 
         /// </summary>
         /// <param name="dataQueryType"></param>
         /// <returns></returns>
+        /// 
         public async Task<byte[]> ExportarAsync(ExportFormat formato) // TODO por implementar en todas las entidades exportables
         {
             Type entityType = typeof(QRCode);

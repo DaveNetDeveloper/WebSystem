@@ -8,6 +8,7 @@ using Domain.Entities;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
+using static Domain.Entities.TipoEnvioCorreo;
 using static Utilities.ExporterHelper;
 
 namespace API.Controllers
@@ -35,9 +36,10 @@ namespace API.Controllers
             return (actividades != null && actividades.Any()) ? Ok(actividades) : NoContent();
         }
 
-        [Authorize]
+        //[Authorize]
+        [AllowAnonymous]
         [HttpGet("FiltrarActividades")]
-        public async Task<IActionResult> GetByFiltersAsync([FromQuery] IFilters<Actividad> filters,
+        public async Task<IActionResult> GetByFiltersAsync([FromQuery] ActividadFilters filters,
                                                            [FromQuery] int? page,
                                                            [FromQuery] int? pageSize,
                                                            [FromQuery] string? orderBy,
@@ -74,7 +76,7 @@ namespace API.Controllers
                 descripcion = actividad.descripcion,
                 linkEvento = actividad.linkEvento,
                 idTipoActividad = actividad.idTipoActividad,
-                ubicación = actividad.ubicación,
+                ubicacion = actividad.ubicacion,
                 popularidad = actividad.popularidad,
                 descripcionCorta = actividad.descripcionCorta,
                 fechaInicio = actividad.fechaInicio,
@@ -169,7 +171,7 @@ namespace API.Controllers
                                                   [FromQuery] ExportFormat formato,
                                                   [FromQuery] bool envioEmail)
         {
-            var entityName = nameof(Entidad);
+            var entityName = nameof(Actividad);
 
             var file = await _actividadService.ExportarAsync(formato);
 
@@ -191,22 +193,46 @@ namespace API.Controllers
             var fileName = $"List_{entityName.ToString()}_{DateTime.UtcNow:yyyyMMddHHmmss}{fileExtension}";
 
             if (envioEmail)
-            {
-                var tiposEnvioCorreo = await correoService.ObtenerTiposEnvioCorreo();
-                var tipoEnvioCorreo = tiposEnvioCorreo.Where(u => u.nombre == TipoEnvioCorreo.TipoEnvio.EnvioReport)
-                                                      .SingleOrDefault();
+            { 
+                var tipoEnvio = await correoService.ObtenerTipoEnvioCorreo(TipoEnvioCorreos.EnvioReport);
 
-                tipoEnvioCorreo.asunto = $"Report {entityName.ToString()} ({fileExtension})";
-                tipoEnvioCorreo.cuerpo = $"Se adjunta el informe para la vista de datos {entityName.ToString()}";
+                var context = new EnvioReportEmailContext(email: _exportConfig.CorreoAdmin,
+                                                          nombre: "Admin",
+                                                          nombreEntidad: "",
+                                                          nombreInforme: $"List_{entityName.ToString()}");
+                var correoN = new CorreoN {
+                    Destinatario = context.Email,
+                    Asunto = tipoEnvio.asunto,
+                    Cuerpo = tipoEnvio.cuerpo
+                };
 
-                var correo = new Correo(tipoEnvioCorreo, _exportConfig.CorreoAdmin, "Admin", "");
-                correo.FicheroAdjunto = new FicheroAdjunto()
-                {
+                correoN.ApplyTags(context.GetTags());
+
+                correoN.FicheroAdjunto = new FicheroAdjunto() {
                     Archivo = file,
                     ContentType = contentType,
                     NombreArchivo = fileName
                 };
-                correoService.EnviarCorreo(correo);
+
+                correoService.EnviarCorreo_Nuevo(correoN);
+
+                //OLD
+
+                //var tiposEnvioCorreo = await correoService.ObtenerTiposEnvioCorreo();
+                //var tipoEnvioCorreo = tiposEnvioCorreo.Where(u => u.nombre == TipoEnvioCorreo.TipoEnvio.EnvioReport)
+                //                                      .SingleOrDefault();
+
+                //tipoEnvioCorreo.asunto = $"Report {entityName.ToString()} ({fileExtension})";
+                //tipoEnvioCorreo.cuerpo = $"Se adjunta el informe para la vista de datos {entityName.ToString()}";
+
+                //var correo = new Correo(tipoEnvioCorreo, _exportConfig.CorreoAdmin, "Admin", "");
+                //correo.FicheroAdjunto = new FicheroAdjunto()
+                //{
+                //    Archivo = file,
+                //    ContentType = contentType,
+                //    NombreArchivo = fileName
+                //};
+                //correoService.EnviarCorreo(correo);
             }
             return File(file, contentType, fileName);
         }

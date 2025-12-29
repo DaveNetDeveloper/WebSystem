@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <TargetFramework>net8.0</TargetFramework>
@@ -9,6 +9,7 @@
     <EmitCompilerGeneratedFiles>true</EmitCompilerGeneratedFiles>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <WarningLevel>0</WarningLevel>
+    <UserSecretsId>89eae3a8-265a-4d44-aba7-4a019978ab89</UserSecretsId>
   </PropertyGroup>
 
   <ItemGroup>
@@ -28,6 +29,7 @@
 
   <ItemGroup>
     <None Remove="Controllers\EmailTokensController.cs~RF25c300e.TMP" />
+    <None Remove="setEnvironmentVariables.ps1" />
   </ItemGroup>
 
   <ItemGroup>

@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>  Administración / Tipos de Envío de Correos</title>
+    <title>  Configuración / Tipos de Envío de Correos</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -24,7 +24,19 @@
      
     <div class="body-wrapper body-bg">
         <header>
+            <admin-menu is-home="false"></admin-menu>
+            <script type="module" src="../Components/adminHeader/adminHeader.js"></script>
         </header>
+        <script>
+            window.GlobalCssCache = {};
+            async function preloadCss(path) {
+                if (!window.GlobalCssCache[path]) {
+                    const css = await fetch(path).then(r => r.text());
+                    window.GlobalCssCache[path] = css;
+                }
+                return window.GlobalCssCache[path];
+            }
+        </script>
 
         <div class="dashboard-area pt-30">
             <div class="container">

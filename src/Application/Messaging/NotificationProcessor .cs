@@ -63,14 +63,20 @@ namespace Application.Messaging
                         if (string.IsNullOrEmpty(email) || string.IsNullOrEmpty(nombre)) {
                             throw new InvalidDataException();
                         }
+                        
+                        // Envío de correo electrónico 
+                        var tipoEnvio = await _correoService.ObtenerTipoEnvioCorreo(TipoEnvioCorreos.Undefined);
 
-                        var tipoEnvio = _correoService.ObtenerTiposEnvioCorreo()
-                                                      .Result
-                                                      .Where(u => u.nombre == TipoEnvio.Undefined)
-                                                      .SingleOrDefault();
+                        var contextEnvio = new EnvioUndefinedEmailContext(email: email,
+                                                                          nombre: nombre);
+                        var correo = new CorreoN {
+                            Destinatario = contextEnvio.Email,
+                            Asunto = tipoEnvio.asunto,
+                            Cuerpo = tipoEnvio.cuerpo
+                        };
 
-                        var correo = new Correo(tipoEnvio, email, nombre, "");
-                        var token = _correoService.EnviarCorreo(correo);
+                        correo.ApplyTags(contextEnvio.GetTags());
+                        _correoService.EnviarCorreo_Nuevo(correo);
 
                         _logger.LogInformation("Correo electrónico enviado a {Recipient}", message.Recipient);
                         break;

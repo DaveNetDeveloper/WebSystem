@@ -1,15 +1,19 @@
 ﻿using Application.Common;
 using Application.DTOs.Filters;
 using Application.DTOs.Requests;
+using Application.DTOs.Responses;
 using Application.Interfaces.Controllers;
 using Application.Interfaces.DTOs.Filters;
 using Application.Interfaces.Services;
 using Application.Services;
 using Domain.Entities;
-
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
+using static Domain.Entities.InAppNotification;
+using static Domain.Entities.QRCode;
+using static Domain.Entities.TipoEnvioCorreo;
+using static Domain.Entities.TipoTransaccion;
 using static Utilities.ExporterHelper;
 
 namespace API.Controllers
@@ -20,14 +24,16 @@ namespace API.Controllers
     {
         private readonly IQRCodeService _service;
         private readonly ExportConfiguration _exportConfig;
+        protected IConfiguration _config;
 
         public QRCodesController(IQRCodeService service,
-                                ILogger<QRCodesController> logger,
-                                   IOptions<ExportConfiguration> options)
-        {
+                                 ILogger<QRCodesController> logger,
+                                 IOptions<ExportConfiguration> options,
+                                 IConfiguration config) {
             _service = service;
             _logger = logger;
             _exportConfig = options.Value ?? throw new ArgumentNullException(nameof(options));
+            _config = config;
         }
 
         [AllowAnonymous]
@@ -46,18 +52,39 @@ namespace API.Controllers
             }
         }
 
-        [HttpPost]
+
+
+        // TODO: Crear nuevo endpoint -> [HttpPost ("CrearQRFull")]
+        [HttpPost("CrearQRFull")]
+        [AllowAnonymous]
+        public async Task<IActionResult> CrearQRFull([FromBody] CreateQRCodeFullRequest request)
+        {
+            var qr = await _service.CreateAsync(
+                request.Payload,
+                request.Ttl.HasValue ? TimeSpan.FromSeconds(request.Ttl.Value) : null,
+                request.Origen,
+                null,
+                new QRCode{ idEntidad = request.IdEntidad , idProducto = request.IdProducto, idActividad = request.IdActividad, status = (QrStatus)request.Status }
+            ); 
+            return Ok(new QRCodeResponse(qr));
+        }
+
+
+        [HttpPost ("CrearQR")]
+        [AllowAnonymous]
         public async Task<IActionResult> Create([FromBody] CreateQRCodeRequest request)
         {
             var qr = await _service.CreateAsync(
                 request.Payload,
-                request.Ttl.HasValue ? TimeSpan.FromSeconds(request.Ttl.Value) : null
+                request.Ttl.HasValue ? TimeSpan.FromSeconds(request.Ttl.Value) : null,
+                request.Origen
             );
 
             return Ok(new QRCodeResponse(qr));
         }
 
         [HttpGet("{id}")]
+        [AllowAnonymous]
         public async Task<IActionResult> Get(Guid id)
         {
             var qr = await _service.GetAsync(id);
@@ -66,11 +93,34 @@ namespace API.Controllers
         }
 
         [HttpGet("{id}/image")]
+        [AllowAnonymous]
         public async Task<IActionResult> GetImage(Guid id)
         {
             var qr = await _service.GetAsync(id);
             if (qr == null) return NotFound();
             return File(qr.imagen!, "image/png");
+        }
+
+
+        [AllowAnonymous]
+        [HttpPut("ActualizarQR")]
+        public async Task<IActionResult> Update([FromBody] QRCode qrCode)
+        {
+            try {
+                _logger.LogInformation("Actualizando un QRCode.");
+
+                var result = await _service.UpdateAsync(qrCode);
+                if (result == false) return NotFound();
+                else {
+                    //_logger.LogInformation(MessageProvider.GetMessage("Producto:Actualizar", "Success"));
+                    return Ok(result);
+                }
+            }
+            catch (Exception ex) {
+                _logger.LogError(ex, "Error actualizando un QRCode.");
+
+            }
+            return NoContent();
         }
 
         [HttpPost("{id}/activate")]
@@ -88,13 +138,139 @@ namespace API.Controllers
         }
 
         [HttpPost("{id}/consume")]
-        public async Task<IActionResult> Consume(Guid id)
+        [AllowAnonymous]
+        public async Task<IActionResult> Consume([FromServices] ITransaccionService transaccionService,
+                                                 [FromServices] ITipoTransaccionService tipoTransaccionService,
+                                                 [FromServices] IUsuarioService usuarioService,
+                                                 [FromServices] ICorreoService correoService,
+                                                 [FromServices] IInAppNotificationService inAppNotificationService,
+                                                 [FromServices] IProductoService productoService,
+                                                 [FromServices] IPerfilService perfilService,
+                                                  [FromServices] IEntidadService entidadService,
+                                                 Guid id,
+                                                 [FromQuery] string email)
         {
-            await _service.ConsumeAsync(id);
-            return Ok("QR consumido correctamente");
+            var qrResult = await _service.ConsumeAsync(id);
+
+            if (!qrResult) return StatusCode(StatusCodes.Status500InternalServerError, new { message = "Se produjo un error al consumir el QR." });
+
+            var filter = new UsuarioFilters();
+            filter.Correo = email;
+            var usuarios = await usuarioService.GetByFiltersAsync(filter);
+            var usuario = usuarios.FirstOrDefault();
+
+            // 
+            var tiposTransaccion = await tipoTransaccionService.GetAllAsync();
+            var tipoTransaccion = tiposTransaccion
+                                  .Where(u => u.nombre == TiposTransaccion.QrProduto)
+                                  .SingleOrDefault();
+
+            // obtener datos del producto del QR para saber los puntos a sumar al usuario
+            var qr = await _service.GetAsync(id);
+
+            if (qr == null || 
+                qr.origen.ToLower() != QRCode.Origen.Producto.ToLower() ||
+                qr.idProducto == null) {
+                return StatusCode(StatusCodes.Status500InternalServerError, new { message = "El QRCode tiene problemas de configuración." });
+            }
+
+            var idProducto = qr.idProducto.Value;
+
+            var producto = await productoService.GetByIdAsync(idProducto);
+            var nombreProducto = producto.nombre;  
+            int puntosProducto = producto.puntos; 
+              
+            var transaccion = new Transaccion
+            {
+                idTipoTransaccion = tipoTransaccion.id,
+                fecha = DateTime.UtcNow,
+                puntos = puntosProducto,
+                idUsuario = usuario.id.Value,
+                nombre = tipoTransaccion.nombre,
+                idProducto = producto.id
+            };
+            await transaccionService.AddAsync(transaccion);
+
+            // Crear InAppNotificacion para que el usuario lo vea en la home privada
+            var inApp = new InAppNotification
+            {
+                idUsuario = usuario.id.Value,
+                titulo = "Has escaneado un producto!",
+                mensaje = "Has ganado [" + puntosProducto + "] puntos por escanear [" + nombreProducto + "]",
+                activo = true,
+                fechaCreacion = DateTime.UtcNow,
+                tipoEnvioInApp = TipoEnvioInApp.NuevaRecompensa
+            };
+           await inAppNotificationService.AddAsync(inApp);
+
+            // Enviar mail notificando la recompensa al recomendador
+            //var tiposEnvio = await correoService.ObtenerTiposEnvioCorreo();
+            //var tipoEnvio = tiposEnvio.Where(u => u.nombre == TipoEnvio.EscanearProducto)
+            //                                .SingleOrDefault();
+
+            //var correo = new Correo(tipoEnvio, usuario.correo, usuario.nombre, _config["AppConfiguration:LogoURL"]);
+            //correoService.EnviarCorreo(correo);
+
+            var entidad = await entidadService.GetByIdAsync(producto.idEntidad);
+
+            // Nuevo
+            var tipoEnvio = await correoService.ObtenerTipoEnvioCorreo(TipoEnvioCorreos.EscanearProducto);
+
+            var context = new EnvioEscanearProductoEmailContext(email: usuario.correo,
+                                                                nombre: usuario.nombre,
+                                                                nombreEntidad: entidad.nombre,
+                                                                nombreProducto: nombreProducto,
+                                                                puntosProducto: puntosProducto.ToString(),
+                                                                fechaEscaneo: transaccion.fecha.ToString());
+             
+            var correo = new CorreoN {
+                Destinatario = context.Email,
+                Asunto = tipoEnvio.asunto,
+                Cuerpo = tipoEnvio.cuerpo
+            }; 
+            correo.ApplyTags(context.GetTags()); 
+            correoService.EnviarCorreo_Nuevo(correo);
+
+            // si el usuario tiene perfil 'Basic' o 'Friend' entonces lo cambiamos a perfil 'Lover' 
+            var perfilUsuario = await perfilService.GetByIdAsync(usuario.idPerfil.Value);
+
+            bool cambiarPerfil = (perfilUsuario.nombre == Perfil.Perfiles.Basic || perfilUsuario.nombre == Perfil.Perfiles.Friend);
+                 
+            if (cambiarPerfil)
+            {
+                var perfiles = await perfilService.GetAllAsync();
+                var perfilLover = perfiles
+                                  .Where(u => u.nombre == Perfil.Perfiles.Lover)
+                                  .SingleOrDefault();
+
+                usuario.idPerfil = perfilLover.id;
+                var updateResult = await usuarioService.UpdateAsync(usuario);
+
+                if(updateResult) 
+                {  
+                    // creamos inApp notificando el cambio de perfil
+                    var inAppPerfil = new InAppNotification
+                    {
+                        idUsuario = usuario.id.Value,
+                        titulo = "Tu perfil ha cambiado!",
+                        mensaje = "Tu perfil ahora es 'Lover' porque has escaneado un propducto de [" + qr.idEntidad + "].",
+                        activo = true,
+                        fechaCreacion = DateTime.UtcNow,
+                        tipoEnvioInApp = TipoEnvioInApp.PrimeraCompra
+                    };
+                    await inAppNotificationService.AddAsync(inAppPerfil);
+
+                } 
+            } 
+
+            // enviamos nuevo correo notificando el cambio de perfil?
+
+            return Ok(true);
         }
 
-        [Authorize]
+        [AllowAnonymous]
+        
+        //[Authorize]
         [HttpDelete("Eliminar/{id}")]
         public async Task<IActionResult> Remove(Guid id)
         {
@@ -102,7 +278,7 @@ namespace API.Controllers
             {
                 var result = await _service.Remove(id);
                 if (result == false) return NotFound();
-                return Ok("QR consumido correctamente");
+                return Ok(true);
             }
             catch (Exception ex)
             {
@@ -145,22 +321,46 @@ namespace API.Controllers
             var fileName = $"List_{entityName.ToString()}_{DateTime.UtcNow:yyyyMMddHHmmss}{fileExtension}";
 
             if (envioEmail)
-            {
-                var tiposEnvioCorreo = await correoService.ObtenerTiposEnvioCorreo();
-                var tipoEnvioCorreo = tiposEnvioCorreo.Where(u => u.nombre == TipoEnvioCorreo.TipoEnvio.EnvioReport)
-                                                      .SingleOrDefault();
+            { 
+                // Nuevo
+                var tipoEnvio = await correoService.ObtenerTipoEnvioCorreo(TipoEnvioCorreos.EnvioReport);
 
-                tipoEnvioCorreo.asunto = $"Report {entityName.ToString()} ({fileExtension})";
-                tipoEnvioCorreo.cuerpo = $"Se adjunta el informe para la vista de datos {entityName.ToString()}";
+                var context = new EnvioReportEmailContext(email: _exportConfig.CorreoAdmin,
+                                                          nombre: "Admin",
+                                                          nombreEntidad: entityName,
+                                                          nombreInforme: $"List_{entityName.ToString()}");
+                var correoN = new CorreoN
+                {
+                    Destinatario = context.Email,
+                    Asunto = tipoEnvio.asunto,
+                    Cuerpo = tipoEnvio.cuerpo
+                };
 
-                var correo = new Correo(tipoEnvioCorreo, _exportConfig.CorreoAdmin, "Admin", "");
-                correo.FicheroAdjunto = new FicheroAdjunto()
+                correoN.ApplyTags(context.GetTags());
+
+                correoN.FicheroAdjunto = new FicheroAdjunto()
                 {
                     Archivo = file,
                     ContentType = contentType,
                     NombreArchivo = fileName
-                };
-                correoService.EnviarCorreo(correo);
+                }; 
+                correoService.EnviarCorreo_Nuevo(correoN);
+                 
+                //var tiposEnvioCorreo = await correoService.ObtenerTiposEnvioCorreo();
+                //var tipoEnvioCorreo = tiposEnvioCorreo.Where(u => u.nombre == TipoEnvioCorreo.TipoEnvio.EnvioReport)
+                //                                      .SingleOrDefault();
+
+                //tipoEnvioCorreo.asunto = $"Report {entityName.ToString()} ({fileExtension})";
+                //tipoEnvioCorreo.cuerpo = $"Se adjunta el informe para la vista de datos {entityName.ToString()}";
+
+                //var correo = new Correo(tipoEnvioCorreo, _exportConfig.CorreoAdmin, "Admin", "");
+                //correo.FicheroAdjunto = new FicheroAdjunto()
+                //{
+                //    Archivo = file,
+                //    ContentType = contentType,
+                //    NombreArchivo = fileName
+                //};
+                //correoService.EnviarCorreo(correo);
             }
             return File(file, contentType, fileName);
         }

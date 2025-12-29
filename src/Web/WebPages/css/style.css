@@ -127,7 +127,7 @@ body{
 	bottom: 15px;
 	right: 15px;
 	padding: 10px 20px;
-	background: #1a76d1;
+	background: goldenrod;
 	color: #fff;
 	font-size: 25px;
 	width: 45px;
@@ -628,16 +628,28 @@ body{
 	margin:0;
 	margin-right:10px;
 }
-.slider .single-slider .btn:last-child{
-	margin:0;
-}
+	.slider .single-slider .btn :before {
+		color: #fff;
+	}
+	.slider .single-slider .btn :hover {
+		color: #fff;
+	}
+	.slider .single-slider .btn:last-child {
+		margin: 0;
+		color: #fff;
+	}
+	.slider .single-slider .btn:last-child:hover {
+		margin: 0;
+		color: black;
+	}
 .slider .single-slider .btn.primary{
 	background:#2C2D3F;
 	color:#fff;
 }
-.slider .single-slider .btn.primary:before{
-	background:#1A76D1;
-}
+	.slider .single-slider .btn.primary:before {
+		background: #1A76D1;
+		color: #fff;
+	}
 .slider .owl-carousel .owl-nav {
 	margin: 0;
     position: absolute;
@@ -1098,13 +1110,13 @@ body{
 	border:1px solid #fff;
 	color:#1a76d1;
 }
-.call-action .content .btn:before{
-	background:#1A76D1;
-}
-.call-action .content .btn:hover{
-	background:#1A76D1;
-	color:#fff;
-}
+	.call-action .content .btn:before {
+		background: goldenrod;
+	}
+	.call-action .content .btn:hover {
+		background: goldenrod;
+		color: #fff;
+	}
 .call-action .content .btn:last-child{
 	margin-right:0px;
 }
@@ -2020,6 +2032,11 @@ body{
 	position:relative;
 	overflow:hidden;
 }
+
+		.blog .single-news .news-content:hover {
+			background: aliceblue;
+		}
+
 .blog .single-news .news-content {
 	text-align: left;
 	background: #fff;
@@ -2063,6 +2080,7 @@ body{
 	color:#1A76D1;
 }
 .blog .single-news .news-content p {
+	color:black;
 	font-weight: 400;
 	text-transform: capitalize;
 	font-size: 13px;
@@ -3250,17 +3268,17 @@ body{
 .contact-us .contact-us-form{
 	padding:50px 40px;
 }
-.contact-us .contact-us-form h2 {
-	position: relative;
-	font-size: 32px;
-	color: #333;
-	font-weight: 600;
-	line-height: 27px;
-	text-transform: capitalize;
-	margin-bottom: 12px;
-	padding-bottom: 20px;
-	text-align: left;
-}
+	.contact-us .contact-us-form h2 {
+		position: relative;
+		font-size: 32px;
+		color: #333;
+		font-weight: 600;
+		line-height: 27px;
+		text-transform: capitalize;
+		margin-bottom: 12px;
+		padding-bottom: 20px;
+		text-align: center;
+	}
 	.contact-us .contact-us-form h2:before {
 		position: absolute;
 		content: "";
@@ -3269,8 +3287,8 @@ body{
 		height: 2px;
 		width: 50px;
 		background: #1A76D1;
-
-		font-family: 'Poppins', sans-serif; 
+		text-align: center;
+		font-family: 'Poppins', sans-serif;
 	}
 	.contact-us .contact-us-form p {
 		font-size: 14px;

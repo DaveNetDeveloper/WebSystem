@@ -18,8 +18,7 @@ namespace Application.Services
 
         public FAQService(IFAQRepository repo,
                           IExcelExporter excelExporter,
-                          IExporter pdfExporter)
-        {
+                          IExporter pdfExporter) {
             _repo = repo;
             _excelExporter = excelExporter;
             _pdfExporter = pdfExporter;

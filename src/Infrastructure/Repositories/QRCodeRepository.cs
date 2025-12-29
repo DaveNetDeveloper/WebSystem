@@ -42,12 +42,17 @@ namespace Infrastructure.Repositories
 
             qrToUpdate.id = qr.id;
             qrToUpdate.token = qr.token;
-            qrToUpdate.imagen = qr.imagen;
-            qrToUpdate.fechaCreacion = qr.fechaCreacion;
+            //qrToUpdate.imagen = qr.imagen;
+            //qrToUpdate.fechaCreacion = qr.fechaCreacion;
             qrToUpdate.fechaExpiracion = qr.fechaExpiracion;
             qrToUpdate.payload = qr.payload;
             qrToUpdate.status = qr.status;
-             
+            
+            qrToUpdate.idEntidad = qr.idEntidad;
+            qrToUpdate.idActividad = qr.idActividad;
+            qrToUpdate.idProducto = qr.idProducto;
+            qrToUpdate.origen = qr.origen; 
+
             await _context.SaveChangesAsync();
             return true;
         }

@@ -1,12 +1,12 @@
 ﻿//import * as Utilities from '/WebPages/js/libraries/utilities.js';
 
-import * as globalAuth from '/WebPages/js/libraries/globalAuth.js'; 
+//import * as globalAuth from '/WebPages/js/libraries/globalAuth.js'; 
 
 const dataSource_PropName = "data-source";
 const showExport_PropName = "show-export";
 const showActions_PropName = "show-actions";
 const controllerName_PropName = "controller";
-
+const showCreate_PropName = "show-create";
 
 class BOReadOnlyList extends HTMLElement {
     constructor() {
@@ -18,10 +18,11 @@ class BOReadOnlyList extends HTMLElement {
         this.pageSize = 10;         // Tamaño de página
         this.searchText = "";       // Texto del filtro
         this.currentPage = 1;       // Página actual
+        this.urlPart = undefined;
     }
 
     static get observedAttributes() {
-        return [dataSource_PropName, showExport_PropName, showActions_PropName, controllerName_PropName];
+        return [dataSource_PropName, showExport_PropName, showActions_PropName, controllerName_PropName, showCreate_PropName];
     }
 
     attributeChangedCallback(name, oldValue, newValue) {
@@ -36,6 +37,9 @@ class BOReadOnlyList extends HTMLElement {
         }
         if (name == controllerName_PropName) {
             this.controller = newValue;
+        }
+        if (name == showCreate_PropName) {
+            this.showCreate = newValue === "true" || newValue === "";
         } 
     }
 
@@ -46,9 +50,10 @@ class BOReadOnlyList extends HTMLElement {
         const css = await fetch(basePath + 'readOnlyList.css').then(r => r.text());
         const html = await fetch(basePath + 'readOnlyList.html').then(r => r.text());
 
+        this.urlPart = await this.getUrlPart();
+
         //const css = await fetch('/Backoffice/Components/readOnlyList/readOnlyList.css').then(r => r.text());
         //const html = await fetch('/Backoffice/Components/readOnlyList/readOnlyList.html').then(r => r.text());
-
 
         this.shadowRoot.innerHTML = `
 
@@ -119,10 +124,127 @@ class BOReadOnlyList extends HTMLElement {
         this.setupEventHandlers();
         this.applyFilters();
 
+        // Lógica del botón de Crear (según atribuo 'showCreate')
+        const btnCrear = this.shadowRoot.querySelector('#btnCrear');
+        if (this.showCreate && btnCrear) {
+            btnCrear.addEventListener('click', async (e) => {
+                e.preventDefault(); 
+                window.location.href = "../admin/" + this.urlPart + "-form-new.html"; 
+            });
+        } else if (btnCrear) {
+            btnCrear.remove();
+        }
+
+        // Lógica del botón de Exportar
         var btnExport = this.shadowRoot.querySelector('#btnExport');  
         btnExport.hidden = !this.showExport; 
 
         this.initExportDropdowns();  
+    }
+
+    // TOFO crear el resto de entidades/modelos de BD
+    async getUrlPart() { 
+        let urlPart = undefined;
+        switch (this.controller) {
+
+            //
+            case "Usuarios":
+                urlPart = "usuario";
+                break;
+            case "Transacciones":
+                urlPart = "transaccion";
+                break;
+            case "Testimonios":
+                urlPart = "testimonio";
+                break;
+            case "Recompensas":
+                urlPart = "recompensa";
+                break;
+            case "Recursos":
+                urlPart = "recurso";
+                break;
+            case "api/qr":
+                urlPart = "qr";
+                break;
+            case "Productos":
+                urlPart = "producto";
+                break;
+            case "Consultas":
+                urlPart = "consulta";
+                break;
+            case "FAQS":
+                urlPart = "faq";
+                break;
+            case "Entidades":
+                urlPart = "entidad";
+                break;
+            case "Categorias":
+                urlPart = "categoria";
+                break;
+            case "Actividades":
+                urlPart = "actividad";
+                break; 
+
+            //
+            case "TipoActividades":
+                urlPart = "tipo-actividades";
+                break; 
+            case "TipoCampanas":
+                urlPart = "tipo-camapanas";
+                break; 
+            case "MotivosConsulta":
+                urlPart = "tipo-consultas";
+                break; 
+            case "TipoEntidades":
+                urlPart = "tipo-entidades";
+                break; 
+            case "Perfiles":
+                urlPart = "tipo-perfiles";
+                break; 
+            case "TipoEnvioCorreos":
+                urlPart = "tipo-plantillas";
+                break; 
+            case "TipoRecompensas":
+                urlPart = "tipo-recompensas";
+                break; 
+            case "Roles":
+                urlPart = "tipo-roles";
+                break; 
+            case "TipoSegmentos":
+                urlPart = "tipo-segmentos";
+                break; 
+            case "TipoTransaccion":
+                urlPart = "tipo-transaccion"; 
+                break; 
+            //
+            case "Campanas":
+                urlPart = "campanas";
+                break; 
+            case "Segmentos":
+                urlPart = "segmentos";
+                break; 
+            case "SmsNotification":
+                urlPart = "envio-sms";
+                break; 
+            case "InAppNotification":
+                urlPart = "envio-inapps";
+                break; 
+            case "CampanaExecutions":
+                urlPart = "campanas-ejecuciones";
+                break; 
+            case "xxxx":
+                urlPart = "envio-correos";
+                break; 
+
+            //
+            case "Logins":
+                urlPart = "logins";
+                break; 
+            case "xxxx":
+                urlPart = "logs";
+                break; 
+        } 
+        return urlPart;
     }
 
     initExportDropdowns() {
@@ -205,36 +327,6 @@ class BOReadOnlyList extends HTMLElement {
 
         window.URL.revokeObjectURL(url);
     }
-
-    // TODO
-    //async exportData(exportType) {
-
-    //    const baseUrl = 'https://localhost';
-    //    const controllerName = 'DataQuery';
-    //    const port = '44311';
-    //    const apiMethod = 'Exportar';
-
-    //    // params
-    //    const dataQueryType = 'UsuariosIdiomas'; // TODO!
-    //    const envioEmail = false;
-
-    //    const apiUrl =
-    //        `${baseUrl}:${port}/${controllerName}/${apiMethod}` +
-    //        `?dataQueryType=${dataQueryType}&formato=${exportType}&envioEmail=${envioEmail}`;
-
-    //    const response = await fetch(apiUrl);
-    //    if (!response.ok) throw new Error("Error al exportar los datos");
-
-    //    const blob = await response.blob();
-    //    const url = window.URL.createObjectURL(blob);
-
-    //    const a = document.createElement("a");
-    //    a.href = url;
-    //    a.download = `export_${dataQueryType}.${exportType === "Excel" ? "xlsx" : "pdf"}`;
-    //    a.click();
-
-    //    window.URL.revokeObjectURL(url);
-    //}
 
     async getCookie(nombre) {
         const nombreEQ = nombre + "=";
@@ -487,7 +579,9 @@ class BOReadOnlyList extends HTMLElement {
 
                 // EDITAR → redirección
                 btnEdit.addEventListener("click", () => {
-                    window.location.href = `editForm.html?id=${_id}`;
+
+                    //let urlPart = this.getUrlPart();
+                    window.location.href = `${this.urlPart}-form.html?id=${_id}`;
                 });
 
                 // ELIMINAR → disparar evento custom

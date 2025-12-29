@@ -5,6 +5,7 @@ using Application.Interfaces.Controllers;
 using Application.Interfaces.DTOs.Filters;
 using Application.Interfaces.Services;
 using Application.Services;
+using DocumentFormat.OpenXml.Office2010.Excel;
 using Domain.Entities;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -18,6 +19,8 @@ using System.Security.Claims;
 using System.Text;
 using Twilio.TwiML.Voice;
 using Utilities;
+using static Domain.Entities.TipoEnvioCorreo;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 using static Utilities.ExporterHelper;
 namespace API.Controllers
 {
@@ -89,8 +92,8 @@ namespace API.Controllers
         /// <param name="orderBy"></param>
         /// <param name="descending"></param>
         /// <returns> IEnumerable<Usuario> </returns>
-        //[AllowAnonymous]
-        [Authorize(Policy = "RequireAdmin")]
+        [AllowAnonymous]
+        //[Authorize(Policy = "RequireAdmin")]
         [HttpGet("FiltrarUsuarios")]
         public async Task<IActionResult> GetByFiltersAsync([FromQuery] UsuarioFilters filters, // TODO: IFilters<Usuario>
                                                            [FromQuery] int? page,
@@ -113,25 +116,27 @@ namespace API.Controllers
             }
         }
 
-        // TODO To Delete
-        //[Authorize(Policy = "RequireAdmin")]
-        //[HttpGet("ObtenerUsuario/{id}")]
-        //public async Task<IActionResult> GetByIdAsync(int id) 
-        //{
-        //    var resulToken = IsValidToken();
-        //    try {  
-        //        var usuario = await _usuarioService.GetByIdAsync(id);
-        //        if (usuario == null) return NoContent();
 
-        //        _logger.LogInformation(MessageProvider.GetMessage("Usuario:ObtenerPorId", "Success")); 
-        //        return Ok(usuario);
-        //    }
-        //    catch (Exception ex) {
-        //        _logger.LogError(ex, "Error obteniendo un usuario por Id, {id}.", id);
-        //        return StatusCode(StatusCodes.Status500InternalServerError,
-        //                         new { message = MessageProvider.GetMessage("Usuario:ObtenerPorId", "Error"), id });
-        //    } 
-        //}
+        //[Authorize(Policy = "RequireAdmin")]
+        [AllowAnonymous]
+        [HttpGet("ObtenerUsuario/{id}")]
+        public async Task<IActionResult> GetByIdAsync(int id)
+        { 
+            try
+            {
+                var usuario = await _usuarioService.GetByIdAsync(id);
+                if (usuario == null) return NoContent();
+
+                //_logger.LogInformation(MessageProvider.GetMessage("Usuario:ObtenerPorId", "Success"));
+                return Ok(usuario);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Error obteniendo un usuario por Id, {id}.", id);
+                return StatusCode(StatusCodes.Status500InternalServerError,
+                                 new { message = "Error obteniendo un usuario por Id", id });
+            }
+        }
 
         /// <summary>
         /// 
@@ -165,7 +170,7 @@ namespace API.Controllers
                 var result = await _usuarioService.AddAsync(nuevoUsuario); 
                 if (result == false) return NotFound();
                 else {
-                    _logger.LogInformation(MessageProvider.GetMessage("Usuario:Crear", "Success"));
+                    //_logger.LogInformation(MessageProvider.GetMessage("Usuario:Crear", "Success"));
                     return Ok(result);
                 }
             }
@@ -191,7 +196,7 @@ namespace API.Controllers
 
                 if (result == false) return NotFound();
                 else {
-                    _logger.LogInformation(MessageProvider.GetMessage("Usuario:Actualizar", "Success"));
+                   // _logger.LogInformation(MessageProvider.GetMessage("Usuario:Actualizar", "Success"));
                     return Ok(result);
                 }
             }
@@ -249,7 +254,7 @@ namespace API.Controllers
                 if (result == false) return NotFound();
                 else
                 {
-                    _logger.LogInformation(MessageProvider.GetMessage("Usuario:Eliminar", "Success"));
+                    //_logger.LogInformation(MessageProvider.GetMessage("Usuario:Eliminar", "Success"));
                     return Ok(result);
                 }
             }
@@ -277,7 +282,7 @@ namespace API.Controllers
                 var result = await _usuarioService.CambiarContrasena(email, nuevaContrasena);
                 if (result == false) return NotFound();
                 else {
-                    _logger.LogInformation(MessageProvider.GetMessage("Usuario:CambiarContraseña", "Success"));
+                    //_logger.LogInformation(MessageProvider.GetMessage("Usuario:CambiarContraseña", "Success"));
                     return Ok(result);
                 }
             }
@@ -289,11 +294,69 @@ namespace API.Controllers
         }
 
         /// <summary> Activa la suscripcion de un usuario </summary>
+        /// <param name="email">Email del destinatario a buscar</param>
+        /// <returns> bool </returns>
+        [AllowAnonymous]
+        //[Authorize]
+        [HttpPatch("ActivacionSuscripcionWeb")]
+        public async Task<IActionResult> ActivacionSuscripcionWeb([FromQuery][Required] string email)
+        {
+            try
+            {
+                var validEmail = FormatValidationHelper.IsValidEmail(email);
+                 
+                if (!validEmail)
+                    return BadRequest(new { message = "El token o email no son válidos." });
+                
+                var ip = HttpContext.Connection.RemoteIpAddress?.ToString();
+                var userAgent = HttpContext.Request.Headers["User-Agent"].ToString();
+
+                var activationResult = await _usuarioService.ActivarSuscripcion(email);
+                if (activationResult == false) return NotFound(new { message = "Error al activar la suscripción." });
+                    
+                // Enviar corrreo: Bienvenido a nuestra newsletter
+                //var tiposEnvioCorreo = await _correoService.ObtenerTiposEnvioCorreo();
+                //var tipoEnvioCorreo = tiposEnvioCorreo.Where(u => u.nombre.Trim() == TipoEnvioCorreo.TipoEnvio.SuscripcionActivada)
+                //                                        .SingleOrDefault();
+
+                var usuarios = await _usuarioService.GetAllAsync();
+                var usuario = usuarios.Where(u => u.correo.ToLower() == email.ToLower())
+                                        .SingleOrDefault();
+
+                //var correo = new Correo(tipoEnvioCorreo, email, usuario.nombre, _appConfiguration.LogoURL);
+                //_correoService.EnviarCorreo(correo);
+                 
+                //
+                var tiposEnvioCorreo = await _correoService.ObtenerTipoEnvioCorreo(TipoEnvioCorreos.SuscripcionActivada);
+
+                var contextEnvio = new EnvioSuscripcionActivadaEmailContext(email: email,
+                                                                           nombre: usuario.nombre);
+                var correo = new CorreoN
+                {
+                    Destinatario = contextEnvio.Email,
+                    Asunto = tiposEnvioCorreo.asunto,
+                    Cuerpo = tiposEnvioCorreo.cuerpo
+                };
+                correo.ApplyTags(contextEnvio.GetTags());
+
+                _correoService.EnviarCorreo_Nuevo(correo);
+                 
+                return Ok(true);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Error activando la cuenta del usuario, {email}.", email);
+                return StatusCode(StatusCodes.Status500InternalServerError,
+                                 new { message = "Error en ActivacionSuscripcionWeb" });
+            }
+        }
+
+        /// <summary> Activa la suscripcion de un usuario </summary>
         /// <param name="token">Token asociado si la petición viene de enlace de correo</param>
         /// <param name="email">Email del destinatario a buscar</param>
         /// <returns> bool </returns>
-        //[AllowAnonymous]
-        [Authorize]
+        [AllowAnonymous]
+        //[Authorize]
         [HttpPatch("ActivacionSuscripcion")]
         public async Task<IActionResult> ActivacionSuscripcion([FromQuery] string token, 
                                                                [FromQuery][Required] string email)  {
@@ -319,18 +382,33 @@ namespace API.Controllers
                         if(consumeResult) {
 
                             // Enviar corrreo: Bienvenido a nuestra newsletter
-                            var tiposEnvioCorreo = await _correoService.ObtenerTiposEnvioCorreo();
-                            var tipoEnvioCorreo = tiposEnvioCorreo.Where(u => u.nombre.Trim() == TipoEnvioCorreo.TipoEnvio.SuscripcionActivada)
-                                                                  .SingleOrDefault();
+                            //var tiposEnvioCorreo = await _correoService.ObtenerTiposEnvioCorreo();
+                            //var tipoEnvioCorreo = tiposEnvioCorreo.Where(u => u.nombre.Trim() == TipoEnvioCorreo.TipoEnvio.SuscripcionActivada)
+                            //                                      .SingleOrDefault();
 
                             var usuarios = await _usuarioService.GetAllAsync();
                             var usuario = usuarios.Where(u => u.correo.ToLower() == email.ToLower())
                                                   .SingleOrDefault();
 
-                            var correo = new Correo(tipoEnvioCorreo, email, usuario.nombre, _appConfiguration.LogoURL);
-                            _correoService.EnviarCorreo(correo);
+                            //var correo = new Correo(tipoEnvioCorreo, email, usuario.nombre, _appConfiguration.LogoURL);
+                            //_correoService.EnviarCorreo(correo);
 
-                            _logger.LogInformation(MessageProvider.GetMessage("Usuario:ActivacionSuscripcion", "Success"));
+                            //
+                            var tiposEnvioCorreo = await _correoService.ObtenerTipoEnvioCorreo(TipoEnvioCorreos.SuscripcionActivada);
+
+                            var contextEnvio = new EnvioSuscripcionActivadaEmailContext(email: email,
+                                                                                        nombre: usuario.nombre);
+                            var correo = new CorreoN
+                            {
+                                Destinatario = contextEnvio.Email,
+                                Asunto = tiposEnvioCorreo.asunto,
+                                Cuerpo = tiposEnvioCorreo.cuerpo
+                            };
+                            correo.ApplyTags(contextEnvio.GetTags());
+
+                            _correoService.EnviarCorreo_Nuevo(correo);
+                             
+                            //_logger.LogInformation(MessageProvider.GetMessage("Usuario:ActivacionSuscripcion", "Success"));
                             return Ok(consumeResult);
                         }
                         else
@@ -440,21 +518,44 @@ namespace API.Controllers
 
             if (envioEmail)
             {
-                var tiposEnvioCorreo = await correoService.ObtenerTiposEnvioCorreo();
-                var tipoEnvioCorreo = tiposEnvioCorreo.Where(u => u.nombre == TipoEnvioCorreo.TipoEnvio.EnvioReport)
-                                                      .SingleOrDefault();
+                //var tiposEnvioCorreo = await correoService.ObtenerTiposEnvioCorreo();
+                //var tipoEnvioCorreo = tiposEnvioCorreo.Where(u => u.nombre == TipoEnvioCorreo.TipoEnvio.EnvioReport)
+                //                                      .SingleOrDefault();
 
-                tipoEnvioCorreo.asunto = $"Report {entityName.ToString()} ({fileExtension})";
-                tipoEnvioCorreo.cuerpo = $"Se adjunta el informe para la vista de datos {entityName.ToString()}";
+                //tipoEnvioCorreo.asunto = $"Report {entityName.ToString()} ({fileExtension})";
+                //tipoEnvioCorreo.cuerpo = $"Se adjunta el informe para la vista de datos {entityName.ToString()}";
 
-                var correo = new Correo(tipoEnvioCorreo, _exportConfig.CorreoAdmin, "Admin", "");
+                //var correo = new Correo(tipoEnvioCorreo, _exportConfig.CorreoAdmin, "Admin", "");
+                //correo.FicheroAdjunto = new FicheroAdjunto()
+                //{
+                //    Archivo = file,
+                //    ContentType = contentType,
+                //    NombreArchivo = fileName
+                //};
+                //correoService.EnviarCorreo(correo);
+                 
+                // Nuevo
+                var tipoEnvio = await correoService.ObtenerTipoEnvioCorreo(TipoEnvioCorreos.EnvioReport);
+
+                var context = new EnvioReportEmailContext(email: _exportConfig.CorreoAdmin,
+                                                          nombre: "Admin",
+                                                          nombreEntidad: "",
+                                                          nombreInforme: $"List_{entityName.ToString()}");
+                var correo = new CorreoN {
+                    Destinatario = context.Email,
+                    Asunto = tipoEnvio.asunto,
+                    Cuerpo = tipoEnvio.cuerpo
+                };
+
+                correo.ApplyTags(context.GetTags());
+
                 correo.FicheroAdjunto = new FicheroAdjunto()
                 {
                     Archivo = file,
                     ContentType = contentType,
                     NombreArchivo = fileName
-                };
-                correoService.EnviarCorreo(correo);
+                }; 
+                correoService.EnviarCorreo_Nuevo(correo);
             }
             return File(file, contentType, fileName);
         }

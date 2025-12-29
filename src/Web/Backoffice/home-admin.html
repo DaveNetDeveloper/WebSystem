@@ -23,19 +23,15 @@
     <style>
         body {
             background: #eff3f5;
-        }
-
+        } 
     </style>
 
 </head>
 <body>
     <header>
-        <admin-menu rol="admin"></admin-menu> <!--el valor de "rol"  debeia venir de "getCookie("app-role")"-->
+        <admin-menu rol="admin" is-home="true"></admin-menu> 
         <script type="module" src="../Backoffice/Components/adminHeader/adminHeader.js"></script>
     </header>
-
-    <!--<div class="body-wrapper body-bg">-->
-
     
     <div class="dashboard-area pt-30">
         <div class="container">
@@ -51,14 +47,12 @@
     </div>
     <script type="module" src="../Backoffice/Components/highlights/highlights.js"></script>
     <script>
-        const element = document.querySelector("app-highlights");
 
-        element.data = [
-            { icon: "fas fa-user", value: "250", label: "Usuarios" },
-            { icon: "fas fa-clock", value: "500", label: "Transacciones" },
-            { icon: "fas fa-check", value: "###", label: "XXX" },
-            { icon: "fas fa-times", value: "###", label: "XXX" }
-        ];
+       
+        //(async () => {
+        //    await cargarDashboardTotales(); 
+        //})() 
+
     </script>
 
     <div class="dashboard-area pt-30">
@@ -248,7 +242,7 @@
     </script>
     <br /><br />
 
-    <app-lightbox entidad-id="1" titulo="Galeria de la entidad 1"></app-lightbox>
+    <app-lightbox entidad-id="1" titulo="Galeria de las entidades"></app-lightbox>
     <script type="module" src="../Backoffice/Components/lightbox/lightbox.js"></script>
 
     <script>

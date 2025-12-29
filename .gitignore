@@ -20,3 +20,4 @@ _site
 docs
 project documentation
 /WebSystem.slnLaunch.user
+*.ps1
