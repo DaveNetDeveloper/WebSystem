@@ -1,0 +1,324 @@
+﻿<!DOCTYPE html>
+<html class="no-js" lang="es">
+<head>
+    <meta charset="utf-8" />
+    <title>Validación de la reserva</title>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="keywords" content="validación">
+    <meta name="description" content="Página para la activación de la cuenta">
+    <meta name='copyright' content='UOC'>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link rel="icon" href="img/favicon.png">
+
+    <link href="https://fonts.googleapis.com/css?family=Poppins:200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="./css/bootstrap.min.css"> 
+    <link rel="stylesheet" href="./css/font-awesome.min.css">
+    <link rel="stylesheet" href="./css/icofont.css">
+    <link rel="stylesheet" href="./css/slicknav.min.css"> 
+    <link rel="stylesheet" href="./css/animate.min.css"> 
+     
+    <link rel="stylesheet" href="./css/core.min.css" />
+
+    <link rel="stylesheet" href="./css/normalize.css">
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="./css/responsive.css">
+
+    <style>
+
+        p {
+            color: black;
+            margin: 0;
+            line-height: 24px;
+            font-weight: 400;
+            font-family: 'Poppins', sans-serif;
+            margin-top: 0;
+            margin-bottom: 1rem;
+        }
+        body {
+            width: -webkit-fill-available;
+        }
+
+        /* Loader container */
+        .loader-wrapper {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 30px;
+        }
+
+        /* Spinner */
+        .spinner {
+            width: 48px;
+            height: 48px;
+            border: 4px solid #e0e0e0;
+            border-top: 4px solid goldenrod;
+            border-radius: 50%;
+            animation: spin 0.9s linear infinite;
+        }
+
+        /* Animaciones */
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        /* Fade in / out */
+        .fade-in {
+            animation: fadeIn 0.4s ease forwards;
+        }
+
+        .fade-out {
+            animation: fadeOut 0.3s ease forwards;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes fadeOut {
+            from {
+                opacity: 1;
+            }
+
+            to {
+                opacity: 0;
+            }
+        }
+
+
+    </style>
+
+</head>
+<body>
+
+    <div class="preloader">
+        <div class="loader">
+            <div class="loader-outter"></div>
+            <div class="loader-inner"></div>
+
+            <div class="indicator">
+                <svg width="16px" height="12px">
+                    <polyline id="back" points="1 6 4 6 6 11 10 1 12 6 15 6"></polyline>
+                    <polyline id="front" points="1 6 4 6 6 11 10 1 12 6 15 6"></polyline>
+                </svg>
+            </div>
+        </div>
+    </div>
+
+    <header class="header">
+        <div class="header-inner">
+            <div class="container">
+                <div class="inner" style="padding: 18px;">
+                    <div class="row" style="margin-left: 48%;">
+                        <div>
+                            <div class="logo">
+                                <a><img src="img/logo.jpg" alt="#"></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <section id="sectionContent" class="contact-us section" style="padding: 10% 0;">
+
+        <div id="loadingContent" class="container">
+            <div class="inner">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="contact-us-form">
+                            <h5 style="text-align: center;">Un momento, estamos validando la reserva.</h5>
+
+                            <div class="loader-wrapper">
+                                <div class="spinner"></div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <input type="text" id="errorMsg" value="" readonly style="margin-top:50px;text-align:center;display:none; color: red; border: 1px solid red; width: 100%; padding: 6px;">
+        </div>
+
+        <div id="reservaContent" class="row flex">
+
+            <div class="column width-4 push-1 pu-50 hide-on-mobile tmh-perspective-parallax">
+                <div class="feature-image horizon pd-60 tmh-parallax-item" data-parallax="direction:vertical;speed:0.2;rotate:none;opacity:none;" style="backface-visibility: hidden; transform: translate3d(0px, -10.2668px, 0px) rotateX(0deg) rotateY(0deg) rotateZ(0deg) scale3d(1, 1, 1); transition-property: -webkit-transform, opacity; transform-origin: 50% 50% 0px; transition-timing-function: ease-out; visibility: visible; opacity: 1;">
+                    <div class="feature-image-inner center-on-mobile">
+                        <img id="imagenActividad" src="./img/actividades/Actividad_01.png" width="400" alt="">
+                    </div>
+                </div>
+            </div>
+            <div class="column width-2 pull-1 tmh-perspective-parallax">
+
+            </div>
+            <div class="column width-6 pull-1">
+
+                <div style="margin-top:0px;" class="feature-content tmh-perspective">
+
+                    <div class="feature-content-inner left horizon" data-animate-in="preset:slideInUpShort;duration:1000;delay:300ms;" data-threshold="0.6" style="vertical-align: top; backface-visibility: hidden; transition: -webkit-transform 1000ms cubic-bezier(0.11, 0.69, 0.66, 1.01) 300ms, opacity; transform: translate3d(0px, 0px, 0px) rotateX(0deg) rotateY(0deg) rotateZ(0deg) scale3d(1, 1, 1); opacity: 1; visibility: visible; transform-origin: 50% 50% 0px;">
+
+                        <h3 class="mb-30">Reserva confirmada correctamente!</h3>
+
+                        <p class="lead" style="font-size: 1.5rem;">A continuación se muestran los detalles de la reserva:</p>
+
+                        <p id="codigoReserva" style="margin-bottom: 3rem;"></p>
+                        <p id="fechaReserva" style="margin-bottom: 3rem;"></p>
+                        <p id="estadoReserva" style="margin-bottom: 3rem;"></p>
+                        <p id="fechaActividad" style="margin-bottom: 3rem;"></p>
+                        <p id="usuarioNombreCompleto" style="margin-bottom: 3rem;"></p>
+                        <p id="usuarioCorreo" style="margin-bottom: 3rem;"></p>
+ 
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script type="text/javascript">
+
+        (async () => {
+
+            let  loadingContent = document.getElementById("loadingContent");
+            const reservaContent = document.getElementById("reservaContent");
+            const errorMsg = document.getElementById("errorMsg");
+         
+            // Estado inicial
+            loadingContent.style.display = "block";
+            loadingContent.classList.add("fade-in");
+
+            reservaContent.style.display = "none";
+            errorMsg.style.display = "none";
+
+            // Params URL
+            const url = new URL(window.location.href);
+            const urlParams = new URLSearchParams(url.search);
+
+            const qrCode = urlParams.get("id");
+            const reserva = urlParams.get("reserva");
+
+            if (!qrCode || !reserva) {
+                mostrarError("Error en la dirección web.");
+                return;
+            }
+
+            try {
+                const baseUrl = window.location.hostname === "localhost"
+                    ? "https://localhost"
+                    : "https://websystem-api-prod-ctgrd4gfc2e6dudb.westeurope-01.azurewebsites.net";
+
+                const port = window.location.hostname === "localhost"
+                    ? "44311"
+                    : "";
+                const controllerName = "ActividadReservas";
+                const apiMethod = "ValidarReserva";
+
+                const endpoint = `${baseUrl}:${port}/${controllerName}/${apiMethod}?idReserva=${reserva}&qrCode=${qrCode}`;
+
+                const res = await fetch(endpoint, {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    }
+                });
+
+                if (!res.ok) {
+                    throw new Error("Error al recibir el resultado de la validación de la reserva.");
+                }
+
+                const data = await res.json();
+
+                //
+                rellenarReserva(data);
+
+                // Cambiar visibilidad 
+                loadingContent.classList.remove("fade-in");
+                loadingContent.classList.add("fade-out");
+                setTimeout(() => {
+                    loadingContent.style.display = "none";
+                    reservaContent.style.display = "flex";
+                    reservaContent.classList.add("fade-in");
+                }, 300); 
+
+            } catch (err) {
+                mostrarError(err);
+            }
+
+            function rellenarReserva(data) {
+
+                const reserva = data.reservaActividadDTO;
+                const usuario = data.usuarioDTO;
+
+                document.getElementById("codigoReserva").textContent =
+                    `Código de reserva: ${reserva.codigoReserva}`;
+
+                document.getElementById("fechaReserva").textContent =
+                    `Fecha de reserva: ${formatearFecha(reserva.fechaReserva)}`;
+
+                document.getElementById("estadoReserva").textContent =
+                    `Estado: ${reserva.estadoReserva}`;
+
+                document.getElementById("fechaActividad").textContent =
+                    `Fecha de la actividad: ${formatearFecha(reserva.fechaActividad)}`;
+
+                document.getElementById("usuarioNombreCompleto").textContent =
+                    `Usuario: ${usuario.nombre} ${usuario.apellidos}`;
+
+                document.getElementById("usuarioCorreo").textContent =
+                    `Correo: ${usuario.correo}`;
+               
+                document.getElementById("imagenActividad").src = `./${reserva.imagenActividad }`
+            }
+
+            function mostrarError(mensaje) {
+                errorMsg.value = mensaje;
+                errorMsg.style.display = "block";
+                loadingContent.style.display = "block";
+                reservaContent.style.display = "none";
+            }
+
+            function formatearFecha(fechaIso) {
+                const fecha = new Date(fechaIso);
+                return fecha.toLocaleDateString("es-ES", {
+                    day: "2-digit",
+                    month: "2-digit",
+                    year: "numeric"
+                });
+            }
+
+        })();
+    </script>
+     
+    <!--<script src="./js/jquery.min.js"></script>-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="./js/jquery-migrate-3.0.0.js"></script>
+    <script src="./js/jquery-ui.min.js"></script>
+    <script src="./js/easing.js"></script>
+    <script src="./js/colors.js"></script>
+    <script src="./js/popper.min.js"></script> 
+    <script src="./js/jquery.nav.js"></script>
+    <script src="./js/slicknav.min.js"></script>
+    <script src="./js/jquery.scrollUp.min.js"></script> 
+    <script src="./js/tilt.jquery.min.js"></script> 
+    <script src="./js/jquery.counterup.min.js"></script>
+    <script src="./js/steller.js"></script>
+    <script src="./js/wow.min.js"></script> 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/waypoints/2.0.3/waypoints.min.js"></script> 
+    <script src="./js/map-active.js"></script>
+    <script src="./js/bootstrap.min.js"></script>
+    <script src="./js/main.js"></script>
+
+</body>
+</html>

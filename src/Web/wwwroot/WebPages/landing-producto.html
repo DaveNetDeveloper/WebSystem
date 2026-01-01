@@ -1,0 +1,313 @@
+<!doctype html>
+<html class="no-js" lang="zxx">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="keywords" content="Site keywords here">
+	<meta name="description" content="">
+	<meta name='copyright' content=''>
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+	<title>Detalles del Producto</title>
+
+	<link rel="icon" href="img/favicon.png">
+
+	<link href="https://fonts.googleapis.com/css?family=Poppins:200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i&display=swap" rel="stylesheet">
+
+	<link rel="stylesheet" href="./css/bootstrap.min.css">
+	<link rel="stylesheet" href="./css/nice-select.css">
+	<link rel="stylesheet" href="./css/font-awesome.min.css">
+	<link rel="stylesheet" href="./css/icofont.css">
+	<link rel="stylesheet" href="./css/slicknav.min.css">
+	<link rel="stylesheet" href="./css/owl-carousel.css">
+	<link rel="stylesheet" href="./css/datepicker.css">
+	<link rel="stylesheet" href="./css/animate.min.css">
+	<link rel="stylesheet" href="./css/magnific-popup.css">
+
+	<link rel="stylesheet" href="./css/normalize.css">
+	<link rel="stylesheet" href="./css/style.css">
+	<link rel="stylesheet" href="./css/responsive.css">
+
+	<script src="./js/services/entidadesController.js"></script>
+	<script src="./js/libraries/header.js"></script>
+	<script src="./js/libraries/footer.js"></script>
+
+	<style>
+		
+		p {
+			color: black;
+		}
+
+        .main-sidebar .single-post .image img {
+            float: left;
+            width: 60px;
+            height: 60px;
+            margin-right: 20px;
+        }
+
+	</style>
+
+</head>
+<body>
+
+	<div class="preloader">
+		<div class="loader">
+			<div class="loader-outter"></div>
+			<div class="loader-inner"></div>
+
+			<div class="indicator">
+				<svg width="16px" height="12px">
+					<polyline id="back" points="1 6 4 6 6 11 10 1 12 6 15 6"></polyline>
+					<polyline id="front" points="1 6 4 6 6 11 10 1 12 6 15 6"></polyline>
+				</svg>
+			</div>
+		</div>
+	</div>
+
+	<header id="headerExplorarProducto" class="header"> </header>
+	<script>
+		(async () => {
+
+			await renderHeader('explorar', 'headerExplorarProducto');
+			await setUserData();
+		})()
+	</script>
+
+	<div class="breadcrumbs overlay">
+		<div class="container">
+			<div class="bread-inner">
+				<div class="row">
+					<div class="col-12">
+						<h2 id="nombreProducto">Detalles del Producto</h2>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<section class="news-single section">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-8 col-12">
+					<div class="row">
+						<div class="col-12">
+							<div class="single-main">
+								<div class="news-head">
+									<img id="imagenProducto" src="img/nodisponible.png" alt="#">
+								</div>
+								<h1 class="news-title"><a id="descuento"></a></h1>
+								<div class="meta" style=" margin-top: 25px; margin-bottom: 25px; padding: 15px 0;">
+									<div class="meta-left">
+										<span class="author" style="margin-top: 10px;"><a id="nombreEntidad" href="#"><img src="" alt="#">Nombre Entidad</a></span>
+										<span id="disponible" style="font-weight: bold; margin-top: 10px;"><i class="fa fa-clock-o"></i>DISPONIBLE</span>
+									</div>
+									<div class="meta-right">
+										<!--<span class="comments"><a href="#"><i class="fa fa-comments"></i>03 Comentarios</a></span>-->
+										<span id="popularidad" class="views"><i class="fa fa-eye"></i></span>
+									</div>
+								</div>
+								<div class="news-text">
+									<p id="descripcion">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse facilisis ultricies tortor, nec sollicitudin lorem sagittis vitae. Curabitur rhoncus commodo rutrum. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Aliquam nec lacus pulvinar, laoreet dolor quis, pellentesque ante. Cras nulla orci, pharetra at dictum consequat, pretium pretium nulla. Suspendisse porttitor nunc a sodales tempor. Mauris sed felis maximus, interdum metus vel, tincidunt diam.</p>
+
+									<div class="image-gallery">
+										<div class="row">
+											<div class="col-lg-6 col-md-6 col-12">
+												<div class="single-image">
+													<img id="img1" src="img/nodisponible.png" alt="#">
+												</div>
+											</div>
+											<div class="col-lg-6 col-md-6 col-12">
+												<div class="single-image">
+													<img id="img2" src="img/nodisponible.png" alt="#">
+												</div>
+											</div>
+										</div>
+									</div>
+									<p id="descripcionCorta">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse facilisis ultricies tortor, nec sollicitudin lorem sagittis vitae. Curabitur rhoncus commodo rutrum. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.</p>
+									<blockquote style="background-color:lightgrey;">
+										<p style="color:black; font-weight:bold;" id="puntos"></p>
+									</blockquote> 
+								</div>  
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-lg-4 col-12">
+					<div class="main-sidebar">
+
+						<div class="single-widget side-tags">
+							<h3 class="title">Categorias</h3>
+							<ul class="tag">
+								<li><a href="#">Alimentación</a></li>
+								<li><a href="#">Casero</a></li>
+								<li><a href="#">Temporada</a></li>
+							</ul>
+						</div>
+						<div class="single-widget recent-post">
+							<h3 class="title">Opiniones</h3>
+							<div class="single-post">
+								<div class="image">
+									<img src="img/author3.jpg" alt="#">
+								</div>
+								<div class="content">
+									<h5><a href="#">Atención inmejorable</a></h5>
+									<ul class="comment">
+										<li><i class="fa fa-calendar" aria-hidden="true"></i>Noviembre 08, 2025</li>
+									 
+									</ul>
+								</div>
+							</div>
+							<div class="single-post">
+								<div class="image">
+									<img src="img/author1.jpg" alt="#">
+								</div>
+								<div class="content">
+									<h5><a href="#">Una gran variedad</a></h5>
+									<ul class="comment">
+										<li><i class="fa fa-calendar" aria-hidden="true"></i>Diciembre 27, 2025</li> 
+									</ul>
+								</div>
+							</div>
+							<div class="single-post">
+								<div class="image">
+									<img src="img/author2.jpg" alt="#">
+								</div>
+								<div class="content">
+									<h5><a href="#">Calidad superior</a></h5>
+									<ul class="comment">
+										<li><i class="fa fa-calendar" aria-hidden="true"></i>Enero 09, 2026</li> 
+									</ul>
+								</div>
+							</div>
+						</div>
+
+
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<script>
+
+		var url = new URL(window.location.href);
+		var urlParams = new URLSearchParams(url.search);
+		var idProducto = urlParams.get('id');
+
+		cargarProductos(idProducto);
+
+		//
+		function cargarProductos(id) {
+
+            const baseUrl = window.location.hostname === "localhost"
+                ? "https://localhost"
+                : "https://websystem-api-prod-ctgrd4gfc2e6dudb.westeurope-01.azurewebsites.net";
+
+            const port = window.location.hostname === "localhost"
+                ? "44311"
+                : "";
+			const controllerName = `Productos`;
+			//const port = `44311`;
+			const apiUrl = `${baseUrl}:${port}/${controllerName}/FiltrarProductos`;
+
+			const url = `${apiUrl}?filters.Id=${id}&filters.Activo=true`;
+
+			fetch(url, { method: "GET" })
+				.then(response => {
+					if (!response.ok) throw new Error("Error en FiltrarProductos");
+					return response.json();
+				})
+				.then(data => {
+					if (data != null && data.length > 0 && data[0] != null) {
+
+						var producto = data[0];
+						cargarEntidad(producto.idEntidad);
+
+						document.getElementById('nombreProducto').innerText = producto.nombre;
+						document.getElementById('descripcion').innerText = producto.descripcion;
+						document.getElementById('puntos').innerText = 'Puedes ganar ' + producto.puntos + ' puntos';
+						document.getElementById('descripcionCorta').innerText = producto.descripcionCorta;
+
+						document.getElementById('popularidad').innerText = 'Popularidad: ' + producto.popularidad;
+						document.getElementById('imagenProducto').src = producto.imagen;
+
+						document.getElementById('img1').src = producto.imagen;
+
+
+						// TODO: TO DELETE AFTER DEMO
+						if (producto.id == 2) {
+                            document.getElementById('img2').src = 'img/productos/producto_2-2.jpg';
+						}
+                        if (producto.id == 4) {
+                            document.getElementById('img1').src = 'img/productos/producto_4-2-copia.png';
+                            document.getElementById('img2').src = 'img/nodisponible.png';
+                        }
+
+						document.getElementById('descuento').innerText = 'Disfruta del ' + producto.descuento + '% de decuento!';
+
+						if (producto.disponible) {
+							document.getElementById('disponible').innerText = 'DISPONIBLE';
+						}
+						else {
+							document.getElementById('disponible').innerText = 'NO DISPONIBLE';
+						}
+
+						document.getElementById('img1').innerText = producto.imagen;
+						document.getElementById('img2').innerText = producto.imagen;
+					}
+				})
+                .catch(err => console.error(err.message));
+		}
+
+		//
+		function cargarEntidad(id) {
+
+			GetEntidad(id)
+				.then(entidad => {
+
+					if (entidad !== undefined && entidad != null) {
+
+						let nombreEntidad = document.getElementById('nombreEntidad');
+						nombreEntidad.innerText = 'En ' + entidad.nombre;
+						nombreEntidad.addEventListener('click', () => {
+							window.location.href = 'landing-entidad.html?id=' + id;
+						});
+					}
+				})
+				.catch(error => {
+					console.error('Error en GetEntidad:', error);
+					//alert('Error en GetEntidad: ', error);
+				});
+		}
+
+	</script>
+
+	<footer id="footer" class="footer"></footer>
+	<script>
+		(async () => {
+			await renderFooter('footer');
+		})()
+	</script>
+
+	<script src="./js/jquery.min.js"></script>
+	<script src="./js/jquery-migrate-3.0.0.js"></script>
+	<script src="./js/jquery-ui.min.js"></script>
+	<script src="./js/easing.js"></script>
+	<script src="./js/colors.js"></script>
+	<script src="./js/popper.min.js"></script>
+	<script src="./js/bootstrap-datepicker.js"></script>
+	<script src="./js/jquery.nav.js"></script>
+	<script src="./js/slicknav.min.js"></script>
+	<script src="./js/jquery.scrollUp.min.js"></script>
+	<script src="./js/niceselect.js"></script>
+	<script src="./js/tilt.jquery.min.js"></script>
+	<script src="./js/owl-carousel.js"></script>
+	<script src="./js/jquery.counterup.min.js"></script>
+	<script src="./js/steller.js"></script>
+	<script src="./js/wow.min.js"></script>
+	<script src="./js/jquery.magnific-popup.min.js"></script>
+	<script src="http://cdnjs.cloudflare.com/ajax/libs/waypoints/2.0.3/waypoints.min.js"></script>
+	<script src="./js/bootstrap.min.js"></script>
+	<script src="./js/main.js"></script>
+</body>
+</html>

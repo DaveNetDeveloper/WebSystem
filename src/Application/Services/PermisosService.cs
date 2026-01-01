@@ -19,7 +19,7 @@ namespace Application.Services
     public class PermisosService
     {
 
-        string baseServerPath = "./";
+        string baseServerPath = "/";
 
         /// <summary>
         /// Contructor

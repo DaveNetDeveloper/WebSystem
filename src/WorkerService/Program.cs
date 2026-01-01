@@ -12,7 +12,7 @@ IHost host = Host.CreateDefaultBuilder(args)
         services.Configure<MailConfiguration>(configuration.GetSection("MailConfiguration"));
 
         services.AddApplication();
-        services.AddInfrastructure(string.Empty);
+        services.AddInfrastructure(string.Empty, configuration);
         services.AddHostedService<ReminderForUnsubscribers>();
         services.AddHostedService<UpdateUserSegments>();
         services.AddHostedService<ExecuteCampaigns>();

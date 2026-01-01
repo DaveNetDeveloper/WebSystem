@@ -18,28 +18,60 @@ namespace Infrastructure.DependencyInjection
         private static IConfiguration _configuration;
 
         public static IServiceCollection AddInfrastructure(this IServiceCollection services, 
-                                                           string environmentName)  
+                                                           string environmentName,
+                                                           IConfiguration configuration)  
         {
-            string baseDirectory = Directory.GetParent(Environment.CurrentDirectory).FullName;
-            var configPath = Path.Combine(baseDirectory, "Infrastructure", "bin", "Debug", "net8.0", "Persistence");
+            string baseDirectory = ""; ;
+            string configPath = "";// = Path.Combine(baseDirectory, "Infrastructure", "bin", "Debug", "net8.0", "Persistence");
 
             if (environmentName == Environments.Test) {
                 configPath = Path.Combine(Directory.GetParent(Environment.CurrentDirectory).Parent.Parent.Parent.Parent.FullName, "src", "Infrastructure", "bin", "Debug", "net8.0", "Persistence");
             }
-            else {
-                string elseVar = "";
+            else if (environmentName == Environments.Development)
+            {
+                baseDirectory = Directory.GetParent(Environment.CurrentDirectory).FullName;
+                configPath = Path.Combine(baseDirectory, "Infrastructure", "bin", "Debug", "net8.0", "Persistence");
             }
-            
-            _configuration = new ConfigurationBuilder()
+            else
+            {
+                // Producción Azure App Service
+                baseDirectory = Path.Combine(AppContext.BaseDirectory, "Persistence");
+            }
+
+
+            if (environmentName != Environments.Production)
+            {
+                _configuration = new ConfigurationBuilder()
                   .SetBasePath(configPath)
                   .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
                   .Build();
 
+            }
+            else
+            {
+                _configuration = new ConfigurationBuilder()
+                    .SetBasePath(baseDirectory)
+                    .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
+                    .AddJsonFile($"appsettings.{environmentName}.json", optional: true)
+                    .Build();
+            }
+
+            services.AddDbContext<ApplicationDbContext>(options =>
+                options.UseNpgsql(
+                    configuration.GetConnectionString("DefaultConnection")
+            ));
+
+            services.AddDatabaseMigrations(
+                configuration.GetConnectionString("DefaultConnection")
+            );
+
             //
             // Sets ConnectionString
             //
-            services.AddDatabaseMigrations(_configuration.GetConnectionString("DefaultConnection"));
-            services.AddDbContext<ApplicationDbContext>(op => op.UseNpgsql(_configuration.GetConnectionString("DefaultConnection")));
+            //services.AddDatabaseMigrations(_configuration.GetConnectionString("DefaultConnection"));
+            //services.AddDbContext<ApplicationDbContext>(op => op.UseNpgsql(_configuration.GetConnectionString("DefaultConnection")));
+
+
 
             //
             //register Repository Interfaces

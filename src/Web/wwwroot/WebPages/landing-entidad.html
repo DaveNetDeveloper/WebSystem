@@ -1,0 +1,758 @@
+<!doctype html>
+<html class="no-js" lang="es">
+<head>
+	<!-- Meta Tags -->
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="keywords" content="Site keywords here">
+	<meta name="description" content="">
+	<meta name='copyright' content='UOC'>
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+	<title> Detalles de la Entidad</title>
+
+	<link rel="icon" href="img/favicon.png">
+
+	<link href="https://fonts.googleapis.com/css?family=Poppins:200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i&display=swap" rel="stylesheet">
+
+	<link rel="stylesheet" href="./css/bootstrap.min.css">
+	<link rel="stylesheet" href="./css/nice-select.css">
+	<link rel="stylesheet" href="./css/font-awesome.min.css">
+	<link rel="stylesheet" href="./css/icofont.css">
+	<link rel="stylesheet" href="./css/slicknav.min.css">
+	<link rel="stylesheet" href="./css/owl-carousel.css">
+	<link rel="stylesheet" href="./css/datepicker.css">
+	<link rel="stylesheet" href="./css/animate.min.css">
+	<link rel="stylesheet" href="./css/magnific-popup.css">
+
+	<link rel="stylesheet" href="./css/normalize.css">
+	<link rel="stylesheet" href="./css/style.css">
+	<link rel="stylesheet" href="./css/responsive.css">
+
+	<!--G Maps-->
+	<!--<link rel="stylesheet" href="./css/core.min.css">
+	<link rel="stylesheet" href="./css/skin.css">-->
+	<!--<script type="text/javascript" charset="UTF-8" src="http://maps.googleapis.com/maps-api-v3/api/js/62/13e/intl/es_ALL/common.js"></script>
+	<script type="text/javascript" charset="UTF-8" src="http://maps.googleapis.com/maps-api-v3/api/js/62/13e/intl/es_ALL/util.js"></script>
+	<script type="text/javascript" charset="UTF-8" src="http://maps.googleapis.com/maps-api-v3/api/js/62/13e/intl/es_ALL/map.js"></script>
+	<script type="text/javascript" charset="UTF-8" src="http://maps.googleapis.com/maps-api-v3/api/js/62/13e/intl/es_ALL/marker.js"></script>
+	<script type="text/javascript" charset="UTF-8" src="http://maps.googleapis.com/maps-api-v3/api/js/62/13e/intl/es_ALL/controls.js"></script>
+	<script type="text/javascript" charset="UTF-8" src="http://maps.googleapis.com/maps-api-v3/api/js/62/13e/intl/es_ALL/infowindow.js"></script>
+	<script type="text/javascript" charset="UTF-8" src="http://maps.googleapis.com/maps-api-v3/api/js/62/13e/intl/es_ALL/log.js"></script>
+	<script type="text/javascript" charset="UTF-8" src="http://maps.googleapis.com/maps-api-v3/api/js/62/13e/intl/es_ALL/onion.js"></script>-->
+	<!--<link type="text/css" rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Google+Sans:400,500,700|Google+Sans+Text:400,500,700&amp;lang=es">-->
+	<!--<link type="text/css" rel="stylesheet" href="http://fonts.googleapis.com/css?family=Google+Sans+Text:400&amp;text=%E2%86%90%E2%86%92%E2%86%91%E2%86%93&amp;lang=es">-->
+
+	<script src="./js/services/entidadesController.js"></script>
+	<script src="./js/services/productosController.js"></script>
+	<script src="./js/libraries/header.js"></script>
+	<script src="./js/libraries/footer.js"></script>
+
+	<style>
+		video {
+			width: 100%;
+			/*height: 100vh;*/
+			object-fit: cover;
+			margin-bottom: 100px;
+		}
+
+		button {
+			position: absolute;
+			top: 10px;
+			left: 10px;
+			font-size: 18px;
+			padding: 10px;
+			cursor: pointer;
+		}
+
+		#myMap {
+			width: 100%;
+			height: 400px;
+		}
+
+		.pricing-table .single-table .title {
+			margin-top: 0px;
+		}
+
+		.blog .single-news img {
+			min-height: 349px;
+		}
+
+
+		.news-head {
+			min-height: 350px;
+			background-size: cover;
+			background-position: center;
+			background-repeat: no-repeat;
+			width: 100%;
+			/*border-radius: 10px 10px 0 0;*/
+		}
+	</style>
+
+	<!--<script type="text/javascript" charset="UTF-8" src="http://maps.googleapis.com/maps-api-v3/api/js/62/13e/intl/es_ALL/common.js"></script>
+	<script type="text/javascript" charset="UTF-8" src="http://maps.googleapis.com/maps-api-v3/api/js/62/13e/intl/es_ALL/util.js"></script>
+	<script type="text/javascript" charset="UTF-8" src="http://maps.googleapis.com/maps-api-v3/api/js/62/13e/intl/es_ALL/map.js"></script>
+	<script type="text/javascript" charset="UTF-8" src="http://maps.googleapis.com/maps-api-v3/api/js/62/13e/intl/es_ALL/infowindow.js"></script>
+	<script type="text/javascript" charset="UTF-8" src="http://maps.googleapis.com/maps-api-v3/api/js/62/13e/intl/es_ALL/controls.js"></script>-->
+
+</head>
+<body>
+
+	<div class="preloader">
+		<div class="loader">
+			<div class="loader-outter"></div>
+			<div class="loader-inner"></div>
+
+			<div class="indicator">
+				<svg width="16px" height="12px">
+					<polyline id="back" points="1 6 4 6 6 11 10 1 12 6 15 6"></polyline>
+					<polyline id="front" points="1 6 4 6 6 11 10 1 12 6 15 6"></polyline>
+				</svg>
+			</div>
+		</div>
+	</div>
+
+	<header id="headerExplorarEntidad" class="header"> </header>
+	<script>
+		(async () => {
+
+			await renderHeader('explorar', 'headerExplorarEntidad');
+			await setUserData();
+		})()
+	</script>
+
+	<div class="breadcrumbs overlay">
+		<div class="container">
+			<div class="bread-inner">
+				<div class="row">
+					<div class="col-12">
+						<h2 id="tituloLanding"></h2>
+						<!--<ul class="bread-list">
+							<li><a href="explorar.html">Explorar</a></li>
+							<li><i class="icofont-simple-right"></i></li>
+							<li id="paginaActual" class="active"></li>
+						</ul>-->
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<section class="pf-details section">
+		<div class="container">
+			<div class="row">
+				<div class="col-12">
+					<div class="inner-content">
+						<div class="image-slider">
+							<div id="contenedorImagenesEntidad" class="pf-details-slider">
+
+							</div>
+						</div>
+						<div id="infoEntidad" style="min-height:100px;" class="date"> </div>
+						<div style="margin-top: 50px;" class="body-text">
+							<h3 id="h3Entidad"></h3>
+							<p id="pEntidad" style="font-size: medium; line-height: 35px; text-align: justify;"></p>
+
+							<!--<div class="container">-->
+							<div class="row">
+								<div class="share col-lg-8 col-md-6 col-8">
+									<h4 style="font-size: 20px;">Comparte </h4>
+									<ul>
+										<li><a id="linkFacebook" href="#" target="_blank"><i id="facebookEntidad" class="fa fa-facebook-official" aria-hidden="true"></i></a></li>
+										<li><a id="linkInstagram" href="#" target="_blank"><i id="twiterrInstagram" class="fa fa-instagram" aria-hidden="true"></i></a></li>
+										<li><a id="linkLinkedin" href="#" target="_blank"><i id="linkedinEntidad" class="fa fa-linkedin" aria-hidden="true"></i></a></li>
+									</ul>
+								</div>
+								<div class="col-lg-4 col-md-2 col-2" style="margin-top: 20px; display: flex;">
+									<a id="btnContactar" style="color: white; min-width: 225px; font-size: 18px; cursor: pointer; margin-left: auto; " onclick="contactar();" class="btn">CONTACTAR</a>
+								</div>
+							</div>
+							<!--</div>-->
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<script>
+
+		let tipoEntidad = null;
+
+		// migas de pan
+		//var liPaginaActual = document.getElementById("paginaActual");
+		//liPaginaActual.innerHTML = document.title;
+
+		//
+		var url = new URL(window.location.href);
+		var urlParams = new URLSearchParams(url.search);
+		var paramIdEntidad = urlParams.get('id');
+
+
+		GetEntidad(paramIdEntidad)
+			.then(entidad => {
+
+				tipoEntidad = entidad.idTipoEntidad;
+
+				adaptarTituloByTipo(tipoEntidad);
+
+				if (tipoEntidad == '64569dd3-4d65-4eed-9f41-ea87b2270a6c') { // comercio
+					buscarProductos(paramIdEntidad)
+				}
+				else if (tipoEntidad == 'e170a0db-660f-4c34-ae71-3e9b9dbbd92b') { // asociacion
+					buscarActividades(paramIdEntidad)
+				}
+
+				var contenedor = document.getElementById("contenedorImagenesEntidad");
+				if (entidad !== undefined && entidad != null) {
+
+					let h2TituloLanding = document.getElementById("tituloLanding");
+					h2TituloLanding.innerHTML = entidad.nombre;
+
+					var nombre = entidad.nombre.replace(/[\s\u00A0\u200B]+/g, "");
+
+					//TO DO - crear nuevos campos en DB y en entidad y obtenerlos para customizar las redes sociales de la entidad
+					let aFacebook = document.getElementById("linkFacebook");
+					aFacebook.href = `https://www.facebook.com/${nombre}`;
+
+					let aInstagram = document.getElementById("linkInstagram");
+					aInstagram.href = `https://www.instagram.com/${nombre}`;
+
+					let aLinkedin = document.getElementById("linkLinkedin");
+					aLinkedin.href = `https://www.linkedin.com/${nombre}`;
+
+					//
+					let nuevaImagen = document.createElement("img");
+					nuevaImagen.src = "img/entidades/" + entidad.imagen;
+					nuevaImagen.alt = "Descripción de la imagen";
+					contenedor.appendChild(nuevaImagen);
+
+					//
+					let nuevaImagen2 = document.createElement("img");
+					nuevaImagen2.src = "img/entidades/nodisponible.png";
+					nuevaImagen2.alt = "";
+					contenedor.appendChild(nuevaImagen2);
+
+					//
+					let nuevaImagen3 = document.createElement("img");
+					nuevaImagen3.src = "img/entidades/nodisponible.png";
+					nuevaImagen3.alt = "";
+					contenedor.appendChild(nuevaImagen3);
+
+
+					setTimeout(() => {
+						inicializarSlider();
+					}, 0);
+
+					var h3Entidad = document.getElementById("h3Entidad");
+					h3Entidad.innerHTML = entidad.nombre;
+
+					var pEntidad = document.getElementById("pEntidad");
+					pEntidad.innerHTML = entidad.descripcion + entidad.descripcion + entidad.descripcion + entidad.descripcion + entidad.descripcion + entidad.descripcion;
+					pEntidad.style.color = "black";
+
+					var infoEntidadDiv = document.getElementById("infoEntidad");
+					var ulElemento = document.createElement("ul");
+					var datos = [
+						{ propiedad: "Tipo", valor: "Tipo de Entidad" },
+						{ propiedad: "Categoría", valor: "Categoría" },
+						{ propiedad: "Ubicación", valor: entidad.ubicacion },
+						{ propiedad: "Popularidad", valor: entidad.popularidad }
+					];
+					datos.forEach(function (item) {
+
+						var liElemento = document.createElement("li");
+						var spanPropiedad = document.createElement("span");
+						spanPropiedad.textContent = item.propiedad + " : ";
+
+						liElemento.appendChild(spanPropiedad);
+						liElemento.textContent += item.valor;
+						ulElemento.appendChild(liElemento);
+						ulElemento.style = "margin-top: 20px;";
+					});
+					infoEntidadDiv.appendChild(ulElemento);
+				}
+			})
+			.catch(error => {
+				console.error('Error en GetEntidad:', error);
+				//alert('Error en GetEntidad: ', error);
+			});
+
+
+		function inicializarSlider() {
+			$('.pf-details-slider').not('.slick-initialized').slick({
+				slidesToShow: 1,
+				slidesToScroll: 1,
+				autoplay: true,
+				arrows: true,
+				dots: true
+			});
+		}
+
+		function contactar() {
+
+			window.location.href = `contactar.html?id=${paramIdEntidad}&idTipo=${tipoEntidad}`;
+		}
+	</script>
+
+	<section class="blog section" style="padding-top: 0px;" id="blog">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-12">
+					<div class="section-title" style=" padding: 0px;">
+						<h3 id="tituloDetalles" style="font-size: 32px;">Explora los productos/actividades de la entidad</h3>
+						<p>Descubre todas las actividades que organiza la asociación y participa en talleres, eventos y proyectos pensados para ti.</p>
+					</div>
+				</div>
+			</div>
+			<div id="cardsPanel" class="row">
+
+				<div class="section-title" style=" padding: 0px;">
+					<h3 id="NoContent" style="color: burlywood;">No se han encontrado productos activos.</h3>
+					<p>Vuelve más tarde para encontrar las nuevas actividades que organice esta asociación.</p>
+				</div>
+
+			</div>
+		</div>
+	</section>
+
+	<script>
+
+		function adaptarTituloByTipo(tipoEntidad) {
+
+			const titulo = document.getElementById("tituloDetalles");
+
+			if (tipoEntidad === '64569dd3-4d65-4eed-9f41-ea87b2270a6c') {
+				titulo.textContent = "Explora los productos del comercio";
+			}
+			else if (tipoEntidad === 'e170a0db-660f-4c34-ae71-3e9b9dbbd92b') {
+				titulo.textContent = "Explora las actividades de la asociación";
+			}
+		}
+
+		function buscarActividades(idEntidad) {
+
+			let contenedor = document.getElementById('cardsPanel');
+			contenedor.innerHTML = '';
+            const baseUrl = window.location.hostname === "localhost"
+                ? "https://localhost"
+                : "https://websystem-api-prod-ctgrd4gfc2e6dudb.westeurope-01.azurewebsites.net";
+
+            const port = window.location.hostname === "localhost"
+                ? "44311"
+                : "";
+			const controllerName = `Actividades`;
+			//const port = `44311`;
+			const apiUrl = `${baseUrl}:${port}/${controllerName}/FiltrarActividades`;
+
+			const url = `${apiUrl}?filters.IdEntidad=${idEntidad}&filters.Activo=true&orderBy=fechaInicio&descending=true`;
+
+			fetch(url, { method: "GET" })
+				.then(response => {
+					if (!response.ok) throw new Error("Error en GetActividades");
+					return response.json();
+				})
+				.then(data => {
+					const lista = data.items;
+
+					if (lista == null || lista.length === 0) {
+						contenedor.innerHTML = `
+								<div class="col-lg-12" style="padding: 100px;text-align:center;">
+									<h4 id="NoContent" style="color: burlywood;">No se han encontrado actividades activas.</h3>
+									<p style="color: black;text-align: center;font-size: 15px;  margin-top: 15px;">Vuelve más tarde para encontrar las nuevas actividades de esta asociación.</p>
+									<div style="padding: 50px 0;">
+										<img src="img/no-content.png" alt="no content" style="transition-duration: 700ms;width: 10%;">
+									</div>
+								</div> `;
+						return;
+					}
+
+					if (lista != null && lista.length > 0) {
+						for (const actividad of lista) {
+							let card = crearCardActividad(actividad);
+							contenedor.appendChild(card);
+						}
+					}
+				})
+                .catch(err => console.error(err.message));
+		}
+
+		function buscarProductos(idEntidad) {
+
+			let contenedor = document.getElementById('cardsPanel');
+			contenedor.innerHTML = '';
+
+			GetProductos()
+				.then(productos => {
+
+					var hasProducts = false;
+					var i = 1;
+					productos.forEach(function (producto) {
+						if (producto.activo) {
+
+							if (idEntidad == producto.idEntidad) {
+								let card = crearCardProducto(producto);
+								contenedor.appendChild(card);
+								hasProducts = true;
+							}
+						}
+						i++;
+					})
+
+					if (!hasProducts) {
+						contenedor.innerHTML = `
+								<div class="col-lg-12" style="padding: 100px;text-align:center;">
+									<h4 id="NoContent" style="color: burlywood;">No se han encontrado productos activos.</h3>
+									<p style="color: black;text-align: center;font-size: 15px;color: #888; margin-top: 15px;">
+										Vuelve más tarde para encontrar los nuevos productos de este comercio.
+									</p>
+									<div style="padding: 50px 0;">
+										<img src="img/no-content.png" alt="no content" style="transition-duration: 700ms;width: 10%;">
+									</div>
+
+								</div> `;
+						return;
+					}
+				})
+				.catch(error => {
+					console.error('Error en GetProductos:', error);
+					//alert('Error en GetProductos: ', error);
+				});
+		}
+
+		function crearCardProducto(producto) {
+
+			const divCol = document.createElement('div');
+			divCol.id = producto.id;
+
+			divCol.addEventListener("click", function () {
+
+				window.location.href = `landing-producto.html?id=${encodeURIComponent(producto.id)}`;
+			});
+
+			divCol.className = 'col-lg-4 col-md-6 col-12';
+			divCol.style.marginTop = "5%";
+
+			const divSingleNews = document.createElement('div');
+			divSingleNews.className = 'single-news';
+
+			const divNewsHead = document.createElement('div');
+			divNewsHead.className = 'news-head';
+
+			divNewsHead.style.backgroundImage = `url('${producto.imagen}')`; // ajuste de imagen al contenedor (mejor que con 'img')
+
+			//const img = document.createElement('img');
+			//img.src = producto.imagen;
+			//img.alt = '#';
+			//img.style.minHeight = "350px";
+
+			const divNewsBody = document.createElement('div');
+			divNewsBody.className = 'news-body';
+
+			const divNewsContent = document.createElement('div');
+			divNewsContent.className = 'news-content';
+
+			const divDate = document.createElement('div');
+			divDate.className = 'date';
+			divDate.textContent = producto.puntos + " Pts.";
+
+			const h2 = document.createElement('h2');
+			const a = document.createElement('a');
+			a.href = `landing-producto.html?id=${encodeURIComponent(producto.id)}`;
+			a.textContent = producto.nombre;
+			h2.appendChild(a);
+
+			const p = document.createElement('p');
+			p.className = 'text';
+			p.textContent = producto.descripcion.slice(0, 300);;
+
+			//
+			divNewsContent.appendChild(divDate);
+			divNewsContent.appendChild(h2);
+			divNewsContent.appendChild(p);
+
+			divNewsBody.appendChild(divNewsContent);
+
+			//divNewsHead.appendChild(img);
+
+			divSingleNews.appendChild(divNewsHead);
+			divSingleNews.appendChild(divNewsBody);
+
+			divCol.appendChild(divSingleNews);
+
+			return divCol;
+		}
+
+		function crearCardActividad(actividad) {
+
+			const divCol = document.createElement('div');
+			divCol.id = actividad.id;
+
+			divCol.addEventListener("click", function () {
+
+				window.location.href = `landing-actividad.html?id=${encodeURIComponent(actividad.id)}`;
+			});
+
+			divCol.className = 'col-lg-4 col-md-6 col-12';
+
+			const divSingleNews = document.createElement('div');
+			divSingleNews.className = 'single-news';
+
+			const divNewsHead = document.createElement('div');
+			divNewsHead.className = 'news-head';
+
+			divNewsHead.style.backgroundImage = `url('${actividad.imagen}')`; // ajuste de imagen al contenedor (mejor que con 'img')
+
+			//const img = document.createElement('img');
+			//img.src = actividad.imagen;
+			//img.alt = '#';
+			//img.style.minHeight = "350px";
+
+			const divNewsBody = document.createElement('div');
+			divNewsBody.className = 'news-body';
+
+			const divNewsContent = document.createElement('div');
+			divNewsContent.className = 'news-content';
+
+			const divDate = document.createElement('div');
+			divDate.className = 'date';
+			divDate.textContent = actividad.ubicacion;
+
+			const h2 = document.createElement('h2');
+			const a = document.createElement('a');
+			a.href = `landing-actividad.html?id=${encodeURIComponent(actividad.id)}`;
+			a.textContent = actividad.nombre;
+			h2.appendChild(a);
+
+			const p = document.createElement('p');
+			p.className = 'text';
+			p.textContent = actividad.descripcion.slice(0, 300);;
+
+			//
+			divNewsContent.appendChild(divDate);
+			divNewsContent.appendChild(h2);
+			divNewsContent.appendChild(p);
+
+			divNewsBody.appendChild(divNewsContent);
+
+			//divNewsHead.appendChild(img);
+
+			divSingleNews.appendChild(divNewsHead);
+			divSingleNews.appendChild(divNewsBody);
+
+			divCol.appendChild(divSingleNews);
+
+			return divCol;
+		}
+
+	</script>
+
+	<!--<div class="section-block no-padding">
+		<div class="row collapse full-width">
+			<div class="column width-12 center">
+				<div class="map-container" data-coordinates="[[40.723301,-74.002988]]" data-icon='"images/assets/map-marker.png"' data-info='"Downtown New York Office<br>44 St. West 32"' data-zoom-level="13" data-style="color">
+					<div class="map-canvas" id="myMap"></div>
+				</div>
+			</div>
+		</div>
+	</div>-->
+
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-12">
+				<video id="miVideo" controls>
+					<source src="videos/sample-mp4-file.mp4" type="video/mp4">
+					Tu navegador no soporta el elemento de video.
+				</video>
+			</div>
+		</div>
+	</div>
+	<script>
+		const miVideo = document.getElementById('miVideo');
+		function toggleVideo() {
+			if (miVideo.paused) {
+				miVideo.play();
+			} else {
+				miVideo.pause();
+			}
+		}
+	</script>
+
+	<section class="news-single section">
+		<div class="container">
+			<div class="row">
+				<div class="col-12">
+					<div class="blog-comments">
+						<h2>Todos los comentarios</h2>
+						<div class="comments-body">
+
+							<div class="single-comments">
+								<div class="main">
+									<div class="head">
+										<img src="img/author1.jpg" alt="#">
+									</div>
+									<div class="body">
+										<h4>Laura M.</h4>
+										<div class="comment-meta">
+											<span class="meta"><i class="fa fa-calendar"></i>Noviembre 10, 2025</span>
+											<span class="meta"><i class="fa fa-clock-o"></i>09:15 AM</span>
+										</div>
+										<p style="color: black; font-size: 15px; line-height: 30px;">
+											Excelente atención y muy fácil acceder a los servicios de la entidad. Me gustó la experiencia general.
+										</p>
+									</div>
+								</div>
+							</div>
+
+							<div class="single-comments left">
+								<div class="main">
+									<div class="head">
+										<img src="img/author2.jpg" alt="#">
+									</div>
+									<div class="body">
+										<h4>Javier R.</h4>
+										<div class="comment-meta">
+											<span class="meta"><i class="fa fa-calendar"></i>Octubre 22, 2025</span>
+											<span class="meta"><i class="fa fa-clock-o"></i>03:45 PM</span>
+										</div>
+										<p style="color: black; font-size: 15px; line-height: 30px;">
+											Muy buena organización y variedad de actividades. Recomiendo visitar esta entidad a todos.
+										</p>
+									</div>
+								</div>
+							</div>
+
+							<div class="single-comments">
+								<div class="main">
+									<div class="head">
+										<img src="img/author3.jpg" alt="#">
+									</div>
+									<div class="body">
+										<h4>Sofía P.</h4>
+										<div class="comment-meta">
+											<span class="meta"><i class="fa fa-calendar"></i>Septiembre 15, 2025</span>
+											<span class="meta"><i class="fa fa-clock-o"></i>11:20 AM</span>
+										</div>
+										<p style="color: black; font-size: 15px; line-height: 30px;">
+											La atención al cliente fue excelente y los servicios ofrecidos cumplen con las expectativas. Muy recomendable.
+										</p>
+									</div>
+								</div>
+							</div>
+
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<section style="padding: 50px 0px 150px;" class="pricing-table section">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-12">
+					<div class="section-title">
+						<h2>Características de la entidad</h2>
+						<p>Descubre los aspectos principales que definen a la entidad y qué la hace especial para sus usuarios.</p>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+
+				<div class="col-lg-4 col-md-12 col-12">
+					<div class="single-table" style="max-height: 440px; min-height: 440px;">
+						<div class="table-head">
+							<div class="icon"><i class="icofont icofont-file-check"></i></div>
+							<h4 class="title">Calidad</h4>
+						</div>
+						<ul class="table-list">
+							<li><i class="icofont icofont-ui-check"></i>Servicios confiables y consistentes</li>
+							<li><i class="icofont icofont-ui-check"></i>Atención profesional y cercana</li>
+							<li class="cross"><i class="icofont icofont-ui-close"></i>Disponibilidad limitada en horarios</li>
+							<li class="cross"><i class="icofont icofont-ui-close"></i>Espacios reducidos para actividades</li>
+							<li class="cross"><i class="icofont icofont-ui-close"></i>Algunos servicios no incluidos</li>
+						</ul>
+					</div>
+				</div>
+
+				<div class="col-lg-4 col-md-12 col-12">
+					<div class="single-table" style="max-height: 440px; min-height: 440px;">
+						<div class="table-head">
+							<div class="icon"><i class="icofont-wand"></i></div>
+							<h4 class="title">Disponibilidad</h4>
+						</div>
+						<ul class="table-list">
+							<li><i class="icofont icofont-ui-check"></i>Atención en días hábiles</li>
+							<li><i class="icofont icofont-ui-check"></i>Reserva de actividades online</li>
+							<li><i class="icofont icofont-ui-check"></i>Atención telefónica y digital</li>
+							<li class="cross"><i class="icofont icofont-ui-close"></i>Servicios limitados fines de semana</li>
+							<li class="cross"><i class="icofont icofont-ui-close"></i>Capacidad máxima por sesión</li>
+						</ul>
+					</div>
+				</div>
+
+				<div class="col-lg-4 col-md-12 col-12">
+					<div class="single-table" style="max-height: 440px; min-height: 440px;">
+						<div class="table-head">
+							<div class="icon"><i class="icofont icofont-menu-alt"></i></div>
+							<h4 class="title">Variedad</h4>
+						</div>
+						<ul class="table-list">
+							<li><i class="icofont icofont-ui-check"></i>Diversidad de actividades y servicios</li>
+							<li><i class="icofont icofont-ui-check"></i>Opciones para distintos perfiles de usuario</li>
+							<li><i class="icofont icofont-ui-check"></i>Eventos periódicos y talleres</li>
+							<li><i class="icofont icofont-ui-check"></i>Programas de fidelización</li>
+							<li><i class="icofont icofont-ui-check"></i>Promociones y ventajas exclusivas</li>
+						</ul>
+					</div>
+				</div>
+
+			</div>
+		</div>
+	</section>
+
+
+	<footer id="footer" class="footer"></footer>
+	<script>
+		(async () => {
+			await renderFooter('footer');
+		})()
+	</script>
+
+	<!-- JQUERY -->
+	<script src="./js/jquery.min.js"></script>
+	<script src="./js/jquery-migrate-3.0.0.js"></script>
+	<script src="./js/jquery-ui.min.js"></script>
+
+	<!-- POPPER (antes de Bootstrap) -->
+	<script src="./js/popper.min.js"></script>
+
+	<!-- BOOTSTRAP -->
+	<script src="./js/bootstrap.min.js"></script>
+
+	<!-- PLUGINS -->
+	<script src="./js/easing.js"></script>
+	<script src="./js/colors.js"></script>
+	<script src="./js/bootstrap-datepicker.js"></script>
+	<script src="./js/jquery.nav.js"></script>
+	<script src="./js/slicknav.min.js"></script>
+	<script src="./js/jquery.scrollUp.min.js"></script>
+	<script src="./js/niceselect.js"></script>
+	<script src="./js/tilt.jquery.min.js"></script>
+	<script src="./js/owl-carousel.js"></script>
+	<script src="./js/jquery.counterup.min.js"></script>
+	<script src="./js/steller.js"></script>
+	<script src="./js/wow.min.js"></script>
+	<script src="./js/jquery.magnific-popup.min.js"></script>
+
+	<!--<script src="http://cdnjs.cloudflare.com/ajax/libs/waypoints/2.0.3/waypoints.min.js"></script>-->
+	<!-- GOOGLE MAPS API (antes de gmaps.js) -->
+	<!--<script src="https://maps.google.com/maps/api/js?key=AIzaSyBqYqG29bR27i8saIcOGZNYODKXUVIVqgY"></script>-->
+	<!-- GMAPS (solo una vez) -->
+	<!--<script src="./js/gmaps.min.js"></script>-->
+	<!-- MAP ACTIVE -->
+	<!--<script src="./js/map-active.js"></script>-->
+	<!-- MAIN JS (siempre al final) -->
+	<script src="./js/main.js"></script>
+
+</body>
+</html>
