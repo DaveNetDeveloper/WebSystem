@@ -1,10 +1,10 @@
-# WebSystem
+ï»¿# WebSystem
 
 ![.NET](https://img.shields.io/badge/.NET-8.0-512bd4)
 ![CI](https://img.shields.io/badge/CI-GitHub%20Actions-success)
 ![License](https://img.shields.io/badge/License-CC%20BY--NC%204.0-lightgrey)
 
-## ?? Descripción del Proyecto
+## ğŸ§© DescripciÃ³n del Proyecto
 
 **WebSystem** es una solución web desarrollada con **.NET 8**, orientada a la construcción de aplicaciones profesionales mediante una **arquitectura limpia, modular y mantenible**.
 
@@ -14,7 +14,7 @@ No se trata de un proyecto “demo”, sino de una base sólida pensada para **evoluc
 
 ---
 
-## ?? Arquitectura y Estructura de la Solución
+## ğŸ—ï¸ Arquitectura y Estructura de la SoluciÃ³n
 
 La solución sigue una **arquitectura multicapa (N-Tier)** alineada con principios de **Clean Architecture**, garantizando bajo acoplamiento y alta cohesión.
 
@@ -48,7 +48,7 @@ Esta estructura favorece la mantenibilidad, la escalabilidad y un desarrollo ali
 
 ---
 
-## ??? Tecnologías Utilizadas
+## ğŸ› ï¸ TecnologÃ­as Utilizadas
 
 - **Lenguaje:** C# 12  
 - **Framework:** .NET 8 / ASP.NET Core  
@@ -63,7 +63,7 @@ Esta estructura favorece la mantenibilidad, la escalabilidad y un desarrollo ali
 
 ---
 
-## ?? Integración Continua (CI)
+## ğŸ”„ IntegraciÃ³n Continua (CI)
 
 El repositorio cuenta con **Integración Continua mediante GitHub Actions**, configurada para:
 
@@ -75,7 +75,7 @@ Este flujo garantiza estabilidad y reduce errores en fases avanzadas del desarro
 
 ---
 
-## ?? Despliegue y Publicación
+## ğŸš€ Despliegue y PublicaciÃ³n
 
 El proyecto está **preparado para despliegues reales en la nube**, utilizando distintas estrategias según el entorno.
 
@@ -98,7 +98,7 @@ La arquitectura del proyecto permite cambiar de proveedor cloud sin modificacion
 
 ---
 
-## ?? Gestión de Configuración y Secretos
+## ğŸ” GestiÃ³n de ConfiguraciÃ³n y Secretos
 
 Por diseño, **no se almacenan claves ni secretos en el repositorio**.
 
@@ -112,7 +112,7 @@ Esto evita la exposición de información sensible y mantiene los archivos de conf
 
 ---
 
-## ?? Requisitos
+## ğŸ“‹ Requisitos
 
 - **.NET SDK 8.0**
 - Visual Studio 2022 (17.12 o superior) o compatible
@@ -120,7 +120,7 @@ Esto evita la exposición de información sensible y mantiene los archivos de conf
 
 ---
 
-## ?? Ejecución de Pruebas
+## ğŸ§ª EjecuciÃ³n de Pruebas
 
 Para ejecutar las pruebas automatizadas:
 
@@ -128,7 +128,7 @@ Para ejecutar las pruebas automatizadas:
 dotnet test
 
 
-## ?? Enfoque Profesional
+## ğŸ’¼ Enfoque Profesional
 
 WebSystem prioriza:
 - Arquitectura clara y desacoplada
@@ -138,7 +138,7 @@ WebSystem prioriza:
 - Uso responsable de configuraciones y secretos
 El proyecto refleja fielmente su estado actual, sin promesas técnicas no implementadas.
 
-## ?? Autor
+## ğŸ‘¤ Autor
 
 David Martínez Gómez
 Proyecto .NET de carácter académico y personal
