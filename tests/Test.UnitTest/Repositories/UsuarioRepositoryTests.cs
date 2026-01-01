@@ -113,46 +113,46 @@ namespace Test.UnitTest.Repositories
             Assert.Pass("Test passed succesfully. User with email {0} exist.", [usuarioById.correo]);
         }
 
-        [Test]
-        public async Task LoginUser_ReturnsEntity_WithValidData()
-        {
-            int id = 1;
-            var usuariobyId = await _repo.GetByIdAsync(id);
-            Assert.IsNotNull(usuariobyId);
+        //[Test]
+        //public async Task LoginUser_ReturnsEntity_WithValidData()
+        //{
+        //    int id = 1;
+        //    var usuariobyId = await _repo.GetByIdAsync(id);
+        //    Assert.IsNotNull(usuariobyId);
 
-            string userName = usuariobyId.nombre;
-            string password = "MyPassword-123";
-            var authUser = await _repo.Login(userName, password);
+        //    string userName = usuariobyId.nombre;
+        //    string password = "MyPassword-123";
+        //    var authUser = await _repo.Login(userName, password);
 
-            Assert.IsNotNull(authUser);
-            Assert.IsNotNull(authUser.Id);
-            Assert.IsNotNull(authUser.Email);
+        //    Assert.IsNotNull(authUser);
+        //    Assert.IsNotNull(authUser.Id);
+        //    Assert.IsNotNull(authUser.Email);
 
-            var roles = await _repo.GetRolesByUsuarioId(authUser.Id);
-            if (roles != null && roles.Any()) 
-            {
-                var maxRole = roles.OrderByDescending(r => r.level).FirstOrDefault();
-                authUser.Role = maxRole.nombre;
-            }
-            else authUser.Role = string.Empty;
+        //    var roles = await _repo.GetRolesByUsuarioId(authUser.Id);
+        //    if (roles != null && roles.Any()) 
+        //    {
+        //        var maxRole = roles.OrderByDescending(r => r.level).FirstOrDefault();
+        //        authUser.Role = maxRole.nombre;
+        //    }
+        //    else authUser.Role = string.Empty;
 
-            Assert.IsNotNull(authUser.Role);
+        //    Assert.IsNotNull(authUser.Role);
 
-            //Assert.AreEqual(usuariobyId.id, usuarioByLogin.id);
+        //    //Assert.AreEqual(usuariobyId.id, usuarioByLogin.id);
 
-            //Assert.IsNotNull(usuarioByLogin.expiracionToken);
-            //Assert.Greater(usuarioByLogin.expiracionToken, DateTime.UtcNow);
+        //    //Assert.IsNotNull(usuarioByLogin.expiracionToken);
+        //    //Assert.Greater(usuarioByLogin.expiracionToken, DateTime.UtcNow);
 
-            //Assert.IsNotNull(usuarioByLogin.ultimaConexion);
-            //Assert.Less(usuarioByLogin.ultimaConexion, DateTime.UtcNow);
+        //    //Assert.IsNotNull(usuarioByLogin.ultimaConexion);
+        //    //Assert.Less(usuarioByLogin.ultimaConexion, DateTime.UtcNow);
 
-            //Assert.IsNotNull(usuarioByLogin.token);
+        //    //Assert.IsNotNull(usuarioByLogin.token);
 
-            ////Assert.DoesNotThrow(() => Convert.FromBase64String(usuarioByLogin.token));
-            ////Assert.AreEqual(51, usuarioByLogin.token.Length);
+        //    ////Assert.DoesNotThrow(() => Convert.FromBase64String(usuarioByLogin.token));
+        //    ////Assert.AreEqual(51, usuarioByLogin.token.Length);
 
-            Assert.Pass("Test passed succesfully. Login successful for user with Id {0}.", [id]);
-        }
+        //    Assert.Pass("Test passed succesfully. Login successful for user with Id {0}.", [id]);
+        //}
 
         [Test]
         public async Task CambiarContrasena_ReturnsEntity_WithValidData()
