@@ -4,19 +4,19 @@
 ![CI](https://img.shields.io/badge/CI-GitHub%20Actions-success)
 ![License](https://img.shields.io/badge/License-CC%20BY--NC%204.0-lightgrey)
 
-## Descripción del Proyecto
+## ğŸ§© Descripciï¿½n del Proyecto
 
-**WebSystem** es una solución web desarrollada con **.NET 8**, orientada a la construcción de aplicaciones profesionales mediante una **arquitectura limpia, modular y mantenible**.
+**WebSystem** es una soluciï¿½n web desarrollada con **.NET 8**, orientada a la construcciï¿½n de aplicaciones profesionales mediante una **arquitectura limpia, modular y mantenible**.
 
-El proyecto tiene un **enfoque profesional y académico**, priorizando buenas prácticas reales del sector: separación de responsabilidades, testabilidad, integración continua y preparación para despliegues en entornos cloud modernos.
+El proyecto tiene un **enfoque profesional y acadï¿½mico**, priorizando buenas prï¿½cticas reales del sector: separaciï¿½n de responsabilidades, testabilidad, integraciï¿½n continua y preparaciï¿½n para despliegues en entornos cloud modernos.
 
-No se trata de un proyecto “demo”, sino de una base sólida pensada para **evolucionar, mantenerse y desplegarse en producción**.
+No se trata de un proyecto ï¿½demoï¿½, sino de una base sï¿½lida pensada para **evolucionar, mantenerse y desplegarse en producciï¿½n**.
 
----
+--- 
 
-## Arquitectura y Estructura de la Solución
+## ğŸ§© Arquitectura y Estructura de la Soluciï¿½n
 
-La solución sigue una **arquitectura multicapa (N-Tier)** alineada con principios de **Clean Architecture**, garantizando bajo acoplamiento y alta cohesión.
+La soluciï¿½n sigue una **arquitectura multicapa (N-Tier)** alineada con principios de **Clean Architecture**, garantizando bajo acoplamiento y alta cohesiï¿½n.
 
 ### Proyectos principales
 
@@ -24,31 +24,31 @@ La solución sigue una **arquitectura multicapa (N-Tier)** alineada con principio
   API REST desarrollada con **ASP.NET Core**, responsable de exponer los endpoints y coordinar los casos de uso.
 
 - **WebSystem.Web**  
-  Cliente web basado en **HTML, JavaScript nativo y CSS**, desacoplado de la API y consumiendo datos vía HTTP.
+  Cliente web basado en **HTML, JavaScript nativo y CSS**, desacoplado de la API y consumiendo datos vï¿½a HTTP.
 
 - **WebSystem.Domain**  
-  Núcleo del dominio. Contiene entidades y reglas de negocio puras, sin dependencias externas.
+  Nï¿½cleo del dominio. Contiene entidades y reglas de negocio puras, sin dependencias externas.
 
 - **WebSystem.Application**  
-  Capa de aplicación que define casos de uso, DTOs y contratos. Actúa como intermediaria entre la API y el dominio.
+  Capa de aplicaciï¿½n que define casos de uso, DTOs y contratos. Actï¿½a como intermediaria entre la API y el dominio.
 
 - **WebSystem.Infrastructure**  
-  Implementación de la persistencia y dependencias externas, incluyendo **Entity Framework Core** y acceso a datos.
+  Implementaciï¿½n de la persistencia y dependencias externas, incluyendo **Entity Framework Core** y acceso a datos.
 
 - **WebSystem.Utilities**  
-  Componentes y utilidades transversales reutilizables en toda la solución.
+  Componentes y utilidades transversales reutilizables en toda la soluciï¿½n.
 
 - **WebSystem.WorkerService**  
-  Servicio en segundo plano basado en **Worker Service**, orientado a tareas asíncronas, procesos programados o trabajos no interactivos.
+  Servicio en segundo plano basado en **Worker Service**, orientado a tareas asï¿½ncronas, procesos programados o trabajos no interactivos.
 
 - **WebSystem.Tests**  
-  Proyecto de **pruebas unitarias e integración**, enfocado a validar la estabilidad y el comportamiento del sistema.
+  Proyecto de **pruebas unitarias e integraciï¿½n**, enfocado a validar la estabilidad y el comportamiento del sistema.
 
-Esta estructura favorece la mantenibilidad, la escalabilidad y un desarrollo alineado con estándares profesionales.
+Esta estructura favorece la mantenibilidad, la escalabilidad y un desarrollo alineado con estï¿½ndares profesionales.
 
 ---
 
-## Tecnologías Utilizadas
+## ğŸ§© Tecnologï¿½as Utilizadas
 
 - **Lenguaje:** C# 12  
 - **Framework:** .NET 8 / ASP.NET Core  
@@ -59,15 +59,15 @@ Esta estructura favorece la mantenibilidad, la escalabilidad y un desarrollo ali
 - **Cloud & Hosting:**  
   - **Microsoft Azure**  
   - **Railway**  
-- **Publicación:** Perfiles de publicación de **Visual Studio**
+- **Publicaciï¿½n:** Perfiles de publicaciï¿½n de **Visual Studio**
 
 ---
 
-## Integración Continua (CI)
+## ğŸ”„ Integraciï¿½n Continua (CI)
 
-El repositorio cuenta con **Integración Continua mediante GitHub Actions**, configurada para:
+El repositorio cuenta con **Integraciï¿½n Continua mediante GitHub Actions**, configurada para:
 
-- Compilar la solución automáticamente.
+- Compilar la soluciï¿½n automï¿½ticamente.
 - Ejecutar las pruebas.
 - Validar cambios antes de permitir merges a ramas protegidas.
 
@@ -75,44 +75,44 @@ Este flujo garantiza estabilidad y reduce errores en fases avanzadas del desarro
 
 ---
 
-## Despliegue y Publicación
+## ğŸš€ Despliegue y Publicaciï¿½n
 
-El proyecto está **preparado para despliegues reales en la nube**, utilizando distintas estrategias según el entorno.
+El proyecto estï¿½ **preparado para despliegues reales en la nube**, utilizando distintas estrategias segï¿½n el entorno.
 
-### Publicación desde Visual Studio
+### Publicaciï¿½n desde Visual Studio
 
-- Se emplean **perfiles de publicación de Visual Studio**, permitiendo:
+- Se emplean **perfiles de publicaciï¿½n de Visual Studio**, permitiendo:
   - Despliegues directos a **Microsoft Azure App Service**.
-  - Configuración clara por entorno (Development / Production).
-  - Separación entre código y configuración.
+  - Configuraciï¿½n clara por entorno (Development / Production).
+  - Separaciï¿½n entre cï¿½digo y configuraciï¿½n.
 
 ### Plataformas Cloud soportadas
 
 - **Microsoft Azure**  
-  Despliegue de API y Web mediante App Services, con configuración por entorno.
+  Despliegue de API y Web mediante App Services, con configuraciï¿½n por entorno.
 
 - **Railway**  
-  Alternativa ligera para despliegues rápidos, especialmente útil en entornos de pruebas o demostración.
+  Alternativa ligera para despliegues rï¿½pidos, especialmente ï¿½til en entornos de pruebas o demostraciï¿½n.
 
 La arquitectura del proyecto permite cambiar de proveedor cloud sin modificaciones estructurales relevantes.
 
 ---
 
-## Gestión de Configuración y Secretos
+## ğŸ” Gestiï¿½n de Configuraciï¿½n y Secretos
 
-Por diseño, **no se almacenan claves ni secretos en el repositorio**.
+Por diseï¿½o, **no se almacenan claves ni secretos en el repositorio**.
 
 - En entorno local:
   - Uso de **Secret Manager (User Secrets)** de .NET.
 - En entornos cloud:
-  - Configuración mediante variables de entorno.
-  - Preparado para integración con **Azure Key Vault** u otros servicios equivalentes.
+  - Configuraciï¿½n mediante variables de entorno.
+  - Preparado para integraciï¿½n con **Azure Key Vault** u otros servicios equivalentes.
 
-Esto evita la exposición de información sensible y mantiene los archivos de configuración limpios.
+Esto evita la exposiciï¿½n de informaciï¿½n sensible y mantiene los archivos de configuraciï¿½n limpios.
 
 ---
 
-## Requisitos
+## ğŸ“‹ Requisitos
 
 - **.NET SDK 8.0**
 - Visual Studio 2022 (17.12 o superior) o compatible
@@ -120,7 +120,7 @@ Esto evita la exposición de información sensible y mantiene los archivos de conf
 
 ---
 
-## Ejecución de Pruebas
+## ğŸ§ª Ejecuciï¿½n de Pruebas
 
 Para ejecutar las pruebas automatizadas:
 
@@ -132,13 +132,13 @@ dotnet test
 
 WebSystem prioriza:
 - Arquitectura clara y desacoplada
-- Código mantenible y testeable
+- Cï¿½digo mantenible y testeable
 - Flujo de trabajo controlado mediante CI
 - Despiegues en la nube (Azure / Railway)
 - Uso responsable de configuraciones y secretos
-El proyecto refleja fielmente su estado actual, sin promesas técnicas no implementadas.
+El proyecto refleja fielmente su estado actual, sin promesas tï¿½cnicas no implementadas.
 
-## Autor
+## ğŸ‘¤ Autor
 
-David Martínez Gómez
-Proyecto .NET de carácter académico y personal
+David Martï¿½nez Gï¿½mez
+Proyecto .NET de carï¿½cter acadï¿½mico y personal
