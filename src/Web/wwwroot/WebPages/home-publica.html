@@ -1,0 +1,981 @@
+<!doctype html>
+<html class="no-js" lang="es">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="keywords" content="TODO">
+    <meta name="description" content="home pública">
+    <meta name='copyright' content='TODO'>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <title>Inicio</title>
+    <link rel="icon" href="img/favicon.png">
+    <link href="https://fonts.googleapis.com/./css?family=Poppins:200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="./css/bootstrap.min.css">
+    <link rel="stylesheet" href="./css/nice-select.css">
+    <link rel="stylesheet" href="./css/font-awesome.min.css">
+    <link rel="stylesheet" href="./css/icofont.css">
+    <link rel="stylesheet" href="./css/slicknav.min.css">
+    <link rel="stylesheet" href="./css/owl-carousel.css">
+    <link rel="stylesheet" href="./css/datepicker.css">
+    <link rel="stylesheet" href="./css/animate.min.css">
+    <link rel="stylesheet" href="./css/magnific-popup.css">
+
+    <link rel="stylesheet" href="./css/normalize.css">
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="./css/responsive.css">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+
+    <script src="./js/services/entidadesController.js"></script>
+    <script src="./js/services/FAQSController.js"></script>
+    <script src="./js/services/testimoniosController.js"></script>
+
+    <script src="./js/libraries/footer.js"></script>
+
+    <style>
+         
+        .video-image {
+            background-image: url(img/videoImage.png);
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            height: 350px;
+            position: relative;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+        }
+
+        .panel {
+            background-color: #f8f8f8;
+            border: 1px solid #ddd;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            /* overflow: hidden; es clave aquí para que el max-height funcione con el contenido */
+            overflow: hidden;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .pregunta {
+            padding: 15px;
+            cursor: pointer;
+            background-color: #3498db;
+            color: #fff;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .respuesta {
+            padding: 0 15px; /* Padding vertical inicial de 0 para empezar la transición */
+            text-align: left;
+            /* CERO VISIBILIDAD INICIAL */
+            max-height: 0;
+            /* TRANSICIÓN CLAVE */
+            /* Anima el max-height y el padding vertical */
+            transition: max-height 0.4s ease-out, padding 0.4s ease-out;
+        }
+
+        /* Estado de la respuesta cuando el panel está activo/abierto */
+        .panel.activo .respuesta {
+            /* Al abrir, el JS se encarga de establecer dinámicamente el max-height */
+            /* max-height: 500px; ya no es necesario aquí */
+            /* Devolvemos el padding para que el contenido tenga espacio */
+            padding-top: 15px;
+            padding-bottom: 15px;
+        }
+
+        @media (max-width: 600px) {
+            .pregunta {
+                font-size: 16px;
+            }
+        }
+
+        respuesta {
+            padding: 0 15px; /* Padding vertical inicial de 0 para empezar la transición */
+            text-align: left;
+            /* CERO VISIBILIDAD INICIAL */
+            max-height: 0;
+            /* TRANSICIÓN CLAVE */
+            /* Anima el max-height y el padding vertical */
+            transition: max-height 0.4s ease-out, padding 0.4s ease-out;
+        }
+
+        /* Estado de la respuesta cuando el panel está activo/abierto */
+        .panel.activo .respuesta {
+            /* Al abrir, el JS se encarga de establecer dinámicamente el max-height */
+            /* max-height: 500px; ya no es necesario aquí */
+            /* Devolvemos el padding para que el contenido tenga espacio */
+            padding-top: 15px;
+            padding-bottom: 15px;
+        }
+
+        @media (max-width: 600px) {
+            .pregunta {
+                font-size: 16px;
+            }
+        }
+
+        /* --- ESTILOS MEJORADOS PARA LA ANIMACIÓN (El efecto "molón") --- */
+        .flecha {
+            /* Añade transición a la flecha para que rote suavemente */
+            transition: transform 0.3s ease-in-out;
+        }
+
+        /* Alternativamente, si quieres mantener el control en CSS y usar las clases de FA: */
+        .fa-chevron-up {
+            /* Asegura que el icono 'up' apunte hacia arriba (sin rotación) */
+            transform: rotate(0deg);
+        }
+
+        .fa-chevron-down {
+            /* Asegura que el icono 'down' apunte hacia abajo (sin rotación) */
+            transform: rotate(0deg);
+        }
+
+        .
+
+        .slider .single-slider .button {
+            margin-top: 30px;
+            text-align: right;
+        }
+
+        /*  */
+        .banner {
+            background-color: goldenrod;
+            padding: 18px;
+            text-align: center;
+            position: fixed;
+            width: 100%;
+            top: 99px;
+            z-index: 1000;
+            height: 65px;
+            opacity: 0.85;
+        }
+
+        .slider .single-slider .text {
+            margin-top: 120px;
+            background-color: goldenrod;
+            padding: 25px;
+            opacity: 0.7;
+            border: 1px solid rosybrown;
+            border-radius: 5px;
+        }
+
+        /*    */
+        /*		video {
+            width: 100%;
+            height: 100vh;
+            object-fit: cover;
+        }
+
+        button {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            font-size: 18px;
+            padding: 10px;
+            cursor: pointer;
+        }*/
+
+        .slider .single-slider .btn:before {
+            background-color: white;
+            opacity: 1;
+            color: black !important;
+        }
+    </style>
+
+</head>
+<body>
+
+    <div class="preloader">
+        <div class="loader">
+            <div class="loader-outter"></div>
+            <div class="loader-inner"></div>
+
+            <div class="indicator">
+                <svg width="16px" height="12px">
+                    <polyline id="back" points="1 6 4 6 6 11 10 1 12 6 15 6"></polyline>
+                    <polyline id="front" points="1 6 4 6 6 11 10 1 12 6 15 6"></polyline>
+                </svg>
+            </div>
+        </div>
+    </div>
+
+    <header class="header">
+        <div class="header-inner">
+            <div class="container">
+                <div class="inner" style="padding: 18px;">
+                    <div class="row" style="margin-left: 48%;">
+                        <div>
+                            <div class="logo">
+                                <a href="#"><img src="img/logo.jpg" alt="#"></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="banner">
+                <h1 id="h1Login" style="font-size: 20px;"></h1>
+            </div>
+        </div>
+    </header>
+
+    <script>
+
+        const h1Login = document.getElementById('h1Login');
+        h1Login.innerHTML = "";
+
+        var anchorInicioSesion = document.createElement("a");
+        anchorInicioSesion.href = "login.html";
+        anchorInicioSesion.textContent = "Inicia Sesión";
+        anchorInicioSesion.style = "color: WHITE;";
+
+        var anchorO = document.createElement("span");
+        anchorO.textContent = " o ";
+        anchorO.style = "color: WHITE;";
+
+        var anchorRegistro = document.createElement("a");
+        anchorRegistro.href = "register.html";
+        anchorRegistro.textContent = "Regístrate";
+        anchorRegistro.style = "color: WHITE;";
+
+        // Añadir los elementos al h1 del Panel de Login/Registro
+        h1Login.appendChild(anchorInicioSesion);
+        h1Login.appendChild(anchorO);
+        h1Login.appendChild(anchorRegistro);
+
+    </script>
+
+    <section class="slider">
+        <div class="hero-slider">
+            <div name="divImage1" class="single-slider" style="">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-7">
+                            <div class="text">
+                                <h1 style="color:white;" name="h1Entidad1"></h1>
+                                <p style="color:white;" name="pEntidad1"></p>
+                                <div class="button">
+                                    <a href="#" class="btn" name="btnEntidad1">Explorar</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div name="divImage2" class="single-slider" style="">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-7">
+                            <div class="text">
+                                <h1 style="color:white;" name="h1Entidad2"></h1>
+                                <p style="color:white;" name="pEntidad2"></p>
+                                <div class="button">
+                                    <a href="#" class="btn" name="btnEntidad2">Explorar</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div name="divImage3" class="single-slider" style="">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-7">
+                            <div class="text">
+                                <h1 style="color:white;" name="h1Entidad3"><span></span></h1>
+                                <p style="color:white;" name="pEntidad3"></p>
+                                <div class="button">
+                                    <a href="#" class="btn" name="btnEntidad3">Explorar</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <script type="text/javascript">
+
+        function setInputHtmlByName(name, value) {
+            const input = document.getElementsByName(name);
+            input[0].innerHTML = value;
+        }
+
+        function setBackgroundImageByName(name, value) {
+
+            const input = document.getElementsByName(name);
+            input[0].style.backgroundImage = "url(img/entidades/" + value + ")";
+        }
+
+        GetEntidades('ObtenerEntidades')
+            .then(entidades => {
+
+                var i = 1;
+                for (let j = 0; j < entidades.length; j++) {
+
+                    let entidad = entidades[j];
+                    if (entidad.activo) {
+                        setInputHtmlByName("h1Entidad" + i, entidad.nombre);
+                        setInputHtmlByName("pEntidad" + i, entidad.descripcion.substr(0, 300));
+                        setBackgroundImageByName("divImage" + i, entidad.imagen);
+
+                        if (i < 3) { i++; }
+                    }
+                    if (i > 3) { break; }
+                }
+            })
+            .catch(error => {
+                console.error('Error en GetEntidades:', error);
+                //alert('Error en GetEntidades: ', error);
+            });
+
+        function onClickBtnSlide(id) {
+            return function () {
+                window.location.href = `landing-entidad.html?id=${id}`;
+            };
+        }
+
+        var btnSlide;
+        for (let i = 1; i < 4; i++) {
+            btnSlide = document.querySelector('a[name="btnEntidad' + i + '"]');
+            btnSlide.addEventListener('click', onClickBtnSlide(i));
+        }
+
+    </script>
+
+    <section class="Feautes section" style="padding-top: 100px;">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="section-title">
+                        <h2>Descubre entidades en tu barrio y crea nuevas conexiones</h2>
+                        <!--<img src="img/section-img.png" alt="#">
+                        <p>Lorem ipsum dolor sit amet consectetur adipiscing elit praesent aliquet. pretiumts</p>-->
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-4 col-12">
+                    <div class="single-features">
+                        <div class="signle-icon">
+                            <i class="icofont-link"></i>
+                        </div>
+                        <h3>Conecta</h3>
+                        <p style=" color: black;">Conecta con locales y personas de tu barrio de forma directa y sencilla.</p>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-12">
+                    <div class="single-features">
+                        <div class="signle-icon">
+                            <i class="icofont-eye-open"></i>
+                        </div>
+                        <h3>Reconoce</h3>
+                        <p style=" color: black;">Mira tu entorno con otros ojos y redescubre el valor de lo local y lo cercano.</p>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-12">
+                    <div class="single-features last">
+                        <div class="signle-icon">
+                            <i class="icofont-home"></i>
+                        </div>
+                        <h3>Cerca de casa</h3>
+                        <p style=" color: black;">Todo lo que te interesa está más cerca de lo que imaginas, a solo unos pasos de ti.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div id="fun-facts" class="fun-facts section overlay">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3 col-md-6 col-12">
+                    <div class="single-fun">
+                        <i class="icofont icofont-home"></i>
+                        <div class="content">
+                            <span class="counter">74</span>
+                            <p>Entidades asociadas</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 col-12">
+                    <div class="single-fun">
+                        <i class="icofont icofont-user-alt-3"></i>
+                        <div class="content">
+                            <span class="counter">340</span>
+                            <p>Usuarios activos</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 col-12">
+                    <div class="single-fun">
+                        <i class="icofont-heart-alt"></i>
+                        <div class="content">
+                            <span class="counter">600</span>
+                            <p>Conexiones</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 col-12">
+                    <div class="single-fun">
+                        <i class="icofont icofont-table"></i>
+                        <div class="content">
+                            <span class="counter">120</span>
+                            <p>Actividades</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <section class="why-choose section">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 col-12">
+                    <div class="choose-left">
+                        <h3>¿Cómo encontrar promociones?</h3>
+                        <p style="color: black;">Encuentra promociones y descuentos mientras exploras los comercios y actividades de tu entorno de forma sencilla.</p>
+                        <p style="color: black;">Navega por la plataforma, descubre entidades locales y accede a ofertas especiales pensadas para ti.</p>
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <ul class="list">
+                                    <li><i class="fa fa-caret-right"></i>   Explora comercios y actividades cercanas desde un solo lugar</li>
+                                    <li><i class="fa fa-caret-right"></i>   Consulta catalogos y descubre promociones y descuentos activos</li>
+                                    <li><i class="fa fa-caret-right"></i>   Aprovecha ofertas locales de manera directa</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-12">
+                    <div class="choose-right">
+                        <div class="video-image">
+                            <div class="promo-video">
+                                <div class="waves-block">
+                                    <div class="waves wave-1"></div>
+                                    <div class="waves wave-2"></div>
+                                    <div class="waves wave-3"></div>
+                                </div>
+                            </div>
+                            <a href="https://www.youtube.com/watch?v=vh2wIHwCVUI" class="video video-popup mfp-iframe"><i class="fa fa-play"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="call-action overlay" data-stellar-background-ratio="0.5">
+        <div class="col-lg-12 col-md-12 col-12">
+            <div class="content">
+                <div class="">
+                    <h2>Suscríbete a nuestra newsletter</h2>
+                    <p>Para enterarte de ofertas, promociones y mucho más</p>
+
+                    <div class="row" id="btnSuscripcion">
+                        <div class="col-lg-8 col-md-6 col-12" style="margin-top: 25px;">
+                            <input style="border-radius: 4px; font-family: 'Poppins', sans-serif; height: 50px; width: 60%; " id="inputEmail" name="email" placeholder="Email" class="common-input" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Email'" required="" type="email">
+                        </div>
+                        <div class="col-lg-4 col-md-6 col-12" style="margin-top: 25px;" onclick="suscribirse()">
+                            <a href="#" class="btn">SUSCRIBIRME</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+
+        (async () => {
+
+            const suscripcionU = localStorage.getItem("suscripcion");
+            if (suscripcionU != undefined && suscripcionU != null && (suscripcionU == 'true' || suscripcionU == true)) {
+
+                document.getElementById("btnSuscripcion").style.visibility = "hidden";
+                console.info("El usuario ya está suscrito (Local Storage)!");
+            }
+            else {
+                document.getElementById("btnSuscripcion").style.visibility = "visible";
+            }
+
+        })()
+
+        async function activarSuscripcion(email) {
+
+            const baseUrl = window.location.hostname === "localhost"
+                ? "https://localhost"
+                : "https://websystem-api-prod-ctgrd4gfc2e6dudb.westeurope-01.azurewebsites.net";
+
+            const port = window.location.hostname === "localhost"
+                ? "44311"
+                : "";
+            const controllerName = `Usuarios`;
+            //const port = `44311`;
+            const apiUrl = `${baseUrl}:${port}/${controllerName}/ActivacionSuscripcionWeb`;
+
+            // IMPORTANT → parámetros en query string
+            const url = `${apiUrl}?email=${encodeURIComponent(email)}`;
+
+            const response = await fetch(url, {
+                method: "PATCH",
+                headers: { "Content-Type": "application/json" }
+            });
+
+            if (!response.ok) {
+                console.error("Error activando suscripción", response.status);
+                return false;
+            }
+
+            const resultado = await response.json();
+            return resultado;
+        }
+
+        async function suscribirme() {
+
+            var userEmail = document.getElementById("inputEmail").value.trim();
+
+            if (userEmail === "") {
+                alert("No se ha informado de un correo válido.");
+                return false;
+            }
+
+            const ok = await activarSuscripcion(userEmail);
+
+            if (ok) {
+                document.getElementById("inputEmail").value = '';
+                await ocultarBotonSuscripcion();
+                console.info("¡Suscripción activada correctamente!");
+            }
+            else {
+                console.error("No se ha podido activar la suscripción.");
+            }
+        }
+
+        async function ocultarBotonSuscripcion() {
+
+            document.getElementById("btnSuscripcion").style.display = "none";
+        }
+
+    </script>
+
+    <section class="portfolio section">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="section-title">
+                        <h2>Los Mejores Servicios Y Productos Están Muy Cerca De Ti</h2>
+                        <img src="img/logo.jpg" alt="#" style="margin-top: 20px; margin-bottom: 20px;">
+                        <p>Encuentra aquello que estabas buscando.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-12 col-12">
+                    <div id="panelImages" class="owl-carousel portfolio-slider">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <script>
+        const imagenes = [
+            'foto1.jpg',
+            'foto2.jpg',
+            'foto3.jpg',
+            'foto4.jpg',
+            'foto5.jpg',
+            'foto6.jpg',
+            'foto7.jpg',
+            'foto8.jpg'
+        ];
+
+        for (const url of imagenes) {
+
+            // Crear elementos HTML
+            const singlePfDiv = document.createElement('div');
+            singlePfDiv.className = 'single-pf';
+
+            const image = document.createElement('img');
+            image.src = 'img/fotos/' + url;
+            image.alt = '#';
+
+            const detailsLink = document.createElement('a');
+            detailsLink.href = 'explorar.html';
+            detailsLink.className = 'btn';
+            detailsLink.textContent = 'Ver más';
+
+            singlePfDiv.style.height = "275px";
+            singlePfDiv.appendChild(image);
+            singlePfDiv.appendChild(detailsLink);
+
+            // Agregar el contenedor al cuerpo del documento
+            document.getElementById("panelImages").appendChild(singlePfDiv);
+        }
+
+    </script>
+
+    <section class="services section">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="section-title">
+                        <h2>Cientos de productos y Servicios</h2>
+                        <!--<img src="img/logo.jpg" alt="#" style="margin-top: 20px; margin-bottom: 20px; width: 100px;">-->
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-4 col-md-6 col-12">
+                    <div class="single-service">
+                        <i class="icofont-book-alt"></i>
+                        <h4><a>Descubre</a></h4>
+                        <p>Explora comercios, servicios y actividades de tu entorno. Encuentra lugares y personas que forman parte de tu día a día.</p>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6 col-12">
+                    <div class="single-service">
+                        <i class="icofont-location"></i>
+                        <h4><a>De proximidad</a></h4>
+                        <p>Conecta con iniciativas locales y apoya el comercio cercano. Todo lo que necesitas, a pocos pasos de casa.</p>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6 col-12">
+                    <div class="single-service">
+                        <i class="icofont-heart-alt"></i>
+                        <h4><a>Aprecia tu barrio</a></h4>
+                        <p>Redescubre tu barrio desde otra perspectiva y valora lo que lo hace único: su gente, sus espacios y su historia.</p>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6 col-12">
+                    <div class="single-service">
+                        <i class="icofont-groups-alt"></i>
+                        <h4><a>Participa</a></h4>
+                        <p>Comparte, colabora y forma parte activa de la comunidad. Tus aportaciones ayudan a construir un barrio mejor.</p>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6 col-12">
+                    <div class="single-service">
+                        <i class="icofont-screen"></i>
+                        <h4><a>Desde tu dispositivo</a></h4>
+                        <p>Accede a la plataforma de forma rápida y sencilla desde tu móvil, tablet u ordenador, cuando quieras.</p>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6 col-12">
+                    <div class="single-service">
+                        <i class="icofont-user"></i>
+                        <h4><a>Tu perfil</a></h4>
+                        <p>Crea tu perfil, guarda tus favoritos y personaliza tu experiencia para sacarle el máximo partido a la plataforma.</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <script>
+
+        function explorarActividades() {
+
+            window.location.href = "explorar.html?type=e170a0db-660f-4c34-ae71-3e9b9dbbd92b";
+          }
+
+    </script>
+
+    <section class="blog section" id="blog">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="section-title">
+                        <h2>Consulta todas las actividades que hay a tu alrededor</h2>
+                        <p>Descubre eventos, iniciativas y planes cerca de ti y participa en la vida de tu barrio.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-4 col-md-6 col-12">
+                    <div class="single-news" onclick="explorarActividades();">
+                        <div class="news-head">
+                            <img src="img/fotos/Actividad01.png" alt="#">
+                        </div>
+                        <div class="news-body">
+                            <div class="news-content">
+                                <div class="date">12 Enero, 2026</div>
+                                <h2><a>Pintura creativa infantil</a></h2>
+                                <p class="text">Taller para que los niños desarrollen su creatividad a través del juego y la expresión artística.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 col-12">
+                    <div class="single-news" onclick="explorarActividades();">
+                        <div class="news-head">
+                            <img src="img/fotos/Actividad05.jpg" alt="#">
+                        </div>
+                        <div class="news-body">
+                            <div class="news-content">
+                                <div class="date">19 Enero, 2026</div>
+                                <h2><a>Taller de cerámica</a></h2>
+                                <p class="text">Aprende técnicas básicas de cerámica y crea piezas únicas en un entorno relajado y guiado.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 col-12">
+                    <div class="single-news" onclick="explorarActividades();">
+                        <div class="news-head">
+                            <img src="img/fotos/Actividad03.jpg" alt="#">
+                        </div>
+                        <div class="news-body">
+                            <div class="news-content">
+                                <div class="date">25 Enero, 2026</div>
+                                <h2><a>Pintura para adultos</a></h2>
+                                <p class="text">Espacio creativo para disfrutar de la pintura, compartir experiencias y fomentar la creatividad.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+    <section class="news-single section">
+        <div>
+            <div class="container">
+                <h2 style="margin-bottom: 80px">Testimonios</h2>
+                <div id="testimoniosBody" class="comments-body">
+
+                </div>
+             </div>
+        </div>
+    </section>
+     <script>
+
+                GetTestimonios('ObtenerTestimonios')
+                    .then(testimonios => {
+
+                        var i = 1;
+                        testimonios.forEach(function (testimonio) {
+                            if (testimonio.idEntidad == 0) {
+                                crearTestimonio(i, testimonio.nombreUsuario, testimonio.texto, testimonio.fecha, testimonio.imagen);
+                            }
+                            i++;
+                        });
+                    })
+                    .catch(error => {
+                        console.error('Error en GetTestimonios:', error);
+                        //alert('Error en GetTestimonios: ', error);
+                    });
+
+                // Función para generar dinámicamente el código HTML de un panel FAQ
+                function crearTestimonio(id, nombreUsuario, texto, fecha, imagen) {
+
+                    // Crear elementos HTML con JavaScript
+                    const singleCommentDiv = document.createElement('div');
+                    singleCommentDiv.className = 'single-comments';
+
+                    const mainDiv = document.createElement('div');
+                    mainDiv.className = 'main';
+
+                    const headDiv = document.createElement('div');
+                    headDiv.className = 'head';
+
+                    const authorImage = document.createElement('img');
+                    authorImage.src = imagen;
+                    authorImage.alt = '#';
+
+                    headDiv.appendChild(authorImage);
+
+                    const bodyDiv = document.createElement('div');
+                    bodyDiv.className = 'body';
+
+                    const authorName = document.createElement('h4');
+                    authorName.textContent = nombreUsuario;
+
+                    const commentMeta = document.createElement('div');
+                    commentMeta.className = 'comment-meta';
+
+                    const dateMeta = document.createElement('span');
+                    dateMeta.className = 'meta';
+                    //dateMeta.innerHTML = '<i class="fa fa-calendar"></i> ' + fecha;
+                    dateMeta.innerHTML = '<i></i> ' + fecha;
+
+                    const timeMeta = document.createElement('span');
+                    timeMeta.className = 'meta';
+                    //timeMeta.innerHTML = '<i class="fa fa-clock-o"></i> 03:38 AM';
+                    timeMeta.innerHTML = '<i></i> 07:30 AM';
+
+                    commentMeta.appendChild(dateMeta);
+                    commentMeta.appendChild(timeMeta);
+                    commentMeta.style.float = "left";
+                    commentMeta.style.paddingTop = "5px";
+                    commentMeta.style.paddingBottom = "5px";
+
+
+                    const commentText = document.createElement('p');
+                    commentText.textContent = texto;
+                    commentText.style.float = "right";
+                    commentText.style.marginBottom = "15px";
+                    commentText.style.textAlign = "left";
+                    commentText.style.fontSize = "14px";
+                    commentText.style.color = "black";
+
+                    /*const replyLink = document.createElement('a');
+                    replyLink.href = '#';
+                    replyLink.innerHTML = '<i class="fa fa-reply"></i> replay';*/
+
+                    bodyDiv.appendChild(authorName);
+                    bodyDiv.appendChild(commentMeta);
+                    bodyDiv.appendChild(commentText);
+                    //bodyDiv.appendChild(replyLink);
+
+                    mainDiv.appendChild(headDiv);
+                    mainDiv.appendChild(bodyDiv);
+
+                    singleCommentDiv.appendChild(mainDiv);
+
+                    document.getElementById("testimoniosBody").appendChild(singleCommentDiv);
+                }
+
+    </script>
+
+    <section>
+        <div class="services section">
+            <div class="container">
+                <div class="col-lg-12">
+                    <h2 style="margin-bottom: 50px">¿Tienes dudas?</h2>
+                    <div id="FAQS"> </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js"></script>
+    <script>
+              
+        // Función para generar dinámicamente el código HTML de un panel FAQ (SIN CAMBIOS)
+        function crearPanel(id, pregunta, respuesta) {
+            const panel = document.createElement('div');
+            panel.className = 'panel';
+            panel.setAttribute('data-index', id - 1);
+
+            const preguntaDiv = document.createElement('div');
+            preguntaDiv.className = 'pregunta';
+            // Usamos el icono fa-chevron-down por defecto (cerrado)
+            preguntaDiv.innerHTML = `<span>${ pregunta }</span > <i class="fas fa-chevron-down flecha"></i>`;
+
+            preguntaDiv.addEventListener('click', function () {
+                const panelIndex = parseInt(panel.getAttribute('data-index'));
+                togglePanel(panelIndex);
+            });
+
+            const respuestaDiv = document.createElement('div');
+            respuestaDiv.className = 'respuesta';
+            respuestaDiv.textContent = respuesta;
+
+            panel.appendChild(preguntaDiv);
+            panel.appendChild(respuestaDiv);
+
+            document.getElementById("FAQS").appendChild(panel);
+        }
+
+        // Función para cambiar la visibilidad de un panel con animación
+        function togglePanel(panelIndex) {
+            const panels = document.querySelectorAll('.panel');
+            const panel = panels[panelIndex];
+            const respuesta = panel.querySelector('.respuesta');
+            const flecha = panel.querySelector('.flecha');
+
+            // Solo gestionamos el panel clickeado (permitiendo que otros sigan abiertos)
+
+            const estaActivo = panel.classList.contains('activo');
+            panel.classList.toggle('activo');
+
+            let paddingOffsetpx = 15;
+            // Controla la animación y el icono del panel clickeado
+            if (!estaActivo) {
+                // Al abrir
+                respuesta.style.maxHeight = respuesta.scrollHeight + paddingOffsetpx * 2 + "px";
+                flecha.classList.remove('fa-chevron-down');
+                flecha.classList.add('fa-chevron-up');
+            } else {
+                // Al cerrar
+                // Forzar un repaint para que la transición de cierre funcione
+                respuesta.style.maxHeight = respuesta.scrollHeight + "px";
+                setTimeout(() => {
+                    respuesta.style.maxHeight = '0';
+                }, 10);
+
+                flecha.classList.remove('fa-chevron-up');
+                flecha.classList.add('fa-chevron-down');
+            }
+        }
+
+        document.addEventListener("DOMContentLoaded", function () {
+
+        GetFAQS('ObtenerFAQS')
+            .then(faqs => {
+                faqs.sort(function (a, b) {
+                    return a.orden - b.orden;
+                });
+                var i = 1;
+                faqs.forEach(function (faq) {
+                    if (faq.idEntidad == 0) {
+                        crearPanel(i, faq.pregunta, faq.respuesta);
+                        i++;
+                    }
+                   
+                });
+            })
+            .catch(error => {
+                console.error('Error en GetFAQS:', error);
+                //alert('Error en GetFAQS: ' + error);
+            });
+
+        });
+    </script>
+
+    <footer id="footer" class="footer"></footer>
+    <script>
+        (async () => {
+            await renderFooter('footer');
+        })()
+    </script>
+
+    <script src="./js/jquery.min.js"></script>
+    <script src="./js/jquery-migrate-3.0.0.js"></script>
+    <script src="./js/jquery-ui.min.js"></script>
+    <script src="./js/easing.js"></script>
+    <script src="./js/colors.js"></script>
+    <script src="./js/popper.min.js"></script>
+    <script src="./js/bootstrap-datepicker.js"></script>
+    <script src="./js/jquery.nav.js"></script>
+    <script src="./js/slicknav.min.js"></script>
+    <script src="./js/jquery.scrollUp.min.js"></script>
+    <script src="./js/niceselect.js"></script>
+    <script src="./js/tilt.jquery.min.js"></script>
+    <script src="./js/owl-carousel.js"></script>
+    <script src="./js/jquery.counterup.min.js"></script>
+    <script src="./js/steller.js"></script>
+    <script src="./js/wow.min.js"></script>
+    <script src="./js/jquery.magnific-popup.min.js"></script>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/waypoints/2.0.3/waypoints.min.js"></script>
+    <script src="./js/bootstrap.min.js"></script>
+    <script src="./js/main.js"></script>
+</body>
+</html>

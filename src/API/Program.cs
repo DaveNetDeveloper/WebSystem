@@ -93,7 +93,7 @@ builder.Services.AddSwaggerGen(c => {
 builder.Services.AddApplication();
  
 // Register Repositories & Filters 
-builder.Services.AddInfrastructure(builder.Environment.EnvironmentName);
+builder.Services.AddInfrastructure(builder.Environment.EnvironmentName, builder.Configuration);
 
 //var key = Encoding.ASCII.GetBytes("mi__secreto_secreto");
 var key = builder.Configuration["Jwt:Key"]; // guarda en appsettings.json
@@ -158,23 +158,30 @@ builder.Services.AddAuthorization(options => {
 //        }); 
 //});
 
+var frontendUrl = builder.Environment.IsDevelopment()
+    ? "https://localhost:7175"                       // Frontend dev
+    : "https://websystem-app-prod-fyf3a4gygzg9d9bg.westeurope-01.azurewebsites.net"; // Frontend prod
+
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowFrontend", policy =>
     {
         policy
-            .WithOrigins("https://localhost:7175")   
+            .WithOrigins(frontendUrl)
             .AllowAnyHeader()
             .AllowAnyMethod()
             .AllowCredentials();// NECESARIO para cookies seguras(server)
     });
 });
 
-builder.Services
-    .AddOptions<AppConfiguration>()
-    .Bind(builder.Configuration.GetSection("ServidorSmtp"))
-    .Validate(o => !string.IsNullOrEmpty(o.ServidorSmtp), "ServidorSmtp missing")
-    .ValidateOnStart();
+// local - desarrollo
+//
+//validar que exista el secreto/config
+//builder.Services
+//    .AddOptions<AppConfiguration>()
+//    .Bind(builder.Configuration.GetSection("ServidorSmtp"))
+//    .Validate(o => !string.IsNullOrEmpty(o.ServidorSmtp), "ServidorSmtp missing")
+//    .ValidateOnStart();
 
 //var sp = builder.Services.BuildServiceProvider();
 //var authOptions = sp.GetRequiredService<Microsoft.Extensions.Options.IOptions<Microsoft.AspNetCore.Authentication.AuthenticationOptions>>().Value;
@@ -217,15 +224,14 @@ app.MapHealthChecks("/health", new Microsoft.AspNetCore.Diagnostics.HealthChecks
         });
         await context.Response.WriteAsync(result);
     }
-}); 
- 
-//app.UseCors("AllowFrontend");
+});
 
-if (app.Environment.IsEnvironment(Application.Common.Environments.Development))
-{ 
+// TODO: Comentar para dejar swagger solo en entorno de desarrollo
+//if (app.Environment.IsEnvironment(Application.Common.Environments.Development))
+//{ 
     app.UseSwagger();
     app.UseSwaggerUI();
-}
+//}
 
 app.UseHttpsRedirection();
 app.UseCors("AllowFrontend");

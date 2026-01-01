@@ -1,0 +1,141 @@
+﻿<!doctype html>
+<html class="no-js" lang="es">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title> Administración / Entidades</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!--<link rel="manifest" href="site.webmanifest">-->
+    <link rel="shortcut icon" type="image/x-icon" href="../img/favicon.png"> 
+
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <link rel="stylesheet" href="../css/default.css">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/responsive.css">
+
+    <link rel="stylesheet" href="../css/magnific-popup.css">
+    <link rel="stylesheet" href="../css/sweetalert.css">
+</head>
+<body>
+
+    <div class="body-wrapper body-bg">
+        <header>
+            <admin-menu is-home="false"></admin-menu>
+            <script type="module" src="../Components/adminHeader/adminHeader.js"></script>
+        </header>
+        <script>
+            window.GlobalCssCache = {};
+            async function preloadCss(path) {
+                if (!window.GlobalCssCache[path]) {
+                    const css = await fetch(path).then(r => r.text());
+                    window.GlobalCssCache[path] = css;
+                }
+                return window.GlobalCssCache[path];
+            }
+        </script>
+
+        <div class="dashboard-area pt-30">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="pannel-wrapper white-bg mb-30">
+
+                            <div class="panel-heading heading-border">
+                                <h4>Listado de Entidades</h4>
+                            </div>
+
+                            <div class="panel-body">
+
+                                <bo-readonlylist show-create="true" show-actions="true" show-export="true" controller="Entidades" data-source="ObtenerEntidades"></bo-readonlylist>
+                                <script type="module" src="../Components/readOnlyList/readOnlyList.js"></script>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <footer>
+            </footer>
+        </div>
+    </div>
+
+    <script>
+        document.querySelector('bo-readOnlyList') // Escucha el evento emitido por el componente
+            .addEventListener('readOnlyList-success', (e) => {
+
+                //alert('readOnlyList-success: ' + e.detail);
+            });
+    </script>
+
+    <modal-panel id="modalPanel"></modal-panel> 
+    <script type="module" src="/Components/modalPanel/modalPanel.js"></script>
+
+    <script type="module">
+
+        const listado = document.querySelector("bo-readonlylist");
+        const modal = document.getElementById("modalPanel");
+
+        listado.addEventListener("delete-request", (e) => {
+
+            const id = e.detail.id;
+            const nombre = e.detail.nombre;
+            const controller = e.detail.controller;
+            //const dataSource = e.detail.dataSource;
+
+            modal.setContent("Confirmar eliminación", `¿Deseas eliminar: ${id} - ${nombre}?`, "delete");
+            modal.mostrar();
+
+            // Limpiar listeners previos
+            modal.removeEventListener("confirm", modal.confirmListener);
+            modal.removeEventListener("cancel", modal.cancelListener);
+
+            const baseUrl = window.location.hostname === "localhost"
+                ? "https://localhost:44311"
+                : "https://websystem-api-prod-ctgrd4gfc2e6dudb.westeurope-01.azurewebsites.net";
+ 
+
+            // Listener confirm
+            modal.confirmListener = async () => {
+                try {
+                    await fetch(`${baseUrl}/${controller}/Eliminar/${id}`, {
+                        method: "DELETE"
+                    });
+                    modal.ocultar();
+                    listado.loadData();
+                    listado.setupEventHandlers();
+                    listado.applyFilters();
+
+                } catch (err) {
+                    console.error("Error al eliminar entidad:", err);
+                    modal.ocultar();
+                }
+            };
+
+            modal.cancelListener = () => {
+
+                //modal.hide();
+            };
+            modal.addEventListener("confirm", modal.confirmListener);
+            modal.addEventListener("cancel", modal.cancelListener);
+        });
+    </script>
+
+
+
+
+    <!-- JS here -->
+    <!--<script src="js/vendor/modernizr-3.5.0.min.js"></script>-->
+    <!--<script src="js/popper.min.js"></script>-->
+    <!-- active code -->
+    <!--<script src="js/main.js"></script>-->
+
+    <script src="../js/vendor/jquery-1.12.4.min.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
+    <!--<script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>-->
+    <script src="../js/plugins.js"></script>
+    <!--<script src="js/DataTable.js"></script>-->
+</body>
+</html>

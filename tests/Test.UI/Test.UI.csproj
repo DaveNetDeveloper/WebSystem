@@ -1,8 +1,8 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-  <Target Name="PlaywrightInstall" AfterTargets="Build" Condition="'$(CI)' != 'true'">
+  <!--<Target Name="PlaywrightInstall" AfterTargets="Build" Condition="'$(CI)' != 'true'">
    <Exec Command="powershell bin\Debug\net8.0\playwright.ps1 install" />
-  </Target>
+  </Target>-->
   
   <PropertyGroup>
     <TargetFramework>net8.0</TargetFramework>

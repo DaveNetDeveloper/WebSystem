@@ -35,7 +35,7 @@ namespace API.Controllers
                 if (string.IsNullOrEmpty(rol))
                     return BadRequest("No se ha proporcionado el rol del usuario.");
 
-                string baseServerPath = _config["AppConfiguration:apiServer"] + ":" + _config["AppConfiguration:webPort"] + "/";
+                string baseServerPath = _config["AppConfiguration:webServer"] + ":" + _config["AppConfiguration:webPort"] + "/";
 
                 var opciones = _permisosService.ObtenerOpcionesMenu(rol, baseServerPath);
                 return Ok(opciones);
