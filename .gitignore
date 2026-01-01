@@ -21,3 +21,10 @@ docs
 project documentation
 /WebSystem.slnLaunch.user
 *.ps1
+**/Properties/PublishProfiles/
+**/*.pubxml
+**/*.pubxml.user
+*.user 
+**/serviceDependencies.json
+**/serviceDependencies.*.json
+**/*-WebDeploy.json
