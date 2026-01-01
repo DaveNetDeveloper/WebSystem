@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.Extensions.FileProviders;
 
 //
 var builder = WebApplication.CreateBuilder(args);
@@ -11,32 +12,21 @@ builder.Services.AddAuthentication(options =>
 
 var app = builder.Build();
 
-//app.MapGet("/", () => ("/index.html"));
+// Servir archivos estáticos desde wwwroot
+app.UseStaticFiles();
 
+// Opción: apuntar la raíz "/" a WebPages/index.html
+app.UseDefaultFiles(new DefaultFilesOptions
+{
+    FileProvider = new PhysicalFileProvider(
+        Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "WebPages")),
+    RequestPath = ""
+}); 
 app.UseStaticFiles(new StaticFileOptions
 {
-    FileProvider = new Microsoft.Extensions.FileProviders.PhysicalFileProvider(
-        Path.Combine(Directory.GetCurrentDirectory())),
+    FileProvider = new PhysicalFileProvider(
+        Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "WebPages")),
     RequestPath = ""
 });
-
-app.UseRouting();
-
-//app.UseCors(builder =>
-//{
-//    builder.WithOrigins("https://localhost:7161") // Reemplaza con el dominio de tu front-end
-//           .AllowAnyHeader()
-//           .AllowAnyMethod();
-//}); 
-
-//app.UseEndpoints(endpoints =>
-//{
-//    endpoints.MapGet("/", async context =>
-//    {
-//        await context.Response.SendFileAsync(Path.Combine(Directory.GetCurrentDirectory(), "index.html"));
-//    });
-
-//    // Otros endpoints y configuraciones de enrutamiento si es necesario
-//});
 
 app.Run();
