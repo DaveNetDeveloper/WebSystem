@@ -4,118 +4,141 @@
 ![CI](https://img.shields.io/badge/CI-GitHub%20Actions-success)
 ![License](https://img.shields.io/badge/License-CC%20BY--NC%204.0-lightgrey)
 
-## ğŸ“Œ DescripciÃ³n del Proyecto
+## ?? Descripción del Proyecto
 
-**WebSystem** es una soluciÃ³n web desarrollada con **.NET 8** orientada a la gestiÃ³n y estructuraciÃ³n de lÃ³gica empresarial mediante una arquitectura modular, mantenible y preparada para entornos profesionales.
+**WebSystem** es una solución web desarrollada con **.NET 8**, orientada a la construcción de aplicaciones profesionales mediante una **arquitectura limpia, modular y mantenible**.
 
-El proyecto se concibe como un **trabajo de carÃ¡cter profesional y acadÃ©mico**, con especial atenciÃ³n a la separaciÃ³n de responsabilidades, la estabilidad del cÃ³digo y la preparaciÃ³n para despliegues en la nube, sin introducir dependencias innecesarias ni complejidad artificial.
+El proyecto tiene un **enfoque profesional y académico**, priorizando buenas prácticas reales del sector: separación de responsabilidades, testabilidad, integración continua y preparación para despliegues en entornos cloud modernos.
+
+No se trata de un proyecto “demo”, sino de una base sólida pensada para **evolucionar, mantenerse y desplegarse en producción**.
 
 ---
 
-## ğŸ§± Arquitectura y Estructura de la SoluciÃ³n
+## ?? Arquitectura y Estructura de la Solución
 
-La soluciÃ³n sigue una **arquitectura multicapa (N-Tier)** con separaciÃ³n clara de responsabilidades, alineada con principios de **Clean Architecture**:
+La solución sigue una **arquitectura multicapa (N-Tier)** alineada con principios de **Clean Architecture**, garantizando bajo acoplamiento y alta cohesión.
+
+### Proyectos principales
 
 - **WebSystem.Api**  
-  API REST desarrollada con ASP.NET Core. ActÃºa como punto de entrada al sistema y coordina la lÃ³gica de aplicaciÃ³n.
+  API REST desarrollada con **ASP.NET Core**, responsable de exponer los endpoints y coordinar los casos de uso.
 
 - **WebSystem.Web**  
-  Cliente web basado en **HTML, JavaScript nativo y CSS**, encargado de la interacciÃ³n con el usuario.
+  Cliente web basado en **HTML, JavaScript nativo y CSS**, desacoplado de la API y consumiendo datos vía HTTP.
 
 - **WebSystem.Domain**  
-  NÃºcleo del dominio. Contiene las entidades, reglas de negocio y lÃ³gica pura, sin dependencias externas.
+  Núcleo del dominio. Contiene entidades y reglas de negocio puras, sin dependencias externas.
 
 - **WebSystem.Application**  
-  Capa de aplicaciÃ³n que orquesta los casos de uso, DTOs y contratos, actuando como intermediaria entre la API y el dominio.
+  Capa de aplicación que define casos de uso, DTOs y contratos. Actúa como intermediaria entre la API y el dominio.
 
 - **WebSystem.Infrastructure**  
-  ImplementaciÃ³n de la persistencia y dependencias externas, incluyendo **Entity Framework Core** y acceso a datos.
+  Implementación de la persistencia y dependencias externas, incluyendo **Entity Framework Core** y acceso a datos.
 
 - **WebSystem.Utilities**  
-  Conjunto de utilidades y componentes transversales reutilizables dentro de la soluciÃ³n.
+  Componentes y utilidades transversales reutilizables en toda la solución.
 
 - **WebSystem.WorkerService**  
-  Servicio de segundo plano basado en **Worker Service**, destinado a la ejecuciÃ³n de procesos asÃ­ncronos y tareas no interactivas.
+  Servicio en segundo plano basado en **Worker Service**, orientado a tareas asíncronas, procesos programados o trabajos no interactivos.
 
 - **WebSystem.Tests**  
-  Proyecto de pruebas unitarias y de integraciÃ³n para validar la estabilidad del sistema.
+  Proyecto de **pruebas unitarias e integración**, enfocado a validar la estabilidad y el comportamiento del sistema.
 
-Esta organizaciÃ³n favorece el desacoplamiento, la mantenibilidad y la evoluciÃ³n controlada del proyecto.
-
----
-
-## ğŸ› ï¸ TecnologÃ­as Utilizadas
-
-- **Lenguaje:** C# 12
-- **Framework:** .NET 8 / ASP.NET Core
-- **Frontend:** HTML, JavaScript nativo, CSS
-- **Persistencia:** Entity Framework Core
-- **Testing:** xUnit
-- **CI:** GitHub Actions
-- **Plataforma Cloud:** Microsoft Azure (preparado para despliegue)
+Esta estructura favorece la mantenibilidad, la escalabilidad y un desarrollo alineado con estándares profesionales.
 
 ---
 
-## ğŸ”„ IntegraciÃ³n Continua (CI)
+## ??? Tecnologías Utilizadas
 
-El repositorio cuenta con **IntegraciÃ³n Continua mediante GitHub Actions**, configurada para:
-
-- Ejecutar compilaciÃ³n y pruebas automÃ¡ticamente.
-- Garantizar la estabilidad del cÃ³digo antes de permitir merges.
-- Proteger la rama principal mediante validaciones automÃ¡ticas.
-
-Este enfoque asegura un flujo de trabajo controlado y acorde a prÃ¡cticas profesionales.
-
----
-
-## â˜ï¸ Despliegue y ConfiguraciÃ³n
-
-El proyecto estÃ¡ **preparado para desplegarse en Microsoft Azure** directamente desde Visual Studio.
-
-### GestiÃ³n de Secretos
-
-Por diseÃ±o, **no se almacenan claves ni secretos en los archivos de configuraciÃ³n** (`appsettings.json`). En su lugar:
-
-- En entorno local se utiliza el **Windows Secret Store**.
-- En entornos cloud se contempla el uso de **Azure (Key Vault / servicios equivalentes)**.
-
-Esto mantiene los archivos de configuraciÃ³n limpios y evita la exposiciÃ³n de informaciÃ³n sensible.
+- **Lenguaje:** C# 12  
+- **Framework:** .NET 8 / ASP.NET Core  
+- **Frontend:** HTML, JavaScript nativo, CSS  
+- **Persistencia:** Entity Framework Core  
+- **Testing:** xUnit  
+- **CI:** GitHub Actions  
+- **Cloud & Hosting:**  
+  - **Microsoft Azure**  
+  - **Railway**  
+- **Publicación:** Perfiles de publicación de **Visual Studio**
 
 ---
 
-## âš™ï¸ Requisitos
+## ?? Integración Continua (CI)
 
-- SDK **.NET 8.0**
-- Visual Studio 2022 (17.12+) o compatible
-- Motor de base de datos compatible con EF Core (segÃºn configuraciÃ³n)
+El repositorio cuenta con **Integración Continua mediante GitHub Actions**, configurada para:
+
+- Compilar la solución automáticamente.
+- Ejecutar las pruebas.
+- Validar cambios antes de permitir merges a ramas protegidas.
+
+Este flujo garantiza estabilidad y reduce errores en fases avanzadas del desarrollo.
 
 ---
 
-## ğŸ§ª EjecuciÃ³n de Pruebas
+## ?? Despliegue y Publicación
+
+El proyecto está **preparado para despliegues reales en la nube**, utilizando distintas estrategias según el entorno.
+
+### Publicación desde Visual Studio
+
+- Se emplean **perfiles de publicación de Visual Studio**, permitiendo:
+  - Despliegues directos a **Microsoft Azure App Service**.
+  - Configuración clara por entorno (Development / Production).
+  - Separación entre código y configuración.
+
+### Plataformas Cloud soportadas
+
+- **Microsoft Azure**  
+  Despliegue de API y Web mediante App Services, con configuración por entorno.
+
+- **Railway**  
+  Alternativa ligera para despliegues rápidos, especialmente útil en entornos de pruebas o demostración.
+
+La arquitectura del proyecto permite cambiar de proveedor cloud sin modificaciones estructurales relevantes.
+
+---
+
+## ?? Gestión de Configuración y Secretos
+
+Por diseño, **no se almacenan claves ni secretos en el repositorio**.
+
+- En entorno local:
+  - Uso de **Secret Manager (User Secrets)** de .NET.
+- En entornos cloud:
+  - Configuración mediante variables de entorno.
+  - Preparado para integración con **Azure Key Vault** u otros servicios equivalentes.
+
+Esto evita la exposición de información sensible y mantiene los archivos de configuración limpios.
+
+---
+
+## ?? Requisitos
+
+- **.NET SDK 8.0**
+- Visual Studio 2022 (17.12 o superior) o compatible
+- Motor de base de datos compatible con Entity Framework Core
+
+---
+
+## ?? Ejecución de Pruebas
 
 Para ejecutar las pruebas automatizadas:
 
 ```bash
 dotnet test
-```
 
----
 
-## ğŸ“ˆ Enfoque Profesional
+## ?? Enfoque Profesional
 
 WebSystem prioriza:
+- Arquitectura clara y desacoplada
+- Código mantenible y testeable
+- Flujo de trabajo controlado mediante CI
+- Despiegues en la nube (Azure / Railway)
+- Uso responsable de configuraciones y secretos
+El proyecto refleja fielmente su estado actual, sin promesas técnicas no implementadas.
 
-- Claridad arquitectÃ³nica
-- CÃ³digo mantenible y testeable
-- Flujo de trabajo seguro mediante CI
-- PreparaciÃ³n realista para despliegue en la nube
+## ?? Autor
 
-El proyecto evita promesas tÃ©cnicas no implementadas y refleja fielmente su estado actual.
-
----
-
-## ğŸ‘¤ Autor
-
-**David (DaveNetDeveloper)**  
-Proyecto .NET de carÃ¡cter profesional y acadÃ©mico
-
+David Martínez Gómez
+Proyecto .NET de carácter académico y personal
