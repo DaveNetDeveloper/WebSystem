@@ -188,6 +188,8 @@ builder.Services.AddCors(options =>
 //Console.Out.WriteLine("DefaultAuthenticateScheme: " + authOptions.DefaultAuthenticateScheme);
 //Console.Out.WriteLine("DefaultChallengeScheme: " + authOptions.DefaultChallengeScheme);
 
+
+
 var app = builder.Build();
 
 app.UseMiddleware<ExceptionMiddleware>();
@@ -198,6 +200,9 @@ if (!builder.Environment.IsEnvironment(Application.Common.Environments.Test) &&
     using var scope = app.Services.CreateScope();
     var runner = scope.ServiceProvider.GetRequiredService<IMigrationRunner>();
     runner.MigrateUp();
+
+    //
+    builder.WebHost.UseUrls("https://localhost:44311");
 }
 
 // Lanzar el consumidor de la cola de notificaciones
