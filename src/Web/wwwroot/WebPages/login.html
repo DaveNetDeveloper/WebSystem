@@ -143,6 +143,9 @@
                 //alert("Cokkie " + getCookie('app-role'));
                 //alert("Cokkie " + getCookie('app-profile'));
 
+                localStorage.setItem("idUsuario", e.detail.idUsuario);
+               // alert(e.detail.idUsuario);
+
                 //const usuarios = llamarEndpointSeguro();
                 //console.log('Usuarios:', usuarios);
                 //alert('Revisa la consola para ver los usuarios');
@@ -164,8 +167,8 @@
             window.baseUrl = baseUrl;
             window.port = port;
              
-            alert(baseUrl);
-            alert(port);
+            //alert(baseUrl);
+            //alert(port);
 
         }
         init();

@@ -241,10 +241,11 @@ class AppLogin extends HTMLElement {
                 Utilities.setCookie("app-refresh-token", data.refresh_token, fechaExpiracionRT);
                 Utilities.setCookie("app-role", data.role, data.expires_at);
                 Utilities.setCookie("app-profile", data.profile, data.expires_at);
+                 
 
                 if (this.loginType == loginType_Admin) { 
                     Utilities.setCookie("app-entities", data.entidades, data.expires_at);
-                    console.info("Se han cargado la cookie con la entidades o entidades adminsitradas por el usuario.");
+                    console.info("Se han cargado la cookie con la entidades o entidades administradas por el usuario.");
                 }
 
                 // Se emite evento personalizado para que el resto de la app reaccione

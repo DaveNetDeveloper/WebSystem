@@ -10,8 +10,8 @@ async function renderFooter(footerId) {
                 <div class="row">
                     <div class="col-lg-5 col-md-6 col-12">
                         <div class="single-footer">
-                            <h2>Sobre Nosotros</h2>
-                            <p>Descubre más acerca de Appropat y conoce todo lo que puedes hacer en la plataforma.</p>
+                            <h2>Sobre Appropat</h2>
+                            <p>Descubre más acerca de todo lo que puedes hacer en la plataforma.</p>
                             <ul class="social">
                                 <li><a href="#"><i class="icofont-facebook"></i></a></li>
                                 <li><a href="#"><i class="icofont-google-plus"></i></a></li>
@@ -26,8 +26,8 @@ async function renderFooter(footerId) {
                                     <ul>
                                         <li><a href="home-privada.html"><i class="fa fa-caret-right" aria-hidden="true"></i> Inicio</a></li>
                                         <li><a href="explorar.html"><i class="fa fa-caret-right" aria-hidden="true"></i> Explorar</a></li>
-                                        <li><a href="#"><i class="fa fa-caret-right" aria-hidden="true"></i> Recompensas</a></li>
-                                        <li><a href="#"><i class="fa fa-caret-right" aria-hidden="true"></i> ¿Cómo ganar puntos?</a></li> 
+                                        <li><a style="cursor: not-allowed;" href="#"><i class="fa fa-caret-right" aria-hidden="true"></i> Recompensas</a></li>
+                                        <li><a style="cursor: not-allowed;" href="#"><i class="fa fa-caret-right" aria-hidden="true"></i> ¿Cómo ganar puntos?</a></li>
                                     </ul>
                                </div>  
                         </div>

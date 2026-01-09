@@ -196,6 +196,8 @@
                 const cookieValor_profile = encodeURIComponent(data.profile) + "; expires=" + gmtExpirationString + "; path=/";
                 document.cookie = 'app-profile' + "=" + cookieValor_profile;
 
+                localStorage.setItem("idUsuario", data.idUsuario);
+
                 window.location.href = 'home-privada.html';
             }
             catch (err) {

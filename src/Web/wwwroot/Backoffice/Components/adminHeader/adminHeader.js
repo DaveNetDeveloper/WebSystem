@@ -185,7 +185,7 @@ class AdminMenu extends HTMLElement {
         let activeMenu = this.getActiveMenuFromUrl();
         let activePage = this.cortarHastaGuion(this.getActivePageFromUrl());
          
-        if (activeMenu == 'backoffice') activeMenu = activePage;
+        if (activeMenu == 'Backoffice') activeMenu = activePage;
 
         nivel1.forEach(op => {
             const li = document.createElement("li");
@@ -247,7 +247,7 @@ class AdminMenu extends HTMLElement {
         let activeMenu = this.getActiveMenuFromUrl();
         let activePage = this.cortarHastaGuion(this.getActivePageFromUrl());
 
-        if (activeMenu == 'backoffice') activeMenu = activePage;
+        if (activeMenu == 'Backoffice') activeMenu = activePage;
 
         nivel1.forEach(op => {
             const li = document.createElement("li");

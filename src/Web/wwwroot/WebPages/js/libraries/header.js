@@ -26,18 +26,18 @@ async function renderHeader(paginaActiva, headerId) {
                                             <a href="explorar.html">Explorar</a>
                                         </li>
                                         <li class="${paginaActiva === 'recompensas' ? 'active' : ''}">
-                                            <a href="#">Recompensas</a>
+                                            <a href="#" style="cursor: not-allowed;">Recompensas</a>
                                         </li>
                                         <li class="${paginaActiva === 'como-ganar' ? 'active' : ''}">
-                                            <a href="#">¿Cómo ganar puntos?</a>
+                                            <a href="#" style="cursor: not-allowed;">¿Cómo ganar puntos?</a>
                                         </li>
                                     </ul>
                                 </nav>
                             </div>
                         </div>
-                        <div class="col-lg-2 col-12">
+                        <div class="col-lg-1 col-12">
                             <div class="get-quote">
-                                <a id="infoUsuario" style="background: goldenrod; margin: 15px;" href="#" class="btn">
+                                <a id="infoUsuario" style="background: goldenrod;     margin-left: -135%; padding-top: 15px;" href="#" class="btn">
                                     Hola {nombre}. Tienes {puntos} pts.
                                 </a>
                             </div>
