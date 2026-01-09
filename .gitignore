@@ -28,3 +28,4 @@ project documentation
 **/serviceDependencies.json
 **/serviceDependencies.*.json
 **/*-WebDeploy.json
+*.Backup.tmp

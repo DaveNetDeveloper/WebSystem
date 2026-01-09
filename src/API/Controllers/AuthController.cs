@@ -247,7 +247,8 @@ namespace API.Controllers
                 expires_at = expires,
                 role = user.Role,
                 profile = user.Profile,
-                entidades = user.Entidades
+                entidades = user.Entidades,
+                idUsuario = user.Id
             });
         }
 
@@ -352,7 +353,8 @@ namespace API.Controllers
                     expires_at = expires, 
                     role = authUser.Role,
                     profile = authUser.Profile,
-                    entidades = string.Empty
+                    entidades = string.Empty,
+                    idUsuario = authUser.Id
                 });
                 
             }

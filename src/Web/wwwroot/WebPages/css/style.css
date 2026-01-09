@@ -620,13 +620,13 @@ body{
 .slider .single-slider .button{
 	margin-top:30px;
 }
-.slider .single-slider .btn{
-	color:#fff;
-	background:#1a76d1;
-	font-weight:500;
-	display:inline-block;
-	margin:0;
-	margin-right:10px;
+.slider .single-slider .btn {
+	color: #fff;
+	background: goldenrod;
+	font-weight: 500;
+	display: inline-block;
+	margin: 0;
+	margin-right: 10px;
 }
 	.slider .single-slider .btn :before {
 		color: #fff;
@@ -996,10 +996,11 @@ body{
 	margin-bottom:35px;
 }
 .why-choose .choose-left .list{}
-.why-choose .choose-left .list li {
-	color: #868686;
-	margin-bottom: 12px;
-}
+	.why-choose .choose-left .list li {
+		font-family: 'Poppins', sans-serif;
+		color: #868686;
+		margin-bottom: 12px;
+	}
 .why-choose .choose-left .list li:last-child{
 	margin-bottom:0px;
 }
@@ -3580,8 +3581,7 @@ body{
 }
 	.newsletter .common-input {
 		height: 60px;
-		width: 340px;
-		border: none;
+		/*width: 340px;*/		border: none;
 		color: #333;
 		box-shadow: none;
 		text-shadow: none;

@@ -16,6 +16,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Content Remove="wwwroot\Components\webHeader\webHeader.js" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Remove="wwwroot\Backoffice\cool-login.html" />
     <None Remove="wwwroot\Backoffice\marketing\campanas-segmentos-list.html" />
     <None Remove="wwwroot\Backoffice\marketing\usuarios-segmentos-list.html" />
@@ -32,6 +36,7 @@
 
   <ItemGroup>
     <Folder Include="wwwroot\Backoffice\Components\editList\" />
+    <Folder Include="wwwroot\Components\webHeader\" />
   </ItemGroup>
 
   <ItemGroup>
@@ -322,7 +327,6 @@
     <None Include="wwwroot\Components\register\register.css" />
     <None Include="wwwroot\Components\register\register.html" />
     <None Include="wwwroot\Components\register\register.js" />
-    <None Include="wwwroot\Components\webHeader\webHeader.js" />
     <None Include="wwwroot\Resources\Documents\Terminos y Condiciones.pdf" />
     <None Include="wwwroot\Resources\entidades\01-LaCinetika.jpg" />
     <None Include="wwwroot\Resources\entidades\02-MercatSantAndreu.jpeg" />

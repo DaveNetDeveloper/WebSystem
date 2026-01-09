@@ -68,7 +68,7 @@
         /*
          * Estilo Hover (border-hover-theme) cuando el botón está inactivo.
          */
-        .button.border-theme:hover,
+        button.border-theme:hover,
         .button.border-hover-theme:hover {
             background-color: goldenrod;
             border-color: lightgray;
@@ -331,37 +331,40 @@
 
     <section class="newsletter section">
         <div class="container">
-            <div class="row">
-                <div class="col-lg-12  col-12">
-                    <div class="subscribe-text">
-                        <h6>Encuentra la entidad que andabas buscando</h6>
-                        <!--<p class="">Descubre entidades cercanas.</p>-->
+            <div class="row ">
+                <div class="col-lg-6  col-12">
+                    <div class="subscribe-text ">
+                        <h6>Explora tu entorno</h6>
+                        <p style="color:white" class="">Encuentra la entidad que andabas buscando</p>
                     </div>
-
                 </div>
-                <br /><br /><br />
-                <div class="col-lg-12 col-12">
-                    <div class="">
-                        <div class="">
-                            <input id="textEntidad" name="textEntidad" placeholder="Buscar entidad" class="common-input" onfocus="this.placeholder = ''"
-                                   onblur="this.placeholder = 'Buscar entidad'" type="text">
-                            <button id="btnBuscarEntidad" class="btn" style=" margin: 0px 0px 0px 25px;" onclick="buscarUser()">BUSCAR</button>
-                            <button id="btnFiltrar" class="btn" style=" margin: 0px 0px 0px 25px;" onclick="borrarBusqueda()">LIMPIAR</button>
+                <div class="col-lg-6  col-12">
+                    <div class="subscribe-form ">
+                        <div class="newsletter-inner">
+                            <input id="textEntidad" name="textEntidad" placeholder="Buscar entidad" class="common-input" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Buscar entidad'" type="text"> 
+                            <div class="container">
+                                <div class="row ">
+                                    <div style="padding: 0;" class="col-lg-7  col-12"> 
+                                        <button style="border: white 1px solid;" id="btnBuscarEntidad" class="btn" onclick="buscarUser()">BUSCAR</button>
+                                    </div>
+                                    <div class="col-lg-1  col-12">  </div>
+                                    <div style="padding: 0;" class="col-lg-4  col-12">
+                                            <button id="btnFiltrar" style="border: white 1px solid;" class="btn" onclick="borrarBusqueda()">LIMPIAR</button>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                    </div>
                 </div>
             </div>
         </div>
-    </section>
+    </section> 
 
-    <br /><br />
-
-    <div class="container">
+    <div class="container" style="margin-top:50px;">
         <div class="col-12">
             <div class="button-group">
                 <div class="row">
-                    <button id="filtro1" onclick="aplicarFiltro1()" style=" width: 210px; font-size: 18px; }" href="#" class="button border-theme border-hover-theme color-theme color-hover-theme dashed">Comercio</button><br>
-                    <button id="filtro2" onclick="aplicarFiltro2()" style=" width: 210px; font-size: 18px; }" href="#" class="button border-theme border-hover-theme color-theme color-hover-theme dashed">Asociación</button><br>
+                    <button id="filtro1" onclick="aplicarFiltro1()" style=" width: 210px; font-size: 18px; }" href="#" class="button border-theme border-hover-theme color-theme color-hover-theme dashed">Comercio</button>
+                    <button id="filtro2" onclick="aplicarFiltro2()" style=" width: 210px; font-size: 18px; }" href="#" class="button border-theme border-hover-theme color-theme color-hover-theme dashed">Asociación</button>
                 </div>
             </div>
         </div>
@@ -633,10 +636,10 @@
                         <h3>¿Cómo interactuar con las entidades?</h3>
                         <p style="color: black;">
                             Descubre entidades locales, conoce sus servicios y explora las actividades que ofrecen desde un único espacio digital.
-                        </p> 
+                        </p>
                         <p style="color: black;">
                             Interactúa fácilmente reservando actividades, accediendo a promociones y participando en iniciativas pensadas para la comunidad.
-                        </p> 
+                        </p>
                         <div class="row">
                             <div class="col-lg-12">
                                 <ul class="list">
