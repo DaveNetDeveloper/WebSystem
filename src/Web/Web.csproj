@@ -23,9 +23,7 @@
     <None Remove="wwwroot\Backoffice\cool-login.html" />
     <None Remove="wwwroot\Backoffice\marketing\campanas-segmentos-list.html" />
     <None Remove="wwwroot\Backoffice\marketing\usuarios-segmentos-list.html" />
-    <None Remove="wwwroot\WebPages\contact.html" />
     <None Remove="wwwroot\WebPages\css\skin.css" />
-    <None Remove="wwwroot\WebPages\js\libraries\modalPanel-old.js" />
     <None Remove="wwwroot\WebPages\test.html" />
   </ItemGroup>
 
@@ -339,7 +337,7 @@
     <None Include="wwwroot\Resources\entidades\nodisponible.png" />
     <None Include="wwwroot\WebPages\404.html" />
     <None Include="wwwroot\WebPages\changePassword.html" />
-    <None Include="wwwroot\WebPages\completarPerfil.html" />
+    <None Include="wwwroot\WebPages\completar-perfil.html" />
     <None Include="wwwroot\WebPages\contactar.html" />
     <None Include="wwwroot\WebPages\css\animate.min.css" />
     <None Include="wwwroot\WebPages\css\bootstrap.min.css" />

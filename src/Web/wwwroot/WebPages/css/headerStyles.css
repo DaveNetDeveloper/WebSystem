@@ -1,0 +1,58 @@
+﻿
+
+/* ===== USER DROPDOWN DESKTOP ===== */
+
+/* solo desktop */
+@media (max-width: 991px) {
+    .user-dropdown {
+        display: none;
+    }
+} 
+
+.user-dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+/* menú oculto */
+.dropdown-menu-user {
+    position: absolute;
+    top: 110%;
+    right: 0;
+    background: #fff;
+    min-width: 180px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+    border-radius: 6px;
+    display: none;
+    z-index: 9999;
+}
+
+    /* enlaces */
+    .dropdown-menu-user a {
+        display: block;
+        padding: 12px 15px;
+        color: #333;
+        text-decoration: none;
+        font-size: 14px;
+    }
+
+        .dropdown-menu-user a:hover {
+            background: rgb(26, 118, 209);
+            color: white !important;
+            cursor: pointer;
+        }
+
+.mobile-only {
+    display: none;
+}
+
+@media (max-width: 767px) {
+    .mobile-only {
+        display: block;
+    }
+}
+
+.slicknav_menu .slicknav_nav .active a {
+    color: #1a76d1 !important;
+    font-weight: bold !important;
+}

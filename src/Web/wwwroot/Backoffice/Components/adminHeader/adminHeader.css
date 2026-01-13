@@ -17,10 +17,21 @@
     }
 }
 
+
+.dropdown-menu {
+    z-index: 10000 !important;
+    position: absolute !important;
+    width: 12rem !important;
+}
+
+    .dropdown-menu.show {
+        display: block;
+    }
+
 /*-------------------- */
 
 
-.meanclose {
+/*.meanclose {
     border: 1px solid white;
     color: white;
     cursor: pointer;
@@ -56,7 +67,7 @@ a.meanclose {
     text-decoration: none;
     top: 0;
     width: 22px;
-}
+}*/
 
 
 /*! #######################################################################
@@ -68,12 +79,20 @@ a.meanclose {
 
 ####################################################################### */
 
-/* hide the link until viewport size is reached */
-a.meanmenu-reveal {
-    display: none;
+header {
+    position: relative;
+    z-index: 1000;
 }
 
- 
+/* hide the link until viewport size is reached */
+a.meanmenu-reveal {
+    /*display: none;*/
+}
+
+.meanmenu-reveal {
+    position: relative; /* se queda en el header */
+    z-index: 1001;
+}
 
 /* when under viewport size, .mean-container is added to body */
 .mean-container .mean-bar {
@@ -90,7 +109,7 @@ a.meanmenu-reveal {
     cursor: pointer;
     display: block;
     font-family: Arial,Helvetica,sans-serif;
-    font-size: 1px;
+    /*font-size: 1px;*/
     font-weight: 700;
     height: 22px;
     line-height: 22px;
@@ -111,10 +130,13 @@ a.meanmenu-reveal {
     }
 
 .mean-container .mean-nav {
-    background: white none repeat scroll 0 0;
-    float: left;
-    margin-top: 0px;
+    position: absolute !important;
+    top: 100%;
+    left: 0;
     width: 100%;
+    z-index: 9999;
+    background: #fff;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
 }
 
     .mean-container .mean-nav ul {
@@ -125,6 +147,7 @@ a.meanmenu-reveal {
     }
 
         .mean-container .mean-nav ul li {
+            
             position: relative;
             float: left;
             width: 100%;
@@ -142,6 +165,7 @@ a.meanmenu-reveal {
                 text-transform: uppercase;
                 width: 90%;
                 font-size: 12px;
+
             }
 
             .mean-container .mean-nav ul li li a {
@@ -224,6 +248,15 @@ a.meanmenu-reveal {
     box-sizing: content-box;
 }
 
+.mean-nav {
+    position: absolute;
+    top: 100%; /* justo debajo del botón/header */
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    background: #fff;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+}
 
 .mean-remove {
     display: none !important;
@@ -253,4 +286,11 @@ a.meanmenu-reveal {
         border: 1px solid white;
         color: #fff;
     }
+}
+
+
+
+.mean-container .mean-push {
+    display: none !important;
+    height: 0 !important;
 }

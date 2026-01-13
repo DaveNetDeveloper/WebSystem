@@ -4,7 +4,7 @@ Author Name: Naimur Rahman
 Website: http://wpthemesgrid.com/
 Description: Mediplus - Doctor HTML Template.
 Version:	1.1
-========================================*/   
+========================================*/
 /*=======================================
 [Start Activation Code]
 =========================================
@@ -31,11 +31,12 @@ Version:	1.1
 * Preloader JS
 =========================================
 [End Activation Code]
-=========================================*/ 
+=========================================*/
+ 
+
 (function($) {
     "use strict";
-     $(document).on('ready', function() {
-	
+     $(document).on('ready', function() { 
         jQuery(window).on('scroll', function() {
 			if ($(this).scrollTop() > 200) {
 				$('#header .header-inner').addClass("sticky");

@@ -31,6 +31,8 @@
     <script src="./js/libraries/header.js"></script>
     <script src="./js/libraries/footer.js"></script>
 
+    <link rel="stylesheet" href="./css/headerStyles.css">
+
     <style>
         /*.filter-pills {
                     display: flex;
@@ -300,7 +302,6 @@
             height: 350px; /* ajusta a tu diseño */
             position: relative;
         }
-
     </style>
 
 </head>
@@ -326,6 +327,21 @@
 
             await renderHeader('explorar', 'headerExplorar');
             await setUserData();
+
+            document.addEventListener("click", function (e) {
+                const toggle = document.querySelector(".user-toggle");
+                const menu = document.querySelector(".dropdown-menu-user");
+
+                if (!toggle || !menu) return;
+
+                if (toggle.contains(e.target)) {
+                    e.preventDefault();
+                    menu.style.display = menu.style.display === "block" ? "none" : "block";
+                } else {
+                    menu.style.display = "none";
+                }
+            });
+
         })()
     </script>
 
@@ -354,6 +370,7 @@
                                 </div>
                             </div>
                         </div>
+                    </div>
                 </div>
             </div>
         </div>

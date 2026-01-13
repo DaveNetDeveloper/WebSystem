@@ -29,22 +29,25 @@
 	<link rel="stylesheet" href="./css/responsive.css">
 
 	<script src="./js/services/entidadesController.js"></script>
+
+	<script type="module" src="../Components/modalPanel/modalPanel.js"></script>
+
 	<script src="./js/libraries/header.js"></script>
 	<script src="./js/libraries/footer.js"></script>
 
+	<link rel="stylesheet" href="./css/headerStyles.css">
 	<style>
-		
+
 		p {
 			color: black;
 		}
 
-        .main-sidebar .single-post .image img {
-            float: left;
-            width: 60px;
-            height: 60px;
-            margin-right: 20px;
-        }
-
+		.main-sidebar .single-post .image img {
+			float: left;
+			width: 60px;
+			height: 60px;
+			margin-right: 20px;
+		}
 	</style>
 
 </head>
@@ -70,8 +73,32 @@
 
 			await renderHeader('explorar', 'headerExplorarProducto');
 			await setUserData();
+
+
+			document.addEventListener("click", function (e) {
+				const toggle = document.querySelector(".user-toggle");
+				const menu = document.querySelector(".dropdown-menu-user");
+
+				if (!toggle || !menu) return;
+
+				if (toggle.contains(e.target)) {
+					e.preventDefault();
+					menu.style.display = menu.style.display === "block" ? "none" : "block";
+				} else {
+					menu.style.display = "none";
+				}
+			});
 		})()
 	</script>
+
+
+	<div class="container">
+		<div class="row ">
+			<div class="col-lg-6  col-12">
+				<modal-panel id="modalPanel-ComoEscanear"></modal-panel>
+			</div>
+		</div>
+	</div>
 
 	<div class="breadcrumbs overlay">
 		<div class="container">
@@ -126,14 +153,18 @@
 									<p id="descripcionCorta">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse facilisis ultricies tortor, nec sollicitudin lorem sagittis vitae. Curabitur rhoncus commodo rutrum. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.</p>
 									<blockquote style="background-color:lightgrey;">
 										<p style="color:black; font-weight:bold;" id="puntos"></p>
-									</blockquote> 
-								</div>  
+									</blockquote>
+								</div>
 							</div>
 						</div>
 					</div>
 				</div>
 				<div class="col-lg-4 col-12">
 					<div class="main-sidebar">
+
+						<div style="text-align: center;" class="single-widget category">
+							<a id="btnComoEscanear" style="color: white;  width: -webkit-fill-available; font-size: 18px; cursor: pointer;" class="btn">CÓMO ESCANEAR UN QR</a>
+						</div>
 
 						<div class="single-widget side-tags">
 							<h3 class="title">Categorias</h3>
@@ -153,7 +184,7 @@
 									<h5><a href="#">Atención inmejorable</a></h5>
 									<ul class="comment">
 										<li><i class="fa fa-calendar" aria-hidden="true"></i>Noviembre 08, 2025</li>
-									 
+
 									</ul>
 								</div>
 							</div>
@@ -164,7 +195,7 @@
 								<div class="content">
 									<h5><a href="#">Una gran variedad</a></h5>
 									<ul class="comment">
-										<li><i class="fa fa-calendar" aria-hidden="true"></i>Diciembre 27, 2025</li> 
+										<li><i class="fa fa-calendar" aria-hidden="true"></i>Diciembre 27, 2025</li>
 									</ul>
 								</div>
 							</div>
@@ -175,18 +206,32 @@
 								<div class="content">
 									<h5><a href="#">Calidad superior</a></h5>
 									<ul class="comment">
-										<li><i class="fa fa-calendar" aria-hidden="true"></i>Enero 09, 2026</li> 
+										<li><i class="fa fa-calendar" aria-hidden="true"></i>Enero 09, 2026</li>
 									</ul>
 								</div>
 							</div>
 						</div>
-
 
 					</div>
 				</div>
 			</div>
 		</div>
 	</section>
+	 
+	<script>
+
+		function mostrarModalComoEscanear(titulo, mensaje, mode, imagen) {
+            const modal = document.getElementById("modalPanel-ComoEscanear");
+            modal.setContent(titulo, mensaje, mode, imagen); // añadir imagen
+			modal.mostrar();
+		}
+
+		// click en reservar
+		document.getElementById('btnComoEscanear').addEventListener('click', (e) => {
+            mostrarModalComoEscanear('¿Cómo se escanea un código QR?', 'Para escanear un código QR asociado tu producto tienes que apuntar con la cámara de tu dispositivo móvil o tablet al QR incluido en tu producto. Luego serás redirigido a esta plataforma para identificarte y recibir tu recompensa!', 'info', '/WebPages/img/codigo-qr.png');
+		});
+
+	</script>
 
 	<script>
 
@@ -199,13 +244,13 @@
 		//
 		function cargarProductos(id) {
 
-            const baseUrl = window.location.hostname === "localhost"
-                ? "https://localhost"
-                : "https://websystem-api-prod-ctgrd4gfc2e6dudb.westeurope-01.azurewebsites.net";
+			const baseUrl = window.location.hostname === "localhost"
+				? "https://localhost"
+				: "https://websystem-api-prod-ctgrd4gfc2e6dudb.westeurope-01.azurewebsites.net";
 
-            const port = window.location.hostname === "localhost"
-                ? "44311"
-                : "";
+			const port = window.location.hostname === "localhost"
+				? "44311"
+				: "";
 			const controllerName = `Productos`;
 			//const port = `44311`;
 			const apiUrl = `${baseUrl}:${port}/${controllerName}/FiltrarProductos`;
@@ -236,12 +281,12 @@
 
 						// TODO: TO DELETE AFTER DEMO
 						if (producto.id == 2) {
-                            document.getElementById('img2').src = 'img/productos/producto_2-2.jpg';
+							document.getElementById('img2').src = 'img/productos/producto_2-2.jpg';
 						}
-                        if (producto.id == 4) {
-                            document.getElementById('img1').src = 'img/productos/producto_4-2-copia.png';
-                            document.getElementById('img2').src = 'img/nodisponible.png';
-                        }
+						if (producto.id == 4) {
+							document.getElementById('img1').src = 'img/productos/producto_4-2-copia.png';
+							document.getElementById('img2').src = 'img/nodisponible.png';
+						}
 
 						document.getElementById('descuento').innerText = 'Disfruta del ' + producto.descuento + '% de decuento!';
 
@@ -256,7 +301,7 @@
 						document.getElementById('img2').innerText = producto.imagen;
 					}
 				})
-                .catch(err => console.error(err.message));
+				.catch(err => console.error(err.message));
 		}
 
 		//

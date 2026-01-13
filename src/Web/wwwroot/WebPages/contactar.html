@@ -47,7 +47,7 @@
             padding: 10px;
             cursor: pointer;
         }
-         
+
         .column > :first-child, .row {
             margin-top: 0;
         }
@@ -66,7 +66,7 @@
             box-sizing: border-box;
         }
 
-        
+/*
         div {
             display: block;
             unicode-bidi: isolate;
@@ -96,7 +96,7 @@
             -webkit-text-size-adjust: none;
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
-        }
+        }*/
 
         html {
             font-size: 62.5%;
@@ -180,7 +180,7 @@
             display: block;
             unicode-bidi: isolate;
         }
-
+/*
         body {
             font-family: 'Open Sans', 'Helvetica Neue', sans-serif;
             letter-spacing: 0;
@@ -205,7 +205,7 @@
             -webkit-text-size-adjust: none;
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
-        }
+        }*/
 
         [class*="form-container"] .column {
             position: relative;
@@ -233,7 +233,7 @@
             box-sizing: border-box;
         }
 
-   
+
         div {
             display: block;
             unicode-bidi: isolate;
@@ -295,10 +295,10 @@
             border-radius: 0;
         }
 
-        h1, h2, h3, h4, h5, h6, input, button, .button, select, textarea, .project-title, .product-title, .project-description, .font-alt-1, .header .navigation > ul > li > a, .side-navigation > ul > li > a, .overlay-navigation > ul > li > a, .grid-filter-menu a {
+/*        h1, h2, h3, h4, h5, h6, input, button, .button, select, textarea, .project-title, .product-title, .project-description, .font-alt-1, .header .navigation > ul > li > a, .side-navigation > ul > li > a, .overlay-navigation > ul > li > a, .grid-filter-menu a {
             font-family: 'Lato', 'Helvetica Neue', sans-serif;
         }
-
+*/
         input, select, textarea {
             -webkit-appearance: none;
             -moz-appearance: none;
@@ -326,13 +326,13 @@
             box-sizing: border-box;
         }
 
-  
+
         input:not([type="image" i], [type="range" i], [type="checkbox" i], [type="radio" i]) {
             overflow-clip-margin: 0px !important;
             overflow: clip !important;
         }
 
-    
+
         input[type="text" i] {
             padding-block: 1px;
             padding-inline: 2px;
@@ -390,6 +390,7 @@
     <script type="module" src="../Components/modalPanel/modalPanel.js"></script>
     <script src="./js/libraries/header.js"></script>
     <script src="./js/libraries/footer.js"></script>
+    <link rel="stylesheet" href="./css/headerStyles.css">
 
 </head>
 <body>
@@ -419,6 +420,21 @@
 
             await renderHeader('explorar', 'headerContactar');
             await setUserData();
+
+            document.addEventListener("click", function (e) {
+                const toggle = document.querySelector(".user-toggle");
+                const menu = document.querySelector(".dropdown-menu-user");
+
+                if (!toggle || !menu) return;
+
+                if (toggle.contains(e.target)) {
+                    e.preventDefault();
+                    menu.style.display = menu.style.display === "block" ? "none" : "block";
+                } else {
+                    menu.style.display = "none";
+                }
+            });
+
         })()
     </script>
 

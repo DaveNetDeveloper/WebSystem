@@ -22,6 +22,37 @@
 	<script src="./js/services/qrsController.js"></script>
 	<script src="./js/services/productosController.js"></script>
 
+    <style>
+
+        .qr-loading {
+            max-width: 250px;
+            animation: qrFade 1.5s ease-in-out infinite;
+            opacity: 1;
+            transition: opacity 0.6s ease;
+        }
+
+        @keyframes qrFade {
+            0% {
+                opacity: 0.3;
+            }
+
+            50% {
+                opacity: 1;
+            }
+
+            100% {
+                opacity: 0.3;
+            }
+        }
+
+        /* cuando ya cargó */
+        .qr-loaded {
+            animation: none;
+            opacity: 1;
+        }
+
+    </style>
+
 </head>
 <body>
 
@@ -67,46 +98,12 @@
 							<p style="margin-top: 25px; text-align: center;" id="pSubtitle">Estás a punto de conseguir [productPoints] puntos.</p>
 
 							<div class="row vh-100 align-items-center justify-content-center">
-								<div class="col-lg-6" style="text-align: center;">
-									<img name="imgProductImage" src="" alt="Imagen del producto escaneado">
+								<div class="col-lg-3" style="text-align: center;">
+									<img class="qr-loading" name="imgProductImage" id="imgProductImage" src="img/codigo-qr.png" alt="Imagen del producto escaneado">
 								</div>
 							</div>
 
 							<app-login id="loginQRComponent" login-type="Web" is-qr-login="true"></app-login>
-
-							<!--<label>Inicia sesión para completar el escaneo de tu producto!</label>
-
-							<div class="row">
-								<div class="col-lg-6">
-									<div class="form-group">
-										<input style="width: -webkit-fill-available;" type="email" name="emailQR" placeholder="Email" required>
-									</div>
-								</div>
-							</div>
-							<div class="row">
-								<div class="col-lg-6">
-									<div class="form-group">
-										<input style="width: -webkit-fill-available;" type="password" name="passwordQR" placeholder="Contraseña" required>
-									</div>
-								</div>
-							</div>
-							<div class="row">
-								<div class="col-lg-6">
-									<div class="form-group">
-										<a name="linkCambiarContraseña" href="" id="linkChangePassword">Has olvidado tu contraseña?</a>
-									</div>
-								</div>
-							</div>
-							<div class="row">
-								<div class="col-12">
-									<div class="">
-										<label class="checkbox-inline" for="2"><input name="news" id="2" type="checkbox">  Quieres recibir ofertas y promociones?</label>
-									</div>
-									<div style=" margin-top: 25px;" class="form-group login-btn">
-										<button id="qrLoginButton" class="btn" type="submit" name="btnContinuar">CONTINUAR</button>
-									</div>
-								</div>
-							</div>-->
 
 						</div>
 					</div>
@@ -114,11 +111,37 @@
 			</div>
 		</div>
 	</section>
+     
 
-	
+    <script type="text/javascript">
+
+        const img = document.getElementById("imgProductImage");
+        const MIN_LOADING_TIME = 2500; // 2.5 segundos de espera
+        const startTime = Date.now();
+
+        function setProductImage(realImageUrl) {
+            const elapsed = Date.now() - startTime;
+            const remaining = Math.max(0, MIN_LOADING_TIME - elapsed);
+
+            setTimeout(() => {
+                img.classList.add("qr-loaded");
+
+                // pequeño fade out / in al cambiar
+                img.style.opacity = 0;
+
+                setTimeout(() => {
+                    img.src = realImageUrl;
+                    img.style.opacity = 1;
+                }, 300);
+
+            }, remaining);
+        }
+
+    </script>
+
 	<script type="module" src="../Components/login/login.js"></script>
 
-	<div id="footerContainer"></div>
+	<!--<div id="footerContainer"></div>-->
 
     <script type="text/javascript">
 
@@ -210,22 +233,22 @@
 
                 //Validaciones sobre las propiedades del QR
                 if (data != null && data.status == 'Inactive') {
-                    alert("El QR no está activado.");
+                    console.warn("El QR no está activado.");
                     deshabilitarBoton();
                 }
                 else if (data != null && data.status == 'Consumed') {
-                    alert("El QR ya se ha consumido.");
+                    console.warn("El QR ya se ha consumido.");
                     deshabilitarBoton();
                 }
                 else if (data != null && data.status == 'Active') {
-                    alert("El QR está activo.");
+                    console.info("El QR está activo.");
                 }
 
                 if (data.expiresAt !== null) {
                     //alert("El QR tiene fecha de expiración: " + data.fechaExpiracion.toString())
                     let fechaExpirada = isExpiredDate(data.expiresAt.toString());
                     if (fechaExpirada) {
-                        alert("El QR está expirado");
+                        console.warn("El QR está expirado");
                         deshabilitarBoton();
                     }
                 }
@@ -244,12 +267,16 @@
                         replaceTextByTagId('h4Subtitle', '[productName]', product.nombre);
                         replaceTextByTagId('pSubtitle', '[productPoints]', product.puntos);
 
-                        const imagen = document.getElementsByName('imgProductImage')[0];
-                        if (imagen !== null) {
-                            imagen.src = product.imagen;
-                            //imagen.style.maxWidth = "50%";
-                            //alert("imagen: " + imagen.src);
-                        }
+
+                        setProductImage(product.imagen);
+
+
+                        //const imagen = document.getElementsByName('imgProductImage')[0];
+                        //if (imagen !== null) {
+                        //    imagen.src = product.imagen;
+                        //    //imagen.style.maxWidth = "50%";
+                        //    //alert("imagen: " + imagen.src);
+                        //}
                     })
                     .catch(error => {
                         console.error('Error en GetProducto:', error);
@@ -264,38 +291,11 @@
         function deshabilitarBoton() {
 
 
-            //     	var qrLoginButton = document.getElementById("qrLoginButton");
-            //     	qrLoginButton.disabled = true;
-            //qrLoginButton.style.cursor = "not-allowed";
+            // var qrLoginButton = document.getElementById("qrLoginButton");
+            // qrLoginButton.disabled = true;
+            // qrLoginButton.style.cursor = "not-allowed"; 
 
-
-        }
-
-        //let emailQR = document.querySelector("input[name='emailQR']");
-        //var linkPassword = document.getElementById('linkChangePassword');
-
-        //linkPassword.addEventListener('click', function (event) {
-        //	event.preventDefault();
-
-        //	url = 'changePassword.html?email=' + encodeURIComponent(emailQR);
-        //	window.location.href = url;
-        //});
-
-        //let passwordValue = document.querySelector("input[name='passwordQR']");
-
-        //function onClickBtnContinuar() {
-
-        //	 let email = document.querySelector("input[name='emailQR']");
-        //	let contrasena = document.querySelector("input[name='passwordQR']");
-
-
-        //	// login
-        //	//
-
-        //}
-
-        //const btnContinuar = document.querySelector('button[name="btnContinuar"]');
-        //btnContinuar.addEventListener('click', onClickBtnContinuar);
+        } 
 
         async function consumirQr(qrId, email) {
 
@@ -354,24 +354,7 @@
 
                 } else {
                     alert("No se pudo consumir el QR.");
-                }
-
-                //// Consumir QR
-                //consumirQr(qrCode, email).then(ok => {
-                //    if (ok) {
-
-                //        //alert(e.detail.expires_at);
-                //        // cambiar valor del perfil del usuario Cookie('app-profile') a 'Lover'
-                //        setCookie('app-profile', loverPerfilId, e.detail.expires_at);
-                         
-                //        alert("QR consumido correctamente!");
-
-                //        window.location.href = '../WebPages/home-privada.html';
-                //    }
-                //    else {
-                //        alert("No se pudo consumir el QR.");
-                //    }
-                //}); 
+                } 
 
             });
              
