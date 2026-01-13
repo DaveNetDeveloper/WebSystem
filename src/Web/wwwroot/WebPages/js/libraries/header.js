@@ -19,6 +19,9 @@ async function renderHeader(paginaActiva, headerId) {
                             <div class="main-menu">
                                 <nav class="navigation">
                                     <ul class="nav menu">
+
+                                        <li style="margin-bottom:30px;" class="mobile-only">
+                                        </li>
                                         <li class="${paginaActiva === 'home' ? 'active' : ''}">
                                             <a href="home-privada.html">Inicio</a>
                                         </li>
@@ -31,15 +34,31 @@ async function renderHeader(paginaActiva, headerId) {
                                         <li class="${paginaActiva === 'como-ganar' ? 'active' : ''}">
                                             <a href="#" style="cursor: not-allowed;">¿Cómo ganar puntos?</a>
                                         </li>
+
+                                        <li style="margin-top:30px;" class="mobile-only">
+                                            <a href="completar-perfil.html">Mi perfil</a>
+                                        </li>
+                                        <li class="mobile-only">
+                                            <a href="#" onclick="cerrarSesion()">Cerrar sesión</a>
+                                        </li>
                                     </ul>
                                 </nav>
                             </div>
                         </div>
                         <div class="col-lg-1 col-12">
                             <div class="get-quote">
-                                <a id="infoUsuario" style="background: goldenrod;     margin-left: -135%; padding-top: 15px;" href="#" class="btn">
+                                
+                            <div class="user-dropdown">
+                                <a id="infoUsuario" href="#" class="btn user-toggle">
                                     Hola {nombre}. Tienes {puntos} pts.
                                 </a>
+
+                                <div class="dropdown-menu-user">
+                                    <a onclick="irPerfil()">Mi perfil</a>
+                                    <a   onclick="cerrarSesion()">Cerrar sesión</a>
+                                </div>
+                            </div> 
+
                             </div>
                         </div>
                     </div>
@@ -47,7 +66,19 @@ async function renderHeader(paginaActiva, headerId) {
             </div>
         </div>`;
  }
- 
+
+async function irPerfil() {
+
+    //		window.location.href = "perfil.html";
+    window.location.href = "completar-perfil.html";
+
+}
+
+async function cerrarSesion() {
+    //localStorage.clear();
+    window.location.href = "login.html";
+}
+
 async function setUserData() {
 
     //localStorage.setItem("IdUsuario", 15);

@@ -30,6 +30,9 @@ class AdminMenu extends HTMLElement {
     async connectedCallback() {
         await this.loadTemplate();
 
+        this.initUserDropdown();
+        this.initUserActions();
+
         if (!this.rol) {
             this.rol = await this.getCookie("app-role");
         } 
@@ -415,15 +418,11 @@ class AdminMenu extends HTMLElement {
             const isOpen = revealBtn.classList.contains('meanclose');
 
             if (isOpen) {
-                // close
                 revealBtn.classList.remove('meanclose');
-                revealBtn.innerHTML = opts.meanRevealOpenText;
                 if (navUl) slideUp(navUl, opts.animationDuration);
                 this.mobileMenuOpen = false;
             } else {
-                // open
                 revealBtn.classList.add('meanclose');
-                revealBtn.innerHTML = opts.meanRevealCloseText;
                 if (navUl) slideDown(navUl, opts.animationDuration);
                 this.mobileMenuOpen = true;
             }
@@ -473,6 +472,63 @@ class AdminMenu extends HTMLElement {
         this._meanResizeHandler = onResize;
         window.addEventListener('resize', this._meanResizeHandler);
     }
+
+
+
+    initUserDropdown() {
+        const dropdownToggle = this.shadowRoot.querySelector('#UserDropdown');
+        const dropdownMenu = dropdownToggle?.nextElementSibling;
+
+        if (!dropdownToggle || !dropdownMenu) return;
+
+        dropdownToggle.addEventListener('click', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+
+            dropdownMenu.classList.toggle('show');
+        });
+
+        // cerrar al hacer click fuera
+        document.addEventListener('click', (e) => {
+            if (!this.contains(e.target)) {
+                dropdownMenu.classList.remove('show');
+            }
+        });
+    }
+
+    initUserActions() {
+        this.shadowRoot.querySelectorAll('.dropdown-item[data-action]')
+            .forEach(item => {
+                item.addEventListener('click', (e) => {
+                    e.preventDefault();
+
+                    const action = item.dataset.action;
+
+                    if (action === 'profile') {
+                        this.goToProfile();
+                    }
+
+                    if (action === 'logout') {
+                        this.logout();
+                    }
+                });
+            });
+    }
+
+    goToProfile() {
+
+        //window.location.href = '/Backoffice/Perfil/index.html';
+        
+    }
+
+    logout() {
+
+        /*document.cookie = "app-access-token=; path=/; max-age=0";
+        document.cookie = "app-role=; path=/; max-age=0";*/
+
+        window.location.href ='/Backoffice/login.html';
+    }
+
 }
 
 customElements.define("admin-menu", AdminMenu); 

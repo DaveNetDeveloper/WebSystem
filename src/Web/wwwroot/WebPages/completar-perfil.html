@@ -1,7 +1,7 @@
 ﻿<!doctype html>
 <html class="no-js" lang="es">
 <head>
-    <!-- Meta Tags -->
+
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="keywords" content="registro">
@@ -27,30 +27,75 @@
     <link rel="stylesheet" href="../WebPages/css/style.css">
     <link rel="stylesheet" href="../WebPages/css/responsive.css">
 
-    <script src="../WebPages/js/jquery.min.js"></script>
-    <script src="../WebPages/js/jquery-migrate-3.0.0.js"></script>
-    <script src="../WebPages/js/jquery-ui.min.js"></script>
-    <script src="../WebPages/js/easing.js"></script>
-    <script src="../WebPages/js/colors.js"></script>
-    <!--<script src="../WebPages/js/popper.min.js"></script>
-    <script src="../WebPages/js/bootstrap-datepicker.js"></script>-->
-    <script src="../WebPages/js/jquery.nav.js"></script>
-    <!--<script src="../WebPages/js/slicknav.min.js"></script>
-    <script src="../WebPages/js/jquery.scrollUp.min.js"></script>-->
-    <script src="../WebPages/js/niceselect.js"></script>
-    <script src="../WebPages/js/tilt.jquery.min.js"></script>
-    <!--<script src="../WebPages/js/owl-carousel.js"></script>-->
-    <script src="../WebPages/js/jquery.counterup.min.js"></script>
-    <script src="../WebPages/js/steller.js"></script>
-    <script src="../WebPages/js/wow.min.js"></script>
-    <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/waypoints/2.0.3/waypoints.min.js"></script>
-    <script src="https://maps.google.com/maps/api/js?key=AIzaSyDGqTyqoPIvYxhn_Sa7ZrK5bENUWhpCo0w"></script>
-    <script src="../WebPages/js/gmaps.min.js"></script>
-    <script src="../WebPages/js/map-active.js"></script>-->
-    <script src="../WebPages/js/bootstrap.min.js"></script>
+    <script src="../WebPages/js/libraries/header.js"></script>
+    <script src="../WebPages/js/libraries/footer.js"></script>
+
+    <link rel="stylesheet" href="../WebPages/css/headerStyles.css">
+
+
+
+    <script src="./js/jquery.min.js"></script>
+    <script src="./js/jquery-migrate-3.0.0.js"></script>
+    <script src="./js/jquery-ui.min.js"></script>
+    <script src="./js/easing.js"></script>
+    <script src="./js/colors.js"></script>
+    <script src="./js/popper.min.js"></script>
+    <script src="./js/bootstrap-datepicker.js"></script>
+    <script src="./js/jquery.nav.js"></script>
+    <script src="./js/slicknav.min.js"></script>
+    <script src="./js/jquery.scrollUp.min.js"></script>
+    <script src="./js/niceselect.js"></script>
+    <script src="./js/tilt.jquery.min.js"></script>
+    <script src="./js/owl-carousel.js"></script>
+    <script src="./js/jquery.counterup.min.js"></script>
+    <script src="./js/steller.js"></script>
+    <script src="./js/wow.min.js"></script>
+    <script src="./js/jquery.magnific-popup.min.js"></script>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/waypoints/2.0.3/waypoints.min.js"></script>
+    <script src="./js/bootstrap.min.js"></script>
+    <script src="./js/main.js"></script> 
 
 </head>
 <body>
+
+    <div class="preloader">
+        <div class="loader">
+            <div class="loader-outter"></div>
+            <div class="loader-inner"></div>
+
+            <div class="indicator">
+                <svg width="16px" height="12px">
+                    <polyline id="back" points="1 6 4 6 6 11 10 1 12 6 15 6"></polyline>
+                    <polyline id="front" points="1 6 4 6 6 11 10 1 12 6 15 6"></polyline>
+                </svg>
+            </div>
+        </div>
+    </div>
+
+    <header id="headerCompletarPerfil" class="header"> </header>
+
+    <script>
+        (async () => {
+
+            await renderHeader('perfil', 'headerCompletarPerfil');
+            await setUserData();
+
+
+            document.addEventListener("click", function (e) {
+                const toggle = document.querySelector(".user-toggle");
+                const menu = document.querySelector(".dropdown-menu-user");
+
+                if (!toggle || !menu) return;
+
+                if (toggle.contains(e.target)) {
+                    e.preventDefault();
+                    menu.style.display = menu.style.display === "block" ? "none" : "block";
+                } else {
+                    menu.style.display = "none";
+                }
+            });
+        })()
+    </script>
 
     <section class="contact-us section">
         <div class="container">
@@ -63,14 +108,14 @@
                             <div class="row">
                                 <div class="col-lg-6">
                                     <div class="form-group">
-                                        <input type="tel" style="width: 180px; height: 30px;" id="telefono" placeholder="Télefono" required value="635198891">
+                                        <input type="tel" style="width: 180px; height: 30px;" id="telefono" placeholder="Télefono" required value="">
                                     </div>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-lg-6">
                                     <div class="form-group">
-                                        <input type="text" style="width: 180px; height: 30px;" id="CP" placeholder="Código Postal" required value="08030">
+                                        <input type="text" style="width: 180px; height: 30px;" id="CP" placeholder="Código Postal" required value="">
                                     </div>
                                 </div>
                             </div>
@@ -109,7 +154,7 @@
         }
         init();
     </script>
-     
+
     <script type="module">
 
         function validateData(completeProfileDTO) {
@@ -174,7 +219,7 @@
                 if (!token) throw new Error('No se encontró el token. Inicia sesión primero.');
 
                 const res = await fetchWithAuth(apiUrl, {
-                //const res = await fetch(apiUrl,{
+                    //const res = await fetch(apiUrl,{
                     method: 'PUT',
                     headers: {
                         'Content-Type': 'application/json',
@@ -204,6 +249,15 @@
         });
 
     </script>
+
+
+    <footer id="footer" class="footer"></footer>
+    <script>
+        (async () => {
+            await renderFooter('footer');
+        })()
+    </script>
+
 </body>
 </html>
 

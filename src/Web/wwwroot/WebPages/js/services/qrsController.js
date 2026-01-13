@@ -3,11 +3,12 @@
 //
 
 //TODO: refactorizar las variables globales para la URL
-
-const baseUrl3 = `https://localhost`;
+const baseUrl3 = window.location.hostname === "localhost"
+    ? "https://localhost:44311"
+    : "https://websystem-api-prod-ctgrd4gfc2e6dudb.westeurope-01.azurewebsites.net";
 const controllerName3 = `api`;
-const port3 = `44311`;
-const apiUrl3 = `${baseUrl3}:${port3}/${controllerName3}/`;
+//const port3 = `44311`;
+const apiUrl3 = `${baseUrl3}/${controllerName3}/`;
 
 //var userToken = "qAGlDm9o9oS1Ir+xNlWk3XXHkJy/+nJmBy3KUPoms2w="; // TODO: cambiar por valor de la cookie
  

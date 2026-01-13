@@ -24,7 +24,7 @@
 
 	<link rel="stylesheet" href="./css/normalize.css">
 	<link rel="stylesheet" href="./css/style.css">
-	<link rel="stylesheet" href="./css/responsive.css"> 
+	<link rel="stylesheet" href="./css/responsive.css">
 
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 
@@ -36,208 +36,212 @@
 	<script src="./js/libraries/header.js"></script>
 	<script src="./js/libraries/footer.js"></script>
 
-	<style>
+	<link rel="stylesheet" href="./css/headerStyles.css">
 
-        .video-image {
-            background-image: url(img/videoImage.png);
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-            height: 350px;
-            position: relative;
-        }
+	<style> 
 
-        /*=======================
-			Start Fun Facts CSS
-		=========================*/
-        .fun-facts {
-            position: relative;
-        }
-
-            .fun-facts.section {
-                padding: 120px 0;
-            }
-
-        .fun-facts {
-            background: url('img/fun-bg.jpg');
-            background-size: cover;
-            background-repeat: no-repeat;
-        }
-
-            .fun-facts .single-fun {
-            }
-
-                .fun-facts .single-fun i {
-                    background-color: #1a76d1;
-                    position: absolute;
-                    left: 0;
-                    font-size: 62px;
-                    color: white;
-                    height: 70px;
-                    width: 70px;
-                    line-height: 67px;
-                    font-size: 28px;
-                    text-align: center;
-                    padding: 0;
-                    margin: 0;
-                    border: 2px solid #fff;
-                    border-radius: 0px;
-                    top: 50%;
-                    margin-top: -35px;
-                    -webkit-transition: all 0.4s ease;
-                    -moz-transition: all 0.4s ease;
-                    transition: all 0.4s ease;
-                    border-radius: 50%;
-                }
-
-                .fun-facts .single-fun:hover i {
-                    color: white;
-                    background: goldenrod;
-                    border-color: transparent;
-                    cursor: pointer;
-                }
-
-                .fun-facts .single-fun .content {
-                    padding-left: 80px;
-                }
-
-                .fun-facts .single-fun span {
-                    color: #1a76d1;
-                    font-weight: 600;
-                    font-size: 30px;
-                    position: relative;
-                    display: block;
-                    -webkit-transition: all 0.4s ease;
-                    -moz-transition: all 0.4s ease;
-                    transition: all 0.4s eas;
-                    display: block;
-                    margin-bottom: 7px;
-                }
-
-                .fun-facts .single-fun p {
-                    color: black;
-                    font-size: 15px;
-                }
-                .fun-facts .single-fun span:hover {
-                    color: goldenrod; 
-					cursor:pointer;
-                }
-
-		.section-title {
-			text-align: center;
-			margin-bottom: 60px;
-			padding: 0 125px;
-		}
-
-		.pricing-table .btn:before {
-			background-color: goldenrod;
-		}
-
-		body {
-			font-family: 'Arial', sans-serif;
-		}
-
-		.panel {
-			background-color: #f8f8f8;
-			border: 1px solid #ddd;
-			margin-bottom: 10px;
-			border-radius: 5px;
-			/* overflow: hidden; es clave aquí para que el max-height funcione con el contenido */
-			overflow: hidden;
-			box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-		}
-
-		.pregunta {
-			padding: 15px;
-			cursor: pointer;
-			background-color: #3498db;
-			color: #fff;
-			display: flex;
-			justify-content: space-between;
-			align-items: center;
-		}
-
-		.respuesta {
-			padding: 0 15px; /* Padding vertical inicial de 0 para empezar la transición */
-			text-align: left;
-			/* CERO VISIBILIDAD INICIAL */
-			max-height: 0;
-			/* TRANSICIÓN CLAVE */
-			/* Anima el max-height y el padding vertical */
-			transition: max-height 0.4s ease-out, padding 0.4s ease-out;
-		}
-
-		/* Estado de la respuesta cuando el panel está activo/abierto */
-		.panel.activo .respuesta {
-			/* Al abrir, el JS se encarga de establecer dinámicamente el max-height */
-			/* max-height: 500px; ya no es necesario aquí */
-			/* Devolvemos el padding para que el contenido tenga espacio */
-			padding-top: 15px;
-			padding-bottom: 15px;
-		}
-
-		@media (max-width: 600px) {
-			.pregunta {
-				font-size: 16px;
+			.video-image {
+				background-image: url(img/videoImage.png);
+				background-size: cover;
+				background-position: center;
+				background-repeat: no-repeat;
+				height: 350px;
+				position: relative;
 			}
-		}
 
-		respuesta {
-			padding: 0 15px; /* Padding vertical inicial de 0 para empezar la transición */
-			text-align: left;
-			/* CERO VISIBILIDAD INICIAL */
-			max-height: 0;
-			/* TRANSICIÓN CLAVE */
-			/* Anima el max-height y el padding vertical */
-			transition: max-height 0.4s ease-out, padding 0.4s ease-out;
-		}
-
-		/* Estado de la respuesta cuando el panel está activo/abierto */
-		.panel.activo .respuesta {
-			/* Al abrir, el JS se encarga de establecer dinámicamente el max-height */
-			/* max-height: 500px; ya no es necesario aquí */
-			/* Devolvemos el padding para que el contenido tenga espacio */
-			padding-top: 15px;
-			padding-bottom: 15px;
-		}
-
-		@media (max-width: 600px) {
-			.pregunta {
-				font-size: 16px;
+			/*=======================
+				Start Fun Facts CSS
+			=========================*/
+			.fun-facts {
+				position: relative;
 			}
+
+				.fun-facts.section {
+					padding: 120px 0;
+				}
+
+			.fun-facts {
+				background: url('img/fun-bg.jpg');
+				background-size: cover;
+				background-repeat: no-repeat;
+			}
+
+		.fun-facts .single-fun {
 		}
 
-		.flecha {
-			font-size: 20px;
-		} 
+			.fun-facts .single-fun i {
+				background-color: #1a76d1;
+				position: absolute;
+				left: 0;
+				font-size: 62px;
+				color: white;
+				height: 70px;
+				width: 70px;
+				line-height: 67px;
+				font-size: 28px;
+				text-align: center;
+				padding: 0;
+				margin: 0;
+				border: 2px solid #fff;
+				border-radius: 0px;
+				top: 50%;
+				margin-top: -35px;
+				-webkit-transition: all 0.4s ease;
+				-moz-transition: all 0.4s ease;
+				transition: all 0.4s ease;
+				border-radius: 50%;
+			}
 
-		.modal-contenido {
-			/* Por defecto */
-			opacity: 0;
-			transform: scale(0.7);
-			transition: opacity 0.3s ease-out, transform 0.3s ease-out;
-		}
+			.fun-facts .single-fun:hover i {
+				color: white;
+				background: goldenrod;
+				border-color: transparent;
+				cursor: pointer;
+			}
 
-		/* 2. Define el estado final (mostrado) */
-		.modal.mostrar .modal-contenido {
-			opacity: 1;
-			transform: scale(1);
-		}
+			.fun-facts .single-fun .content {
+				padding-left: 80px;
+			}
 
-        .single-table-parent :hover {
-            background-color: aliceblue;
-            border: 1px #1A76D1 solid;
-        }
+			.fun-facts .single-fun span {
+				color: #1a76d1;
+				font-weight: 600;
+				font-size: 30px;
+				position: relative;
+				display: block;
+				-webkit-transition: all 0.4s ease;
+				-moz-transition: all 0.4s ease;
+				transition: all 0.4s eas;
+				display: block;
+				margin-bottom: 7px;
+			}
 
-        .single-table :hover {
-            background-color: aliceblue;
-            border: 0;
-        }
+			.fun-facts .single-fun p {
+				color: black;
+				font-size: 15px;
+			}
 
-        .pricing-table .btn { 
-            width: 100%;
-            color: #fff;
-        }
+			.fun-facts .single-fun span:hover {
+				color: goldenrod;
+				cursor: pointer;
+			}
+
+			.section-title {
+				text-align: center;
+				margin-bottom: 60px;
+				padding: 0 125px;
+			}
+
+			.pricing-table .btn:before {
+				background-color: goldenrod;
+			}
+
+			body {
+				font-family: 'Arial', sans-serif;
+			}
+
+			.panel {
+				background-color: #f8f8f8;
+				border: 1px solid #ddd;
+				margin-bottom: 10px;
+				border-radius: 5px;
+				/* overflow: hidden; es clave aquí para que el max-height funcione con el contenido */
+				overflow: hidden;
+				box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+			}
+
+			.pregunta {
+				padding: 15px;
+				cursor: pointer;
+				background-color: #3498db;
+				color: #fff;
+				display: flex;
+				justify-content: space-between;
+				align-items: center;
+			}
+
+			.respuesta {
+				padding: 0 15px; /* Padding vertical inicial de 0 para empezar la transición */
+				text-align: left;
+				/* CERO VISIBILIDAD INICIAL */
+				max-height: 0;
+				/* TRANSICIÓN CLAVE */
+				/* Anima el max-height y el padding vertical */
+				transition: max-height 0.4s ease-out, padding 0.4s ease-out;
+			}
+
+			/* Estado de la respuesta cuando el panel está activo/abierto */
+			.panel.activo .respuesta {
+				/* Al abrir, el JS se encarga de establecer dinámicamente el max-height */
+				/* max-height: 500px; ya no es necesario aquí */
+				/* Devolvemos el padding para que el contenido tenga espacio */
+				padding-top: 15px;
+				padding-bottom: 15px;
+			}
+
+			@media (max-width: 600px) {
+				.pregunta {
+					font-size: 16px;
+				}
+			}
+
+			respuesta {
+				padding: 0 15px; /* Padding vertical inicial de 0 para empezar la transición */
+				text-align: left;
+				/* CERO VISIBILIDAD INICIAL */
+				max-height: 0;
+				/* TRANSICIÓN CLAVE */
+				/* Anima el max-height y el padding vertical */
+				transition: max-height 0.4s ease-out, padding 0.4s ease-out;
+			}
+
+			/* Estado de la respuesta cuando el panel está activo/abierto */
+			.panel.activo .respuesta {
+				/* Al abrir, el JS se encarga de establecer dinámicamente el max-height */
+				/* max-height: 500px; ya no es necesario aquí */
+				/* Devolvemos el padding para que el contenido tenga espacio */
+				padding-top: 15px;
+				padding-bottom: 15px;
+			}
+
+			@media (max-width: 600px) {
+				.pregunta {
+					font-size: 16px;
+				}
+			}
+
+			.flecha {
+				font-size: 20px;
+			}
+
+			.modal-contenido {
+				/* Por defecto */
+				opacity: 0;
+				transform: scale(0.7);
+				transition: opacity 0.3s ease-out, transform 0.3s ease-out;
+			}
+
+			/* 2. Define el estado final (mostrado) */
+			.modal.mostrar .modal-contenido {
+				opacity: 1;
+				transform: scale(1);
+			}
+
+			.single-table-parent :hover {
+				background-color: aliceblue;
+				border: 1px #1A76D1 solid;
+			}
+
+			.single-table :hover {
+				background-color: aliceblue;
+				border: 0;
+			}
+
+			.pricing-table .btn {
+				width: 100%;
+				color: #fff;
+			} 
+
 
 	</style>
 
@@ -264,6 +268,21 @@
 		(async () => {
 			await renderHeader('home', 'headerHomePrivada');
 			await setUserData(); 
+			 
+            document.addEventListener("click", function (e) {
+                const toggle = document.querySelector(".user-toggle");
+                const menu = document.querySelector(".dropdown-menu-user");
+
+                if (!toggle || !menu) return;
+
+                if (toggle.contains(e.target)) {
+                    e.preventDefault();
+                    menu.style.display = menu.style.display === "block" ? "none" : "block";
+                } else {
+                    menu.style.display = "none";
+                }
+			});
+			 
 		})()
 	</script>
 
